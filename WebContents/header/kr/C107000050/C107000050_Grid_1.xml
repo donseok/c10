@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setColValidators"><param>NotEmpty</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CH" index="1" sort="na" description="checkbox" align="center" dbname="CH" width="3" type="ch">선택</column>
+<column id="DT_NM_ID" index="1" sort="str" align="left" dbname="DT_NM_ID" width="10" table="TB_M00_ATTRS" type="ro" clabel="DT_NM_ID" hidden="true">DT_NM_ID</column>
+<column id="STANDARD_ENGLISH_ID" index="2" sort="str" align="left" dbname="표준항목ID" width="17" table="TB_M00_ATTRS" type="ed" color="FFFFC0" clabel="표준항목ID">표준항목ID</column>
+<column id="STANDARD_KOREAN_NAME" index="3" sort="str" align="left" dbname="표준항목명" width="15" table="TB_M00_ATTRS" type="ed" color="FFFFC0" clabel="표준항목명">표준항목명</column>
+<column id="SYS_TP" index="9" sort="str" align="left" dbname="시스템" width="7" table="TB_M00_ATTRS" type="combo_v" color="FFFFC0" clabel="시스템">시스템</column>
+<column id="CHAIN_CODE" index="10" sort="str" align="left" dbname="체인코드" width="15" table="TB_M00_ATTRS" type="combo_v" color="FFFFC0" clabel="체인코드">부문</column>
+<column id="DT_NM_DATA_TP" index="4" sort="str" align="left" dbname="항목데이터Type" width="7" table="TB_M00_ATTRS" type="combo_v" color="FFFFC0" clabel="항목데이터Type">항목Type</column>
+<column id="DT_NM_LEN" index="5"  format="0.0" sort="na" align="right" dbname="항목길이" width="5" table="TB_M00_ATTRS" type="ed" color="FFFFC0" clabel="항목길이">길이</column>
+<column id="DT_NM_DECIMAL_PREC" index="6" format="0.0" sort="na" align="right" dbname="항목소수점이하자리" width="8" table="TB_M00_ATTRS" type="ed" color="FFFFC0" clabel="항목소수점이하자리">소수점이하</column>
+<column id="DT_NM_ALIAS" index="7" sort="str" align="left" dbname="표준항목명약어" width="10" table="TB_M00_ATTRS" type="ed" color="FFFFC0" clabel="표준항목명약어" hidden="true">항목명약어</column>
+<column id="CREATED_OBJECT_ID" index="11" sort="str" align="left" dbname="등록자" width="7" table="TB_M00_ATTRS" type="ro" clabel="등록자">등록자</column>
+<column id="CREATION_TIMESTAMP" index="12" sort="str" align="center" dbname="등록일자" width="*" table="TB_M00_ATTRS" type="ro" clabel="등록일자">등록일자</column>
+<column id="USE_TP" index="8" sort="str" align="left" dbname="사용구분" width="7" table="TB_M00_ATTRS" type="combo_v" color="FFFFC0" clabel="사용구분">사용구분</column>
+<column id="RULE_DT_NM_ID" index="8" sort="str" align="left" dbname="RULE_DT_NM_ID" width="7" table="TB_M00_RULES020" type="combo_v" color="FFFFC0" clabel="RULE_DT_NM_ID" hidden="true">RULE_DT_NM_ID</column> 
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">CH,DT_NM_ID,STANDARD_ENGLISH_ID,STANDARD_KOREAN_NAME,SYS_TP,CHAIN_CODE,DT_NM_DATA_TP,DT_NM_LEN,DT_NM_DECIMAL_PREC,DT_NM_ALIAS,CREATED_OBJECT_ID,CREATION_TIMESTAMP,USE_TP,RULE_DT_NM_ID</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="17">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="18">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="19">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="20">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>	
+</row>
+</rows>

@@ -1,0 +1,39 @@
+<items>
+<item type="block" width="530">
+	<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+	<item offset="2" type="newcolumn"/>
+	<item label="폭수축 시뮬레이션" name="std_title" type="label" />
+	<item offset="230" type="newcolumn"/>
+	<item command="simulrate" name="simulrate" type="button"  value="시뮬레이션"/>
+</item>
+<item type="block" width="530">
+<item offset="30" type="newcolumn"/>
+<item inputWidth="50" label="입측폭" labelAlign="right" labelWidth="50" name="I_MTL_COIL_THK" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="입측두께" labelAlign="right" labelWidth="50" name="I_MTL_COIL_WTH" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="S/T폭" labelAlign="right" labelWidth="50" name="I_ST_WISH_WTH" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="압하률" labelAlign="right" labelWidth="50" name="I_COMPRESS_THK" type="input"/>
+</item>
+<item type="block" width="530">
+<item offset="30" type="newcolumn"/>
+<item inputWidth="50" label="YP" labelAlign="right" labelWidth="50" name="I_YP" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="TS" labelAlign="right" labelWidth="50" name="I_TS" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="EL" labelAlign="right" labelWidth="50" name="I_EL" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="C" labelAlign="right" labelWidth="50" name="I_C" type="input"/>
+</item>
+<item type="block" width="530">
+<item offset="30" type="newcolumn"/>
+<item inputWidth="50" label="SI" labelAlign="right" labelWidth="50" name="I_SI" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="MN" labelAlign="right" labelWidth="50" name="I_MN" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="P" labelAlign="right" labelWidth="50" name="I_P" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="50" label="S" labelAlign="right" labelWidth="50" name="I_S" type="input"/>
+</item>
+</items>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="815,-35" size="-1,-1" output="//@wire.8"/>
+  <child xsi:type="Glue:Activity" id="49656" location="751,-100" size="149,-1" input="//@wire.8" output="//@wire.17" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="param1" value="ERR_YN|N"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 품질설계 오류Code를 초기화한다.(QLT_DSN_ERR_CD=''l)&#xD;&#xA;- 오류발생여부 Check 변수를 초기화한다.(ERR_KEY= 'N‘)&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : P_PROC_FLAG|C&#xD;&#xA;param1 : ERR_YN|N"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="414,-36" size="154,-1" input="//@wire.18" output="//@wire.2 //@wire.3" name="SEARCH_GRP">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="param-count" value="1"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="B10R0020.select"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="description" value="이 Activity는 생산가부검토요청EAI테이블에서 &#xD;&#xA;하나의 IF_GRP_ID에 대하여 XSTAT ='D' 인 값만 추출하여&#xD;&#xA;생산가부검토를 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="276,-106" size="-1,-1" input="//@wire.2 //@wire.14"/>
+  <child xsi:type="Glue:SubServiceActivity" id="51116" location="425,165" size="136,-1" input="//@wire.7" output="//@wire.1 //@wire.6" name="ORD_CHECK">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100010-service"/>
+    <property key="description" value="이 Activity Diagram은 품질설계의 생산가부요청에 의한 생산가부체크&#xD;&#xA;항목들을 검증하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 품질설계의뢰정보 수신하여 생산가부에러체크(B10R0030)&#xD;&#xA;    . 주문에러체크 및 정합성을 검증&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51180" location="238,163" size="121,-1" input="//@wire.1" output="//@wire.4" name="STAT_SET_E">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="XSTAT|E"/>
+    <property key="param1" value="XSTAT_CALLBACK|R"/>
+    <property key="param2" value="XMSGS|생산가부검토 결과테이블을 확인하세요."/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51182" location="243,31" size="107,-1" input="//@wire.13" output="//@wire.14" name="COMMIT_IF">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 Commit 처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId와 관계 없이 무조건 Commit 처리한다.&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51204" location="421,32" size="135,-1" input="//@wire.3 //@wire.15 //@wire.19" output="//@wire.5 //@wire.13" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
+    <property key="param-count" value="97"/>
+    <property key="param0" value="IF_GRP_ID|IF_GRP_ID"/>
+    <property key="param1" value="SEQ_NO|SEQ_NO"/>
+    <property key="param2" value="XSEQ|XSEQ"/>
+    <property key="param3" value="XCRUD|XCRUD"/>
+    <property key="param4" value="XSTAT|XSTAT"/>
+    <property key="param5" value="XMSGS|XMSGS"/>
+    <property key="param6" value="XDATE|XDATE"/>
+    <property key="param7" value="XTIME|XTIME"/>
+    <property key="param8" value="XSTAT_CALLBACK|XSTAT_CALLBACK"/>
+    <property key="param9" value="ORD_REQ_NO|ORD_REQ_NO"/>
+    <property key="param10" value="ORD_REQ_LN|ORD_REQ_LN"/>
+    <property key="param11" value="PLNT_TP|PLNT_TP"/>
+    <property key="param12" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param13" value="PRD_SHP|PRD_SHP"/>
+    <property key="param14" value="FLOW_CHL|FLOW_CHL"/>
+    <property key="param15" value="ORD_KND|ORD_KND"/>
+    <property key="param16" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param17" value="CUS_CD|CUS_CD"/>
+    <property key="param18" value="ACT_CUS_CD|ACT_CUS_CD"/>
+    <property key="param19" value="FNL_CUS_CD|FNL_CUS_CD"/>
+    <property key="param20" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO"/>
+    <property key="param21" value="SPC_AVR|SPC_AVR"/>
+    <property key="param22" value="SPC_YR|SPC_YR"/>
+    <property key="param23" value="ORD_SZ|ORD_SZ"/>
+    <property key="param24" value="ORD_EXC_THK|ORD_EXC_THK"/>
+    <property key="param25" value="ORD_EXC_WTH|ORD_EXC_WTH"/>
+    <property key="param26" value="ORD_EXC_LTH|ORD_EXC_LTH"/>
+    <property key="param27" value="CUS_REQ_DLV_DD|CUS_REQ_DLV_DD"/>
+    <property key="param28" value="GW_ASG_CD|GW_ASG_CD"/>
+    <property key="param29" value="CCL_BOM_NO|CCL_BOM_NO"/>
+    <property key="param30" value="HUE_CD_FRN|HUE_CD_FRN"/>
+    <property key="param31" value="HUE_CD_BAK|HUE_CD_BAK"/>
+    <property key="param32" value="ORD_ORG_PLT_SPC_AVR|ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param33" value="ORD_ROU_CD|ORD_ROU_CD"/>
+    <property key="param34" value="ORD_SPNL_TP|ORD_SPNL_TP"/>
+    <property key="param35" value="ORD_COILG_MTH|ORD_COILG_MTH"/>
+    <property key="param36" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD"/>
+    <property key="param37" value="ORD_SKP_DEG|ORD_SKP_DEG"/>
+    <property key="param38" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP"/>
+    <property key="param39" value="ORD_THK_TP|ORD_THK_TP"/>
+    <property key="param40" value="WGT_DCS_MTH_TP|WGT_DCS_MTH_TP"/>
+    <property key="param41" value="ORD_SLV_KND_TP|ORD_SLV_KND_TP"/>
+    <property key="param42" value="EMBS_CD|EMBS_CD"/>
+    <property key="param43" value="ORD_PTT_FLM_CD|ORD_PTT_FLM_CD"/>
+    <property key="param44" value="ORD_PTT_FLM_WTH|ORD_PTT_FLM_WTH"/>
+    <property key="param45" value="ORD_PTT_FLM_ADH_LOC_CD|ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param46" value="ORD_WGT_UNT|ORD_WGT_UNT"/>
+    <property key="param47" value="ORD_LN_WGT|ORD_LN_WGT"/>
+    <property key="param48" value="ORD_SHT_CNT|ORD_SHT_CNT"/>
+    <property key="param49" value="ORD_PAK_SHT_CNT|ORD_PAK_SHT_CNT"/>
+    <property key="param50" value="ORD_PAK_UNT_WGT_LLV|ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param51" value="ORD_PAK_UNT_WGT_ULV|ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param52" value="ORD_DLV_ALW_DIF_LLV|ORD_DLV_ALW_DIF_LLV"/>
+    <property key="param53" value="ORD_DLV_ALW_DIF_ULV|ORD_DLV_ALW_DIF_ULV"/>
+    <property key="param54" value="ORD_PAK_LTH_LLV|ORD_PAK_LTH_LLV"/>
+    <property key="param55" value="ORD_PAK_LTH_ULV|ORD_PAK_LTH_ULV"/>
+    <property key="param56" value="ORD_STDP_LLV|ORD_STDP_LLV"/>
+    <property key="param57" value="ORD_STDP_ULV|ORD_STDP_ULV"/>
+    <property key="param58" value="ORD_STDP_CNT_LLV|ORD_STDP_CNT_LLV"/>
+    <property key="param59" value="ORD_STDP_CNT_ULV|ORD_STDP_CNT_ULV"/>
+    <property key="param60" value="ORD_PAK_UNT_WGT|ORD_PAK_UNT_WGT"/>
+    <property key="param61" value="ORD_SML_PAK_WGT|ORD_SML_PAK_WGT"/>
+    <property key="param62" value="ORD_SML_PAK_MIR|ORD_SML_PAK_MIR"/>
+    <property key="param63" value="ORD_UNT_WGT|ORD_UNT_WGT"/>
+    <property key="param64" value="ORD_PAK_MTH|ORD_PAK_MTH"/>
+    <property key="param65" value="ORD_COIL_IDIA|ORD_COIL_IDIA"/>
+    <property key="param66" value="ORD_COIL_ODIA|ORD_COIL_ODIA"/>
+    <property key="param67" value="ORD_THK_TLN_LLV|ORD_THK_TLN_LLV"/>
+    <property key="param68" value="ORD_THK_TLN_ULV|ORD_THK_TLN_ULV"/>
+    <property key="param69" value="ORD_WTH_TLN_LLV|ORD_WTH_TLN_LLV"/>
+    <property key="param70" value="ORD_WTH_TLN_ULV|ORD_WTH_TLN_ULV"/>
+    <property key="param71" value="ORD_LTH_TLN_LLV|ORD_LTH_TLN_LLV"/>
+    <property key="param72" value="ORD_LTH_TLN_ULV|ORD_LTH_TLN_ULV"/>
+    <property key="param73" value="ORD_THK_MNG_CD|ORD_THK_MNG_CD"/>
+    <property key="param74" value="ORD_WTH_MNG_CD|ORD_WTH_MNG_CD"/>
+    <property key="param75" value="ORD_LTH_MNG_CD|ORD_LTH_MNG_CD"/>
+    <property key="param76" value="CUS_REQ_CLR_NM|CUS_REQ_CLR_NM"/>
+    <property key="param77" value="ORD_RCP_DD|ORD_RCP_DD"/>
+    <property key="param78" value="ORD_SHT_LOD_MTH|ORD_SHT_LOD_MTH"/>
+    <property key="param79" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT"/>
+    <property key="param80" value="ORD_MIX_WTH1|ORD_MIX_WTH1"/>
+    <property key="param81" value="ORD_MIX_WTH2|ORD_MIX_WTH2"/>
+    <property key="param82" value="ORD_MIX_WTH3|ORD_MIX_WTH3"/>
+    <property key="param83" value="ORD_MIX_WTH4|ORD_MIX_WTH4"/>
+    <property key="param84" value="ORD_MIX_WTH5|ORD_MIX_WTH5"/>
+    <property key="param85" value="ORD_MIX_WTH6|ORD_MIX_WTH6"/>
+    <property key="param86" value="ORD_MIX_WTH7|ORD_MIX_WTH7"/>
+    <property key="param87" value="ORD_MIX_WTH8|ORD_MIX_WTH8"/>
+    <property key="param88" value="ORD_MIX_WTH9|ORD_MIX_WTH9"/>
+    <property key="param89" value="ORD_MIX_WTH10|ORD_MIX_WTH10"/>
+    <property key="param90" value="SLIT_MAX_WGT|SLIT_MAX_WGT"/>
+    <property key="param91" value="TRST_PROC_YN|TRST_PROC_YN"/>
+    <property key="param92" value="TAG_TP|TAG_TP"/>
+    <property key="param93" value="NAT_CD|NAT_CD"/>
+    <property key="param94" value="ORD_RGS_PRS_ID|ORD_RGS_PRS_ID"/>
+    <property key="param95" value="ORD_TEM_CD|ORD_TEM_CD"/>
+    <property key="param96" value="PAK_MSG_CD|PAK_MSG_CD"/>
+    <property key="description" value="이 Activity는 PI처리상태='J'인 품질설계요청정보를&#xD;&#xA;인터페이스그룹아이디, 인터페이스 SEQ, PI Sequence Key Value에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="52733" location="426,236" size="135,-1" input="//@wire.4 //@wire.6" output="//@wire.9" name="PRD_INQ_CHK">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchPrdInqchkData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="prodSpecKind" value="1"/>
+    <property key="description" value="이 Activity는 인터페이스된 주문정보를 읽어 생산가부를 판단하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 품질설계Key사항&#xD;&#xA;&#x9;- 품잘설계KEY를 Master Data를 Match하여 원자재코드,재질코드를 편집한다.&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1040&#xD;&#xA;&#x9;- 품질설계Key Master Data 조건항목 : &#xD;&#xA;&#x9;  품명, 규격약호, 주문용도코드, 최종고객사, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 고객사양번호 등록시 우선순위&#xD;&#xA;&#x9;- 필수 Match 조건항목 : &#xD;&#xA;&#x9;  품명, 규격약호, 주문용도코드, 최종고객사, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 품질설계keY Master Data의 원자재코드,재질코드,통과공정번호,제조표준번호,품질메세지,정전메세지를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 설계Key Match를 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;품질설계KEY 에러입니다&quot;&#xD;&#xA;&#x9;. 해당주문요청번호,주문요청행번의 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;- 고객사양번호 미등록시 우선순위 : 선순위 Data가 Match되면 적용하고 Match종료함.고객사양번호는 &quot;**********&quot;&#xD;&#xA;&#x9;- 첫번째 Match 조건 : 품명, 규격약호, 주문용도코드, 최종고객사, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 두번째 Match 조건 : 품명, 규격약호, 주문용도코드, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭 &#xD;&#xA;&#x9;- 세번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 5자리 &quot;*&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭 &#xD;&#xA;&#x9;- 네번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 3자리 &quot;***&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 다섯번째 Match 조건 : 품명, 규격약호, 주문용도코드 &quot;******&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 여섯번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 5자리 &quot;*&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 여섯번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 3자리 &quot;***&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 일곱번째 Match 조건 : 품명, 규격약호, 주문용도코드 &quot;******&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면, 주문두께, 주문폭&#xD;&#xA;&#x9;- 여덟번째 Match 조건 : 품명, 규격약호, 주문용도코드, 최종고객사, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;- 아홉번째 Match 조건 : 품명, 규격약호, 주문용도코드, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭 &#xD;&#xA;&#x9;- 열번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 5자리 &quot;*&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭 &#xD;&#xA;&#x9;- 열한번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 3자리 &quot;***&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;- 열두번째 Match 조건 : 품명, 규격약호, 주문용도코드 &quot;******&quot;, 최종고객사 , 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;- 열세번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 5자리 &quot;*&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;- 열네번째 Match 조건 : 품명, 규격약호, 주문용도코드 중분류 동일 소분류 3자리 &quot;***&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;- 열다섯번째 Match 조건 : 품명, 규격약호, 주문용도코드 &quot;******&quot;, 최종고객사 &quot;******&quot;, 고객 사양번호, EMBOSS무늬, 주문Spangle구분, 주문도금량지정코드, 주문표면처리코드, 색상코드전면 &quot;*****&quot;, 주문두께, 주문폭&#xD;&#xA;&#x9;-> 품질설계KEY가 Match된 경우는 품질설계keY Master Data의 원자재코드,재질코드,통과공정번호,제조표준번호,품질메세지,정전메세지를 편집한다.&#xD;&#xA;&#x9;-> 품질설계KEY가 Match된 경우는 이면 설계Key Match를 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;생산불가(품질설계KEY 없음)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;2. 편성정보: CCL BOM 기준 (컬러제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : CCL BOM 기준(TB_C10_CCL_BOM)&#xD;&#xA;&#x9;- CCL BOM 기준 Data 조건항목 : CCL_BOM_NO&#xD;&#xA;&#x9;-> Read Count = 1 이면 CCL BOM 기준 Data의 코팅방식, 도막두께, 광택도코드, 수지구분을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 CCL BOM 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;CCL BOM 기준 없음&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;3. 편성정보: SP두께 보정 (알루미늄 칼라,스테인레스 칼라 제품군 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2070&#xD;&#xA;&#x9;- SP두께 보정률 기준 Data 조건항목 : 품명코드, 재질코드, 주문Spangle, 두께, 폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 SP두께 보정률 기준 Data의 두께보정률을 편집한다.&#xD;&#xA;&#x9;-> 없어도 에러처리 하지 않는다.&#xD;&#xA;&#x9;&#xD;&#xA;4. 편성정보: 도금량 기준 (도금제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10A1061&#xD;&#xA;&#x9;- 도금량 기준 Data 조건항목 : 품명(원판품명), 도금량지정코드&#xD;&#xA;&#x9;-> Read Count = 1 이면 도금량 기준 Data의 도금두께목표를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 도금량 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;생산불가 (도금량기준 없음)&quot; 또는 &quot;생산불가 (도금량기준 중복)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;5. 편성정보: 고객사양공통 기준 (고객사양번호가 존재하는 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10A1020&#xD;&#xA;&#x9;- 고객사양공통 기준 Data 조건항목 : 고객사양번호&#xD;&#xA;&#x9;-> Read Count = 1 이면 고객사양공통 기준 Data의 고객요청압연두께, 고객요청압연두께단위를 편집한다.&#xD;&#xA;&#x9;   - 편집한 고객요청압연두께가 존재하는 경우 다음과 같이 압연목표두께를 계산한다.&#xD;&#xA;&#x9;     - 고객요청압연두께단위가 &quot;CRN&quot;인 경우&#xD;&#xA;&#x9;       압연목표두께 = 주문두께(주문두께구분이 &quot;3&quot;경우 도막두께,도금두께를 빼준 값) + 고객요청압연두께치 + SP보정계산값&#xD;&#xA;&#x9;     - 고객요청압연두께단위가 &quot;PCN&quot;인 경우&#xD;&#xA;&#x9;       압연목표두께 = 주문두께(주문두께구분이 &quot;3&quot;경우 도막두께,도금두께를 빼준 값) + 고객요청압연두께 보정계산값 + SP보정계산값 &#xD;&#xA;&#x9;     - 고객요청압연두께단위가 &quot;TRK&quot;인 경우&#xD;&#xA;&#x9;       압연목표두께 = 고객요청압연두께 &#xD;&#xA;&#x9;-> 없어도 에러처리 하지 않는다.&#xD;&#xA;&#x9;&#xD;&#xA;6. 편성정보: 압연두께Set치보정기준 (고객사양서번호가 없는 경우 또는 고객요청압연두께가 없는경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2060&#xD;&#xA;&#x9;- 압연두께Set치보정기준 Data 조건항목 : 품명코드, 규격기관, 규격약호, 주문용도코드, 최종고객사,주문두께구분, 두께관리코드, 도금량지정코드, 두께범위, 폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 압연두께Set치보정기준 Data의 두께보정치, 두께보정단위를 편집한다.&#xD;&#xA;&#x9;   - 두께보정단위가 &quot;CRN&quot;인 경우&#xD;&#xA;&#x9;     압연목표두께 = 주문두께(주문두께구분이 &quot;2&quot;경우 도금두께를 빼준 값) + 두께보정치 + SP보정계산값&#xD;&#xA;&#x9;   - 두께보정단위가 &quot;PCN&quot;인 경우&#xD;&#xA;&#x9;     압연목표두께 = 주문두께(주문두께구분이 &quot;2&quot;경우 도금두께를 빼준 값) + 두께보정계산치값 + SP보정계산값 &#xD;&#xA;&#x9;   - 두께보정단위가 &quot;TRK&quot;인 경우&#xD;&#xA;&#x9;     압연목표두께 = 두께보정치 + SP보정계산값 &#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 압연두께Set치보정기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;압연두께Set치보정기준 없음&quot; 또는 &quot;압연두께Set치보정기준 중복&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;7. 편성된 압연목표두께에 소수점 반올림 및 X-Ray Set를 반영한다. (알미늄 칼라, 스테인레스 칼라인 경우 주문두께를 압연목표두께로 편성한다.)&#xD;&#xA;&#xD;&#xA;8. 편성정보: 제품폭여유기준 (알미늄 칼라, 스테인레스 칼라 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10A1070&#xD;&#xA;&#x9;- 제품폭여유기준 Data 조건항목 : 폭관리코드&#xD;&#xA;&#x9;-> Read Count = 1 이면 제품폭여유기준 Data의 폭여유치를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 제품폭여유기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;폭관리코드별 폭여유치기준 없음&quot; 또는 &quot;폭관리코드별 폭여유치기준 중복&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;9. 편성정보: 정전폭마진량&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1079&#xD;&#xA;&#x9;- 정전폭마진량 기준 Data 조건항목 : 주문에지구분, 품명코드, 제품형태, 코팅방식, 수지타입&#xD;&#xA;&#x9;-> Read Count = 1 이면 정전폭마진량기준 Data의 마진폭을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 정전폭마진량기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(정전폭마진량)&quot; 또는 &quot;Size기준 중복(정전폭마진량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;10. 편성정보: 정전폭감소량&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1077&#xD;&#xA;&#x9;- 정전폭감소량 기준 Data 조건항목 : 품명코드, 재질코드, 압연목표두께, 폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 정전폭감소량기준 Data의 정전폭감소량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 정전폭감소량기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(정전폭감소량)&quot; 또는 &quot;Size기준 중복(정전폭감소량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;10. 편성정보: CCL폭감소량 (칼라제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1078&#xD;&#xA;&#x9;- CCL폭감소량 기준 Data 조건항목 : 품명코드, 재질코드, 압연목표두께, 폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 CCL폭감소량기준 Data의 CCL폭감소량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 CCL폭감소량기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(CCL폭감소량)&quot; 또는 &quot;Size기준 중복(CCL폭감소량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;11. 편성정보: 통과공정삭제기준&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1078&#xD;&#xA;&#x9;- 통과공정삭제기준 Data 조건항목 : 품명코드, BackMarking여부, 주문내경, 주문내경링종류구분, 주문표면처리코드, 도금량지정코드, EMBOSS무늬, 주문포장단중하한값, 주문코일외경, 입측두께범위, 입측폭범위, 수지타입전면, 광택코드전면, 보호필름상세코드, 재질코드, 주문EDGE지정코드&#xD;&#xA;&#x9;-> Read Count = 1 이면 통과공정삭제기준 Data의 삭제공정을 편집한다.&#xD;&#xA;&#x9;-> 에러처리하지 않는다.&#xD;&#xA;&#x9;- PLTCM목표목표폭을 설계한다.&#xD;&#xA;&#x9;- 주문폭,주문두께,주문EDGE,폭공차로 제품목표폭을 계산한다.&#xD;&#xA;&#x9;- 주문폭공차,규격폭공차,폭관리코드로 폭공차를 편집한다&#xD;&#xA;&#x9;&#xD;&#xA;12. 편성정보: 통과공정기준 (알미늄 칼라, 스테인레스 칼라 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10A1054&#xD;&#xA;&#x9;- 통과공정기준 Data 조건항목 : 통과공정번호&#xD;&#xA;&#x9;-> Read Count = 1 이면 통과공정기준 Data의 도금(CGL/EGL)공정코드를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이면 통과공정기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;통과공정기준 없음&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;13. 편성정보: CGL폭감소량 (용융도금제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1075&#xD;&#xA;&#x9;- CGL폭감소량 기준 Data 조건항목 : 품명코드, 재질코드, 압연목표두께, 폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 CGL폭감소량 기준 Data의 CGL폭감소량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 CGL폭감소량 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(CGL폭감소량)&quot; 또는 &quot;Size기준 중복(CGL폭감소량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;14. 편성정보: 중간재적용기준 (전기도금제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2230&#xD;&#xA;&#x9;- 중간재적용기준 Data 조건항목 : 품명코드, 주문두께, 주문폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 중간재적용기준 Data의 EGL공정코드을 편집한다.&#xD;&#xA;&#x9;-> 없어도 에러처리 하지 않는다.&#xD;&#xA;&#x9;&#xD;&#xA;15. 편성정보: EGL폭감소량 (전기도금제품군인 경우)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1076&#xD;&#xA;&#x9;- EGL폭감소량 기준 Data 조건항목 : 품명코드, 재질코드, 압연목표두께, 폭범위&#xD;&#xA;&#x9;-> Read Count = 1 이면 EGL폭감소량 기준 Data의 EGL폭감소량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 EGL폭감소량 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(EGL폭감소량)&quot; 또는 &quot;Size기준 중복(EGL폭감소량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;16. 편성정보: PLTCM 출측폭&#xD;&#xA;  PLTCM 출측폭 = 주문폭 + 정전폭감소량 + CCL폭감소량(칼라제품) + CGL/EGL폭감소량(도금제품) + 정전폭마진량 + 제품폭여유치;&#xD;&#xA;  &#xD;&#xA;17. 편성정보: 원자재두께기준 (알미늄칼라, 스테인레스 칼라 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1071&#xD;&#xA;&#x9;- 원자재두께 기준 Data 조건항목 : 원자재코드, 압연목표두께, PLTCM폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 원자재두께 기준 Data의 원자재목표두께을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 원자재두께 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(원자재두께)&quot; 또는 &quot;Size기준 중복(원자재두께)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;18. 편성정보: PLTCM폭수축량 (알미늄칼라, 스테인레스 칼라 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1074&#xD;&#xA;&#x9;- PLTCM폭수축량 기준 Data 조건항목 : 원자재코드, 압연목표두께, PLTCM폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 PLTCM폭수축량 기준 Data의 PLTCM폭수축량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 PLTCM폭수축량 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(PLTCM폭수축량)&quot; 또는 &quot;Size기준 중복(PLTCM폭수축량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;19. 편성정보: PLTCM폭마진량 (알미늄칼라, 스테인레스 칼라 제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1073&#xD;&#xA;&#x9;- PLTCM폭마진량 기준 Data 조건항목 : 원자재코드, 원자재두께, PLTCM폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 PLTCM폭마진량 기준 Data의 PLTCM폭마진량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 PLTCM폭마진량 기준 에러처리한다.&#xD;&#xA;&#x9;. 에러내용을 편집 &quot;Size기준 없음(PLTCM폭마진량)&quot; 또는 &quot;Size기준 중복(PLTCM폭마진량)&quot;&#xD;&#xA;&#x9;. 해당 주문요청번호,주문요청행번의 생산가부체크 처리를 SKIP하고 &quot;인터페이스테이블 수신처리&quot; 수행한다.&#xD;&#xA;&#x9;&#xD;&#xA;20. 편성정보: 원자재목표폭&#xD;&#xA;&#x9;- 주문Edge가 'S' 또는 'M'&#xD;&#xA;&#x9;  원자재목표폭 = PLTCM목표폭 + PLTCM폭수축량 + PLTCM폭여유량&#xD;&#xA;&#x9;- 주문Edge가 'C'&#xD;&#xA;&#x9;  원자재목표폭 = PLTCM목표폭&#xD;&#xA;&#x9;- 주문Edge가 'N'&#xD;&#xA;&#x9;  원자재목표폭 = 주문폭 + CGL/EGL폭수축량&#xD;&#xA;&#x9;  &#xD;&#xA;21. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;22. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="52760" location="436,376" size="113,-1" input="//@wire.11" output="//@wire.12" name="IFGroupID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 설계결과 IF  송신  IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="52801" location="434,94" size="121,-1" input="//@wire.5" output="//@wire.7" name="STAT_SET_S">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="10"/>
+    <property key="param0" value="XSTAT|S"/>
+    <property key="param1" value="ERR_YN|N"/>
+    <property key="param2" value="MQL_CD|sp_null"/>
+    <property key="param3" value="ROL_TAR_THK|sp_null"/>
+    <property key="param4" value="RMTL_CD|sp_null"/>
+    <property key="param5" value="RMTL_TAR_THK|sp_null"/>
+    <property key="param6" value="RMTL_TAR_WTH|sp_null"/>
+    <property key="param7" value="ORD_ERR_TXT|sp_null"/>
+    <property key="param8" value="PLTCM_WTH_TRV|sp_null"/>
+    <property key="param9" value="XMSGS|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155629" location="245,307" size="121,-1" input="//@wire.10" output="//@wire.11" name="CLEAR_XMSGS">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="XMSGS|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="155630" location="430,306" size="124,-1" input="//@wire.9" output="//@wire.10" name="MODIFY_IF">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="7"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10R0020.modify"/>
+    <property key="param0" value="XSTAT"/>
+    <property key="param1" value="XMSGS"/>
+    <property key="param2" value="XMSGS"/>
+    <property key="param3" value="XMSGS"/>
+    <property key="param4" value="XSTAT_CALLBACK"/>
+    <property key="param5" value="IF_GRP_ID"/>
+    <property key="param6" value="SEQ_NO"/>
+    <property key="description" value="이 Activity는 생산가부검토의뢰 결과를 생산가부검토의뢰요청 Interface Table에&#xD;&#xA;저장하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="155631" location="432,444" size="130,-1" input="//@wire.12" output="//@wire.15" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="17"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S1030.insert"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="XMSGS"/>
+    <property key="param2" value="XSTAT_CALLBACK"/>
+    <property key="param3" value="ORD_REQ_NO"/>
+    <property key="param4" value="ORD_REQ_LN"/>
+    <property key="param5" value="ERR_YN"/>
+    <property key="param6" value="MQL_CD"/>
+    <property key="param7" value="ROL_TAR_THK"/>
+    <property key="param8" value="RMTL_CD"/>
+    <property key="param9" value="RMTL_TAR_THK"/>
+    <property key="param10" value="RMTL_TAR_WTH"/>
+    <property key="param11" value="ORD_ERR_TXT"/>
+    <property key="param12" value="ORD_ERR_TXT"/>
+    <property key="param13" value="ORD_ERR_TXT"/>
+    <property key="param14" value="PLTCM_WTH_TRV"/>
+    <property key="param15" value="IF_GRP_ID_REQ"/>
+    <property key="param16" value="PAS_PROC_NO"/>
+    <property key="description" value="이 Activity는 생산가부검토의뢰결과를 생산가부검토결과Interface테이블에 &#xD;&#xA;저장하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155963" location="529,-99" size="132,-1" input="//@wire.17" output="//@wire.18 //@wire.16" name="CHK IF_GRP_ID">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="true"/>
+    <property key="param3" value="false"/>
+    <property key="description" value="이 Activity는 인터페이스그룹ID를 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- IF_GRP_ID의 값이 null이면 true로 분기한다.&#xD;&#xA;- IF_GRP_ID의 값이 null이 아니면 false로 분기한다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="155964" location="607,-36" size="154,-1" input="//@wire.16" output="//@wire.19" name="SEARCH_DALL">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="B10R0020.BAKselect"/>
+    <property key="description" value="이 Activity는 생산가부검토요청EAI테이블에서 &#xD;&#xA;최대100건의 XSTAT ='D' 인 값만 추출하여&#xD;&#xA;생산가부검토를 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 ERP 영업관리(SD)에서 요청한 &#xD;&#xA;생산가부요청 주문에 대하여 주문항목 에러체크하고&#xD;&#xA;품질중요항목에 대한 설계결과를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문항목 에러체크&#xD;&#xA;    . 품질설계KEY 편성&#xD;&#xA;    . 중요Size설계&#xD;&#xA;    . 인터페이스테이블 수신처리&#xD;&#xA;    . 생산가부검토결과 송신처리&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2991" guardcondition="failure" firstRelativePoint="425,177" lastRelativePoint="359,177"/>
+  <wire id="3000" guardcondition="failure" firstRelativePoint="414,-23" lastRelativePoint="295,-97">
+    <bendpoint weight="0.5" firstDimension="-124,-2" secondDimension="81,73"/>
+    <bendpoint weight="0.5" firstDimension="-124,-75" secondDimension="81,0"/>
+  </wire>
+  <wire id="3028" guardcondition="success" firstRelativePoint="484,-6" lastRelativePoint="484,32"/>
+  <wire id="7758" guardcondition="success" firstRelativePoint="304,188" lastRelativePoint="426,252">
+    <bendpoint weight="0.5" firstDimension="-1,79" secondDimension="-189,1"/>
+  </wire>
+  <wire id="9007" guardcondition="success" firstRelativePoint="490,62" lastRelativePoint="490,94"/>
+  <wire id="9009" guardcondition="success" firstRelativePoint="495,195" lastRelativePoint="495,236"/>
+  <wire id="9010" guardcondition="success" firstRelativePoint="488,124" lastRelativePoint="488,165"/>
+  <wire id="9020" guardcondition="success" firstRelativePoint="681,-36" lastRelativePoint="681,-70"/>
+  <wire id="9037" guardcondition="success" firstRelativePoint="501,266" lastRelativePoint="501,306"/>
+  <wire id="9039" guardcondition="success" firstRelativePoint="440,307" lastRelativePoint="351,307"/>
+  <wire id="9040" guardcondition="success" firstRelativePoint="305,337" lastRelativePoint="436,389">
+    <bendpoint weight="0.5" firstDimension="0,67" secondDimension="-187,-2"/>
+  </wire>
+  <wire id="9042" guardcondition="success" firstRelativePoint="494,406" lastRelativePoint="494,444"/>
+  <wire id="9050" guardcondition="exit" firstRelativePoint="422,51" lastRelativePoint="206,26"/>
+  <wire id="9077" guardcondition="success" firstRelativePoint="286,31" lastRelativePoint="286,-87"/>
+  <wire id="9078" guardcondition="success" firstRelativePoint="556,447" lastRelativePoint="556,49">
+    <bendpoint weight="0.5" firstDimension="207,-12" secondDimension="216,400"/>
+    <bendpoint weight="0.5" firstDimension="206,-410" secondDimension="215,2"/>
+  </wire>
+  <wire id="9085" guardcondition="true" firstRelativePoint="637,-69" lastRelativePoint="637,-36"/>
+  <wire id="9086" guardcondition="success" firstRelativePoint="751,-84" lastRelativePoint="661,-84"/>
+  <wire id="9087" guardcondition="false" firstRelativePoint="529,-84" lastRelativePoint="449,-36">
+    <bendpoint weight="0.5" firstDimension="-146,0" secondDimension="-42,-63"/>
+  </wire>
+  <wire id="9088" guardcondition="success" firstRelativePoint="706,-6" lastRelativePoint="554,40">
+    <bendpoint weight="0.5" firstDimension="22,61" secondDimension="218,-7"/>
+  </wire>
+</Glue:GlueDiagram>

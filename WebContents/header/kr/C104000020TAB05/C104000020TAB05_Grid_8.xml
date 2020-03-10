@@ -1,0 +1,34 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableMarkedCells"><param>true</param></call>
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" clabel="적차선구분" dbname="적차선구분" id="QLT_DSN_MNF_TP" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="100"><![CDATA[<div style="height:40px;"><br>적차선</div>]]></column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_DSN_MNF_TP</userdata>
+<row id="0">
+<cell align="center" class="form_cell1">적정</cell>
+<cell align="center" class="form_cell1">차선1</cell>
+<cell align="center" class="form_cell1">차선2</cell>
+</row>
+<row id="1">
+<cell align="center" class="form_cell1">차선1</cell>
+</row>
+<row id="2">
+<cell align="center" class="form_cell1">차선2</cell>
+</row>
+</rows>

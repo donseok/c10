@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="userLogging-service" initial="Insert2">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="Insert2" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="userLogging.insert" />
+    <property name="resultkey" value="RK_LOG" />
+    <property name="dao" value="m90dao" />
+    <property name="param0" value="user_no" />
+    <property name="param1" value="user_name" />
+    <property name="param-count" value="2" />
+  </activity>
+</service>
+

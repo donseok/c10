@@ -1,0 +1,84 @@
+<items>	
+	<item type="block" width="600">
+		<item type="newcolumn" offset="5" />		
+		<item label="입력" type="fieldset" width="587" offsetLeft="">
+			<item type="block">
+				<item labelWidth="90" inputWidth="187" label="품명" name="PRD_NM_CD_NM" type="combo" labelAlign="right" />
+				<item label="품명" name="PRD_NM_CD" type="hidden"/>
+			</item>		
+			<item type="block">
+				<item labelWidth="90" inputWidth="70" label="주문치수" name="ORD_EXC_THK" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="mm" />
+				<item type="newcolumn" offset="5" />				
+				<item inputWidth="77" name="ORD_EXC_WTH" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="mm" />
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="80" label="(두께 / 폭)" />
+				<item type="hidden" name="PLTCM_SET_THK_TRV_CAL" label="압연set값받아오기"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="187" label="도금부착량" name="GW_ASG_CD_NM" type="combo" labelAlign="right" value=""/>
+				<item label="도금량코드" name="GW_ASG_CD" type="hidden"/>
+			</item>	
+			<item type="block">
+				<item labelWidth="90" inputWidth="187" label="BMT/TCT" name="ORD_THK_TP" type="combo" labelAlign="right" value="" />
+				<item offset="5" type="newcolumn"/>
+				<item type="label" labelWidth="250" label="(KS/JIS BMT, ASTM/EN TCT)" />
+				<item offset="5" type="newcolumn"/>
+			</item>
+		</item>
+		<item label="결과" type="fieldset" width="587" offsetLeft="">
+			<item type="block">
+				<item labelWidth="90" inputWidth="70" label="①압연SET" name="PLTCM_SET_THK_TRV1" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="mm" />
+				<item type="newcolumn" offset="20" />
+				<item labelWidth="70" inputWidth="60" label="②톤당길이" name="TON_PER_LENGTH1" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" readonly="true" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="m/ton" />
+				<item type="newcolumn" offset="15" />
+				<item type="label" labelWidth="15" label="(③" />
+				<item type="newcolumn" offset="2" />
+				<item labelWidth="5" inputWidth="40" name="TON_PER_LENGTH_MIN" type="input" labelAlign="right" readonly="true" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="30" label="~ ④" />
+				<item type="newcolumn" offset="1" />
+				<item labelWidth="1" inputWidth="40" name="TON_PER_LENGTH_MAX" type="input" labelAlign="right" readonly="true" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="1" />
+				<item type="label" labelWidth="5" label=")" />
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="70" label="⑤주문길이" name="ORD_EXC_LTH" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="m" />
+				<item type="newcolumn" offset="20" />
+				<item labelWidth="70" inputWidth="60" label="⑥전체중량" name="TOT_WGT" type="input" labelAlign="right" readonly="true" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="ton" />
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="70" label="⑦톤당길이" name="TON_PER_LENGTH2" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="m/ton" />
+				<item type="newcolumn" offset="20" />
+				<item labelWidth="70" inputWidth="60" label="⑧압연SET" name="PLTCM_SET_THK_TRV2" type="input" labelAlign="right" readonly="true" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item type="label" labelWidth="20" label="mm" />
+				<item type="newcolumn" offset="15" />
+				<item type="label" labelWidth="150" label="※ ①,⑤,⑦ 입력가능" />
+			</item>			
+		</item>
+		<item label="계산식" type="fieldset" width="587" offsetLeft="">
+			<item type="block">
+			<item type="label" labelWidth="550" label="①압연SET = BMT일 때는 주문두께, TCT일 때는 주문두께 - 목표도금두께" />
+			<item type="label" labelWidth="550" label="②톤당길이 = 1 / {(①압연SET x 7.85 + 목표도금부착량/1000) x 폭}" />
+			<item type="label" labelWidth="550" label="③톤당길이MIN = 1 / [{(①압연SET - 0.01) x 7.85 + 목표도금부착량/1000} x 폭]" />
+			<item type="label" labelWidth="550" label="④톤당길이MAX = 1 / [{(①압연SET + 0.01) x 7.85 + 목표도금부착량/1000} x 폭]" />
+			<item type="label" labelWidth="550" label="⑥전체중량 = ⑤주문길이 x ②톤당길이" />
+			<item type="label" labelWidth="550" label="⑧압연SET = {1 / (폭 x ⑦톤당길이) - 도금부착량/1000} / 7.85" />
+			</item>
+		</item>	
+	</item>
+</items>

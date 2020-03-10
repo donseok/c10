@@ -1,0 +1,5 @@
+<items>
+<item type="block">
+<item label="[알림]" name="ALERT" type="template"  style="color: #FFFFF" />
+</item>
+</items>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="293,318" size="-1,-1" input="//@wire.2"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="407,-1" input="//@wire.0" output="//@wire.1" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="257822" location="159,208" size="145,-1" input="//@wire.1" output="//@wire.2" name="대상등록">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="insert-sql" value="C104000020TAB07pop01.insert"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 제조가부검토이력을 조회,등록,수정,삭제하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  Form data 조회 테이블 =>TB_C10_INQ_HST(생산가부검토결과)&#xD;&#xA;  - 조회조건 :  Inquiry번호"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="5" guardcondition="save" firstRelativePoint="293,112" lastRelativePoint="293,208">
+    <bendpoint weight="0.5" firstDimension="0,59" secondDimension="-13,-67"/>
+  </wire>
+  <wire id="12350" guardcondition="success" firstRelativePoint="231,238" lastRelativePoint="292,327">
+    <bendpoint weight="0.5" firstDimension="0,102" secondDimension="-72,-3"/>
+  </wire>
+</Glue:GlueDiagram>

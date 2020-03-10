@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB08pop02 Page 쿼리파일"> 
+	 <query id="C104000020TAB08pop02.select" desc="C104000020TAB08pop02 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 통과공정내역조회 C104000020TAB08pop02.select 원성옥*/  
+	  ORD_NO
+	, ORD_LN 
+	, SEQ_NO 
+	, PROC_SEQ 
+	, MAIN_PROC_CD 
+	, SUB_PROC_CD1 
+	, SUB_PROC_CD2 
+	, SUB_PROC_CD3 
+	, SUB_PROC_CD4 
+	, SUB_PROC_CD5 
+	, SUB_PROC_CD6 
+	,(SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF	
+       WHERE USER_NO = LAST_UPDATED_OBJECT_ID) LAST_UPDATED_OBJECT_ID
+	 FROM C10APUSER.TB_C10_QLT_DSN_PROC_HST
+	WHERE ORD_NO = :ORD_NO
+	  AND ORD_LN = :ORD_LN
+ ORDER BY SEQ_NO, PROC_SEQ
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB08pop02.insertHistory" desc="C104000020TAB08pop02 공정내역삽입" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 통과공정내역등록 C104000020TAB08pop02.insertHistory 원성옥*/                         
+TB_C10_QLT_DSN_PROC_HST(                                                                           
+             ORD_NO                   --주문번호                                                                                 
+            ,ORD_LN                   --주문행번
+            ,SEQ_NO                   --SEQ번호   
+            ,PROC_SEQ                --공정순서
+            ,MAIN_PROC_CD        --주공정코드
+            ,SUB_PROC_CD1         --대체공정코드1
+            ,SUB_PROC_CD2         --대체공정코드2
+            ,SUB_PROC_CD3         --대체공정코드3
+            ,SUB_PROC_CD4         --대체공정코드4
+            ,SUB_PROC_CD5         --대체공정코드5
+            ,SUB_PROC_CD6         --대체공정코드6
+            ,MTL_CD                    --MaterialCode
+            ,SMS_RCV_YN            --SMS수신여부
+            ,CREATED_OBJECT_TYPE        --생성OBJECT유형    
+            ,CREATED_OBJECT_ID          --생성OBJECTID      
+            ,CREATED_PROGRAM_ID         --생성프로그램ID    
+            ,CREATION_TIMESTAMP         --생성일시          
+            ,LAST_UPDATED_OBJECT_TYPE   --최종변경OBJECT유형
+            ,LAST_UPDATED_OBJECT_ID     --최종변경OBJECTID  
+            ,LAST_UPDATE_PROGRAM_ID     --최종변경프로그램ID
+            ,LAST_UPDATE_TIMESTAMP      --최종변경일시      
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+			:ORD_NO
+		   ,:ORD_LN
+		   ,DECODE(:VALUE_I,'0',NVL((SELECT MAX(SEQ_NO)+1 FROM TB_C10_QLT_DSN_PROC_HST
+		                          WHERE ORD_NO=:ORD_NO AND ORD_LN=:ORD_LN),1)
+                                  , NVL((SELECT MAX(SEQ_NO) FROM TB_C10_QLT_DSN_PROC_HST
+		                          WHERE ORD_NO=:ORD_NO AND ORD_LN=:ORD_LN),1))
+		   ,:PROC_SEQ
+		   ,:MAIN_PROC_CD                                                                                    
+		   ,:SUB_PROC_CD1
+		   ,:SUB_PROC_CD2
+		   ,:SUB_PROC_CD3
+		   ,:SUB_PROC_CD4
+		   ,:SUB_PROC_CD5
+		   ,:SUB_PROC_CD6
+		   ,:MTL_CD
+		   , DECODE(:SMS_RCV_YN, '1' , 'Y' ,'')                                                                                    
+           ,:ObjectType
+           ,:ObjectId
+           ,:ProgramId
+           ,:Timestamp
+           ,:ObjectType
+           ,:ObjectId
+           ,:ProgramId
+           ,:Timestamp                                                                            
+)
+		 ]]> 
+	 </query>
+</queryMap>

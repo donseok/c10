@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--
+ * PROGRAM NAME     :  C106000040.jsp
+ * VERSION          :  V1.0
+ * DESCRIPTION      :  Material code 관리
+ * DESIGNER NAME    :  한 윤 섭
+ * DEVELOPER NAME   :  박 재 영
+ * CREATE DATE      :  2011.12.16
+ *
+ * Date	          Ver       Name       Description
+ * ------------  ------    --------  ------------------------
+ * 2011.12.16     V1.0      박재영      Initial Version
+ * 변경일자        
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</meta>
+<title>
+Material code 관리
+</title>
+<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+</script>
+<script src="./js/c10.ui.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var items = new Array();  //public dhtmlx component array
+// var pageConfiguration = '[' + 
+//       '{"itemType":"form","renderTo":"C106000040_Form_1","xml":".\/header\/kr\/C106000040\/C106000040_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000040_Grid_1","service":"C106000040-service","actionType":"find","security":"true"},' +
+//       '{"itemType":"grid","renderTo":"C106000040_Grid_1","xml":".\/header\/kr\/C106000040\/C106000040_Grid_1.xml","rowCnt":"10","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"1","referenceItem":"C106000040_Form_1","service":"C106000040-service","actionType":"find"},' +
+//       '{"itemType":"messagebox","renderTo":"C106000040_messagebox","xml":".\/header\/kr\/C106000040\/C106000040_messagebox.xml","service":"C106000040-service"},' +
+//       '{"itemType":"grid","renderTo":"C106000040_Grid_2","xml":".\/header\/kr\/C106000040\/C106000040_Grid_2.xml","rowCnt":"10","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000040_Grid_2","service":"C106000040-service","actionType":"find"}' +
+//    ']';
+// var initConfig = JSON.parse(pageConfiguration);	     
+
+var Form_1 = {"itemType":"form","renderTo":"C106000040_Form_1","xml":".\/header\/kr\/C106000040\/C106000040_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000040_Grid_1","service":"C106000040-service","actionType":"find","security":"true"};
+var Grid_1 = {"itemType":"grid","renderTo":"C106000040_Grid_1","xml":".\/header\/kr\/C106000040\/C106000040_Grid_1.xml","rowCnt":"10","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"1","referenceItem":"C106000040_Form_1","service":"C106000040-service","actionType":"find"};
+var Grid_2 = {"itemType":"grid","renderTo":"C106000040_Grid_2","xml":".\/header\/kr\/C106000040\/C106000040_Grid_2.xml","rowCnt":"10","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000040_Grid_2","service":"C106000040-service","actionType":"find"};
+    
+var initLayout = 
+{
+	"programId":"C106000040",
+	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"60,40%,*", "splitter":false, "components": 
+	[
+	    Form_1,
+		Grid_1,
+        Grid_2
+	]
+};  
+
+var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
+//form find button item event function (requred)
+function find(eventName,formDivObj,referenceItem){
+	var formObj = items['C106000040_Form_1'];
+	var comboList = formObj.getMasterCombos();
+	var mtlCd = formObj.getItemValue("MTL_CD"); 
+	var temMtlCd = mtlCd;
+		if( isNull(mtlCd) && (isNull(comboList['PRD_SHP'].getSelectedValue()) && isNull(comboList['PRD_NM_CD'].getSelectedValue()))){
+			alert("Material code 입력 또는 품명,제품형태를 선택해주세요.");
+			return;
+		}else if(!isNull(mtlCd)){
+			formObj.clear();
+			formObj.setItemValue("MTL_CD",temMtlCd);
+		}
+    var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
+    items[referenceItem].loadData(findUrl);
+}
+function save(eventName,formDivObj,referenceItem){
+    items[referenceItem].sendGrid(referenceItem,eventName);
+}
+function onGridContextMenuClick(id,gridObj,menuObj){  	
+    var isChecked = menuObj.getCheckboxState(id);    
+    if("copy_row" == id){
+         var rowId=gridObj.getSelectedRowId();
+         var cellInd=gridObj.getSelectedCellIndex();
+        if(rowId !== null){
+           gridObj.cellToClipboard(rowId, cellInd);
+        }
+    }  	
+    if("excel_grid" == id){
+     	gridObj.toExcel('<%=request.getContextPath()%>/gridexcel','color');
+    }
+} 
+function onFormLoadFunction(){ 
+	var comboList = items['C106000040_Form_1'].getMasterCombos();
+	var formObj   = items['C106000040_Form_1'].getDhxForm();
+	var categoryCd = "SZ0000";
+	
+		comboList['PRD_NM_CD'].readonly(true,true);
+			ui.combo.master(comboList['PRD_NM_CD'],'SZ0000','PRD_NM_CD','totalValue=,orderBy=value',function(){ 
+			comboList['PRD_NM_CD'].selectOption(0,true,true);		
+		});
+		comboList['PRD_NM_CD'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}
+		comboList['PRD_SHP'].readonly(true,true);
+			ui.combo.master(comboList['PRD_SHP'],'SZ0000','PRD_TP','totalValue=,orderBy=value,&displayType=all-code',function(){ 
+			comboList['PRD_SHP'].selectOption(0,true,true);	
+		});			
+		comboList['PRD_SHP'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}
+		comboList['PRD_NM_CD'].attachEvent("onSelectionChange",function(){//품명 lov change event
+			comboList['ORD_GW_ASG_CD'].clearAll('all');//도금량코드 option clearall
+			var selectVal = this.getSelectedValue();
+			if(isNull(selectVal)){
+				selectVal = " ";
+			}
+			if(("G,K,H,Z,J,3,6".indexOf(selectVal)) > -1){
+				ui.combo.master(comboList['ORD_GW_ASG_CD'],'SG0000','GW_ASG_CD','totalValue=,orderBy=value',function(){ 
+				comboList['ORD_GW_ASG_CD'].selectOption(0,true,true);	
+				});	
+			}else if(("L,M,4".indexOf(selectVal)) > -1){
+				ui.combo.master(comboList['ORD_GW_ASG_CD'],'SL0000','GW_ASG_CD','totalValue=,orderBy=value',function(){ 
+				comboList['ORD_GW_ASG_CD'].selectOption(0,true,true);	
+				});
+			}else if(("E,F,2".indexOf(selectVal)) > -1){
+				ui.combo.master(comboList['ORD_GW_ASG_CD'],'SE0000','GW_ASG_CD','totalValue=,orderBy=value',function(){ 
+				comboList['ORD_GW_ASG_CD'].selectOption(0,true,true);	
+				});
+			}else{
+				comboList['ORD_GW_ASG_CD'].clearAll('all');//도금량코드 option clearall
+			}
+			return true;
+		});
+		comboList['PRD_NM_CD'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}
+		comboList['MQL_CD'].readonly(true,true);
+			ui.combo.master(comboList['MQL_CD'],'SZ0000','MQL_CD','totalValue=,orderBy=value',function(){ 
+			comboList['MQL_CD'].selectOption(0,true,true);	
+		});	
+		comboList['MQL_CD'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}
+		comboList['ORD_GW_ASG_CD'].readonly(true,true);	
+		comboList['ORD_GW_ASG_CD'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}
+		
+		var inputObj = items["C106000040_Form_1"].getDhxForm().getInput("MTL_CD");
+			inputObj.onkeyup = function(e){
+			if(inputObj.value.charAt(inputObj.value.length - 1) <= 'z' && inputObj.value.charAt(inputObj.value.length - 1) >= 'a'){
+				inputObj.value = inputObj.value.toUpperCase();
+			}
+		}		
+		
+//		items['C106000040_Form_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
+		items['C106000040_Form_1'].getDhxForm().detachEvent(onXleForm);
+ return true;
+}
+function findMessage(referenceItem){
+	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+  	return true;
+}
+function onAfterUpdateFinishEvent(){
+	 items['C106000040_Form_1'].getDhxForm().resetDataProcessor("updated");
+}
+function onGridLoadFunction(){ 	
+	items['C106000040_Grid_1'].getDhxGrid().detachEvent(onXleGrid);
+ 	return true;
+}
+
+//master grid row selected
+function deteilMtlCd(rowId,cellIndex){
+	var gridObj = items['C106000040_Grid_1'];
+	var cellVal = gridObj.getCellValue(rowId,0);
+		if(!isNull(cellVal)){
+			var customparam = {"MTL_CD":cellVal};	
+			var detailFindUrl = parameters14('C106000040_Grid_1','C106000040_Grid_2','detailFind','basicGridData.do',customparam);
+			items["C106000040_Grid_2"].loadData(detailFindUrl);	
+		}
+}
+
+
+//]]>
+</script>
+</head>
+<body>
+<!-- <div id="C106000040_Form_1" style="position:absolute;height:58px;width:981px;left:0px;top:0px;">
+</div>
+<div id="C106000040_Grid_1" style="position:absolute;height:242px;width:977px;left:-7px;top:52px;">
+</div>
+<div id="C106000040_messagebox" style="position:absolute;height:19px;width:979px;left:0px;top:567px;">
+</div>
+<div id="C106000040_Grid_2" style="position:absolute;height:256px;width:977px;left:1px;top:309px;">
+</div> -->
+</body>
+</html>
+<script>
+//<![CDATA[
+	ui.initializeDHTMLX();  
+	 var onXleForm= items['C106000040_Form_1'].onXLEEvent(onFormLoadFunction);
+	 var onXleGrid= items['C106000040_Grid_1'].onXLEEvent(onGridLoadFunction);
+	 items["C106000040_Grid_1"].rowSelected(deteilMtlCd);
+//]]>
+</script>

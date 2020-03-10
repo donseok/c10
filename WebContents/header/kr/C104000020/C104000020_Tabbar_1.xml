@@ -1,0 +1,14 @@
+<tabbar align="left" hrefmode="iframes" margin="5" offset="3">
+<row type="row">
+<tab id="C104000020TAB01" selected="true" type="tab" width="100" href="C104000020TAB01.jsp?pageID=C104000020">공통</tab>
+<tab id="C104000020TAB03" type="tab" width="90">재질</tab>
+<tab id="C104000020TAB04" type="tab" width="90">인수도</tab>
+<tab id="C104000020TAB05" type="tab" width="120">용융도금-제조표준</tab>
+<tab id="C104000020TAB06" type="tab" width="120">전기도금-제조표준</tab>
+<tab id="C104000020TAB09" type="tab" width="110">후공정-제조표준</tab>
+<tab id="C104000020TAB07" type="tab" width="100">칼라제조사양</tab>
+<tab id="C104000020TAB08" type="tab" width="100">통과공정</tab>
+<tab id="C104000020TAB02" type="tab" width="90">성분</tab>
+</row>
+</tabbar>
+

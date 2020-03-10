@@ -1,0 +1,48 @@
+<items>
+	<item type="block" width="1000">
+	    <item labelWidth="110" inputWidth="100" label="SPEC번호" name="DEV_REQ_SPEC_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발유형" name="CLR_DEV_TP" type="combo" labelAlign="right" readonly="true" value="" style="background-color:#FFFFC0">	
+			<option value="" text ="  "/>
+			<option value="C" text="C - 색상"/>
+			<option value="D" text="D - 디자인"/>
+		</item>
+		<item offset="23" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="품 명" name="PRD_NM_CD" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="고객정의품명(색상명)" name="CUS_REQ_HUE_TXT" type="input" labelAlign="right" value=""/>		
+	</item>
+	<item type="block" width="1000">
+		<item labelWidth="110" inputWidth="100" label="코팅방식" name="COT_MTH" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="수 지" name="RSN_TP" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>
+		<item format="serchIcon_RSN_TP" name="template" type="template" value="search"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="무독성구분" name="TLP_TP" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="실광택값" name="RL_LUS_RT" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+	</item>
+	<item type="block" width="1000">
+		<item labelWidth="110" inputWidth="100" label="도막두께" name="PNT_FLM_THK_TXT" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>	
+		<item labelWidth="110" inputWidth="100" label="보호필름 유무" name="PTT_FLM_YN" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="예상수주량" name="ORD_PRE_WGT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="개발참조 유형" name="DEV_REF_TP" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+	</item>
+	<item type="block" width="1000">
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="참조 칼라코드" name="REF_CLR_CD_TXT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="참조 CCLBOM" name="REF_CCL_BOM" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="유사색상적용가능여부" name="SIM_HUE_PRG_YN" type="combo" labelAlign="right" style="background-color:#FFFFC0">
+			<option value="" text ="  "/>
+			<option value="Y" text="Y - 가능"/>
+			<option value="N" text="N - 불가능"/>
+		</item>
+		<item labelWidth="0" inputWidth="0" label="개발번호" name="PRD_DEV_NO" type="hidden" labelAlign="right" readonly="true" value=""/>
+	</item>
+</items>

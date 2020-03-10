@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<toolbar>
+	<item id="save" type="button"  img="save.gif"  imgdis="save_dis.gif"  text="저장"/>
+	<item id="removeTree" type="button"  img="btn_clear.gif"  imgdis="btn_clear_dis.gif"  text="삭제"/>
+</toolbar>

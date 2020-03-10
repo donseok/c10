@@ -1,0 +1,34 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableResizing"><param>false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="ECL_CDR_CD" sort="na" width="50" align="center" dbname="ECLC-D방지약품" table="TB_C10_QLT_DSN_MNF" type="combo_v" clabel="ECLC-D방지약품" color="FFFFC0"><![CDATA[<div style="height:40px;"><br>C-D방지 약품</div>]]></column>
+<column id="ECL_COILG_TS_CD" sort="na" width="*" align="center" dbname="ECL권취장력" table="TB_C10_QLT_DSN_MNF" type="combo_v" clabel="ECL권취장력" color="FFFFC0"><![CDATA[<div style="height:40px;"><br>권취장력</div>]]></column>
+<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">ECL_CDR_CD,ECL_COILG_TS_CD,QLT_DSN_MNF_TP,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell id = "ECL_CDR_CD" />
+<cell id = "ECL_COILG_TS_CD" />
+<cell id="QLT_DSN_MNF_TP"/>
+<cell id="ORD_NO"/>
+<cell id="ORD_LN"/>
+</row>
+</rows>

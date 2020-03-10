@@ -1,0 +1,19 @@
+<items>
+<item type="block" width="470">
+<item offset="10" type="newcolumn"/>
+<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+<item offset="2" type="newcolumn"/>
+<item label="시스템구분" name="std_title" type="label" />
+</item>
+<item type="block" width="470">
+<item label="테스트계" labelAlign="right" labelWidth="60" name="TST_CK" type="checkbox"/>
+<item type="newcolumn" offset="10" />
+<item label="운영계" labelAlign="right" labelWidth="50" name="PRD_CK" type="checkbox"/>
+<item type="newcolumn" offset="90" />
+<item type="button" name="save" value="실행" command="save"/>
+</item>
+<item type="block" width="460">
+<item type="newcolumn" offset="10" />
+<item inputHeight = "150" inputWidth="330" label="" labelAlign="right" labelWidth="100"  name="MIG_DETAIL" type="input" rows="2"/>
+</item>
+</items>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="370,25" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="415,303" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.8"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="175,82" size="484,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.5 //@wire.9" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="209,179" size="89,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000120tab04.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="26" location="454,180" size="87,-1" input="//@wire.3" output="//@wire.4" name="버전콤보">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000120tab04VerComb.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="255400" location="552,182" size="83,-1" input="//@wire.5" output="//@wire.6" name="전송">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000120tab04.send"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="256358" location="320,176" size="88,-1" input="//@wire.9" output="//@wire.7" name="버전추가">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000120tab04.insertNewVer"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="256408" location="320,237" size="83,-1" input="//@wire.7" output="//@wire.8" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000120tab04.delete"/>
+    <property key="insert-sql" value="C106000120tab04.insert"/>
+    <property key="update-sql" value="C106000120tab04.update"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="263,209" lastRelativePoint="414,312">
+    <bendpoint weight="0.5" firstDimension="10,118" secondDimension="-162,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="251,112" lastRelativePoint="251,179">
+    <bendpoint weight="0.5" firstDimension="-147,67" secondDimension="-2,-30"/>
+  </wire>
+  <wire id="9368" guardcondition="findItemVer" firstRelativePoint="494,112" lastRelativePoint="494,180">
+    <bendpoint weight="0.5" firstDimension="79,79" secondDimension="-3,-19"/>
+  </wire>
+  <wire id="9369" guardcondition="success" firstRelativePoint="500,210" lastRelativePoint="435,312">
+    <bendpoint weight="0.5" firstDimension="3,117" secondDimension="75,-1"/>
+  </wire>
+  <wire id="11846" guardcondition="send" firstRelativePoint="593,112" lastRelativePoint="593,182"/>
+  <wire id="11847" guardcondition="success" firstRelativePoint="592,212" lastRelativePoint="434,312">
+    <bendpoint weight="0.5" firstDimension="-1,114" secondDimension="167,-2"/>
+  </wire>
+  <wire id="11874" guardcondition="success" firstRelativePoint="365,206" lastRelativePoint="365,237">
+    <bendpoint weight="0.5" firstDimension="1,41" secondDimension="4,-20"/>
+  </wire>
+  <wire id="11875" guardcondition="success" firstRelativePoint="362,267" lastRelativePoint="414,309">
+    <bendpoint weight="0.5" firstDimension="1,41" secondDimension="-63,-20"/>
+  </wire>
+  <wire id="11876" guardcondition="save" firstRelativePoint="364,112" lastRelativePoint="364,176"/>
+</Glue:GlueDiagram>

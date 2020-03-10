@@ -1,0 +1,168 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="VER_CD" sort="str" align="center" dbname="VER_CD" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">버전구분</column>
+<column id="CLS_CD" sort="str" align="center" dbname="CLS_CD" width="10" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">클래스구분</column>
+<column id="DIV_CD" sort="str" align="left" dbname="DIV_CD" width="10" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">구분</column>
+<column id="RSN_TP" sort="str" align="center" dbname="RSN_TP" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">수지구분</column>
+<column id="BRD_CMP_2" sort="str" align="left" dbname="BRD_CMP_2" width="12" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">BRAND구성(2)</column>
+<column id="RSN_TP_NM" sort="str" align="left" dbname="RSN_TP_NM" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">수지타입</column>
+<column id="PER_FOR_19" sort="str" align="right" dbname="PER_FOR_19" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION(1)</column>
+<column id="PER_FOR_6" sort="str" align="left" dbname="PER_FOR_6" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION(6)</column>
+<column id="PE_FL" sort="str" align="right" dbname="PE_FL" width="10" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed" hidden="true">PEEL/FLAKE</column>
+<column id="FA_TRM_7" sort="str" align="left" dbname="FA_TRM_7" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(7)</column>
+<column id="FA_TRM_8" sort="str" align="right" dbname="FA_TRM_8" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(8)</column>
+<column id="FA_ROF_9" sort="str" align="right" dbname="FA_ROF_9" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(9)</column>
+<column id="FA_ROF_10" sort="str" align="left" dbname="FA_ROF_10" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(10)</column>
+<column id="FA_WAL_11" sort="str" align="right" dbname="FA_WAL_11" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">WALL(11)</column>
+<column id="FA_WAL_12" sort="str" align="left" dbname="FA_WAL_12" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">WALL(12)</column>
+<column id="CH_TRM_13" sort="str" align="right" dbname="CH_TRM_13" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(13)</column>
+<column id="CH_TRM_14" sort="str" align="left" dbname="CH_TRM_14" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(14)</column>
+<column id="CH_ROF_15" sort="str" align="right" dbname="CH_ROF_15" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(15)</column>
+<column id="CH_ROF_16" sort="str" align="left" dbname="CH_ROF_16" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(16)</column>
+<column id="CH_WAL_17" sort="str" align="right" dbname="CH_WAL_17" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(17)</column>
+<column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(18)</column>
+<column id="PE_FL_1" sort="str" align="right" dbname="PE_FL_1" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(1)</column>
+<column id="PE_FL_20" sort="str" align="left" dbname="PE_FL_20" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(20)</column>
+<column id="CREATED_OBJECT_ID" sort="str" align="left" dbname="CREATED_OBJECT_ID" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록자</column>
+<column id="CREATION_TIMESTAMP" sort="sort_date_custom" align="center" dbname="CREATION_TIMESTAMP" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록일자</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">VER_CD,CLS_CD,DIV_CD,RSN_TP,BRD_CMP_2,RSN_TP_NM,PER_FOR_19,PER_FOR_6,PE_FL,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,CREATED_OBJECT_ID,CREATION_TIMESTAMP</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="1">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="2">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="3">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="4">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="5">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="6">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="7">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="8">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="9">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="10">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="11">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="12">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="13">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="14">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="enableStableSorting"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>	
+<column id="PNT_CMP_CD" index="1" sort="str" width="8" align="center" dbname="업체코드" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="업체코드">업체코드</column>
+<column id="PNT_CMP_NM" index="2" sort="str" align="left" dbname="업체명" width="17" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="업체명">업체명</column>
+<column id="NOR_COR_DEV_TM" index="3" sort="str" align="center" dbname="일반PCM색상개발LeadTime" width="15" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="일반PCM색상개발LeadTime">일반PCM색상개발LeadTime (WorkingDay 기준)</column>
+<column id="DAY_FIN_CNT" index="4" sort="str" align="center" dbname="일처리가능건수" width="12" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="일처리가능건수">일처리가능건수 (평균~MAX)</column>
+<column id="LED_TIM_1" index="5" sort="str" align="center" dbname="LeadTime1" width="6.5" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="LeadTime1">Lead Time(1)</column>
+<column id="LED_TIM_2" index="6" sort="str" align="center" dbname="LeadTime2" width="6.5" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="LeadTime2">Lead Time(2)</column>
+<column id="PRO_COL_DEC" index="7" sort="str" width="9" align="center" dbname="전문조색원유무" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="전문조색원유무">전문조색원 유무</column>
+<column id="SMP_PRC_MAN" index="8" sort="left" align="center" dbname="샘플진행관련문의담당자" width="10" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="샘플진행관련문의담당자">샘플진행관련 문의 담당자</column>
+<column id="MGR_CAL" index="9" sort="str" align="left" dbname="담당자연락처" width="10.5" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="담당자연락처">담당자연락처</column>
+<column id="ETC_TXT" index="10" sort="str" align="center" dbname="비고" width="6" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" clabel="비고">비고</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>	
+<userdata name="column-info">PNT_CMP_CD,PNT_CMP_NM,NOR_COR_DEV_TM,DAY_FIN_CNT,LED_TIM_1,LED_TIM_2,PRO_COL_DEC,SMP_PRC_MAN,MGR_CAL,ETC_TXT</userdata>
+</rows>

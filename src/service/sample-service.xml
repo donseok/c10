@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="sample-service" initial="EventRouter">
+  <activity name="Custom" class="com.posdata.glue.sample.PosCustomActivity">
+    <transition name="success" value="end" />
+  </activity>
+  <activity name="EventRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="modify.x" value="Modify" />
+    <transition name="delete.x" value="Delete" />
+    <transition name="customcall" value="Custom" />
+    <transition name="find.x" value="Find" />
+    <transition name="pageEvent" value="Find" />
+  </activity>
+  <activity name="Find" class="com.posdata.glue.biz.activity.PosSearchPageSet">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="10" />
+    <property name="sqlkey" value="emp.select" />
+    <property name="resultkey" value="EmpListResult" />
+    <property name="dao" value="testdao" />
+    <property name="param0" value="DeptnoP" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="param-count" value="1" />
+  </activity>
+  <activity name="Delete" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="Find" />
+    <property name="chkname" value="chk" />
+    <property name="sqlkey" value="emp.delete" />
+    <property name="resultkey" value="DelCt" />
+    <property name="dao" value="testdao" />
+    <property name="param0" value="EMPNO" />
+    <property name="param-count" value="1" />
+  </activity>
+  <activity name="Modify" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="Find" />
+    <property name="chkname" value="chk" />
+    <property name="sqlkey" value="emp.update" />
+    <property name="resultkey" value="UpdateCt" />
+    <property name="dao" value="testdao" />
+    <property name="param0" value="SAL" />
+    <property name="param1" value="ENAME" />
+    <property name="param2" value="EMPNO" />
+    <property name="param-count" value="3" />
+  </activity>
+</service>
+

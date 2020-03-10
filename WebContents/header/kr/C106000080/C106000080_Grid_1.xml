@@ -1,0 +1,56 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="setColValidators"><param>NotEmpty</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="ROLL_CD" index="1" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_MNG" type="ahref">Roll코드</column>
+<column id="ROLL_CD_SEQ_NO" index="2" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_MNG" type="ro">등록순서</column>
+<column id="ROLL_TP" index="3" sort="str" align="center" width="70" table="VI_C10_PTN_ROLL_INF" type="ro">구분</column>
+<column id="PROC_CD" index="4" sort="str" align="center" width="60" table="TB_C10_PTN_ROLL_MNG" type="combo_v" color="FFFFC0">보유라인</column>
+<column id="DET_LOC" index="5" sort="str" align="center" width="130" table="TB_C10_PTN_ROLL_MNG" type="edn" color="FFFFC0">세부위치</column>
+<column id="PTN_NM" index="6" sort="str" align="left" width="160" table="VI_C10_PTN_ROLL_INF" type="ro">패턴명</column>
+<column id="USE_YN" index="7" sort="str" align="left" width="100" table="TB_C10_PTN_ROLL_MNG" type="combo_v" color="FFFFC0">사용가능</column>
+<column id="ROLL_CIR" index="8" sort="int" align="center" width="90" table="TB_C10_PTN_ROLL_MNG" type="edn" format="0,000" color="FFFFC0">규격(외주,mm)</column>
+<column id="ROLL_DIA" index="9" sort="int" align="center" width="90" table="TB_C10_PTN_ROLL_MNG" type="edn" format="0,000.0" color="FFFFC0">규격(Φ,mm)</column>
+<column id="ROLL_WTH" index="10" sort="int" align="center" width="90" table="TB_C10_PTN_ROLL_MNG" type="edn"  maxLength="4" format="0,000"  color="FFFFC0">생산가능폭(mm)</column>
+<column id="ROLL_POINT" index="11" sort="str" align="left" width="100" table="TB_C10_PTN_ROLL_MNG" type="combo_v" color="FFFFC0">핀트</column>
+<column id="USG_NM" index="12" sort="str" align="left" width="60" table="TB_C10_PTN_ROLL_MNG" type="ro">용도</column>
+<column id="DTL_USG_NM" index="13" sort="str" align="left" width="150" table="TB_C10_PTN_ROLL_MNG" type="ro">상세용도</column>
+<column id="ROLL_PRD_CMP" index="14" sort="str" align="left" width="140" table="TB_C10_PTN_ROLL_MNG" type="combo_v" color="FFFFC0">제작업체</column>
+<column id="IMAGE_YN" index="15" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_MNG" type="ro">이미지</column>
+<column id="RPV_CLR_NM" index="16" sort="str" align="left" width="150" table="VI_C10_PTN_ROLL_INF" type="ro">대표색상</column>
+<column id="ROLL_USE_LTH" index="17" sort="int" align="right" width="90" table="TB_C10_PTN_ROLL_USE_INF" type="ron" format="0,000">사용량(m)</column>
+<column id="ROLL_USE_CCL_BOM" index="18" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_USE_INF" type="ro">CCL BOM</column>
+<column id="ROLL_USE_LST_DT" index="19" sort="str" align="center" width="100" table="TB_C10_PTN_ROLL_USE_INF" type="ro" format="0,000">최근사용일자</column>
+<column id="ROLL_UNUSE_DAY" index="20" sort="int" align="right" width="50" table="TB_C10_PTN_ROLL_USE_INF" type="ron" format="0,000">미사용일수</column>
+<column id="ROLL_WHS_DD" index="21" sort="str" align="center" width="120" table="TB_C10_PTN_ROLL_MNG" type="dhxCalendar" color="FFFFC0">입고일자</column>
+<column id="ROLL_USE_STR_DD" index="22" sort="str" align="center" width="120" table="TB_C10_PTN_ROLL_MNG" type="dhxCalendar" color="FFFFC0">사용시작일자</column>
+<column id="ROLL_USE_END_DD" index="23" sort="str" align="center" width="120" table="TB_C10_PTN_ROLL_MNG" type="dhxCalendar" color="FFFFC0">사용종료일자</column>
+<column id="ROLL_DIS_DD" index="24" sort="str" align="center" width="120" table="TB_C10_PTN_ROLL_MNG" type="dhxCalendar" color="FFFFC0">폐기일자</column>
+<column id="RMK_MSG" index="25" sort="str" align="left" width="400" table="TB_C10_PTN_ROLL_MNG" type="ed" color="FFFFC0">비고</column>
+<column id="ROLL_RGS_PRS_ID" hidden="true" index="26" sort="str" align="center" width="110" table="TB_C10_PTN_ROLL_MNG" type="ro">등록자아이디</column>
+<column id="ROLL_RGS_PRS_NM" index="27" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_MNG" type="ro">등록자</column>
+<column id="ROLL_RGS_DH" index="28" sort="str" align="center" width="100" table="TB_C10_PTN_ROLL_MNG" type="ro">등록일</column>
+<column id="ROLL_MDF_PRS_ID" hidden="true" index="29" sort="str" align="center" width="110" table="TB_C10_PTN_ROLL_MNG" type="ro">수정자아이디</column>
+<column id="ROLL_MDF_PRS_NM" index="30" sort="str" align="center" width="70" table="TB_C10_PTN_ROLL_MNG" type="ro">수정자</column>
+<column id="ROLL_MDF_DH" index="31" sort="str" align="center" width="100" table="TB_C10_PTN_ROLL_MNG" type="ro">수정일</column>
+<column align="center" hidden="true" id="IMG_ADR" index="32" sort="str" type="ro"/>
+<column align="center" hidden="true" id="IMG_NM" index="33" sort="str" type="ro"/>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">ROLL_CD,ROLL_CD_SEQ_NO,ROLL_TP,PROC_CD,DET_LOC,PTN_NM,USE_YN,ROLL_CIR,ROLL_DIA,ROLL_WTH,ROLL_POINT,USG_NM,DTL_USG_NM,ROLL_PRD_CMP,IMAGE_YN,RPV_CLR_NM,ROLL_USE_LTH,ROLL_USE_CCL_BOM,ROLL_USE_LST_DT,ROLL_UNUSE_DAY,ROLL_WHS_DD,ROLL_USE_STR_DD,ROLL_USE_END_DD,ROLL_DIS_DD,RMK_MSG,ROLL_RGS_PRS_ID,ROLL_RGS_PRS_NM,ROLL_RGS_DH,ROLL_MDF_PRS_ID,ROLL_MDF_PRS_NM,ROLL_MDF_DH,IMG_ADR,IMG_NM</userdata>
+</rows>

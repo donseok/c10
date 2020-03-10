@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="1" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="71" location="281,80" size="50,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="72" location="294,290" size="50,-1" input="//@wire.2"/>
+  <child xsi:type="Glue:RouterActivity" id="73" location="180,136" size="230,-1" input="//@wire.0" output="//@wire.1" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="74" location="252,212" size="83,-1" input="//@wire.1" output="//@wire.2" name="find">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="value"/>
+    <property key="param-count" value="1"/>
+    <property key="resultkey" value="value"/>
+    <property key="sqlkey" value="value"/>
+    <property key="param0" value="value"/>
+    <property key="description" value=""/>
+  </child>
+  <wire id="53" guardcondition="success" firstRelativePoint="295,99" lastRelativePoint="295,136"/>
+  <wire id="54" guardcondition="find" firstRelativePoint="304,242" lastRelativePoint="304,289"/>
+  <wire id="55" guardcondition="success" firstRelativePoint="304,242" lastRelativePoint="304,289"/>
+</Glue:GlueDiagram>

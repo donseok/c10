@@ -1,0 +1,167 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="WAR_PRT_SEQ_NO" sort="str" align="center" dbname="WAR_PRT_SEQ_NO" width="9" table="TB_C10_WAR_PRT_MNG" type="ro">순번</column>
+<column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">CCLBOM 번호</column>
+<column id="NAT_CD" sort="str" align="left"  dbname="NAT_CD" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">국가</column>
+<column id="WAR_PRT_EMP_ID" sort="str" align="left"  dbname="WAR_PRT_EMP_ID" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">발행자명</column>
+<column id="WAR_PRT_DH" sort="sort_date_custom" align="center"  dbname="WAR_PRT_DH" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
+<column id="FNL_CUS_CD" sort="str" align="left"  dbname="FNL_CUS_CD" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">최종수요가</column>
+<column id="PRT_RSN" sort="sort_date_custom" align="left" dbname="PRT_RSN" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">발행목적</column>
+<column id="BRD_CMP_2" sort="sort_date_custom" align="left" dbname="BRD_CMP_2" width="17" table="TB_C10_WAR_PRT_MNG" type="ro">BRAND구성2</column>
+<column id="PER_FOR_19" sort="sort_date_custom" align="left" dbname="PER_FOR_19" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION1</column>
+<column id="PER_FOR_6" sort="sort_date_custom" align="left" dbname="PER_FOR_6" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION6</column>
+<column id="FA_TRM_7" sort="sort_date_custom" align="left" dbname="FA_TRM_7" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간7</column>
+<column id="FA_TRM_8" sort="sort_date_custom" align="left" dbname="FA_TRM_8" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간8</column>
+<column id="FA_ROF_9" sort="sort_date_custom" align="left" dbname="FA_ROF_9" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF9</column>
+<column id="FA_ROF_10" sort="sort_date_custom" align="left" dbname="FA_ROF_10" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF10</column>
+<column id="FA_WAL_11" sort="sort_date_custom" align="left" dbname="FA_WAL_11" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL11</column>
+<column id="FA_WAL_12" sort="sort_date_custom" align="left" dbname="FA_WAL_12" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL12</column>
+<column id="CH_TRM_13" sort="sort_date_custom" align="left" dbname="CH_TRM_13" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간13</column>
+<column id="CH_TRM_14" sort="sort_date_custom" align="left" dbname="CH_TRM_14" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간14</column>
+<column id="CH_ROF_15" sort="sort_date_custom" align="left" dbname="CH_ROF_15" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF15</column>
+<column id="CH_ROF_16" sort="sort_date_custom" align="left" dbname="CH_ROF_16" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF16</column>
+<column id="CH_WAL_17" sort="sort_date_custom" align="left" dbname="CH_WAL_17" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL17</column>
+<column id="CH_WAL_18" sort="sort_date_custom" align="left" dbname="CH_WAL_18" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL18</column>
+<column id="PE_FL_1" sort="sort_date_custom" align="left" dbname="PE_FL_1" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE1</column>
+<column id="PE_FL_20" sort="sort_date_custom" align="left" dbname="PE_FL_20" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE20</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">WAR_PRT_SEQ_NO,CCL_BOM_NO,NAT_CD,WAR_PRT_EMP_ID,WAR_PRT_DH,FNL_CUS_CD,PRT_RSN,BRD_CMP_2,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="1">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="2">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="3">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="4">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="5">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="6">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="7">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="8">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="9">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="10">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="11">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="12">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="13">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="14">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>
+

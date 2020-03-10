@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:Activity" id="50203" location="155,112" size="135,-1" input="//@wire.0" output="//@wire.1 //@wire.5 //@wire.7" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchDeliSpec"/>
+    <property key="bind-list" value="RK_SEARCH"/>
+    <property key="bind-result" value="RK_MAIN"/>
+    <property key="dao" value="mesdao"/>
+    <property key="prodSpecKind" value="1"/>
+    <property key="description" value="이 Activity는 Master Data의 고객인수도사양기준을 읽어 &#xD;&#xA;고객인수도사항을 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Master Data 정의명 : C10A1023&#xD;&#xA;  - COIL  : Parameter로 고객사양번호로 Master Data의 고객인수도를 Read한다. &#xD;&#xA;  - Sheet : Parameter로 받은 고객사양번호로 Master Data의 고객인수도를 Read한다. &#xD;&#xA;&#xD;&#xA;2. 관리항목 : Coil,Sheet에 따라 항목 적용&#xD;&#xA;  - COIL   관리항목 : 두께공차,폭공차,반곡,중곡,외곡,Telescope등 고객사양에 정의된 인수도 항목&#xD;&#xA;  - SHEET 관리항목 : 두께공차,폭공차,길이공자,반곡,중곡,외곡,직각도,직선도,대각성공차 등 고객사양에 정의된 인수도 항목&#xD;&#xA;&#xD;&#xA;3. 규격인수도 Master Data의 인수도항목별 인수도값을 품질설계결과인수도(TB_C10_QLT_DSN_DLV)에 Insert한다.&#xD;&#xA;  - 품질설계사양구분(QLT_DSN_SPC_TP)에 고객사양('1')으로 SET한다&#xD;&#xA;  - 설계항목 : 두께공차,폭공차,길이공자,반곡,중곡,외곡,직각도,직선도,대각성공차,Telescope 등 고객사양에 정의된 인수도 항목&#xD;&#xA;- Update 에러시는 Return코드, Return메시지(에러내용)을 Set하고 프로세스를 종료 처리&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;4. 주문두께관리코드,주문폭관리코드,주문길이관리코드중 한개이상이 NULL도 아니고 'Z'도 아니면 규격인수도를 Read하여 편집한다.&#xD;&#xA;    - 규격인수도 Master Data 정의명 : C10B1013&#xD;&#xA;    - Key : 인수도규격, 품명코드, 제품형태, Edge구분, 주문두께, 주문폭, 주문길이&#xD;&#xA;    - 편집대상 항목 : 두께공차한한,두께공차상한, 폭공차하한,폭공차상한, 길이공차한한,길이공차상한,&#xD;&#xA;&#xD;&#xA;5. 편성정보: 인수도 두께, 폭, 길이공차값&#xD;&#xA;      A. 주문두께관리코드 및 주문두께공차값에 따른 고객사양두께공차 편집&#xD;&#xA;          - 주문두께관리코드가 NULL도 아니고 'Z'도 아니면 코드에 따라 규격인수도 Master Data의 계산된 값을 고객사양 두께공차하한,상한으로 편집한다.&#xD;&#xA;          - 주문두께관리코드가 'Z'인 경우엔 주문에 등록된 두께공차하한,상한을 고객사양 두께공차하한,상한으로 편집한다&#xD;&#xA;          - 주문두께관리코드가 NULL인 경우엔 고객인수도 Master Data의 두께공차하한,상한으로 고객사양 두께공차하한,상한으로 편집한다&#xD;&#xA;      B. 주문폭관리코드 및 주문폭공차값에 따른 고객사양폭공차 편집&#xD;&#xA;          - 주문폭관리코드가 NULL도 아니고 'Z'도 아니면 코드에 따라 규격인수도 Master Data의 계산된 값을 고객사양 폭공차하한,상한으로 편집한다.&#xD;&#xA;          - 주문폭관리코드가 'Z'인 경우엔 주문에 등록된 폭공차하한,상한을 고객사양 폭공차하한,상한으로 편집한다&#xD;&#xA;          - 주문폭관리코드가 NULL인 경우엔 고객인수도 Master Data의 폭공차하한,상한으로 고객사양 폭공차하한,상한으로 편집한다&#xD;&#xA;      C. 주문길이관리코드 및 주문길이공차값에 따른 고객사양길이공차 편집&#xD;&#xA;          - 주문길이관리코드가 NULL도 아니고 'Z'도 아니면 코드에 따라 규격인수도 Master Data의 계산된 값을 고객사양 길이공차하한,상한으로 편집한다.&#xD;&#xA;          - 주문길이관리코드가 'Z'인 경우엔 주문에 등록된 길이공차하한,상한을 고객사양 길이공차하한,상한으로 편집한다&#xD;&#xA;          - 주문길이관리코드가 NULL인 경우엔 고객인수도 Master Data의 길이공차하한,상한을 고객사양 길이공차하한,상한으로 편집한다&#xD;&#xA;6. 편성한 결과는 PosContext에 등록&#xD;&#xA;7. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="50204" location="158,246" size="130,-1" input="//@wire.1" output="//@wire.2 //@wire.3" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="17"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100DLV.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="QLT_DSN_SPC_TP"/>
+    <property key="param3" value="THK_TLN_ULV"/>
+    <property key="param4" value="THK_TLN_LLV"/>
+    <property key="param5" value="WTH_TLN_LLV"/>
+    <property key="param6" value="WTH_TLN_ULV"/>
+    <property key="param7" value="LTH_TLN_LLV"/>
+    <property key="param8" value="LTH_TLN_ULV"/>
+    <property key="param9" value="HWAV_H"/>
+    <property key="param10" value="MWAV_H"/>
+    <property key="param11" value="EWAV_H"/>
+    <property key="param12" value="SLR_ULV"/>
+    <property key="param13" value="RAR_ULV"/>
+    <property key="param14" value="DGLN_DIF_ULV"/>
+    <property key="param15" value="STPN"/>
+    <property key="param16" value="TLC"/>
+    <property key="description" value="이 Activity는 인수도사양기준을 품질설계결과 품질설계결과인수도(TB_C10_QLT_DSN_DLV)테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계사양구분(QLT_DSN_SPC_TP)에 고객사양('1')으로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50205" location="415,251" size="130,-1" input="//@wire.3" output="//@wire.4" name="ERROR_LOG">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|TB04"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="50206" location="420,354" size="129,-1" input="//@wire.4 //@wire.5" output="//@wire.6" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:InitialState" id="50207" location="211,14" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="50208" location="216,360" size="-1,-1" input="//@wire.2 //@wire.6 //@wire.7"/>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 고객인수도정보를 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 고객인수도사양 편성&#xD;&#xA;    . 두께,폭,길이 합성항목 편집&#xD;&#xA;"/>
+  <wire id="2891" guardcondition="success" firstRelativePoint="222,33" lastRelativePoint="222,112"/>
+  <wire id="2892" guardcondition="success" firstRelativePoint="211,142" lastRelativePoint="211,246">
+    <bendpoint weight="0.5" firstDimension="-11,65" secondDimension="-12,-69"/>
+  </wire>
+  <wire id="2893" guardcondition="success" firstRelativePoint="226,276" lastRelativePoint="226,359"/>
+  <wire id="2894" guardcondition="failure" firstRelativePoint="288,263" lastRelativePoint="415,263">
+    <bendpoint weight="0.5" firstDimension="134,2" secondDimension="-123,-3"/>
+  </wire>
+  <wire id="2895" guardcondition="success" firstRelativePoint="480,281" lastRelativePoint="480,354">
+    <bendpoint weight="0.5" firstDimension="0,53" secondDimension="-4,-50"/>
+  </wire>
+  <wire id="2897" guardcondition="failure" firstRelativePoint="290,128" lastRelativePoint="549,369">
+    <bendpoint weight="0.5" firstDimension="361,1" secondDimension="99,-241"/>
+    <bendpoint weight="0.5" firstDimension="361,242" secondDimension="99,0"/>
+  </wire>
+  <wire id="2931" guardcondition="success" firstRelativePoint="420,368" lastRelativePoint="236,369"/>
+  <wire id="9090" guardcondition="false" firstRelativePoint="157,134" lastRelativePoint="215,369">
+    <bendpoint weight="0.5" firstDimension="-158,7" secondDimension="-162,-236"/>
+    <bendpoint weight="0.5" firstDimension="-157,240" secondDimension="-161,-3"/>
+  </wire>
+</Glue:GlueDiagram>

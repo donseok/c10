@@ -1,0 +1,119 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@page import = "java.util.*" %> 
+<%@page import = "java.sql.Types" %> 
+<%@page import = "com.posdata.glue.context.PosContext" %> 
+<%@page import = "com.posdata.glue.dao.vo.*" %> 
+<%@page import = "com.posdata.glue.web.control.*" %> 
+<%@page import = "com.posdata.glue.util.log.PosLog" %>
+
+<%@page import = "com.poscoict.glue.dhtmlx.constant.DhtmlxConstantsIF" %> 
+
+<%
+
+try
+{
+	PosContext ctx = (PosContext)request.getAttribute(PosWebConstants.CONTEXT);
+    
+    if (ctx == null) {
+		out.println("<row>");
+		String service = request.getParameter("ServiceName");
+		String message = "Context is null, because Service ["+service+"] did not execute or has a problem!";     
+		throw new Exception(message);
+	}
+
+	String resultKey = "xml-result";
+	
+	
+	if(ctx.get("column-info") == null){
+		out.println("<row>");
+		String service = request.getParameter("ServiceName");
+		String message = "Parameter [column-info] is null";     
+		throw new Exception(message);
+	}
+	
+	/* column-info는 AAA,BBB,CCC|EEE,FFF,GGG|KKK,LLL,MMM 과 같은 형태로 받는다 */
+	String [] columnInfo = ((String) ctx.get("column-info")).split("\\|");
+
+	if(resultKey != null) {
+		Object result = ctx.get(resultKey);
+		if(result != null ){
+			/* Making Screen Message For User */
+			StringBuffer userdata = new StringBuffer();
+			userdata.append("<rows>")
+					.append("<userdata name=\"appMsg\">")
+					.append((String)ctx.get("appMsg"))
+					.append("</userdata>");
+			out.print(userdata.toString()); 
+//			System.out.println(userdata.toString());
+			
+			/* List인 경우와 PosRowSet인 두 가지 경우에 대해 처리한다. */
+			if (result instanceof PosRowSet ){
+				if(((PosRowSet)result).hasNext()){
+
+					List rowSetList = (List)result;
+					
+					PosRow row = (PosRow) rowSetList.get(0);	// 한 건의 Data에 대해서만 처리 가능하다
+
+					Object cellData = null;
+					
+					String[] columns;
+					for(int i = 0, size = columnInfo.length; i < size; i++){
+						out.println("<ROW id=\"" + i + "\">");
+//						System.out.println("<ROW id=\"" + i + "\">");
+						
+						columns = columnInfo[i].split(",");
+						
+						StringBuffer sb = new StringBuffer();
+						Object value = null;
+						for(int j = 0; j < columns.length; j++) {
+							sb.append("<cell id=\"").append(columns[j]).append("\"><![CDATA[");
+							value = row.getAttribute(columns[j]);
+							if (value != null)	sb.append(value);
+							else	sb.append("");
+							
+							sb.append("]]></cell>");
+						}
+							
+						out.println(sb.toString());
+//						System.out.println(sb.toString());
+
+						out.println("</ROW>");
+//						System.out.println("</ROW>");
+						out.flush();
+					}
+				}
+
+			} else if(result instanceof String){
+				out.println(result);
+			} else {
+				throw new Exception("This resultkey type can not support! Type:"+result);
+			}
+
+		} else {
+			throw new Exception("Context didn't have a result with this key "+resultKey);
+		}
+		out.print("</rows>");
+//		System.out.println("</rows>");
+	} else if (resultKey == null) {
+		throw new Exception("Context didn't have "+DhtmlxConstantsIF.XML_RESULT);
+	} else {
+		throw new Exception("Context didn't have "+DhtmlxConstantsIF.COLUMN_ORDER);
+	}
+	
+	Throwable error = ctx.getException();
+	if(error != null) {
+
+		out.print(DhtmlxConstantsIF.ERROR_STARTTAG);
+		out.print("<![CDATA["+error.getMessage()+"]]>");
+		out.println(DhtmlxConstantsIF.ERROR_ENDTAG);
+	}
+}catch (Exception e){
+	e.printStackTrace();
+	out.print(DhtmlxConstantsIF.ERROR_STARTTAG);
+	out.print("<![CDATA["+e.getMessage()+"]]>");
+	out.println(DhtmlxConstantsIF.ERROR_ENDTAG);
+}
+
+//out.println("<userdata name='column-info'>"+columnInfo+"</userdata>");	
+//out.println(DhtmlxConstantsIF.ROWS_ENDTAG);
+%>

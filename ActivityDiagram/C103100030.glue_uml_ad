@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="479,-162" size="-1,-1" output="//@wire.5"/>
+  <child xsi:type="Glue:Activity" id="49656" location="412,-103" size="149,-1" input="//@wire.5" output="//@wire.1" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 품질설계 오류Code를 초기화한다.(QLT_DSN_ERR_CD=''l)&#xD;&#xA;- 오류발생여부 Check 변수를 초기화한다.(P_ERR_KEY= 'N‘)&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : QLT_DSN_ERR_CD|sp_null"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="414,-36" size="154,-1" input="//@wire.1" output="//@wire.2" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN.Jselect"/>
+    <property key="description" value="이 Activity는 품질설계대상 주문정보로 &#xD;&#xA;품질설계상태코드 ='J' 인 값만 &#xD;&#xA;품질설계작업을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="49675" location="421,31" size="135,-1" input="//@wire.2 //@wire.10 //@wire.12" output="//@wire.4 //@wire.8" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
+    <property key="param-count" value="37"/>
+    <property key="param0" value="ORD_NO|ORD_NO"/>
+    <property key="param1" value="ORD_LN|ORD_LN"/>
+    <property key="param2" value="RMTL_CD|RMTL_CD"/>
+    <property key="param3" value="ORD_EXC_THK|ORD_EXC_THK"/>
+    <property key="param4" value="ORD_EXC_WTH|ORD_EXC_WTH"/>
+    <property key="param5" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param6" value="PRD_SHP|PRD_SHP"/>
+    <property key="param7" value="MTL_CD|MTL_CD"/>
+    <property key="param8" value="PAS_PROC_NO|PAS_PROC_NO"/>
+    <property key="param9" value="BAK_MRK|BAK_MRK"/>
+    <property key="param10" value="ORD_COIL_IDIA|ORD_COIL_IDIA"/>
+    <property key="param11" value="ORD_SLV_KND_TP|ORD_SLV_KND_TP"/>
+    <property key="param12" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD"/>
+    <property key="param13" value="GW_ASG_CD|GW_ASG_CD"/>
+    <property key="param14" value="EMBS_CD|EMBS_CD"/>
+    <property key="param15" value="ORD_PAK_UNT_WGT_LLV|ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param16" value="ORD_COIL_ODIA|ORD_COIL_ODIA"/>
+    <property key="param17" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT"/>
+    <property key="param18" value="ORD_MIX_WTH1|ORD_MIX_WTH1"/>
+    <property key="param19" value="ORD_MIX_WTH2|ORD_MIX_WTH2"/>
+    <property key="param20" value="ORD_MIX_WTH3|ORD_MIX_WTH3"/>
+    <property key="param21" value="ORD_MIX_WTH4|ORD_MIX_WTH4"/>
+    <property key="param22" value="ORD_MIX_WTH5|ORD_MIX_WTH5"/>
+    <property key="param23" value="ORD_MIX_WTH6|ORD_MIX_WTH6"/>
+    <property key="param24" value="ORD_MIX_WTH7|ORD_MIX_WTH7"/>
+    <property key="param25" value="ORD_MIX_WTH8|ORD_MIX_WTH8"/>
+    <property key="param26" value="ORD_MIX_WTH9|ORD_MIX_WTH9"/>
+    <property key="param27" value="ORD_MIX_WTH10|ORD_MIX_WTH10"/>
+    <property key="param28" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP"/>
+    <property key="param29" value="TRST_PROC_YN|TRST_PROC_YN"/>
+    <property key="param30" value="MQL_CD|MQL_CD"/>
+    <property key="param31" value="SPC_AVR|SPC_AVR"/>
+    <property key="param32" value="FNL_CUS_CD|FNL_CUS_CD"/>
+    <property key="param33" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param34" value="LUS_RT_CD_FRN|LUS_RT_CD_FRN"/>
+    <property key="param35" value="CCL_BOM_NO|CCL_BOM_NO"/>
+    <property key="param36" value="ORD_COILG_MTH|ORD_COILG_MTH"/>
+    <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;&#xD;&#xA;이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;&#xD;&#xA;이 Activity는 Master Data의 업무기준(단순구조)을 읽어 품질설계에 필요한 &#xD;&#xA;정보를 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 원자재코드&#xD;&#xA;   - Master Table Code: 원자재기준(C10B1063)&#xD;&#xA;   - Key: 원자재코드, 주문두께             &#xD;&#xA;&#xD;&#xA;2. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;3. 오류가 없는 경우 transition='success',&#xD;&#xA;    오류가 있는 경우 'failure'로 Set하고 오류Log 메세지 편집"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50091" location="203,30" size="145,-1" input="//@wire.4" output="//@wire.3" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="117,36" size="-1,-1" input="//@wire.3"/>
+  <child xsi:type="Glue:Activity" id="50646" location="427,104" size="135,-1" input="//@wire.8" output="//@wire.7 //@wire.9" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchProcData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 통과공정기준을 읽어 &#xD;&#xA;통과공정사양을 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 통과공정삭제기준&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1078&#xD;&#xA;&#x9;- 통과공정삭제기준 Data 조건항목 : 품명코드, BackMarking여부, 주문내경, 주문내경링종류구분, 주문표면처리코드, 도금량지정코드, EMBOSS무늬, 주문포장단중하한값, 주문코일외경, 입측두께범위, 입측폭범위, 수지타입전면, 광택코드전면, 보호필름상세코드, 재질코드, 주문EDGE지정코드&#xD;&#xA;&#x9;-> Read Count = 1 이면 통과공정삭제기준 Data의 삭제공정을 편집한다.&#xD;&#xA;&#x9;-> 에러처리하지 않는다.&#xD;&#xA;&#xD;&#xA;2. 편성정보: 정전공정추가기준&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2050&#xD;&#xA;&#x9;- 정전공정추가기준 Data 조건항목 : 품명코드, 제품형태, slit조수, 조합폭(복합조중 가장적은것), 주문EDGE, 제품두께범위, 재단선유무, 위탁임가공여부, 엠보스무늬&#xD;&#xA;&#x9;-> Read Count = 1 이면 정전공정추가기준 Data의 추가위치, 기준공정, 주공정, 대체공정1, 대체공정2을 편집한다.&#xD;&#xA;&#x9;-> 에러처리하지 않는다.&#xD;&#xA;&#xD;&#xA;3. 편성정보: TM2PASS기준&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2240&#xD;&#xA;&#x9;- TM2PASS기준 Data 조건항목 : 품명코드, 규격약호, 최종수요가코드, 주문용도코드, 주문표면처리코드, 광택코드전면, 두께범위, 폭범위, EMBOSS무늬&#xD;&#xA;&#x9;-> Read Count = 1 이면 TM2PASS기준 Data의 Pass수를 편집한다.&#xD;&#xA;&#x9;-> 에러처리하지 않는다.&#xD;&#xA;&#xD;&#xA;4. 편성정보: 공정순서, 주통과공정코드, 보조통과공정코드1, 보조통과공정코드2&#xD;&#xA;&#x9;- Master Data View 통한 단순구조 데이타 결과값 도출&#xD;&#xA;&#x9;. Key: 통과공정번호, 주문두께&#xD;&#xA;&#x9;-> Read Count = 1 이면 통과공정기준 Data의 공정코드를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이면 통과공정기준 에러처리한다.&#xD;&#xA;&#xD;&#xA;5. 편성정보: 반제품MaterialCode편집&#xD;&#xA;&#x9;- 반제품MaterialCode관리Table 통한 단순구조 데이타 결과값 도출&#xD;&#xA;&#x9;. Key: MaterialCode, 통과공정번호(주공정)&#xD;&#xA;&#x9;- 제품군이 칼라제품이고 통과공정번호가 72(RCL)인 경우 통과공정번호가 전체가 같은 결과값을 도출한다.&#xD;&#xA;&#x9;- 제품군이 칼라제품이고 통과공정번호가 72(RCL)가 아닌 경우 통과공정번호의 첫자리가 같은 결과값을 도출한다.&#xD;&#xA;&#x9;- 제품군이 칼라제품이 아닌경우 통과공정번호의 첫자리가 같은 결과값을 도출한다.&#xD;&#xA;&#x9;-> Read Count = 1 이면 반제품MaterialCode관리 Data의 반제품MaterialCode를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이면 반제품MaterialCode 에러처리한다.&#xD;&#xA;&#xD;&#xA;6. 편성정보 : 정전공정추가 기준공정이전&#xD;&#xA;&#x9;- 정전공정추가 기준공정이전 조건이 있을경우 통과공정테이블에 정전공정을 추가반영한다.&#xD;&#xA;&#xD;&#xA;7. 편성정보 : 칼라공정코드 반영&#xD;&#xA;&#x9;- 칼라제품인 경우 칼라제조사양의 주공정, 대체공정1, 대체공정2, 대체공정3을 통과공정으로 편집한다.&#xD;&#xA;&#xD;&#xA;8. 편성정보 : 삭제공정 반영&#xD;&#xA;&#x9;- 삭제공정 조건이 있을 경우 통과공정을 편집(삭제)한다.&#xD;&#xA;&#x9;- 삭제반영 후 주공정, 대체공정1, 대체공정2, 대체공정3이 모두 삭제된 경우는 에러처리한다.&#xD;&#xA;&#xD;&#xA;9. 통과공정기준에서 읽어온 통과공정Data에서 칼라공정과 삭제공정이 반영된 정보를 통과공정테이블에 반영한다.&#xD;&#xA;&#xD;&#xA;10.편성정보 : TM2PASS추가&#xD;&#xA;&#x9;- 통과공정번호가 51(TM)이고 TM2PASS조건이 있을경우 통과공정테이블에 TM공정을 추가반영한다.&#xD;&#xA;&#xD;&#xA;11.편성정보 : CCL2PASS추가&#xD;&#xA;&#x9;- 주공정이 칼라공정(A)이고 도장(코팅)방식이 A,B,C,D,E인 경우 통과공정테이블에 CCL공정을 추가반영한다.&#xD;&#xA;&#x9;- 주공정이 A2,A3,A4,A6이고 도장(코딩)방식이 6,7,8,9인 경우 통과공정테이블에 CCL공정을 추가반영한다.&#xD;&#xA;&#xD;&#xA;12. 편성정보 : 정전공정추가 기준공정이후&#xD;&#xA;&#x9;- 정전공정추가 기준공정이후 조건이 있을경우 통과공정테이블에 정전공정을 추가반영한다.&#xD;&#xA;&#xD;&#xA;13. 편성정보 : TM PASS수&#xD;&#xA;&#x9;- 제품군이 CR, EG, CR칼라, EG칼라 인 경우 TM PASS수를 제조표준테이블에 반영한다.&#xD;&#xA;&#xD;&#xA;14. PosContext에 합성항목과 품질보증구분항목 편집&#xD;&#xA;- 합성항목 편집&#xD;&#xA;. 항목별로 합성항목은 이전 값이 존재하지 않으면 값을 등록하고,&#xD;&#xA;값이 존재하면 이전 값을 변경하지 않는다.&#xD;&#xA;&#xD;&#xA;15. 정보가 존재하여 등록에 성공한 경우 transition='success', 아니면 'failure'로 Set&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="50925" location="439,274" size="113,-1" input="//@wire.6" output="//@wire.12" name="MODIFY_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C1021000CMN.modify"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계에러여부를 품질설계결과 공통테이블에 &#xD;&#xA;수정하는 Activity이다. &#xD;&#xA;품질설계에러여부(QLT_DSN_ERR_YN)에 'Y'로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="50979" location="429,176" size="129,-1" input="//@wire.7 //@wire.11" output="//@wire.6" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="53081" location="638,102" size="110,-1" input="//@wire.9" output="//@wire.10 //@wire.11" name="ROUTER_CHK">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|N|success"/>
+    <property key="param1" value="P_ERR_KEY|Y|error"/>
+    <property key="description" value="이 Activity는 이전 서비스의 처리가 정상적으로 완료되었는지를 확인하여&#xD;&#xA;이상종료한 경우 다음 주문을 처리하고, 정상 처리된 경우 후속 서비스를 &#xD;&#xA;처리하는 Activity이다. "/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 통과공정정보를 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 통과공정정보 편성&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2825" guardcondition="success" firstRelativePoint="481,-73" lastRelativePoint="480,-36">
+    <bendpoint weight="0.5" firstDimension="-5,41" secondDimension="-10,-26"/>
+    <bendpoint weight="0.5" firstDimension="-6,31" secondDimension="-11,-36"/>
+  </wire>
+  <wire id="2826" guardcondition="success" firstRelativePoint="482,-6" lastRelativePoint="482,31">
+    <bendpoint weight="0.5" firstDimension="-9,46" secondDimension="-6,-21"/>
+    <bendpoint weight="0.5" firstDimension="-9,31" secondDimension="-6,-36"/>
+  </wire>
+  <wire id="2869" guardcondition="success" firstRelativePoint="177,46" lastRelativePoint="88,46">
+    <bendpoint weight="0.5" firstDimension="-121,1" secondDimension="50,-1"/>
+  </wire>
+  <wire id="2870" guardcondition="exit" firstRelativePoint="386,47" lastRelativePoint="353,47"/>
+  <wire id="2873" guardcondition="success" firstRelativePoint="486,-143" lastRelativePoint="486,-103"/>
+  <wire id="2949" guardcondition="success" firstRelativePoint="496,206" lastRelativePoint="496,269">
+    <bendpoint weight="0.5" firstDimension="3,44" secondDimension="1,-49"/>
+  </wire>
+  <wire id="3048" guardcondition="failure" firstRelativePoint="493,134" lastRelativePoint="493,176"/>
+  <wire id="3052" guardcondition="success" firstRelativePoint="489,61" lastRelativePoint="489,104"/>
+  <wire id="3053" guardcondition="success" firstRelativePoint="561,115" lastRelativePoint="638,115"/>
+  <wire id="7771" guardcondition="success" firstRelativePoint="696,102" lastRelativePoint="555,50">
+    <bendpoint weight="0.5" firstDimension="3,-67" secondDimension="208,4"/>
+  </wire>
+  <wire id="7772" guardcondition="error" firstRelativePoint="697,132" lastRelativePoint="558,190">
+    <bendpoint weight="0.5" firstDimension="4,73" secondDimension="204,-1"/>
+  </wire>
+  <wire id="7773" guardcondition="success" firstRelativePoint="552,287" lastRelativePoint="554,39">
+    <bendpoint weight="0.5" firstDimension="259,-2" secondDimension="266,241"/>
+    <bendpoint weight="0.5" firstDimension="259,-250" secondDimension="266,-7"/>
+  </wire>
+</Glue:GlueDiagram>

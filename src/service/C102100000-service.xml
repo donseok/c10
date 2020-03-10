@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C102100000-service" initial="JOB시작 UPDATE">
+  <activity name="품질설계인수도DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계제조사양DELETE" />
+    <property name="sqlkey" value="C102100000.DLV_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="설계정합성체크C103100130" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="품질설계의뢰조회" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100130-service" />
+  </activity>
+  <activity name="제조사양(C103100020)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="도금량(MQL,MNF)(C103100040)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100020-service" />
+  </activity>
+  <activity name="두께/소둔(C103100070)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="폭(C103100080)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100070-service" />
+  </activity>
+  <activity name="품질설계 공통 UPDATE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계성분DELETE" />
+    <property name="sqlkey" value="C102100000.AUPDATE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="JOB시작 UPDATE" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="상태UPDATE" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="0" />
+    <property name="sqlkey" value="C10_QLT_JOB.Supdate" />
+  </activity>
+  <activity name="품질설계원자재DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계 CCL-BOM DELETE" />
+    <property name="sqlkey" value="C102100000.RMT_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="JOB종료 UPDATE" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="0" />
+    <property name="sqlkey" value="C10_QLT_JOB.Eupdate" />
+  </activity>
+  <activity name="공정별Size(C103100090)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="원자재Size(C103100100)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100090-service" />
+  </activity>
+  <activity name="품질설계재질DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계인수도DELETE" />
+    <property name="sqlkey" value="C102100000.MQL_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="규격사양(C,M,D)(C102100070)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="고객사양(C,M,D)(C102100030)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100070-service" />
+  </activity>
+  <activity name="품질설계 CCL-BOM DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계통과공정 DELETE" />
+    <property name="sqlkey" value="C102100000.CCL_BOM_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="보증사양(D)(C102100150)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="원자재Insert(C103100010)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100150-service" />
+  </activity>
+  <activity name="보증사양(C)(C102100130)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="보증사양(M)(C102100140)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100130-service" />
+  </activity>
+  <activity name="품질설계메세지1 DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계 ERROR DELETE" />
+    <property name="sqlkey" value="C102100000.MSG1_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="품질설계제조사양DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계원자재DELETE" />
+    <property name="sqlkey" value="C102100000.MNF_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="CCL제조사양(C102100160)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="통과공정(C103100030)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100160-service" />
+  </activity>
+  <activity name="품질설계메세지 DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계메세지1 DELETE" />
+    <property name="sqlkey" value="C102100000.MSG_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="품질설계 공통 UPDATE" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="품질설계 ERROR DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="설계Key(C102100020)" />
+    <property name="sqlkey" value="C102100000.ERR_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="원자재Size(C103100100)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="설계정합성체크C103100130" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100100-service" />
+  </activity>
+  <activity name="고객사양(C,M,D)(C102100030)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="사내사양(C,M)(C102100110)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100030-service" />
+  </activity>
+  <activity name="보증사양(M)(C102100140)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="보증사양(D)(C102100150)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100140-service" />
+  </activity>
+  <activity name="품질설계성분DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계재질DELETE" />
+    <property name="sqlkey" value="C102100000.CHM_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="통과공정(C103100030)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="두께/소둔(C103100070)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100030-service" />
+  </activity>
+  <activity name="상태UPDATE" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="COMMIT" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100000.LmtJmodify" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+  </activity>
+  <activity name="품질설계의뢰조회" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="false" value="JOB종료 UPDATE" />
+    <transition name="true" value="상태UPDATE" />
+    <transition name="failure" value="JOB종료 UPDATE" />
+    <property name="sqlkey" value="C102100000.Iselect" />
+    <property name="dao" value="mesdao" />
+    <property name="param-count" value="0" />
+  </activity>
+  <activity name="품질설계통과공정 DELETE" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="품질설계메세지 DELETE" />
+    <property name="sqlkey" value="C102100000.PROC_ADELETE" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="원자재Insert(C103100010)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="제조사양(C103100020)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100010-service" />
+  </activity>
+  <activity name="설계Key(C102100020)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="규격사양(C,M,D)(C102100070)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100020-service" />
+  </activity>
+  <activity name="폭(C103100080)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="공정별Size(C103100090)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100080-service" />
+  </activity>
+  <activity name="사내사양(C,M)(C102100110)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="보증사양(C)(C102100130)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100110-service" />
+  </activity>
+  <activity name="CGL수지/TM조도(C103100050)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="CCL제조사양(C102100160)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100050-service" />
+  </activity>
+  <activity name="도금량(MQL,MNF)(C103100040)" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="CGL수지/TM조도(C103100050)" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100040-service" />
+  </activity>
+</service>
+

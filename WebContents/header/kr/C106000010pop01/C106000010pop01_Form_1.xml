@@ -1,0 +1,8 @@
+<items>	
+	<item type="block" width="850">
+		<item type="newcolumn" offset="680" />		
+		<item type="button" name="save" value="저장" command="save"/>		
+		<item type="newcolumn" offset="5" />		
+		<item type="button" name="popClose" value="닫기" command="popClose"/>
+	</item>
+</items>

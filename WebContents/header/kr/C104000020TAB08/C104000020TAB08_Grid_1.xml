@@ -1,0 +1,85 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="enableStableSorting"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<call command="attachHeader"/>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" index = "1" clabel="순서" dbname="순서" id="PROC_SEQ" sort="sort_int_custom" table="TB_C10_QLT_DSN_PROC" type="ed" width="4" color="FFFFC0">순서</column>
+<column align="center" index = "2" clabel="주공정" dbname="주공정" id="MAIN_PROC_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="13" color="FFFFC0">주공정</column>
+<column align="center" index = "3" clabel="대체공정1" dbname="대체공정1" id="SUB_PROC_CD1" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정1</column>
+<column align="center" index = "4" clabel="대체공정2" dbname="대체공정2" id="SUB_PROC_CD2" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정2</column>
+<column align="center" index = "5" clabel="대체공정3" dbname="대체공정3" id="SUB_PROC_CD3" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정3</column>
+<column align="center" index = "6" clabel="대체공정4" dbname="대체공정4" id="SUB_PROC_CD4" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정4</column>
+<column align="center" index = "7" clabel="대체공정5" dbname="대체공정5" id="SUB_PROC_CD5" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정5</column>
+<column align="center" index = "8" clabel="대체공정6" dbname="대체공정6" id="SUB_PROC_CD6" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="combo_v" width="11" color="FFFFC0">대체공정6</column>
+<column align="left" index = "9" clabel="MaterialCode" dbname="MaterialCode" id="MTL_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="ro" width="*">MaterialCode</column>
+<column align="center" index = "10" clabel="주문번호" dbname="주문번호" id="ORD_NO" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="ro" width="0" hidden="true">주문번호</column>
+<column align="center" index = "11" clabel="주문행번" dbname="주문행번" id="ORD_LN" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="ro" width="0" hidden="true">주문행번</column>
+<column align="center" index = "12" clabel="SMS수신" dbname="SMS수신" id="SMS_RCV_YN" sort="sort_str_custom" table="TB_C10_QLT_DSN_PROC" type="ch" width="4" color="FFFFC0">SMS</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">PROC_SEQ,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,SUB_PROC_CD3,SUB_PROC_CD4,SUB_PROC_CD5,SUB_PROC_CD6,MTL_CD,ORD_NO,ORD_LN,SMS_RCV_YN</userdata>
+<row id="0">
+<cell/>
+</row>
+<row id="1">
+<cell/>
+</row>
+<row id="2">
+<cell/>
+</row>
+<row id="3">
+<cell/>
+</row>
+<row id="4">
+<cell/>
+</row>
+<row id="5">
+<cell/>
+</row>
+<row id="6">
+<cell/>
+</row>
+<row id="7">
+<cell/>
+</row>
+<row id="8">
+<cell/>
+</row>
+<row id="9">
+<cell/>
+</row>
+<row id="10">
+<cell/>
+</row>
+<row id="11">
+<cell/>
+</row>
+<row id="12">
+<cell/>
+</row>
+<row id="13">
+<cell/>
+</row>
+<row id="14">
+<cell/>
+</row>
+<row id="15">
+<cell/>
+</row>
+</rows>

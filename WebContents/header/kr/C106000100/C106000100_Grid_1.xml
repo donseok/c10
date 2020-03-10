@@ -1,0 +1,308 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="setColValidators"><param>NotEmpty</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CCL_BOM_NO" index="1" sort="str" align="center" width="60" table="TB_C10_CCL_BOM_IMG_MNG" type="ed" color="FFFFC0">BOM</column>
+<column id="DTL_CLR_NM" index="3" sort="str" align="left" width="150" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">색상명</column>
+<column id="COT_MTH" index="3" sort="str" align="center" width="100" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">코팅방식</column>
+<column id="RSN_TP_FRN" index="3" sort="str" align="left" width="90" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">수지(T)</column>
+<column id="RSN_TP_BAK" index="3" sort="str" align="left" width="90" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">수지(B)</column>
+<column id="HUE_CD_FRN" index="3" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">색상(T)</column>
+<column id="HUE_CD_BAK" index="3" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">색상(B)</column>
+<column id="PNT_FLM_THK_FRN_TOT" index="3" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">도막(T)</column>
+<column id="PNT_FLM_THK_BAK_TOT" index="3" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">도막(B)</column>
+<column id="CCL_BOM_RGS_PRS_ID" hidden="true" index="3" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">등록자</column>
+<column id="CCL_BOM_RGS_PRS_NM" index="4" sort="str" align="center" width="50" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">등록자</column>
+<column id="CCL_BOM_RGS_DH" index="5" sort="str" align="center" width="80" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">등록일</column>
+<column id="USER_NO" index="6" sort="str" align="center" width="90" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" hidden="true">등록일</column>
+<column align="center" clabel="IMAGE여부" dbname="IMAGE여부" id="IMAGE_YN" index="4" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="*" color="FFFFC0">제품</column>
+<column align="center" clabel="규격IMAGE여부" dbname="규격IMAGE여부" id="FILE_YN" index="4" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="*" color="FFFFC0">규격1</column>
+<column align="center" clabel="물성관련첨부파일여부" dbname="물성관련첨부파일여부" id="DOC_YN" index="4" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="*" color="FFFFC0">물성</column>
+<column align="center" clabel="규격관련첨부파일여부" dbname="규격관련첨부파일여부" id="OTH_YN" index="4" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="*" color="FFFFC0">규격2</column>
+<column id="CCL_BOM_IMG_SEQ_NO"  hidden="true" index="2" sort="str" align="center" width="150" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">순서</column>
+<column align="center" hidden="true" id="IMG_ADR" index="8" sort="str" type="ro"/>
+<column align="center" hidden="true" id="IMG_NM" index="9" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CNT" index="9" sort="str" type="ro"/>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CCL_BOM_NO,DTL_CLR_NM,COT_MTH,RSN_TP_FRN,RSN_TP_BAK,HUE_CD_FRN,HUE_CD_BAK,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,CCL_BOM_RGS_PRS_ID,CCL_BOM_RGS_PRS_NM,CCL_BOM_RGS_DH,USER_NO,IMAGE_YN,FILE_YN,DOC_YN,OTH_YN,CCL_BOM_IMG_SEQ_NO,IMG_ADR,IMG_NM,CNT</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="17">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="18">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="19">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="20">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="21">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

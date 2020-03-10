@@ -1,0 +1,110 @@
+<items>
+	<item type="block" width="860">
+		<item type="newcolumn" offset="5" />		
+		<item label="영업 정보" type="fieldset" width="400" offsetLeft="">
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="의뢰번호" name="CLR_SMP_REQ_NO" type="input" labelAlign="right" readonly="true" value=""/>
+			</item>		
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="고객요청색상" name="CUS_REQ_HUE_TXT" type="input" labelAlign="right" maxLength="300" value=""/>
+			</item>		
+			<item type="block">
+				<item inputWidth="260" label="수지" labelAlign="right" labelWidth="100" name="RSN_TP_TXT" type="input"  value=""/>
+			</item>	
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="수지분석요망" name="RSN_ANL_REQ_YN" type="combo" labelAlign="right" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="57" inputWidth="85" label="시편송부" name="SMP_SND_YN" type="combo" labelAlign="right" value=""/>				
+			</item>				
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="도막두께" name="PNT_FLM_THK_TXT" type="input" labelAlign="right" maxLength="10" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="57" inputWidth="85" label="샘플광" name="SMP_LUS_YN" type="combo" labelAlign="right" value=""/>
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="광택도코드 " name="LUS_RT_CD" type="combo" labelAlign="right" value=""/>
+			</item>			
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="사용용도" name="CLR_USE_NM" type="input" labelAlign="right" maxLength="20" value=""/>
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="80" label="영업담당자명" name="SAL_CHR_PRS_ID" type="input" labelAlign="right" maxLength="10" value=""/>
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="89" inputWidth="68" label="예상수주량(톤)" name="ORD_PRE_WGT" type="input" labelAlign="left" format="0,000.0" maxLength="6" value=""/>
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="고객사명" name="CUS_CD_TXT" type="input" labelAlign="right" maxLength="20" value=""/>
+			</item>							
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="사용지역" name="USE_REG_TXT" type="input" labelAlign="right" maxLength="20" value=""/>
+			</item>						
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="품명" name="PRD_NM_CD" type="combo" labelAlign="right" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="57" inputWidth="85" label="품명구분" name="PRD_TP_YN" type="combo" labelAlign="right" value=""/>
+			</item>
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="영업 요청일" labelAlign="right" labelWidth="100" name="SAL_CHR_REQ_DH" type="calendar" value=""/>
+				<item offset="1" type="newcolumn"/>
+				<item label="(접수일)" name="RCP" type="template"   />
+			</item>
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="영업 승인일" labelAlign="right" labelWidth="100" name="SAL_CHR_RGN_DH" type="calendar" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="57" inputWidth="85" label="보호필름" name="PTT_FLM_YN" type="combo" labelAlign="right" value=""/>			
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="비고" name="CLR_SMP_RMK" type="input" labelAlign="right" maxLength="100" value=""/>
+			</item>
+		</item>
+		<item type="newcolumn" offset="5" />
+		<item label="설계 정보" type="fieldset" width="400" offsetLeft="">
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="UNFIXED No." name="CLR_SMP_RCP_NO" type="input" labelAlign="right" maxLength="30" value=""/>
+			</item>		
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="도료업체" name="DEV_PNT_CMP_CD" type="combo" labelAlign="right" value=""/>
+			</item>
+			<item type="block">
+				<item inputWidth="260" label="수지구분" labelAlign="right" labelWidth="100" name="RSN_TP" type="combo"  value=""/>
+			</item>					
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="시편개발 의뢰일" labelAlign="right" labelWidth="100" name="CLR_SMP_DEV_REQ_DH" type="calendar" value=""/>
+			</item>
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="시편개발 예정일" labelAlign="right" labelWidth="100" name="CLR_SMP_DEV_LMT_DH" type="calendar" value=""/>
+			</item>			
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="시편개발 완료일" labelAlign="right" labelWidth="100" name="CLR_SMP_DEV_END_DH" type="calendar" value=""/>
+			</item>
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="시편개발 송부일" labelAlign="right" labelWidth="100" name="CLR_SMP_DEV_SND_DH" type="calendar" value=""/>
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="시편송부정보" name="SMP_SND_INF" type="input" labelAlign="right" maxLength="50" value=""/>
+			</item>															
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="승인여부" name="DSN_CHR_RGN_YN" type="combo" labelAlign="right" value=""/>
+			</item>	
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="색상코드" name="HUE_CD" type="input" labelAlign="right" maxLength="5" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="120" width="2" label="유사색상진행" name="SIM_HUE_PRG_YN" type="checkbox" labelAlign="right" />
+			</item>						
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="CCLBOM번호" name="CCL_BOM_NO" type="input" labelAlign="right" maxLength="6" value=""/>
+			</item>
+			<item type="block">
+				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="CCLBOM등록일" labelAlign="right" labelWidth="100" name="CCL_BOM_RGS_DH" type="calendar" value=""/>
+			</item>
+			<item type="block">
+				<item labelWidth="100" inputWidth="100" label="색구분" name="CLR_TP" type="combo" labelAlign="right" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="64" inputWidth="78" label="설계담당자명" name="DSN_CHR_PRS_ID" type="input" labelAlign="left" maxLength="10" value=""/>
+			</item>				
+			<item type="block">
+				<item labelWidth="100" inputWidth="260" label="비고" name="CLR_SMP_DSN_RMK" type="input" labelAlign="right" maxLength="100" value=""/>
+			</item>			
+		</item>		
+	</item>
+</items>

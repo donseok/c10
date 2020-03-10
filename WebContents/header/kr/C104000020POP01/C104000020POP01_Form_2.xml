@@ -1,0 +1,65 @@
+<items>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="135" label="최종수요가" name="FNL_CUS_CD" type="input" labelWidth="70" readonly="true"/>
+<item foreground-color="255,140,50" offset="4" type="newcolumn"/>
+<item inputWidth="135" label="고객사" name="CUS_CD" type="input" readonly="true"/>
+<item foreground-color="255,140,50" offset="4" type="newcolumn"/>
+<item inputWidth="132" label="수요가" name="ACT_CUS_CD" type="input" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="110" label="규격약호/명" name="SPC_AVR" type="input" readonly="true"/>
+<item foreground-color="255,140,50" offset="4" type="newcolumn"/>
+<item inputWidth="395" name="SPC_NM" type="input" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="222" label="주문생치수" name="ORD_SZ" type="input" labelWidth="70" readonly="true"/>
+<item foreground-color="255,140,50" offset="4" type="newcolumn"/>
+<item inputWidth="222" label="포장방법" name="ORD_PAK_MTH" type="input"  readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="222" label="" name="" type="label"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="222" label="" name="" type="label"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="222" label="" name="" type="label"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag 제품명" name="TAG_PRD_NM" type="input" labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag PO번호1" name="TAG_PO_NO" type="input" labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag PO번호2" name="TAG_PO_NO2" type="input" labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag 도착지" name="TAG_DST" type="input"  labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label=" Tag Size" name="TAG_SIZ" type="input"  labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag 규격약호" name="TAG_SPC_NM" type="input" labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag 부착기호" name="TAG_GAA" type="input" labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="Tag 색상전면" name="TAG_HUE_FRN" type="input"  labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="507" label="색상후면" name="TAG_HUE_BAK" type="input"  labelWidth="75" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600">
+<item inputWidth="480" label="Tag 특수마킹형태" name="TAG_SPC_MRK" type="input" readonly="true"/>
+</item>
+<item background-color="255,128,128" type="block" width="600" >
+<item inputWidth="507" label="Part No" name="TAG_PART_NO" type="input"  labelWidth="75" readonly="true"/>
+<item name="messageBox" type="hidden" value=""/>
+</item>
+</items>

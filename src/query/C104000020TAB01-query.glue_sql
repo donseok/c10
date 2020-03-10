@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB01"> 
+	 <query id="C104000020TAB01.select" desc="C104000020TAB01.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 품질설계결과-공통 C104000020TAB01.select 박재영 */ 
+        ORD_NO, 
+        ORD_LN, 
+        ORD_SPC_TXT,
+        DECODE(ORD_COP_STP,'Y','1','0') ORD_COP_STP,
+        QLT_DSN_STS_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'QLT_DSN_STS_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = QLT_DSN_STS_CD) QLT_DSN_STS_CD,
+        DECODE(QLT_HLD_YN,'Y','보류') QLT_HLD_YN,
+        ORD_KND ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_KND'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_KND) ORD_KND,
+        FLOW_CHL ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'FLOW_CHL'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FLOW_CHL) FLOW_CHL,
+        NAT_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'NAT_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = NAT_CD) NAT_CD,
+        PRD_SHP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'PRD_SHP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = PRD_SHP) PRD_SHP,
+        SPC_AVR, SPC_YR, SPC_NM, ACPT_RT_SPC, PAS_PROC_NO,
+        CUS_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = CUS_CD) CUS_CD,
+         ACT_CUS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ACT_CUS_CD) AS ACT_CUS_CD,  --수요가
+	    FNL_CUS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FNL_CUS_CD) AS FNL_CUS_CD,  --최종수요가         
+        --ORD_ORG_PLT_SPC_AVR AS ORD_ORG_PLT_SPC_AVR, --오픈 후 원판규격약호만사용
+        (SELECT CD_V || ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'DISC_PTN_WTH_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = (SELECT DISC_PTN_WTH_CD FROM TB_C10_CCL_BOM WHERE CCL_BOM_NO = A.CCL_BOM_NO)) DISC_PTN_WTH_CD,
+        ORD_SZ, 
+        TO_CHAR(ORD_LN_WGT,'999,999,999,999') ORD_LN_WGT,
+        TO_CHAR(ORD_DLV_ALW_DIF_LLV,'90.0') ORD_DLV_ALW_DIF_LLV,
+        TO_CHAR(ORD_DLV_ALW_DIF_ULV,'90.0') ORD_DLV_ALW_DIF_ULV,
+        TO_CHAR(ORD_UNT_WGT,'9990.000') ORD_UNT_WGT,
+        WGT_DCS_MTH_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'WGT_DCS_MTH_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = WGT_DCS_MTH_TP) WGT_DCS_MTH_TP,
+        SUBSTR(ORD_PTL_END_DD,1,4) || '-' || SUBSTR(ORD_PTL_END_DD,5,2) || '-' ||  SUBSTR(ORD_PTL_END_DD,7,2) ORD_PTL_END_DD,
+        GW_ASG_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'GW_ASG_CD'
+         AND   CD_V = GW_ASG_CD
+         AND   CATEGORY_GROUP_NM = 
+        DECODE(PRD_NM_CD, '4','SL0000','L','SL0000','2','SE0000','E','SE0000','8','SE0000','N','SE0000',
+                                   'V','SV0000','6','SV0000','W','SW0000','9','SW0000', 'SG0000')) GW_ASG_CD,
+        ORD_SKP_DEG ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SKP_DEG'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SKP_DEG) ORD_SKP_DEG ,
+        ORD_SUR_HND_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SUR_HND_CD'
+         AND   CD_V = ORD_SUR_HND_CD
+         AND   CATEGORY_GROUP_NM = 'SZ0000') ORD_SUR_HND_CD,
+        ORD_PAK_UNT_WGT_LLV, ORD_PAK_UNT_WGT_ULV,
+        ORD_PAK_LTH_LLV, ORD_PAK_LTH_ULV,
+        ORD_PAK_SHT_CNT, ORD_STDP_LLV, ORD_STDP_ULV,
+        ORD_STDP_CNT_LLV, ORD_STDP_CNT_ULV,
+        ORD_PAK_UNT_CNT, ORD_SML_PAK_WGT,
+        ORD_SML_PAK_MIR, ORD_SML_PAK_WGT, ORD_PAK_UNT_WGT,
+        ORD_THK_MNG_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_THK_MNG_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_THK_MNG_CD) ORD_THK_MNG_CD,
+        ORD_WTH_MNG_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_WTH_MNG_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_WTH_MNG_CD) ORD_WTH_MNG_CD,
+        ORD_LTH_MNG_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_LTH_MNG_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_LTH_MNG_CD) ORD_LTH_MNG_CD,
+        TO_CHAR(ORD_THK_TLN_LLV,'90.000') ORD_THK_TLN_LLV,
+        TO_CHAR(ORD_THK_TLN_ULV,'90.000') ORD_THK_TLN_ULV,
+        TO_CHAR(ORD_WTH_TLN_LLV,'9990.0') ORD_WTH_TLN_LLV,
+        TO_CHAR(ORD_WTH_TLN_ULV,'9990.0') ORD_WTH_TLN_ULV,
+        TO_CHAR(ORD_LTH_TLN_LLV,'9990.0') ORD_LTH_TLN_LLV,
+        TO_CHAR(ORD_LTH_TLN_ULV,'9990.0') ORD_LTH_TLN_ULV,
+        TO_CHAR(CUS_REQ_ROL_THK,'90.000') CUS_REQ_ROL_THK,
+        ORD_COIL_IDIA, ORD_SHT_CNT,
+        ORD_WGT_UNT ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_WGT_UNT'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_WGT_UNT) ORD_WGT_UNT,
+        ORD_SLV_KND_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SLV_KND_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SLV_KND_TP) ORD_SLV_KND_TP,
+        ORD_COIL_ODIA,
+        LTH_MNG_YN,
+        BORON_ADD_YN, 
+        HUE_CD_FRN ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'HUE_CD_FRN'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = HUE_CD_FRN) HUE_CD_FRN,
+        HUE_CD_BAK ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'HUE_CD_BAK'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = HUE_CD_BAK) HUE_CD_BAK,
+        EMBS_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'EMBS_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = EMBS_CD) EMBS_CD,
+        ORD_PTT_FLM_DTL_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PTT_FLM_DTL_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_PTT_FLM_DTL_CD) ORD_PTT_FLM_DTL_CD,
+        RSN_TP_FRN ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'RSN_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = RSN_TP_FRN) RSN_TP_FRN,
+        RSN_TP_BAK ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'RSN_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = RSN_TP_BAK) RSN_TP_BAK,
+        PNT_FLM_THK_FRN_TOT, PNT_FLM_THK_BAK_TOT,
+        LUS_RT_CD_FRN ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'LUS_RT_CD_FRN'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = LUS_RT_CD_FRN) LUS_RT_CD_FRN,
+        LUS_RT_CD_BAK ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'LUS_RT_CD_BAK'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = LUS_RT_CD_BAK) LUS_RT_CD_BAK,
+        ORD_SHT_LOD_MTH ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SHT_LOD_MTH'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SHT_LOD_MTH) ORD_SHT_LOD_MTH,
+        ORD_PAK_MTH ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PAK_MTH'
+         AND   CD_V = ORD_PAK_MTH
+         AND   CATEGORY_GROUP_NM = 'SZ0000') ORD_PAK_MTH,
+        WIP_PAK_MTH ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PAK_MTH'
+         AND   CD_V = WIP_PAK_MTH
+         AND   CATEGORY_GROUP_NM = 'SZ0000') WIP_PAK_MTH,
+        ORD_COILG_MTH ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_COILG_MTH'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_COILG_MTH) ORD_COILG_MTH,
+        ORD_ROU_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_ROU_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_ROU_CD) ORD_ROU_CD,
+        ORD_SPNL_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SPNL_TP'
+         AND   CD_V = ORD_SPNL_TP
+         AND   CATEGORY_GROUP_NM = 
+        DECODE(PRD_NM_CD, 'G','SG0000','3','SG0000','K','SG0000','J','SG0000','L','SL0000','4','SL0000',
+                                   'V','SV0000','6','SV0000','W','SW0000','9','SW0000', 'SZ0000')) ORD_SPNL_TP,
+        ORD_EDG_ASG_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_EDG_ASG_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_EDG_ASG_TP) ORD_EDG_ASG_TP,
+        MTL_CD, CLS_CD, SUB_CLS_CD,
+        CUS_REQ_CLR_NM, BAK_MRK,ORD_PAK_MTL_WGT,QLT_DSN_TXT,
+        ORD_SLIT_GRP_CNT,
+        TO_CHAR(ORD_MIX_WTH1,'9990.0') ORD_MIX_WTH1,
+        TO_CHAR(ORD_MIX_WTH2,'9990.0') ORD_MIX_WTH2,
+        TO_CHAR(ORD_MIX_WTH3,'9990.0') ORD_MIX_WTH3,
+        TO_CHAR(ORD_MIX_WTH4,'9990.0') ORD_MIX_WTH4,
+        TO_CHAR(ORD_MIX_WTH5,'9990.0') ORD_MIX_WTH5,
+        TO_CHAR(ORD_MIX_WTH6,'9990.0') ORD_MIX_WTH6,
+        TO_CHAR(ORD_MIX_WTH7,'9990.0') ORD_MIX_WTH7,
+        TO_CHAR(ORD_MIX_WTH8,'9990.0') ORD_MIX_WTH8,
+        TO_CHAR(ORD_MIX_WTH9,'9990.0') ORD_MIX_WTH9,
+        TO_CHAR(ORD_MIX_WTH10,'9990.0') ORD_MIX_WTH10,
+        TO_CHAR(PTT_FLM_NOT_ADH_WS,'9990.0') PTT_FLM_NOT_ADH_WS,
+        TO_CHAR(PTT_FLM_NOT_ADH_DS,'9990.0') PTT_FLM_NOT_ADH_DS,
+        SUBSTR(ORD_CFM_DD,1,4) || '-' || SUBSTR(ORD_CFM_DD,5,2) || '-' ||  SUBSTR(ORD_CFM_DD,7,2) ORD_CFM_DD,
+         (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF
+          WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_ID,
+        (SELECT CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_TEM_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_TEM_CD) ORD_TEM_CD, 
+         NVL( (SELECT USER_NAME
+                 FROM M90APUSER.TB_M90_EMP_INF
+                WHERE USER_NO = QLT_RDSN_PRS_ID), 
+               ( CASE WHEN QLT_DSN_PRS_ID = 'SYSTEM' THEN 'SYSTEM'
+                      ELSE (SELECT USER_NAME 
+                              FROM M90APUSER.TB_M90_EMP_INF
+                              WHERE USER_NO = QLT_DSN_PRS_ID) END )                
+         ) AS QLT_DSN_PRS_ID, 
+        ORD_THK_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_THK_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_THK_TP) ORD_THK_TP,
+        TO_CHAR(NVL(QLT_RDSN_DH, QLT_DSN_END_DH ),'YYYY-MM-DD HH24:MI:SS') AS QLT_DSN_END_DH, 
+        TO_CHAR(ORD_END_DD,'YYYY-MM-DD HH24:MI:SS') ORD_END_DD,
+        SUBSTR(CUS_REQ_DLV_DD,1,4) || '-' || SUBSTR(CUS_REQ_DLV_DD,5,2) || '-' ||  SUBSTR(CUS_REQ_DLV_DD,7,2) CUS_REQ_DLV_DD,
+        ORD_END_TP, 
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = ORD_END_PRS_ID) ORD_END_PRS_ID,
+        ORD_PTT_FLM_WTH,--주문보호필름폭
+        ORD_PTT_FLM_ADH_LOC_CD || 
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PTT_FLM_ADH_LOC_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_PTT_FLM_ADH_LOC_CD) AS ORD_PTT_FLM_ADH_LOC_CD,--주문보호필름부착위치코드
+         THK_COR_UNT || 
+         (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'THK_COR_UNT'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = THK_COR_UNT) AS THK_COR_UNT,--두께보정단위(압연단위)
+         (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF
+          WHERE USER_NO = QLT_RDSN_PRS_ID) QLT_RDSN_PRS_ID,
+         TO_CHAR(QLT_RDSN_DH,'YYYY-MM-DD HH24:MI:SS') QLT_RDSN_DH,
+          (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF
+          WHERE USER_NO = QLT_DSN_CFM_PRS_ID) QLT_DSN_CFM_PRS_ID,
+         TO_CHAR(QLT_DSN_CFM_DH,'YYYY-MM-DD HH24:MI:SS') QLT_DSN_CFM_DH,
+         (SELECT HND_PHN_NO FROM M90APUSER.TB_M90_EMP_INF 
+          WHERE EMP_ID = A.QLT_DSN_CFM_PRS_ID) HND_PHN_NO,
+          ORD_REP_NO,ORD_REP_LN,
+          DECODE(TRST_PROC_YN,'N',NULL,TRST_PROC_YN) AS TRST_PROC_YN,
+          DEF_RED_TXT,
+          PPR_RNG_PORD_TXT,
+          PE_FOAM_TXT 
+   FROM C10APUSER.TB_C10_QLT_DSN_CMN A
+WHERE  ORD_NO = :ORD_NO
+AND   ORD_LN = :ORD_LN
+AND   NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB01.update" desc="C104000020TAB01.update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+update /*+ C10 품질설계텍스트수정 C104000020TAB01.update 박재영 */  
+TB_C10_QLT_DSN_CMN
+SET  LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       ORD_SPC_TXT = :ORD_SPC_TXT,
+       BAK_MRK = :BAK_MRK,
+	PPR_RNG_PORD_TXT = :PPR_RNG_PORD_TXT,
+       ORD_COP_STP = DECODE(:ORD_COP_STP,1,'Y',NULL)
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB01.interFace" desc="복사금지주문OMS인터페이스" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 복사금지 C104000020TAB01.interFace이돈석  */   
+INTO EAIAPUSER.TB_C10_B10S0140
+(
+      IF_GRP_ID                                         --인터페이스그룹아이디
+    , SEQ_NO                                            --인터페이스 SEQ
+    , XSEQ                                              --PI Sequence Key Value
+    , XCRUD                                             --PI Data 유형
+    , XSTAT                                             --처리상태 
+    , ORD_NO                                            --주문번호
+    , ORD_LN                                            --주문행번
+    , ORD_COP_STP                                         --복사금지여부
+    , CREATED_OBJECT_TYPE                               --생성Object유형
+    , CREATED_OBJECT_ID                                 --생성ObjectID 
+    , CREATED_PROGRAM_ID                                --생성프로그램ID
+    , CREATION_TIMESTAMP                                --생성일시 
+    , LAST_UPDATED_OBJECT_TYPE                          --최종변경Object유형
+    , LAST_UPDATED_OBJECT_ID                            --최종변경ObjectID 
+    , LAST_UPDATE_PROGRAM_ID                            --최종변경프로그램ID
+    , LAST_UPDATE_TIMESTAMP                             --최종변경일시
+)
+VALUES
+(
+     TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS'),
+     EAIAPUSER.SQ_C10_B10S0140.NEXTVAL,
+     '1',
+     'C',
+     'R',
+    :ORD_NO,
+    :ORD_LN,
+    DECODE(:ORD_COP_STP,'1','Y','N'),
+    :ObjectType,                                       --생성Object유형
+    :ObjectId,                                         --생성ObjectID 
+    :ProgramId,                                        --생성프로그램ID
+    :Timestamp,                                        --생성일시 
+    :ObjectType,                                       --최종변경Object유형
+    :ObjectId,                                         --최종변경ObjectID 
+    :ProgramId,                                        --최종변경프로그램ID
+    :Timestamp                                        --최종변경일시 
+)
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB01.select2" desc="반복주문금지용select쿼리" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 품질설계결과-공통 C104000020TAB01.select2 이돈석 */ 
+        ORD_NO,
+        ORD_LN,
+        ORD_COP_STP
+   FROM C10APUSER.TB_C10_QLT_DSN_CMN A
+WHERE  ORD_NO = :ORD_NO
+AND   ORD_LN = :ORD_LN
+AND   NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
+		 ]]> 
+	 </query>
+</queryMap>

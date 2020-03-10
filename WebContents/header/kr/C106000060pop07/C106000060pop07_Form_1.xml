@@ -1,0 +1,13 @@
+<items>	
+	<item type="block" width="691">
+		<item type="input" name="CCL_BOM_NO" label="CCL BOM" inputWidth="60" />	
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="CUS_CD" label="최종수요가" inputWidth="60" />
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="ORD_USG_CD" label="용도" inputWidth="60" />
+		<item type="newcolumn" offset="140" />
+		<item type="button" name="find" value="조회" command="find"/>
+		<item type="newcolumn" offset="05" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>

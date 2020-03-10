@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100CMN"> 
+	 <query id="C102100CMN.Jselect" desc="품질설계공통 대기 주문 선택" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C102100CMN.JSELECT 김종범*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN                                            
+WHERE QLT_DSN_STS_CD ='J'
+		 ]]> 
+	 </query>
+	 <query id="C1021000CMN.modify" desc="QLT_DSN_ERR_YN = 'Y' 업데이트" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통ERR_YN업데이트 C103100040.MODIFY 김종범*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,QLT_DSN_ERR_YN = 'Y'      --품질설계에러여부                                                                                                                                       
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.select" desc="C102100CMN.select" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C102100CMN.select 박재영*/      
+ORD_NO,ORD_LN,QLT_DSN_STS_CD,PLNT_TP,PRD_NM_CD,PRD_SHP,FLOW_CHL
+,ORD_KND,ORD_PRD_GRD,ORD_USG_CD,CUS_CD,ACT_CUS_CD,FNL_CUS_CD
+,CUS_BTH_PAP_NO,SPC_OFC,SPC_AVR,SPC_YR,SPC_NM,SPC_FUL_NM
+,ORD_SZ,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,CUS_REQ_DLV_DD
+,ORD_SCH_DLV_DD,ORD_PTL_STR_DD,ORD_PTL_END_DD,GW_ASG_CD
+,CCL_BOM_NO,HUE_CD_FRN,HUE_CD_BAK,ORD_ORG_PLT_SPC_AVR
+,ORD_ROU_CD,ORD_SPNL_TP,ORD_COILG_MTH,ORD_SUR_HND_CD
+,ORD_SKP_DEG,ORD_EDG_ASG_TP,ORD_THK_TP,ORD_GRA,WGT_DCS_MTH_TP
+,ORD_SLV_KND_TP,EMBS_CD,ORD_PTT_FLM_DTL_CD,ORD_PTT_FLM_WTH
+,ORD_PTT_FLM_ADH_LOC_CD,ORD_WGT_UNT,ORD_LN_WGT,ORD_SHT_CNT
+,ORD_PAK_SHT_CNT,ORD_PAK_UNT_WGT_LLV,ORD_PAK_UNT_WGT_ULV
+,ORD_DLV_ALW_DIF_LLV,ORD_DLV_ALW_DIF_ULV,ORD_PAK_LTH_LLV
+,ORD_PAK_LTH_ULV,ORD_STDP_LLV,ORD_STDP_ULV,ORD_STDP_CNT_LLV
+,ORD_STDP_CNT_ULV,ORD_PAK_UNT_CNT,ORD_PAK_UNT_WGT
+,ORD_SML_PAK_WGT,ORD_SML_PAK_MIR,ORD_UNT_WGT,ORD_PAK_MTH
+,ORD_COIL_IDIA,ORD_COIL_ODIA,ORD_THK_TLN_LLV,ORD_THK_TLN_ULV
+,ORD_WTH_TLN_LLV,ORD_WTH_TLN_ULV,ORD_LTH_TLN_LLV
+,ORD_LTH_TLN_ULV,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT
+,RSN_TP_FRN,RSN_TP_BAK,LUS_RT_CD_FRN,LUS_RT_CD_BAK,COT_MTH
+,CUS_REQ_ROL_THK,ORD_THK_MNG_CD,ORD_WTH_MNG_CD,ORD_LTH_MNG_CD
+,CUS_REQ_CLR_NM,URG_MTL_TP,ORD_RCP_DD,ORD_SHT_LOD_MTH
+,ORD_SLIT_GRP_CNT,ORD_MIX_WTH1,ORD_MIX_WTH2,ORD_MIX_WTH3
+,ORD_MIX_WTH4,ORD_MIX_WTH5,ORD_MIX_WTH6,ORD_MIX_WTH7,ORD_MIX_WTH8,ORD_MIX_WTH9,ORD_MIX_WTH10
+,SLIT_MAX_WGT,TRST_PROC_YN,TAG_TP,NAT_CD,ORD_SPC_TXT,TAG_PRD_NM
+,TAG_PO_NO,TAG_DST,TAG_SIZ,TAG_SPC_NM,TAG_GAA,TAG_HUE_FRN
+,TAG_HUE_BAK,TAG_SPC_MRK,RMTL_PRFR_CD,BAK_MRK,ORD_MDF_DD
+,ORD_CFM_DD,ORD_RGS_PRS_ID,ORD_TEM_CD,MTL_CD,CLS_CD,SUB_CLS_CD
+,QLT_DSN_END_DH,QLT_DSN_INST_DH,QLT_DSN_PRS_ID,MQL_CD,RMTL_CD
+,RMTL_GRD,CRM_MNF_STD_NO,PAS_PROC_NO,ACPT_RT_SPC,ORD_END_TP
+,ORD_END_DD,ORD_END_PRS_ID,QLT_DSN_CFM_DH,QLT_DSN_CFM_PRS_ID
+,QLT_RDSN_DH,QLT_RDSN_PRS_ID,QLT_DSN_ERR_YN,ORD_DSN_CFM_TP
+,LTH_MNG_YN,LTH_MNG_FROM,LTH_MNG_TO,BORON_ADD_YN, ORD_REP_YN, ORD_REP_NO, ORD_REP_LN                         
+ FROM TB_C10_QLT_DSN_CMN                                            
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.insert" desc="C102100CMN.insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계의뢰등록 C102100CMN.insert 박재영*/                           
+TB_C10_QLT_DSN_CMN (                                                                           
+     ORD_NO		                --주문번호
+    ,ORD_LN		                --주문행번
+    ,QLT_DSN_STS_CD		  --품질설계상태코드
+    ,PLNT_TP	                --플랜트구분
+    ,PRD_NM_CD	              --품명코드
+    ,PRD_SHP	                --제품형태
+    ,FLOW_CHL		              --유통경로
+    ,ORD_KND	                --주문종류
+    ,ORD_USG_CD		            --주문용도코드
+    ,CUS_CD		                --고객사코드
+    ,ACT_CUS_CD		            --수요가코드
+    ,FNL_CUS_CD		            --최종수요가코드
+    ,CUS_BTH_PAP_NO	          --고객사양서번호
+    ,SPC_AVR	                --규격약호
+    ,SPC_YR		                --규격년도
+    ,ORD_SZ		                --주문생칫수
+    ,ORD_EXC_THK	            --주문환산두께
+    ,ORD_EXC_WTH	            --주문환산폭
+    ,ORD_EXC_LTH	            --주문환산길이
+    ,CUS_REQ_DLV_DD	          --고객요청납기일
+    ,ORD_SCH_DLV_DD	          --주문예정납기일
+    ,GW_ASG_CD	              --도금량지정코드
+    ,CCL_BOM_NO		            --CCL_BOM번호
+    ,HUE_CD_FRN		            --색상코드전면
+    ,HUE_CD_BAK		            --색상코드후면
+    ,ORD_ORG_PLT_SPC_AVR	    --주문원판규격약호
+    ,ORD_ROU_CD		            --주문조도코드
+    ,ORD_SPNL_TP	            --주문Spangle구분
+    ,ORD_COILG_MTH	          --주문권취방법
+    ,ORD_SUR_HND_CD		        --주문표면처리코드
+    ,ORD_SKP_DEG	            --주문조질도
+    ,ORD_EDG_ASG_TP		        --주문Edge지정구분
+    ,ORD_THK_TP		            --주문두께구분
+    ,WGT_DCS_MTH_TP		        --중량결정법구분
+    ,ORD_SLV_KND_TP		        --주문내경링종류구분
+    ,EMBS_CD	                --EMBOSS무늬
+    ,ORD_PTT_FLM_DTL_CD      --주문보호필름상세코드
+    ,ORD_PTT_FLM_WTH	        --주문보호필름폭
+    ,ORD_PTT_FLM_ADH_LOC_CD		--주문보호필름부착위치코드
+    ,ORD_WGT_UNT	            --주문중량단위
+    ,ORD_LN_WGT		            --주문행번중량
+    ,ORD_SHT_CNT	            --주문Sheet매수
+    ,ORD_PAK_SHT_CNT	        --주문포장Sheet매수
+    ,ORD_PAK_UNT_WGT_LLV	    --주문포장단중하한값
+    ,ORD_PAK_UNT_WGT_ULV	    --주문포장단중상한값
+    ,ORD_DLV_ALW_DIF_LLV	    --주문인도허용차하한값
+    ,ORD_DLV_ALW_DIF_ULV	    --주문인도허용차상한값
+    ,ORD_PAK_LTH_LLV	        --주문포장길이하한값
+    ,ORD_PAK_LTH_ULV	        --주문포장길이상한값
+    ,ORD_STDP_LLV		          --주문정포장하한값
+    ,ORD_STDP_ULV		          --주문정포장상한값
+    ,ORD_STDP_CNT_LLV		      --주문정포장매수하한값
+    ,ORD_STDP_CNT_ULV		      --주문정포장매수상한값
+    ,ORD_PAK_UNT_WGT	        --주문포장당중량
+    ,ORD_SML_PAK_WGT	        --주문소포장중량
+    ,ORD_SML_PAK_MIR	        --주문소포장혼입율
+    ,ORD_UNT_WGT	            --주문단위중량
+    ,ORD_PAK_MTH	            --주문포장방법
+    ,ORD_COIL_IDIA	          --주문코일내경
+    ,ORD_COIL_ODIA	          --주문코일외경
+    ,ORD_THK_TLN_LLV	        --주문두께공차하한값
+    ,ORD_THK_TLN_ULV          --주문두께공차상한값
+    ,ORD_WTH_TLN_LLV	        --주문폭공차하한값
+    ,ORD_WTH_TLN_ULV	        --주문폭공차상한값
+    ,ORD_LTH_TLN_LLV	        --주문길이공차하한값
+    ,ORD_LTH_TLN_ULV	        --주문길이공차상한값
+    ,ORD_THK_MNG_CD		        --주문두께관리코드
+    ,ORD_WTH_MNG_CD		        --주문폭관리코드
+    ,ORD_LTH_MNG_CD		        --주문길이관리코드
+    ,CUS_REQ_CLR_NM		        --고객정의색상
+    ,URG_MTL_TP		            --긴급재구분
+    ,ORD_RCP_DD		            --주문접수일
+    ,ORD_SHT_LOD_MTH	        --주문Sheet적재방법
+    ,ORD_SLIT_GRP_CNT		      --주문Slit조수
+    ,ORD_MIX_WTH1		          --주문조합폭1
+    ,ORD_MIX_WTH2		          --주문조합폭2
+    ,ORD_MIX_WTH3		          --주문조합폭3
+    ,ORD_MIX_WTH4		          --주문조합폭4
+    ,ORD_MIX_WTH5		          --주문조합폭5
+    ,ORD_MIX_WTH6		          --주문조합폭6
+    ,ORD_MIX_WTH7		          --주문조합폭7
+    ,ORD_MIX_WTH8		          --주문조합폭8
+    ,ORD_MIX_WTH9		          --주문조합폭9
+    ,ORD_MIX_WTH10		          --주문조합폭10
+    ,SLIT_MAX_WGT		          --조당최대중량
+    ,TRST_PROC_YN		          --위탁임가공여부
+    ,TAG_TP  	                --Tag유형
+    ,NAT_CD	                  --국가코드
+    ,ORD_SPC_TXT	            --주문특기사항
+    ,BAK_MRK	                --Back마킹
+    ,ORD_CFM_DD		            --주문확정일
+    ,ORD_RGS_PRS_ID		        --주문등록자
+    ,ORD_TEM_CD		            --영업팀코드
+    ,MTL_CD		                --MaterialCode
+    ,TAG_PRD_NM		            --Tag제품명
+    ,TAG_PO_NO	              --TagPO번호
+    ,TAG_DST	                --Tag도착지
+    ,TAG_SIZ	                --TagSIZE
+    ,TAG_SPC_NM		            --Tag규격약호
+    ,TAG_GAA	                --Tag부착량기호
+    ,TAG_HUE_FRN	            --Tag색상전면
+    ,TAG_HUE_BAK	            --Tag색상후면
+    ,TAG_SPC_MRK	            --Tag특수마킹형태
+    ,RMTL_PRFR_CD            --원자재선호도
+    ,QLT_DSN_YN               --주문SkinPass지정구분
+    ,TAG_PO_NO2               --P/O번호 TAG2
+    ,CTR_SHPM_MN            --계약선적월
+    ,SVC_CRD_PUB_YN        --서비스카드발행여부
+    ,PAK_MSG_CD              --포장메세지코드
+    ,ORD_TEM_GRP_CD       --영업그룹코드
+    ,QLT_DSN_INST_DH		          --품질설계지시일시
+    ,PTT_FLM_NOT_ADH_WS	          --보호필름미부착폭
+    ,PTT_FLM_NOT_ADH_DS             --보호필름미부착폭
+    ,TAG_PART_NO                          --TagPartNo
+    ,MO_CVT_ORD_YN                     --MO전환주문여부
+    ,MTL_PRD_ORD_YN                    --소재생산주문여부
+    ,ORD_DSN_CFM_TP                    -- AUTO MANUAL
+    ,LTH_MNG_YN                --길이관리제품여부
+    ,LTH_MNG_FROM              --길이관리제품FROM
+    ,LTH_MNG_TO                --길이관리제품TO
+    ,BORON_ADD_YN          --보론첨가유무
+    ,ORD_REP_YN            --주문반복여부  
+    ,ORD_REP_NO            --주문반복번호
+    ,ORD_REP_LN            --주문반복행번
+    ,WIP_PAK_MTH          --반제품포장방법
+    ,OT_TC_YN                --OneTime2Cut유무
+    ,PRT_INKJT_FILE 		-- 잉크젯 파일명
+    ,POC_AUTO_YN            --임가공자동설계구분
+    ,CREATED_OBJECT_TYPE       --생성OBJECT유형  
+    ,CREATED_OBJECT_ID         --생성OBJECTID    
+    ,CREATED_PROGRAM_ID        --생성프로그램ID  
+    ,CREATION_TIMESTAMP        --생성일시                  
+    ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP     --최종변경일시      
+)                                                                                              
+VALUES(                                                                                             
+?,?,'I',?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
+,?,?,?,?,?,?
+,?,?,?,?,?,?,?,?,DECODE(?,'X','Y','N'),?,DECODE(?,'X','Y','N')
+,?,?,?,?
+,?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.Key_modify" desc="C102100CMN.Key_modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 설계Key항목업데이트 C102100CMN.Key_modify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,MQL_CD = ?      --재질코드                                                                                                                                       
+      ,RMTL_CD = ?      --원자재코드                                                                                                                                       
+      ,RMTL_CD1 = ?      --원자재코드                                                                                                                                       
+      ,RMTL_CD2 = ?      --원자재코드                                                                                                                                       
+      ,CRM_MNF_STD_NO = ?      --냉연제조표준번호                                                                                                                                       
+      ,CRM_MNF_STD_NO1 = ?      --냉연제조표준번호                                                                                                                                       
+      ,CRM_MNF_STD_NO2 = ?      --냉연제조표준번호                                                                                                                                       
+      ,PAS_PROC_NO = ?      --통과공정번호                                                                                                                                       
+      ,QLT_DSN_CFM_TP = ?      --품질설계확정구분          
+      ,CLS_CD = ?                    --ClassCode
+      ,SUB_CLS_CD = ?             --SubClassCode           
+      ,ORD_ROU_CD = ?           --주문조도코드               
+      ,APR_INP_BAS_CD = ?      --외관검사기준코드
+      ,ORD_PAK_MTL_WGT = ?   --포장재중량                                                                                    
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.PakMtlWgt__modify" desc="C102100CMN.PakMtlWgt__modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 포장재중량업데이트 C102100CMN.PakMtlWgt__modify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,ORD_PAK_MTL_WGT = ?      --포장재중량                                                                                                                                       
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCL_modify" desc="C102100CMN.CCL_modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 칼라제조사양항목업데이트 C102100CMN.CCL_modify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,HUE_CD_FRN = ?                        --색상코드전면
+      ,HUE_CD_BAK = ?                        --색상코드후면
+      ,PNT_FLM_THK_FRN_TOT = ?      --도막두께전면Total                                                                                                                                       
+      ,PNT_FLM_THK_BAK_TOT = ?      --도막두께후면Total                                                                                                                                       
+      ,RSN_TP_FRN = ?      --수지구분전면                                                                                                                                       
+      ,RSN_TP_BAK = ?      --수지구분후면                                                                                                                                       
+      ,LUS_RT_CD_FRN = ?      --광택도코드전면                                                                                                                                       
+      ,LUS_RT_CD_BAK = ?      --광택도코드후면                                                                                                                                       
+      ,COT_MTH = ?      --코팅방식
+      ,DEF_RED_TXT = ?  --감량매직체크결과                                                                                                                                 
+      ,PPR_RNG_PORD_TXT = ?  --지관발주메시지         
+      ,PE_FOAM_TXT = ? --PE-FOAM 적용메시지                                                                                                        
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.StsME_modify" desc="C102100CMN.StsME_modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 설계결과업데이트C102100CMN.StsME_modify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,QLT_DSN_STS_CD = ?      --품질설계상태코드                                                                                                                                       
+      ,QLT_DSN_END_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --품질설계완료일시                                                                                                                                       
+      ,QLT_DSN_PRS_ID = 'SYSTEM'      --품질설계자ID
+      ,QLT_DSN_CFM_TP = 'M'            --품질설계확정구분                                                                                                                                      
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.StsA_modify" desc="C102100CMN.StsA_modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 설계결과업데이트 C102100CMN.StsA_modify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,QLT_DSN_STS_CD = 'A'      --품질설계상태코드                                                                                                                                       
+      ,QLT_DSN_END_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --품질설계완료일시                                                                                                                                       
+      ,QLT_DSN_PRS_ID = 'SYSTEM'      --품질설계자ID                                                                                                                                       
+      ,QLT_DSN_CFM_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --품질설계확정일시                                                                                                                                       
+      ,QLT_DSN_CFM_PRS_ID = 'SYSTEM'      --품질설계확정자ID                                                                                                                                       
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN_AIF" desc="품질설계결과송신(A) 조회 C102100CMN_IF.select " fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과송신(A) 조회 C102100CMN_IF.select 김종범*/      
+            ORD_NO,
+            ORD_LN,
+            QLT_DSN_STS_CD
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = ?
+     AND ORD_LN = ?
+     AND QLT_DSN_STS_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN_EIF" desc="품질설계결과송신(E)" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과송신 조회 C102100CMN_EIF.SELECT 김종범*/    
+* 
+  FROM (
+SELECT   
+            ORD_NO,
+            ORD_LN,
+            QLT_DSN_STS_CD,
+            ? AS QLT_DSN_ERR_MSG
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE  ORD_NO = ?
+     AND  ORD_LN = ?
+     AND  QLT_DSN_STS_CD = ?     
+     ) WHERE QLT_DSN_ERR_MSG IS NOT NULL
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.JDLVselect" desc="C102100CMN.JDLVselect" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통 & 인수도조회 C102100CMN.JDLVselect 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_DLV A, TB_C10_QLT_DSN_CMN B
+WHERE A.ORD_NO(+) = B.ORD_NO
+AND   A.ORD_LN(+) = B.ORD_LN
+AND   B.QLT_DSN_STS_CD ='J'
+AND   A.QLT_DSN_SPC_TP = '4'
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CNL_modify" desc="주문종결취소정보 CMN 테이블에 수정" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE 
+TB_C10_QLT_DSN_CMN                                                                                
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?
+      ,LAST_UPDATED_OBJECT_ID = ?    
+      ,LAST_UPDATE_PROGRAM_ID = ?    
+      ,LAST_UPDATE_TIMESTAMP = ?  
+      ,ORD_CNL_CAU_CD = ?
+      ,ORD_CNL_DTL_TXT=?
+      ,ORD_END_TP = ?  
+      ,QLT_DSN_STS_CD = '*'			 --품질설계상태코드 변경                                                                                                                             
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CHG_modify" desc="수정주문수신 업데이트" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 수정주문수신 업데이트 B10R0070.ORD_REV_MODIFY 강연준*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,ORD_LN_WGT = ?  --주문행번중량
+      ,ORD_PTL_END_DD = ?    --주문납기일
+      ,ORD_SHT_CNT = ?    --주문Sheet매수                                                                                                                                
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMNA.insert" desc="C102100CMNA.insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계의뢰등록 C102100CMN.insert 박재영*/                           
+TB_C10_QLT_DSN_CMN (                                                                           
+							 ORD_NO		                --주문번호
+							,ORD_LN		                --주문행번
+							,QLT_DSN_STS_CD		  --품질설계상태코드
+							,PLNT_TP	                --플랜트구분
+							,PRD_NM_CD	              --품명코드
+							,PRD_SHP	                --제품형태
+							,FLOW_CHL		              --유통경로
+							,ORD_KND	                --주문종류
+							,ORD_USG_CD		            --주문용도코드
+							,CUS_CD		                --고객사코드
+							,ACT_CUS_CD		            --수요가코드
+							,FNL_CUS_CD		            --최종수요가코드
+							,CUS_BTH_PAP_NO	          --고객사양서번호
+							,SPC_AVR	                --규격약호
+							,SPC_YR		                --규격년도
+							,ORD_SZ		                --주문생칫수
+							,ORD_EXC_THK	            --주문환산두께
+							,ORD_EXC_WTH	            --주문환산폭
+							,ORD_EXC_LTH	            --주문환산길이
+							,CUS_REQ_DLV_DD	          --고객요청납기일
+							,ORD_SCH_DLV_DD	          --주문예정납기일
+							,GW_ASG_CD	              --도금량지정코드
+							,CCL_BOM_NO		            --CCL_BOM번호
+							,HUE_CD_FRN		            --색상코드전면
+							,HUE_CD_BAK		            --색상코드후면
+							,ORD_ORG_PLT_SPC_AVR	    --주문원판규격약호
+							,ORD_ROU_CD		            --주문조도코드
+							,ORD_SPNL_TP	            --주문Spangle구분
+							,ORD_COILG_MTH	          --주문권취방법
+							,ORD_SUR_HND_CD		        --주문표면처리코드
+							,ORD_SKP_DEG	            --주문조질도
+							,ORD_EDG_ASG_TP		        --주문Edge지정구분
+							,ORD_THK_TP		            --주문두께구분
+							,WGT_DCS_MTH_TP		        --중량결정법구분
+							,ORD_SLV_KND_TP		        --주문내경링종류구분
+							,EMBS_CD	                --EMBOSS무늬
+							,ORD_PTT_FLM_DTL_CD      --주문보호필름상세코드
+							,ORD_PTT_FLM_WTH	        --주문보호필름폭
+							,ORD_PTT_FLM_ADH_LOC_CD		--주문보호필름부착위치코드
+							,ORD_WGT_UNT	            --주문중량단위
+							,ORD_LN_WGT		            --주문행번중량
+							,ORD_SHT_CNT	            --주문Sheet매수
+							,ORD_PAK_SHT_CNT	        --주문포장Sheet매수
+							,ORD_PAK_UNT_WGT_LLV	    --주문포장단중하한값
+							,ORD_PAK_UNT_WGT_ULV	    --주문포장단중상한값
+							,ORD_DLV_ALW_DIF_LLV	    --주문인도허용차하한값
+							,ORD_DLV_ALW_DIF_ULV	    --주문인도허용차상한값
+							,ORD_PAK_LTH_LLV	        --주문포장길이하한값
+							,ORD_PAK_LTH_ULV	        --주문포장길이상한값
+							,ORD_STDP_LLV		          --주문정포장하한값
+							,ORD_STDP_ULV		          --주문정포장상한값
+							,ORD_STDP_CNT_LLV		      --주문정포장매수하한값
+							,ORD_STDP_CNT_ULV		      --주문정포장매수상한값
+							,ORD_PAK_UNT_WGT	        --주문포장당중량
+							,ORD_SML_PAK_WGT	        --주문소포장중량
+							,ORD_SML_PAK_MIR	        --주문소포장혼입율
+							,ORD_UNT_WGT	            --주문단위중량
+							,ORD_PAK_MTH	            --주문포장방법
+							,ORD_COIL_IDIA	          --주문코일내경
+							,ORD_COIL_ODIA	          --주문코일외경
+							,ORD_THK_TLN_LLV	        --주문두께공차하한값
+							,ORD_THK_TLN_ULV          --주문두께공차상한값
+							,ORD_WTH_TLN_LLV	        --주문폭공차하한값
+							,ORD_WTH_TLN_ULV	        --주문폭공차상한값
+							,ORD_LTH_TLN_LLV	        --주문길이공차하한값
+							,ORD_LTH_TLN_ULV	        --주문길이공차상한값
+							,ORD_THK_MNG_CD		        --주문두께관리코드
+							,ORD_WTH_MNG_CD		        --주문폭관리코드
+							,ORD_LTH_MNG_CD		        --주문길이관리코드
+							,CUS_REQ_CLR_NM		        --고객정의색상
+							,URG_MTL_TP		            --긴급재구분
+							,ORD_RCP_DD		            --주문접수일
+							,ORD_SHT_LOD_MTH	        --주문Sheet적재방법
+							,ORD_SLIT_GRP_CNT		      --주문Slit조수
+							,ORD_MIX_WTH1		          --주문조합폭1
+							,ORD_MIX_WTH2		          --주문조합폭2
+							,ORD_MIX_WTH3		          --주문조합폭3
+							,ORD_MIX_WTH4		          --주문조합폭4
+							,ORD_MIX_WTH5		          --주문조합폭5
+							,ORD_MIX_WTH6		          --주문조합폭6
+							,ORD_MIX_WTH7		          --주문조합폭7
+							,ORD_MIX_WTH8		          --주문조합폭8
+							,ORD_MIX_WTH9		          --주문조합폭9
+							,ORD_MIX_WTH10		          --주문조합폭10
+							,SLIT_MAX_WGT		          --조당최대중량
+							,TRST_PROC_YN		          --위탁임가공여부
+							,TAG_TP  	                --Tag유형
+							,NAT_CD	                  --국가코드
+							,ORD_SPC_TXT	            --주문특기사항
+							,BAK_MRK	                --Back마킹
+							,ORD_CFM_DD		            --주문확정일
+							,ORD_RGS_PRS_ID		        --주문등록자
+							,ORD_TEM_CD		            --영업팀코드
+							,MTL_CD		                --MaterialCode
+							,TAG_PRD_NM		            --Tag제품명
+							,TAG_PO_NO	              --TagPO번호
+							,TAG_DST	                --Tag도착지
+							,TAG_SIZ	                --TagSIZE
+							,TAG_SPC_NM		            --Tag규격약호
+							,TAG_GAA	                --Tag부착량기호
+							,TAG_HUE_FRN	            --Tag색상전면
+							,TAG_HUE_BAK	            --Tag색상후면
+							,TAG_SPC_MRK	            --Tag특수마킹형태
+							,RMTL_PRFR_CD		          --원자재선호도
+                                                 ,QLT_DSN_YN               --주문SkinPass지정구분
+                                                 ,TAG_PO_NO2               --P/O번호 TAG2
+                                                 ,CTR_SHPM_MN            --계약선적월
+                                                 ,SVC_CRD_PUB_YN        --서비스카드발행여부
+                                                 ,PAK_MSG_CD              --포장메세지코드
+                                                 ,ORD_TEM_GRP_CD       --영업그룹코드
+                                                 ,QLT_DSN_END_DH            --품질설계완료일시
+							,QLT_DSN_INST_DH		          --품질설계지시일시
+                                                 ,PTT_FLM_NOT_ADH_WS	          --보호필름미부착폭
+                                                 ,PTT_FLM_NOT_ADH_DS             --보호필름미부착폭
+                                                 ,TAG_PART_NO                          --TagPartNo
+                                                 ,MO_CVT_ORD_YN                     --MO전환주문여부
+                                                 ,MTL_PRD_ORD_YN                    --소재생산주문여부
+                                                 ,QLT_DSN_CFM_DH                    --품질설계확정일시
+                                                 ,QLT_DSN_CFM_PRS_ID               --품질설계확정자ID
+							,CREATED_OBJECT_TYPE       --생성OBJECT유형  
+							,CREATED_OBJECT_ID         --생성OBJECTID    
+							,CREATED_PROGRAM_ID        --생성프로그램ID  
+							,CREATION_TIMESTAMP        --생성일시                  
+							,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형
+							,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID  
+							,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID
+							,LAST_UPDATE_TIMESTAMP     --최종변경일시      
+)                                                                                              
+VALUES(                                                                                             
+?,?,'A',?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,?
+,?,?,?,?,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
+,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
+,?,?,?,?,?
+,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS'),'SYSTEM'
+,?,?,?,?
+,?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.JDLV2select" desc="C102100CMN.JDLV2select" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통 & 인수도조회 C102100CMN.JDLV2select 박재영*/      
+B.ORD_NO,B.ORD_LN,B.QLT_DSN_STS_CD,B.PLNT_TP,B.PRD_NM_CD
+,B.PRD_SHP,B.FLOW_CHL,B.ORD_KND,B.ORD_PRD_GRD,B.ORD_USG_CD
+,B.CUS_CD,B.ACT_CUS_CD,B.FNL_CUS_CD,B.CUS_BTH_PAP_NO,B.SPC_OFC
+,B.SPC_AVR,B.SPC_YR,B.SPC_NM,B.SPC_FUL_NM,B.ORD_SZ,B.ORD_EXC_THK
+,B.ORD_EXC_WTH,B.ORD_EXC_LTH,B.CUS_REQ_DLV_DD,B.ORD_SCH_DLV_DD
+,B.ORD_PTL_STR_DD,B.ORD_PTL_END_DD,B.GW_ASG_CD,B.CCL_BOM_NO
+,B.HUE_CD_FRN,B.HUE_CD_BAK,B.ORD_ORG_PLT_SPC_AVR,B.ORD_ROU_CD
+,B.ORD_SPNL_TP,B.ORD_COILG_MTH,B.ORD_SUR_HND_CD,B.ORD_SKP_DEG
+,B.ORD_EDG_ASG_TP,B.ORD_THK_TP,B.ORD_GRA,B.WGT_DCS_MTH_TP
+,B.ORD_SLV_KND_TP,B.EMBS_CD,B.ORD_PTT_FLM_DTL_CD,B.ORD_PTT_FLM_WTH
+,B.ORD_PTT_FLM_ADH_LOC_CD,B.ORD_WGT_UNT,B.ORD_LN_WGT,B.ORD_SHT_CNT
+,B.ORD_PAK_SHT_CNT,B.ORD_PAK_UNT_WGT_LLV,B.ORD_PAK_UNT_WGT_ULV
+,B.ORD_DLV_ALW_DIF_LLV,B.ORD_DLV_ALW_DIF_ULV,B.ORD_PAK_LTH_LLV
+,B.ORD_PAK_LTH_ULV,B.ORD_STDP_LLV,B.ORD_STDP_ULV,B.ORD_STDP_CNT_LLV
+,B.ORD_STDP_CNT_ULV,B.ORD_PAK_UNT_CNT,B.ORD_PAK_UNT_WGT,B.ORD_SML_PAK_WGT
+,B.ORD_SML_PAK_MIR,B.ORD_UNT_WGT,B.ORD_PAK_MTH,B.ORD_COIL_IDIA
+,B.ORD_COIL_ODIA,B.ORD_THK_TLN_LLV,B.ORD_THK_TLN_ULV,B.ORD_WTH_TLN_LLV
+,B.ORD_WTH_TLN_ULV,B.ORD_LTH_TLN_LLV,B.ORD_LTH_TLN_ULV
+,B.PNT_FLM_THK_FRN_TOT,B.PNT_FLM_THK_BAK_TOT,B.RSN_TP_FRN
+,B.RSN_TP_BAK,B.LUS_RT_CD_FRN,B.LUS_RT_CD_BAK,B.COT_MTH,B.CUS_REQ_ROL_THK
+,B.ORD_THK_MNG_CD,B.ORD_WTH_MNG_CD,B.ORD_LTH_MNG_CD,B.CUS_REQ_CLR_NM
+,B.URG_MTL_TP,B.ORD_RCP_DD,B.ORD_SHT_LOD_MTH,B.ORD_SLIT_GRP_CNT
+,B.ORD_MIX_WTH1,B.ORD_MIX_WTH2,B.ORD_MIX_WTH3,B.ORD_MIX_WTH4
+,B.ORD_MIX_WTH5,B.ORD_MIX_WTH6,B.ORD_MIX_WTH7,B.ORD_MIX_WTH8,B.ORD_MIX_WTH9,B.ORD_MIX_WTH10
+,B.SLIT_MAX_WGT,B.TRST_PROC_YN,B.TAG_TP,B.NAT_CD,B.ORD_SPC_TXT
+,B.TAG_PRD_NM,B.TAG_PO_NO,B.TAG_DST,B.TAG_SIZ,B.TAG_SPC_NM,B.TAG_GAA
+,B.TAG_HUE_FRN,B.TAG_HUE_BAK,B.TAG_SPC_MRK,B.RMTL_PRFR_CD,B.BAK_MRK
+,B.ORD_MDF_DD,B.ORD_CFM_DD,B.ORD_RGS_PRS_ID,B.ORD_TEM_CD,B.MTL_CD
+,B.CLS_CD,B.SUB_CLS_CD,B.QLT_DSN_END_DH,B.QLT_DSN_INST_DH,B.QLT_DSN_PRS_ID
+,B.MQL_CD,B.RMTL_CD,B.RMTL_GRD,B.CRM_MNF_STD_NO,B.PAS_PROC_NO,B.ACPT_RT_SPC
+,B.ORD_END_TP,B.ORD_END_DD,B.ORD_END_PRS_ID,B.QLT_DSN_CFM_DH,B.QLT_DSN_CFM_PRS_ID
+,B.QLT_RDSN_DH,B.QLT_RDSN_PRS_ID,B.QLT_DSN_ERR_YN,B.QLT_DSN_YN
+,B.QLT_DSN_CFM_TP,B.RMTL_CD1,B.RMTL_CD2,B.CRM_MNF_STD_NO1,B.CRM_MNF_STD_NO2
+,B.ORD_CNL_CAU_CD,B.ORD_CNL_DTL_TXT,B.THK_COR_UNT,B.PRD_THK_CAL_APL_CD
+,B.APR_INP_BAS_CD,B.TAG_PO_NO2
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '4', A.THK_TLN_LLV, 0)) THK_TLN_LLV
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '4', A.THK_TLN_ULV, 0)) THK_TLN_ULV
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '2', A.THK_TLN_LLV, 0)) THK_TLN_LLV2
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '2', A.THK_TLN_ULV, 0)) THK_TLN_ULV2
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '4', A.LTH_TLN_LLV, 0)) LTH_TLN_LLV
+,SUM(DECODE(A.QLT_DSN_SPC_TP, '4', A.LTH_TLN_ULV, 0)) LTH_TLN_ULV
+ FROM TB_C10_QLT_DSN_DLV A, TB_C10_QLT_DSN_CMN B
+WHERE A.ORD_NO(+) = B.ORD_NO
+AND   A.ORD_LN(+) = B.ORD_LN
+AND   B.QLT_DSN_STS_CD ='J'
+AND   A.QLT_DSN_SPC_TP IN ('2','4')
+GROUP BY B.ORD_NO,B.ORD_LN,B.QLT_DSN_STS_CD,B.PLNT_TP,B.PRD_NM_CD
+,B.PRD_SHP,B.FLOW_CHL,B.ORD_KND,B.ORD_PRD_GRD,B.ORD_USG_CD
+,B.CUS_CD,B.ACT_CUS_CD,B.FNL_CUS_CD,B.CUS_BTH_PAP_NO,B.SPC_OFC
+,B.SPC_AVR,B.SPC_YR,B.SPC_NM,B.SPC_FUL_NM,B.ORD_SZ,B.ORD_EXC_THK
+,B.ORD_EXC_WTH,B.ORD_EXC_LTH,B.CUS_REQ_DLV_DD,B.ORD_SCH_DLV_DD
+,B.ORD_PTL_STR_DD,B.ORD_PTL_END_DD,B.GW_ASG_CD,B.CCL_BOM_NO
+,B.HUE_CD_FRN,B.HUE_CD_BAK,B.ORD_ORG_PLT_SPC_AVR,B.ORD_ROU_CD
+,B.ORD_SPNL_TP,B.ORD_COILG_MTH,B.ORD_SUR_HND_CD,B.ORD_SKP_DEG
+,B.ORD_EDG_ASG_TP,B.ORD_THK_TP,B.ORD_GRA,B.WGT_DCS_MTH_TP
+,B.ORD_SLV_KND_TP,B.EMBS_CD,B.ORD_PTT_FLM_DTL_CD,B.ORD_PTT_FLM_WTH
+,B.ORD_PTT_FLM_ADH_LOC_CD,B.ORD_WGT_UNT,B.ORD_LN_WGT,B.ORD_SHT_CNT
+,B.ORD_PAK_SHT_CNT,B.ORD_PAK_UNT_WGT_LLV,B.ORD_PAK_UNT_WGT_ULV
+,B.ORD_DLV_ALW_DIF_LLV,B.ORD_DLV_ALW_DIF_ULV,B.ORD_PAK_LTH_LLV
+,B.ORD_PAK_LTH_ULV,B.ORD_STDP_LLV,B.ORD_STDP_ULV,B.ORD_STDP_CNT_LLV
+,B.ORD_STDP_CNT_ULV,B.ORD_PAK_UNT_CNT,B.ORD_PAK_UNT_WGT,B.ORD_SML_PAK_WGT
+,B.ORD_SML_PAK_MIR,B.ORD_UNT_WGT,B.ORD_PAK_MTH,B.ORD_COIL_IDIA
+,B.ORD_COIL_ODIA,B.ORD_THK_TLN_LLV,B.ORD_THK_TLN_ULV,B.ORD_WTH_TLN_LLV
+,B.ORD_WTH_TLN_ULV,B.ORD_LTH_TLN_LLV,B.ORD_LTH_TLN_ULV
+,B.PNT_FLM_THK_FRN_TOT,B.PNT_FLM_THK_BAK_TOT,B.RSN_TP_FRN
+,B.RSN_TP_BAK,B.LUS_RT_CD_FRN,B.LUS_RT_CD_BAK,B.COT_MTH,B.CUS_REQ_ROL_THK
+,B.ORD_THK_MNG_CD,B.ORD_WTH_MNG_CD,B.ORD_LTH_MNG_CD,B.CUS_REQ_CLR_NM
+,B.URG_MTL_TP,B.ORD_RCP_DD,B.ORD_SHT_LOD_MTH,B.ORD_SLIT_GRP_CNT
+,B.ORD_MIX_WTH1,B.ORD_MIX_WTH2,B.ORD_MIX_WTH3,B.ORD_MIX_WTH4
+,B.ORD_MIX_WTH5,B.ORD_MIX_WTH6,B.ORD_MIX_WTH7,B.ORD_MIX_WTH8,B.ORD_MIX_WTH9,B.ORD_MIX_WTH10
+,B.SLIT_MAX_WGT,B.TRST_PROC_YN,B.TAG_TP,B.NAT_CD,B.ORD_SPC_TXT
+,B.TAG_PRD_NM,B.TAG_PO_NO,B.TAG_DST,B.TAG_SIZ,B.TAG_SPC_NM,B.TAG_GAA
+,B.TAG_HUE_FRN,B.TAG_HUE_BAK,B.TAG_SPC_MRK,B.RMTL_PRFR_CD,B.BAK_MRK
+,B.ORD_MDF_DD,B.ORD_CFM_DD,B.ORD_RGS_PRS_ID,B.ORD_TEM_CD,B.MTL_CD
+,B.CLS_CD,B.SUB_CLS_CD,B.QLT_DSN_END_DH,B.QLT_DSN_INST_DH,B.QLT_DSN_PRS_ID
+,B.MQL_CD,B.RMTL_CD,B.RMTL_GRD,B.CRM_MNF_STD_NO,B.PAS_PROC_NO,B.ACPT_RT_SPC
+,B.ORD_END_TP,B.ORD_END_DD,B.ORD_END_PRS_ID,B.QLT_DSN_CFM_DH,B.QLT_DSN_CFM_PRS_ID
+,B.QLT_RDSN_DH,B.QLT_RDSN_PRS_ID,B.QLT_DSN_ERR_YN,B.QLT_DSN_YN
+,B.QLT_DSN_CFM_TP,B.RMTL_CD1,B.RMTL_CD2,B.CRM_MNF_STD_NO1,B.CRM_MNF_STD_NO2
+,B.ORD_CNL_CAU_CD,B.ORD_CNL_DTL_TXT,B.THK_COR_UNT,B.PRD_THK_CAL_APL_CD
+,B.APR_INP_BAS_CD,B.TAG_PO_NO2
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCL_modify2" desc="C102100CMN.CCL_modify2" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 칼라제조사양항목업데이트 C102100CMN.CCL_modify2 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,HUE_CD_FRN = ?                        --색상코드전면
+      ,HUE_CD_BAK = ?                        --색상코드후면
+      ,PNT_FLM_THK_FRN_TOT = ?      --도막두께전면Total                                                                                                                                       
+      ,PNT_FLM_THK_BAK_TOT = ?      --도막두께후면Total                                                                                                                                       
+      ,RSN_TP_FRN = ?      --수지구분전면                                                                                                                                       
+      ,RSN_TP_BAK = ?      --수지구분후면                                                                                                                                       
+      ,LUS_RT_CD_FRN = ?      --광택도코드전면                                                                                                                                       
+      ,LUS_RT_CD_BAK = ?      --광택도코드후면                                                                                                                                       
+      ,COT_MTH = ?      --코팅방식                                                                                                                                       
+      ,QLT_DSN_CFM_TP = ?   --품질설계확정구분
+      ,DEF_RED_TXT = ?  --감량매직체크결과
+      ,PPR_RNG_PORD_TXT = ?  --지관발주메시지
+      ,PE_FOAM_TXT = ? --PE-FOAM 적용메시지
+      ,ATT_ORD_YN = ? --관심주문
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.ASELECT" desc="C102100CMN.ASELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C102100CMN.ASELECT 김종범*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.Jmodify" desc="C102100CMN.Jmodify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통업데이트 C102100CMN.Jmodify 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,QLT_DSN_STS_CD = 'J'      --품질설계상태                                                                                                                                       
+WHERE QLT_DSN_STS_CD = 'I'
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.ASELECT3" desc="C102100CMN.ASELECT3" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C102100CMN.ASELECT3 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN A
+WHERE NOT EXISTS (SELECT 1 
+                FROM TB_C10_QLT_IMP_CHK B 
+                WHERE A.ORD_NO = B.ORD_NO
+                AND   A.ORD_LN = B.ORD_LN)
+AND A.ORD_NO LIKE 'TEST%'
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.UNT_WGTupdate" desc="C102100CMN.UNT_WGTupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 매중량업데이트 C102100CMN.UNT_WGTupdate 박재영*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,ORD_UNT_WGT = ?      --주문단위중량                                                                                    
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.Oms_modify" desc="OMS의 자동수동설계정보를 업데이트 함" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 C102100CMN.Oms_modify 이돈석*/
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,QLT_DSN_STS_CD = ?      --품질설계상태코드                                                                                                                                       
+      ,QLT_DSN_END_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --품질설계완료일시                                                                                                                                       
+      ,QLT_DSN_PRS_ID = 'SYSTEM'      --품질설계자ID
+      ,QLT_DSN_CFM_TP = 'A'            --품질설계확정구분                                                                                                                                      
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.REinsert" desc="C10 품질설계반복주문의뢰등록 C102100CMN.REinsert 이돈석" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계반복주문의뢰등록 C102100CMN.REinsert 이돈석*/                           
+TB_C10_QLT_DSN_CMN (                                                                           
+ ORD_NO		                --주문번호
+,ORD_LN		                --주문행번
+,QLT_DSN_STS_CD		  --품질설계상태코드
+,CCL_BOM_NO                 --CCL BOM번호
+,ORD_REP_YN                   --반복주문여부
+,ORD_REP_NO                  --반복주문번호
+,ORD_REP_LN                   --반복주문행번
+,ORD_PTT_FLM_DTL_CD     --보호필름상세코드
+,CREATED_OBJECT_TYPE       --생성OBJECT유형  
+,CREATED_OBJECT_ID         --생성OBJECTID    
+,CREATED_PROGRAM_ID        --생성프로그램ID  
+,CREATION_TIMESTAMP        --생성일시                  
+,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형
+,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID  
+,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID
+,LAST_UPDATE_TIMESTAMP     --최종변경일시
+)
+VALUES(
+?,?,'T',?,'Y',?,?,?
+,?,?,?,?
+,?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.Tselect" desc="C10 품질설계결과공통조회(대상T인주문)" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C102100CMN.TSELECT 이돈석*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN                                            
+WHERE QLT_DSN_STS_CD ='T'
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.Rselect" desc="C102100CMN.Rselect" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT *
+   FROM TB_C10_QLT_DSN_CMN
+  WHERE QLT_DSN_STS_CD = 'A'
+     AND NVL(ORD_COP_STP,'@') = '@' 
+     AND QLT_DSN_YN = 'Y'
+     AND PRD_NM_CD NOT IN ('1','2','5','7','8') -- 20190214 CCI, CCEI, CCAI, CCUS,  CCNI 外
+     AND ORD_NO = ?       
+     AND ORD_LN = ?              
+     AND PRD_NM_CD = ?            
+     AND PLNT_TP = ?             
+     AND PRD_SHP = ?            
+     AND FLOW_CHL = ?             
+     AND ORD_KND = ?             
+     AND ORD_USG_CD = ?       
+     AND CUS_CD = ?         
+     AND ACT_CUS_CD = ?       
+     AND FNL_CUS_CD = ?       
+     AND NVL(CUS_BTH_PAP_NO,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%' 
+     AND SPC_AVR = ?
+     AND SPC_YR = ?
+     AND ORD_SZ = ?
+     AND ORD_EXC_THK = ?
+     AND ORD_EXC_WTH = ?
+     AND NVL(ORD_EXC_LTH,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(GW_ASG_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(CCL_BOM_NO,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(HUE_CD_FRN,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(HUE_CD_BAK,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_ORG_PLT_SPC_AVR,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_ROU_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SPNL_TP,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_COILG_MTH,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SUR_HND_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SKP_DEG,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND ORD_EDG_ASG_TP = ?
+     AND ORD_THK_TP = ?
+     AND WGT_DCS_MTH_TP = ?
+     AND NVL(ORD_SLV_KND_TP,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(EMBS_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PTT_FLM_DTL_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PTT_FLM_WTH,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PTT_FLM_ADH_LOC_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND ORD_WGT_UNT = ?
+     --AND NVL(ORD_SHT_CNT,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_SHT_CNT,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_UNT_WGT_LLV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_UNT_WGT_ULV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_LTH_LLV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_LTH_ULV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_STDP_CNT_LLV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_STDP_CNT_ULV,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_PAK_UNT_WGT,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND ORD_PAK_MTH = ?
+     AND NVL(ORD_COIL_IDIA,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_COIL_ODIA,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND ORD_THK_MNG_CD = ?
+     AND ORD_WTH_MNG_CD = ?
+     AND NVL(ORD_LTH_MNG_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SHT_LOD_MTH,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SLIT_GRP_CNT,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH1,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH2,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH3,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH4,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH5,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH6,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH7,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH8,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(SLIT_MAX_WGT,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(TRST_PROC_YN,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_SPC_TXT,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     --AND NVL(BAK_MRK,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND MTL_CD = ?
+     AND NVL(TAG_TP,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NAT_CD = ?
+     AND NVL(MTL_PRD_ORD_YN,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(CUS_REQ_CLR_NM,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(PAK_MSG_CD,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH9,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(ORD_MIX_WTH10,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(PTT_FLM_NOT_ADH_WS,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(PTT_FLM_NOT_ADH_DS,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(LTH_MNG_YN,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(LTH_MNG_FROM,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND NVL(LTH_MNG_TO,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
+     AND TRUNC(SYSDATE - QLT_DSN_END_DH) <= 183
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCL_modify3" desc="C102100CMN.CCL_modify3" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 항목업데이트 C102100CMN.CCL_modify3 이돈석*/                      
+TB_C10_QLT_DSN_CMN                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,HUE_CD_FRN = ?                        --색상코드전면
+      ,HUE_CD_BAK = ?                        --색상코드후면
+      ,PNT_FLM_THK_FRN_TOT = ?      --도막두께전면Total                                                                                                                                       
+      ,PNT_FLM_THK_BAK_TOT = ?      --도막두께후면Total                                                                                                                                       
+      ,RSN_TP_FRN = ?      --수지구분전면                                                                                                                                       
+      ,RSN_TP_BAK = ?      --수지구분후면                                                                                                                                       
+      ,LUS_RT_CD_FRN = ?      --광택도코드전면                                                                                                                                       
+      ,LUS_RT_CD_BAK = ?      --광택도코드후면
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCL_modify4" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과 칼라제조사양항목업데이트 C102100CMN.CCL_modify4 이돈석*/ 
+TB_C10_QLT_DSN_CCL_BOM
+      SET LAST_UPDATED_OBJECT_TYPE = ?,  --최종변경OBJECT유형
+            LAST_UPDATED_OBJECT_ID = ?,    --최종변경OBJECTID  
+            LAST_UPDATE_PROGRAM_ID = ?,    --최종변경프로그램ID
+            LAST_UPDATE_TIMESTAMP = ?,     --최종변경일시 
+            PTT_FLM_DTL_CD = ?,
+            PTT_FLM_LUS_RT_CD = ?,
+            PTT_FLM_THK_CD = ?,
+            PTT_FLM_MQL_CD = ?,
+            PTT_FLM_SUS_ADH_CD = ?, 
+            PTT_FLM_PRD_ADH_CD = ?,
+            UNI_GLS_FLM_CD = ?
+ WHERE ORD_NO = ?
+    AND ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCLFLM_modify4" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT PTT_FLM_DTL_CD, 
+           PTT_FLM_LUS_RT_CD, 
+           PTT_FLM_THK_CD, 
+           PTT_FLM_MQL_CD, 
+           PTT_FLM_SUS_ADH_CD, 
+           PTT_FLM_PRD_ADH_CD,  
+           UNI_GLS_FLM_CD
+  FROM TB_C10_QLT_DSN_CCL_BOM
+ WHERE ORD_NO = ?
+    AND ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.CCL_modify5" desc="C102100CMN.CCL_modify5" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과공통 칼라제조사양항목업데이트 C102100CMN.CCL_modify5 이돈석*/                      
+TB_C10_QLT_DSN_CMN A                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시                                                                                                                               
+      ,RSN_TP_FRN = (SELECT RSN_TP_FRN FROM TB_C10_CCL_BOM WHERE CCL_BOM_NO = A.CCL_BOM_NO)    --수지구분전면                                                                                                                                       
+      ,RSN_TP_BAK = (SELECT RSN_TP_BAK FROM TB_C10_CCL_BOM WHERE CCL_BOM_NO = A.CCL_BOM_NO)    --수지구분후면
+WHERE ORD_NO =?                                                                                      
+  AND ORD_LN =?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.BSMS" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과(B) 관심주문여부확인 C102100CMN.BSMS 이돈석*/      
+       ORD_NO,
+       ORD_LN,
+       DECODE(NVL(ATT_ORD_YN,'N'),'Y','Y','N') ATT_ORD_YN
+  FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = ?
+   AND ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100CMN.AttSms" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 관심주문SMS전송대상 C102100CMN.AttSms 이돈석*/
+            C10APUSER.TB_C10_ATT_ORD_MNG
+            (
+                  ORD_NO 
+                , ORD_LN
+                , ATT_ORD_RGS_ID
+                , ATT_ORD_RGS_DH
+                , ATT_RGS_TP
+                , CREATED_OBJECT_TYPE         
+                , CREATED_OBJECT_ID        
+                , CREATED_PROGRAM_ID      
+                , CREATION_TIMESTAMP     
+                , LAST_UPDATED_OBJECT_TYPE
+                , LAST_UPDATED_OBJECT_ID  
+                , LAST_UPDATE_PROGRAM_ID  
+                , LAST_UPDATE_TIMESTAMP     
+            )
+VALUES
+            (
+                  ?
+                , ?
+                , 'SYSTEM'
+                , sysdate
+                , 'A'
+                , ?
+                , ?
+                , ?
+                , ?
+                , ?
+                , ?
+                , ?
+                , ?
+            )
+		 ]]> 
+	 </query>
+</queryMap>

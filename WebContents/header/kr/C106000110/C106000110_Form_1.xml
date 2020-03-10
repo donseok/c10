@@ -1,0 +1,45 @@
+<items>
+<item type="block" width="940">
+<item inputWidth="75" label="CCLBOM" name="CCL_BOM_NO" type="input"/>
+<item offset="7" type="newcolumn"/>
+<item inputWidth="130" label="국가" name="NAT_CD" type="combo"/>
+<item offset="7" type="newcolumn"/>
+<item inputWidth="80" label="클래스" labelAlign="right" name="CLS_CD" type="combo"/>
+<item offset="7" type="newcolumn"/>
+<item inputWidth="60" label="최종수요가" labelAlign="right" labelWidth="79" maxLength="6" name="CUS_CD" type="input"/>
+<item type="newcolumn"/>
+<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+<item offset="60" type="newcolumn"/>
+<item command="find" name="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<item command="save" label="출력" name="prtRpt" type="linkbutton" value="발행" width="75"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="940">
+<item inputWidth="150" label="발행사유" name="PRT_RSN" type="combo"/>
+<item offset="5" type="newcolumn"/>
+<item label="한글"   name="radio1"  type="radio" value="KOR" position="label-right"/>
+<item offset="1" type="newcolumn"/>
+<item checked="true"  label="영문"  name="radio1"  type="radio" value="ENG" position="label-right"/>
+
+<item name="PER_FOR_19" type="hidden" readonly="true"/>
+<item name="BRD_CMP_2" type="hidden" readonly="true"/>
+<item name="PER_FOR_6" type="hidden" readonly="true"/>
+<item name="FA_TRM_7" type="hidden" readonly="true"/>
+<item name="FA_TRM_8" type="hidden" readonly="true"/>
+<item name="FA_WAL_12" type="hidden" readonly="true"/>
+<item name="FA_WAL_11" type="hidden" readonly="true"/>
+<item name="FA_ROF_10" type="hidden" readonly="true"/>
+<item name="FA_ROF_9" type="hidden" readonly="true"/>
+<item name="CH_TRM_14" type="hidden" readonly="true"/>
+<item name="CH_TRM_13" type="hidden" readonly="true"/>
+<item name="CH_WAL_18" type="hidden" readonly="true"/>
+<item name="CH_WAL_17" type="hidden" readonly="true"/>
+<item name="CH_ROF_15" type="hidden" readonly="true"/>
+<item name="CH_ROF_16" type="hidden" readonly="true"/>	
+<item name="PE_FL_20" type="hidden" readonly="true"/>
+<item name="PE_FL_1" type="hidden" readonly="true"/>	 
+<item name="CUS_NM" type="hidden" readonly="true"/>	 
+</item>
+</items>

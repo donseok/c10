@@ -1,0 +1,599 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,품명,#cspan,제품,#cspan,규격약호,#cspan,주문용도,#cspan,고객사,#cspan,고객사양서번호,#cspan,엠보스무늬,#cspan,Spangle,#cspan,도금량,#cspan,표면처리,#cspan,색상코드,#cspan,두께범위,#cspan,#cspan,폭범위,#cspan,#cspan,재질코드,원자재코드1,원자재코드2,원자재코드3,제조표준번호1,제조표준번호2,제조표준번호3,통과공정번호,확정구분,품질MSG1,품질MSG2,품질MSG3,품질정전MSG]]></param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,비교값,연산,비교값,비교값,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#numeric_filter,#numeric_filter,,#numeric_filter,#numeric_filter,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="right" id="SEQ"   index="1"  sort="str" table="C10B1040" type="ro" width="40" >SEQ</column>
+<column align="center" id="CON1"   index="1"  sort="str" table="C10B1040" type="ro" width="50" >조건(C10B1040)</column>
+<column align="center" id="MIN1"  index="2"  sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON2"   index="3"  sort="str" table="C10B1040" type="ro" width="50" >#cspan</column>
+<column align="center" id="MIN2"  index="4"  sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON3"   index="5"  sort="str" table="C10B1040" type="ro" width="50" >#cspan</column>
+<column align="left" id="MIN3"  index="6"  sort="str" table="C10B1040" type="ro" width="150" >#cspan</column>
+<column align="center" id="CON4"   index="7"  sort="str" table="C10B1040" type="ro" width="50" >#cspan</column>
+<column align="center" id="MIN4"  index="8"  sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON5"   index="9"  sort="str" table="C10B1040" type="ro" width="70" >#cspan</column>
+<column align="center" id="MIN5"  index="10" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON6"   index="11" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="MIN6"  index="12" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="CON7"   index="13" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="MIN7"  index="14" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="CON8"   index="15" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="MIN8"  index="16" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON9"   index="17" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="MIN9"  index="18" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON10"  index="19" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="left" id="MIN10" index="20" sort="str" table="C10B1040" type="ro" width="100" >#cspan</column>
+<column align="center" id="CON11"  index="21" sort="str" table="C10B1040" type="ro" width="50" >#cspan</column>
+<column align="center" id="MIN11" index="22" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="CON12"  index="23" sort="str" table="C10B1040" type="ro" width="70" >#cspan</column>
+<column align="right" id="MIN12" index="24" sort="str" table="C10B1040" type="ron" width="60" format="0.000">#cspan</column>
+<column align="right" id="MAX12" index="25" sort="str" table="C10B1040" type="ron" width="60" format="0.000">#cspan</column>
+<column align="center" id="CON13"  index="26" sort="str" table="C10B1040" type="ro" width="70" >#cspan</column>
+<column align="right" id="MIN13" index="27" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="right" id="MAX13" index="28" sort="str" table="C10B1040" type="ro" width="60" >#cspan</column>
+<column align="center" id="RST1" index="28" sort="str" table="C10B1040" type="ro" width="80" >결과</column>
+<column align="center" id="RST2" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST3" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST4" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST5" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST6" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST7" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST8" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST9" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST10" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST11" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST12" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<column align="center" id="RST13" index="28" sort="str" table="C10B1040" type="ro" width="80" >#cspan</column>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">SEQ,CON1,MIN1,CON2,MIN2,CON3,MIN3,CON4,MIN4,CON5,MIN5,CON6,MIN6,CON7,MIN7,CON8,MIN8,CON9,MIN9,CON10,MIN10,CON11,MIN11,CON12,MIN12,MAX12,CON13,MIN13,MAX13,RST1,RST2,RST3,RST4,RST5,RST6,RST7,RST8,RST9,RST10,RST11,RST12,RST13</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="17">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="18">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

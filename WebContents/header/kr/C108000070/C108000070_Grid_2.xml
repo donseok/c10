@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+			<call command="setSkin"><param>dhx_skyblue</param></call>
+			<call command="enableMultiselect"><param>true</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="setNoHeader"><param>false</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="enableSmartRendering"><param>true</param></call>
+			<call command="attachHeader"><param><![CDATA[#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,상태,Size,수량,#rspan,#rspan]]></param></call>
+		</beforeInit>
+		<afterInit>
+			<!-- 가변항목 관련 세팅 시작. -->
+			<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+			<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>
+		<column align="center"  id="SMPL_NO" index="1" sort="str" table="TB_M20_SMPL_DEV_REF_MNG" type="ro" 	width="12" >샘플번호</column>
+		<column align="center"  id="SMPL_TP" index="2" sort="str" table="TB_M20_SMPL_DEV_REF_MNG" type="ro" 	width="4" hidden="true">샘플유형</column>
+		<column align="center"  id="SMPL_TP_NM" index="3" sort="str" table="TB_M20_SMPL_DEV_REF_MNG" type="ro" width="6" hidden="true">샘플유형명</column>
+		<column align="left"  id="PRD_DEV_SPEC_NO" index="4" sort="str" type="ro" 	width="12">개발No</column>
+		<column align="left"  id="CUS_CD_NM" index="5" sort="str" table="TB_M20_SMPL_DEV_REF_MNG" type="ro" 	width="14" >고객사명</column>
+		<column align="center"  id="SMPL_RCV_DH" index="6" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="8">접수일자</column>
+		<column align="left"  id="SMPL_STS_CD_NM" index="7" sort="str" width="5" table="TB_M20_SMPL_DEV_REF_MNG" type="ro">샘플</column>		
+		<column align="left"  id="SMPL_SZ_CD_NM" index="8" sort="str" width="5" table="TB_M20_SMPL_DEV_REF_MNG" type="ro">#cspan</column>
+		<column align="right"   id="SMPL_QTY" index="9" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="5">#cspan</column>
+		<column align="center"  id="SMPL_PUB_YN" index="10" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="5" ><![CDATA[Tag<br>발행]]></column>		
+		<column align="left"  id="REMARK" index="11" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="*">특기사항</column>
+		<column align="center"  id="APPR_CNT" index="12" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="4" hidden="true">승인CNT</column>
+		<column align="center"  id="MKT_CNT" index="13" sort="str" table="TB_M20_SMPL_DEV_REF_MNG " type="ro" 	width="4" hidden="true">마케팅CNT</column>
+		<settings><colwidth><![CDATA[%]]></colwidth></settings>
+	</head>
+	<userdata name="column-info">SMPL_NO,SMPL_TP,SMPL_TP_NM,PRD_DEV_SPEC_NO,CUS_CD_NM,SMPL_RCV_DH,SMPL_STS_CD_NM,SMPL_SZ_CD_NM,SMPL_QTY,SMPL_PUB_YN,REMARK,APPR_CNT,MKT_CNT</userdata>	
+</rows>

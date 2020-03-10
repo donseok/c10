@@ -1,0 +1,36 @@
+<items>
+	<item type="block" width="971">
+		<item type="newcolumn" offset="6" />
+	 	<item type="fieldset" label="범위기준">
+			<item type="input" label="YP" name="MQL_ACT_YP_MPA_MIN" inputWidth="65" labelAlign="right"/>
+			<item type="newcolumn" offset="2" />
+			<item type="label"  label="~"/>
+			<item type="newcolumn" offset="2" />
+			<item type="input" name="MQL_ACT_YP_MPA_MAX" inputWidth="65" labelAlign="left"/>
+			<item type="newcolumn" offset="10" />
+			<item type="input" label="TS" name="MQL_ACT_TS_MPA_MIN" inputWidth="65" labelAlign="right"/>
+			<item type="newcolumn" offset="2" />
+			<item type="label"  label="~"/>
+			<item type="newcolumn" offset="2" />
+			<item type="input" name="MQL_ACT_TS_MPA_MAX" inputWidth="65" labelAlign="left"/>
+			<item type="newcolumn" offset="10" />
+			<item type="input" label="EL" name="MQL_ACT_EL_MIN" inputWidth="65" labelAlign="right"/>
+			<item type="newcolumn" offset="2" />
+			<item type="label"  label="~"/>
+			<item type="newcolumn" offset="2" />
+			<item type="input" name="MQL_ACT_EL_MAX" inputWidth="65" labelAlign="left"/>
+			<item type="newcolumn" offset="10" />
+			<item type="input" label="HRB" name="MQL_ACT_HRB_AVG_MIN" inputWidth="65" labelAlign="right"/>
+			<item type="newcolumn" offset="2" />
+			<item type="label"  label="~"/>
+			<item type="newcolumn" offset="2" />
+			<item type="input" name="MQL_ACT_HRB_AVG_MAX" inputWidth="65" labelAlign="left"/>
+			<item type="newcolumn" offset="10" />
+			<item type="input" label="ERI" name="MQL_ACT_ERI_AVG_MIN" inputWidth="65" labelAlign="right"/>
+			<item type="newcolumn" offset="2" />
+			<item type="label"  label="~"/>
+			<item type="newcolumn" offset="2" />
+			<item type="input" name="MQL_ACT_ERI_AVG_MAX" inputWidth="65" labelAlign="left"/>
+		</item>
+	</item>
+</items>

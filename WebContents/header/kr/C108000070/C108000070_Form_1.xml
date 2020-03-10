@@ -1,0 +1,13 @@
+<items>	
+	<item type="block" width="1000">
+	    <item labelWidth="75" inputWidth="100" label="개발번호" name="PRD_DEV_NO" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="75" inputWidth="100" label="SPEC번호" name="DEV_REQ_SPEC_NO" type="input" labelAlign="right" value=""/>		
+	    <item offset="290" type="newcolumn"/>
+		<item type="button" name="find" command="find" value="조회" disabled="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item type="button" name="save" command="save" value="저장" disabled="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>

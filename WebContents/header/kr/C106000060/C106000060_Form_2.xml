@@ -1,0 +1,10 @@
+<items>
+<!--	
+	<item type="custombutton" name="confirmSave" value="확정" command="confirmSave" width="75" disabled="true"/>
+	<item type="newcolumn" offset="5" />
+-->
+	<item type="newcolumn" offset="85" />
+	<item type="custombutton" name="send" value="전송" command="send" width="70" disabled="true"/>
+	<item type="newcolumn" offset="5" />
+	<item type="button" name="save" value="저장" command="save" disabled="true"/>		
+</items>

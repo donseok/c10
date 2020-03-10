@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB03"> 
+	 <query id="C104000020TAB03.select" desc="C104000020TAB03.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+select  /*+ C10 품질설계결과-재질 C104000020TAB03.select 박재영 */
+         DECODE(QLT_DSN_SPC_TP,'1','고객사양','2','규격사양','3','사내사양','4','보증사양') QLT_DSN_SPC_TP, 
+             QLT_DSN_SPC_TP QLT_DSN_SPC_TP_CD
+        , MAX(ORD_NO) ORD_NO
+        , MAX(ORD_LN) ORD_LN
+        , MAX(TS_LLV_MPA) TS_LLV_MPA
+        , MAX(TS_ULV_MPA) TS_ULV_MPA
+        , MAX(YP_LLV_MPA) YP_LLV_MPA
+        , MAX(YP_ULV_MPA) YP_ULV_MPA
+        , MAX(ELGN_LLV) ELGN_LLV
+        , MAX(ELGN_ULV) ELGN_ULV
+        , MAX(HRB_LLV) HRB_LLV
+        , MAX(HRB_ULV) HRB_ULV
+        , MAX(ER_LLV) ER_LLV
+        , MAX(ER_ULV) ER_ULV
+        , MAX(MQL_BND_TST_STD_CD) MQL_BND_TST_STD_CD
+        , MAX(TST_PIC_GTH_INST_LOC) TST_PIC_GTH_INST_LOC
+        , MAX(TST_PIC_GTH_INST_LTH) TST_PIC_GTH_INST_LTH
+        , MAX(TPG_RGS_NO) TPG_RGS_NO
+        , MAX(TST_GW_FRN_ULV) TST_GW_FRN_ULV
+        , MAX(TST_GW_FRN_LLV) TST_GW_FRN_LLV
+        , MAX(TST_GW_BAK_ULV) TST_GW_BAK_ULV
+        , MAX(TST_GW_BAK_LLV) TST_GW_BAK_LLV
+        , MAX(TST_GW_TOT_ULV) TST_GW_TOT_ULV
+        , MAX(TST_GW_TOT_LLV) TST_GW_TOT_LLV
+FROM ( SELECT '1' QLT_DSN_SPC_TP 
+            , NULL ORD_NO
+            , NULL ORD_LN
+            , NULL TS_LLV_MPA
+            , NULL TS_ULV_MPA
+            , NULL YP_LLV_MPA
+            , NULL YP_ULV_MPA
+            , NULL ELGN_LLV
+            , NULL ELGN_ULV
+            , NULL HRB_LLV
+            , NULL HRB_ULV
+            , NULL ER_LLV
+            , NULL ER_ULV
+            , NULL MQL_BND_TST_STD_CD
+            , NULL TST_PIC_GTH_INST_LOC
+            , NULL TST_PIC_GTH_INST_LTH
+            , NULL TPG_RGS_NO
+            , NULL TST_GW_FRN_ULV
+            , NULL TST_GW_FRN_LLV
+            , NULL TST_GW_BAK_ULV
+            , NULL TST_GW_BAK_LLV
+            , NULL TST_GW_TOT_ULV
+            , NULL TST_GW_TOT_LLV
+       FROM DUAL
+      UNION ALL
+      SELECT '2' QLT_DSN_SPC_TP
+            , NULL ORD_NO
+            , NULL ORD_LN
+            , NULL TS_LLV_MPA
+            , NULL TS_ULV_MPA
+            , NULL YP_LLV_MPA
+            , NULL YP_ULV_MPA
+            , NULL ELGN_LLV
+            , NULL ELGN_ULV
+            , NULL HRB_LLV
+            , NULL HRB_ULV
+            , NULL ER_LLV
+            , NULL ER_ULV
+            , NULL MQL_BND_TST_STD_CD
+            , NULL TST_PIC_GTH_INST_LOC
+            , NULL TST_PIC_GTH_INST_LTH
+            , NULL TPG_RGS_NO
+            , NULL TST_GW_FRN_ULV
+            , NULL TST_GW_FRN_LLV
+            , NULL TST_GW_BAK_ULV
+            , NULL TST_GW_BAK_LLV
+            , NULL TST_GW_TOT_ULV
+            , NULL TST_GW_TOT_LLV
+       FROM DUAL
+      UNION ALL
+      SELECT '3' QLT_DSN_SPC_TP
+            , NULL ORD_NO
+            , NULL ORD_LN
+            , NULL TS_LLV_MPA
+            , NULL TS_ULV_MPA
+            , NULL YP_LLV_MPA
+            , NULL YP_ULV_MPA
+            , NULL ELGN_LLV
+            , NULL ELGN_ULV
+            , NULL HRB_LLV
+            , NULL HRB_ULV
+            , NULL ER_LLV
+            , NULL ER_ULV
+            , NULL MQL_BND_TST_STD_CD
+            , NULL TST_PIC_GTH_INST_LOC
+            , NULL TST_PIC_GTH_INST_LTH
+            , NULL TPG_RGS_NO
+            , NULL TST_GW_FRN_ULV
+            , NULL TST_GW_FRN_LLV
+            , NULL TST_GW_BAK_ULV
+            , NULL TST_GW_BAK_LLV
+            , NULL TST_GW_TOT_ULV
+            , NULL TST_GW_TOT_LLV
+       FROM DUAL
+      UNION ALL
+      SELECT '4' QLT_DSN_SPC_TP
+            , NULL ORD_NO
+            , NULL ORD_LN
+            , NULL TS_LLV_MPA
+            , NULL TS_ULV_MPA
+            , NULL YP_LLV_MPA
+            , NULL YP_ULV_MPA
+            , NULL ELGN_LLV
+            , NULL ELGN_ULV
+            , NULL HRB_LLV
+            , NULL HRB_ULV
+            , NULL ER_LLV
+            , NULL ER_ULV
+            , NULL MQL_BND_TST_STD_CD
+            , NULL TST_PIC_GTH_INST_LOC
+            , NULL TST_PIC_GTH_INST_LTH
+            , NULL TPG_RGS_NO
+            , NULL TST_GW_FRN_ULV
+            , NULL TST_GW_FRN_LLV
+            , NULL TST_GW_BAK_ULV
+            , NULL TST_GW_BAK_LLV
+            , NULL TST_GW_TOT_ULV
+            , NULL TST_GW_TOT_LLV
+       FROM DUAL
+      UNION ALL
+      SELECT QLT_DSN_SPC_TP, ORD_NO, ORD_LN, 
+         TS_LLV_MPA, TS_ULV_MPA,
+         YP_LLV_MPA, YP_ULV_MPA,
+         ELGN_LLV, ELGN_ULV,
+         HRB_LLV, HRB_ULV, 
+         ER_LLV, ER_ULV, 
+         MQL_BND_TST_STD_CD,
+         TST_PIC_GTH_INST_LOC,
+         TST_PIC_GTH_INST_LTH,
+         TPG_RGS_NO, 
+         TST_GW_FRN_ULV, TST_GW_FRN_LLV, 
+         TST_GW_BAK_ULV, TST_GW_BAK_LLV, 
+         TST_GW_TOT_ULV, TST_GW_TOT_LLV
+      FROM TB_C10_QLT_DSN_MQL A
+      WHERE ORD_NO = :ORD_NO
+      AND   ORD_LN = :ORD_LN
+      AND   NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
+)
+GROUP BY DECODE(QLT_DSN_SPC_TP,'1','고객사양','2','규격사양','3','사내사양','보증사양')
+         , QLT_DSN_SPC_TP
+ORDER BY QLT_DSN_SPC_TP_CD
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB03.CHG_HSTinsert" desc="C104000020TAB03.CHG_HSTinsert" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계결과수정이력 C104000020TAB03.CHG_HSTinsert 박재영*/
+            TB_C10_QLT_DSN_CHG_HST
+            (    
+              ORD_NO                      --주문번호
+		     ,ORD_LN                      --주문행번
+		     ,SEQ	                      --수정SEQ
+		     ,CHG_TXT                     --수정내역
+             ,CREATED_OBJECT_TYPE
+             ,CREATED_OBJECT_ID
+             ,CREATED_PROGRAM_ID
+             ,CREATION_TIMESTAMP
+             ,LAST_UPDATED_OBJECT_TYPE
+             ,LAST_UPDATED_OBJECT_ID
+             ,LAST_UPDATE_PROGRAM_ID
+             ,LAST_UPDATE_TIMESTAMP
+            )
+VALUES
+            (
+              :ORD_NO
+              ,:ORD_LN 
+              ,NVL((SELECT MAX(SEQ) + 1 FROM TB_C10_QLT_DSN_CHG_HST WHERE ORD_NO = :ORD_NO AND ORD_LN = :ORD_LN),1)
+              ,'C104000020TAB03'
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+            )
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB03.update" desc="C104000020TAB03.update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 재질 C104000020TAB03.update 박재영*/                      
+TB_C10_QLT_DSN_MQL
+SET    
+        LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+        ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+        ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+        ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+        ,TS_LLV_MPA = :TS_LLV_MPA                            --TS하한값MPA
+        ,TS_ULV_MPA = :TS_ULV_MPA                            --TS상한값MPA
+        ,YP_LLV_MPA = :YP_LLV_MPA                            --YP하한값MPA
+        ,YP_ULV_MPA = :YP_ULV_MPA                            --YP상한값MPA
+        ,ELGN_LLV = :ELGN_LLV                                --연신율하한값
+        ,ELGN_ULV = :ELGN_ULV                                --연신율상한값
+        ,HRB_LLV = :HRB_LLV                                  --HRB하한값
+        ,HRB_ULV = :HRB_ULV                                  --HRB상한값
+        ,ER_LLV  = :ER_LLV                                   --ER하한값
+        ,ER_ULV  = :ER_ULV                                   --ER상한값
+        ,MQL_BND_TST_STD_CD = :MQL_BND_TST_STD_CD            --재질Bending시험기준코드
+        ,TST_PIC_GTH_INST_LOC = :TST_PIC_GTH_INST_LOC        --시편채취지시위치
+        ,TST_PIC_GTH_INST_LTH = :TST_PIC_GTH_INST_LTH        --시편채취지시길이
+        ,TPG_RGS_NO = :TPG_RGS_NO                            --시편호수
+        ,TST_GW_FRN_LLV = :TST_GW_FRN_LLV                    --시험도금량전면하한값
+        ,TST_GW_FRN_ULV = :TST_GW_FRN_ULV                    --시험도금량전면상한값
+        ,TST_GW_BAK_LLV = :TST_GW_BAK_LLV                    --시험도금량후면하한값
+        ,TST_GW_BAK_ULV = :TST_GW_BAK_ULV                    --시험도금량후면상한값
+        ,TST_GW_TOT_LLV = :TST_GW_TOT_LLV                    --시험도금량전체하한값
+        ,TST_GW_TOT_ULV = :TST_GW_TOT_ULV                    --시험도금량전체상한값
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+  AND QLT_DSN_SPC_TP = '4'          --품질설계사양구분
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB03.STSselect" desc="C104000020TAB03.STSselect" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C104000020TAB03.STSselect 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+ AND    ORD_LN = :ORD_LN
+ AND    QLT_DSN_STS_CD = 'A'
+		 ]]> 
+	 </query>
+</queryMap>

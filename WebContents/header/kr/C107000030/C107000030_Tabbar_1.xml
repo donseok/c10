@@ -1,0 +1,27 @@
+<tabbar align="left" hrefmode="iframe" margin="5" offset="3">
+<row type="row">
+	<tab href="C107000030tab01.jsp" id="TAB_C10B1040"  selected="true" type="tab" width="70">설계KEY</tab>
+	<tab href="C107000030tab02.jsp" id="TAB_C10B1011" type="tab" width="95">규격성분사양</tab>
+	<tab href="C107000030tab03.jsp" id="TAB_C10B1012" type="tab" width="95">규격재질사양</tab>
+	<tab href="C107000030tab04.jsp" id="TAB_C10B1013" type="tab" width="95">규격인수도</tab>
+	<tab href="C107000030tab05.jsp" id="TAB_C10B1014" type="tab" width="95">규격별주문용도</tab>
+	<tab href="C107000030tab06.jsp" id="TAB_C10B1031" type="tab" width="95">사내성분사양</tab>
+	<tab href="C107000030tab07.jsp" id="TAB_C10B1032" type="tab" width="95">사내재질사양</tab>
+	<tab href="C107000030tab08.jsp" id="TAB_C10B1071" type="tab" width="95">원자재두께</tab>
+	<tab href="C107000030tab20.jsp" id="TAB_C10B1064" type="tab" width="95">원자재발주기준</tab>
+	<tab href="C107000030tab09.jsp" id="TAB_C10B1073" type="tab" width="95">PLTCM폭마진</tab>
+
+</row>
+<row type="row">
+	<tab href="C107000030tab10.jsp" id="TAB_C10B1074" type="tab" width="95">PLTCM폭수축</tab>
+	<tab href="C107000030tab11.jsp" id="TAB_C10B1075" type="tab" width="95">CGL폭감소량</tab>
+	<tab href="C107000030tab12.jsp" id="TAB_C10B1076" type="tab" width="95">EGL폭감소량</tab>
+	<tab href="C107000030tab13.jsp" id="TAB_C10B1078" type="tab" width="95">CCL폭감소량</tab>
+	<tab href="C107000030tab14.jsp" id="TAB_C10B1077" type="tab" width="95">정전폭감소량</tab>
+	<tab href="C107000030tab15.jsp" id="TAB_C10B1079" type="tab" width="95">정전폭마진량</tab>
+	<tab href="C107000030tab16.jsp" id="TAB_C10B2060" type="tab" width="95">압연두께Set치보정</tab>
+	<tab href="C107000030tab17.jsp" id="TAB_C10B2010" type="tab" width="95">통과공정삭제</tab>
+	<tab href="C107000030tab18.jsp" id="TAB_C10B1051" type="tab" width="95">제조표준기준</tab>
+	<tab href="C107000030tab19.jsp" id="TAB_C10B1081" type="tab" width="90">포장재중량</tab>
+</row>
+</tabbar>

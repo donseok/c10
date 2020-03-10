@@ -1,0 +1,19 @@
+<items>
+<item type="block" width="530">
+<item offset="300" type="newcolumn"/>
+<item command="find" name="find" type="button"  value="계산"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="530">
+<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+<item offset="2" type="newcolumn"/>
+<item label="폭 수축" name="std_title" type="label" />
+<item offset="30" type="newcolumn"/>
+<item inputWidth="50" label="강종" labelAlign="right" labelWidth="50" name="RMTL_KND" type="input"/>
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" label="S/T폭" labelAlign="right" labelWidth="50" name="ST_WHT" type="input"/>
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" label="두께" labelAlign="right" labelWidth="50" name="PLTCM_THK" type="input"/>
+</item>
+</items>

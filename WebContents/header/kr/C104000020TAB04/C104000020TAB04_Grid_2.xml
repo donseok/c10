@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableAutoWidth"><param>true</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="QLT_DSN_SPC_TP" sort="na" align="center" dbname="품질설계사양구분" width="26" table="TB_C10_QLT_DSN_DLV" type="ro" clabel="품질설계사양구분">사양구분</column>
+<column id="HWAV_H" format="0.0" sort="na" align="center" dbname="반곡H" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="반곡H" >반곡(mm)</column>
+<column id="MWAV_H" format="0.0" sort="na" align="center" dbname="중곡H" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="중곡H" >중곡(mm)</column>
+<column id="EWAV_H" format="0.0" sort="na" align="center" dbname="외곡H" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="외곡H" >외곡(mm)</column>
+<column id="RAR_ULV" sort="na" align="center" dbname="직각도상한값" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="직각도상한값" >직각도</column>
+<column id="SLR_ULV" sort="na" align="center" dbname="직선도상한값" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="직선도상한값" >직선도</column>
+<column id="DGLN_DIF_ULV" sort="na" align="center" dbname="대각선차상한값" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="대각선차상한값" >대각선공차(mm)</column>
+<column id="STPN" format="0.0" sort="na" align="center" dbname="급준도" width="9" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="급준도" >급준도(mm)</column>
+<column id="TLC" sort="na" align="center" dbname="TELESCOPE" width="*" table="TB_C10_QLT_DSN_DLV" type="ed" clabel="TELESCOPE" >TELESCOPE(mm)</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_DSN_SPC_TP,HWAV_H,MWAV_H,EWAV_H,RAR_ULV,SLR_ULV,DGLN_DIF_ULV,STPN,TLC</userdata>
+<row id="0">
+<cell>고객사양</cell>
+</row>
+<row id="1">
+<cell>규격사양</cell>
+</row>
+<row id="2">
+<cell>보증사양</cell>
+</row>
+</rows>

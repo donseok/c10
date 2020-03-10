@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB04"> 
+	 <query id="C104000020TAB04.select" desc="C104000020TAB04.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과-인수도 C104000020TAB04.select 박재영 */
+        DECODE(QLT_DSN_SPC_TP,'1','고객사양','2','규격사양','3','사내사양','보증사양') QLT_DSN_SPC_TP, QLT_DSN_SPC_TP QLT_DSN_SPC_TP_CD,
+             MAX(ORD_NO) ORD_NO, MAX(ORD_LN) ORD_LN,
+             MAX(THK_TLN_ULV) THK_TLN_ULV, MAX(THK_TLN_LLV) THK_TLN_LLV, MAX(WTH_TLN_LLV) WTH_TLN_LLV, MAX(WTH_TLN_ULV) WTH_TLN_ULV,
+             MAX(LTH_TLN_LLV) LTH_TLN_LLV, MAX(LTH_TLN_ULV) LTH_TLN_ULV, MAX(HWAV_H) HWAV_H, MAX(MWAV_H) MWAV_H, 
+             MAX(EWAV_H) EWAV_H, MAX(SLR_ULV) SLR_ULV, MAX(RAR_ULV) RAR_ULV, MAX(DGLN_DIF_ULV) DGLN_DIF_ULV, MAX(STPN) STPN, MAX(TLC) TLC
+FROM (SELECT '1' QLT_DSN_SPC_TP, NULL ORD_NO, NULL ORD_LN, NULL THK_TLN_ULV, NULL THK_TLN_LLV, NULL WTH_TLN_LLV, NULL WTH_TLN_ULV, NULL LTH_TLN_LLV, 
+             NULL LTH_TLN_ULV, NULL HWAV_H, NULL MWAV_H, NULL EWAV_H, NULL SLR_ULV, NULL RAR_ULV, NULL DGLN_DIF_ULV, NULL STPN, NULL TLC
+      FROM DUAL      
+      UNION ALL
+      SELECT '2' QLT_DSN_SPC_TP, NULL ORD_NO, NULL ORD_LN, NULL THK_TLN_ULV, NULL THK_TLN_LLV, NULL WTH_TLN_LLV, NULL WTH_TLN_ULV, NULL LTH_TLN_LLV,
+             NULL LTH_TLN_ULV, NULL HWAV_H, NULL MWAV_H, NULL EWAV_H, NULL SLR_ULV, NULL RAR_ULV, NULL DGLN_DIF_ULV, NULL STPN, NULL TLC
+      FROM DUAL
+      UNION ALL
+      SELECT '4' QLT_DSN_SPC_TP, NULL ORD_NO, NULL ORD_LN, NULL THK_TLN_ULV, NULL THK_TLN_LLV, NULL WTH_TLN_LLV, NULL WTH_TLN_ULV, NULL LTH_TLN_LLV, 
+             NULL LTH_TLN_ULV, NULL HWAV_H, NULL MWAV_H, NULL EWAV_H, NULL SLR_ULV, NULL RAR_ULV, NULL DGLN_DIF_ULV, NULL STPN, NULL TLC
+      FROM DUAL
+      UNION ALL      
+      SELECT QLT_DSN_SPC_TP, ORD_NO, ORD_LN, THK_TLN_ULV, THK_TLN_LLV, WTH_TLN_LLV, WTH_TLN_ULV, LTH_TLN_LLV, LTH_TLN_ULV, HWAV_H, MWAV_H, EWAV_H,
+             SLR_ULV, RAR_ULV, DGLN_DIF_ULV, STPN, TLC
+      FROM TB_C10_QLT_DSN_DLV A
+      WHERE ORD_NO = :ORD_NO
+      AND   ORD_LN = :ORD_LN
+      AND NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')      )
+GROUP BY DECODE(QLT_DSN_SPC_TP,'1','고객사양','2','규격사양','3','사내사양','보증사양')
+         , QLT_DSN_SPC_TP
+ORDER BY QLT_DSN_SPC_TP_CD
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB04.ajaxSelect" desc="C104000020TAB04.ajaxSelect" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과-인수도 C104000020TAB04.ajaxSelect 박재영 */
+    TB_C10_QLT_DSN_CMN.ORD_NO,--주문번호
+    TB_C10_QLT_DSN_CMN.ORD_LN,--주문행번
+    TB_C10_QLT_DSN_MNF.PRD_THK_RNG_LLV,--제품두께범위하한값
+    TB_C10_QLT_DSN_MNF.PRD_THK_RNG_ULV,--제품두께범위상한값
+    TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_LLV,--제품폭범위하한값
+    TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_ULV,--제품폭범위상한값
+    TB_C10_QLT_DSN_MNF.PRD_LTH_RNG_LLV,--제품길이범위하한값
+    TB_C10_QLT_DSN_MNF.PRD_LTH_RNG_ULV,--제품길이범위상한값
+    TB_C10_QLT_DSN_CMN.APR_INP_BAS_CD,--외관검사기준코드    
+    (CASE WHEN NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') = 'KS' OR  NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') = 'JS' THEN 'BMT'
+          ELSE 'TCT' END) AS SPC_AVR_GIJUN,--규격기준    
+    (CASE WHEN NVL(TB_C10_QLT_DSN_CMN.PRD_THK_CAL_APL_CD,' ') = ' ' AND (NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') = 'KS' OR  NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') = 'JS')
+          THEN 'BMT'
+          WHEN NVL(TB_C10_QLT_DSN_CMN.PRD_THK_CAL_APL_CD,' ') = ' ' AND (NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') != 'KS' OR  NVL(SUBSTR(TB_C10_QLT_DSN_CMN.SPC_AVR,1,2),' ') != 'JS')
+          THEN 'TCT'
+          ELSE (SELECT CD_V || ' : ' || CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+                WHERE CD_TP = 'PRD_THK_CAL_APL_CD'         
+                AND   CATEGORY_GROUP_NM = 'SZ0000'
+                 AND   CD_V = TB_C10_QLT_DSN_CMN.PRD_THK_CAL_APL_CD) END ) AS GRD_GIJUN,--보증기준
+    TB_C10_QLT_DSN_CMN.PRD_THK_CAL_APL_CD,--제품두께계산적용코드
+    TB_C10_QLT_DSN_MNF.PRD_THK_SPC_RNG_LLV,--제품두께규격범위하한값
+    TB_C10_QLT_DSN_MNF.PRD_THK_SPC_RNG_ULV--제품두께규격범위상한값     
+FROM TB_C10_QLT_DSN_MNF, TB_C10_QLT_DSN_CMN
+WHERE    TB_C10_QLT_DSN_MNF.ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
+AND      TB_C10_QLT_DSN_MNF.ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
+AND      TB_C10_QLT_DSN_MNF.ORD_NO = :ORD_NO
+AND      TB_C10_QLT_DSN_MNF.ORD_LN = :ORD_LN
+AND      TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP = '1'
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB04.CHG_HSTinsert" desc="C104000020TAB04.CHG_HSTinsert" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계결과수정이력 C104000020TAB04.CHG_HSTinsert 박재영*/
+            TB_C10_QLT_DSN_CHG_HST
+            (    
+              ORD_NO                      --주문번호
+		     ,ORD_LN                      --주문행번
+		     ,SEQ	                      --수정SEQ
+		     ,CHG_TXT                     --수정내역
+             ,CREATED_OBJECT_TYPE
+             ,CREATED_OBJECT_ID
+             ,CREATED_PROGRAM_ID
+             ,CREATION_TIMESTAMP
+             ,LAST_UPDATED_OBJECT_TYPE
+             ,LAST_UPDATED_OBJECT_ID
+             ,LAST_UPDATE_PROGRAM_ID
+             ,LAST_UPDATE_TIMESTAMP
+            )
+VALUES
+            (
+              :ORD_NO
+              ,:ORD_LN 
+              ,NVL((SELECT MAX(SEQ) + 1 FROM TB_C10_QLT_DSN_CHG_HST WHERE ORD_NO = :ORD_NO AND ORD_LN = :ORD_LN),1)
+              ,'C104000020TAB04'
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+            )
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB04.update" desc="C104000020TAB04.update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 인수도 C104000020TAB04.update 박재영*/                      
+TB_C10_QLT_DSN_DLV
+SET    
+        LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+        ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+        ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+        ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+        ,THK_TLN_LLV	= :THK_TLN_LLV		  --두께공차하한값
+        ,THK_TLN_ULV	= :THK_TLN_ULV		  --두께공차상한값
+        ,WTH_TLN_LLV	= :WTH_TLN_LLV		  --폭공차하한값
+        ,WTH_TLN_ULV	= :WTH_TLN_ULV		  --폭공차상한값
+        ,LTH_TLN_LLV	= :LTH_TLN_LLV		  --길이공차하한값
+        ,LTH_TLN_ULV	= :LTH_TLN_ULV		  --길이공차상한값
+        ,HWAV_H = :HWAV_H                 --반곡H
+        ,MWAV_H = :MWAV_H                 --중곡H
+        ,EWAV_H = :EWAV_H                 --외곡H
+        ,SLR_ULV = :SLR_ULV               --직선도상한값
+        ,RAR_ULV = :RAR_ULV               --직각도상한값
+        ,DGLN_DIF_ULV = :DGLN_DIF_ULV     --대각선차상한값
+        ,STPN = :STPN                     --급준도
+        ,TLC = :TLC                       --Telescope
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+  AND QLT_DSN_SPC_TP = '4'          --품질설계사양구분
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB04.RNGupdate" desc="C104000020TAB04.RNGupdate" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 인수도-범위 C104000020TAB04.RNGupdate 박재영*/                      
+TB_C10_QLT_DSN_MNF
+SET    
+        LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+        ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+        ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+        ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+        ,PRD_THK_RNG_LLV = :PRD_THK_RNG_LLV           --제품두께범위하한값
+        ,PRD_THK_RNG_ULV = :PRD_THK_RNG_ULV           --제품두께범위상한값
+        ,PRD_WTH_RNG_LLV = :PRD_WTH_RNG_LLV           --제품폭범위하한값
+        ,PRD_WTH_RNG_ULV = :PRD_WTH_RNG_ULV           --제품폭범위상한값
+        ,PRD_LTH_RNG_LLV = :PRD_LTH_RNG_LLV           --제품길이범위하한값
+        ,PRD_LTH_RNG_ULV = :PRD_LTH_RNG_ULV           --제품길이범위상한값
+        ,PRD_THK_SPC_RNG_LLV = :PRD_THK_SPC_RNG_LLV   --제품두께규격범위하한값
+        ,PRD_THK_SPC_RNG_ULV = :PRD_THK_SPC_RNG_ULV   --제품두께규격범위상한값
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB04.STSselect" desc="C104000020TAB04.STSselect" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C104000020TAB04.STSselect 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+ AND    ORD_LN = :ORD_LN
+ AND    QLT_DSN_STS_CD = 'A'
+		 ]]> 
+	 </query>
+</queryMap>

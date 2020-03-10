@@ -1,0 +1,274 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" clabel="CCLBOM번호" dbname="CCLBOM번호" id="CCL_BOM_NO" index="1" sort="str" table="TB_C10_CCL_BOM" type="ro" width="80">CCL BOM</column>
+<column align="center" clabel="CCLBOM사용여부" dbname="CCLBOM사용여부" id="CCL_BOM_USE_YN" index="2" sort="str" table="TB_C10_CCL_BOM" type="ro" width="60" >사용</column>
+<column align="center" clabel="색상코드전면" dbname="색상코드전면" id="HUE_CD_FRN" index="3" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70" >전면</column>
+<column align="center" clabel="색상코드후면" dbname="색상코드후면" id="HUE_CD_BAK" index="4" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">후면</column>
+<column align="center" clabel="색상코드전면4Coat" dbname="색상코드전면4Coat" id="HUE_CD_FRN_4COT" index="5" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">T 4C</column>
+<column align="center" clabel="색상코드전면3Coat" dbname="색상코드전면3Coat" id="HUE_CD_FRN_3COT" index="6" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70" >T 3C</column>
+<column align="center" clabel="색상코드전면2Coat" dbname="색상코드전면2Coat" id="HUE_CD_FRN_2COT" index="7" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70" >T 2C</column>
+<column align="center" clabel="색상코드전면1Coat" dbname="색상코드전면1Coat" id="HUE_CD_FRN_1COT" index="8" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">T 1C</column>
+<column align="center" clabel="색상코드후면1Coat" dbname="색상코드후면1Coat" id="HUE_CD_BAK_1COT" index="9" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">B 1C</column>
+<column align="center" clabel="색상코드후면2Coat" dbname="색상코드후면2Coat" id="HUE_CD_BAK_2COT" index="10" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">B 2C</column>
+<column align="center" clabel="색상코드후면3Coat" dbname="색상코드후면3Coat" id="HUE_CD_BAK_3COT" index="11" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">B 3C</column>
+<column align="center" clabel="색상코드후면4Coat" dbname="색상코드후면4Coat" id="HUE_CD_BAK_4COT" index="12" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">B 4C</column>
+<column align="center" clabel="라미나" dbname="라미나" id="HUE_CD_LMN" index="13" sort="str" table="TB_C10_CCL_BOM" type="ro" width="70">라미나</column>
+
+<column align="center" clabel="주문번호" dbname="주문번호" id="ORD_NO" index="14" sort="str" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" width="150">주문번호</column>
+<column align="left"   clabel="규격약호" dbname="규격약호" id="SPC_AVR" index="15" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="120" >규격약호</column>
+<column align="left"   clabel="주문용도코드" dbname="주문용도코드" id="ORD_USG_CD" index="16" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="240" >주문용도</column>
+<column align="center" clabel="품명코드" dbname="품명코드" id="PRD_NM_CD" index="17" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="60">품명</column>
+<column align="left"   clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" index="18" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="*">고객사</column>
+<column align="right"  clabel="주문환산두께" dbname="주문환산두께" id="ORD_EXC_THK" index="19" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="60">두께</column>
+<column align="right"  clabel="주문환산폭" dbname="주문환산폭" id="ORD_EXC_WTH" index="20" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="60">폭</column>
+<column align="center" clabel="QLT_DSN_CFM_DH" dbname="QLT_DSN_CFM_DH" id="QLT_DSN_END_DH" index="21" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="120">설계완료</column>
+
+<column align="center"   clabel="칼라코드" dbname="칼라코드" id="CLR_SUB_MTL_CD" index="22" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="100">칼라코드</column>
+<column align="center"   clabel="사용여부" dbname="사용여부" id="USE_YN" index="23" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="60">사용</column>
+<column align="left"  clabel="색상명" dbname="색상명" id="CLR_NM" index="24" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="250">색상명</column>
+<column align="center"  clabel="부재료구분" dbname="부재료구분" id="SUB_MTL_TP" index="25" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="60">구분</column>
+<column align="left" clabel="광택코드" dbname="광택코드" id="LUS_RT_NM" index="26" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="*">광택코드</column>
+<column align="center"  clabel="수정자" dbname="수정자" id="MDF_PRS_ID" index="27" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="100">수정자</column>
+<column align="center"  clabel="수정일" dbname="수정일" id="CLR_MDF_DH" index="28" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="120">수정일</column>
+
+<column align="center"  clabel="CCLBOM번호" dbname="CCLBOM번호" id="CCL_BOM_NO1" index="29" sort="str" table="TB_C10_CCL_BOM" type="ro" width="120">CCL BOM</column>
+<column align="center"  clabel="사용여부" dbname="사용여부" id="CCL_BOM_USE_YN1" index="30" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">사용</column>
+<column align="center"  clabel="PRT전면1도" dbname="PRT전면1도" id="PRT_ROLL_NO1" index="31" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면1도</column>
+<column align="center"  clabel="PRT전면2도" dbname="PRT전면2도" id="PRT_ROLL_NO2" index="32" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면2도</column>
+<column align="center"  clabel="PRT전면3도" dbname="PRT전면3도" id="PRT_ROLL_NO3" index="33" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면3도</column>
+<column align="center"  clabel="PRT전면4도" dbname="PRT전면4도" id="PRT_ROLL_NO4" index="34" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면4도</column>
+<column align="center"  clabel="PRT후면1도" dbname="PRT후면1도" id="PRT_ROLL_BAK_NO1" index="35" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면1도</column>
+<column align="center"  clabel="PRT후면2도" dbname="PRT후면2도" id="PRT_ROLL_BAK_NO2" index="36" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면2도</column>
+<column align="center"  clabel="PRT후면3도" dbname="PRT후면3도" id="PRT_ROLL_BAK_NO3" index="37" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면3도</column>
+<column align="center"  clabel="PRT후면4도" dbname="PRT후면4도" id="PRT_ROLL_BAK_NO4" index="38" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면4도</column>
+
+<column align="center"  clabel="CCLBOM번호" dbname="CCLBOM번호" id="CCL_BOM_NO2" index="39" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">CCL BOM</column>
+<column align="center"  clabel="PRT전면1도" dbname="PRT전면1도" id="PRT_ROLL_NO1U" index="40" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">전면1도</column>
+<column align="center"  clabel="PRT전면2도" dbname="PRT전면2도" id="PRT_ROLL_NO2U" index="41" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">전면2도</column>
+<column align="center"  clabel="PRT전면3도" dbname="PRT전면3도" id="PRT_ROLL_NO3U" index="42" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">전면3도</column>
+<column align="center"  clabel="PRT전면4도" dbname="PRT전면4도" id="PRT_ROLL_NO4U" index="43" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">전면4도</column>
+<column align="center"  clabel="PRT전면1도" dbname="PRT후면1도" id="PRT_ROLL_BAK_NO1U" index="44" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">후면1도</column>
+<column align="center"  clabel="PRT후면2도" dbname="PRT후면2도" id="PRT_ROLL_BAK_NO1U" index="45" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">후면2도</column>
+<column align="center"  clabel="PRT후면3도" dbname="PRT후면3도" id="PRT_ROLL_BAK_NO3U" index="46" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">후면3도</column>
+<column align="center"  clabel="PRT후면4도" dbname="PRT후면4도" id="PRT_ROLL_BAK_NO4U" index="47" sort="str" table="TB_C10_CCL_BOM" type="ro" width="110">후면4도</column>
+
+<column align="center"  clabel="CCLBOM번호" dbname="CCLBOM번호" id="CCL_BOM_NO_INK" index="48" sort="str" table="TB_C10_CCL_BOM" type="ro" width="120">CCL BOM</column>
+<column align="center"  clabel="사용여부" dbname="사용여부" id="CCL_BOM_USE_YN_INK" index="49" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">사용</column>
+<column align="center"  clabel="PrintInkCode전면1도" dbname="PrintInkCode전면1도" id="PRT_INK_CD1" index="50" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면1도</column>
+<column align="center"  clabel="PrintInkCode전면2도" dbname="PrintInkCode전면2도" id="PRT_INK_CD2" index="51" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면2도</column>
+<column align="center"  clabel="PrintInkCode전면3도" dbname="PrintInkCode전면3도" id="PRT_INK_CD3" index="52" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면3도</column>
+<column align="center"  clabel="PrintInkCode전면4도" dbname="PrintInkCode전면4도" id="PRT_INK_CD4" index="53" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">전면4도</column>
+<column align="center"  clabel="PrintInkCode후면1도" dbname="PrintInkCode후면1도" id="PRT_INK_BAK_CD1" index="54" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면1도</column>
+<column align="center"  clabel="PrintInkCode후면2도" dbname="PrintInkCode후면2도" id="PRT_INK_BAK_CD2" index="55" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면2도</column>
+<column align="center"  clabel="PrintInkCode후면3도" dbname="PrintInkCode후면3도" id="PRT_INK_BAK_CD3" index="56" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면3도</column>
+<column align="center"  clabel="PrintInkCode후면4도" dbname="PrintInkCode후면4도" id="PRT_INK_BAK_CD4" index="57" sort="str" table="TB_C10_CCL_BOM" type="ro" width="100">후면4도</column>
+
+<column align="center"   clabel="보호필름코드" dbname="보호필름코드" id="PTT_FLM_DTL_CD" index="58" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="70" >보호필름</column>
+
+<column align="center"  clabel="CCLBOM번호" dbname="CCLBOM번호" id="CCL_BOM_NO3" index="59" sort="str" table="TB_C10_CCL_BOM" type="ro" width="120">CCL BOM</column>
+<column align="center"   clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" index="60" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="100">최종수요가</column>
+<column align="left"   clabel="최종수요가코드명" dbname="최종수요가코드명" id="FNL_CUS_CD_NM" index="61" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="250" >최종수요가명</column>
+<column align="center"   clabel="주문용도코드" dbname="주문용도코드" id="ORD_USG_CD" index="62" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="100" >주문용도</column>
+<column align="left"   clabel="주문용도코드명" dbname="주문용도코드명" id="ORD_USG_CD_NM" index="63" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="250" >주문용도명</column>
+
+<column align="left"   clabel="업체코드명" dbname="업체코드명" id="PNT_CMP_NM" index="64" sort="str" table="TB_C10_CLR_CMP_MNG" type="ro" width="300" >업체코드명</column>
+
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CCL_BOM_NO,CCL_BOM_USE_YN,HUE_CD_FRN,HUE_CD_BAK,HUE_CD_FRN_4COT,HUE_CD_FRN_3COT,HUE_CD_FRN_2COT,HUE_CD_FRN_1COT,HUE_CD_BAK_1COT,HUE_CD_BAK_2COT,HUE_CD_BAK_3COT,HUE_CD_BAK_4COT,HUE_CD_LMN,ORD_NO,SPC_AVR,ORD_USG_CD,PRD_NM_CD,FNL_CUS_CD,ORD_EXC_THK,ORD_EXC_WTH,QLT_DSN_END_DH,CLR_SUB_MTL_CD,USE_YN,CLR_NM,SUB_MTL_TP,LUS_RT_NM,MDF_PRS_ID,CLR_MDF_DH,CCL_BOM_NO1,CCL_BOM_USE_YN1,PRT_ROLL_NO1,PRT_ROLL_NO2,PRT_ROLL_NO3,PRT_ROLL_NO4,PRT_ROLL_BAK_NO1,PRT_ROLL_BAK_NO2,PRT_ROLL_BAK_NO3,PRT_ROLL_BAK_NO4,CCL_BOM_NO2,PRT_ROLL_NO1U,PRT_ROLL_NO2U,PRT_ROLL_NO3U,PRT_ROLL_NO4U,PRT_ROLL_BAK_NO1U,PRT_ROLL_BAK_NO2U,PRT_ROLL_BAK_NO3U,PRT_ROLL_BAK_NO4U,CCL_BOM_NO_INK,CCL_BOM_USE_YN_INK,PRT_INK_CD1,PRT_INK_CD2,PRT_INK_CD3,PRT_INK_CD4,PRT_INK_BAK_CD1,PRT_INK_BAK_CD2,PRT_INK_BAK_CD3,PRT_INK_BAK_CD4,CCL_BOM_NO3,FNL_CUS_CD,FNL_CUS_CD_NM,ORD_USG_CD,ORD_USG_CD_NM,PTT_FLM_DTL_CD,PNT_CMP_NM</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="17">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="18">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="19">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="20">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="21">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

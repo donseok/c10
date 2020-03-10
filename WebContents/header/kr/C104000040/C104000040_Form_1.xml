@@ -1,0 +1,39 @@
+<items>
+<item type="block" width="971">
+<item inputWidth="75" label="설계의뢰일" name="QLT_DSN_INST_DH_START" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="75" name="QLT_DSN_INST_DH_END" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="75" label="주문번호" name="ORD_NO" maxLength="10" type="input" style="background-color:#FFFFC0"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="168" label="품명" labelAlign="right" labelWidth="40" name="PRD_NM_CD" type="combo"/>
+<item offset="80" type="newcolumn"/>
+<item command="save" label="Display Name" name="save" type="custombutton" value="재설계" width="80" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="find" label="Display Name" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="971">
+<item inputWidth="100" label="규격약호" labelAlign="right" labelWidth="50" maxLength="15" name="SPC_AVR" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="60" label="주문용도" labelAlign="right" labelWidth="60" maxLength="6" name="ORD_USG_CD" type="input"/>
+<item type="newcolumn"/>
+<item format="serchIcon_ORD_USG_CD" name="template" type="template" value="search"/>
+<item offset="8" type="newcolumn"/>
+<item inputWidth="60" label="최종수요가" labelAlign="right" labelWidth="70" maxLength="6" name="CUS_CD" type="input"/>
+<item type="newcolumn"/>
+<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>	
+</item>
+<item type="block" width="971">
+<item label="조회구분" labelAlign="right" name="txt_input" type="template"/>
+<item offset="8" type="newcolumn"/>
+<item checked="true" label="전체" name="QLT_DSN_STS_CD" type="radio" value="" position="label-right"/>
+<item offset="8" type="newcolumn"/>
+<item label="확정대기" name="QLT_DSN_STS_CD" type="radio" value="B" position="label-right"/>
+<item offset="8" type="newcolumn"/>
+<item label="설계오류" name="QLT_DSN_STS_CD" type="radio" value="E" position="label-right"/>
+</item>
+</items>

@@ -1,0 +1,24 @@
+<items>
+	<item type="block" width="971">
+	    <item labelWidth="130" inputWidth="100" label="라미나개발 번호" name="LMN_DEV_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="접착제 개발완료 일시" name="LMN_BND_DEV_CMP_DH" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="접착제 개발업체" name="LMN_BND_DEV_CHR_UID" type="input" labelAlign="right" value=""/>		
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="130" inputWidth="100" label="라미나필름 개발업체" name="LMN_FLM_DEV_CHR_UID" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나유형" name="LMN_KND_TP" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나필름두께" name="LMN_FLM_THK_CD" type="input" labelAlign="right" value=""/>		
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="130" inputWidth="100" label="라미나접착제" name="LMN_BND_CD" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나접착제시너" name="LMN_BND_THR_CD" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나원단위" name="LMN_UNT" type="input" labelAlign="right" value=""/>
+		<item labelWidth="0" inputWidth="0" label="개발번호" name="PRD_DEV_NO" type="hidden" labelAlign="right" readonly="true" value=""/>		
+	</item>
+</items>

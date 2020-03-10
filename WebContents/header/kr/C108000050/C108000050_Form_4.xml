@@ -1,0 +1,6 @@
+<items>
+    <item offset="10" type="newcolumn"/>
+    <item type="label"  label="[개발완료 BOM]"/>
+	<item type="newcolumn" offset="5" />
+	<item command="dev_cmp_bom_call" label="Display Name" name="dev_cmp_bom_call" type="linkbutton" value="등록"/>
+</items>

@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050 Page 쿼리파일"> 
+	 <query id="C106000050.colorselect" desc="칼라부자재코드조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김종범 */ 
+       DECODE(USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
+       CLR_SUB_MTL_CD,
+       CLR_NM,
+       SUB_MTL_TP,
+       SUB_MTL_TP AS SUB_MTL_TP_HIDDEN,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='SUB_MTL_TP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = SUB_MTL_TP) SUB_MTL_TP_NM,
+       RSN_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP) RSN_TP_NM,
+       LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LUS_RT_CD) LUS_RT_NM,
+       LUS_RT_LLV,
+       LUS_RT_ULV,
+       TP_CD,
+       RL_LUS_RT,
+       DECODE(EX_YN,'Y','1','N','0') AS EX_YN,
+       COL_DIF_STD,
+       DECODE(EX_YN1,'Y','1','N','0') AS EX_YN1,
+       WK_VISCO,
+       PNT_FLM_THK,
+       PRT_INK_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PRT_INK_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PRT_INK_TP) PRT_INK_TP_NM,
+       NV,
+       PNT_GRA,
+       SLV_GRA,
+       THR_CD,
+       PNT_UNT,
+       PMT,
+       QT_L,
+       QT_A,
+       QT_B,
+       STD_CLR_NM,
+       LMN_KND_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_KND_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_KND_TP) LMN_KND_TP_NM,
+       LMN_BND_CD,
+       LMN_BND_THR_CD,
+       LMN_BND_CD1,
+       LMN_BND_THR_CD1,
+       LMN_FLM_THK_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_FLM_THK_CD) LMN_FLM_THK_CD_NM,  --Lamina필름두께코드
+       PTT_FLM_LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_LUS_RT_CD) PTT_FLM_LUS_RT_NM,
+       PTT_FLM_THK_CD,
+      (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_THK_CD) PTT_FLM_THK_NM,
+       PTT_FLM_MQL_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_MQL_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_MQL_CD) PTT_FLM_MQL_NM,
+       PTT_FLM_SUS_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_SUS_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_SUS_ADH_CD) PTT_FLM_SUS_ADH_NM,
+       PTT_FLM_PRD_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_PRD_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_PRD_ADH_CD) PTT_FLM_PRD_ADH_NM,
+       RMRK,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = TB_C10_CLR_CD_MNG.CREATED_OBJECT_ID) AS RGS_PRS_ID,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD HH24:MI:SS') AS RGS_DH,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = TB_C10_CLR_CD_MNG.LAST_UPDATED_OBJECT_ID)AS MDF_PRS_ID,
+       TO_CHAR(CLR_MDF_DH, 'YYYY-MM-DD HH24:MI:SS') AS CLR_MDF_DH,
+       MGR_CLR_SUB_MTL_CD,
+       CLR_SUB_MTL_CD_OLD,
+       RSN_TP_OLD,
+       LUS_RT_CD_OLD,
+       PNT_FLM_THK_OLD,
+       TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH,  --ERP전송일시 추가
+       MOD_YN,
+       RAL_CD, 
+       CASE
+        WHEN TO_CHAR(LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') > NVL(TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS'),'1900-01-01 00:00:00')THEN 'Y'
+        ELSE 'N'
+        END SND_LST,
+        '' as USERNO
+  FROM C10APUSER.TB_C10_CLR_CD_MNG 
+ WHERE NVL(CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
+   AND NVL(SUB_MTL_TP,'%') LIKE '%' || DECODE(:SUB_MTL_TP_SH,'all','%',:SUB_MTL_TP_SH) ||'%'
+   AND NVL(TP_CD,'%') LIKE '%' || :TP_CD ||'%'
+   AND NVL(RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
+   AND NVL(LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
+   AND NVL(PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
+   AND (NVL(RAL_CD,'%') LIKE '%' || :RAL_CD ||'%' OR
+        NVL(CLR_NM,'%') LIKE '%' || :RAL_CD ||'%' OR
+        NVL(STD_CLR_NM,'%') LIKE '%' || :RAL_CD ||'%' OR
+        NVL(RMRK,'%') LIKE '%' || :RAL_CD ||'%' OR
+        NVL(CLR_SUB_MTL_CD_OLD,'%') LIKE '%' || :RAL_CD ||'%' )
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorupdate" desc="칼라코드정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 칼라코드관리 C106000050.colorupdate 김종범 */ 
+TB_C10_CLR_CD_MNG SET 
+CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD,--칼라부자재코드
+CLR_NM = :CLR_NM,--색상명
+SUB_MTL_TP = :SUB_MTL_TP,--부자재구분
+RSN_TP = :RSN_TP,--수지타입
+LUS_RT_CD = :LUS_RT_CD,--광택도코드
+LUS_RT_LLV = :LUS_RT_LLV,--광택도하한값
+LUS_RT_ULV = :LUS_RT_ULV,--광택도상한값
+WK_VISCO = :WK_VISCO,--작업점도
+PNT_FLM_THK = :PNT_FLM_THK,--도막두께
+PRT_INK_TP = :PRT_INK_TP,--PrintInkType
+NV = :NV,--고형분
+PNT_GRA = :PNT_GRA,--도료비중
+SLV_GRA = :SLV_GRA,--용재비중
+THR_CD = :THR_CD,--신나코드
+PNT_UNT = :PNT_UNT,--도료원단위
+PMT = :PMT,--PMT
+QT_L = :QT_L,--L
+QT_A = :QT_A,--A
+QT_B = :QT_B,--B
+STD_CLR_NM = :STD_CLR_NM,--표준색상명
+LMN_KND_TP = :LMN_KND_TP,--Lamina유형
+LMN_BND_CD = :LMN_BND_CD,--Lamina접착제코드
+LMN_BND_THR_CD = :LMN_BND_THR_CD,--Lamina접착제신나코드
+LMN_BND_CD1 = :LMN_BND_CD1,--Lamina접착제코드1
+LMN_BND_THR_CD1 = :LMN_BND_THR_CD1,--Lamina접착제신나코드1
+LMN_FLM_THK_CD = :LMN_FLM_THK_CD,--Lamina필름두께코드
+PTT_FLM_LUS_RT_CD = :PTT_FLM_LUS_RT_CD,--보호필름광택코드
+PTT_FLM_THK_CD = :PTT_FLM_THK_CD,--보호필름두께코드
+PTT_FLM_MQL_CD = :PTT_FLM_MQL_CD,--보호필름재질코드
+PTT_FLM_SUS_ADH_CD = :PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력코드
+PTT_FLM_PRD_ADH_CD = :PTT_FLM_PRD_ADH_CD,--보호필름제품점착력코드
+RMRK = :RMRK,--비고
+RL_LUS_RT = :RL_LUS_RT,
+EX_YN = DECODE(:EX_YN,'1','Y','N'),
+COL_DIF_STD = :COL_DIF_STD,
+EX_YN1 = DECODE(:EX_YN1,'1','Y','N'),
+TP_CD = :TP_CD,
+MDF_PRS_ID = :ObjectId, 
+CLR_MDF_DH = SYSDATE,
+USE_YN = DECODE(:USE_YN,'1','Y','Y','Y','N'),--사용여부
+MGR_CLR_SUB_MTL_CD = :MGR_CLR_SUB_MTL_CD, --통합컬러코드
+CLR_SUB_MTL_CD_OLD = :CLR_SUB_MTL_CD_OLD,--구칼라부자재코드
+RSN_TP_OLD = :RSN_TP_OLD,--구수지타입
+LUS_RT_CD_OLD = :LUS_RT_CD_OLD,--구광택도코드
+PNT_FLM_THK_OLD = :PNT_FLM_THK_OLD,--구도막두께
+MOD_YN = :MOD_YN,
+RAL_CD = :RAL_CD,
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp   
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colordelete" desc="칼라코드정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계 칼라코드관리 C106000050.colordelete 김종범 */ 
+FROM TB_C10_CLR_CD_MNG 
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorinsert" desc="칼라코드정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_CD_MNG/*+ C10 품질설계 칼라코드관리 C106000050.colorinsert 김종범 */ (
+    CLR_SUB_MTL_CD,--칼라부자재코드
+    CLR_NM,--색상명
+    SUB_MTL_TP,--부자재구분
+    RSN_TP,--수지타입
+    LUS_RT_CD,--광택도코드
+    LUS_RT_LLV,--광택도하한값
+    LUS_RT_ULV,--광택도상한값
+    WK_VISCO,--작업점도
+    PNT_FLM_THK,--도막두께
+    PRT_INK_TP,--PrintInkType
+    NV,--고형분
+    PNT_GRA,--도료비중
+    SLV_GRA,--용재비중
+    THR_CD,--신나코드
+    PNT_UNT,--도료원단위
+    PMT,--PMT
+    QT_L,--L
+    QT_A,--A
+    QT_B,--B
+    STD_CLR_NM,--표준색상명
+    LMN_KND_TP,--Lamina유형
+    LMN_BND_CD,--Lamina접착제코드
+    LMN_BND_THR_CD,--Lamina접착제신나코드
+    LMN_BND_CD1,--Lamina접착제코드1
+    LMN_BND_THR_CD1,--Lamina접착제신나코드1
+    LMN_FLM_THK_CD,--Lamina필름두께코드
+    PTT_FLM_LUS_RT_CD,--보호필름광택코드
+    PTT_FLM_THK_CD,--보호필름두께코드
+    PTT_FLM_MQL_CD,--보호필름재질코드
+    PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력코드
+    PTT_FLM_PRD_ADH_CD,--보호필름제품점착력코드
+    RMRK,--비고
+    RGS_PRS_ID,--등록자
+    RGS_DH,--등록일
+    MDF_PRS_ID,--수정자
+    CLR_MDF_DH,--수정일 
+    MGR_CLR_SUB_MTL_CD, --통합컬러코드  
+    CLR_SUB_MTL_CD_OLD,--구칼라부자재코드
+    RSN_TP_OLD,--구수지타입
+    LUS_RT_CD_OLD,--구광택도코드
+    PNT_FLM_THK_OLD,--구도막두께
+    USE_YN,--사용여부
+    RAL_CD,
+    RL_LUS_RT,
+    EX_YN,
+    COL_DIF_STD,
+    EX_YN1,
+    TP_CD,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CLR_SUB_MTL_CD,--칼라부자재코드
+    :CLR_NM,--색상명
+    :SUB_MTL_TP,--부자재구분
+    :RSN_TP,--수지타입
+    :LUS_RT_CD,--광택도코드
+    :LUS_RT_LLV,--광택도하한값
+    :LUS_RT_ULV,--광택도상한값
+    :WK_VISCO,--작업점도
+    :PNT_FLM_THK,--도막두께
+    :PRT_INK_TP,--PrintInkType
+    :NV,--고형분
+    :PNT_GRA,--도료비중
+    :SLV_GRA,--용재비중
+    :THR_CD,--신나코드
+    :PNT_UNT,--도료원단위
+    :PMT,--PMT
+    :QT_L,--L
+    :QT_A,--A
+    :QT_B,--B
+    :STD_CLR_NM,--표준색상명
+    :LMN_KND_TP,--Lamina유형
+    :LMN_BND_CD,--Lamina접착제코드
+    :LMN_BND_THR_CD,--Lamina접착제신나코드
+    :LMN_BND_CD1,--Lamina접착제코드
+    :LMN_BND_THR_CD1,--Lamina접착제신나코드
+    :LMN_FLM_THK_CD,--Lamina필름두께코드
+    :PTT_FLM_LUS_RT_CD,--보호필름광택코드
+    :PTT_FLM_THK_CD,--보호필름두께코드
+    :PTT_FLM_MQL_CD,--보호필름재질코드
+    :PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력코드
+    :PTT_FLM_PRD_ADH_CD,--보호필름제품점착력코드
+    :RMRK,--비고
+    :ObjectId, --RGS_PRS_ID등록자
+    SYSDATE,--등록일
+    :ObjectId,--MDF_PRS_ID수정자
+    SYSDATE,--수정일
+    :MGR_CLR_SUB_MTL_CD, --통합컬러코드
+    :CLR_SUB_MTL_CD_OLD,--구칼라부자재코드
+    :RSN_TP_OLD,--구수지타입
+    :LUS_RT_CD_OLD,--구광택도코드
+    :PNT_FLM_THK_OLD,--구도막두께
+    DECODE(:USE_YN,'1','Y','N'),--사용여부
+    :RAL_CD,
+    :RL_LUS_RT,
+    DECODE(:EX_YN,'1','Y','N'),
+    :COL_DIF_STD,
+    DECODE(:EX_YN1,'1','Y','N'),
+    :TP_CD,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp
+)
+		 ]]> 
+	 </query>
+	 <query id="C106000050.cclbomupdate" desc="cclbom 수정" isNamed="true">
+		 <![CDATA[ 
+update C10APUSER.TB_C10_CCL_BOM
+set    RSN_TP_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_FRN_1COT),
+       RSN_TP_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_FRN_2COT),
+       RSN_TP_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_FRN_3COT),
+       RSN_TP_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_FRN_4COT),
+       RSN_TP_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_BAK_1COT),
+       RSN_TP_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_BAK_2COT),
+       RSN_TP_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_BAK_3COT),
+       RSN_TP_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_TP_BAK_4COT),
+       LUS_RT_CD_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_FRN_1COT),
+       LUS_RT_CD_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_FRN_2COT),
+       LUS_RT_CD_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_FRN_3COT),
+       LUS_RT_CD_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_FRN_4COT),
+       LUS_RT_CD_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_BAK_1COT),
+       LUS_RT_CD_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_BAK_2COT),
+       LUS_RT_CD_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_BAK_3COT),
+       LUS_RT_CD_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :LUS_RT_CD, LUS_RT_CD_BAK_4COT),
+       LUS_RT_FRN_1COT_LLV = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_FRN_1COT_LLV),
+       LUS_RT_FRN_2COT_LLV = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_FRN_2COT_LLV),
+       LUS_RT_FRN_3COT_LLV = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_FRN_3COT_LLV),
+       LUS_RT_FRN_4COT_LLV = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_FRN_4COT_LLV),
+       LUS_RT_BAK_1COT_LLV = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_BAK_1COT_LLV),
+       LUS_RT_BAK_2COT_LLV = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_BAK_2COT_LLV),
+       LUS_RT_BAK_3COT_LLV = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_BAK_3COT_LLV),
+       LUS_RT_BAK_4COT_LLV = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :LUS_RT_LLV, LUS_RT_BAK_4COT_LLV),
+       LUS_RT_FRN_1COT_ULV = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_FRN_1COT_ULV),
+       LUS_RT_FRN_2COT_ULV = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_FRN_2COT_ULV),
+       LUS_RT_FRN_3COT_ULV = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_FRN_3COT_ULV),
+       LUS_RT_FRN_4COT_ULV = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_FRN_4COT_ULV),
+       LUS_RT_BAK_1COT_ULV = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_BAK_1COT_ULV),
+       LUS_RT_BAK_2COT_ULV = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_BAK_2COT_ULV),
+       LUS_RT_BAK_3COT_ULV = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_BAK_3COT_ULV),
+       LUS_RT_BAK_4COT_ULV = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :LUS_RT_ULV, LUS_RT_BAK_4COT_ULV),
+       WK_VISCO_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_FRN_1COT),
+       WK_VISCO_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_FRN_2COT),
+       WK_VISCO_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_FRN_3COT),
+       WK_VISCO_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_FRN_4COT),
+       WK_VISCO_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_BAK_1COT),
+       WK_VISCO_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_BAK_2COT),
+       WK_VISCO_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_BAK_3COT),
+       WK_VISCO_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :WK_VISCO, WK_VISCO_BAK_4COT),
+       NV_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :NV, NV_FRN_1COT),
+       NV_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :NV, NV_FRN_2COT),
+       NV_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :NV, NV_FRN_3COT),
+       NV_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :NV, NV_FRN_4COT),
+       NV_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :NV, NV_BAK_1COT),
+       NV_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :NV, NV_BAK_2COT),
+       NV_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :NV, NV_BAK_3COT),
+       NV_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :NV, NV_BAK_4COT),
+       PNT_GRA_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_FRN_1COT),
+       PNT_GRA_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_FRN_2COT),
+       PNT_GRA_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_FRN_3COT),
+       PNT_GRA_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_FRN_4COT),
+       PNT_GRA_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_BAK_1COT),
+       PNT_GRA_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_BAK_2COT),
+       PNT_GRA_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_BAK_3COT),
+       PNT_GRA_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :PNT_GRA, PNT_GRA_BAK_4COT),
+       SLV_GRA_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_FRN_1COT),
+       SLV_GRA_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_FRN_2COT),
+       SLV_GRA_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_FRN_3COT),
+       SLV_GRA_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_FRN_4COT),
+       SLV_GRA_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_BAK_1COT),
+       SLV_GRA_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_BAK_2COT),
+       SLV_GRA_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_BAK_3COT),
+       SLV_GRA_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :SLV_GRA, SLV_GRA_BAK_4COT),
+       THR_CD_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_FRN_1COT),
+       THR_CD_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_FRN_2COT),
+       THR_CD_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_FRN_3COT),
+       THR_CD_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_FRN_4COT),
+       THR_CD_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_BAK_1COT),
+       THR_CD_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_BAK_2COT),
+       THR_CD_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_BAK_3COT),
+       THR_CD_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :THR_CD, THR_CD_BAK_4COT),
+       PNT_UNT_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_FRN_1COT),
+       PNT_UNT_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_FRN_2COT),
+       PNT_UNT_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_FRN_3COT),
+       PNT_UNT_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_FRN_4COT),
+       PNT_UNT_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_BAK_1COT),
+       PNT_UNT_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_BAK_2COT),
+       PNT_UNT_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_BAK_3COT),
+       PNT_UNT_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :PNT_UNT, PNT_UNT_BAK_4COT),
+       PMT_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :PMT, PMT_FRN_1COT),
+       PMT_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :PMT, PMT_FRN_2COT),
+       PMT_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :PMT, PMT_FRN_3COT),
+       PMT_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :PMT, PMT_FRN_4COT),
+       PMT_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_1COT),
+       PMT_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_2COT),
+       PMT_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_3COT),
+       PMT_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_4COT),
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType,  
+       LAST_UPDATED_OBJECT_ID   = :ObjectId,      
+       LAST_UPDATE_PROGRAM_ID   = :ProgramId,     
+       LAST_UPDATE_TIMESTAMP    = :Timestamp  
+where  :CLR_SUB_MTL_CD in (HUE_CD_FRN_1COT, HUE_CD_FRN_2COT, HUE_CD_FRN_3COT, HUE_CD_FRN_4COT,
+                           HUE_CD_BAK_1COT, HUE_CD_BAK_2COT, HUE_CD_BAK_3COT, HUE_CD_BAK_4COT)
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detailselect" desc="상세조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 
+       DECODE(USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
+       CLR_SUB_MTL_CD,--칼라부재료코드
+       PNT_CMP_CD,--도료업체코드
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PNT_CMP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PNT_CMP_CD) PNT_CMP_NM,--도료업체코드(마스터)
+       NV,--고형분
+       PNT_GRA,--도료비중
+       SLV_GRA,--용재비중
+       PNT_UNT,--도료원단위
+       DECODE(USE_YN,'Y','1','N','0') AS USE_YN_BAK, --사용여부
+       '' MOD_YN_BAK ,--수정여부
+       PTC_YN  , -- 입자유무
+       PTC_TYPE , --입자TYPE
+       TEX_KND , --질감종류
+       PTC_MIN , --입자MIN
+       PTC_MAX , --입자MAX
+       PTC_AVG , --입자AVG
+       CMT , --비고
+    QUE_MIN , --소광제MIN
+    QUE_MAX , --소광제 MAX
+    QUE_AVG   --소광제AVG
+ FROM TB_C10_CLR_CMP_MNG
+ WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detaildelete" desc="" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계 칼라코드관리 C106000050.colordelete 김종범 */ 
+FROM TB_C10_CLR_CMP_MNG 
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+    AND PNT_CMP_CD = :PNT_CMP_CD
+		 ]]> 
+	 </query>
+	 <query id="IFB10S0130.insert" desc="" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 칼라부자재코드전송IF TB_C10_B10S0130.insert 김종범*/
+            TB_C10_B10S0130
+            (
+                  IF_GRP_ID
+                 ,SEQ_NO   
+                 ,XSEQ       
+                 ,XCRUD  
+                 ,XSTAT
+                 ,ITM_TP  
+                 ,ITM_CD
+                 ,ITM_NM
+                 ,MAK_CD
+                 ,MAK_NM
+                 ,RSN_TP
+                 ,RSN_NM
+                 ,LUS_RT_CD
+                 ,LUS_RT_NM
+                 ,INK_TP
+                 ,INK_NM
+                 ,PTT_FLM_MQL_CD
+                 ,PTT_FLM_MQL_NM
+                 ,PTT_FLM_THK_CD
+                 ,PTT_FLM_THK_NM
+                 ,PTT_FLM_SUS_ADH_CD
+                 ,PTT_FLM_SUS_ADH_NM
+                 ,PTT_FLM_PRD_ADH_CD
+                 ,PTT_FLM_PRD_ADH_NM
+                 ,PNT_CMP_USE_YN
+                 ,MOD_YN
+                 ,CREATED_OBJECT_TYPE         
+                 ,CREATED_OBJECT_ID        
+                 ,CREATED_PROGRAM_ID      
+                 ,CREATION_TIMESTAMP     
+                 ,LAST_UPDATED_OBJECT_TYPE
+                 ,LAST_UPDATED_OBJECT_ID  
+                 ,LAST_UPDATE_PROGRAM_ID  
+                 ,LAST_UPDATE_TIMESTAMP     
+            )
+VALUES
+            (
+              :IF_GRP_ID,
+              SQ_C10_B10S0130.NEXTVAL,
+	       '1',
+              'C',
+              'R',
+              :SUB_MTL_TP,
+              :CLR_SUB_MTL_CD,
+              :CLR_NM,
+              :PNT_CMP_CD,
+              :PNT_CMP_NM,
+              :RSN_TP,
+              :RSN_TP_NM,
+              :LUS_RT_CD,
+              :LUS_RT_NM,
+              :PRT_INK_TP,
+              :PRT_INK_TP_NM,
+              :PTT_FLM_MQL_CD,
+              :PTT_FLM_MQL_NM,
+              :PTT_FLM_THK_CD,
+              :PTT_FLM_THK_NM,
+              :PTT_FLM_SUS_ADH_CD,
+              :PTT_FLM_SUS_ADH_NM,
+              :PTT_FLM_PRD_ADH_CD,
+              :PTT_FLM_PRD_ADH_NM,
+              DECODE(:USE_YN,'1','Y','N'),
+              :MOD_YN,
+              :ObjectType,
+              :ObjectId,
+              :ProgramId,
+              :Timestamp,
+              :ObjectType,
+              :ObjectId,
+              :ProgramId,
+              :Timestamp
+            )
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detailupdate" desc="도료사코드업데이트" isNamed="true">
+		 <![CDATA[ 
+UPDATE TB_C10_CLR_CMP_MNG
+      SET   USE_YN = DECODE(:USE_YN,'1','Y','Y','Y','N'),--사용여부
+            NV =:NV, --고형분
+            PNT_GRA =:PNT_GRA, --도료비중
+            SLV_GRA =:SLV_GRA, --용재비중
+            PNT_UNT =:PNT_UNT,  --도료원단위
+            PTC_YN  =:PTC_YN , -- 입자유무
+            PTC_TYPE =:PTC_TYPE, --입자TYPE
+            TEX_KND =:TEX_KND, --질감종류
+            PTC_MIN =:PTC_MIN, --입자MIN
+            PTC_MAX =:PTC_MAX, --입자MAX
+            PTC_AVG =:PTC_AVG, --입자AVG
+            CMT =:CMT, --비고
+            QUE_MIN =:QUE_MIN, --소광제MIN
+            QUE_MAX =:QUE_MAX, --소광제 MAX
+            QUE_AVG  =:QUE_AVG, --소광제AVG
+	     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+	     LAST_UPDATED_OBJECT_ID=:ObjectId,      
+	     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+	     LAST_UPDATE_TIMESTAMP=:Timestamp            
+WHERE  CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+            AND PNT_CMP_CD =:PNT_CMP_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detailinsert" desc="" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_CMP_MNG/*+ C10 품질설계 칼라코드관리 C106000050.detailinsert 김종범 */ (
+    CLR_SUB_MTL_CD,--칼라부재료코드
+    PNT_CMP_CD,--도료업체코드
+    NV,--고형분
+    PNT_GRA,--도료비중
+    SLV_GRA,--용재비중
+    PNT_UNT,--도료원단위
+    USE_YN,--사용여부
+    PTC_YN  , -- 입자유무
+    PTC_TYPE , --입자TYPE
+    TEX_KND , --질감종류
+    PTC_MIN , --입자MIN
+    PTC_MAX , --입자MAX9
+    PTC_AVG , --입자AVG
+    CMT , --비고
+    QUE_MIN , --소광제MIN
+    QUE_MAX , --소광제 MAX
+    QUE_AVG  , --소광제AVG
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CLR_SUB_MTL_CD,
+    :PNT_CMP_CD,
+    :NV,
+    :PNT_GRA,
+    :SLV_GRA,
+    :PNT_UNT,
+    DECODE(:USE_YN,'1','Y','N'),--사용여부  
+    :PTC_YN  , -- 입자유무
+    :PTC_TYPE , --입자TYPE
+    :TEX_KND , --질감종류
+    :PTC_MIN , --입자MIN
+    :PTC_MAX , --입자MAX
+    :PTC_AVG , --입자AVG
+    :CMT , --비고
+    :QUE_MIN , --소광제MIN
+    :QUE_MAX , --소광제 MAX
+    :QUE_AVG ,  --소광제AVG
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorAjaxFind" desc="C106000050.colorAjaxFind" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 칼라코드관리- 칼라코드AJAX조회 C106000050.colorAjaxFind 김종범 */ 
+       CLR_SUB_MTL_CD,
+       SUB_MTL_TP
+FROM C10APUSER.TB_C10_CLR_CD_MNG
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.DetailSendSelec" desc="전송 칼라코드업체조회 C106000050.DetailSendSelect 김종범" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라코드관리- 칼라코드업체조회 C106000050.DetailSendSelect 김종범 */ 
+       (SELECT (CASE WHEN CC.USE_YN = 'Y'THEN DECODE(BB.USE_YN,'Y','1','N','0')
+                                                                   ELSE '0' END )
+        FROM C10APUSER.TB_C10_CLR_CD_MNG CC
+        WHERE CC.CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD) AS USE_YN,--사용여부
+       CLR_SUB_MTL_CD,--칼라부재료코드
+       PNT_CMP_CD,--도료업체코드
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PNT_CMP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PNT_CMP_CD) PNT_CMP_NM,--도료업체코드(마스터)
+       NV,--고형분
+       PNT_GRA,--도료비중
+       SLV_GRA,--용재비중
+       PNT_UNT--도료원단위
+  FROM C10APUSER.TB_C10_CLR_CMP_MNG BB
+ WHERE BB.CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.erp_snd_update" desc="ERP전송일시관리" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 칼라코드관리 C106000050.erp_snd_update 김종범 */ 
+TB_C10_CLR_CD_MNG SET 
+ERP_SND_DH = sysdate + 0.5/1440
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorupdate2" desc="도료사저장시 Color수정일 자동 업데이트" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 칼라코드관리 C106000050.colorupdate2 김종범 */ 
+TB_C10_CLR_CD_MNG SET      
+MDF_PRS_ID =  :ObjectId,
+CLR_MDF_DH = SYSDATE,
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp 
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorselect2" desc="칼라코드관리- 전송대상조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라코드관리- 전송대상조회 C106000050.COLORSELECT2 김종범 */ 
+       USE_YN,
+       CLR_SUB_MTL_CD,
+       CLR_NM,
+       SUB_MTL_TP,
+       SUB_MTL_TP_HIDDEN,
+       SUB_MTL_TP_NM,
+       RSN_TP,
+       RSN_TP_NM,
+       LUS_RT_CD,
+       LUS_RT_NM,
+       LUS_RT_LLV,
+       LUS_RT_ULV,
+       WK_VISCO,
+       PNT_FLM_THK,
+       PRT_INK_TP,
+       PRT_INK_TP_NM,
+       NV,
+       PNT_GRA,
+       SLV_GRA,
+       THR_CD,
+       PNT_UNT,
+       PMT,
+       QT_L,
+       QT_A,
+       QT_B,
+       STD_CLR_NM,
+       LMN_KND_TP,
+       LMN_KND_TP_NM,
+       LMN_BND_CD,
+       LMN_BND_THR_CD,
+       LMN_BND_CD1,
+       LMN_BND_THR_CD1,
+       LMN_FLM_THK_CD,
+       LMN_FLM_THK_CD_NM,  --LAMINA필름두께코드
+       PTT_FLM_LUS_RT_CD,
+       PTT_FLM_LUS_RT_NM,
+       PTT_FLM_THK_CD,
+       PTT_FLM_THK_NM,
+       PTT_FLM_MQL_CD,
+       PTT_FLM_MQL_NM,
+       PTT_FLM_SUS_ADH_CD,
+       PTT_FLM_SUS_ADH_NM,
+       PTT_FLM_PRD_ADH_CD,
+       PTT_FLM_PRD_ADH_NM,
+       RMRK,
+       RGS_PRS_ID,
+       RGS_DH,
+       MDF_PRS_ID,
+       CLR_MDF_DH,
+       CLR_SUB_MTL_CD_OLD,
+       RSN_TP_OLD,
+       LUS_RT_CD_OLD,
+       PNT_FLM_THK_OLD,
+       ERP_SND_DH,   --ERP전송일시 추가
+       LAST_UPDATE_TIMESTAMP,
+       SND_LST
+FROM(
+SELECT 
+       DECODE(USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
+       CLR_SUB_MTL_CD,
+       CLR_NM,
+       SUB_MTL_TP,
+       SUB_MTL_TP AS SUB_MTL_TP_HIDDEN,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='SUB_MTL_TP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = SUB_MTL_TP) SUB_MTL_TP_NM,
+       RSN_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP) RSN_TP_NM,
+       LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LUS_RT_CD) LUS_RT_NM,
+       LUS_RT_LLV,
+       LUS_RT_ULV,
+       WK_VISCO,
+       PNT_FLM_THK,
+       PRT_INK_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PRT_INK_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PRT_INK_TP) PRT_INK_TP_NM,
+       NV,
+       PNT_GRA,
+       SLV_GRA,
+       THR_CD,
+       PNT_UNT,
+       PMT,
+       QT_L,
+       QT_A,
+       QT_B,
+       STD_CLR_NM,
+       LMN_KND_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_KND_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_KND_TP) LMN_KND_TP_NM,
+       LMN_BND_CD,
+       LMN_BND_THR_CD,
+       LMN_BND_CD1,
+       LMN_BND_THR_CD1,
+       LMN_FLM_THK_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_FLM_THK_CD) LMN_FLM_THK_CD_NM,  --LAMINA필름두께코드
+       PTT_FLM_LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_LUS_RT_CD) PTT_FLM_LUS_RT_NM,
+       PTT_FLM_THK_CD,
+      (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_THK_CD) PTT_FLM_THK_NM,
+       PTT_FLM_MQL_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_MQL_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_MQL_CD) PTT_FLM_MQL_NM,
+       PTT_FLM_SUS_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_SUS_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_SUS_ADH_CD) PTT_FLM_SUS_ADH_NM,
+       PTT_FLM_PRD_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_PRD_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_PRD_ADH_CD) PTT_FLM_PRD_ADH_NM,
+       RMRK,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = TB_C10_CLR_CD_MNG.CREATED_OBJECT_ID) AS RGS_PRS_ID,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD') AS RGS_DH,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = TB_C10_CLR_CD_MNG.LAST_UPDATED_OBJECT_ID)AS MDF_PRS_ID,
+       TO_CHAR(CLR_MDF_DH, 'YYYY-MM-DD HH24:MI:SS') AS CLR_MDF_DH,
+       CLR_SUB_MTL_CD_OLD,
+       RSN_TP_OLD,
+       LUS_RT_CD_OLD,
+       PNT_FLM_THK_OLD,
+       TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH,   --ERP전송일시 추가
+       LAST_UPDATE_TIMESTAMP,
+        CASE
+        WHEN TO_CHAR(LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') > NVL(TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS'),'1900-01-01 00:00:00')THEN 'Y'
+        ELSE 'N'
+        END SND_LST --전송대상건 구분
+  FROM C10APUSER.TB_C10_CLR_CD_MNG 
+ WHERE NVL(CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
+   AND NVL(SUB_MTL_TP,'%') LIKE '%' || DECODE(:SUB_MTL_TP_SH,'all','%',:SUB_MTL_TP_SH) ||'%'
+   AND NVL(TP_CD,'%') LIKE '%' || :TP_CD ||'%'
+   AND NVL(RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
+   AND NVL(LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
+   AND NVL(PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
+   AND LAST_UPDATE_TIMESTAMP > NVL(ERP_SND_DH,TO_DATE('19000101000000', 'YYYYMMDD HH24MISS')))
+WHERE SND_LST ='Y'
+		 ]]> 
+	 </query>
+	 <query id="C106000050.updateModYn" desc="" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 수지광택도수정여부 업데이트 C106000050.updateModYn 원성옥 */ 
+C10APUSER.TB_C10_CLR_CD_MNG SET 
+MOD_YN  = NULL,
+MDF_PRS_ID =  :ObjectId,
+CLR_MDF_DH = SYSDATE,
+LAST_UPDATED_OBJECT_TYPE=:LAST_UPDATED_OBJECT_TYPE,  
+LAST_UPDATED_OBJECT_ID=:LAST_UPDATED_OBJECT_ID,      
+LAST_UPDATE_PROGRAM_ID=:LAST_UPDATE_PROGRAM_ID,     
+LAST_UPDATE_TIMESTAMP=SYSTIMESTAMP
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+   AND MOD_YN = 'M'
+		 ]]> 
+	 </query>
+	 <query id="C106000050xls.select" desc="C106000050xls.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계 CCLBOM조회 C106000050xls.select 이돈석 */
+DECODE(NVL(A.USE_YN,'N'),'Y','사용','N','미사용') AS USE_YN,
+       A.CLR_SUB_MTL_CD,
+       A.CLR_NM,
+       A.SUB_MTL_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='SUB_MTL_TP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = SUB_MTL_TP) SUB_MTL_TP_NM,
+       A.RSN_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP) RSN_TP_NM,
+       A.LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LUS_RT_CD) LUS_RT_NM,
+       A.LUS_RT_LLV,
+       A.LUS_RT_ULV,
+       A.RL_LUS_RT,
+       A.WK_VISCO,
+       A.PNT_FLM_THK,
+       A.PRT_INK_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PRT_INK_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PRT_INK_TP) PRT_INK_TP_NM,
+       A.NV,
+       A.PNT_GRA,
+       A.SLV_GRA,
+       A.THR_CD,
+       A.PNT_UNT,
+       A.PMT,
+       A.QT_L,
+       A.QT_A,
+       A.QT_B,
+       A.STD_CLR_NM,
+       A.LMN_KND_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_KND_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_KND_TP) LMN_KND_TP_NM,
+       A.LMN_BND_CD,
+       A.LMN_BND_THR_CD,
+       A.LMN_BND_CD1,
+       A.LMN_BND_THR_CD1,
+       A.LMN_FLM_THK_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_FLM_THK_CD) LMN_FLM_THK_CD_NM,  --Lamina필름두께코드
+       A.PTT_FLM_LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_LUS_RT_CD) PTT_FLM_LUS_RT_NM,
+       A.PTT_FLM_THK_CD,
+      (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_THK_CD) PTT_FLM_THK_NM,
+       A.PTT_FLM_MQL_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_MQL_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_MQL_CD) PTT_FLM_MQL_NM,
+       A.PTT_FLM_SUS_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_SUS_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_SUS_ADH_CD) PTT_FLM_SUS_ADH_NM,
+       A.PTT_FLM_PRD_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_PRD_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_PRD_ADH_CD) PTT_FLM_PRD_ADH_NM,
+       A.RMRK,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.CREATED_OBJECT_ID) AS RGS_PRS_ID,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD HH24:MI:SS') AS RGS_DH,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.LAST_UPDATED_OBJECT_ID)AS MDF_PRS_ID,
+       TO_CHAR(CLR_MDF_DH, 'YYYY-MM-DD HH24:MI:SS') AS CLR_MDF_DH,
+       A.MGR_CLR_SUB_MTL_CD,
+       A.CLR_SUB_MTL_CD_OLD,
+       A.RSN_TP_OLD,
+       A.LUS_RT_CD_OLD,
+       A.PNT_FLM_THK_OLD,
+       DECODE(NVL(B.USE_YN,'N'),'Y','사용','N','미사용') AS CMP_USE_YN,
+       B.PNT_CMP_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PNT_CMP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PNT_CMP_CD) PNT_CMP_NM,
+       B.NV, 
+       B.PNT_GRA, 
+       B.SLV_GRA, 
+       B.PNT_UNT 
+  FROM TB_C10_CLR_CD_MNG A,
+       TB_C10_CLR_CMP_MNG B
+ WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD(+)
+		 ]]> 
+	 </query>
+	 <query id="C106000050.rule_chk" desc="C106000050.rule_chk" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 칼라코드관리- 수지 MTC Note 편집기준 Check C106000050.rule_chk 성낙원 */ 
+        MPR_ACT_SUB_TST
+from   M00APUSER.VI_M00_M20B3030
+where  RSN_TP_FRN = :RSN_TP_FRN
+  and  rownum = 1
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detailupsert_log" desc="C106000050.detailupsert_log" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_CMP_MNG_MDF_LOG/*+ C10 품질설계 칼라코드관리 C106000050.detailupsert_log 성낙원 */ (
+    CLR_SUB_MTL_CD,--칼라부재료코드
+    PNT_CMP_CD,--도료업체코드
+    MDF_SEQ, --수정 Seq
+    MDF_RSN, --수정 사유
+    NV,--고형분
+    PNT_GRA,--도료비중
+    SLV_GRA,--용재비중
+    PNT_UNT,--도료원단위
+    USE_YN,--사용여부
+    PTC_YN  , -- 입자유무
+    PTC_TYPE , --입자TYPE
+    TEX_KND , --질감종류
+    PTC_MIN , --입자MIN
+    PTC_MAX , --입자MAX9
+    PTC_AVG , --입자AVG
+    CMT , --비고
+    QUE_MIN , --소광제MIN
+    QUE_MAX , --소광제 MAX
+    QUE_AVG  , --소광제AVG
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CLR_SUB_MTL_CD,
+    :PNT_CMP_CD,
+    nvl((select max(mdf_seq)+1 from TB_C10_CLR_CMP_MNG_MDF_LOG where CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD and PNT_CMP_CD = :PNT_CMP_CD),0), --수정 Seq No
+    :MDF_RSN, -- 수정 사유
+    :NV,
+    :PNT_GRA,
+    :SLV_GRA,
+    :PNT_UNT,
+    DECODE(:USE_YN,'1','Y','N'),--사용여부  
+    :PTC_YN  , -- 입자유무
+    :PTC_TYPE , --입자TYPE
+    :TEX_KND , --질감종류
+    :PTC_MIN , --입자MIN
+    :PTC_MAX , --입자MAX
+    :PTC_AVG , --입자AVG
+    :CMT , --비고
+    :QUE_MIN , --소광제MIN
+    :QUE_MAX , --소광제 MAX
+    :QUE_AVG ,  --소광제AVG
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000050.detaildelete_log" desc="C106000050.detaildelete_log" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_CMP_MNG_MDF_LOG/*+ C10 품질설계 칼라코드관리 C106000050.detaildelete_log 성낙원 */ (
+    CLR_SUB_MTL_CD,--칼라부재료코드
+    PNT_CMP_CD,--도료업체코드
+    MDF_SEQ, --수정 Seq
+    MDF_RSN, --수정 사유
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CLR_SUB_MTL_CD,
+    :PNT_CMP_CD,
+    nvl((select max(mdf_seq)+1 from TB_C10_CLR_CMP_MNG_MDF_LOG where CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD and PNT_CMP_CD = :PNT_CMP_CD),0), --수정 Seq No
+    :MDF_RSN, -- 수정 사유
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp)
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="379,23" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="377,434" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.5 //@wire.11 //@wire.13 //@wire.14 //@wire.15 //@wire.17 //@wire.20 //@wire.22"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="32,102" size="1082,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.7 //@wire.12 //@wire.1 //@wire.18 //@wire.10 //@wire.19 //@wire.21" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   원자재, 제조사양, 품질메세지조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   RMT_find는 품질설계-원자재, MNF_find는 품질설계-제조표준&#xD;&#xA;   MSG_find는 품질설계-메세지를 각각 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="3" location="43,186" size="86,-1" input="//@wire.1" output="//@wire.2" name="원자재조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05_RMT.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-원자재 테이블(TB_C10_QLT_DSN_RMT)의  품질설계-원자재를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="93" location="100,285" size="107,-1" input="//@wire.9" output="//@wire.3" name="제조표준조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05_MNF.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-제조표준 테이블(TB_C10_QLT_DSN_MNF)의  품질설계-제조표준1를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="94" location="188,190" size="85,-1" input="//@wire.4" output="//@wire.5" name="MSG조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05_MSG.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-메세지 테이블(TB_C10_QLT_DSN_MSG)의  품질설계-메세지를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="155688" location="287,175" size="93,-1" input="//@wire.18" output="//@wire.6 //@wire.17" name="원자재저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000020TAB05.RMTupdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계원자재테이블(TB_C10_QLT_DSN_RMT)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호,주문행번의 원자재코드, 원자재선호도, 목표두께, 두께하한, 두께상한, 목표폭등을 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="155689" location="398,202" size="93,-1" input="//@wire.7" output="//@wire.8 //@wire.15" name="PLTCM저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000020TAB05.MNF_CGLupdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계제조테이블(TB_C10_QLT_DSN_MNF)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호,주문행번의 5StandWRType, 내경링사용여부, S/T유무, X-Ray Set두께값, &#xD;&#xA;       Side Trimming Set값, 두께목표값, 폭목표값등을 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="155693" location="573,221" size="93,-1" input="//@wire.10" output="//@wire.11 //@wire.16" name="MSG저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000020TAB05.MSGupdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계메세지테이블(TB_C10_QLT_DSN_MSG)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호,주문행번의 품질메세지를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="156731" location="664,175" size="86,-1" input="//@wire.12" output="//@wire.13" name="확정주문">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05.STSselect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계상태를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156732" location="330,283" size="180,-1" input="//@wire.8 //@wire.16 //@wire.6" output="//@wire.14" name="이력저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000020TAB05.CHG_HSTinsert"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계결과수정이력테이블(TB_C10_QLT_DSN_CHG_HST)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호,주문행번의 수정화면명등을 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="156733" location="806,177" size="86,-1" input="//@wire.19" output="//@wire.20" name="통과공정확인">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05_PROC"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-통과공정 테이블(TB_C10_QLT_DSN_PROC)의  통과공정정보를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="229050" location="921,180" size="94,-1" input="//@wire.21" output="//@wire.22" name="설계공통확인">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB05_CMN"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계결과-제조표준1을 조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;그리드 항목조회&#xD;&#xA;  -   TB_C10_QLT_DSN_RMT(품질설계 - 원자재), TB_C10_QLT_DSN_MNF&#xD;&#xA;(품질설계 - 제조사양), TB_C10_QLT_DSN_MSG(품질설계 - 메세지)&#xD;&#xA;  - 조회조건 품질설계결과Main에서 입력된 주문번호, 주문행번 대하여&#xD;&#xA;    품질설계-원자재, 품질설계-제조사양, 품질설계-메세지 항목을 조회한다.                  "/>
+  <wire id="0" guardcondition="success" firstRelativePoint="379,53" lastRelativePoint="379,102">
+    <bendpoint weight="0.5" firstDimension="0,32" secondDimension="15,-41"/>
+  </wire>
+  <wire id="1" guardcondition="RMT_find" firstRelativePoint="73,132" lastRelativePoint="73,186"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="75,216" lastRelativePoint="376,443">
+    <bendpoint weight="0.5" firstDimension="-11,243" secondDimension="-312,0"/>
+  </wire>
+  <wire id="69" guardcondition="success" firstRelativePoint="157,315" lastRelativePoint="376,443">
+    <bendpoint weight="0.5" firstDimension="4,124" secondDimension="-230,-20"/>
+  </wire>
+  <wire id="72" guardcondition="MSG_find" firstRelativePoint="229,132" lastRelativePoint="229,190">
+    <bendpoint weight="0.5" firstDimension="-140,37" secondDimension="-1,-51"/>
+  </wire>
+  <wire id="73" guardcondition="success" firstRelativePoint="232,220" lastRelativePoint="386,336">
+    <bendpoint weight="0.5" firstDimension="2,76" secondDimension="-164,-59"/>
+  </wire>
+  <wire id="9047" guardcondition="success" firstRelativePoint="365,205" lastRelativePoint="365,283"/>
+  <wire id="9048" guardcondition="PLTCM_save" firstRelativePoint="422,132" lastRelativePoint="422,202">
+    <bendpoint weight="0.5" firstDimension="33,50" secondDimension="-22,-50"/>
+  </wire>
+  <wire id="9049" guardcondition="success" firstRelativePoint="431,232" lastRelativePoint="431,283">
+    <bendpoint weight="0.5" firstDimension="-13,41" secondDimension="11,-40"/>
+  </wire>
+  <wire id="9051" guardcondition="MNF_find" firstRelativePoint="152,132" lastRelativePoint="152,285">
+    <bendpoint weight="0.5" firstDimension="-217,66" secondDimension="-1,-117"/>
+  </wire>
+  <wire id="9058" guardcondition="MSG_save" firstRelativePoint="617,132" lastRelativePoint="617,221"/>
+  <wire id="9059" guardcondition="failure" firstRelativePoint="639,251" lastRelativePoint="396,443">
+    <bendpoint weight="0.5" firstDimension="20,191" secondDimension="252,-17"/>
+  </wire>
+  <wire id="9110" guardcondition="STS_find" firstRelativePoint="698,132" lastRelativePoint="698,175"/>
+  <wire id="9111" guardcondition="success" firstRelativePoint="714,205" lastRelativePoint="396,443">
+    <bendpoint weight="0.5" firstDimension="7,252" secondDimension="327,-2"/>
+  </wire>
+  <wire id="9112" guardcondition="success" firstRelativePoint="471,304" lastRelativePoint="396,329"/>
+  <wire id="9113" guardcondition="failure" firstRelativePoint="491,220" lastRelativePoint="396,441">
+    <bendpoint weight="0.5" firstDimension="119,3" secondDimension="176,-224"/>
+    <bendpoint weight="0.5" firstDimension="118,189" secondDimension="175,-38"/>
+  </wire>
+  <wire id="9116" guardcondition="success" firstRelativePoint="613,251" lastRelativePoint="510,301">
+    <bendpoint weight="0.5" firstDimension="-6,65" secondDimension="193,3"/>
+  </wire>
+  <wire id="9117" guardcondition="failure" firstRelativePoint="308,205" lastRelativePoint="381,435">
+    <bendpoint weight="0.5" firstDimension="-25,140" secondDimension="-79,-114"/>
+  </wire>
+  <wire id="9352" guardcondition="RMT_save" firstRelativePoint="329,132" lastRelativePoint="329,175"/>
+  <wire id="9353" guardcondition="PROC_find" firstRelativePoint="840,207" lastRelativePoint="396,443"/>
+  <wire id="9354" guardcondition="success" firstRelativePoint="840,207" lastRelativePoint="396,443">
+    <bendpoint weight="0.5" firstDimension="-9,264" secondDimension="453,12"/>
+  </wire>
+  <wire id="11050" guardcondition="CMN_find" firstRelativePoint="613,251" lastRelativePoint="510,301"/>
+  <wire id="11051" guardcondition="success" firstRelativePoint="972,210" lastRelativePoint="396,443">
+    <bendpoint weight="0.5" firstDimension="4,285" secondDimension="585,36"/>
+  </wire>
+</Glue:GlueDiagram>

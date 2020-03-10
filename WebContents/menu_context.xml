@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu id="0">
+	<item  id="moveTtem" text="즐겨찾기 추가" img="add.gif" imgdis="add.gif"/>	
+</menu>

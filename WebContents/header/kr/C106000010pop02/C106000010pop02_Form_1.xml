@@ -1,0 +1,8 @@
+<items>
+<item type="block" width="821">
+<item offset="650" type="newcolumn"/>
+<item command="find" name="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+</items>

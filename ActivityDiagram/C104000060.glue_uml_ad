@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="610,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.5" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000060.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="225333" location="346,178" size="133,-1" input="//@wire.3" output="//@wire.4" name="고객사콤보리스트조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="(resultkey)" value="xml-result"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000060FnlCusComb.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  - 해당 화면의 모든 고객사명을 조회하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 화면에 해당하는 모든 고객사명을 조회하고 lov에 출력한다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="225334" location="536,180" size="146,-1" input="//@wire.5" output="//@wire.6" name="주문번호로찾기">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000060Ord.select"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="10969" guardcondition="findItem" firstRelativePoint="416,112" lastRelativePoint="416,178"/>
+  <wire id="10970" guardcondition="success" firstRelativePoint="418,208" lastRelativePoint="314,312">
+    <bendpoint weight="0.5" firstDimension="6,119" secondDimension="114,-1"/>
+  </wire>
+  <wire id="10972" guardcondition="findord" firstRelativePoint="606,112" lastRelativePoint="606,180">
+    <bendpoint weight="0.5" firstDimension="211,33" secondDimension="-3,-65"/>
+  </wire>
+  <wire id="10973" guardcondition="success" firstRelativePoint="610,210" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="1,119" secondDimension="306,1"/>
+  </wire>
+</Glue:GlueDiagram>

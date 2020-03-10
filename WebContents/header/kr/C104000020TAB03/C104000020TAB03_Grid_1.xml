@@ -1,0 +1,61 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="attachHeader"><param>#rspan,하한,상한,하한,상한,하한,상한,하한,상한,하한,상한,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="QLT_DSN_SPC_TP" index = "1" sort="na" align="center" dbname="품질설계사양구분" width="8" table="TB_C10_QLT_DSN_MQL" type="ro" clabel="품질설계사양구분">사양구분</column>
+<column id="HRB_LLV" sort="na" index = "2" format="00.0" align="center" dbname="HRB하한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="HRB하한값" >HRB</column>
+<column id="HRB_ULV" sort="na" index = "3" format="00.0" align="center" dbname="HRB상한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="HRB상한값" ><![CDATA[#cspan]]></column>
+<column id="YP_LLV_MPA" index = "4" sort="na" align="center" dbname="YP하한값MPA" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="YP하한값MPA" >YP(MPa)</column>
+<column id="YP_ULV_MPA" index = "5" sort="na" align="center" dbname="YP상한값MPA" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="YP상한값MPA" ><![CDATA[#cspan]]></column>
+<column id="TS_LLV_MPA" index = "6" sort="na" align="center" dbname="TS하한값MPA" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="TS하한값MPA" >TS(MPa)</column>
+<column id="TS_ULV_MPA" index = "7" sort="na" align="center" dbname="TS상한값MPA" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="TS상한값MPA" ><![CDATA[#cspan]]></column>
+<column id="ELGN_LLV" index = "8" sort="na" format="00.0" align="center" dbname="연신율하한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="연신율하한값" >EL(%)</column>
+<column id="ELGN_ULV" index = "9" sort="na" format="00.0" align="center" dbname="연신율상한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="연신율상한값" ><![CDATA[#cspan]]></column>
+<column id="ER_LLV" index = "10" sort="na" format="00.0" align="center" dbname="ER하한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="ER하한값" >ERI(mm)</column>
+<column id="ER_ULV" index = "11" sort="na" format="00.0" align="center" dbname="ER상한값" width="7" table="TB_C10_QLT_DSN_MQL" type="ed" clabel="ER상한값"  ><![CDATA[#cspan]]></column>
+<column id="MQL_BND_TST_STD_CD" index = "12" sort="na" align="center" dbname="재질Bending" width="*" table="TB_C10_QLT_DSN_MQL" type="combo_v" clabel="재질Bending" >굴곡</column>
+<column id="TST_PIC_GTH_INST_LOC" index = "13" sort="na" align="left" dbname="시편채취지시위치" width="0" table="TB_C10_QLT_DSN_MQL" type="ro" clabel="시편채취지시위치" hidden="true"><![CDATA[시편채취<br>위치]]></column>
+<column id="TST_PIC_GTH_INST_LTH" index = "14" format="0000.0" sort="na" align="center" dbname="시편채취지시길이" width="0" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="시편채취지시길이" hidden="true"><![CDATA[시편채취<br>길이(mm)]]></column>
+<column id="TPG_RGS_NO" index = "15" sort="na" align="left" dbname="시편호수" width="0" table="TB_C10_QLT_DSN_MQL" type="ro" clabel="시편호수" hidden="true"><![CDATA[시편가공<br>코드]]></column>
+<column id="TST_GW_FRN_LLV" index = "16" format="000.0" sort="na" width="0" align="center" dbname="작업도금량공차전면하한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="작업도금량공차전면하한값" hidden="true">EGL도금량(g/㎡)</column>
+<column id="TST_GW_FRN_ULV" index = "17" format="000.0" sort="na" width="0" align="center" dbname="작업도금량공차전면상한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="작업도금량공차전면상한값" hidden="true"><![CDATA[#cspan]]></column>
+<column id="TST_GW_BAK_LLV" index = "18" format="000.0" sort="na" width="0" align="center" dbname="작업도금량공차후면하한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="작업도금량공차후면하한값" hidden="true"><![CDATA[#cspan]]></column>
+<column id="TST_GW_BAK_ULV" index = "19" format="000.0" sort="na" width="0" align="center" dbname="작업도금량공차후면상한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="작업도금량공차후면상한값" hidden="true"><![CDATA[#cspan]]></column>
+<column id="TST_GW_TOT_LLV" index = "20" format="000.0" sort="na" width="0" align="center" dbname="ER하한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="ER하한값" hidden="true">CGL시험도금량(g/㎡)</column>
+<column id="TST_GW_TOT_ULV" index = "21" format="000.0" sort="na" width="0" align="center" dbname="ER상한값" table="TB_C10_QLT_DSN_MQL" type="ron" clabel="ER상한값" hidden="true"><![CDATA[#cspan]]></column>
+<column id="ORD_NO" index = "22" sort="na" width="0" align="center" dbname="주문번호" table="TB_C10_QLT_DSN_MQL" type="ro" clabel="주문번호" hidden="true"></column>
+<column id="ORD_LN" index = "23" sort="na" width="0" align="center" dbname="주문행번" table="TB_C10_QLT_DSN_MQL" type="ro" clabel="주문행번" hidden="true"></column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_DSN_SPC_TP,HRB_LLV,HRB_ULV,YP_LLV_MPA,YP_ULV_MPA,TS_LLV_MPA,TS_ULV_MPA,ELGN_LLV,ELGN_ULV,ER_LLV,ER_ULV,MQL_BND_TST_STD_CD,TST_PIC_GTH_INST_LOC,TST_PIC_GTH_INST_LTH,TPG_RGS_NO,TST_GW_FRN_LLV,TST_GW_FRN_ULV,TST_GW_BAK_LLV,TST_GW_BAK_ULV,TST_GW_TOT_LLV,TST_GW_TOT_ULV,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell>고객사양</cell>
+</row>
+<row id="1">
+<cell>규격사양</cell>
+</row>
+<row id="2">
+<cell>사내사양</cell>
+</row>
+<row id="3">
+<cell>보증사양</cell>
+</row>
+</rows>

@@ -1,0 +1,13 @@
+<items>
+	<item background-color="255,128,128" type="block" width="80">
+			<item offset="2" type="newcolumn" />
+	    <item command="MSG_sync" label="MSG_SYNC" name="MSG_sync" type="custombutton" value="MSG동기화"  />
+	</item>
+	<item background-color="255,128,128" type="block" width="80">
+	    <item command="save" name="save" type="button" value="저장" disabled="true" />
+	</item>
+	<item background-color="255,128,128" type="block" width="80">
+			<item offset="2" type="newcolumn" />
+	    <item command="truTest_save" name="truTest_save" type="custombutton" value="신뢰성시험"/>
+	</item>
+</items>

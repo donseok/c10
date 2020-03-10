@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000070pop01 Page 쿼리파일"> 
+	 <query id="C106000070pop01.select" desc="C106000070pop01 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 생산가부요청수신IF popup조회 C106000070pop01.SELECT 김종범*/   
+ IF_GRP_ID                  --인터페이스그룹아이디    
+,SEQ_NO                     --인터페이스 SEQ          
+,XSEQ                       --PI Sequence Key Value   
+,XCRUD                      --PI Data 유형            
+,XSTAT || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'XSTAT_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = XSTAT) AS XSTAT  --PI 처리 상태 
+,XMSGS                      --PI 에러 메시지          
+,XDATE                      --PI 송신일자             
+,XTIME                      --PI 송신시간             
+,XSTAT_CALLBACK             --PI 처리 상태            
+,ORD_REQ_NO                 --주문요청번호            
+,ORD_REQ_LN                 --주문요청행번            
+,PLNT_TP || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'PLNT_TP' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = PLNT_TP) AS PLNT_TP  --플랜트구분              
+,PRD_NM_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'PRD_NM_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = PRD_NM_CD) AS PRD_NM_CD  --품명코드                
+,PRD_SHP || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'PRD_SHP' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = PRD_SHP) AS PRD_SHP  --제품형태                
+,FLOW_CHL || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'FLOW_CHL' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = FLOW_CHL) AS FLOW_CHL  --유통경로                
+,ORD_KND || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_KND' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_KND) AS ORD_KND  --주문종류                
+,ORD_USG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_USG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_USG_CD) AS ORD_USG_CD  --주문용도코드            
+,CUS_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'CUS_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = CUS_CD) AS CUS_CD  --고객사코드              
+,ACT_CUS_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'CUS_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ACT_CUS_CD) AS ACT_CUS_CD  --수요가코드              
+,FNL_CUS_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'CUS_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = FNL_CUS_CD) AS FNL_CUS_CD  --최종수요가코드          
+,CUS_BTH_PAP_NO             --고객사양서번호          
+,SPC_AVR                    --규격약호                
+,SPC_YR                     --규격년도                
+,ORD_SZ                     --주문생칫수              
+,ORD_EXC_THK                --주문환산두께            
+,ORD_EXC_WTH                --주문환산폭              
+,ORD_EXC_LTH                --주문환산길이            
+,CUS_REQ_DLV_DD             --고객요청납기일          
+,GW_ASG_CD ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'GW_ASG_CD'
+         AND   CD_V = GW_ASG_CD
+         AND   CATEGORY_GROUP_NM = 
+        DECODE(PRD_NM_CD,'4','SL0000','L','SL0000','2','SE0000','E','SE0000','8','SE0000','N','SE0000','V','SV0000','6','SV0000','W','SW0000','9','SW0000','SG0000')) GW_ASG_CD  --도금량지정코드          
+,CCL_BOM_NO                 --CCL_BOM번호             
+,HUE_CD_FRN                 --색상코드전면            
+,HUE_CD_BAK                 --색상코드후면            
+,ORD_ORG_PLT_SPC_AVR        --주문원판규격약호        
+,ORD_ROU_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_ROU_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_ROU_CD) AS ORD_ROU_CD  --주문조도코드            
+,ORD_SPNL_TP || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_SPNL_TP' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_SPNL_TP) AS ORD_SPNL_TP  --주문Spangle구분         
+,ORD_COILG_MTH  || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_COILG_MTH' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_COILG_MTH) AS ORD_COILG_MTH  --주문권취방법            
+,ORD_SUR_HND_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_SUR_HND_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_SUR_HND_CD) AS ORD_SUR_HND_CD  --주문표면처리코드        
+,ORD_SKP_DEG || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_SKP_DEG' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_SKP_DEG) AS ORD_SKP_DEG  --주문조질도              
+,ORD_EDG_ASG_TP || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_EDG_ASG_TP' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_EDG_ASG_TP) AS ORD_EDG_ASG_TP  --주문Edge지정구분        
+,ORD_THK_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_THK_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_THK_TP) ORD_THK_TP  --주문두께구분            
+,WGT_DCS_MTH_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'WGT_DCS_MTH_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = WGT_DCS_MTH_TP) WGT_DCS_MTH_TP   --중량결정법구분         
+,ORD_SLV_KND_TP ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SLV_KND_TP'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SLV_KND_TP) ORD_SLV_KND_TP  --주문내경종류      
+,EMBS_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'EMBS_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = EMBS_CD) AS EMBS_CD  --EMBOSS무늬              
+,ORD_PTT_FLM_CD             --주문보호필름상세코드    
+,ORD_PTT_FLM_WTH            --주문보호필름폭          
+,ORD_PTT_FLM_ADH_LOC_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_PTT_FLM_ADH_LOC_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_PTT_FLM_ADH_LOC_CD) AS ORD_PTT_FLM_ADH_LOC_CD  --주문보호필름부착위치코드
+,ORD_WGT_UNT                --주문중량단위            
+,ORD_LN_WGT                 --주문행번중량            
+,ORD_SHT_CNT                --주문Sheet매수           
+,ORD_PAK_SHT_CNT            --주문포장Sheet매수       
+,ORD_PAK_UNT_WGT_LLV        --주문포장단중하한값      
+,ORD_PAK_UNT_WGT_ULV        --주문포장단중상한값      
+,ORD_DLV_ALW_DIF_LLV        --주문인도허용차하한값    
+,ORD_DLV_ALW_DIF_ULV        --주문인도허용차상한값    
+,ORD_PAK_LTH_LLV            --주문포장길이하한값      
+,ORD_PAK_LTH_ULV            --주문포장길이상한값      
+,ORD_STDP_LLV               --주문정포장하한값        
+,ORD_STDP_ULV               --주문정포장상한값        
+,ORD_STDP_CNT_LLV           --주문정포장매수하한값    
+,ORD_STDP_CNT_ULV           --주문정포장매수상한값    
+,ORD_PAK_UNT_WGT            --주문포장당중량          
+,ORD_SML_PAK_WGT            --주문소포장중량          
+,ORD_SML_PAK_MIR            --주문소포장혼입율        
+,ORD_UNT_WGT                --주문단위중량            
+,ORD_PAK_MTH ||
+        (SELECT ' : ' || CD_V_MEANING
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PAK_MTH'
+         AND   CD_V = ORD_PAK_MTH
+         AND   CATEGORY_GROUP_NM = 'SZ0000') ORD_PAK_MTH   --포장방법           
+,ORD_COIL_IDIA              --주문코일내경            
+,ORD_COIL_ODIA              --주문코일외경            
+,ORD_THK_TLN_LLV            --주문두께공차하한값      
+,ORD_THK_TLN_ULV            --주문두께공차상한값      
+,ORD_WTH_TLN_LLV            --주문폭공차하한값        
+,ORD_WTH_TLN_ULV            --주문폭공차상한값        
+,ORD_LTH_TLN_LLV            --주문길이공차하한값      
+,ORD_LTH_TLN_ULV            --주문길이공차상한값      
+,ORD_THK_MNG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_THK_MNG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_THK_MNG_CD) AS ORD_THK_MNG_CD  --주문두께관리코드        
+,ORD_WTH_MNG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_WTH_MNG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_WTH_MNG_CD) AS ORD_WTH_MNG_CD  --주문폭관리코드          
+,ORD_LTH_MNG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_LTH_MNG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_LTH_MNG_CD) AS ORD_LTH_MNG_CD  --주문길이관리코드        
+,CUS_REQ_CLR_NM             --고객정의색상            
+,ORD_RCP_DD                 --주문접수일              
+,ORD_SHT_LOD_MTH            --주문Sheet적재방법       
+,ORD_SLIT_GRP_CNT           --주문Slit조수            
+,ORD_MIX_WTH1               --주문조합폭1             
+,ORD_MIX_WTH2               --주문조합폭2             
+,ORD_MIX_WTH3               --주문조합폭3             
+,ORD_MIX_WTH4               --주문조합폭4             
+,ORD_MIX_WTH5               --주문조합폭5             
+,ORD_MIX_WTH6               --주문조합폭6             
+,ORD_MIX_WTH7               --주문조합폭7             
+,ORD_MIX_WTH8               --주문조합폭8             
+,SLIT_MAX_WGT               --조당최대중량            
+,TRST_PROC_YN               --위탁임가공여부          
+,TAG_TP                     --Tag유형                 
+,NAT_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'NAT_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = NAT_CD) AS NAT_CD  --국가코드                
+,ORD_RGS_PRS_ID ||
+       (SELECT ' : ' || USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = ORD_RGS_PRS_ID) AS ORD_RGS_PRS_ID --주문등록자              
+,ORD_TEM_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_TEM_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_TEM_CD) AS ORD_TEM_CD  --영업팀코드              
+,CREATED_OBJECT_TYPE        --생성Object유형          
+,CREATED_OBJECT_ID          --생성ObjectID            
+,CREATED_PROGRAM_ID         --생성프로그램ID          
+,CREATION_TIMESTAMP         --생성일시                
+,LAST_UPDATED_OBJECT_TYPE   --최종변경Object유형      
+,LAST_UPDATED_OBJECT_ID     --최종변경ObjectID        
+,LAST_UPDATE_PROGRAM_ID     --최종변경프로그램ID      
+,LAST_UPDATE_TIMESTAMP      --최종변경일시            
+,DATA_END_STATUS            --데이터종료여부          
+,DATA_END_OBJECT_TYPE       --데이터종료Object유형    
+,DATA_END_OBJECT_ID         --데이터종료ObjectID      
+,DATA_END_PROGRAM_ID        --데이터종료프로그램ID    
+,DATA_END_TIMESTAMP         --데이터종료일시          
+,ARCHIVE_COMPLETED_FLAG     --Archive완료여부         
+,ARCHIVED_EMPLOYEE_NUM      --Archive작업자사번       
+,ARCHIVED_TIMESTAMP         --Archive작업일시         
+,ARCHIVE_PROGRAM_ID         --Archive프로그램ID       
+,PAK_MSG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'PAK_MSG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = PAK_MSG_CD) AS PAK_MSG_CD  --포장메세지코드          
+,ORD_MIX_WTH9               --주문조합폭9             
+,ORD_MIX_WTH10              --주문조합폭10            
+FROM EAIAPUSER.TB_C10_B10R0020
+WHERE NVL(IF_GRP_ID,'%') LIKE '%'|| :IF_GRP_ID ||'%'
+AND NVL(SEQ_NO,'%') LIKE '%'|| :SEQ_NO ||'%'
+		 ]]> 
+	 </query>
+</queryMap>

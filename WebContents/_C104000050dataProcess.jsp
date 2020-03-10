@@ -1,0 +1,99 @@
+<%--
+ * PROGRAM NAME     :  _C104000050dataProcess.jsp
+ * VERSION          :  V1.0
+ * DESCRIPTION      :  설계확정처리 응답메세지 출력
+ * DESIGNER NAME    :  한 윤 섭
+ * DEVELOPER NAME   :  박 재 영
+ * CREATE DATE      :  2011.11.07
+ *
+ * Date	          Ver       Name       Description
+ * ------------  ------    --------  ------------------------
+ * 최초생성일자     V1.0      박재영      Initial Version
+ * 변경일자       version number  개발자이름 변경사항
+--%>
+<%@ page contentType="text/xml;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import = "java.util.*" %>
+<%@page import = "com.posdata.glue.context.PosContext" %>
+<%@page import = "com.poscoict.glue.dhtmlx.constant.DhtmlxConstantsIF" %> 
+<%@page import = "com.posdata.glue.dao.vo.*" %>
+<%@page import = "com.posdata.glue.web.control.*" %>
+<%@page import = "com.posdata.glue.util.log.PosLog" %>
+<%
+	
+	
+	System.out.println("=============Start===========");
+		try{			
+			Map params = request.getParameterMap();
+			Set keys = params.keySet();
+			Iterator keyItr = keys.iterator();
+			
+			while(keyItr.hasNext()){
+				Object key = keyItr.next();
+				Object data = params.get(key);
+				System.out.println("Type Key : "+key+"     value:"+data);
+				if(data instanceof String[]){
+				    String [] values = (String []) data;
+				    for(int i = 0; i < values.length; i++){
+				    	System.out.println("\tKey : "+key+"   value_"+i+":"+values[i]);
+				    }
+				}
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+    System.out.println("=============End===========");
+    
+    try{
+        PosContext ctx = (PosContext)request.getAttribute(PosWebConstants.CONTEXT);
+        if (ctx == null) 
+        {
+            String service = request.getParameter("ServiceName");
+            String message = "Context is null, because Service ["+service+"] did not execute or has a problem!";     
+            throw new Exception(message);
+        }
+        
+        // ERR 메세지가 있으면 보여준다.
+        String errMsg = (String )ctx.get("errMsg");
+
+    	if(errMsg != null){
+	        System.out.println(errMsg);
+    	}
+    	
+        Throwable error = ctx.getException();
+        if(error != null) {
+        	out.print("<data>");
+            out.print("<action type='invalid' message='Fail'><![CDATA["+error.getMessage()+"]]></action>");
+			out.print("<action type='errMsg' message='Fail'><![CDATA["+error.getMessage()+"]]></action>");
+            out.println("</data>");
+        }else{
+        	if(errMsg != null)
+        	{
+            	out.print("<data>");
+                out.print("<action type='invalid' message='Fail'><![CDATA["+errMsg+"]]></action>");
+    			out.print("<action type='errMsg' message='Fail'><![CDATA["+errMsg+"]]></action>");
+                out.println("</data>");        	   
+        	}
+        	else
+        	{
+	        	String[] ids = request.getParameter("ids").split(",");
+	        	
+	    		out.print("<data>");
+	        	for(int i = 0; i < ids.length; i++){
+	        		
+	        		String type = request.getParameter(ids[i] + "_!nativeeditor_status");
+	        		
+			        out.print("<action type='"+type+"' sid='"+ids[i]+"' tid='"+ids[i]+"' message='Success'></action>");
+	        	}
+	        	
+				out.print("<action type='appMsg'><![CDATA["+ ids.length +"건의 Data 처리에 성공했습니다]]></action>");
+	       	    out.println("</data>");	
+        	}
+        }
+    } catch (Exception e) {
+    	out.print("<data>");
+        out.print("<action type='invalid'><![CDATA["+e.getMessage()+"]]></action>");
+		out.print("<action type='errMsg'><![CDATA["+e.getMessage()+"]]></action>");
+       	out.println("</data>");
+    }
+    out.flush();
+	%>

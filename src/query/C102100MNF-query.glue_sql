@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100MNF"> 
+	 <query id="C102100MNF.insert" desc="C102100MNF.insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과제조표준등록 C102100MNF.INSERT 박재영*/                           
+TB_C10_QLT_DSN_MNF (                                                                           
+            ORD_NO	                  --주문번호
+           ,ORD_LN	                  --주문행번           
+           ,QLT_DSN_MNF_TP	   --품질설계제조구분
+           ,RMTL_CD	                  --원자재코드
+           ,CRM_MNF_STD_NO	          --냉연제조표준번호
+           ,ECL_CDR_CD		--ECLC-D방지약품
+           ,ECL_COILG_TS_CD		--ECL권취장력
+           ,CGL_LVL_YN		--CGLLeveler사용여부
+           ,SPNL_TP		--Spangle구분
+           ,CGL_SP_ASG_YN		--CGLSkinPass
+           ,CGL_SUR_HND_CD		--CGL표면처리코드
+           ,EGL_SUR_HND_CD	--EGL표면처리코드
+           ,OIL_PNT_CD		--도유코드           
+           ,CREATED_OBJECT_TYPE       --생성OBJECT유형                                                                 
+           ,CREATED_OBJECT_ID         --생성OBJECTID                                                                   
+           ,CREATED_PROGRAM_ID        --생성프로그램ID                                                                 
+           ,CREATION_TIMESTAMP        --생성일시                                                                       
+           ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형     
+           ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID       
+           ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID     
+           ,LAST_UPDATE_TIMESTAMP     --최종변경일시           
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?,?,?,?,
+?,?,?,?,
+?,?,?,?,?,
+?,?,?,?,
+?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.select" desc="C102100MNF.select" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과제조사양조회 C102100MNF.select 박재영*/ 
+         *
+FROM TB_C10_QLT_DSN_MNF
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+ORDER BY QLT_DSN_MNF_TP
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.gw_update" desc="C102100MNF.gw_update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양도금량수정 C102100MNF.gw_update 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,WK_GW_TRV = ?	                --작업도금량목표값
+           ,WK_GW_FRN_ULV = ?	            --작업도금량전면상한값
+           ,WK_GW_FRN_LLV = ?	            --작업도금량전면하한값
+           ,WK_GW_BAK_ULV = ?	            --작업도금량후면상한값
+           ,WK_GW_BAK_LLV = ?	            --작업도금량후면하한값
+           ,WK_GW_TOT_ULV = ?	            --작업도금량전체상한값
+           ,WK_GW_TOT_LLV = ?	            --작업도금량전체하한값
+           ,GAL_THK_LLV = ?	              --도금두께하한
+           ,GAL_THK_ULV = ?	              --도금두께상한
+           ,GAL_THK_TRV = ?	              --도금두께목표
+           ,SPC_GAL_THK = ?                    --사양도금두께
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.update" desc="C102100MNF.update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양수정 C102100MNF.update 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,RMTL_CD	= ?                  --원자재코드
+           ,CRM_MNF_STD_NO	= ?          --냉연제조표준번호
+           ,FUR_TP_GEN_ANN = ?	          --일반ANN소둔로유형
+           ,HEAT_CYL_NO_GEN_ANN = ?       --일반ANN소둔CYCLE
+           ,COR_TM_GEN_ANN = ?            --일반ANN소둔보정시간
+           ,COIL_TMP_GEN_ANN = ?          --일반ANN코일온도
+           ,CLG_END_TMP_GEN_ANN = ?       --일반ANN냉각종료온도
+           ,FUR_TP_HC_ANN = ?             --HCANN소둔로유형
+           ,HEAT_CYL_NO_HC_ANN = ?        --HCANN소둔CYCLE
+           ,COR_TM_HC_ANN = ?             --HCANN소둔보정시간
+           ,COIL_TMP_HC_ANN	= ?	--HCANN코일온도
+           ,CLG_END_TMP_HC_ANN	= ?	--HCANN냉각종료온도
+           ,HEAT_CYL_NO_2CGL	= ?	--소둔CYCLE#2CGL
+           ,HTG_TEM_2CGL	= ?	--가열온도#2CGL
+           ,CLG_TEM_2CGL	= ? --냉각온도#2CGL
+           ,SHK_TM_2CGL		= ? --ShockingTime#2CGL
+           ,LN_SPD_2CGL		= ? --LineSpeed#2CGL
+           ,HEAT_CYL_NO_3CGL	= ?	--소둔CYCLE#3CGL
+           ,HTG_TEM_3CGL	= ?	--가열온도#3CGL
+           ,CLG_TEM_3CGL	= ?	--냉각온도#3CGL
+           ,SHK_TM_3CGL	= ?	--ShockingTime#3CGL
+           ,LN_SPD_3CGL	= ?	--LineSpeed#3CGL
+           ,HEAT_CYL_NO_4CGL	= ?	--소둔CYCLE#4CGL
+           ,HTG_TEM_4CGL	= ?	--가열온도#4CGL
+           ,CLG_TEM_4CGL	= ?	--냉각온도#4CGL
+           ,SHK_TM_4CGL	= ?	--ShockingTime#4CGL
+           ,LN_SPD_4CGL	= ?	--LineSpeed#4CGL
+           ,HEAT_CYL_NO_5CGL	= ?	--소둔CYCLE#5CGL
+           ,HTG_TEM_5CGL	= ?	--가열온도#5CGL
+           ,CLG_TEM_5CGL	= ?	--냉각온도#5CGL
+           ,SHK_TM_5CGL	= ?	--ShockingTime#5CGL
+           ,LN_SPD_5CGL	= ?	--LineSpeed#5CGL
+           ,ECL_CDR_CD	= ?	--ECLC-D방지약품
+           ,ECL_COILG_TS_CD	= ?	--ECL권취장력
+           ,CGL_LVL_YN	= ?	--CGLLeveler사용여부
+           ,SPNL_TP	= ?	--Spangle구분
+           ,CGL_SP_ASG_YN	= ?	--CGLSkinPass
+           ,CGL_SUR_HND_CD	= ?	--CGL표면처리코드
+           ,OIL_PNT_CD	= ?	--도유코드
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.delete" desc="C102100MNF.delete" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계결과제조사양삭제 C102100MNF.delete 박재영*/
+FROM TB_C10_QLT_DSN_MNF
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.WTHupdate" desc="C102100MNF.WTHupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양폭사양수정 C102100MNF.WTHupdate 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,SLIT_GRP_CNT = ?                       --Slit조수
+           ,MIX_WTH1 = ?                           --조합폭1
+           ,MIX_WTH2 = ?                           --조합폭2
+           ,MIX_WTH3	= ?                           --조합폭3
+           ,MIX_WTH4 = ?                            --조합폭4
+           ,MIX_WTH5	= ?                            --조합폭5
+           ,MIX_WTH6 = ?                            --조합폭6
+           ,MIX_WTH7	= ?                            --조합폭7
+           ,MIX_WTH8	= ?                            --조합폭8
+           ,MIX_WTH9	= ?                            --조합폭9
+           ,MIX_WTH10	= ?                            --조합폭10
+           ,PRD_WTH_RNG_LLV = ?               --제품폭범위하한값
+           ,PRD_WTH_RNG_ULV = ?               --제품폭범위상한값
+           ,COR_WTH_TRV = ?                      --정전폭목표값
+           ,CCL_WTH_TRV = ?                       --CCL폭목표값
+           ,MID_COR_WTH_TRV = ?                --중간정전폭목표값
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.PROCupdate" desc="C102100MNF.PROCupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양 공정별Size수정 C102100MNF.PROCupdate 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,CCL_THK_TRV = ?                       --CCL두께목표값
+           ,MID_COR_THK_TRV = ?                --중간정전두께목표값           
+           ,CGL_THK_TRV	= ? --CGL두께목표값
+           ,CGL_WTH_TRV	= ? --CGL폭목표값
+           ,EGL_THK_TRV	= ? --EGL두께목표값
+           ,EGL_WTH_TRV	= ? --EGL폭목표값
+           ,TM_THK_TRV	= ? --TM두께목표값
+           ,TM_WTH_TRV	= ? --TM폭목표값
+           ,TM_WTH_SUB_PROC1_TRV	= ? --TM폭대체공정1목표값
+           ,TM_WTH_SUB_PROC2_TRV	= ? --TM폭대체공정2목표값
+           ,PLTCM_THK_LLV = ?        --PLTCM두께하한값
+           ,PLTCM_THK_ULV	 = ?       --PLTCM두께상한값
+           ,PLTCM_WTH_TRV	= ? --PLTCM폭목표값
+           ,PLTCM_WTH_SUB_PROC1_TRV	= ? --PLTCM폭대체공정1목표값
+           ,PLTCM_WTH_SUB_PROC2_TRV	= ? --PLTCM폭대체공정2목표값
+           ,PLTCM_EDG_ASG_TP	= ? --PLTCMEdge지정구분
+           ,PLTCM_5STD_WR_TP	= ? --PLTCM5StandWRType
+           ,PLTCM_SLV_USE_YN	= ? --PLTCM내경링사용여부
+           ,COR_EDG_ASG_TP = ? --정전Edge지정구분
+           ,PL_WTH_TRV	= ? --PL폭목표값
+           ,PL_WTH_SUB_PROC1_TRV	= ? --PL폭대체공정1목표값
+           ,PL_WTH_SUB_PROC2_TRV	= ? --PL폭대체공정2목표값
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.THKupdate" desc="C102100MNF.THKupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양 두께사양수정 C102100MNF.THKupdate 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,COR_THK_TRV = ?                      --정전두께목표값
+           ,PRD_THK_RNG_LLV = ?               --제품두께범위하한값
+           ,PRD_THK_RNG_ULV = ?               --제품두께범위상한값
+           ,PLTCM_THK_TRV = ?                   --PLTCM두께목표값
+           ,PLTCM_SET_THK_TRV	= ?             --PLTCMX-RaySet두께값
+           ,PRD_LTH_RNG_LLV = ?                --제품길이범위하한값
+           ,PRD_LTH_RNG_ULV = ?                --제품길이범위상한값
+           ,PRD_THK_SPC_RNG_LLV = ?          --제품두께규격범위하한값
+           ,PRD_THK_SPC_RNG_ULV = ?          --제품두께규격범위상한값
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.RR_update" desc="C102100MNF.RR_update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양 후처리조도설계 C102100MNF.RR_update 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,RSN_ATT_AMT_TRV = ?	          --수지부착량기준목표
+           ,RSN_ATT_AMT_LLV = ?	          --수지부착량기준하한
+           ,RSN_ATT_AMT_ULV = ?	          --수지부착량기준상한
+           ,ROU_RA_LLV = ?                         --조도RA하한값
+           ,ROU_RA_ULV = ?	                  --조도RA상한값
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.THK_MNFupdate" desc="C102100MNF.THK_MNFupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양수정 C102100MNF.THK_MNFupdate 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,FUR_TP_GEN_ANN = ?	          --일반ANN소둔로유형
+           ,HEAT_CYL_NO_GEN_ANN = ?       --일반ANN소둔CYCLE
+           ,COR_TM_GEN_ANN = ?            --일반ANN소둔보정시간
+           ,COIL_TMP_GEN_ANN = ?          --일반ANN코일온도
+           ,CLG_END_TMP_GEN_ANN = ?       --일반ANN냉각종료온도
+           ,FUR_TP_HC_ANN = ?             --HCANN소둔로유형
+           ,HEAT_CYL_NO_HC_ANN = ?        --HCANN소둔CYCLE
+           ,COR_TM_HC_ANN = ?             --HCANN소둔보정시간
+           ,COIL_TMP_HC_ANN	= ?	--HCANN코일온도
+           ,CLG_END_TMP_HC_ANN	= ?	--HCANN냉각종료온도
+           ,HEAT_CYL_NO_2CGL	= ?	--소둔CYCLE#2CGL
+           ,HTG_TEM_2CGL	= ?	--가열온도#2CGL
+           ,CLG_TEM_2CGL	= ? --냉각온도#2CGL
+           ,SHK_TM_2CGL		= ? --ShockingTime#2CGL
+           ,LN_SPD_2CGL		= ? --LineSpeed#2CGL
+           ,HEAT_CYL_NO_3CGL	= ?	--소둔CYCLE#3CGL
+           ,HTG_TEM_3CGL	= ?	--가열온도#3CGL
+           ,CLG_TEM_3CGL	= ?	--냉각온도#3CGL
+           ,SHK_TM_3CGL	= ?	--ShockingTime#3CGL
+           ,LN_SPD_3CGL	= ?	--LineSpeed#3CGL
+           ,HEAT_CYL_NO_4CGL	= ?	--소둔CYCLE#4CGL
+           ,HTG_TEM_4CGL	= ?	--가열온도#4CGL
+           ,CLG_TEM_4CGL	= ?	--냉각온도#4CGL
+           ,SHK_TM_4CGL	= ?	--ShockingTime#4CGL
+           ,LN_SPD_4CGL	= ?	--LineSpeed#4CGL
+           ,HEAT_CYL_NO_5CGL	= ?	--소둔CYCLE#5CGL
+           ,HTG_TEM_5CGL	= ?	--가열온도#5CGL
+           ,CLG_TEM_5CGL	= ?	--냉각온도#5CGL
+           ,SHK_TM_5CGL	= ?	--ShockingTime#5CGL
+           ,LN_SPD_5CGL	= ?	--LineSpeed#5CGL
+           ,COR_THK_TRV = ?                      --정전두께목표값
+           ,PRD_THK_RNG_LLV = ?               --제품두께범위하한값
+           ,PRD_THK_RNG_ULV = ?               --제품두께범위상한값
+           ,PLTCM_THK_TRV = ?                   --PLTCM두께목표값
+           ,PLTCM_SET_THK_TRV	= ?             --PLTCMX-RaySet두께값
+           ,PRD_LTH_RNG_LLV = ?                --제품길이범위하한값
+           ,PRD_LTH_RNG_ULV = ?                --제품길이범위상한값
+           ,PRD_THK_SPC_RNG_LLV = ?          --제품두께규격범위하한값
+           ,PRD_THK_SPC_RNG_ULV = ?          --제품두께규격범위상한값
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.PROCupdate1" desc="C102100MNF.PROCupdate1" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양 공정별Size수정 C102100MNF.PROCupdate1 성낙원*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+          ,(CCL_THK_TRV                   --CCL두께목표값
+           ,MID_COR_THK_TRV               --중간정전두께목표값           
+           ,CGL_THK_TRV                   --CGL두께목표값
+           ,CGL_WTH_TRV	                  --CGL폭목표값
+           ,EGL_THK_TRV	                  --EGL두께목표값
+           ,EGL_WTH_TRV	                  --EGL폭목표값
+           ,TM_THK_TRV                    --TM두께목표값
+           ,TM_WTH_TRV	                  --TM폭목표값
+           ,TM_WTH_SUB_PROC1_TRV	      --TM폭대체공정1목표값
+           ,TM_WTH_SUB_PROC2_TRV	      --TM폭대체공정2목표값
+           ,PLTCM_THK_LLV                 --PLTCM두께하한값
+           ,PLTCM_THK_ULV                 --PLTCM두께상한값
+           ,PLTCM_WTH_TRV                 --PLTCM폭목표값
+           ,PLTCM_WTH_SUB_PROC1_TRV	      --PLTCM폭대체공정1목표값
+           ,PLTCM_WTH_SUB_PROC2_TRV	      --PLTCM폭대체공정2목표값
+           ,PLTCM_EDG_ASG_TP	          --PLTCMEdge지정구분
+           ,PLTCM_5STD_WR_TP	          --PLTCM5StandWRType
+           ,PLTCM_SLV_USE_YN	          --PLTCM내경링사용여부
+           ,COR_EDG_ASG_TP                --정전Edge지정구분
+           ,PL_WTH_TRV	                  --PL폭목표값
+           ,PL_WTH_SUB_PROC1_TRV	      --PL폭대체공정1목표값
+           ,PL_WTH_SUB_PROC2_TRV ) =      --PL폭대체공정2목표값
+                                    (select CCL_THK_TRV                   --CCL두께목표값
+                                           ,MID_COR_THK_TRV               --중간정전두께목표값           
+                                           ,CGL_THK_TRV                   --CGL두께목표값
+                                           ,CGL_WTH_TRV	                  --CGL폭목표값
+                                           ,EGL_THK_TRV	                  --EGL두께목표값
+                                           ,EGL_WTH_TRV	                  --EGL폭목표값
+                                           ,TM_THK_TRV                    --TM두께목표값
+                                           ,TM_WTH_TRV	                  --TM폭목표값
+                                           ,TM_WTH_SUB_PROC1_TRV	      --TM폭대체공정1목표값
+                                           ,TM_WTH_SUB_PROC2_TRV	      --TM폭대체공정2목표값
+                                           ,PLTCM_THK_LLV                 --PLTCM두께하한값
+                                           ,PLTCM_THK_ULV                 --PLTCM두께상한값
+                                           ,PLTCM_WTH_TRV                 --PLTCM폭목표값
+                                           ,PLTCM_WTH_SUB_PROC1_TRV	      --PLTCM폭대체공정1목표값
+                                           ,PLTCM_WTH_SUB_PROC2_TRV	      --PLTCM폭대체공정2목표값
+                                           ,PLTCM_EDG_ASG_TP	          --PLTCMEdge지정구분
+                                           ,PLTCM_5STD_WR_TP	          --PLTCM5StandWRType
+                                           ,PLTCM_SLV_USE_YN	          --PLTCM내경링사용여부
+                                           ,COR_EDG_ASG_TP                --정전Edge지정구분
+                                           ,PL_WTH_TRV	                  --PL폭목표값
+                                           ,PL_WTH_SUB_PROC1_TRV	      --PL폭대체공정1목표값
+                                           ,PL_WTH_SUB_PROC2_TRV          --PL폭대체공정2목표값
+                                     from   TB_C10_QLT_DSN_MNF
+                                     where  ORD_NO = ?
+                                     and    ORD_LN = ?
+                                     and    QLT_DSN_MNF_TP = '1')
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.THK_MNFupdate1" desc="C102100MNF.THK_MNFupdate1" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양수정 C102100MNF.THK_MNFupdate1 성낙원*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?   --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?     --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?     --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?      --최종변경일시    
+          ,(FUR_TP_GEN_ANN 	          --일반ANN소둔로유형
+           ,HEAT_CYL_NO_GEN_ANN        --일반ANN소둔CYCLE
+           ,COR_TM_GEN_ANN             --일반ANN소둔보정시간
+           ,COIL_TMP_GEN_ANN           --일반ANN코일온도
+           ,CLG_END_TMP_GEN_ANN        --일반ANN냉각종료온도
+           ,FUR_TP_HC_ANN              --HCANN소둔로유형
+           ,HEAT_CYL_NO_HC_ANN         --HCANN소둔CYCLE
+           ,COR_TM_HC_ANN              --HCANN소둔보정시간
+           ,COIL_TMP_HC_ANN		       --HCANN코일온도
+           ,CLG_END_TMP_HC_ANN	       --HCANN냉각종료온도
+           ,HEAT_CYL_NO_2CGL	       --소둔CYCLE#2CGL
+           ,HTG_TEM_2CGL	           --가열온도#2CGL
+           ,CLG_TEM_2CGL               --냉각온도#2CGL
+           ,SHK_TM_2CGL	               --ShockingTime#2CGL
+           ,LN_SPD_2CGL	               --LineSpeed#2CGL
+           ,HEAT_CYL_NO_3CGL 	       --소둔CYCLE#3CGL
+           ,HTG_TEM_3CGL	           --가열온도#3CGL
+           ,CLG_TEM_3CGL	           --냉각온도#3CGL
+           ,SHK_TM_3CGL	               --ShockingTime#3CGL
+           ,LN_SPD_3CGL	               --LineSpeed#3CGL
+           ,HEAT_CYL_NO_4CGL	       --소둔CYCLE#4CGL
+           ,HTG_TEM_4CGL               --가열온도#4CGL
+           ,CLG_TEM_4CGL	           --냉각온도#4CGL
+           ,SHK_TM_4CGL	               --ShockingTime#4CGL
+           ,LN_SPD_4CGL	               --LineSpeed#4CGL
+           ,HEAT_CYL_NO_5CGL	       --소둔CYCLE#5CGL
+           ,HTG_TEM_5CGL               --가열온도#5CGL
+           ,CLG_TEM_5CGL               --냉각온도#5CGL
+           ,SHK_TM_5CGL		           --ShockingTime#5CGL
+           ,LN_SPD_5CGL		           --LineSpeed#5CGL
+           ,COR_THK_TRV                --정전두께목표값
+           ,PRD_THK_RNG_LLV            --제품두께범위하한값
+           ,PRD_THK_RNG_ULV            --제품두께범위상한값
+           ,PLTCM_THK_TRV              --PLTCM두께목표값
+           ,PLTCM_SET_THK_TRV	       --PLTCMX-RaySet두께값
+           ,PRD_LTH_RNG_LLV            --제품길이범위하한값
+           ,PRD_LTH_RNG_ULV            --제품길이범위상한값
+           ,PRD_THK_SPC_RNG_LLV        --제품두께규격범위하한값
+           ,PRD_THK_SPC_RNG_ULV) =     --제품두께규격범위상한값
+                                   (select FUR_TP_GEN_ANN 	          --일반ANN소둔로유형
+                                           ,HEAT_CYL_NO_GEN_ANN        --일반ANN소둔CYCLE
+                                           ,COR_TM_GEN_ANN             --일반ANN소둔보정시간
+                                           ,COIL_TMP_GEN_ANN           --일반ANN코일온도
+                                           ,CLG_END_TMP_GEN_ANN        --일반ANN냉각종료온도
+                                           ,FUR_TP_HC_ANN              --HCANN소둔로유형
+                                           ,HEAT_CYL_NO_HC_ANN         --HCANN소둔CYCLE
+                                           ,COR_TM_HC_ANN              --HCANN소둔보정시간
+                                           ,COIL_TMP_HC_ANN		       --HCANN코일온도
+                                           ,CLG_END_TMP_HC_ANN	       --HCANN냉각종료온도
+                                           ,HEAT_CYL_NO_2CGL	       --소둔CYCLE#2CGL
+                                           ,HTG_TEM_2CGL	           --가열온도#2CGL
+                                           ,CLG_TEM_2CGL               --냉각온도#2CGL
+                                           ,SHK_TM_2CGL	               --ShockingTime#2CGL
+                                           ,LN_SPD_2CGL	               --LineSpeed#2CGL
+                                           ,HEAT_CYL_NO_3CGL 	       --소둔CYCLE#3CGL
+                                           ,HTG_TEM_3CGL	           --가열온도#3CGL
+                                           ,CLG_TEM_3CGL	           --냉각온도#3CGL
+                                           ,SHK_TM_3CGL	               --ShockingTime#3CGL
+                                           ,LN_SPD_3CGL	               --LineSpeed#3CGL
+                                           ,HEAT_CYL_NO_4CGL	       --소둔CYCLE#4CGL
+                                           ,HTG_TEM_4CGL               --가열온도#4CGL
+                                           ,CLG_TEM_4CGL	           --냉각온도#4CGL
+                                           ,SHK_TM_4CGL	               --ShockingTime#4CGL
+                                           ,LN_SPD_4CGL	               --LineSpeed#4CGL
+                                           ,HEAT_CYL_NO_5CGL	       --소둔CYCLE#5CGL
+                                           ,HTG_TEM_5CGL               --가열온도#5CGL
+                                           ,CLG_TEM_5CGL               --냉각온도#5CGL
+                                           ,SHK_TM_5CGL		           --ShockingTime#5CGL
+                                           ,LN_SPD_5CGL		           --LineSpeed#5CGL
+                                           ,COR_THK_TRV                --정전두께목표값
+                                           ,PRD_THK_RNG_LLV            --제품두께범위하한값
+                                           ,PRD_THK_RNG_ULV            --제품두께범위상한값
+                                           ,PLTCM_THK_TRV              --PLTCM두께목표값
+                                           ,PLTCM_SET_THK_TRV	       --PLTCMX-RaySet두께값
+                                           ,PRD_LTH_RNG_LLV            --제품길이범위하한값
+                                           ,PRD_LTH_RNG_ULV            --제품길이범위상한값
+                                           ,PRD_THK_SPC_RNG_LLV        --제품두께규격범위하한값
+                                           ,PRD_THK_SPC_RNG_ULV        --제품두께규격범위상한값
+                                    from   TB_C10_QLT_DSN_MNF
+                                    where  ORD_NO = ?
+                                    and    ORD_LN = ?
+                                    and    QLT_DSN_MNF_TP = '1')  
+                      
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MNF.WTHupdate1" desc="C102100MNF.WTHupdate1" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양폭사양수정 C102100MNF.WTHupdate1 성낙원*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+          ,(SLIT_GRP_CNT                  --Slit조수
+           ,MIX_WTH1                      --조합폭1
+           ,MIX_WTH2                      --조합폭2
+           ,MIX_WTH3	                  --조합폭3
+           ,MIX_WTH4                      --조합폭4
+           ,MIX_WTH5	                  --조합폭5
+           ,MIX_WTH6                      --조합폭6
+           ,MIX_WTH7	                  --조합폭7
+           ,MIX_WTH8	                  --조합폭8
+           ,MIX_WTH9	                  --조합폭9
+           ,MIX_WTH10	                  --조합폭10
+           ,PRD_WTH_RNG_LLV               --제품폭범위하한값
+           ,PRD_WTH_RNG_ULV               --제품폭범위상한값
+           ,COR_WTH_TRV                   --정전폭목표값
+           ,CCL_WTH_TRV                   --CCL폭목표값
+           ,MID_COR_WTH_TRV) =            --중간정전폭목표값
+                               (select SLIT_GRP_CNT                  --Slit조수
+                                       ,MIX_WTH1                      --조합폭1
+                                       ,MIX_WTH2                      --조합폭2
+                                       ,MIX_WTH3	                  --조합폭3
+                                       ,MIX_WTH4                      --조합폭4
+                                       ,MIX_WTH5	                  --조합폭5
+                                       ,MIX_WTH6                      --조합폭6
+                                       ,MIX_WTH7	                  --조합폭7
+                                       ,MIX_WTH8	                  --조합폭8
+                                       ,MIX_WTH9	                  --조합폭9
+                                       ,MIX_WTH10	                  --조합폭10
+                                       ,PRD_WTH_RNG_LLV               --제품폭범위하한값
+                                       ,PRD_WTH_RNG_ULV               --제품폭범위상한값
+                                       ,COR_WTH_TRV                   --정전폭목표값
+                                       ,CCL_WTH_TRV                   --CCL폭목표값
+                                       ,MID_COR_WTH_TRV               --중간정전폭목표값
+                                from   TB_C10_QLT_DSN_MNF
+                                where  ORD_NO = ?
+                                and    ORD_LN = ?
+                                and    QLT_DSN_MNF_TP = '1')     
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = ?
+		 ]]> 
+	 </query>
+</queryMap>

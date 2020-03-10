@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.4"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="407,-1" input="//@wire.0" output="//@wire.2 //@wire.3" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000030pop01.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="50599" location="342,236" size="162,-1" input="//@wire.5" output="//@wire.4" name="조회">
+    <property key="sqlkey" value="C106000030pop01.select"/>
+    <property key="dao" value="mesdao"/>
+    <property key="description" value=""/>
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="50600" location="341,168" size="162,-1" input="//@wire.3" output="//@wire.5" name="삭제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000030pop01.delete"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="품질개선이력관리 엑셀파일 업로드 팝업화면"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="279,49" lastRelativePoint="279,82">
+    <bendpoint weight="0.5" firstDimension="0,18" secondDimension="-14,-39"/>
+  </wire>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="2922" guardcondition="delete" firstRelativePoint="417,198" lastRelativePoint="417,236"/>
+  <wire id="2924" guardcondition="success" firstRelativePoint="421,266" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="-2,60" secondDimension="117,-2"/>
+  </wire>
+  <wire id="9043" guardcondition="success" firstRelativePoint="411,198" lastRelativePoint="411,236"/>
+</Glue:GlueDiagram>

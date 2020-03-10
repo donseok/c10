@@ -1,0 +1,74 @@
+<items>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="품명코드" name="MD_RULE_CON_1" type="label"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item inputWidth="100" label="연산자" name="MD_RULE_CON_OLSTATR_1" type="combo"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item inputWidth="75" label="비교값1" name="MD_RULE_CON_MI_V_1" type="input"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item inputWidth="75" label="비교값2" name="MD_RULE_CON_MAX_V_1" type="input"/>
+<item foreground-color="255,140,50" offset="35" type="newcolumn"/>
+<item label="Display Name" name="Activity Event Name2" type="button" value="Display Name"/>
+<item foreground-color="255,140,50" offset="3" type="newcolumn"/>
+<item command="find" label="Display Name" name="find" type="button" value="조회"/>
+<item foreground-color="255,140,50" offset="3" type="newcolumn"/>
+<item command="save" label="Display Name" name="save" type="button" value="저장"/>
+<item foreground-color="255,140,50" offset="3" type="newcolumn"/>
+<item command="winClose" label="Display Name" name="winClose" type="button" value="닫기"/>
+<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+<item format="addCondition" name="addCondition" position="label-left" type="template"/>
+<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+<item format="delCondition" name="delCondition" position="label-left" type="template"/>
+<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+<item background-color="255,128,128" type="block" width="950">
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="제품형태" name="MD_RULE_CON_2" type="label"/>
+<item foreground-color="255,140,50" offset="59" type="newcolumn"/>
+<item inputWidth="100" name="MD_RULE_CON_OLSTATR_2" type="combo"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MI_V_2" type="input"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MAX_V_2" type="input"/>
+</item>
+<item type="block" width="971">
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="규격약호" name="MD_RULE_CON_3" type="label"/>
+<item foreground-color="255,140,50" offset="59" type="newcolumn"/>
+<item inputWidth="100" name="MD_RULE_CON_OLSTATR_3" type="combo"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MI_V_3" type="input"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MAX_V_3" type="input"/>
+<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+</item>
+<item background-color="255,128,128" type="block" width="950">
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="주문용도코드" name="MD_RULE_CON_4" type="label"/>
+<item foreground-color="255,140,50" offset="31" type="newcolumn"/>
+<item inputWidth="100" name="MD_RULE_CON_OLSTATR_4" type="combo"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MI_V_4" type="input"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MAX_V_4" type="input"/>
+</item>
+<item background-color="255,128,128" type="block" width="950">
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="고객사코드" name="MD_RULE_CON_5" type="label"/>
+<item foreground-color="255,140,50" offset="45" type="newcolumn"/>
+<item inputWidth="100" name="MD_RULE_CON_OLSTATR_5" type="combo"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MI_V_5" type="input"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MAX_V_5" type="input"/>
+</item>
+<item background-color="255,128,128" type="block" width="950">
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item label="고객사양서번호" name="MD_RULE_CON_6" type="label"/>
+<item foreground-color="255,140,50" offset="17" type="newcolumn"/>
+<item inputWidth="100" name="MD_RULE_CON_OLSTATR_6" type="combo"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MI_V_6" type="input"/>
+<item foreground-color="255,140,50" offset="65" type="newcolumn"/>
+<item inputWidth="75" name="MD_RULE_CON_MAX_V_6" type="input"/>
+</item>
+</items>

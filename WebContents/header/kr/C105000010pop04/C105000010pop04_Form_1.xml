@@ -1,0 +1,10 @@
+<items>
+<item type="block" width="611">
+<item foreground-color="255,140,50" offset="365" type="newcolumn"/>
+<item command="clear" label="clear" name="clear" type="custombutton" width="75" value="초기화"/>
+<item offset="5" type="newcolumn"/>
+<item label="calculate" name="calculate" command="calculate" type="custombutton" width="75" value="계산"/>
+<item offset="5" type="newcolumn"/>
+<item command="popClose" name="popClose" type="button" value="닫기"/>
+</item>
+</items>

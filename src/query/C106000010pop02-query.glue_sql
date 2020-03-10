@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000010pop02 Page 쿼리파일"> 
+	 <query id="C106000010pop02.select" desc="C106000010pop02 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+ SELECT /*+ C106000010pop02   도료사별 색상개발 담당조회   C106000010pop02.select 원성옥  */
+        PNT_CMP_CD                              --업체코드
+       ,PNT_CMP_NM                              --업체명
+       ,NOR_COR_DEV_TM                          --일반PCM색상개발LeadTime
+       ,DAY_FIN_CNT                             --일처리가능건수
+       ,LED_TIM_1                               --LeadTime1
+       ,LED_TIM_2                               --LeadTime2
+       ,PRO_COL_DEC                             --전문조색원유무
+       ,SMP_PRC_MAN                             --샘플진행관련문의담당자
+       ,MGR_CAL                                 --담당자연락처
+       ,ETC_TXT                                 --비고	
+   FROM TB_C10_CLR_CMP_DEV_MNG
+		 ]]> 
+	 </query>
+</queryMap>

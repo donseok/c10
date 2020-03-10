@@ -1,0 +1,45 @@
+<items>	
+	<item type="block" width="971">		
+		<item type="newcolumn" offset="632" />
+		<item command="excelImport" name="excelImport" type="custombutton" value="Import" width="80"/>		
+		<item offset="5" type="newcolumn"/>		
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="save" value="저장" command="save" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="971">				
+		<item type="combo" label="품명" labelWidth="52" name="PRD_NM_CD" inputWidth="100" labelAlign="right" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="25" />
+		<item dateFormat="%Y-%m-%d" inputWidth="100" label="생산일" name="PDN_DH_START" type="calendar" labelAlign="left" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="5" />
+		<item type="label"  label="~"/>
+		<item type="newcolumn" offset="5" />
+		<item dateFormat="%Y-%m-%d" inputWidth="100" name="PDN_DH_END" type="calendar" labelAlign="left"  style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="15" />
+		<item type="input" label="두께" name="COIL_THK_MIN" inputWidth="90" labelAlign="right"/>
+		<item type="newcolumn" offset="5" />
+		<item type="label"  label="~"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="COIL_THK_MAX" inputWidth="90" labelAlign="left"/>
+		<item type="newcolumn" offset="15" />
+		<item type="input" label="폭" name="COIL_WTH_MIN" inputWidth="85" labelAlign="right"/>
+		<item type="newcolumn" offset="5" />
+		<item type="label"  label="~"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="COIL_WTH_MAX" inputWidth="85" labelAlign="left"/>
+	</item>
+	<item type="block" width="971">		
+		<item type="input" label="규격약호" name="SPC_AVR" inputWidth="100" labelAlign="left"/>
+		<item type="newcolumn" offset="10" />
+		<item type="input" label="주문용도" name="ORD_USG_CD" inputWidth="100" labelAlign="left"/>
+		<item offset="5" type="newcolumn"/>
+		<item type="template" name="template" value="search"  format="serchIcon"/>
+		<item type="newcolumn" offset="15" />	
+		<item type="combo" label="생산공정" name="PROC_CD" inputWidth="120" labelAlign="left"/>	
+		<item type="newcolumn" offset="15" />
+		<item type="combo" label="S/P" name="SP_ASG_YN" inputWidth="120" labelAlign="left"/>	
+		<item type="newcolumn" offset="15" />
+	</item>
+</items>

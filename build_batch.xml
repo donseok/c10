@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+
+<project name="UnionSteel_C10_batch" default="Copy_JAR_test">
+    <property file="build.properties"/>
+
+    <target name="_batch_prd_xmlCopy" depends="" description="batch real Copy xml">
+        <copy file="${src.dir}/applicationContext_batch_real.xml" tofile="${class.dir}/applicationContext.xml" overwrite="true"/>
+        <copy file="${src.dir}/log4j_batch.xml" tofile="${class.dir}/log4j.xml" overwrite="true"/>
+    </target>
+
+	<target name="_batch_dev_xmlCopy" depends="" description="batch dev Copy xml">
+        <copy file="${src.dir}/applicationContext_batch_dev..xml" tofile="${class.dir}/applicationContext.xml" overwrite="true"/>
+        <copy file="${src.dir}/log4j_batch.xml" tofile="${class.dir}/log4j.xml" overwrite="true"/>
+    
+	</target>
+        <target name="_batch_test_xmlCopy" depends="" description="batch test Copy xml">
+            <copy file="${src.dir}/applicationContext_batch_tst.xml" tofile="${class.dir}/applicationContext.xml" overwrite="true"/>
+            <copy file="${src.dir}/log4j_batch.xml" tofile="${class.dir}/log4j.xml" overwrite="true"/>
+    </target>
+	
+    <target name="Copy_JAR_prd" depends="_batch_prd_xmlCopy,jar">    	
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>        
+    </target>
+
+	<target name="Copy_JAR_dev" depends="_batch_dev_xmlCopy,jar">    	
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>        
+
+	</target>
+
+	<target name="Copy_JAR_test" depends="_batch_test_xmlCopy,jar">    	
+                <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+                <copy todir="${target.WebContent.dir}">
+                    <fileset dir="${build.dir}">
+                        <include name="*.jar"/>
+                    </fileset>
+                </copy>
+                <echo>End Copy</echo>        
+            </target>
+
+	<target name="makeBuilDir">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+	 <target name="create-manifest-glue" depends="" description="make the manifest">
+		<tstamp>
+	  		<format property="TODAY_KO" pattern="yyMMdd.HHmm" timezone="GMT+9" locale="ko" /> 
+	  	</tstamp>
+		<manifest file="MANIFEST.MF">
+			<attribute name="Main-Class" value="com.unionsteel.mes.c10.activity.nui.GlueHttpServerLauncher" /> 
+			<attribute name="Class-Path" value="./lib/slf4j-api-1.6.4.jar ./lib/slf4j-log4j12-1.6.4.jar ./lib/backport-util-concurrent.jar ./lib/glue-gun.jar ./lib/commons-beanutils.jar ./lib/commons-codec-1.2.jar ./lib/commons-collections.jar ./lib/commons-dbcp.jar ./lib/commons-digester.jar ./lib/commons-httpclient-3.1.jar ./lib/commons-lang.jar ./lib/commons-logging.jar ./lib/commons-pool.jar ./lib/concurrent.jar ./lib/glue-master-jdk1.6.jar ./lib/jcs-1.2.7.7_cache.jar ./lib/log4j-1.2.13.jar ./lib/mina-core-1.0.10.jar ./lib/quartz-1.5.2.jar ./lib/seadapter.jar ./lib/servlet-api.jar ./lib/slf4j-api-1.5.2.jar ./lib/slf4j-log4j12-1.5.2.jar ./lib/spring.jar ./lib/struts.jar ./lib/glue.jar ./lib/weblogic.jar ./lib/api.jar ./lib/glue-plus.jar ./lib/ojdbc6.jar ./lib/orai18n.jar ./lib/orai18n-mapping.jar" /> 
+		</manifest>
+	</target>
+
+	<target name="compile" description="Compiles the source code">
+		<echo>Delete Class Dir and Build Dir</echo>
+	        <delete dir="${class.dir}"/>
+	        
+	        <echo>Create Class Dir and Build Dir</echo>
+	        <mkdir dir="${class.dir}"/>
+	        
+	        <echo>Compile Java File</echo>
+	        <javac destdir="${class.dir}" debug="on" encoding="UTF-8">
+            <src path="${src.dir}"/>
+            <classpath>
+                <!-- =========== glue lib ===========  -->
+            	<pathelement location="${GlueSDK.dir}/lib/gluelib/glue.jar"/>
+            	<pathelement location="${GlueSDK.dir}/lib/gluelib/glue-gun.jar"/>
+            	<pathelement location="${GlueSDK.dir}/lib/gluelib/glue-master-jdk1.6.jar"/>
+            	<pathelement location="${GlueSDK.dir}/lib/gluelib/glue-security.jar"/>
+            	<pathelement location="${GlueSDK.dir}/lib/gluelib/glue-tester.jar"/>	
+                <!-- =========== glue std ===========  -->
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/backport-util-concurrent.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-beanutils.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-codec-1.2.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-collections.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-dbcp.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-digester.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-fileupload-1.1.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-httpclient-3.1.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-io-1.1.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-lang.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-logging.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/commons-pool.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/concurrent.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/dhtmlx_grid_excel-1.0.0.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/fileupload-progress.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/jcs-1.2.7.7_cache.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/junit.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/jxl.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/log4j-1.2.13.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/mina-core-1.0.10.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/ojdbc6.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/ojdbc6dms.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/orai18n.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/poi-3.0.2-FINAL-20080204.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/quartz-1.5.2.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/servlet-api.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/spring.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/struts.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/slf4j-api-1.6.4.jar" />
+            	<pathelement location="${GlueSDK.dir}/lib/gluestd/slf4j-log4j12-1.6.4.jar" />
+            </classpath>
+        </javac>
+	</target>
+	
+	
+	<target name="jar" depends="makeBuilDir,create-manifest-glue" description="Creates the ${JAR_NAME}.jar file">
+		<echo>Start Build WAR to ${build.dir} WAR Name is ${JAR_NAME}.jar</echo> 
+		<jar destfile="${build.dir}/${JAR_NAME}.jar" manifest="MANIFEST.MF" compress="false">
+			<fileset dir="${class.dir}">
+				<patternset>
+					<include name="**/*.*" />
+					<include name="mes_message_ko_KR.properties"/>
+					<include name="query/B10R0020-query.glue_sql" />
+					<include name="query/B10R0030-query.glue_sql" />
+					<include name="applicationContext.xml" />
+					<include name="log4j.xml" />
+				</patternset>
+			</fileset>
+		</jar>
+	</target>
+	
+	    <target name="ftp_prd" description="Real FTP Server Send">
+	        <echo>Prd FTP Server Send</echo>
+	        <ftp action="put" userid="${realServer.user}" password="${realServer.password}" server="${realServer.serverIp}"  remotedir="${realServer.scmdir}" passive="yes" >
+	        <fileset dir="${build.dir}">
+	            <include name="${JAR_NAME}.jar"/>
+	        </fileset>
+	        </ftp>
+	        <echo>Success FTP Sending</echo>
+	    </target>
+   	    <target name="ftp_dev" description="Dev FTP Server Send">
+	        <echo>Dev FTP Server Send</echo>
+	        <ftp action="put" userid="${devServer.user}" password="${devServer.password}" server="${devServer.serverIp}"  remotedir="${devServer.scmdir}" passive="yes" >
+	        <fileset dir="${build.dir}">
+	            <include name="${JAR_NAME}.jar"/>
+	        </fileset>
+	        </ftp>
+	        <echo>Success FTP Sending</echo>
+	    </target>
+		
+	    <target name="ftp_test" description="Test FTP Server Send">
+	        <echo>Test FTP Server Send</echo>
+	        <ftp action="put" userid="${testServer.user}" password="${testServer.password}" server="${testServer.serverIp}"  remotedir="${testServer.scmdir}" passive="yes" >
+	        <fileset dir="${build.dir}">
+	            <include name="${JAR_NAME}.jar"/>
+	        </fileset>
+	        </ftp>
+	        <echo>Success FTP Sending</echo>
+	    </target>
+	
+</project>

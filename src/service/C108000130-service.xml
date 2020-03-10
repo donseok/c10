@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000130-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000130.selectClrDev" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+    <transition name="findSmp" value="조회(excelExport)" />
+  </activity>
+  <activity name="조회(excelExport)" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000010xls.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C108000130.insertClrDev" />
+    <property name="delete-sql" value="C108000130.deleteClrDev" />
+    <property name="update-sql" value="C108000130.updateClrDev" />
+  </activity>
+</service>
+

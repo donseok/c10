@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000070-service" initial="분기">
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="행번 조회" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="dao" value="eaidao" />
+    <property name="keyCount" value="1" />
+    <property name="sqlkey" value="C106000070.ordLnSelect" />
+  </activity>
+  <activity name="combo설정" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000070.comboSelect" />
+    <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="재전송확인2" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000070.chk20_find" />
+    <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="재전송확인1" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000070.chk30_find" />
+    <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="공통코드정보송신" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S0040-service" />
+  </activity>
+  <activity name="생산가부검토결과조회" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="dao" value="eaidao" />
+    <property name="keyCount" value="1" />
+    <property name="sqlkey" value="C106000070.select4" />
+  </activity>
+  <activity name="주문용도정보송신" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S0020-service" />
+  </activity>
+  <activity name="고객공통정보송신" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S0050-service" />
+  </activity>
+  <activity name="조회" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="dao" value="eaidao" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="sqlkey" value="C106000070.select" />
+    <property name="keyCount" value="1" />
+  </activity>
+  <activity name="생산가부Batch Call" class="com.poscoict.glue.biz.dhtmlx.PosBatchJobInvoker">
+    <transition name="success" value="end" />
+    <property name="target-chain" value="C10" />
+    <property name="job-name" value="batchJobB10R0020" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="ajaxFind" value="컬럼정보조회" />
+    <transition name="comboSelect" value="combo설정" />
+    <transition name="find2" value="생산가부조회" />
+    <transition name="reSend" value="재전송" />
+    <transition name="OrdLnFind" value="행번 조회" />
+    <transition name="Send" value="규격공통정보송신" />
+    <transition name="Send1" value="주문용도정보송신" />
+    <transition name="Send2" value="규격별주문용도정보송신" />
+    <transition name="Send3" value="공통코드정보송신" />
+    <transition name="Send4" value="고객공통정보송신" />
+    <transition name="chk30" value="재전송확인1" />
+    <transition name="chk20" value="재전송확인2" />
+    <transition name="find3" value="품질설계조회" />
+    <transition name="OrdLnFind1" value="주문행번조회(추가)" />
+    <transition name="find4" value="생산가부검토결과조회" />
+  </activity>
+  <activity name="규격별주문용도정보송신" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S0030-service" />
+  </activity>
+  <activity name="재전송" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="생산가부Batch Call" />
+    <property name="dao" value="eaidao" />
+    <property name="update-sql" value="C106000070.reSendUpdate" />
+  </activity>
+  <activity name="컬럼정보조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000070.ajaxFind" />
+    <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="규격공통정보송신" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S0010-service" />
+  </activity>
+  <activity name="주문행번조회(추가)" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="dao" value="eaidao" />
+    <property name="keyCount" value="1" />
+    <property name="sqlkey" value="C106000070.ordLnSelect1" />
+  </activity>
+  <activity name="생산가부조회" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="dao" value="eaidao" />
+    <property name="keyCount" value="1" />
+    <property name="sqlkey" value="C106000070.select2" />
+  </activity>
+  <activity name="품질설계조회" class="com.unionsteel.mes.c10.activity.ui.SearchTableLoad">
+    <transition name="success" value="end" />
+    <property name="key1" value="#TABLE_NAME#|TABLE_NAME" />
+    <property name="dao" value="eaidao" />
+    <property name="keyCount" value="1" />
+    <property name="sqlkey" value="C106000070.select3" />
+  </activity>
+</service>
+

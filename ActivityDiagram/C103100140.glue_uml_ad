@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="345,33" size="-1,-1" output="//@wire.1"/>
+  <child xsi:type="Glue:FinalState" id="116" location="349,274" size="-1,-1" input="//@wire.3 //@wire.4"/>
+  <child xsi:type="Glue:InsertActivity" id="2222" location="293,172" size="133,-1" input="//@wire.2" output="//@wire.3" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C103100040.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="QLT_DSN_ERR_CD"/>
+    <property key="description" value="이 Activity는 품질설계작업을 수행중에 발생한 오류를&#xD;&#xA;TB_C10_QLT_DSN_ERR에 등록하는 Activity이다.&#xD;&#xA;&#xD;&#xA;key&#xD;&#xA;주문번호 = ORD_NO&#xD;&#xA;주문행번 = ORD_LN&#xD;&#xA;품질설계에러코드 = QLT_DSN_ERR_CD"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50598" location="297,86" size="126,-1" input="//@wire.1" output="//@wire.2 //@wire.4" name="SEARCH_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchCmnErrorCheck"/>
+    <property key="dao" value="mesdao"/>
+    <property key="description" value="이 Activity는 TB_C10_QLT_DSN_ERR&#xD;&#xA;DB에 일치하는 Data 여부 확인 후&#xD;&#xA;QLT_DSN_ERR_YN 정보를 등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;Key : 주문번호, 주문행번, 품질설계에러코드&#xD;&#xA;&#xD;&#xA;Key Value 중복이면 Failure, 아니면 Success&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계 수행중 발생하는 오류를 등록하는 Activity이다. "/>
+  <wire id="1183" guardcondition="success" firstRelativePoint="331,270" lastRelativePoint="331,378"/>
+  <wire id="2900" guardcondition="success" firstRelativePoint="355,52" lastRelativePoint="355,86"/>
+  <wire id="2902" guardcondition="success" firstRelativePoint="354,116" lastRelativePoint="354,153"/>
+  <wire id="2912" guardcondition="success" firstRelativePoint="354,183" lastRelativePoint="354,332"/>
+  <wire id="2921" guardcondition="failure" firstRelativePoint="423,101" lastRelativePoint="368,283">
+    <bendpoint weight="0.5" firstDimension="251,0" secondDimension="252,-183"/>
+    <bendpoint weight="0.5" firstDimension="251,181" secondDimension="252,-2"/>
+  </wire>
+</Glue:GlueDiagram>

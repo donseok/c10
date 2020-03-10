@@ -1,0 +1,83 @@
+<items>
+	<item type="block" width="971">
+	    <item labelWidth="110" inputWidth="100" label="개발의뢰BOM번호" name="DEV_REQ_BOM_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발업체" name="PNT_CMP_CD" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+	    <item labelWidth="0" inputWidth="0" label="" name="PRD_DEV_NO" type="hidden" labelAlign="right" value=""/>
+	    <item offset="5" type="newcolumn"/>
+		<item labelWidth="0" inputWidth="0" label="" name="DEV_REQ_SPEC_NO" type="hidden" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="TOP 1C" name="HUE_CD_FRN_1COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="TOP 2C" name="HUE_CD_FRN_2COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="TOP 3C" name="HUE_CD_FRN_3COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="TOP 4C" name="HUE_CD_FRN_4COT" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="Back 1C" name="HUE_CD_BAK_1COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Back 2C" name="HUE_CD_BAK_2COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Back 3C" name="HUE_CD_BAK_3COT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Back 4C" name="HUE_CD_BAK_4COT" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="Print1도 Roll" name="PRT_ROLL_NO1" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Print2도 Roll" name="PRT_ROLL_NO2" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print3도 Roll" name="PRT_ROLL_NO3" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print4도 Roll" name="PRT_ROLL_NO4" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="Print1도 Ink" name="PRT_INK_CD1" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Print2도 Ink" name="PRT_INK_CD2" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print3도 Ink" name="PRT_INK_CD3" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print4도 Ink" name="PRT_INK_CD4" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="라미나" name="HUE_CD_LMN" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="U-TEX Roll" name="UNI_TEX_ROLL_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="PICK-UP Roll" name="PICK_UP_ROLL_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="IMPRINT Roll" name="IMPT_ROLL_NO" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="유사색상 적용여부" name="SIM_HUE_PRG_YN" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="코팅방식" name="COT_MTH" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="수지" name="RSN_TP" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="무독성구분" name="TLP_TP" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="실광택값" name="RL_LUS_RT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="라미나 필름두께" name="LMN_FLM_THK" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나유형" name="LMN_KND_TP" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="라미나 착제개발업체" name="LMN_BND_CMP_CD" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="도막두께" name="PNT_FLM_THK_TXT" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="디자인 시안 적용가능여부" name="DSN_SIM_FILE" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="BabyRoll제작업체" name="PRT_BY_ROLL_CMP_CD" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="특수제품 후처리작업" name="SPC_PRD_AF_WK" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+</items>

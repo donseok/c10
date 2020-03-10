@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="116,-24" size="-1,-1" output="//@wire.4"/>
+  <child xsi:type="Glue:Activity" id="49656" location="196,-33" size="149,-1" input="//@wire.4" output="//@wire.29" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 품질설계 오류Code를 초기화한다.(QLT_DSN_ERR_CD=''l)&#xD;&#xA;- 오류발생여부 Check 변수를 초기화한다.(P_ERR_KEY= 'N‘)&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : QLT_DSN_ERR_CD|sp_null"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="414,-36" size="154,-1" input="//@wire.29" output="//@wire.1" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN.Jselect"/>
+    <property key="description" value="이 Activity는 품질설계대상 주문정보로 &#xD;&#xA;품질설계상태코드 ='J' 인 값만 &#xD;&#xA;품질설계작업을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="49675" location="421,31" size="135,-1" input="//@wire.1 //@wire.9 //@wire.18" output="//@wire.3 //@wire.7" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
+    <property key="param-count" value="17"/>
+    <property key="param0" value="ORD_NO|ORD_NO"/>
+    <property key="param1" value="ORD_LN|ORD_LN"/>
+    <property key="param2" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP"/>
+    <property key="param3" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param4" value="ORD_EXC_THK|ORD_EXC_THK"/>
+    <property key="param5" value="ORD_EXC_WTH|ORD_EXC_WTH"/>
+    <property key="param6" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT|"/>
+    <property key="param7" value="ORD_MIX_WTH1|ORD_MIX_WTH1"/>
+    <property key="param8" value="ORD_MIX_WTH2|ORD_MIX_WTH2"/>
+    <property key="param9" value="ORD_MIX_WTH3|ORD_MIX_WTH3"/>
+    <property key="param10" value="ORD_MIX_WTH4|ORD_MIX_WTH4"/>
+    <property key="param11" value="ORD_MIX_WTH5|ORD_MIX_WTH5"/>
+    <property key="param12" value="ORD_MIX_WTH6|ORD_MIX_WTH6"/>
+    <property key="param13" value="ORD_MIX_WTH7|ORD_MIX_WTH7"/>
+    <property key="param14" value="ORD_MIX_WTH8|ORD_MIX_WTH8"/>
+    <property key="param15" value="ORD_MIX_WTH9|ORD_MIX_WTH9"/>
+    <property key="param16" value="ORD_MIX_WTH10|ORD_MIX_WTH10"/>
+    <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50091" location="203,30" size="145,-1" input="//@wire.3" output="//@wire.2" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="117,36" size="-1,-1" input="//@wire.2"/>
+  <child xsi:type="Glue:Activity" id="50646" location="206,181" size="135,-1" input="//@wire.10" output="//@wire.6 //@wire.11" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchRmtSizeData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 원자재Size사양을 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: PLTCM폭 최대값&#xD;&#xA;&#x9;- PLTCM주공정폭목표치, PLTCM대체공정1폭목표치, PLTCM대체공정2폭목표치 중&#xD;&#xA;&#x9;  가장 큰값으로 편성&#xD;&#xA;&#x9;  &#xD;&#xA;2. 편성정보: 중간재적용기준(알미늄칼라, 스테인레스칼라제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2230&#xD;&#xA;&#x9;- 중간재적용기준 Data 조건항목 : 품명코드, 주문두께, 기준적용폭&#xD;&#xA;&#x9;-> Read Count = 1 이면 중간재적용기준 Data의 중간재품명코드를 편성한다.&#xD;&#xA;&#x9;-> 에러처리 하지 않는다.&#xD;&#xA;&#x9;&#xD;&#xA;3. 편성정보: 원자재두께기준(알루미늄칼라, 스테인레스칼라제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1071&#xD;&#xA;&#x9;- 원자재두께기준 Data 조건항목 : 원자재코드, PLTCM X-Ray Set치, PLTCM목표폭최대값&#xD;&#xA;&#x9;-> Read Count = 1 이면 원자재두께기준 Data의 원자재두께, 원자재두께(1~5)을 편집한다.&#xD;&#xA;&#x9;   원자재두께1~5 중 가장 작은값을 원자재두께하한으로 가장큰값을 원자재두께상한으로&#xD;&#xA;&#x9;   편집한다. &#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 원자재두께기준 에러처리한다.&#xD;&#xA;&#x9;&#xD;&#xA;4. 편성정보: PLTCM폭수축량기준(알루미늄칼라, 스테인레스칼라제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1074&#xD;&#xA;&#x9;- PLTCM폭수축량기준 Data 조건항목 : 원자재코드, PLTCM X-Ray Set치, PLTCM목표폭최대값&#xD;&#xA;&#x9;-> Read Count = 1 이면 PLTCM폭수축량기준 Data의 PLTCM폭수축량최대값을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 PLTCM폭수축량기준 에러처리한다.&#xD;&#xA;&#x9;&#xD;&#xA;5. 편성정보: PLTCM폭마진량기준(알루미늄칼라, 스테인레스칼라제외)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B1073&#xD;&#xA;&#x9;- PLTCM폭마진량기준 Data 조건항목 : 원자재코드, 원자재두께, PLTCM목표폭최대값&#xD;&#xA;&#x9;-> Read Count = 1 이면 PLTCM폭마진량기준 Data의 PLTCM폭마진량을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 PLTCM폭마진량기준 에러처리한다.&#xD;&#xA;&#x9;&#xD;&#xA;6. 편성정보: 원자재목표두께, 원자재두께범위하한, 원자재두께범위상한, 원자재목표폭, 원자재코드(중간재)&#xD;&#xA;&#x9;- 품명코드가 알미늄칼라, 스테인레스칼라인 경우&#xD;&#xA;&#x9;  - 원자재목표두께 = 주문두께&#xD;&#xA;&#x9;  - 원자재목표두께범위하한 = 주문두께&#xD;&#xA;&#x9;  - 원자재목표두께범위상한 = 주문두께&#xD;&#xA;&#x9;  - 원자재목표폭 = 제품목표폭(소수점 반올림)&#xD;&#xA;&#x9;- 그이외의 경우&#xD;&#xA;&#x9;  - 중간재품명코드가 space인 경우&#xD;&#xA;&#x9;    - 원자재목표두께 = 원자재두께&#xD;&#xA;&#x9;    - 원자재목표두께범위하한 = 원자재목표두께하한&#xD;&#xA;&#x9;    - 원자재목표두께범위상한 = 원자재목표두께상한&#xD;&#xA;&#x9;    - 주문EDGE지정구분이 'C'인 경우&#xD;&#xA;&#x9;      - 원자재목표폭 = PLTCM목표폭최대값(소수점 반올림)&#xD;&#xA;&#x9;    - 주문EDGE지정구분이 'N'인 경우&#xD;&#xA;&#x9;      - 원자재목표폭 = 제품목표폭(소수점 반올림)&#xD;&#xA;&#x9;    - 그이외의 경우&#xD;&#xA;&#x9;      - 원자재목표폭 = (PLTCM목표폭최대값 + PLTCM폭수축량 + PLTCM폭마진량)(소수점반올림)&#xD;&#xA;&#x9;  - 중간재품명코드가 'C'인 경우&#xD;&#xA;&#x9;    - 원자재목표두께 = TM목표두께&#xD;&#xA;&#x9;    - 원자재목표두께범위하한 = TM목표두께&#xD;&#xA;&#x9;    - 원자재목표두께범위상한 = TM목표두께&#xD;&#xA;&#x9;    - 원자재목표폭 = TM목표폭(소수점 반올림)&#xD;&#xA;&#x9;    - 원자재코드 = 중간재품명코드 + 원자재코드의 첫자리를 제외한 값&#xD;&#xA;&#x9;  - 중간재품명코드가 'E'인 경우&#xD;&#xA;&#x9;    - 원자재목표두께 = EGL목표두께&#xD;&#xA;&#x9;    - 원자재목표두께범위하한 = EGL목표두께&#xD;&#xA;&#x9;    - 원자재목표두께범위상한 = EGL목표두께&#xD;&#xA;&#x9;    - 원자재목표폭 = EGL목표폭(소수점 반올림)&#xD;&#xA;&#x9;    - 원자재코드 = 중간재품명코드 + 원자재코드의 첫자리를 제외한 값&#xD;&#xA;&#x9;    &#xD;&#xA;7. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;8. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="50925" location="212,510" size="113,-1" input="//@wire.5" output="//@wire.13" name="MODIFY_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C1021000CMN.modify"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계에러여부를 품질설계결과 공통테이블에 &#xD;&#xA;수정하는 Activity이다. &#xD;&#xA;품질설계에러여부(QLT_DSN_ERR_YN)에 'Y'로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="50979" location="212,435" size="129,-1" input="//@wire.6 //@wire.15 //@wire.28" output="//@wire.5" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51303" location="414,103" size="154,-1" input="//@wire.7" output="//@wire.8 //@wire.16" name="SEARCH_RMT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RMT_SEARCH"/>
+    <property key="sqlkey" value="C102100RMTL.RMselect"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 원자재코드 및 PLTCM관련 항목을 &#xD;&#xA;주문번호로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51304" location="420,177" size="156,-1" input="//@wire.8 //@wire.13 //@wire.22 //@wire.23 //@wire.24" output="//@wire.9 //@wire.10" name="RMT_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RMT_SEARCH"/>
+    <property key="countName" value="RMT_CD_COUNT"/>
+    <property key="param-count" value="20"/>
+    <property key="param0" value="ORD_NO|ORD_NO"/>
+    <property key="param1" value="ORD_LN|ORD_LN"/>
+    <property key="param2" value="QLT_DSN_MNF_TP|QLT_DSN_MNF_TP"/>
+    <property key="param3" value="RMTL_CD|RMTL_CD"/>
+    <property key="param4" value="PLTCM_THK_TRV|PLTCM_THK_TRV"/>
+    <property key="param5" value="PLTCM_WTH_TRV|PLTCM_WTH_TRV"/>
+    <property key="param6" value="PLTCM_EDG_ASG_TP|PLTCM_EDG_ASG_TP"/>
+    <property key="param7" value="COR_WTH_TRV|COR_WTH_TRV"/>
+    <property key="param8" value="PLTCM_SET_THK_TRV|PLTCM_SET_THK_TRV"/>
+    <property key="param9" value="PLTCM_WTH_SUB_PROC1_TRV|PLTCM_WTH_SUB_PROC1_TRV"/>
+    <property key="param10" value="PLTCM_WTH_SUB_PROC2_TRV|PLTCM_WTH_SUB_PROC2_TRV"/>
+    <property key="param11" value="EGL_THK_TRV|EGL_THK_TRV"/>
+    <property key="param12" value="EGL_WTH_TRV|EGL_WTH_TRV"/>
+    <property key="param13" value="TM_THK_TRV|TM_THK_TRV"/>
+    <property key="param14" value="TM_WTH_TRV|TM_WTH_TRV"/>
+    <property key="param15" value="MQL_CD|MQL_CD"/>
+    <property key="param16" value="CGL_THK_TRV|CGL_THK_TRV"/>
+    <property key="param17" value="CGL_WTH_TRV|CGL_WTH_TRV"/>
+    <property key="param18" value="EGL_MAIN_PROC_CD|EGL_MAIN_PROC_CD"/>
+    <property key="param19" value="CGL_MAIN_PROC_CD|CGL_MAIN_PROC_CD"/>
+    <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;원자재코드값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;5. 2016.3.15&#xD;&#xA;   . Zero S/T인 경우 원자재폭 = 제품폭 + CGL/EGL폭 감소량으로 원자재 폭 설계."/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="51305" location="217,244" size="113,-1" input="//@wire.11" output="//@wire.12 //@wire.14" name="MODIFY_RMT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="10"/>
+    <property key="resultkey" value="RMT_RESULT"/>
+    <property key="sqlkey" value="C102100RMTL.update"/>
+    <property key="param0" value="RMTL_TAR_THK"/>
+    <property key="param1" value="RMTL_TAR_WTH"/>
+    <property key="param2" value="RMTL_TAR_THK_LVL"/>
+    <property key="param3" value="RMTL_TAR_THK_UVL"/>
+    <property key="param4" value="RMTL_TAR_WTH_LVL"/>
+    <property key="param5" value="RMTL_TAR_WTH_UVL"/>
+    <property key="param6" value="RMTL_CD"/>
+    <property key="param7" value="ORD_NO"/>
+    <property key="param8" value="ORD_LN"/>
+    <property key="param9" value="QLT_DSN_MNF_TP"/>
+    <property key="description" value="이 Activity는 원자재Size정보를 품질설계 원자재테이블에 &#xD;&#xA;수정하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="53114" location="217,381" size="130,-1" input="//@wire.14" output="//@wire.15" name="ERROR_LOG">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|TB06"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="53153" location="668,102" size="129,-1" input="//@wire.16" output="//@wire.17" name="SUBSERVICE_ERR1">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="53154" location="673,26" size="113,-1" input="//@wire.17" output="//@wire.18" name="MODIFY_ERR1">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C1021000CMN.modify"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계에러여부를 품질설계결과 공통테이블에 &#xD;&#xA;수정하는 Activity이다. &#xD;&#xA;품질설계에러여부(QLT_DSN_ERR_YN)에 'Y'로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="156031" location="220,308" size="114,-1" input="//@wire.12" output="//@wire.19 //@wire.21 //@wire.20" name="ROUTER_MNF_TP">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="QLT_DSN_MNF_TP|1|1"/>
+    <property key="param1" value="QLT_DSN_MNF_TP|2|2"/>
+    <property key="param2" value="QLT_DSN_MNF_TP|3|3"/>
+    <property key="description" value="이 Activity는 이전 Activity에서 어떤 제조표준구분(QLT_DSN_MNF_TP)이 처리되었는지를 확인하여&#xD;&#xA;그에 맞는 후속 Actvity로 분기처리하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="156032" location="386,245" size="113,-1" input="//@wire.19" output="//@wire.22 //@wire.25" name="MODIFY_RMT_CD">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RMT_RESULT"/>
+    <property key="sqlkey" value="C102100RMTL.CMNupdate"/>
+    <property key="param0" value="RMTL_CD"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 원자재코드(중간재반영)정보를 품질설계 공통테이블에 원자재코드를&#xD;&#xA;수정하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="156033" location="387,309" size="113,-1" input="//@wire.20" output="//@wire.23 //@wire.26" name="MODIFY_RMT_CD1">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RMT_RESULT"/>
+    <property key="sqlkey" value="C102100RMTL.CMNupdate1"/>
+    <property key="param0" value="RMTL_CD"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 원자재코드1(중간재반영)정보를 품질설계 공통테이블에 원자재코드1을&#xD;&#xA;수정하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="156034" location="388,372" size="113,-1" input="//@wire.21" output="//@wire.24 //@wire.27" name="MODIFY_RMT_CD2">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RMT_RESULT"/>
+    <property key="sqlkey" value="C102100RMTL.CMNupdate2"/>
+    <property key="param0" value="RMTL_CD"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 원자재코드2(중간재반영)정보를 품질설계 공통테이블에 원자재코드2을&#xD;&#xA;수정하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="156035" location="435,455" size="156,-1" input="//@wire.25 //@wire.26 //@wire.27" output="//@wire.28" name="ERROR_CMN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|TB01"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 원자재Size정보를 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 원자재Size정보 편성&#xD;&#xA;    . 중간재 원자재정보 변경&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2826" guardcondition="success" firstRelativePoint="482,-6" lastRelativePoint="482,31">
+    <bendpoint weight="0.5" firstDimension="-9,46" secondDimension="-6,-21"/>
+    <bendpoint weight="0.5" firstDimension="-9,31" secondDimension="-6,-36"/>
+  </wire>
+  <wire id="2869" guardcondition="success" firstRelativePoint="177,46" lastRelativePoint="88,46">
+    <bendpoint weight="0.5" firstDimension="-121,1" secondDimension="50,-1"/>
+  </wire>
+  <wire id="2870" guardcondition="exit" firstRelativePoint="386,47" lastRelativePoint="353,47"/>
+  <wire id="2873" guardcondition="success" firstRelativePoint="486,-143" lastRelativePoint="486,-103"/>
+  <wire id="2949" guardcondition="success" firstRelativePoint="279,465" lastRelativePoint="279,510"/>
+  <wire id="3017" guardcondition="failure" firstRelativePoint="206,199" lastRelativePoint="212,453">
+    <bendpoint weight="0.5" firstDimension="-142,3" secondDimension="-145,-251"/>
+    <bendpoint weight="0.5" firstDimension="-142,257" secondDimension="-145,3"/>
+  </wire>
+  <wire id="3018" guardcondition="success" firstRelativePoint="472,61" lastRelativePoint="472,103"/>
+  <wire id="3019" guardcondition="success" firstRelativePoint="491,133" lastRelativePoint="491,177"/>
+  <wire id="3021" guardcondition="exit" firstRelativePoint="576,194" lastRelativePoint="556,45">
+    <bendpoint weight="0.5" firstDimension="143,3" secondDimension="142,149"/>
+    <bendpoint weight="0.5" firstDimension="140,-147" secondDimension="150,-1"/>
+  </wire>
+  <wire id="3022" guardcondition="success" firstRelativePoint="420,195" lastRelativePoint="341,195"/>
+  <wire id="3023" guardcondition="success" firstRelativePoint="276,211" lastRelativePoint="276,261"/>
+  <wire id="3025" guardcondition="success" firstRelativePoint="270,274" lastRelativePoint="270,316"/>
+  <wire id="3026" guardcondition="success" firstRelativePoint="325,525" lastRelativePoint="572,182">
+    <bendpoint weight="0.5" firstDimension="523,0" secondDimension="293,333"/>
+    <bendpoint weight="0.5" firstDimension="522,-343" secondDimension="292,-10"/>
+  </wire>
+  <wire id="7776" guardcondition="failure" firstRelativePoint="217,260" lastRelativePoint="220,388">
+    <bendpoint weight="0.5" firstDimension="-125,1" secondDimension="-136,-123"/>
+    <bendpoint weight="0.5" firstDimension="-125,129" secondDimension="-136,5"/>
+  </wire>
+  <wire id="7777" guardcondition="success" firstRelativePoint="273,411" lastRelativePoint="273,435"/>
+  <wire id="7778" guardcondition="failure" firstRelativePoint="674,35" lastRelativePoint="551,35"/>
+  <wire id="7779" guardcondition="success" firstRelativePoint="733,102" lastRelativePoint="733,56"/>
+  <wire id="7780" guardcondition="success" firstRelativePoint="674,35" lastRelativePoint="551,35"/>
+  <wire id="9093" guardcondition="1" firstRelativePoint="320,308" lastRelativePoint="386,295"/>
+  <wire id="9094" guardcondition="2" firstRelativePoint="334,323" lastRelativePoint="387,323"/>
+  <wire id="9095" guardcondition="3" firstRelativePoint="319,338" lastRelativePoint="401,372"/>
+  <wire id="9096" guardcondition="success" firstRelativePoint="452,245" lastRelativePoint="452,207"/>
+  <wire id="9097" guardcondition="success" firstRelativePoint="499,320" lastRelativePoint="572,202">
+    <bendpoint weight="0.5" firstDimension="302,-4" secondDimension="247,128"/>
+    <bendpoint weight="0.5" firstDimension="301,-122" secondDimension="246,10"/>
+  </wire>
+  <wire id="9098" guardcondition="success" firstRelativePoint="500,382" lastRelativePoint="568,205">
+    <bendpoint weight="0.5" firstDimension="319,-5" secondDimension="265,190"/>
+    <bendpoint weight="0.5" firstDimension="318,-182" secondDimension="264,13"/>
+  </wire>
+  <wire id="9099" guardcondition="failure" firstRelativePoint="497,253" lastRelativePoint="587,459">
+    <bendpoint weight="0.5" firstDimension="145,-7" secondDimension="47,-221"/>
+  </wire>
+  <wire id="9100" guardcondition="failure" firstRelativePoint="500,326" lastRelativePoint="571,459">
+    <bendpoint weight="0.5" firstDimension="128,2" secondDimension="31,-148"/>
+  </wire>
+  <wire id="9102" guardcondition="failure" firstRelativePoint="467,402" lastRelativePoint="467,455"/>
+  <wire id="9103" guardcondition="success" firstRelativePoint="439,460" lastRelativePoint="337,460"/>
+  <wire id="9104" guardcondition="success" firstRelativePoint="342,-27" lastRelativePoint="415,-27"/>
+</Glue:GlueDiagram>

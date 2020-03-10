@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:RouterActivity" id="0" location="193,161" size="633,-1" input="//@wire.1" output="//@wire.3 //@wire.0 //@wire.5" name="생산가부수동검토 Router">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 생산가부수동검토조회(Inquiry번호를 바탕으로 조회)&#xD;&#xA;   save : 생산가부수동검토화면에서 입력된 정보를 TB_C10_INQ_HST테이블에 UPDATE한다.&#xD;&#xA;   inquiryEnd : 생산가부수동검토완료 - 종료일시 및 Inquiry상태를 업데이트 한다.&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="1" location="263,269" size="157,-1" input="//@wire.0" output="//@wire.2" name="생산가부수동검토조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000020.select"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 생산가부수동검토테이블(TB_C10_INQ_HST)에서 Inquiry 번호로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :  Inquiry 번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:InitialState" id="2" location="602,78" size="-1,-1" output="//@wire.1"/>
+  <child xsi:type="Glue:FinalState" id="3" location="612,431" size="-1,-1" input="//@wire.2 //@wire.4 //@wire.6"/>
+  <child xsi:type="Glue:DinaActivity" id="8" location="475,266" size="144,-1" input="//@wire.3" output="//@wire.4" name="생산가부수동검토저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C105000020.update"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 생산가부수동검토(TB_C10_INQ_HST)에 Inquiry상태,최종검토결과,최종검토완료일,검토결과전송일,1차 검토결과,1차 수동검토일,1차 결과전송일&#xD;&#xA;                        ,1차 검토결과,1차 수동검토일,1차 결과전송일,고객사양등록일, 고객사양번호,검토결과(최종),검토결과(이력)을 업데이트하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  정보를 업데이트하고 Inquiry 상태코드를 업데이트한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="3958" location="670,264" size="156,-1" input="//@wire.5" output="//@wire.6" name="생산가부수동검토완료">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C105000020.inquiry_end_update"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 생산가부수동검토(TB_C10_INQ_HST)에 Inquiry상태 및 종료일시를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 완료버튼 클릭시 종료일시와  최종검토결과에 따라 Inquiry상태를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 생산가부수동검토를  조회, 수정,완료, 결과전송 하는&#xD;&#xA;Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_INQ_HST(생산가부검토결과)&#xD;&#xA;  - 조회조건 :  Inquiry 번호&#xD;&#xA;  - 수정 : Inquiry의 상태에 따라 1차 검토결과, 1차 수동검토일&#xD;&#xA;            , 1차 결과전송일, 2차 검토결과, 2차 수동검토일&#xD;&#xA;            , 2차 결과전송일 등을 설정하고 그결과를 바탕으로&#xD;&#xA;            최종검토결과, 최종검토완료일,검토결과전송일을 설정하여저장&#xD;&#xA;            또한 검토결과(이력),검토결과(최종)등을 함께 저장한다.&#xD;&#xA;  - 완료 :  TB_C10_INQ_HST 테이블에 종료일시(INQ_END_DH)을 업데이트하고&#xD;&#xA;              Inquiry상태를 '9'로 업데이트 한다."/>
+  <wire id="0" guardcondition="find" firstRelativePoint="337,191" lastRelativePoint="337,269"/>
+  <wire id="1" guardcondition="success" firstRelativePoint="609,97" lastRelativePoint="609,157"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="426,296" lastRelativePoint="611,440">
+    <bendpoint weight="0.5" firstDimension="-52,160" secondDimension="-196,0"/>
+  </wire>
+  <wire id="11" guardcondition="save" firstRelativePoint="573,191" lastRelativePoint="573,266"/>
+  <wire id="12" guardcondition="success" firstRelativePoint="551,296" lastRelativePoint="614,433">
+    <bendpoint weight="0.5" firstDimension="4,81" secondDimension="-71,-79"/>
+  </wire>
+  <wire id="869" guardcondition="inquiryEnd" firstRelativePoint="764,191" lastRelativePoint="764,264"/>
+  <wire id="870" guardcondition="success" firstRelativePoint="744,294" lastRelativePoint="631,440">
+    <bendpoint weight="0.5" firstDimension="-4,162" secondDimension="122,0"/>
+  </wire>
+</Glue:GlueDiagram>

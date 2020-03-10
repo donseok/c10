@@ -1,0 +1,362 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="attachHeader">
+<param>#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,두께,폭,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="COIL_ID" index="1" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="10">코일ID</column>
+<column align="center" id="PRD_NM_CD" index="2" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7"><![CDATA[품명<br>코드]]></column>
+<column align="center" id="SPC_AVR" index="3" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="15">규격약호</column>
+<column align="center" id="ORD_USG_CD" index="4" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="10">주문용도</column>
+<column align="center" id="RMTL_CD" index="5" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7"><![CDATA[원자재<br>코드]]></column>
+<column align="center" id="MQL_CD" index="6" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7"><![CDATA[재질<br>코드]]></column>
+<column align="center" id="SP_ASG_YN" index="7" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7"><![CDATA[S/P]]></column>
+<column align="right" id="COIL_THK" index="8" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">제품</column>
+<column align="right" id="COIL_WTH" index="9" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">#cspan</column>
+<column align="right" id="COIL_WGT" index="10" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ron" width="7" format="0,000">중량</column>
+<column align="center" id="PDN_DH" index="11" sort="sort_date_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="10" >생산일</column>
+<column align="center" id="PROC_CD" index="12" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7"><![CDATA[생산<br>공정]]></column>
+<column align="left" id="RMTL_MAK_FAC_CD" index="13" sort="sort_str_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="20"><![CDATA[원자재Maker<br>공장코드]]></column>
+<column align="right" id="MQL_ACT_YP_MPA" index="14" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">YP</column>
+<column align="right" id="MQL_ACT_TS_MPA" index="15" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">TS</column>
+<column align="right" id="MQL_ACT_EL" index="16" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">EL</column>
+<column align="right" id="MQL_ACT_HRB_AVG" index="17" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">HRB</column>
+<column align="right" id="MQL_ACT_ERI_AVG" index="18" sort="sort_int_custom" table="TB_C10_QLT_DSN_SML" type="ro" width="7">ERI</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">COIL_ID,PRD_NM_CD,SPC_AVR,ORD_USG_CD,RMTL_CD,MQL_CD,SP_ASG_YN,COIL_THK,COIL_WTH,COIL_WGT,PDN_DH,PROC_CD,RMTL_MAK_FAC_CD,MQL_ACT_YP_MPA,MQL_ACT_TS_MPA,MQL_ACT_EL,MQL_ACT_HRB_AVG,MQL_ACT_ERI_AVG</userdata>
+<row background-color="125,125,125" id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row background-color="125,125,125" id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

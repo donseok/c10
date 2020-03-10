@@ -1,0 +1,129 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="attachHeader">
+<param>#rspan,#rspan,#rspan,#rspan,주공정,대체공정1,대체공정2,#rspan,#rspan,목표,하한,상한,주공정,대체공정1,대체공정2,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan</param>
+</call>
+<call command="enableResizing"><param>false,false,false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" index="1" clabel="PLTCM5StandWRType" dbname="PLTCM5StandWRType" id="PLTCM_5STD_WR_TP" sort="na" table="TB_C10_QLT_DSN_MNF" type="combo_v" width="7" color="FFFFC0"><![CDATA[5Stand<br>WRType]]></column>
+<column align="center" index="2" clabel="PLTCM내경링사용여부" dbname="PLTCM내경링사용여부" id="PLTCM_SLV_USE_YN" sort="na" table="TB_C10_QLT_DSN_MNF" type="combo_v" width="7" color="FFFFC0"><![CDATA[내경링<br>사용여부]]></column>
+<column align="center" index="3" clabel="PLTCMEdge지정구분" dbname="PLTCMEdge지정구분" id="PLTCM_EDG_ASG_TP" sort="na" table="TB_C10_QLT_DSN_MNF" type="combo_v" width="7" color="FFFFC0"><![CDATA[S/T<br>유무]]></column>
+<column align="center" index="4" clabel="PLTCMX-RaySet두께값" dbname="PLTCMX-RaySet두께값" id="PLTCM_SET_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="7" ><![CDATA[X-Ray<br>Set두께값]]></column>
+<column align="center" index="5" clabel="PL폭목표값" dbname="PL폭목표값" id="PL_WTH_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="6" color="FFFFC0"><![CDATA[Side Trimming Set값]]></column>
+<column align="center" index="6" clabel="PL폭대체공정1목표값" dbname="PL폭대체공정1목표값" id="PL_WTH_SUB_PROC1_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="7" color="FFFFC0">#cspan</column>
+<column align="center" index="7" clabel="PL폭대체공정2목표값" dbname="PL폭대체공정2목표값" id="PL_WTH_SUB_PROC2_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="7" color="FFFFC0">#cspan</column>
+<column align="center" index="8" clabel="폭수축값" dbname="폭수축값" id="NECKING_WTH" sort="na"  type="ron" width="7" ><![CDATA[폭<br>수축값]]></column>
+<column align="center" index="9" clabel="BigData분석값" dbname="BigData분석값" id="BIGDATA_NECKING_WTH" sort="na"  type="ron" width="7"><![CDATA[BigData<br>분석값]]></column>
+<column align="center" index="10" clabel="PLTCM두께목표값" dbname="PLTCM두께목표값" id="PLTCM_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="6" color="FFFFC0">두께목표값</column>
+<column align="center" index="11" clabel="PLTCM두께하한값" dbname="PLTCM두께하한값" id="PLTCM_THK_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="6" color="FFFFC0">#cspan</column>
+<column align="center" index="12" clabel="PLTCM두께상한값" dbname="PLTCM두께상한값" id="PLTCM_THK_ULV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="6" color="FFFFC0">#cspan</column>
+<column align="center" index="13" clabel="PLTCM폭목표값" dbname="PLTCM폭목표값" id="PLTCM_WTH_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="6" color="FFFFC0">폭목표값</column>
+<column align="center" index="14" clabel="PLTCM폭대체공정1목표값" dbname="PLTCM폭대체공정1목표값" id="PLTCM_WTH_SUB_PROC1_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="7" color="FFFFC0">#cspan</column>
+<column align="center" index="15" clabel="PLTCM폭대체공정2목표값" dbname="PLTCM폭대체공정2목표값" id="PLTCM_WTH_SUB_PROC2_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="7" color="FFFFC0">#cspan</column>
+<column align="center" index="16" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="center" index="17" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="center" index="18" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<column align="center" index="19" clabel="ECLC-D방지약품" dbname="ECLC-D방지약품" hidden="true" id="ECL_CDR_CD" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0" >ECLC-D방지약품</column>
+<column align="center" index="20" clabel="ECL권취장력" dbname="ECL권취장력" hidden="true" id="ECL_COILG_TS_CD" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">ECL권취장력</column>
+<column align="center" index="21" clabel="TMPass수" dbname="TMPass수" hidden="true" id="TM_PASS_CNT" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">TMPass수</column>
+<column align="center" index="22" clabel="조도RA하한값" dbname="조도RA하한값" format="0.00" hidden="true" id="ROU_RA_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">조도RA하한값</column>
+<column align="center" index="23" clabel="조도RA상한값" dbname="조도RA상한값" format="0.00" hidden="true" id="ROU_RA_ULV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">조도RA상한값</column>
+<column align="center" index="24" clabel="조도PPI하한값" dbname="조도PPI하한값" hidden="true" id="ROU_PPI_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">조도PPI하한값</column>
+<column align="center" index="25" clabel="조도PPI상한값" dbname="조도PPI상한값" hidden="true" id="ROU_PPI_ULV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">조도PPI상한값</column>
+<column align="center" index="26" clabel="조도RMAX하한값" dbname="조도RMAX하한값" format="0.00" hidden="true" id="ROU_R_MAX_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">조도RMAX하한값</column>
+<column align="center" index="27" clabel="TM두께목표값" dbname="TM두께목표값" format="00.000" hidden="true" id="TM_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">TM두께목표값</column>
+<column align="center" index="28" clabel="TM폭목표값" dbname="TM폭목표값" format="0000.0" hidden="true" id="TM_WTH_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">TM폭목표값</column>
+<column align="center" index="29" clabel="TM폭대체공정1목표값" dbname="TM폭대체공정1목표값" format="0000.0" hidden="true" id="TM_WTH_SUB_PROC1_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">TM폭대체공정1목표값</column>
+<column align="center" index="30" clabel="TM폭대체공정2목표값" dbname="TM폭대체공정2목표값" format="0000.0" hidden="true" id="TM_WTH_SUB_PROC2_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">TM폭대체공정2목표값</column>
+<column align="center" index="31" clabel="일반ANN소둔로유형" dbname="일반ANN소둔로유형" hidden="true" id="FUR_TP_GEN_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">일반ANN소둔로유형</column>
+<column align="center" index="32" clabel="일반ANN소둔CYCLE" dbname="일반ANN소둔CYCLE" hidden="true" id="HEAT_CYL_NO_GEN_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">일반ANN소둔CYCLE</column>
+<column align="center" index="33" clabel="일반ANN소둔보정시간" dbname="일반ANN소둔보정시간" hidden="true" id="COR_TM_GEN_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">일반ANN소둔보정시간</column>
+<column align="center" index="34" clabel="일반ANN코일온도" dbname="일반ANN코일온도" hidden="true" id="COIL_TMP_GEN_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">일반ANN코일온도</column>
+<column align="center" index="35" clabel="일반ANN냉각종료온도" dbname="일반ANN냉각종료온도" hidden="true" id="CLG_END_TMP_GEN_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">일반ANN냉각종료온도</column>
+<column align="center" index="36" clabel="HCANN소둔로유형" dbname="HCANN소둔로유형" hidden="true" id="FUR_TP_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">HCANN소둔로유형</column>
+<column align="center" index="37" clabel="HCANN소둔CYCLE" dbname="HCANN소둔CYCLE" hidden="true" id="HEAT_CYL_NO_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">HCANN소둔CYCLE</column>
+<column align="center" index="38" clabel="HCANN소둔보정시간" dbname="HCANN소둔보정시간" hidden="true" id="COR_TM_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">HCANN소둔보정시간</column>
+<column align="center" index="39" clabel="HCANN코일온도" dbname="HCANN코일온도" hidden="true" id="COIL_TMP_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">HCANN소둔보정시간</column>
+<column align="center" index="40" clabel="HCANN냉각종료온도" dbname="HCANN냉각종료온도" hidden="true" id="CLG_END_TMP_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">HCANN냉각종료온도</column>
+<column align="center" index="41" clabel="EMBOSS무늬" dbname="EMBS_CD" hidden="true" id="EMBS_CD" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">EMBOSS무늬</column>
+<column align="center" index="42" clabel="작업도금량전면하한값" dbname="작업도금량전면하한값" format="0000.0" hidden="true" id="WK_GW_FRN_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">작업도금량전면하한값</column>
+<column align="center" index="43" clabel="작업도금량전면상한값" dbname="작업도금량전면상한값" format="0000.0" hidden="true" id="WK_GW_FRN_ULV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">작업도금량전면상한값</column>
+<column align="center" index="44" clabel="작업도금량후면하한값" dbname="작업도금량후면하한값" format="0000.0" hidden="true" id="WK_GW_BAK_LLV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">작업도금량후면하한값</column>
+<column align="center" index="45" clabel="작업도금량후면상한값" dbname="작업도금량후면상한값" format="0000.0" hidden="true" id="WK_GW_BAK_ULV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">작업도금량후면상한값</column>
+<column align="center" index="46" clabel="도금목표" dbname="도금목표" format="0000.0" hidden="true" id="WK_GW_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">도금목표</column>
+<column align="center" index="47" clabel="도금두께목표" dbname="도금두께목표" hidden="true" id="GAL_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">도금두께목표</column>
+<column align="center" index="48" clabel="EGL표면처리코드" dbname="EGL표면처리코드" hidden="true" id="EGL_SUR_HND_CD" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">EGL표면처리코드</column>
+<column align="center" index="49" clabel="EGL두께목표값" dbname="EGL두께목표값" format="00.000" hidden="true" id="EGL_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">EGL두께목표값</column>
+<column align="center" index="50" clabel="EGL폭목표값" dbname="EGL폭목표값" format="0000.0" hidden="true" id="EGL_WTH_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">EGL폭목표값</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">PLTCM_5STD_WR_TP,PLTCM_SLV_USE_YN,PLTCM_EDG_ASG_TP,PLTCM_SET_THK_TRV,PL_WTH_TRV,PL_WTH_SUB_PROC1_TRV,PL_WTH_SUB_PROC2_TRV,NECKING_WTH,BIGDATA_NECKING_WTH,PLTCM_THK_TRV,PLTCM_THK_LLV,PLTCM_THK_ULV,PLTCM_WTH_TRV,PLTCM_WTH_SUB_PROC1_TRV,PLTCM_WTH_SUB_PROC2_TRV,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,ECL_CDR_CD,ECL_COILG_TS_CD,TM_PASS_CNT,ROU_RA_LLV,ROU_RA_ULV,ROU_PPI_LLV,ROU_PPI_ULV,ROU_R_MAX_LLV,TM_THK_TRV,TM_WTH_TRV,TM_WTH_SUB_PROC1_TRV,TM_WTH_SUB_PROC2_TRV,FUR_TP_GEN_ANN,HEAT_CYL_NO_GEN_ANN,COR_TM_GEN_ANN,COIL_TMP_GEN_ANN,CLG_END_TMP_GEN_ANN,FUR_TP_HC_ANN,HEAT_CYL_NO_HC_ANN,COR_TM_HC_ANN,COIL_TMP_HC_ANN,CLG_END_TMP_HC_ANN,EMBS_CD,WK_GW_FRN_LLV,WK_GW_FRN_ULV,WK_GW_BAK_LLV,WK_GW_BAK_ULV,WK_GW_TRV,GAL_THK_TRV,EGL_SUR_HND_CD,EGL_THK_TRV,EGL_WTH_TRV</userdata>
+<row id="0">
+<cell id="PLTCM_5STD_WR_TP"/>
+<cell id="PLTCM_SLV_USE_YN"/>
+<cell id="PLTCM_EDG_ASG_TP"/>
+<cell id="PLTCM_SET_THK_TRV"/>
+<cell id="PL_WTH_TRV" />
+<cell id="PL_WTH_SUB_PROC1_TRV" />
+<cell id="PL_WTH_SUB_PROC2_TRV" />
+<cell id="NECKING_WTH" />
+<cell id="BIGDATA_NECKING_WTH" />
+<cell id="PLTCM_THK_TRV"/>
+<cell id="PLTCM_THK_LLV"/>
+<cell id="PLTCM_THK_ULV"/>
+<cell id="PLTCM_WTH_TRV"/>
+<cell id="PLTCM_WTH_SUB_PROC1_TRV"/>
+<cell id="PLTCM_WTH_SUB_PROC2_TRV"/>
+<cell id="QLT_DSN_MNF_TP" hidden="true"/>
+<cell id="ORD_NO" hidden="true"/>
+<cell id="ORD_LN" hidden="true"/>
+<cell id = "ECL_CDR_CD" hidden="true"/>
+<cell id = "ECL_COILG_TS_CD" hidden="true"/>
+<cell id = "TM_PASS_CNT" hidden="true"/>
+<cell id = "ROU_RA_LLV" hidden="true"/>
+<cell id = "ROU_RA_ULV" hidden="true"/>
+<cell id = "ROU_PPI_LLV" hidden="true"/>
+<cell id = "ROU_PPI_ULV" hidden="true"/>
+<cell id = "ROU_R_MAX_LLV" hidden="true"/>
+<cell id = "TM_THK_TRV" hidden="true"/>
+<cell id = "TM_WTH_TRV" hidden="true"/>
+<cell id = "TM_WTH_SUB_PROC1_TRV" hidden="true"/>
+<cell id = "TM_WTH_SUB_PROC2_TRV" hidden="true"/>
+<cell id = "FUR_TP_GEN_ANN" hidden="true"/>
+<cell id = "HEAT_CYL_NO_GEN_ANN" hidden="true"/>
+<cell id = "COR_TM_GEN_ANN" hidden="true"/>
+<cell id = "COIL_TMP_GEN_ANN" hidden="true"/>
+<cell id = "CLG_END_TMP_GEN_ANN" hidden="true"/>
+<cell id = "FUR_TP_HC_ANN" hidden="true"/>
+<cell id = "HEAT_CYL_NO_HC_ANN" hidden="true"/>
+<cell id = "COR_TM_HC_ANN" hidden="true"/>
+<cell id = "COIL_TMP_HC_ANN" hidden="true"/>
+<cell id = "CLG_END_TMP_HC_ANN" hidden="true"/>
+<cell id = "EMBS_CD" hidden="true"/>
+<cell id = "WK_GW_FRN_LLV" hidden="true"/>
+<cell id = "WK_GW_FRN_ULV" hidden="true"/>
+<cell id = "WK_GW_BAK_LLV" hidden="true"/>
+<cell id = "WK_GW_BAK_ULV" hidden="true"/>
+<cell id = "WK_GW_TRV" hidden="true"/>
+<cell id = "GAL_THK_TRV" hidden="true"/>
+<cell id = "EGL_SUR_HND_CD" hidden="true"/>
+<cell id = "EGL_THK_TRV" hidden="true"/>
+<cell id = "EGL_WTH_TRV" hidden="true"/>
+</row>
+</rows>

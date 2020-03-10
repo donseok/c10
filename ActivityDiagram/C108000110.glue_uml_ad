@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="300,566" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.6 //@wire.8 //@wire.10 //@wire.12 //@wire.13"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="924,-1" input="//@wire.0" output="//@wire.3 //@wire.4 //@wire.5 //@wire.11 //@wire.9" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 칼라시편관리 조회(접수일, 의뢰번호,접수번호 바탕으로 조회)&#xD;&#xA;   save : 칼라시편관리화면에서 입력,수정,삭제된 정보를TB_C10_CLR_SMP 테이블에 insert,update,delete한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="125,312" size="162,-1" input="//@wire.3" output="//@wire.1" name="제품개발BOM의뢰 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000110.selectReqBom"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="6" location="414,314" size="161,-1" input="//@wire.4" output="//@wire.7 //@wire.8" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C108000110.deleteCmpBom"/>
+    <property key="insert-sql" value="C108000110.insertCmpBom"/>
+    <property key="update-sql" value="C108000110.updateCmpBom"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="225300" location="608,310" size="150,-1" input="//@wire.5" output="//@wire.6" name="제품개발BOM완료 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000110.selectCmpBom"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="267209" location="424,418" size="144,-1" input="//@wire.7" output="//@wire.2 //@wire.13" name="공통진도코드 UPDATE">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C108000110.updateDevCmn"/>
+    <property key="insert-sql" value="C108000110.updateDevCmn"/>
+    <property key="update-sql" value="C108000110.updateDevCmn"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="267352" location="773,312" size="130,-1" input="//@wire.9" output="//@wire.10" name="LAB개발샘플 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000110.selectLabSmp"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="267353" location="914,311" size="151,-1" input="//@wire.11" output="//@wire.12" name="LAB샘플 연결 해제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C108000110.updateLabSmp"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 칼라시편관리를  조회, 저장  하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_CLR_SMP(칼라시편관리)&#xD;&#xA;  - 조회조건 :  접수일,의뢰번호,접수번호&#xD;&#xA;  - 저장 : 선택한 의뢰번호를 수정 및 삭제하고&#xD;&#xA;           행추가를 통해 입력된 데이타는 자동으로 의뢰번호(년+월+일+Seq)로 생성되고 &#xD;&#xA;&#x9;   접수일을 입력된값이 없으면 SYSDATE로 insert한다."/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,345">
+    <bendpoint weight="0.5" firstDimension="-8,151" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="4" guardcondition="success" firstRelativePoint="463,435" lastRelativePoint="318,572">
+    <bendpoint weight="0.5" firstDimension="-33,96" secondDimension="153,-60"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="886" guardcondition="save" firstRelativePoint="394,112" lastRelativePoint="394,177"/>
+  <wire id="10965" guardcondition="findGrid2" firstRelativePoint="533,112" lastRelativePoint="533,177"/>
+  <wire id="10966" guardcondition="success" firstRelativePoint="623,340" lastRelativePoint="319,573">
+    <bendpoint weight="0.5" firstDimension="-98,190" secondDimension="275,-61"/>
+  </wire>
+  <wire id="12739" guardcondition="success" firstRelativePoint="476,344" lastRelativePoint="476,405"/>
+  <wire id="12740" guardcondition="failure" firstRelativePoint="428,344" lastRelativePoint="309,565">
+    <bendpoint weight="0.5" firstDimension="-171,97" secondDimension="13,-150"/>
+  </wire>
+  <wire id="12743" guardcondition="findLabSmp" firstRelativePoint="796,112" lastRelativePoint="796,312"/>
+  <wire id="12744" guardcondition="success" firstRelativePoint="807,341" lastRelativePoint="319,575">
+    <bendpoint weight="0.5" firstDimension="-124,222" secondDimension="423,-28"/>
+  </wire>
+  <wire id="12745" guardcondition="removeSmp" firstRelativePoint="936,112" lastRelativePoint="936,311"/>
+  <wire id="12746" guardcondition="success" firstRelativePoint="929,341" lastRelativePoint="319,575">
+    <bendpoint weight="0.5" firstDimension="-70,238" secondDimension="609,-12"/>
+  </wire>
+  <wire id="12747" guardcondition="failure" firstRelativePoint="437,448" lastRelativePoint="314,567">
+    <bendpoint weight="0.5" firstDimension="-137,65" secondDimension="49,-78"/>
+  </wire>
+</Glue:GlueDiagram>

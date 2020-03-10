@@ -1,0 +1,7 @@
+<items>	
+    <item type="linkbutton" name="C10_linkC106000060pop07" value="수정이력조회" command="C10_linkC106000060pop07" position="absolute" inputTop="6" width="90"/>
+	<item type="newcolumn" offset="200" />
+	<item type="hidden" name="send1" value="전송" command="send1" width="75" disabled="true"/>
+	<item type="newcolumn" offset="170" />
+	<item type="button" name="save1" value="저장" command="save1" disabled="true"/>		
+</items>

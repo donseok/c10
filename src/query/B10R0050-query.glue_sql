@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0050"> 
+	 <query id="B10R0050.select2" desc="Material_Code마스타(TB_C10_MTL_MST)select2" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Material_Code마스타(TB_C10_MTL_MST) B10R0050.select2 김종범 */
+         MTL_CD          
+        ,MAT_TYPE        
+        ,PRD_NM_CD       
+        ,PRD_SHP         
+        ,MQL_CD          
+        ,ORD_GW_ASG_CD   
+        ,ORD_ROU_CD      
+        ,ORD_SPNL_TP     
+        ,ORD_OIL_PNT_CD  
+        ,ORD_SUR_HND_CD  
+        ,CCL_BOM_NO      
+        ,CUS_REQ_ROL_THK 
+        ,ORD_EXC_WTH     
+        ,ORD_PAK_MTH     
+        ,PTT_FLM_DTL_CD  
+        ,STD_CST         
+        ,MTL_RCV_DH      
+FROM TB_C10_MTL_MST
+WHERE MTL_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0050.modify2" desc="Material_Code마스타(TB_C10_MTL_MST) update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 Material_Code마스타(TB_C10_MTL_MST) B10R0050.modify2 김종범*/                      
+       TB_C10_MTL_MST
+SET    
+     LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID   = ?  --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID   = ?  --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP    = ?  --최종변경일시 
+    ,MTL_CD           = ? --MaterialCode        
+    ,MAT_TYPE         = ? --자재유형            
+    ,PRD_NM_CD        = ? --품명코드            
+    ,PRD_SHP          = ? --제품형태            
+    ,MQL_CD           = ? --재질코드            
+    ,ORD_GW_ASG_CD    = ? --주문도금량지정코드  
+    ,ORD_ROU_CD       = ? --주문조도코드        
+    ,ORD_SPNL_TP      = ? --주문Spangle구분     
+    ,ORD_OIL_PNT_CD   = ? --주문도유코드        
+    ,ORD_SUR_HND_CD   = ? --주문표면처리코드    
+    ,CCL_BOM_NO       = ? --CCLBOM번호          
+    ,CUS_REQ_ROL_THK  = ? --고객요청압연두께    
+    ,ORD_EXC_WTH      = ? --주문환산폭          
+    ,ORD_PAK_MTH      = ? --주문포장방법        
+    ,PTT_FLM_DTL_CD   = ? --보호필름상세코드    
+    ,STD_CST          = ? --표준원가            
+WHERE MTL_CD = ?                     --Material Code
+		 ]]> 
+	 </query>
+	 <query id="B10R0050.insert" desc="Material_Code마스타(TB_C10_MTL_MST) insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 Material_Code마스타(TB_C10_MTL_MST) B10R0050.insert 김종범*/
+            TB_C10_MTL_MST
+            (        
+         MTL_CD
+        ,MAT_TYPE
+        ,PRD_NM_CD
+        ,PRD_SHP
+        ,MQL_CD
+        ,ORD_GW_ASG_CD
+        ,ORD_ROU_CD
+        ,ORD_SPNL_TP
+        ,ORD_OIL_PNT_CD
+        ,ORD_SUR_HND_CD
+        ,CCL_BOM_NO
+        ,CUS_REQ_ROL_THK
+        ,ORD_EXC_WTH
+        ,ORD_PAK_MTH
+        ,PTT_FLM_DTL_CD
+        ,STD_CST
+        ,MTL_RCV_DH
+        ,CREATED_OBJECT_TYPE
+        ,CREATED_OBJECT_ID
+        ,CREATED_PROGRAM_ID
+        ,CREATION_TIMESTAMP
+        ,LAST_UPDATED_OBJECT_TYPE
+        ,LAST_UPDATED_OBJECT_ID
+        ,LAST_UPDATE_PROGRAM_ID
+        ,LAST_UPDATE_TIMESTAMP 
+)
+VALUES( ?,?,?,?
+       ,?,?,?,? 
+       ,?,?,?,?
+       ,?,?,?,? 
+       ,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
+       ,?,?,?,?
+       ,?,?,?,?)
+		 ]]> 
+	 </query>
+</queryMap>

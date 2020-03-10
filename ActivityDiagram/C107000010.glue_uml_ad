@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.6"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="559,-1" input="//@wire.0" output="//@wire.2 //@wire.3" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="masterdao"/>
+    <property key="sqlkey" value="C107000010.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="163150" location="408,180" size="157,-1" input="//@wire.3" output="//@wire.6" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="masterdao"/>
+    <property key="delete-sql" value="C107000010.delete"/>
+    <property key="insert-sql" value="C107000010.insert"/>
+    <property key="update-sql" value="C107000010.update"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="9234" guardcondition="save" firstRelativePoint="313,312" lastRelativePoint="475,180"/>
+  <wire id="9235" guardcondition="success" firstRelativePoint="516,210" lastRelativePoint="516,210"/>
+  <wire id="9236" guardcondition="success" firstRelativePoint="510,180" lastRelativePoint="510,180"/>
+  <wire id="9237" guardcondition="success" firstRelativePoint="481,210" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="-5,119" secondDimension="177,1"/>
+  </wire>
+</Glue:GlueDiagram>

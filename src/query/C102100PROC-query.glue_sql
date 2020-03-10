@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100PROC"> 
+	 <query id="C102100PROC.Insert" desc="C102100PROC.Insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 통과공정등록 C102100PROC.Insert 박재영*/                         
+TB_C10_QLT_DSN_PROC(                                                                           
+             ORD_NO                   --주문번호                                                                                 
+            ,ORD_LN                   --주문행번   
+            ,PROC_SEQ                --공정순서
+            ,MAIN_PROC_CD        --주공정코드
+            ,SUB_PROC_CD1         --대체공정코드1
+            ,SUB_PROC_CD2         --대체공정코드2
+            ,SUB_PROC_CD3         --대체공정코드3
+            ,SUB_PROC_CD4         --대체공정코드4
+            ,SUB_PROC_CD5         --대체공정코드5
+            ,SUB_PROC_CD6         --대체공정코드6
+            ,MTL_CD                    --MaterialCode                                                                           
+            ,CREATED_OBJECT_TYPE        --생성OBJECT유형    
+            ,CREATED_OBJECT_ID          --생성OBJECTID      
+            ,CREATED_PROGRAM_ID         --생성프로그램ID    
+            ,CREATION_TIMESTAMP         --생성일시          
+            ,LAST_UPDATED_OBJECT_TYPE   --최종변경OBJECT유형
+            ,LAST_UPDATED_OBJECT_ID     --최종변경OBJECTID  
+            ,LAST_UPDATE_PROGRAM_ID     --최종변경프로그램ID
+            ,LAST_UPDATE_TIMESTAMP      --최종변경일시      
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?,                                                                                   
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?,
+?, ?, ?                                                                              
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.Insert2" desc="C102100PROC.Insert2" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 통과공정등록 C102100PROC.Insert2 이돈석*/                         
+TB_C10_QLT_DSN_PROC(                                                                           
+             ORD_NO                   --주문번호                                                                                 
+            ,ORD_LN                   --주문행번   
+            ,PROC_SEQ                --공정순서
+            ,MAIN_PROC_CD        --주공정코드
+            ,SUB_PROC_CD1         --대체공정코드1
+            ,SUB_PROC_CD2         --대체공정코드2
+            ,SUB_PROC_CD3         --대체공정코드3
+            ,SUB_PROC_CD4         --대체공정코드4
+            ,SUB_PROC_CD5         --대체공정코드5
+            ,SUB_PROC_CD6         --대체공정코드6
+            ,MTL_CD                    --MaterialCode
+            ,SMS_RCV_YN            --SMS수신여부
+            ,CREATED_OBJECT_TYPE        --생성OBJECT유형    
+            ,CREATED_OBJECT_ID          --생성OBJECTID      
+            ,CREATED_PROGRAM_ID         --생성프로그램ID    
+            ,CREATION_TIMESTAMP         --생성일시          
+            ,LAST_UPDATED_OBJECT_TYPE   --최종변경OBJECT유형
+            ,LAST_UPDATED_OBJECT_ID     --최종변경OBJECTID  
+            ,LAST_UPDATE_PROGRAM_ID     --최종변경프로그램ID
+            ,LAST_UPDATE_TIMESTAMP      --최종변경일시      
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+			:ORD_NO
+		   ,:ORD_LN
+		   ,:PROC_SEQ
+		   ,:MAIN_PROC_CD                                                                                    
+		   ,:SUB_PROC_CD1
+		   ,:SUB_PROC_CD2
+		   ,:SUB_PROC_CD3
+		   ,:SUB_PROC_CD4
+		   ,:SUB_PROC_CD5
+		   ,:SUB_PROC_CD6
+		   ,:MTL_CD
+		   , DECODE(:SMS_RCV_YN, '1' , 'Y' ,'')                                                                                    
+           ,:ObjectType
+           ,:ObjectId
+           ,:ProgramId
+           ,:Timestamp
+           ,:ObjectType
+           ,:ObjectId
+           ,:ProgramId
+           ,:Timestamp                                                                            
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.SemMtlselect1" desc="C102100PROC.SemMtlselect1" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 반제품 Material Code 조회 C102100PROC.SemMtlselect1 박재영*/ 
+         SEM_PROD_MTL_CD
+FROM TB_C10_MTL_SEM_PROD
+WHERE MTL_CD = ?
+AND   PROC_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.SemMtlselect2" desc="C102100PROC.SemMtlselect2" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 반제품 Material Code 조회 C102100PROC.SemMtlselect2 박재영*/ 
+         SEM_PROD_MTL_CD
+FROM TB_C10_MTL_SEM_PROD
+WHERE MTL_CD = ?
+AND   PROC_CD LIKE ? || '%'
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.SemMtlselect3" desc="C102100PROC.SemMtlselect3" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 반제품 Material Code 조회 C102100PROC.SemMtlselect3 박재영*/ 
+         SEM_PROD_MTL_CD
+FROM TB_C10_MTL_SEM_PROD
+WHERE MTL_CD = ?
+AND   PROC_CD LIKE '7%'
+AND   PROC_CD != '72'
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.select" desc="C102100PROC.select" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 통과공정 조회 C102100PROC.select 박재영*/ 
+        *
+FROM TB_C10_QLT_DSN_PROC
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+ORDER BY PROC_SEQ
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.delete" desc="C102100PROC.delete" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+DELETE /*+ C10 통과공정 조회 C102100PROC.delete 박재영*/ 
+FROM TB_C10_QLT_DSN_PROC
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.MNFupdate" desc="C102100PROC.MNFupdate" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양수정 C102100PROC.MNFupdate 박재영*/
+TB_C10_QLT_DSN_MNF SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,TM_PASS_CNT = ?                      --TMPass수
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100PROC.Aselect" desc="C102100PROC.Aselect" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 칼라통과공정 조회 C102100PROC.Aselect 이돈석*/ 
+        MAIN_PROC_CD, SUB_PROC_CD1, SUB_PROC_CD2, SUB_PROC_CD3, SUB_PROC_CD4, SUB_PROC_CD5, SUB_PROC_CD6
+FROM TB_C10_QLT_DSN_PROC
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND  MAIN_PROC_CD LIKE 'A%'
+ORDER BY PROC_SEQ
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,35 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="attachHeader">
+<param><![CDATA[<div style="color:blue;font-weight:bold;">구</div>]]></param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="PRT_INK_CD1" index="1" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ro" color="FFFFC0"><![CDATA[#cspan]]></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">PRT_ROLL_NO1</userdata>
+</rows>

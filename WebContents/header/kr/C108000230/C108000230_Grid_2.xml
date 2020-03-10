@@ -1,0 +1,42 @@
+<rows>
+<head>
+		<beforeInit>
+			<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+			<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+			<call command="enableMultiselect"><param>true</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="enableSmartRendering"><param>true</param></call>
+			<call command="setAwaitedRowHeight"><param>22</param></call>
+			<call command="attachHeader"><param><![CDATA[#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,코일ID,품명,BOM,공정,고객사,상태,Size,수량]]></param></call>
+		</beforeInit>
+		<afterInit>
+			<!-- 가변항목 관련 세팅 시작. -->
+			<call command="enableStableSorting"><param>true</param></call>
+			<call command="setDateFormat"><param><![CDATA[%Y-%m-%d 00:00:00]]></param></call>
+			<call command="setNoHeader"><param>false</param></call>
+			<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>		
+		<column id="SMPL_NO" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">샘플번호</column>		
+		<column id="TST_NO" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">테스트No</column>
+		<column id="DEV_NO" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">개발No</column>
+		<column id="CMPL_NO" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">불만No</column>				
+		<column id="SMPL_TP_NM" sort="str" align="left" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">샘플유형</column>
+		<column id="SMPL_DH" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="8">등록일자</column>
+		<column id="COIL_ID" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="6">코일정보</column>
+		<column id="PRD_NM_CD_NM" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="5">#cspan</column>
+		<column id="CCL_BOM_NO" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="7">#cspan</column>
+		<column id="PROC_CD" sort="str" align="center" table="TB_M20_SMPL_LOT_MNG" type="ro" width="5">#cspan</column>
+		<column id="CUS_CD_NM" sort="str" align="left" table="TB_M20_SMPL_LOT_MNG" type="ro" width="*">#cspan</column>
+		<column id="SMPL_STS_CD_NM" sort="str" align="left" table="TB_M20_SMPL_LOT_MNG" type="ro" width="7">샘플</column>
+		<column id="SMPL_SZ_CD_NM" sort="str" align="left" table="TB_M20_SMPL_LOT_MNG" type="ro" width="6">#cspan</column>
+		<column id="SMPL_QTY" sort="str" align="right" table="TB_M20_SMPL_LOT_MNG" type="ro" width="5">#cspan</column>
+		<column id="SMTL_SLP_CD" sort="str" align="left" width="8" table="TB_M20_SMPL_LOT_MNG" type="ro" hidden="true">공급업체</column>		
+		<column id="SMPL_SZ_CD" sort="str" align="left" width="8" table="TB_M20_SMPL_LOT_MNG" type="ro" hidden="true">샘플size</column>			
+		<column id="SMPL_TP" sort="str" align="left" width="8" table="TB_M20_SMPL_LOT_MNG" type="ro" hidden="true">샘플유형</column>
+		<column align="left" id="CUS_APPR_REQ_NO" index="8" sort="str" type="ro" width="10" hidden="true">고객승인요청No</column>
+		<column align="left" id="DEV_NO" index="8" sort="str" type="ro" width="10" hidden="true">개발No</column>		
+<settings><colwidth><![CDATA[%]]></colwidth></settings>
+</head>
+<userdata name="column-info">SMPL_NO,TST_NO,DEV_NO,CMPL_NO,SMPL_TP_NM,SMPL_DH,COIL_ID,PRD_NM_CD_NM,CCL_BOM_NO,PROC_CD,CUS_CD_NM,SMPL_STS_CD_NM,SMPL_SZ_CD_NM,SMPL_QTY,SMTL_SLP_CD,SMPL_SZ_CD,SMPL_TP,CUS_APPR_REQ_NO,DEV_NO</userdata>	
+</rows>

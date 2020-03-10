@@ -1,0 +1,4 @@
+<items>
+    <item offset="880" type="newcolumn"/>
+    <item command="save" name="save" type="button" value="저장" disabled="true"/>
+</items>

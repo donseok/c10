@@ -1,0 +1,7 @@
+<items>
+<item type="block">
+<item type="linkbutton" name="C10_linkC106000050pop02" value="수정이력조회" command="C10_linkC106000050pop02" position="absolute" inputTop="6" width="90"/>
+<item offset="100" type="newcolumn"/>
+<item command="save1" label="Display Name" name="save1" type="button" value="저장" disabled="true"/>
+</item>
+</items>

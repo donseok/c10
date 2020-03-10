@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="480,-228" size="-1,-1" output="//@wire.4"/>
+  <child xsi:type="Glue:Activity" id="49656" location="413,-169" size="149,-1" input="//@wire.4" output="//@wire.1" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 품질설계 오류Code를 초기화한다.(QLT_DSN_ERR_CD=''l)&#xD;&#xA;- 오류발생여부 Check 변수를 초기화한다.(P_ERR_KEY= 'N‘)&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : QLT_DSN_ERR_CD|sp_null"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="415,-102" size="154,-1" input="//@wire.1" output="//@wire.2" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_VAILD_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN.Jselect"/>
+    <property key="description" value="이 Activity는 품질설계대상 주문정보로 &#xD;&#xA;품질설계상태코드 ='J' 인 값만 &#xD;&#xA;품질설계작업을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="49675" location="422,-35" size="135,-1" input="//@wire.2 //@wire.7 //@wire.8" output="//@wire.5 //@wire.3" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_VAILD_SEARCH"/>
+    <property key="countName" value="QLT_DSN_VALID_COUNT"/>
+    <property key="param-count" value="23"/>
+    <property key="param0" value="ORD_NO|ORD_NO"/>
+    <property key="param1" value="ORD_LN|ORD_LN"/>
+    <property key="param2" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param3" value="QLT_DSN_CFM_TP|QLT_DSN_CFM_TP"/>
+    <property key="param4" value="MQL_CD|MQL_CD"/>
+    <property key="param5" value="RMTL_CD|RMTL_CD"/>
+    <property key="param6" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO"/>
+    <property key="param7" value="PAS_PROC_NO|PAS_PROC_NO"/>
+    <property key="param8" value="QLT_DSN_ERR_YN|QLT_DSN_ERR_YN"/>
+    <property key="param9" value="URG_MTL_TP|URG_MTL_TP"/>
+    <property key="param10" value="ORD_LN_WGT|ORD_LN_WGT"/>
+    <property key="param11" value="GW_ASG_CD|GW_ASG_CD"/>
+    <property key="param12" value="ORD_SPC_TXT|ORD_SPC_TXT"/>
+    <property key="param13" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param14" value="FNL_CUS_CD|FNL_CUS_CD"/>
+    <property key="param15" value="ORD_KND|ORD_KND"/>
+    <property key="param16" value="ORD_RGS_PRS_ID|ORD_RGS_PRS_ID"/>
+    <property key="param17" value="ORD_DSN_CFM_TP|ORD_DSN_CFM_TP"/>
+    <property key="param18" value="CCL_BOM_NO|CCL_BOM_NO"/>
+    <property key="param19" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP"/>
+    <property key="param20" value="CUT_LN_YN|CUT_LN_YN"/>
+    <property key="param21" value="ATT_ORD_YN|ATT_ORD_YN"/>
+    <property key="param22" value="POC_AUTO_YN|POC_AUTO_YN"/>
+    <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;&#xD;&#xA;이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50091" location="204,-36" size="145,-1" input="//@wire.3" output="//@wire.9" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="270,-168" size="-1,-1" input="//@wire.9"/>
+  <child xsi:type="Glue:Activity" id="50646" location="429,184" size="135,-1" input="//@wire.10" output="//@wire.7 //@wire.11" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchDsnValidData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="description" value="이 Activity는 품질설계공통을 Read하여 품질설계대기인 주문에 대해 &#xD;&#xA;설계정합성을 체크하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 정합성확인정보: 품질설계공통항목&#xD;&#xA;&#x9;- 재질코드, 원자재코드, 제조표준번호, 통과공정번호가 있는지 체크한다.&#xD;&#xA;&#x9;&#xD;&#xA;2. 정합성확인정보: 품질설계결과성분항목&#xD;&#xA;&#x9;- 품질설계결과 성분에 보증성분이 설계 안된 경우  Error&#xD;&#xA;&#x9;- 규격,고객,사내,보증 성분의 각 항목에 대하여 하한 >= 상한 이면 Error&#xD;&#xA;&#x9;- 규격성분 각 항목에 대하여 보증하한 &lt; 규격하한 이면 Error&#xD;&#xA;&#x9;- 규격성분 각 항목에 대하여 보증상한 > 규격상한 이면 Error  &#xD;&#xA;&#x9;- 고객성분이 설계된 항목에 대하여 보증하한 &lt; 고객하한 이면 Error  &#xD;&#xA;&#x9;- 고객성분이 설계된  항목에 대하여 보증상한 > 고객상한 이면 Error&#xD;&#xA;&#x9;&#xD;&#xA;3. 정합성확인정보: 품질설계결과재질항목체크&#xD;&#xA;&#x9;- 품질설계결과 재질에 보증재질이 설계 안된 경우  Error&#xD;&#xA;&#x9;- 규격,고객,사내,보증 재질의 각 항목에 대하여 하한 >= 상한 이면 Error&#xD;&#xA;&#x9;- 규격재질 각 항목에 대하여 보증하한 &lt; 규격하한 이면 Error&#xD;&#xA;&#x9;- 규격재질 각 항목에 대하여 보증상한 > 규격상한 이면 Error  &#xD;&#xA;&#x9;- 고객재질이 설계된 항목에 대하여 보증하한 &lt; 고객하한 이면 Error  &#xD;&#xA;&#x9;- 고객재질이 설계된  항목에 대하여 보증상한 > 고객상한 이면 Error&#xD;&#xA;&#x9;&#xD;&#xA;4. 정합성확인정보: 품질설계결과인수도항목체크&#xD;&#xA;&#x9;- 품질설계결과 인수도에 보증인수도가 설계 안된 경우  Error&#xD;&#xA;&#x9;- 각 항목에 대해 고객인수도가 설계된 경우 고객인수도(하한,상한)가 보증인수도(하한,상한)와 다르면 Error&#xD;&#xA;&#x9;- 각 항목에 대해 고객인수도가 설계안된 경우 규격인수도(하한,상한)가 보증인수도(하한,상한)와 다르면 Error&#xD;&#xA;&#x9;&#xD;&#xA;5. 정합성확인정보: 제조사양중요항목체크&#xD;&#xA;&#x9;- 제품두께, 제품두께하한, 제품두께상한 설계가 안된 경우 Error &#xD;&#xA;&#x9;- 제품폭, 제품폭하한, 제품폭상한 설계가 안된 경우 Error &#xD;&#xA;&#x9;- 도금제품인 경우 도금출측 두께가  설계가 안된 경우 Error &#xD;&#xA;&#x9;- 도금제품인 경우 도금출측폭이  설계가 안된 경우 Error &#xD;&#xA;&#x9;- 도금제품인 경우 도금두께,작업도금량이  설계가 안된 경우 Error &#xD;&#xA;&#x9;- PLTCM X-RAY SET  두께가  설계가 안된 경우 Error &#xD;&#xA;&#x9;- PLTCM  폭이  설계가 안된 경우 Error &#xD;&#xA;&#x9;- 원자재두께가  설계가 안된 경우 Error &#xD;&#xA;&#x9;- 원자재  폭이  설계가 안된 경우 Error &#xD;&#xA;&#x9;- CR,EG,CR칼라,EG칼라 제품인 경우 소둔로,소둔Cycle이 Space 이면  Error&#xD;&#xA;&#x9;- GI,GL,GA, GI칼라,GL칼라,GA칼라 제품인 경우 CGL 소둔Cycle이  Space이면  Error &#xD;&#xA;&#x9;&#xD;&#xA;6. 에러등록 및 품질설계상태 반영&#xD;&#xA;&#x9;- 에러가 존재하는경우 품질설계에러Table에 발생한 에러코드를 모두 등록한다.&#xD;&#xA;&#x9;- 재설계요청이 아닌경우&#xD;&#xA;&#x9;  - 편성정보: SMS발송기준&#xD;&#xA;&#x9;  - Master Data 정의명 : C10B9991&#xD;&#xA;&#x9;  - SMS발송대상 기준 Data 조건항목 : 품명코드, 긴급재구분, 주문행번중량&#xD;&#xA;&#x9;  -> Read Count > 0 이면 SMS발송대상 기준 Data의 발송여부를 편집한다.&#xD;&#xA;&#x9;  -> 에러처리하지 안는다.&#xD;&#xA;&#x9;  - 편성정보: SMS발송대상(SMS발송기준이 존재하는경우)&#xD;&#xA;&#x9;  - Master Data 정의명 : C10B9990&#xD;&#xA;&#x9;  - SMS발송대상 기준 Data 조건항목 : 품명코드&#xD;&#xA;&#x9;  -> Read Count = 1 이면 SMS발송대상 기준 Data의 SMS수신자면, 수신전화번호, 발송전화번호, 발송내역을 편집한다.&#xD;&#xA;&#x9;     - SMS인터페이스Table(TB_M90_SMS)에 Insert한다.&#xD;&#xA;&#x9;  -> 에러처리하지 안는다.&#xD;&#xA;&#x9;- 품질설계상태를 품질설계공통에 반영한다.&#xD;&#xA;&#x9;  - 에러인 경우는 품질설계상태를 'E'로 등록&#xD;&#xA;&#x9;  - 에러가 없고 자동확정구분이 'A'인 경우 품질설계상태를 'A'로 등록&#xD;&#xA;&#x9;  - 그이외의 경우 품질설계상태를 'B'로 등록&#xD;&#xA;&#x9;  &#xD;&#xA;7. 에러가 없고 자동확정구분(QLT_DSN_CFM_TP)이 'A'인 경우 transition='TRUE', &#xD;&#xA;   그이외의 경우는 transition='FALSE'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51272" location="416,45" size="149,-1" input="//@wire.5" output="//@wire.6" name="CLEAR_ERR_CD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_ERR_KEY|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;에러여부를 초기화한다."/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="53248" location="433,292" size="136,-1" input="//@wire.11" output="//@wire.8" name="RESULT_IF">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S1010-service"/>
+    <property key="description" value="이 Activity는 품질설계 설계결과I/F 서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="156058" location="434,114" size="113,-1" input="//@wire.6" output="//@wire.10" name="GET IF_GRP_ID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 설계결과 IF  송신  IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 설계정합성을 체크하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 품질설계공통황목 체크&#xD;&#xA;    . 품질설계결과성분 체크&#xD;&#xA;    . 품질설계결과재질 체크&#xD;&#xA;    . 품질설계결과인수도 체크&#xD;&#xA;    . 제조사양 중요항목 체크&#xD;&#xA;    . 품질설계결과상태 반영&#xD;&#xA;    . SMS발송대상 선정 및 발송&#xD;&#xA;    . 설계결과 I/F"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2825" guardcondition="success" firstRelativePoint="480,-73" lastRelativePoint="480,-36">
+    <bendpoint weight="0.5" firstDimension="-6,31" secondDimension="-11,-36"/>
+  </wire>
+  <wire id="2826" guardcondition="success" firstRelativePoint="482,-6" lastRelativePoint="482,31">
+    <bendpoint weight="0.5" firstDimension="-9,31" secondDimension="-6,-36"/>
+  </wire>
+  <wire id="2870" guardcondition="exit" firstRelativePoint="423,-25" lastRelativePoint="348,-25"/>
+  <wire id="2873" guardcondition="success" firstRelativePoint="486,-143" lastRelativePoint="486,-103"/>
+  <wire id="3007" guardcondition="success" firstRelativePoint="491,-5" lastRelativePoint="491,45"/>
+  <wire id="3008" guardcondition="success" firstRelativePoint="502,75" lastRelativePoint="502,114"/>
+  <wire id="7787" guardcondition="false" firstRelativePoint="564,198" lastRelativePoint="556,-16">
+    <bendpoint weight="0.5" firstDimension="138,-1" secondDimension="145,218"/>
+    <bendpoint weight="0.5" firstDimension="134,-215" secondDimension="141,4"/>
+  </wire>
+  <wire id="7789" guardcondition="success" firstRelativePoint="562,399" lastRelativePoint="556,-15">
+    <bendpoint weight="0.5" firstDimension="166,0" secondDimension="171,419"/>
+    <bendpoint weight="0.5" firstDimension="164,-4" secondDimension="174,283"/>
+    <bendpoint weight="0.5" firstDimension="164,-414" secondDimension="169,5"/>
+  </wire>
+  <wire id="7792" guardcondition="success" firstRelativePoint="280,-36" lastRelativePoint="280,-149"/>
+  <wire id="9093" guardcondition="success" firstRelativePoint="491,144" lastRelativePoint="491,184"/>
+  <wire id="12723" guardcondition="true" firstRelativePoint="499,214" lastRelativePoint="499,292"/>
+</Glue:GlueDiagram>

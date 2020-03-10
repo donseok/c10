@@ -1,0 +1,32 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="setColValidators"><param>NotEmpty</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="PROC_NM"   index="1" sort="str" align="center" width="120" type="ro" >공정</column>
+<column id="S_CP"          index="2" sort="int" align="right" width="110" type="ron" format="0,000">치장사양</column>
+<column id="R_CNT"        index="3" sort="int" align="right" width="110" type="ron" format="0,000">현재수량</column>
+<column id="DIA_310U"    index="4" sort="int" align="right" width="110" type="ron" format="0,000">Φ310 이하</column>
+<column id="DIA_310E"     index="5" sort="int" align="right" width="110" type="ron" format="0,000">Φ310 초과</column>
+<column id="SV_CP"         index="6" sort="int" align="right" width="110" type="ron" format="0,000">보관여유</column>
+<column id="NOUSE_CNT" index="7" sort="int" align="right" width="110" type="ron" format="0,000">사용불가</column>
+<column id="DIS_DM_CNT" index="8" sort="int" align="right" width="110" type="ron" format="0,000">폐기대상</column>
+<column id="DIS_CNT"      index="9" sort="int" align="right" width="110" type="ron" format="0,000">폐기누적</column>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">PROC_NM,S_CP,R_CNT,DIA_310U,DIA_310E,SV_CP,NOUSE_CNT,DIS_DM_CNT,DIS_CNT</userdata>
+</rows>

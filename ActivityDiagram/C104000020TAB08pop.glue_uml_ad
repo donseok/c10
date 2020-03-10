@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="272,273" size="-1,-1" input="//@wire.1 //@wire.5"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="176,82" size="202,-1" input="//@wire.0" output="//@wire.2 //@wire.3" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="174,178" size="95,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB08pop.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="6" location="288,178" size="95,-1" input="//@wire.3" output="//@wire.5" name="CCLBOM조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB08popCclBom.select"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="216,209" lastRelativePoint="271,282">
+    <bendpoint weight="0.5" firstDimension="-13,89" secondDimension="-66,0"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="221,112" lastRelativePoint="220,178">
+    <bendpoint weight="0.5" firstDimension="-56,80" secondDimension="0,-16"/>
+    <bendpoint weight="0.5" firstDimension="-57,49" secondDimension="-1,-47"/>
+  </wire>
+  <wire id="7" guardcondition="findCclBom" firstRelativePoint="343,112" lastRelativePoint="343,178"/>
+  <wire id="8" guardcondition="success" firstRelativePoint="353,209" lastRelativePoint="353,209"/>
+  <wire id="9" guardcondition="success" firstRelativePoint="365,208" lastRelativePoint="318,282">
+    <bendpoint weight="0.5" firstDimension="30,89" secondDimension="57,-1"/>
+  </wire>
+</Glue:GlueDiagram>

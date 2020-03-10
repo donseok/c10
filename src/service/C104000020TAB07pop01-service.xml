@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000020TAB07pop01-service" initial="분기">
+  <activity name="대상등록" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C104000020TAB07pop01.insert" />
+    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="save" value="대상등록" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+</service>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="155864" location="335,18" size="-1,-1" output="//@wire.1"/>
+  <child xsi:type="Glue:Activity" id="155865" location="286,72" size="128,-1" input="//@wire.1" output="//@wire.2 //@wire.8" name="START">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.RoutingByStatusActivityB"/>
+    <property key="mode" value="START"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155867" location="290,143" size="135,-1" input="//@wire.2 //@wire.4" output="//@wire.3 //@wire.5 //@wire.6" name="HAS DATA">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
+    <property key="dao" value="eaidao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="B10R0030.Dselect"/>
+    <property key="description" value="이 Activity는 품질설계결과-공통Table에 Data존재유무를 Check하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Data가 존재하면 transition='true', &#xD;&#xA;   존재하지 않은 경우 transition='false'로 Set"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="155868" location="297,222" size="122,-1" input="//@wire.3" output="//@wire.4" name="SUB">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transacion" value="false"/>
+    <property key="ServiceName" value="B10R0030_sub-service"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155869" location="292,299" size="128,-1" input="//@wire.5 //@wire.6" output="//@wire.7" name="STOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.RoutingByStatusActivityB"/>
+    <property key="mode" value="STOP"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="155870" location="346,364" size="-1,-1" input="//@wire.7 //@wire.8"/>
+  <property key="tx2" value="true"/>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 ERP 영업관리(SD)에서 요청한 &#xD;&#xA;생산가부요청 주문에 대하여 주문항목 에러체크하고&#xD;&#xA;품질중요항목에 대한 설계결과를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문항목 에러체크&#xD;&#xA;    . 품질설계KEY 편성&#xD;&#xA;    . 중요Size설계&#xD;&#xA;    . 인터페이스테이블 수신처리&#xD;&#xA;    . 생산가부검토결과 송신처리&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="9069" guardcondition="success" firstRelativePoint="345,37" lastRelativePoint="345,72"/>
+  <wire id="9070" guardcondition="success" firstRelativePoint="353,102" lastRelativePoint="353,143"/>
+  <wire id="9071" guardcondition="true" firstRelativePoint="339,173" lastRelativePoint="339,222"/>
+  <wire id="9072" guardcondition="success" firstRelativePoint="388,222" lastRelativePoint="389,173">
+    <bendpoint weight="0.5" firstDimension="30,-41" secondDimension="31,38"/>
+    <bendpoint weight="0.5" firstDimension="31,-51" secondDimension="32,28"/>
+  </wire>
+  <wire id="9073" guardcondition="false" firstRelativePoint="290,158" lastRelativePoint="293,310">
+    <bendpoint weight="0.5" firstDimension="-170,0" secondDimension="-169,-156"/>
+    <bendpoint weight="0.5" firstDimension="-170,152" secondDimension="-169,-4"/>
+  </wire>
+  <wire id="9074" guardcondition="failure" firstRelativePoint="425,160" lastRelativePoint="420,316">
+    <bendpoint weight="0.5" firstDimension="134,2" secondDimension="135,-154"/>
+    <bendpoint weight="0.5" firstDimension="135,158" secondDimension="136,2"/>
+  </wire>
+  <wire id="9075" guardcondition="success" firstRelativePoint="356,329" lastRelativePoint="356,363"/>
+  <wire id="9076" guardcondition="failure" firstRelativePoint="414,89" lastRelativePoint="365,373">
+    <bendpoint weight="0.5" firstDimension="179,2" secondDimension="173,-285"/>
+    <bendpoint weight="0.5" firstDimension="179,285" secondDimension="173,-2"/>
+  </wire>
+</Glue:GlueDiagram>

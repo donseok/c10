@@ -1,0 +1,32 @@
+<items>
+<item type="block" width="961">
+<item offset="5" type="newcolumn"/>
+<item inputWidth="100" label="최종수요가" labelWidth="65" maxLength="6" name="FNL_CUS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="110" label="규격약호" labelWidth="60" maxLength="15" name="SPC_AVR" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="50" label="주문Size" labelWidth="60" maxLength="5" name="ORD_EXC_THK" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="56" maxLength="5" name="ORD_EXC_WTH" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="60" maxLength="6" name="ORD_EXC_LTH" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="220" label="고객사양명" labelWidth="90" maxLength="10" name="CUS_BTH_NM" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="961">
+<item offset="5" type="newcolumn"/>
+<item inputWidth="100" label="품명" labelWidth="65" maxLength="2" name="PRD_NM_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="110" label="용도" labelWidth="60" maxLength="4" name="ORD_USG_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="110" label="재질/원자재코드" labelWidth="110" maxLength="3" name="MQL_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="183" maxLength="3" name="RMTL_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="60" label="CCL-BOM" labelWidth="80" maxLength="6" name="CCL_BOM_NO" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="40" label="CUS_CD" maxLength="10" name="CUS_CD" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="ACT_CUS_CD" maxLength="10" name="ACT_CUS_CD" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="TRST_PROC_YN" maxLength="10" name="TRST_PROC_YN" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="ATT_ORD_YN" maxLength="10" name="ATT_ORD_YN" readonly="true" type="hidden" labelAlign="right" />
+</item>
+</items>

@@ -1,0 +1,36 @@
+<items>	
+	<item type="block" width="1000">
+		<item inputWidth="80" label="개발요청" name="REQ_RGS_DH_FR" type="calendar" dateFormat="%Y-%m-%d"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="~" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item inputWidth="80" name="REQ_RGS_DH_TO" type="calendar" dateFormat="%Y-%m-%d"/>
+		<item offset="30" type="newcolumn"/>
+		<item inputWidth="70" label="개발요청자" name="SAL_CHR_PRS_ID" maxLength="10" type="input"/>	
+		<item offset="50" type="newcolumn"/>	
+		<item command="create" label="Display Name" name="create" type="linkbutton" value="수정/등록"/>
+		<item offset="5" type="newcolumn"/>	
+		<item command="devCmp" label="Display Name" name="cancel" type="linkbutton" value="개발완료"/>
+		<item offset="5" type="newcolumn"/>	
+		<item command="saveCmp" label="Display Name" name="cancel" type="linkbutton" value="등록완료"/>
+		<item offset="5" type="newcolumn"/>	
+		<item command="cancel" label="Display Name" name="cancel" type="linkbutton" value="반려"/>			
+		<item offset="30" type="newcolumn"/>		
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item offset="3" type="newcolumn"/>
+		<item command="save" name="save" type="button" value="저장" disabled="true"/>
+		<item offset="3" type="newcolumn"/>
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="1000">
+		<item inputWidth="100" label="고객사코드" labelWidth="67" name="CUS_CD" maxLength="6" type="input"/>
+		<item offset="3" type="newcolumn"/>
+		<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="100" label="개발담당자" name="DEV_RECV_CHR_UID"  maxLength="10" type="input"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="150" label="코팅방식" name="COT_MTH" maxLength="10" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="150" label="진도코드" name="DEV_PRG_CD" maxLength="10"  type="combo" />
+	</item>
+</items>

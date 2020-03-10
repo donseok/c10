@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000020POP02-service" initial="분기">
+  <activity name="폭수축계산" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020POP02.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="폭수축시뮬" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020POP02.simul" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="폭수축계산" />
+    <transition name="simulrate" value="폭수축시뮬" />
+  </activity>
+</service>
+

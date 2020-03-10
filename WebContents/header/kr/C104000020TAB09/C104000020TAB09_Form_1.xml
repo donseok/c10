@@ -1,0 +1,7 @@
+<items>
+	<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+	<item offset="2" type="newcolumn"/>
+	<item label="정전" name="std_title" type="label" />
+    <item offset="800" type="newcolumn"/>
+    <item command="save" name="save" type="button" value="저장" disabled="true"/>
+</items>

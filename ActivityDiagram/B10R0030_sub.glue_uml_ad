@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="804,-152" size="-1,-1" output="//@wire.2"/>
+  <child xsi:type="Glue:Activity" id="49656" location="734,-114" size="149,-1" input="//@wire.2" output="//@wire.31" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : P_PROC_FLAG|C"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="416,-46" size="154,-1" input="//@wire.28" output="//@wire.10 //@wire.22" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="1"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="B10R0030.select"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="description" value="이 Activity는 품질설계요청EAI테이블에서 &#xD;&#xA;하나의 IF_GRP_ID에 대하여 XSTAT ='D' 인 값만 추출하여&#xD;&#xA;품질설계의뢰정보등록을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="49675" location="420,10" size="135,-1" input="//@wire.4 //@wire.7 //@wire.14 //@wire.22 //@wire.30" output="//@wire.3 //@wire.1" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
+    <property key="param-count" value="137"/>
+    <property key="param0" value="IF_GRP_ID|IF_GRP_ID"/>
+    <property key="param1" value="SEQ_NO|SEQ_NO"/>
+    <property key="param2" value="XSEQ|XSEQ"/>
+    <property key="param3" value="XCRUD|XCRUD"/>
+    <property key="param4" value="XSTAT|XSTAT"/>
+    <property key="param5" value="XMSGS|XMSGS"/>
+    <property key="param6" value="XDATE|XDATE"/>
+    <property key="param7" value="XTIME|XTIME"/>
+    <property key="param8" value="XSTAT_CALLBACK|XSTAT_CALLBACK"/>
+    <property key="param9" value="ORD_REQ_NO|ORD_REQ_NO"/>
+    <property key="param10" value="ORD_REQ_LN|ORD_REQ_LN"/>
+    <property key="param11" value="ORD_NO|ORD_NO"/>
+    <property key="param12" value="ORD_LN|ORD_LN"/>
+    <property key="param13" value="PLNT_TP|PLNT_TP"/>
+    <property key="param14" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param15" value="PRD_SHP|PRD_SHP"/>
+    <property key="param16" value="FLOW_CHL|FLOW_CHL"/>
+    <property key="param17" value="ORD_KND|ORD_KND"/>
+    <property key="param18" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param19" value="CUS_CD|CUS_CD"/>
+    <property key="param20" value="ACT_CUS_CD|ACT_CUS_CD"/>
+    <property key="param21" value="FNL_CUS_CD|FNL_CUS_CD"/>
+    <property key="param22" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO"/>
+    <property key="param23" value="SPC_AVR|SPC_AVR"/>
+    <property key="param24" value="SPC_YR|SPC_YR"/>
+    <property key="param25" value="ORD_SZ|ORD_SZ"/>
+    <property key="param26" value="ORD_EXC_THK|ORD_EXC_THK"/>
+    <property key="param27" value="ORD_EXC_WTH|ORD_EXC_WTH"/>
+    <property key="param28" value="ORD_EXC_LTH|ORD_EXC_LTH"/>
+    <property key="param29" value="CUS_REQ_DLV_DD|CUS_REQ_DLV_DD"/>
+    <property key="param30" value="ORD_SCH_DLV_DD|ORD_SCH_DLV_DD"/>
+    <property key="param31" value="GW_ASG_CD|GW_ASG_CD"/>
+    <property key="param32" value="CCL_BOM_NO|CCL_BOM_NO"/>
+    <property key="param33" value="HUE_CD_FRN|HUE_CD_FRN"/>
+    <property key="param34" value="HUE_CD_BAK|HUE_CD_BAK"/>
+    <property key="param35" value="ORD_ORG_PLT_SPC_AVR|ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param36" value="ORD_ROU_CD|ORD_ROU_CD"/>
+    <property key="param37" value="ORD_SPNL_TP|ORD_SPNL_TP"/>
+    <property key="param38" value="ORD_COILG_MTH|ORD_COILG_MTH"/>
+    <property key="param39" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD"/>
+    <property key="param40" value="ORD_SKP_DEG|ORD_SKP_DEG"/>
+    <property key="param41" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP"/>
+    <property key="param42" value="ORD_THK_TP|ORD_THK_TP"/>
+    <property key="param43" value="WGT_DCS_MTH_TP|WGT_DCS_MTH_TP"/>
+    <property key="param44" value="ORD_SLV_KND_TP|ORD_SLV_KND_TP"/>
+    <property key="param45" value="EMBS_CD|EMBS_CD"/>
+    <property key="param46" value="ORD_PTT_FLM_CD|ORD_PTT_FLM_CD"/>
+    <property key="param47" value="ORD_PTT_FLM_WTH|ORD_PTT_FLM_WTH"/>
+    <property key="param48" value="ORD_PTT_FLM_ADH_LOC_CD|ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param49" value="ORD_WGT_UNT|ORD_WGT_UNT"/>
+    <property key="param50" value="ORD_LN_WGT|ORD_LN_WGT"/>
+    <property key="param51" value="ORD_SHT_CNT|ORD_SHT_CNT"/>
+    <property key="param52" value="ORD_PAK_SHT_CNT|ORD_PAK_SHT_CNT"/>
+    <property key="param53" value="ORD_PAK_UNT_WGT_LLV|ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param54" value="ORD_PAK_UNT_WGT_ULV|ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param55" value="ORD_DLV_ALW_DIF_LLV|ORD_DLV_ALW_DIF_LLV"/>
+    <property key="param56" value="ORD_DLV_ALW_DIF_ULV|ORD_DLV_ALW_DIF_ULV"/>
+    <property key="param57" value="ORD_PAK_LTH_LLV|ORD_PAK_LTH_LLV"/>
+    <property key="param58" value="ORD_PAK_LTH_ULV|ORD_PAK_LTH_ULV"/>
+    <property key="param59" value="ORD_STDP_LLV|ORD_STDP_LLV"/>
+    <property key="param60" value="ORD_STDP_ULV|ORD_STDP_ULV"/>
+    <property key="param61" value="ORD_STDP_CNT_LLV|ORD_STDP_CNT_LLV"/>
+    <property key="param62" value="ORD_STDP_CNT_ULV|ORD_STDP_CNT_ULV"/>
+    <property key="param63" value="ORD_PAK_UNT_WGT|ORD_PAK_UNT_WGT"/>
+    <property key="param64" value="ORD_SML_PAK_WGT|ORD_SML_PAK_WGT"/>
+    <property key="param65" value="ORD_SML_PAK_MIR|ORD_SML_PAK_MIR"/>
+    <property key="param66" value="ORD_UNT_WGT|ORD_UNT_WGT"/>
+    <property key="param67" value="ORD_PAK_MTH|ORD_PAK_MTH"/>
+    <property key="param68" value="ORD_COIL_IDIA|ORD_COIL_IDIA"/>
+    <property key="param69" value="ORD_COIL_ODIA|ORD_COIL_ODIA"/>
+    <property key="param70" value="ORD_THK_TLN_LLV|ORD_THK_TLN_LLV"/>
+    <property key="param71" value="ORD_THK_TLN_ULV|ORD_THK_TLN_ULV"/>
+    <property key="param72" value="ORD_WTH_TLN_LLV|ORD_WTH_TLN_LLV"/>
+    <property key="param73" value="ORD_WTH_TLN_ULV|ORD_WTH_TLN_ULV"/>
+    <property key="param74" value="ORD_LTH_TLN_LLV|ORD_LTH_TLN_LLV"/>
+    <property key="param75" value="ORD_LTH_TLN_ULV|ORD_LTH_TLN_ULV"/>
+    <property key="param76" value="ORD_THK_MNG_CD|ORD_THK_MNG_CD"/>
+    <property key="param77" value="ORD_WTH_MNG_CD|ORD_WTH_MNG_CD"/>
+    <property key="param78" value="ORD_LTH_MNG_CD|ORD_LTH_MNG_CD"/>
+    <property key="param79" value="CUS_REQ_CLR_NM|CUS_REQ_CLR_NM"/>
+    <property key="param80" value="URG_MTL_TP|URG_MTL_TP"/>
+    <property key="param81" value="ORD_RCP_DD|ORD_RCP_DD"/>
+    <property key="param82" value="ORD_SHT_LOD_MTH|ORD_SHT_LOD_MTH"/>
+    <property key="param83" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT"/>
+    <property key="param84" value="ORD_MIX_WTH1|ORD_MIX_WTH1"/>
+    <property key="param85" value="ORD_MIX_WTH2|ORD_MIX_WTH2"/>
+    <property key="param86" value="ORD_MIX_WTH3|ORD_MIX_WTH3"/>
+    <property key="param87" value="ORD_MIX_WTH4|ORD_MIX_WTH4"/>
+    <property key="param88" value="ORD_MIX_WTH5|ORD_MIX_WTH5"/>
+    <property key="param89" value="ORD_MIX_WTH6|ORD_MIX_WTH6"/>
+    <property key="param90" value="ORD_MIX_WTH7|ORD_MIX_WTH7"/>
+    <property key="param91" value="ORD_MIX_WTH8|ORD_MIX_WTH8"/>
+    <property key="param92" value="ORD_MIX_WTH9|ORD_MIX_WTH9"/>
+    <property key="param93" value="ORD_MIX_WTH10|ORD_MIX_WTH10"/>
+    <property key="param94" value="SLIT_MAX_WGT|SLIT_MAX_WGT"/>
+    <property key="param95" value="TRST_PROC_YN|TRST_PROC_YN"/>
+    <property key="param96" value="TAG_TP|TAG_TP"/>
+    <property key="param97" value="NAT_CD|NAT_CD"/>
+    <property key="param98" value="ORD_SPC_TXT|ORD_SPC_TXT"/>
+    <property key="param99" value="BAK_MRK|BAK_MRK"/>
+    <property key="param100" value="ORD_CFM_DD|ORD_CFM_DD"/>
+    <property key="param101" value="ORD_RGS_PRS_ID|ORD_RGS_PRS_ID"/>
+    <property key="param102" value="ORD_TEM_CD|ORD_TEM_CD"/>
+    <property key="param103" value="MTL_CD|MTL_CD"/>
+    <property key="param104" value="TAG_PRD_NM|TAG_PRD_NM"/>
+    <property key="param105" value="TAG_PO_NO|TAG_PO_NO"/>
+    <property key="param106" value="TAG_DST|TAG_DST"/>
+    <property key="param107" value="TAG_SIZ|TAG_SIZ"/>
+    <property key="param108" value="TAG_SPC_NM|TAG_SPC_NM"/>
+    <property key="param109" value="TAG_GAA|TAG_GAA"/>
+    <property key="param110" value="TAG_HUE_FRN|TAG_HUE_FRN"/>
+    <property key="param111" value="TAG_HUE_BAK|TAG_HUE_BAK"/>
+    <property key="param112" value="TAG_SPC_MRK|TAG_SPC_MRK"/>
+    <property key="param113" value="RMTL_PRFR_CD|RMTL_PRFR_CD"/>
+    <property key="param114" value="QLT_DSN_YN|QLT_DSN_YN"/>
+    <property key="param115" value="TAG_PO_NO2|TAG_PO_NO2"/>
+    <property key="param116" value="CTR_SHPM_MN|CTR_SHPM_MN"/>
+    <property key="param117" value="SVC_CRD_PUB_YN|SVC_CRD_PUB_YN"/>
+    <property key="param118" value="PAK_MSG_CD|PAK_MSG_CD"/>
+    <property key="param119" value="ORD_TEM_GRP_CD|ORD_TEM_GRP_CD"/>
+    <property key="param120" value="PTT_FLM_NOT_ADH_WS|PTT_FLM_NOT_ADH_WS"/>
+    <property key="param121" value="PTT_FLM_NOT_ADH_DS|PTT_FLM_NOT_ADH_DS"/>
+    <property key="param122" value="TAG_PART_NO|TAG_PART_NO"/>
+    <property key="param123" value="MO_CVT_ORD_YN|MO_CVT_ORD_YN"/>
+    <property key="param124" value="MTL_PRD_ORD_YN|MTL_PRD_ORD_YN"/>
+    <property key="param125" value="ORD_DSN_CFM_TP|ORD_DSN_CFM_TP"/>
+    <property key="param126" value="LTH_MNG_YN|LTH_MNG_YN"/>
+    <property key="param127" value="LTH_MNG_FROM|LTH_MNG_FROM"/>
+    <property key="param128" value="LTH_MNG_TO|LTH_MNG_TO"/>
+    <property key="param129" value="BORON_ADD_YN|BORON_ADD_YN"/>
+    <property key="param130" value="ORD_REP_YN|ORD_REP_YN"/>
+    <property key="param131" value="ORD_REP_NO|ORD_REP_NO"/>
+    <property key="param132" value="ORD_REP_LN|ORD_REP_LN"/>
+    <property key="param133" value="WIP_PAK_MTH|WIP_PAK_MTH"/>
+    <property key="param134" value="OT_TC_YN|OT_TC_YN"/>
+    <property key="param135" value="PRT_INKJT_FILE|PRT_INKJT_FILE"/>
+    <property key="param136" value="POC_AUTO_YN|POC_AUTO_YN"/>
+    <property key="description" value="이 Activity는 PI처리상태='J'인 품질설계요청정보를&#xD;&#xA;인터페이스그룹아이디, 인터페이스 SEQ, PI Sequence Key Value에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50091" location="268,10" size="107,-1" input="//@wire.1" output="//@wire.9" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="330,-152" size="-1,-1" input="//@wire.10 //@wire.25 //@wire.26"/>
+  <child xsi:type="Glue:InsertActivity" id="50993" location="402,534" size="130,-1" input="//@wire.34 //@wire.36 //@wire.49" output="//@wire.7 //@wire.32" name="INSERT_CMN">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="126"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100CMN.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="PLNT_TP"/>
+    <property key="param3" value="PRD_NM_CD"/>
+    <property key="param4" value="PRD_SHP"/>
+    <property key="param5" value="FLOW_CHL"/>
+    <property key="param6" value="ORD_KND"/>
+    <property key="param7" value="ORD_USG_CD"/>
+    <property key="param8" value="CUS_CD"/>
+    <property key="param9" value="ACT_CUS_CD"/>
+    <property key="param10" value="FNL_CUS_CD"/>
+    <property key="param11" value="CUS_BTH_PAP_NO"/>
+    <property key="param12" value="SPC_AVR"/>
+    <property key="param13" value="SPC_YR"/>
+    <property key="param14" value="ORD_SZ"/>
+    <property key="param15" value="ORD_EXC_THK"/>
+    <property key="param16" value="ORD_EXC_WTH"/>
+    <property key="param17" value="ORD_EXC_LTH"/>
+    <property key="param18" value="CUS_REQ_DLV_DD"/>
+    <property key="param19" value="ORD_SCH_DLV_DD"/>
+    <property key="param20" value="GW_ASG_CD"/>
+    <property key="param21" value="CCL_BOM_NO"/>
+    <property key="param22" value="HUE_CD_FRN"/>
+    <property key="param23" value="HUE_CD_BAK"/>
+    <property key="param24" value="ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param25" value="ORD_ROU_CD"/>
+    <property key="param26" value="ORD_SPNL_TP"/>
+    <property key="param27" value="ORD_COILG_MTH"/>
+    <property key="param28" value="ORD_SUR_HND_CD"/>
+    <property key="param29" value="ORD_SKP_DEG"/>
+    <property key="param30" value="ORD_EDG_ASG_TP"/>
+    <property key="param31" value="ORD_THK_TP"/>
+    <property key="param32" value="WGT_DCS_MTH_TP"/>
+    <property key="param33" value="ORD_SLV_KND_TP"/>
+    <property key="param34" value="EMBS_CD"/>
+    <property key="param35" value="ORD_PTT_FLM_CD"/>
+    <property key="param36" value="ORD_PTT_FLM_WTH"/>
+    <property key="param37" value="ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param38" value="ORD_WGT_UNT"/>
+    <property key="param39" value="ORD_LN_WGT"/>
+    <property key="param40" value="ORD_SHT_CNT"/>
+    <property key="param41" value="ORD_PAK_SHT_CNT"/>
+    <property key="param42" value="ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param43" value="ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param44" value="ORD_DLV_ALW_DIF_LLV"/>
+    <property key="param45" value="ORD_DLV_ALW_DIF_ULV"/>
+    <property key="param46" value="ORD_PAK_LTH_LLV"/>
+    <property key="param47" value="ORD_PAK_LTH_ULV"/>
+    <property key="param48" value="ORD_STDP_LLV"/>
+    <property key="param49" value="ORD_STDP_ULV"/>
+    <property key="param50" value="ORD_STDP_CNT_LLV"/>
+    <property key="param51" value="ORD_STDP_CNT_ULV"/>
+    <property key="param52" value="ORD_PAK_UNT_WGT"/>
+    <property key="param53" value="ORD_SML_PAK_WGT"/>
+    <property key="param54" value="ORD_SML_PAK_MIR"/>
+    <property key="param55" value="ORD_UNT_WGT"/>
+    <property key="param56" value="ORD_PAK_MTH"/>
+    <property key="param57" value="ORD_COIL_IDIA"/>
+    <property key="param58" value="ORD_COIL_ODIA"/>
+    <property key="param59" value="ORD_THK_TLN_LLV"/>
+    <property key="param60" value="ORD_THK_TLN_ULV"/>
+    <property key="param61" value="ORD_WTH_TLN_LLV"/>
+    <property key="param62" value="ORD_WTH_TLN_ULV"/>
+    <property key="param63" value="ORD_LTH_TLN_LLV"/>
+    <property key="param64" value="ORD_LTH_TLN_ULV"/>
+    <property key="param65" value="ORD_THK_MNG_CD"/>
+    <property key="param66" value="ORD_WTH_MNG_CD"/>
+    <property key="param67" value="ORD_LTH_MNG_CD"/>
+    <property key="param68" value="CUS_REQ_CLR_NM"/>
+    <property key="param69" value="URG_MTL_TP"/>
+    <property key="param70" value="ORD_RCP_DD"/>
+    <property key="param71" value="ORD_SHT_LOD_MTH"/>
+    <property key="param72" value="ORD_SLIT_GRP_CNT"/>
+    <property key="param73" value="ORD_MIX_WTH1"/>
+    <property key="param74" value="ORD_MIX_WTH2"/>
+    <property key="param75" value="ORD_MIX_WTH3"/>
+    <property key="param76" value="ORD_MIX_WTH4"/>
+    <property key="param77" value="ORD_MIX_WTH5"/>
+    <property key="param78" value="ORD_MIX_WTH6"/>
+    <property key="param79" value="ORD_MIX_WTH7"/>
+    <property key="param80" value="ORD_MIX_WTH8"/>
+    <property key="param81" value="ORD_MIX_WTH9"/>
+    <property key="param82" value="ORD_MIX_WTH10"/>
+    <property key="param83" value="SLIT_MAX_WGT"/>
+    <property key="param84" value="TRST_PROC_YN"/>
+    <property key="param85" value="TAG_TP"/>
+    <property key="param86" value="NAT_CD"/>
+    <property key="param87" value="ORD_SPC_TXT"/>
+    <property key="param88" value="BAK_MRK"/>
+    <property key="param89" value="ORD_CFM_DD"/>
+    <property key="param90" value="ORD_RGS_PRS_ID"/>
+    <property key="param91" value="ORD_TEM_CD"/>
+    <property key="param92" value="MTL_CD"/>
+    <property key="param93" value="TAG_PRD_NM"/>
+    <property key="param94" value="TAG_PO_NO"/>
+    <property key="param95" value="TAG_DST"/>
+    <property key="param96" value="TAG_SIZ"/>
+    <property key="param97" value="TAG_SPC_NM"/>
+    <property key="param98" value="TAG_GAA"/>
+    <property key="param99" value="TAG_HUE_FRN"/>
+    <property key="param100" value="TAG_HUE_BAK"/>
+    <property key="param101" value="TAG_SPC_MRK"/>
+    <property key="param102" value="RMTL_PRFR_CD"/>
+    <property key="param103" value="QLT_DSN_YN"/>
+    <property key="param104" value="TAG_PO_NO2"/>
+    <property key="param105" value="CTR_SHPM_MN"/>
+    <property key="param106" value="SVC_CRD_PUB_YN"/>
+    <property key="param107" value="PAK_MSG_CD"/>
+    <property key="param108" value="ORD_TEM_GRP_CD"/>
+    <property key="param109" value="PTT_FLM_NOT_ADH_WS"/>
+    <property key="param110" value="PTT_FLM_NOT_ADH_DS"/>
+    <property key="param111" value="TAG_PART_NO"/>
+    <property key="param112" value="MO_CVT_ORD_YN"/>
+    <property key="param113" value="MTL_PRD_ORD_YN"/>
+    <property key="param114" value="ORD_DSN_CFM_TP"/>
+    <property key="param115" value="LTH_MNG_YN"/>
+    <property key="param116" value="LTH_MNG_FROM"/>
+    <property key="param117" value="LTH_MNG_TO"/>
+    <property key="param118" value="BORON_ADD_YN"/>
+    <property key="param119" value="ORD_REP_YN"/>
+    <property key="param120" value="ORD_REP_NO"/>
+    <property key="param121" value="ORD_REP_LN"/>
+    <property key="param122" value="WIP_PAK_MTH"/>
+    <property key="param123" value="OT_TC_YN"/>
+    <property key="param124" value="PRT_INKJT_FILE"/>
+    <property key="param125" value="POC_AUTO_YN"/>
+    <property key="description" value="이 Activity는 품질설계의뢰정보를 품질설계결과-공통테이블에 &#xD;&#xA;등록하는 Activity이다. (설계대상여부를 'Y', 품질설계상태를 'I'로 등록)"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="50994" location="722,373" size="124,-1" input="//@wire.6 //@wire.8 //@wire.20 //@wire.21" output="//@wire.4" name="MODIFY_IF">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="5"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10R0030.modify"/>
+    <property key="param0" value="XSTAT"/>
+    <property key="param1" value="XMSGS"/>
+    <property key="param2" value="XSTAT_CALLBACK"/>
+    <property key="param3" value="IF_GRP_ID"/>
+    <property key="param4" value="SEQ_NO"/>
+    <property key="description" value="이 Activity는 품질설계요청 결과를 품질설계요청 Interface Table에&#xD;&#xA;저장하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50996" location="424,70" size="135,-1" input="//@wire.3" output="//@wire.15 //@wire.5" name="CHECK_CNT_CMN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="2"/>
+    <property key="sqlkey" value="C102100CMN.select"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계결과-공통Table에 Data존재유무를 Check하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Data가 존재하면 transition='true', &#xD;&#xA;   존재하지 않은 경우 transition='false'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51179" location="50,95" size="121,-1" input="//@wire.5" output="//@wire.6" name="STAT_SET_E">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="XSTAT|E"/>
+    <property key="param1" value="XMSGS|품질설계DB에 해당주문번호가 등록되어 있습니다!"/>
+    <property key="param2" value="XSTAT_CALLBACK|R"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51181" location="262,1068" size="325,-1" input="//@wire.46 //@wire.47 //@wire.50 //@wire.52" output="//@wire.8" name="STAT_SET_S">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="XSTAT|S"/>
+    <property key="param1" value="XMSGS|sp_null"/>
+    <property key="param2" value="XSTAT_CALLBACK|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51182" location="92,9" size="107,-1" input="//@wire.9" output="//@wire.23" name="COMMIT_IF">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147487" location="-125,-139" size="136,-1" input="//@wire.27" output="//@wire.25" name="CALL_JOB">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100000-service"/>
+    <property key="description" value="이 Activity는 품질설계 SUB 서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155550" location="426,253" size="132,-1" input="//@wire.17" output="//@wire.12 //@wire.11" name="ROUTER_DSN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="QLT_DSN_YN"/>
+    <property key="param1" value="Y"/>
+    <property key="param2" value="J"/>
+    <property key="param3" value="A"/>
+    <property key="description" value="이 Activity는 품질설계여부값을 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- QLT_DSN_YN 값이 'Y'이면 J로 분기한다.&#xD;&#xA;- 주문번호 값이 'Y'가 아니면 'A'로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="155551" location="497,328" size="130,-1" input="//@wire.12" output="//@wire.14 //@wire.13" name="INSERT_CMN_A">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="114"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100CMNA.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="PLNT_TP"/>
+    <property key="param3" value="PRD_NM_CD"/>
+    <property key="param4" value="PRD_SHP"/>
+    <property key="param5" value="FLOW_CHL"/>
+    <property key="param6" value="ORD_KND"/>
+    <property key="param7" value="ORD_USG_CD"/>
+    <property key="param8" value="CUS_CD"/>
+    <property key="param9" value="ACT_CUS_CD"/>
+    <property key="param10" value="FNL_CUS_CD"/>
+    <property key="param11" value="CUS_BTH_PAP_NO"/>
+    <property key="param12" value="SPC_AVR"/>
+    <property key="param13" value="SPC_YR"/>
+    <property key="param14" value="ORD_SZ"/>
+    <property key="param15" value="ORD_EXC_THK"/>
+    <property key="param16" value="ORD_EXC_WTH"/>
+    <property key="param17" value="ORD_EXC_LTH"/>
+    <property key="param18" value="CUS_REQ_DLV_DD"/>
+    <property key="param19" value="ORD_SCH_DLV_DD"/>
+    <property key="param20" value="GW_ASG_CD"/>
+    <property key="param21" value="CCL_BOM_NO"/>
+    <property key="param22" value="HUE_CD_FRN"/>
+    <property key="param23" value="HUE_CD_BAK"/>
+    <property key="param24" value="ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param25" value="ORD_ROU_CD"/>
+    <property key="param26" value="ORD_SPNL_TP"/>
+    <property key="param27" value="ORD_COILG_MTH"/>
+    <property key="param28" value="ORD_SUR_HND_CD"/>
+    <property key="param29" value="ORD_SKP_DEG"/>
+    <property key="param30" value="ORD_EDG_ASG_TP"/>
+    <property key="param31" value="ORD_THK_TP"/>
+    <property key="param32" value="WGT_DCS_MTH_TP"/>
+    <property key="param33" value="ORD_SLV_KND_TP"/>
+    <property key="param34" value="EMBS_CD"/>
+    <property key="param35" value="ORD_PTT_FLM_CD"/>
+    <property key="param36" value="ORD_PTT_FLM_WTH"/>
+    <property key="param37" value="ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param38" value="ORD_WGT_UNT"/>
+    <property key="param39" value="ORD_LN_WGT"/>
+    <property key="param40" value="ORD_SHT_CNT"/>
+    <property key="param41" value="ORD_PAK_SHT_CNT"/>
+    <property key="param42" value="ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param43" value="ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param44" value="ORD_DLV_ALW_DIF_LLV"/>
+    <property key="param45" value="ORD_DLV_ALW_DIF_ULV"/>
+    <property key="param46" value="ORD_PAK_LTH_LLV"/>
+    <property key="param47" value="ORD_PAK_LTH_ULV"/>
+    <property key="param48" value="ORD_STDP_LLV"/>
+    <property key="param49" value="ORD_STDP_ULV"/>
+    <property key="param50" value="ORD_STDP_CNT_LLV"/>
+    <property key="param51" value="ORD_STDP_CNT_ULV"/>
+    <property key="param52" value="ORD_PAK_UNT_WGT"/>
+    <property key="param53" value="ORD_SML_PAK_WGT"/>
+    <property key="param54" value="ORD_SML_PAK_MIR"/>
+    <property key="param55" value="ORD_UNT_WGT"/>
+    <property key="param56" value="ORD_PAK_MTH"/>
+    <property key="param57" value="ORD_COIL_IDIA"/>
+    <property key="param58" value="ORD_COIL_ODIA"/>
+    <property key="param59" value="ORD_THK_TLN_LLV"/>
+    <property key="param60" value="ORD_THK_TLN_ULV"/>
+    <property key="param61" value="ORD_WTH_TLN_LLV"/>
+    <property key="param62" value="ORD_WTH_TLN_ULV"/>
+    <property key="param63" value="ORD_LTH_TLN_LLV"/>
+    <property key="param64" value="ORD_LTH_TLN_ULV"/>
+    <property key="param65" value="ORD_THK_MNG_CD"/>
+    <property key="param66" value="ORD_WTH_MNG_CD"/>
+    <property key="param67" value="ORD_LTH_MNG_CD"/>
+    <property key="param68" value="CUS_REQ_CLR_NM"/>
+    <property key="param69" value="URG_MTL_TP"/>
+    <property key="param70" value="ORD_RCP_DD"/>
+    <property key="param71" value="ORD_SHT_LOD_MTH"/>
+    <property key="param72" value="ORD_SLIT_GRP_CNT"/>
+    <property key="param73" value="ORD_MIX_WTH1"/>
+    <property key="param74" value="ORD_MIX_WTH2"/>
+    <property key="param75" value="ORD_MIX_WTH3"/>
+    <property key="param76" value="ORD_MIX_WTH4"/>
+    <property key="param77" value="ORD_MIX_WTH5"/>
+    <property key="param78" value="ORD_MIX_WTH6"/>
+    <property key="param79" value="ORD_MIX_WTH7"/>
+    <property key="param80" value="ORD_MIX_WTH8"/>
+    <property key="param81" value="ORD_MIX_WTH9"/>
+    <property key="param82" value="ORD_MIX_WTH10"/>
+    <property key="param83" value="SLIT_MAX_WGT"/>
+    <property key="param84" value="TRST_PROC_YN"/>
+    <property key="param85" value="TAG_TP"/>
+    <property key="param86" value="NAT_CD"/>
+    <property key="param87" value="ORD_SPC_TXT"/>
+    <property key="param88" value="BAK_MRK"/>
+    <property key="param89" value="ORD_CFM_DD"/>
+    <property key="param90" value="ORD_RGS_PRS_ID"/>
+    <property key="param91" value="ORD_TEM_CD"/>
+    <property key="param92" value="MTL_CD"/>
+    <property key="param93" value="TAG_PRD_NM"/>
+    <property key="param94" value="TAG_PO_NO"/>
+    <property key="param95" value="TAG_DST"/>
+    <property key="param96" value="TAG_SIZ"/>
+    <property key="param97" value="TAG_SPC_NM"/>
+    <property key="param98" value="TAG_GAA"/>
+    <property key="param99" value="TAG_HUE_FRN"/>
+    <property key="param100" value="TAG_HUE_BAK"/>
+    <property key="param101" value="TAG_SPC_MRK"/>
+    <property key="param102" value="RMTL_PRFR_CD"/>
+    <property key="param103" value="QLT_DSN_YN"/>
+    <property key="param104" value="TAG_PO_NO2"/>
+    <property key="param105" value="CTR_SHPM_MN"/>
+    <property key="param106" value="SVC_CRD_PUB_YN"/>
+    <property key="param107" value="PAK_MSG_CD"/>
+    <property key="param108" value="ORD_TEM_GRP_CD"/>
+    <property key="param109" value="PTT_FLM_NOT_ADH_WS"/>
+    <property key="param110" value="PTT_FLM_NOT_ADH_DS"/>
+    <property key="param111" value="TAG_PART_NO"/>
+    <property key="param112" value="MO_CVT_ORD_YN"/>
+    <property key="param113" value="MTL_PRD_ORD_YN"/>
+    <property key="description" value="이 Activity는 품질설계의뢰정보를 품질설계결과-공통테이블에 &#xD;&#xA;등록하는 Activity이다. (설계대상여부를 'N', 품질설계상태를'A'로 등록)"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155609" location="427,129" size="132,-1" input="//@wire.15" output="//@wire.16 //@wire.18" name="ROUTER_ORD_NO">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="error"/>
+    <property key="param3" value="success"/>
+    <property key="description" value="이 Activity는 주문번호를 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 주문번호 값이 null이면 error로 분기한다.&#xD;&#xA;- 주문번호 값이 null이 아니면 success로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155610" location="425,190" size="132,-1" input="//@wire.16" output="//@wire.17 //@wire.19" name="ROUTER_ORD_LN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="ORD_LN"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="error"/>
+    <property key="param3" value="success"/>
+    <property key="description" value="이 Activity는 주문행번을 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 주문행번 값이 null이면 error로 분기한다.&#xD;&#xA;- 주문행번 값이 null이 아니면 success로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155611" location="135,162" size="121,-1" input="//@wire.18" output="//@wire.20" name="STAT_SET_E_1">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="XSTAT|E"/>
+    <property key="param1" value="XMSGS|주문번호가 없습니다."/>
+    <property key="param2" value="XSTAT_CALLBACK|R"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155612" location="209,228" size="121,-1" input="//@wire.19" output="//@wire.21" name="STAT_SET_E2">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="XSTAT|E"/>
+    <property key="param1" value="XMSGS|주문행번이 없습니다."/>
+    <property key="param2" value="XSTAT_CALLBACK|R"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 인터페이스테이블 갱신 내역을 PosContext에 등록한다.&#xD;&#xA;   . PI 처리 상태 (오류:'E', 정상:'S')&#xD;&#xA;   . PI 에러 메세지&#xD;&#xA;   . PI 처리 상태 ('R')"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155635" location="-134,9" size="135,-1" input="//@wire.23" output="//@wire.24 //@wire.26" name="CHK JOB STATUS">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C10_QLT_JOB.select"/>
+    <property key="description" value="이 Activity는 품질설계결과-JOB관리Table에 현재JOB이 기동중인지를 Check하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. JOB이 기동중이면 transition='true', &#xD;&#xA;   기동중이 아닌 경우 transition='false'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155636" location="-122,-62" size="121,-1" input="//@wire.24" output="//@wire.27" name="SET_SMS">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="RE_QLT_DSN_TP|N"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- RE_QLT_DSN_TP(재설계 여부 변수)를 'N'으로 SET한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155965" location="517,-117" size="132,-1" input="//@wire.31" output="//@wire.29 //@wire.28" name="CHK IF_GRP_ID">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="true"/>
+    <property key="param3" value="false"/>
+    <property key="description" value="이 Activity는 인터페이스그룹ID를 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- IF_GRP_ID의 값이 null이면 true로 분기한다.&#xD;&#xA;- IF_GRP_ID의 값이 null이 아니면 false로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="155966" location="740,-49" size="154,-1" input="//@wire.29" output="//@wire.30" name="SEARCH_DALL">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="B10R0030.BAKselect"/>
+    <property key="description" value="이 Activity는 품질설계요청EAI테이블에서 &#xD;&#xA;최대 100건의 XSTAT ='D' 인 값만 추출하여&#xD;&#xA;품질설계의뢰정보등록을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155990" location="357,329" size="131,-1" input="//@wire.11" output="//@wire.33 //@wire.36" name="ROUTER_REP_ORD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="ORD_REP_YN"/>
+    <property key="param1" value="X"/>
+    <property key="param2" value="R"/>
+    <property key="param3" value="J"/>
+    <property key="description" value="이 Activity는 품질설계 반복주문여부값을 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- ORD_REP_YN 값이 'X'이면 'R'로 분기한다.&#xD;&#xA;- ORD_REP_YN 값이 'X'가 아니면 'J'로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155991" location="265,433" size="204,-1" input="//@wire.48" output="//@wire.34 //@wire.35" name="CHECK_CNT_REP_CMN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="129"/>
+    <property key="sqlkey" value="C102100CMN.Rselect"/>
+    <property key="param0" value="ORD_REP_NO"/>
+    <property key="param1" value="ORD_REP_LN"/>
+    <property key="param2" value="PRD_NM_CD"/>
+    <property key="param3" value="PLNT_TP"/>
+    <property key="param4" value="PRD_SHP"/>
+    <property key="param5" value="FLOW_CHL"/>
+    <property key="param6" value="ORD_KND"/>
+    <property key="param7" value="ORD_USG_CD"/>
+    <property key="param8" value="CUS_CD"/>
+    <property key="param9" value="ACT_CUS_CD"/>
+    <property key="param10" value="FNL_CUS_CD"/>
+    <property key="param11" value="CUS_BTH_PAP_NO"/>
+    <property key="param12" value="CUS_BTH_PAP_NO"/>
+    <property key="param13" value="SPC_AVR"/>
+    <property key="param14" value="SPC_YR"/>
+    <property key="param15" value="ORD_SZ"/>
+    <property key="param16" value="ORD_EXC_THK"/>
+    <property key="param17" value="ORD_EXC_WTH"/>
+    <property key="param18" value="ORD_EXC_LTH"/>
+    <property key="param19" value="ORD_EXC_LTH"/>
+    <property key="param20" value="GW_ASG_CD"/>
+    <property key="param21" value="GW_ASG_CD"/>
+    <property key="param22" value="CCL_BOM_NO"/>
+    <property key="param23" value="CCL_BOM_NO"/>
+    <property key="param24" value="HUE_CD_FRN"/>
+    <property key="param25" value="HUE_CD_FRN"/>
+    <property key="param26" value="HUE_CD_BAK"/>
+    <property key="param27" value="HUE_CD_BAK"/>
+    <property key="param28" value="ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param29" value="ORD_ORG_PLT_SPC_AVR"/>
+    <property key="param30" value="ORD_ROU_CD"/>
+    <property key="param31" value="ORD_ROU_CD"/>
+    <property key="param32" value="ORD_SPNL_TP"/>
+    <property key="param33" value="ORD_SPNL_TP"/>
+    <property key="param34" value="ORD_COILG_MTH"/>
+    <property key="param35" value="ORD_COILG_MTH"/>
+    <property key="param36" value="ORD_SUR_HND_CD"/>
+    <property key="param37" value="ORD_SUR_HND_CD"/>
+    <property key="param38" value="ORD_SKP_DEG"/>
+    <property key="param39" value="ORD_SKP_DEG"/>
+    <property key="param40" value="ORD_EDG_ASG_TP"/>
+    <property key="param41" value="ORD_THK_TP"/>
+    <property key="param42" value="WGT_DCS_MTH_TP"/>
+    <property key="param43" value="ORD_SLV_KND_TP"/>
+    <property key="param44" value="ORD_SLV_KND_TP"/>
+    <property key="param45" value="EMBS_CD"/>
+    <property key="param46" value="EMBS_CD"/>
+    <property key="param47" value="ORD_PTT_FLM_DTL_CD"/>
+    <property key="param48" value="ORD_PTT_FLM_DTL_CD"/>
+    <property key="param49" value="ORD_PTT_FLM_WTH"/>
+    <property key="param50" value="ORD_PTT_FLM_WTH"/>
+    <property key="param51" value="ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param52" value="ORD_PTT_FLM_ADH_LOC_CD"/>
+    <property key="param53" value="ORD_WGT_UNT"/>
+    <property key="param54" value="ORD_PAK_SHT_CNT"/>
+    <property key="param55" value="ORD_PAK_SHT_CNT"/>
+    <property key="param56" value="ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param57" value="ORD_PAK_UNT_WGT_LLV"/>
+    <property key="param58" value="ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param59" value="ORD_PAK_UNT_WGT_ULV"/>
+    <property key="param60" value="ORD_PAK_LTH_LLV"/>
+    <property key="param61" value="ORD_PAK_LTH_LLV"/>
+    <property key="param62" value="ORD_PAK_LTH_ULV"/>
+    <property key="param63" value="ORD_PAK_LTH_ULV"/>
+    <property key="param64" value="ORD_STDP_CNT_LLV"/>
+    <property key="param65" value="ORD_STDP_CNT_LLV"/>
+    <property key="param66" value="ORD_STDP_CNT_ULV"/>
+    <property key="param67" value="ORD_STDP_CNT_ULV"/>
+    <property key="param68" value="ORD_PAK_UNT_WGT"/>
+    <property key="param69" value="ORD_PAK_UNT_WGT"/>
+    <property key="param70" value="ORD_PAK_MTH"/>
+    <property key="param71" value="ORD_COIL_IDIA"/>
+    <property key="param72" value="ORD_COIL_IDIA"/>
+    <property key="param73" value="ORD_COIL_ODIA"/>
+    <property key="param74" value="ORD_COIL_ODIA"/>
+    <property key="param75" value="ORD_THK_MNG_CD"/>
+    <property key="param76" value="ORD_WTH_MNG_CD"/>
+    <property key="param77" value="ORD_LTH_MNG_CD"/>
+    <property key="param78" value="ORD_LTH_MNG_CD"/>
+    <property key="param79" value="ORD_SHT_LOD_MTH"/>
+    <property key="param80" value="ORD_SHT_LOD_MTH"/>
+    <property key="param81" value="ORD_SLIT_GRP_CNT"/>
+    <property key="param82" value="ORD_SLIT_GRP_CNT"/>
+    <property key="param83" value="ORD_MIX_WTH1"/>
+    <property key="param84" value="ORD_MIX_WTH1"/>
+    <property key="param85" value="ORD_MIX_WTH2"/>
+    <property key="param86" value="ORD_MIX_WTH2"/>
+    <property key="param87" value="ORD_MIX_WTH3"/>
+    <property key="param88" value="ORD_MIX_WTH3"/>
+    <property key="param89" value="ORD_MIX_WTH4"/>
+    <property key="param90" value="ORD_MIX_WTH4"/>
+    <property key="param91" value="ORD_MIX_WTH5"/>
+    <property key="param92" value="ORD_MIX_WTH5"/>
+    <property key="param93" value="ORD_MIX_WTH6"/>
+    <property key="param94" value="ORD_MIX_WTH6"/>
+    <property key="param95" value="ORD_MIX_WTH7"/>
+    <property key="param96" value="ORD_MIX_WTH7"/>
+    <property key="param97" value="ORD_MIX_WTH8"/>
+    <property key="param98" value="ORD_MIX_WTH8"/>
+    <property key="param99" value="SLIT_MAX_WGT"/>
+    <property key="param100" value="SLIT_MAX_WGT"/>
+    <property key="param101" value="TRST_PROC_YN"/>
+    <property key="param102" value="TRST_PROC_YN"/>
+    <property key="param103" value="ORD_SPC_TXT"/>
+    <property key="param104" value="ORD_SPC_TXT"/>
+    <property key="param105" value="MTL_CD"/>
+    <property key="param106" value="TAG_TP"/>
+    <property key="param107" value="TAG_TP"/>
+    <property key="param108" value="NAT_CD"/>
+    <property key="param109" value="MTL_PRD_ORD_YN"/>
+    <property key="param110" value="MTL_PRD_ORD_YN"/>
+    <property key="param111" value="CUS_REQ_CLR_NM"/>
+    <property key="param112" value="CUS_REQ_CLR_NM"/>
+    <property key="param113" value="PAK_MSG_CD"/>
+    <property key="param114" value="PAK_MSG_CD"/>
+    <property key="param115" value="ORD_MIX_WTH9"/>
+    <property key="param116" value="ORD_MIX_WTH9"/>
+    <property key="param117" value="ORD_MIX_WTH10"/>
+    <property key="param118" value="ORD_MIX_WTH10"/>
+    <property key="param119" value="PTT_FLM_NOT_ADH_WS"/>
+    <property key="param120" value="PTT_FLM_NOT_ADH_WS"/>
+    <property key="param121" value="PTT_FLM_NOT_ADH_DS"/>
+    <property key="param122" value="PTT_FLM_NOT_ADH_DS"/>
+    <property key="param123" value="LTH_MNG_YN"/>
+    <property key="param124" value="LTH_MNG_YN"/>
+    <property key="param125" value="LTH_MNG_FROM"/>
+    <property key="param126" value="LTH_MNG_FROM"/>
+    <property key="param127" value="LTH_MNG_TO"/>
+    <property key="param128" value="LTH_MNG_TO"/>
+    <property key="description" value="이 Activity는 품질설계결과-공통Table에 반복주문 Data존재유무를 Check하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Data가 존재하면 transition='true', &#xD;&#xA;   존재하지 않은 경우 transition='false'로 Set"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="210212" location="272,493" size="124,-1" input="//@wire.35" output="//@wire.37" name="INSERT_RMT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.RMTinsert"/>
+    <property key="description" value="이 Activity는 원자재기준을 품질설계결과 원자재기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계원자재 테이블에 반복주문원자재설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228916" location="269,543" size="125,-1" input="//@wire.37" output="//@wire.38" name="INSERT_CHM">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.CHMinsert"/>
+    <property key="description" value="이 Activity는 성분기준을 품질설계결과 성분기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계성분 테이블에 반복주문성분설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228917" location="270,587" size="125,-1" input="//@wire.38" output="//@wire.39" name="INSERT_DEV">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.DLVinsert"/>
+    <property key="description" value="이 Activity는 인수도기준을 품질설계결과 인수도기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계인수도 테이블에 반복주문인수도설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228918" location="273,631" size="123,-1" input="//@wire.39" output="//@wire.40" name="INSERT_MNF">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.MNFinsert"/>
+    <property key="description" value="이 Activity는 제조사양기준을 품질설계결과 제조사양기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계제조사양 테이블에 반복주문제조사양설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228919" location="271,676" size="120,-1" input="//@wire.40" output="//@wire.41" name="INSERT_MQL">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.MQLinsert"/>
+    <property key="description" value="이 Activity는 재질기준을 품질설계결과 재질기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계재질 테이블에 반복주문재질설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228920" location="276,723" size="119,-1" input="//@wire.41" output="//@wire.42" name="INSERT_PROC">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.PROCinsert"/>
+    <property key="description" value="이 Activity는 통과공정기준을 품질설계결과 통과공정기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계통과공정 테이블에 반복주문통과공정설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228921" location="274,769" size="118,-1" input="//@wire.42" output="//@wire.43" name="INSERT_MSG">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.MSGinsert"/>
+    <property key="description" value="이 Activity는 메시지기준을 품질설계결과 메시지기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계메시지 테이블에 반복주문메시지설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228922" location="272,811" size="117,-1" input="//@wire.43" output="//@wire.44" name="INSERT_MSG1">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.MSG1insert"/>
+    <property key="description" value="이 Activity는 메시지1기준을 품질설계결과 메시지1기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계메시지1 테이블에 반복주문메시지1설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228923" location="273,854" size="116,-1" input="//@wire.44" output="//@wire.45" name="INSERT_CMN_RE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100170.CMNinsert"/>
+    <property key="description" value="이 Activity는 공통기준을 품질설계결과 공통기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계공통 테이블에 반복주문공통설계결과를 복사한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="228978" location="270,899" size="115,-1" input="//@wire.45" output="//@wire.46 //@wire.53" name="CCL_BOM_CHK_RE">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="CCL_BOM_NO"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="N"/>
+    <property key="param3" value="Y"/>
+    <property key="description" value="CCL BOM번호의 존재 여부를 통해서 칼라제품인지 도금제품인지를 파악하고 칼라인경우만&#xD;&#xA;CCL 작업지시를 설계한다."/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="228980" location="253,967" size="97,-1" input="//@wire.53" output="//@wire.47" name="INSERT_CCL_BOM">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsertByName"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100CCL_BOM.REinsert"/>
+    <property key="description" value="이 Activity는 CCL-BOM기준을 품질설계결과-칼라제조사양테이블에 &#xD;&#xA;등록하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="228981" location="358,382" size="109,-1" input="//@wire.33" output="//@wire.48 //@wire.49" name="ORD_TXT_CHK">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="ORD_SPC_TXT"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="T"/>
+    <property key="param3" value="F"/>
+    <property key="description" value="이 Activity는 품질설계 반복주문여부값을 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 주문행번 값이 null이면 T로 분기한다.&#xD;&#xA;- 주문행번 값이 null이 아니면 F로 분기한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="228983" location="413,606" size="115,-1" input="//@wire.32 //@wire.13" output="//@wire.50 //@wire.51" name="CCL_BOM_CHK">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="CCL_BOM_NO"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="N"/>
+    <property key="param3" value="Y"/>
+    <property key="description" value="CCL BOM번호의 존재 여부를 통해서 칼라제품인지 도금제품인지를 파악하고 칼라인경우만&#xD;&#xA;CCL의  수지 전, 후면을 업데이트 한다."/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="228984" location="442,668" size="107,-1" input="//@wire.51" output="//@wire.52" name="UPDATE_CMN">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100CMN.CCL_modify5"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="CCL BOM이 존재하는 경우 수지타입 전후면 값을 업데이트 한다.&#xD;&#xA;MTC 출력 시 필요한 값이므로 업데이트 한다."/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 ERP 영업관리(SD)에서 요청한 &#xD;&#xA;품질설계의뢰한 주문을 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 품질설계의뢰정보 품질설계공통에 편성&#xD;&#xA;    . 요청한 품질설계의뢰정보 품질설계처리"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2870" guardcondition="exit" firstRelativePoint="420,24" lastRelativePoint="280,24"/>
+  <wire id="2873" guardcondition="success" firstRelativePoint="486,-128" lastRelativePoint="486,-103"/>
+  <wire id="2978" guardcondition="success" firstRelativePoint="484,61" lastRelativePoint="484,99"/>
+  <wire id="2985" guardcondition="success" firstRelativePoint="776,373" lastRelativePoint="555,23">
+    <bendpoint weight="0.5" firstDimension="-8,-191" secondDimension="289,172"/>
+    <bendpoint weight="0.5" firstDimension="-6,-365" secondDimension="291,-2"/>
+  </wire>
+  <wire id="2990" guardcondition="true" firstRelativePoint="425,79" lastRelativePoint="139,95">
+    <bendpoint weight="0.5" firstDimension="-352,-6" secondDimension="-13,-31"/>
+  </wire>
+  <wire id="2992" guardcondition="success" firstRelativePoint="276,961" lastRelativePoint="276,979">
+    <bendpoint weight="0.5" firstDimension="13,1014" secondDimension="-661,736"/>
+    <bendpoint weight="0.5" firstDimension="334,1014" secondDimension="-340,736"/>
+    <bendpoint weight="0.5" firstDimension="703,1014" secondDimension="29,736"/>
+  </wire>
+  <wire id="2995" guardcondition="failure" firstRelativePoint="494,554" lastRelativePoint="554,31">
+    <bendpoint weight="0.5" firstDimension="235,1" secondDimension="177,529"/>
+    <bendpoint weight="0.5" firstDimension="238,-19" secondDimension="175,288"/>
+    <bendpoint weight="0.5" firstDimension="239,-132" secondDimension="176,175"/>
+    <bendpoint weight="0.5" firstDimension="234,-522" secondDimension="176,6"/>
+  </wire>
+  <wire id="2997" guardcondition="success" firstRelativePoint="579,771" lastRelativePoint="769,403">
+    <bendpoint weight="0.5" firstDimension="336,-5" secondDimension="-15,383"/>
+  </wire>
+  <wire id="2998" guardcondition="success" firstRelativePoint="269,29" lastRelativePoint="199,29"/>
+  <wire id="8703" guardcondition="failure" firstRelativePoint="208,-103" lastRelativePoint="329,-135">
+    <bendpoint weight="0.5" firstDimension="-150,-1" secondDimension="1,112"/>
+  </wire>
+  <wire id="9011" guardcondition="J" firstRelativePoint="443,283" lastRelativePoint="443,329">
+    <bendpoint weight="0.5" firstDimension="-38,30" secondDimension="11,-29"/>
+  </wire>
+  <wire id="9012" guardcondition="A" firstRelativePoint="537,283" lastRelativePoint="537,333">
+    <bendpoint weight="0.5" firstDimension="45,38" secondDimension="-45,-42"/>
+  </wire>
+  <wire id="9013" guardcondition="success" firstRelativePoint="569,358" lastRelativePoint="528,623">
+    <bendpoint weight="0.5" firstDimension="7,280" secondDimension="99,2"/>
+  </wire>
+  <wire id="9014" guardcondition="failure" firstRelativePoint="635,254" lastRelativePoint="553,32">
+    <bendpoint weight="0.5" firstDimension="-30,-237" secondDimension="148,7"/>
+  </wire>
+  <wire id="9029" guardcondition="false" firstRelativePoint="482,129" lastRelativePoint="482,161"/>
+  <wire id="9030" guardcondition="success" firstRelativePoint="488,191" lastRelativePoint="488,231"/>
+  <wire id="9031" guardcondition="success" firstRelativePoint="497,261" lastRelativePoint="497,315"/>
+  <wire id="9032" guardcondition="error" firstRelativePoint="427,143" lastRelativePoint="237,162">
+    <bendpoint weight="0.5" firstDimension="-256,-1" secondDimension="0,-34"/>
+  </wire>
+  <wire id="9033" guardcondition="error" firstRelativePoint="425,206" lastRelativePoint="312,230">
+    <bendpoint weight="0.5" firstDimension="-179,1" secondDimension="2,-39"/>
+  </wire>
+  <wire id="9034" guardcondition="success" firstRelativePoint="152,192" lastRelativePoint="796,403">
+    <bendpoint weight="0.5" firstDimension="-43,939" secondDimension="-632,728"/>
+    <bendpoint weight="0.5" firstDimension="244,941" secondDimension="-345,730"/>
+    <bendpoint weight="0.5" firstDimension="534,940" secondDimension="-55,729"/>
+    <bendpoint weight="0.5" firstDimension="601,940" secondDimension="12,729"/>
+  </wire>
+  <wire id="9035" guardcondition="success" firstRelativePoint="224,258" lastRelativePoint="777,403">
+    <bendpoint weight="0.5" firstDimension="-58,864" secondDimension="-573,719"/>
+    <bendpoint weight="0.5" firstDimension="200,865" secondDimension="-315,720"/>
+    <bendpoint weight="0.5" firstDimension="428,865" secondDimension="-87,720"/>
+    <bendpoint weight="0.5" firstDimension="508,864" secondDimension="-7,719"/>
+  </wire>
+  <wire id="9036" guardcondition="success" firstRelativePoint="478,-16" lastRelativePoint="478,10"/>
+  <wire id="9040" guardcondition="success" firstRelativePoint="92,26" lastRelativePoint="1,26"/>
+  <wire id="9041" guardcondition="false" firstRelativePoint="-74,9" lastRelativePoint="-74,-32"/>
+  <wire id="9042" guardcondition="success" firstRelativePoint="212,-129" lastRelativePoint="340,-125"/>
+  <wire id="9043" guardcondition="true" firstRelativePoint="198,-68" lastRelativePoint="340,-125"/>
+  <wire id="9053" guardcondition="success" firstRelativePoint="-63,-62" lastRelativePoint="-63,-109"/>
+  <wire id="9089" guardcondition="false" firstRelativePoint="518,-106" lastRelativePoint="437,-46">
+    <bendpoint weight="0.5" firstDimension="-146,-4" secondDimension="-56,-75"/>
+  </wire>
+  <wire id="9090" guardcondition="true" firstRelativePoint="633,-87" lastRelativePoint="741,-38">
+    <bendpoint weight="0.5" firstDimension="50,64" secondDimension="-184,-4"/>
+  </wire>
+  <wire id="9091" guardcondition="success" firstRelativePoint="849,-19" lastRelativePoint="552,16">
+    <bendpoint weight="0.5" firstDimension="32,50" secondDimension="362,-9"/>
+  </wire>
+  <wire id="9092" guardcondition="success" firstRelativePoint="734,-101" lastRelativePoint="649,-101"/>
+  <wire id="9094" guardcondition="success" firstRelativePoint="471,564" lastRelativePoint="471,606"/>
+  <wire id="9095" guardcondition="R" firstRelativePoint="426,359" lastRelativePoint="426,382">
+    <bendpoint weight="0.5" firstDimension="-21,36" secondDimension="39,-34"/>
+  </wire>
+  <wire id="9096" guardcondition="false" firstRelativePoint="467,429" lastRelativePoint="467,538">
+    <bendpoint weight="0.5" firstDimension="35,70" secondDimension="38,-69"/>
+  </wire>
+  <wire id="9097" guardcondition="true" firstRelativePoint="334,463" lastRelativePoint="334,493">
+    <bendpoint weight="0.5" firstDimension="-32,35" secondDimension="-1,-39"/>
+  </wire>
+  <wire id="9099" guardcondition="J" firstRelativePoint="470,359" lastRelativePoint="470,538">
+    <bendpoint weight="0.5" firstDimension="48,103" secondDimension="41,-106"/>
+  </wire>
+  <wire id="10911" guardcondition="success" firstRelativePoint="326,523" lastRelativePoint="326,543"/>
+  <wire id="10912" guardcondition="success" firstRelativePoint="329,573" lastRelativePoint="329,587"/>
+  <wire id="10913" guardcondition="success" firstRelativePoint="328,617" lastRelativePoint="328,631"/>
+  <wire id="10914" guardcondition="success" firstRelativePoint="333,661" lastRelativePoint="333,676"/>
+  <wire id="10915" guardcondition="success" firstRelativePoint="332,706" lastRelativePoint="332,723"/>
+  <wire id="10916" guardcondition="success" firstRelativePoint="332,753" lastRelativePoint="332,769"/>
+  <wire id="10917" guardcondition="success" firstRelativePoint="329,799" lastRelativePoint="329,811"/>
+  <wire id="10918" guardcondition="success" firstRelativePoint="329,841" lastRelativePoint="329,854"/>
+  <wire id="10919" guardcondition="success" firstRelativePoint="327,863" lastRelativePoint="327,882">
+    <bendpoint weight="0.5" firstDimension="-1,28" secondDimension="0,-21"/>
+  </wire>
+  <wire id="10920" guardcondition="N" firstRelativePoint="354,929" lastRelativePoint="354,1068"/>
+  <wire id="11049" guardcondition="success" firstRelativePoint="314,997" lastRelativePoint="314,1068"/>
+  <wire id="11050" guardcondition="T" firstRelativePoint="419,412" lastRelativePoint="419,433"/>
+  <wire id="11051" guardcondition="F" firstRelativePoint="452,412" lastRelativePoint="476,534">
+    <bendpoint weight="0.5" firstDimension="63,34" secondDimension="8,-118"/>
+    <bendpoint weight="0.5" firstDimension="64,82" secondDimension="9,-70"/>
+  </wire>
+  <wire id="11052" guardcondition="N" firstRelativePoint="435,636" lastRelativePoint="435,1068"/>
+  <wire id="11053" guardcondition="Y" firstRelativePoint="497,698" lastRelativePoint="497,1068"/>
+  <wire id="11054" guardcondition="success" firstRelativePoint="497,698" lastRelativePoint="497,1068"/>
+  <wire id="11055" guardcondition="Y" firstRelativePoint="310,929" lastRelativePoint="310,967"/>
+</Glue:GlueDiagram>

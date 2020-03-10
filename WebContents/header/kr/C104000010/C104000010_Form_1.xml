@@ -1,0 +1,48 @@
+<items>
+<item type="block" width="971">
+<item dateFormat="%Y-%m-%d" inputWidth="75" label="설계의뢰일자" labelAlign="right" labelWidth="80" name="QLT_DSN_INST_DH_STR" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="QLT_DSN_INST_DH_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item dateFormat="%Y-%m-%d" inputWidth="75" name="QLT_DSN_INST_DH_END" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="118" label="주문번호" labelAlign="right" labelWidth="80" maxLength="10" name="ORD_NO" type="input"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="60" label="설계대상유무" labelAlign="right" labelWidth="80" name="QLT_DSN_YN" type="combo" style="background-color:#FFFFC0"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item command="excelExport" name="excelExport" type="button" value="엑셀출력"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item offset="10" type="newcolumn"/>
+<item command="find" label="find" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="971">
+<item inputWidth="168" label="품명" labelAlign="right" labelWidth="80" name="PRD_NM_CD" type="combo"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="118" label="규격약호" labelAlign="right" labelWidth="80" maxLength="15" name="SPC_AVR" type="input"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="60" label="주문용도" labelAlign="right" labelWidth="80" maxLength="6" name="ORD_USG_CD" type="input"/>
+<item type="newcolumn"/>
+<item format="serchIcon_ORD_USG_CD" name="template" type="template" value="search"/>
+<item offset="20" type="newcolumn"/>
+<item label="MO전환유무" labelAlign="right" labelWidth="75" name="MO_CVT_ORD_YN" type="checkbox"/>
+</item>
+<item type="block" width="971">
+<item inputWidth="168" label="품질설계상태" labelAlign="right" labelWidth="80" name="QLT_DSN_STS_CD" type="combo"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="51" label="두께" labelAlign="right" labelWidth="80" maxLength="6" name="ORD_EXT_THK_STR" style="text-align:right" type="input"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="ORD_EXT_THK_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="50" name="ORD_EXT_THK_END" style="text-align:right" type="input"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="60" label="최종수요가" labelAlign="right" labelWidth="79" maxLength="6" name="CUS_CD" type="input"/>
+<item type="newcolumn"/>
+<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+<item offset="20" type="newcolumn"/>
+<item label="긴급재" labelAlign="right" labelWidth="75" name="URG_MTL_TP" type="checkbox"/>
+<item offset="45" type="newcolumn"/>
+<item command="clear" label="clear" name="clear" type="custombutton" value="검색조건초기화"/>
+</item>
+</items>

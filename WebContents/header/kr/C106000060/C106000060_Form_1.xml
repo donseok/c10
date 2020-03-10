@@ -1,0 +1,19 @@
+<items>	
+	<item type="block" width="961">						
+		<item type="input" label="CCL-BOM" name="CCL_BOM_NO" inputWidth="105" maxLength="6" labelAlign="left" style="background-color:#FFFFC0;text-transform:uppercase;"/>	
+		<item type="newcolumn" offset="10" />
+		<item type="combo" label="수지타입" name="RSN_TP_FRN" inputWidth="130" labelAlign="left" />
+		<item type="newcolumn" offset="15" />
+		<item type="combo" label="도장방식" name="COT_MTH" inputWidth="110" labelAlign="left" />
+		<item type="newcolumn" offset="20" />
+		<item type="checkbox" label="전송대상" name="SND_LST" inputWidth="130" labelAlign="left"/>
+		<item type="newcolumn" offset="5" />
+		<item type="custombutton" name="img_btn" value="이미지" command="img_btn" width="55" />							
+		<item type="newcolumn" offset="1" />
+		<item type="custombutton" command="excelExport" name="excelExport"  value="엑셀출력"/>		
+		<item type="newcolumn" offset="1" />	
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item type="newcolumn" offset="1" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>	
+</items>

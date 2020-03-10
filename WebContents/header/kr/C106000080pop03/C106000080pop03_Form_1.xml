@@ -1,0 +1,21 @@
+<items>	
+	<item type="block" width="641">
+		<item type="input" name="ROLL_CD" label="Roll코드" inputWidth="60" />	
+		<item type="newcolumn" offset="5" />
+		<item type="combo" name="ROLL_TP" label="구분" inputWidth="80" >	
+	        <option value="" text="전체" selected="true">전체</option>
+          	<option value="PRINT" text="PRINT">PRINT</option>
+         	<option value="IMPRINT" text="IMPRINT">IMPRINT</option>   
+	        <option value="UNITEX" text="UNITEX">UNITEX</option>
+        </item>
+		<item type="newcolumn" offset="45" />
+		<item type="button" name="find" value="조회" command="find"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="641">
+		<item type="input" name="RPV_CLR_NM" label="대표색상명" inputWidth="100" />
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="PTN_NM" label="PATTERN명" inputWidth="100" />
+	</item>
+</items>

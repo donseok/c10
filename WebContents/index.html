@@ -1,0 +1,36 @@
+<%@page language="java" contentType="text/html; charset=UTF-8"%>
+<%@page import="java.net.InetAddress"%>
+
+<HTML>
+ <HEAD>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+
+<%
+	InetAddress inetAddr = InetAddress.getLocalHost();
+	String ipAddress = inetAddr.getHostAddress();
+	
+	System.out.println(ipAddress);
+	
+%>
+
+  <script type="text/javascript">
+  <!--
+	function windowPopup() {
+			var opt = "toolbar=no,status=yes,directories=no,scrollbars=yes,location=no,resizable=yes,border=0,menubar=no,fullscreen=no";
+			//url = "http://"+ipAddress+":7001/M9021/login.do";
+			url = "portal.html";
+			window.open(url,"_blank",opt);
+	}
+  //-->
+  </script>
+ </HEAD>
+
+ <BODY><input type="button" onClick="windowPopup()
+ " value="unionsteel portal화면 바로가기"/>
+ </BODY>
+</HTML>

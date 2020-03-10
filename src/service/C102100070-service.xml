@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C102100070-service" initial="INIT_QLT_ERR">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="MODIFY" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="failure" value="ERROR_LOG2" />
+    <transition name="success" value="SET_PARAM" />
+    <property name="sqlkey" value="C102100070.modify" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="mesdao" />
+    <property name="param0" value="SPC_NM" />
+    <property name="param1" value="SPC_FUL_NM" />
+    <property name="param2" value="ORD_GRA" />
+    <property name="param3" value="ACPT_RT_SPC" />
+    <property name="param4" value="SPC_OFC" />
+    <property name="param5" value="ORD_NO" />
+    <property name="param6" value="ORD_LN" />
+    <property name="param-count" value="7" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="failure" value="ERROR_LOG2" />
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="SUBSERVICE_MQL" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="SUBSERVICE_DLV" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100090-service" />
+  </activity>
+  <activity name="SUBSERVICE_CHM" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="SUBSERVICE_MQL" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100080-service" />
+  </activity>
+  <activity name="ERROR_LOG2" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_ERR" />
+    <property name="param0" value="P_ERR_KEY|Y" />
+    <property name="param1" value="QLT_DSN_ERR_CD|TB01" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+    <property name="param1" value="P_ERR_KEY|N" />
+    <property name="param-count" value="1" />
+  </activity>
+  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchCmnData">
+    <transition name="success" value="SUBSERVICE_CHM" />
+    <property name="bind_result" value="RK_RESULT" />
+    <property name="bind-list" value="RK_SEARCH" />
+    <property name="dao" value="mesdao" />
+    <property name="prodSpecKind" value="2" />
+  </activity>
+  <activity name="MODIFY_ERR" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="MODIFY" />
+    <transition name="success" value="ROUTER_CHK_ERR" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C1021000CMN.modify" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C1021000CMN.modify" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SET_PARAM2" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="ROUTER_CHK_ERR" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_ERR_KEY|N" />
+  </activity>
+  <activity name="SET_PARAM" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="ROUTER_CHK_ERR" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_ERR_KEY|N" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100CMN.Jselect" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="SUBSERVICE" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="SET_PARAM2" />
+    <property name="new-transacion" value="false" />
+    <property name="ServiceName" value="C103100140-service" />
+  </activity>
+  <activity name="ROUTER_CHK_ERR" class="com.poscoict.glue.biz.dhtmlx.PosValueRouter">
+    <transition name="success" value="PROC_LOOP" />
+    <transition name="error" value="SUBSERVICE" />
+    <transition name="failure" value="PROC_LOOP" />
+    <property name="param0" value="P_ERR_KEY|N|success" />
+    <property name="param1" value="P_ERR_KEY|Y|error" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="SEARCH_MD" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param-count" value="11" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="SPC_AVR|SPC_AVR" />
+    <property name="param3" value="SPC_YR|SPC_YR" />
+    <property name="param4" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param5" value="PRD_SHP|PRD_SHP" />
+    <property name="param6" value="ORD_EXC_THK|ORD_EXC_THK" />
+    <property name="param7" value="ORD_EXC_WTH|ORD_EXC_WTH" />
+    <property name="param8" value="ORD_EXC_LTH|ORD_EXC_LTH" />
+    <property name="param9" value="ACPT_RT_SPC|ACPT_RT_SPC" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param10" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP" />
+  </activity>
+  <activity name="ROUTER_CHK_ERR5" class="com.poscoict.glue.biz.dhtmlx.PosValueRouter">
+    <transition name="success" value="MODIFY" />
+    <transition name="error" value="MODIFY_ERR" />
+    <property name="param0" value="P_ERR_KEY|N|success" />
+    <property name="param1" value="P_ERR_KEY|Y|error" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SUBSERVICE_DLV" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="ROUTER_CHK_ERR5" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100100-service" />
+  </activity>
+</service>
+

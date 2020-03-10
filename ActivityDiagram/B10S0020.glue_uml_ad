@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="199,20" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="3259" location="604,732" size="-1,-1" input="//@wire.20"/>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="154,272" size="130,-1" input="//@wire.1" output="//@wire.4 //@wire.14" name="INSERT_LAR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S0020.insert lar"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="ORD_USG_CD"/>
+    <property key="param2" value="ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 Master Code 주문용도 대분류를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다.&#xD;&#xA;&#xD;&#xA;TB_C10_B10S0020&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51008" location="140,79" size="149,-1" input="//@wire.0" output="//@wire.2" name="IFGroupID_LAR">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 주문용도코드 대분류 Master Code Data 송신 IF IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51028" location="147,203" size="135,-1" input="//@wire.3 //@wire.4" output="//@wire.1 //@wire.13" name="PROC_LOOP_LAR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="SD0090_LAR_COUNT"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param1" value="ORD_USG_NM|ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 공통코드 Master Data를  1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. view : VI_M00_CODE_ACCESS 의 주문용도대분류&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51029" location="353,202" size="145,-1" input="//@wire.13 //@wire.14" output="//@wire.15" name="COMMIT_LAR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51091" location="138,137" size="154,-1" input="//@wire.2" output="//@wire.3" name="SEARCH_LAR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="ORD_USG_CD_LAR_IF"/>
+    <property key="description" value="이 Activity는 품질설계 주문용도 대분류 Master Code Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51647" location="156,345" size="149,-1" input="//@wire.15" output="//@wire.5" name="IFGroupID_MID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 주문용도코드 중분류 Master Code Data 송신 IF IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51648" location="154,403" size="154,-1" input="//@wire.5" output="//@wire.6" name="SEARCH_MID">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="ORD_USG_CD_MID_IF"/>
+    <property key="description" value="이 Activity는 품질설계 주문용도 중분류 Master Code Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51649" location="163,469" size="135,-1" input="//@wire.6 //@wire.8" output="//@wire.7 //@wire.16" name="PROC_LOOP_MID">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="SD0090_MID_COUNT"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param1" value="ORD_USG_NM|ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 공통코드 Master Data를  1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. view : VI_M00_CODE_ACCESS 의 주문용도중분류&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="51650" location="170,538" size="130,-1" input="//@wire.7" output="//@wire.8 //@wire.17" name="INSERT_MID">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S0020.insert mid"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="ORD_USG_CD"/>
+    <property key="param2" value="ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 Master Code 주문용도 중분류를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다.&#xD;&#xA;&#xD;&#xA;TB_C10_B10S0020&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="51651" location="170,798" size="130,-1" input="//@wire.11" output="//@wire.12 //@wire.21" name="INSERT_CD">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S0020.insert"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="ORD_USG_CD"/>
+    <property key="param2" value="ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 Master Code 주문용도코드를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다.&#xD;&#xA;&#xD;&#xA;TB_C10_B10S0020&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51652" location="163,729" size="135,-1" input="//@wire.10 //@wire.12" output="//@wire.11 //@wire.19" name="PROC_LOOP_CD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="SD0090_COUNT"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="param1" value="ORD_USG_NM|ORD_USG_NM"/>
+    <property key="description" value="이 Activity는 공통코드 Master Data를  1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. view : VI_M00_CODE_ACCESS 의 주문용도코드&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51653" location="154,663" size="154,-1" input="//@wire.9" output="//@wire.10" name="SEARCH_CD">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="ORD_USG_CD_IF"/>
+    <property key="description" value="이 Activity는 품질설계 주문용도코드 Master Code Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51654" location="156,605" size="149,-1" input="//@wire.18" output="//@wire.9" name="IFGroupID_CD">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 주문용도코드  Master Code Data 송신 IF IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51655" location="369,471" size="145,-1" input="//@wire.16 //@wire.17" output="//@wire.18" name="COMMIT_MID">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51656" location="369,728" size="145,-1" input="//@wire.19 //@wire.21" output="//@wire.20" name="COMMIT_CD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계연동의 주문용도코드정보를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문용도 대/중/소 Master Data Code 전송&#xD;&#xA;&#xD;&#xA;"/>
+  <wire id="2961" guardcondition="success" firstRelativePoint="209,39" lastRelativePoint="209,79"/>
+  <wire id="2976" guardcondition="success" firstRelativePoint="213,233" lastRelativePoint="213,272"/>
+  <wire id="2977" guardcondition="success" firstRelativePoint="210,109" lastRelativePoint="210,137"/>
+  <wire id="2978" guardcondition="success" firstRelativePoint="216,167" lastRelativePoint="216,203"/>
+  <wire id="2980" guardcondition="success" firstRelativePoint="154,288" lastRelativePoint="147,218">
+    <bendpoint weight="0.5" firstDimension="-125,1" secondDimension="-120,70"/>
+    <bendpoint weight="0.5" firstDimension="-125,-69" secondDimension="-120,0"/>
+  </wire>
+  <wire id="2983" guardcondition="success" firstRelativePoint="224,375" lastRelativePoint="224,403"/>
+  <wire id="2984" guardcondition="success" firstRelativePoint="224,433" lastRelativePoint="224,469"/>
+  <wire id="2985" guardcondition="success" firstRelativePoint="221,499" lastRelativePoint="221,538"/>
+  <wire id="2986" guardcondition="success" firstRelativePoint="170,553" lastRelativePoint="164,480">
+    <bendpoint weight="0.5" firstDimension="-124,0" secondDimension="-119,69"/>
+    <bendpoint weight="0.5" firstDimension="-125,-73" secondDimension="-120,-4"/>
+  </wire>
+  <wire id="2988" guardcondition="success" firstRelativePoint="233,635" lastRelativePoint="233,663"/>
+  <wire id="2989" guardcondition="success" firstRelativePoint="231,693" lastRelativePoint="231,729">
+    <bendpoint weight="0.5" firstDimension="0,33" secondDimension="1,-33"/>
+  </wire>
+  <wire id="2990" guardcondition="success" firstRelativePoint="234,759" lastRelativePoint="234,798">
+    <bendpoint weight="0.5" firstDimension="4,32" secondDimension="-1,-37"/>
+  </wire>
+  <wire id="2991" guardcondition="success" firstRelativePoint="170,815" lastRelativePoint="163,746">
+    <bendpoint weight="0.5" firstDimension="-144,2" secondDimension="-139,71"/>
+    <bendpoint weight="0.5" firstDimension="-144,-67" secondDimension="-139,2"/>
+  </wire>
+  <wire id="2995" guardcondition="exit" firstRelativePoint="282,215" lastRelativePoint="353,215"/>
+  <wire id="2996" guardcondition="failure" firstRelativePoint="284,288" lastRelativePoint="387,232">
+    <bendpoint weight="0.5" firstDimension="168,1" secondDimension="-38,71"/>
+  </wire>
+  <wire id="2997" guardcondition="success" firstRelativePoint="432,232" lastRelativePoint="305,359">
+    <bendpoint weight="0.5" firstDimension="7,142" secondDimension="202,-1"/>
+  </wire>
+  <wire id="2998" guardcondition="exit" firstRelativePoint="298,484" lastRelativePoint="369,484">
+    <bendpoint weight="0.5" firstDimension="104,0" secondDimension="-107,-2"/>
+  </wire>
+  <wire id="2999" guardcondition="failure" firstRelativePoint="300,554" lastRelativePoint="393,501">
+    <bendpoint weight="0.5" firstDimension="158,1" secondDimension="-48,68"/>
+  </wire>
+  <wire id="3000" guardcondition="success" firstRelativePoint="440,501" lastRelativePoint="305,620">
+    <bendpoint weight="0.5" firstDimension="-1,134" secondDimension="210,0"/>
+  </wire>
+  <wire id="3001" guardcondition="exit" firstRelativePoint="298,743" lastRelativePoint="369,743">
+    <bendpoint weight="0.5" firstDimension="105,-1" secondDimension="-106,0"/>
+  </wire>
+  <wire id="3002" guardcondition="success" firstRelativePoint="514,741" lastRelativePoint="624,741"/>
+  <wire id="3003" guardcondition="failure" firstRelativePoint="300,814" lastRelativePoint="437,758">
+    <bendpoint weight="0.5" firstDimension="202,1" secondDimension="-4,71"/>
+  </wire>
+</Glue:GlueDiagram>

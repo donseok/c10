@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="maker" index="1" sort="int" width="50" align="center" dbname="maker"  type="ro" clabel="폭 min">maker</column>
+<column id="wht_avg" index="2" sort="int" width="20" align="center" dbname="wht_avg"  type="ro" clabel="폭 avg">폭 avg</column>
+<column id="hit_rate" index="3" sort="int" width="20" align="center" dbname="hit_rate"  type="ro" clabel="폭 max">적중률</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>	
+<userdata name="column-info">maker,wht_avg,hit_rate</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

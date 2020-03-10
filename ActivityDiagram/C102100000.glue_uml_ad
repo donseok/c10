@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="2" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="51179" location="63,37" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="51180" location="109,504" size="-1,-1" input="//@wire.29"/>
+  <child xsi:type="Glue:DinaActivity" id="147424" location="135,95" size="143,-1" input="//@wire.34" output="//@wire.33" name="품질설계 공통 UPDATE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.AUPDATE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;규격명,규격FULLNAME,재질코드,원자재코드,RMTL_CD1,원자재코드1&#xD;&#xA;,원자재코드2,원자재등급,냉연제조표준번호,냉연제조표준번호1&#xD;&#xA;,냉연제조표준번호2,통과공정번호,인수도규격,고객요청압연두께&#xD;&#xA;,두께보정단위,제품두께계산적용코드,품질설계에러여부 등의 정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147425" location="136,156" size="147,-1" input="//@wire.33" output="//@wire.1" name="품질설계성분DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.CHM_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;성분설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147427" location="341,154" size="147,-1" input="//@wire.1" output="//@wire.2" name="품질설계재질DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.MQL_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;재질설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147428" location="339,223" size="147,-1" input="//@wire.2" output="//@wire.3" name="품질설계인수도DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.DLV_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;인수도설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147429" location="134,220" size="147,-1" input="//@wire.3" output="//@wire.4" name="품질설계제조사양DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.MNF_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;제조사양설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147430" location="343,352" size="147,-1" input="//@wire.6" output="//@wire.7" name="품질설계통과공정 DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.PROC_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;통과공정설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147431" location="346,282" size="147,-1" input="//@wire.5" output="//@wire.6" name="품질설계 CCL-BOM DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.CCL_BOM_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;칼라제조사양설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147432" location="138,285" size="147,-1" input="//@wire.4" output="//@wire.5" name="품질설계원자재DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.RMT_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;원자재설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147433" location="346,415" size="147,-1" input="//@wire.28" output="//@wire.32" name="품질설계 ERROR DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.ERR_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;품질설계에러현황정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147434" location="130,350" size="147,-1" input="//@wire.7" output="//@wire.27" name="품질설계메세지 DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.MSG_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;메세지설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147435" location="562,21" size="188,-1" input="//@wire.32" output="//@wire.8" name="설계Key(C102100020)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100020-service"/>
+    <property key="description" value="이 Activity는 품질설계 KEY설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147436" location="622,92" size="188,-1" input="//@wire.8" output="//@wire.9" name="규격사양(C,M,D)(C102100070)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100070-service"/>
+    <property key="description" value="이 Activity는 규격사양(성분,재질,인수도)설계 서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147437" location="627,158" size="188,-1" input="//@wire.9" output="//@wire.10" name="고객사양(C,M,D)(C102100030)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100030-service"/>
+    <property key="description" value="이 Activity는 고객사양(성분,재질,인수도)설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147438" location="630,219" size="188,-1" input="//@wire.10" output="//@wire.12" name="사내사양(C,M)(C102100110)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100110-service"/>
+    <property key="description" value="이 Activity는 성분사내설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147446" location="635,284" size="188,-1" input="//@wire.12" output="//@wire.13" name="보증사양(C)(C102100130)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100130-service"/>
+    <property key="description" value="이 Activity는 성분보증설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147447" location="631,344" size="188,-1" input="//@wire.13" output="//@wire.14" name="보증사양(M)(C102100140)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100140-service"/>
+    <property key="description" value="이 Activity는 재질보증설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147448" location="637,403" size="188,-1" input="//@wire.14" output="//@wire.15" name="보증사양(D)(C102100150)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100150-service"/>
+    <property key="description" value="이 Activity는 인수도보증설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147449" location="637,462" size="188,-1" input="//@wire.15" output="//@wire.16" name="원자재Insert(C103100010)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100010-service"/>
+    <property key="description" value="이 Activity는 원자재코드설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147450" location="636,514" size="188,-1" input="//@wire.16" output="//@wire.17" name="제조사양(C103100020)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100020-service"/>
+    <property key="description" value="이 Activity는 제조사양설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147451" location="796,22" size="188,-1" input="//@wire.17" output="//@wire.18" name="도금량(MQL,MNF)(C103100040)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100040-service"/>
+    <property key="description" value="이 Activity는 도금량설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147452" location="845,92" size="188,-1" input="//@wire.18" output="//@wire.19" name="CGL수지/TM조도(C103100050)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100050-service"/>
+    <property key="description" value="이 Activity는 후처리(수지부착량/조도 기준)설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147453" location="848,161" size="188,-1" input="//@wire.19" output="//@wire.20" name="CCL제조사양(C102100160)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100160-service"/>
+    <property key="description" value="이 Activity는 칼라물성설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147454" location="850,216" size="188,-1" input="//@wire.20" output="//@wire.21" name="통과공정(C103100030)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100030-service"/>
+    <property key="description" value="이 Activity는 통과공정설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147455" location="853,282" size="188,-1" input="//@wire.21" output="//@wire.22" name="두께/소둔(C103100070)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100070-service"/>
+    <property key="description" value="이 Activity는 제품두께설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147456" location="856,345" size="188,-1" input="//@wire.22" output="//@wire.23" name="폭(C103100080)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100080-service"/>
+    <property key="description" value="이 Activity는 제품폭설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147457" location="860,403" size="188,-1" input="//@wire.23" output="//@wire.24" name="공정별Size(C103100090)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100090-service"/>
+    <property key="description" value="이 Activity는 공정별Size설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147458" location="861,460" size="188,-1" input="//@wire.24" output="//@wire.25" name="원자재Size(C103100100)">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100100-service"/>
+    <property key="description" value="이 Activity는 원자재 Size 설계  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147459" location="860,511" size="188,-1" input="//@wire.25" output="//@wire.26" name="설계정합성체크C103100130">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100130-service"/>
+    <property key="description" value="이 Activity는 설계정합성체크  서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="147460" location="134,416" size="147,-1" input="//@wire.27" output="//@wire.28" name="품질설계메세지1 DELETE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C102100000.MSG1_ADELETE"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'J'인 품질설계 의뢰 정보의&#xD;&#xA;정전메세지설계정보를 삭제하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="155613" location="141,31" size="124,-1" input="//@wire.0" output="//@wire.30" name="JOB시작 UPDATE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C10_QLT_JOB.Supdate"/>
+    <property key="description" value="이 Activity는 품질설계JOB관리 Table에 JOB_STS를 'S'로&#xD;&#xA;수정하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="155614" location="234,505" size="124,-1" input="//@wire.35 //@wire.37" output="//@wire.29" name="JOB종료 UPDATE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C10_QLT_JOB.Eupdate"/>
+    <property key="description" value="이 Activity는 품질설계JOB관리 Table에 JOB_STS를 'E'로&#xD;&#xA;수정하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155688" location="353,96" size="107,-1" input="//@wire.31" output="//@wire.34" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="155715" location="334,31" size="124,-1" input="//@wire.30 //@wire.36" output="//@wire.31" name="상태UPDATE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100000.LmtJmodify"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'I'인 품질설계 의뢰 정보의&#xD;&#xA;상위 10건의 품질설계 상태를 'J'로 수정하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155808" location="462,501" size="135,-1" input="//@wire.26" output="//@wire.35 //@wire.36 //@wire.37" name="품질설계의뢰조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C102100000.Iselect"/>
+    <property key="description" value="이 Activity는 품질설계 공통Table에 있는 품질설계상태가 'I'인 품질설계 의뢰 정보가 존재하는지를 확인하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. Data가 존재하면 transition='true', &#xD;&#xA;   존재하지 않은 경우 transition='false'로 Set"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="8660" guardcondition="success" firstRelativePoint="227,119" lastRelativePoint="285,119"/>
+  <wire id="8665" guardcondition="success" firstRelativePoint="283,172" lastRelativePoint="341,172"/>
+  <wire id="8666" guardcondition="success" firstRelativePoint="412,184" lastRelativePoint="412,223">
+    <bendpoint weight="0.5" firstDimension="-2,35" secondDimension="0,-34"/>
+  </wire>
+  <wire id="8667" guardcondition="success" firstRelativePoint="339,236" lastRelativePoint="281,236"/>
+  <wire id="8668" guardcondition="success" firstRelativePoint="209,250" lastRelativePoint="209,285">
+    <bendpoint weight="0.5" firstDimension="2,37" secondDimension="-2,-28"/>
+  </wire>
+  <wire id="8669" guardcondition="success" firstRelativePoint="285,297" lastRelativePoint="346,297"/>
+  <wire id="8670" guardcondition="success" firstRelativePoint="402,312" lastRelativePoint="402,352"/>
+  <wire id="8671" guardcondition="success" firstRelativePoint="343,368" lastRelativePoint="277,368"/>
+  <wire id="8675" guardcondition="success" firstRelativePoint="781,188" lastRelativePoint="781,203"/>
+  <wire id="8676" guardcondition="success" firstRelativePoint="782,253" lastRelativePoint="782,285">
+    <bendpoint weight="0.5" firstDimension="-9,29" secondDimension="-12,-33"/>
+  </wire>
+  <wire id="8677" guardcondition="success" firstRelativePoint="782,315" lastRelativePoint="782,346">
+    <bendpoint weight="0.5" firstDimension="-12,30" secondDimension="-19,-31"/>
+  </wire>
+  <wire id="8682" guardcondition="success" firstRelativePoint="788,534" lastRelativePoint="788,523"/>
+  <wire id="8686" guardcondition="success" firstRelativePoint="722,249" lastRelativePoint="722,284">
+    <bendpoint weight="0.5" firstDimension="-2,34" secondDimension="-7,-31"/>
+  </wire>
+  <wire id="8687" guardcondition="success" firstRelativePoint="794,436" lastRelativePoint="794,490">
+    <bendpoint weight="0.5" firstDimension="1,41" secondDimension="-3,-43"/>
+  </wire>
+  <wire id="8688" guardcondition="success" firstRelativePoint="720,374" lastRelativePoint="720,403">
+    <bendpoint weight="0.5" firstDimension="-5,27" secondDimension="-11,-32"/>
+  </wire>
+  <wire id="8689" guardcondition="success" firstRelativePoint="716,433" lastRelativePoint="716,462"/>
+  <wire id="8690" guardcondition="success" firstRelativePoint="722,492" lastRelativePoint="722,514">
+    <bendpoint weight="0.5" firstDimension="-9,27" secondDimension="-8,-25"/>
+  </wire>
+  <wire id="8691" guardcondition="success" firstRelativePoint="809,514" lastRelativePoint="835,52">
+    <bendpoint weight="0.5" firstDimension="105,-33" secondDimension="-55,459"/>
+  </wire>
+  <wire id="8692" guardcondition="success" firstRelativePoint="937,52" lastRelativePoint="937,92">
+    <bendpoint weight="0.5" firstDimension="1,37" secondDimension="-2,-33"/>
+  </wire>
+  <wire id="8693" guardcondition="success" firstRelativePoint="939,122" lastRelativePoint="939,161">
+    <bendpoint weight="0.5" firstDimension="0,45" secondDimension="-3,-24"/>
+  </wire>
+  <wire id="8694" guardcondition="success" firstRelativePoint="941,191" lastRelativePoint="941,216">
+    <bendpoint weight="0.5" firstDimension="-1,31" secondDimension="-3,-24"/>
+  </wire>
+  <wire id="8695" guardcondition="success" firstRelativePoint="942,246" lastRelativePoint="942,282">
+    <bendpoint weight="0.5" firstDimension="-2,38" secondDimension="-5,-28"/>
+  </wire>
+  <wire id="8696" guardcondition="success" firstRelativePoint="941,312" lastRelativePoint="941,345">
+    <bendpoint weight="0.5" firstDimension="-6,35" secondDimension="-9,-28"/>
+  </wire>
+  <wire id="8697" guardcondition="success" firstRelativePoint="944,375" lastRelativePoint="944,403">
+    <bendpoint weight="0.5" firstDimension="-6,31" secondDimension="-10,-27"/>
+  </wire>
+  <wire id="8698" guardcondition="success" firstRelativePoint="949,433" lastRelativePoint="949,460">
+    <bendpoint weight="0.5" firstDimension="-5,34" secondDimension="-6,-23"/>
+  </wire>
+  <wire id="8699" guardcondition="success" firstRelativePoint="951,490" lastRelativePoint="951,511">
+    <bendpoint weight="0.5" firstDimension="-4,32" secondDimension="-3,-19"/>
+  </wire>
+  <wire id="8700" guardcondition="success" firstRelativePoint="957,541" lastRelativePoint="565,531">
+    <bendpoint weight="0.5" firstDimension="3,32" secondDimension="428,42"/>
+    <bendpoint weight="0.5" firstDimension="4,49" secondDimension="429,59"/>
+    <bendpoint weight="0.5" firstDimension="-389,50" secondDimension="36,60"/>
+  </wire>
+  <wire id="8701" guardcondition="success" firstRelativePoint="207,380" lastRelativePoint="207,416">
+    <bendpoint weight="0.5" firstDimension="4,32" secondDimension="0,-34"/>
+  </wire>
+  <wire id="8702" guardcondition="success" firstRelativePoint="281,428" lastRelativePoint="346,428"/>
+  <wire id="9039" guardcondition="success" firstRelativePoint="235,516" lastRelativePoint="128,513"/>
+  <wire id="9047" guardcondition="success" firstRelativePoint="265,49" lastRelativePoint="334,49"/>
+  <wire id="9048" guardcondition="success" firstRelativePoint="403,61" lastRelativePoint="403,96">
+    <bendpoint weight="0.5" firstDimension="7,33" secondDimension="-3,-32"/>
+  </wire>
+  <wire id="9050" guardcondition="success" firstRelativePoint="492,434" lastRelativePoint="599,51">
+    <bendpoint weight="0.5" firstDimension="180,4" secondDimension="-57,398"/>
+  </wire>
+  <wire id="9054" guardcondition="success" firstRelativePoint="204,125" lastRelativePoint="204,156">
+    <bendpoint weight="0.5" firstDimension="-2,32" secondDimension="-5,-29"/>
+  </wire>
+  <wire id="9055" guardcondition="success" firstRelativePoint="339,106" lastRelativePoint="277,106"/>
+  <wire id="9056" guardcondition="false" firstRelativePoint="529,501" lastRelativePoint="458,46"/>
+  <wire id="9057" guardcondition="true" firstRelativePoint="492,434" lastRelativePoint="599,51">
+    <bendpoint weight="0.5" firstDimension="0,-470" secondDimension="133,0"/>
+  </wire>
+  <wire id="9058" guardcondition="failure" firstRelativePoint="514,531" lastRelativePoint="290,535">
+    <bendpoint weight="0.5" firstDimension="-15,50" secondDimension="218,46"/>
+    <bendpoint weight="0.5" firstDimension="-239,51" secondDimension="-6,47"/>
+  </wire>
+</Glue:GlueDiagram>

@@ -1,0 +1,136 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <description>Empty web.xml file for Web Application</description>
+	<filter>
+		<filter-name>Set Character Encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>	
+<!-- Security
+    <filter>
+        <filter-name>GlueSecurityFilter</filter-name>
+        <filter-class>com.posdata.glue.web.security.PosMesSecurityFilter</filter-class>
+        <init-param>
+            <param-name>login-type</param-name>
+            <param-value>sso</param-value>
+        </init-param>
+        <init-param>
+            <param-name>login-id-name</param-name>
+            <param-value>id</param-value>
+        </init-param>
+        <init-param>
+            <param-name>login-pw-name</param-name>
+            <param-value>password</param-value>
+        </init-param>
+        <init-param>
+            <param-name>check-request</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>login-page</param-name>
+            <param-value>login.jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>lazy-loading</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>exclude-url-patterns</param-name>
+            <param-value></param-value>
+        </init-param>
+        <init-param>
+            <param-name>use-service-id</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>GlueSecurityFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+-->
+	<filter-mapping>
+	 <filter-name>Set Character Encoding</filter-name>
+	 <url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+    <servlet>
+        <servlet-name>action</servlet-name>
+        <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+    	<servlet-name>HttpReceiver</servlet-name>
+    	<servlet-class>com.poscoict.glue.http.receive.HttpReceiver</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+       <servlet-name>ExcelGenerator</servlet-name>
+       <servlet-class>com.dhtmlx.xml2excel.ExcelGenerator</servlet-class>
+	</servlet>     
+	<servlet-mapping>
+        <servlet-name>action</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>HttpReceiver</servlet-name>
+		<url-pattern>*.http</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ExcelGenerator</servlet-name>
+		<url-pattern>/gridexcel</url-pattern>
+	</servlet-mapping>    
+    <session-config>
+        <session-timeout>35</session-timeout>
+    </session-config>
+    <mime-mapping>
+        <extension>html</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>txt</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>xml</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+   <servlet>
+       <servlet-name>cache</servlet-name>
+       <servlet-class>com.posdata.glue.cache.remote.PosCacheEventServlet</servlet-class>
+       <init-param>
+           <param-name>dummy-param</param-name>
+           <param-value>this is a cache event receiver</param-value>
+       </init-param>
+       <load-on-startup>3</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+       <servlet-name>cache</servlet-name>
+       <url-pattern>*.cache</url-pattern>
+   </servlet-mapping>
+   <servlet> 
+ <servlet-name>downloadServlet</servlet-name> 
+ <servlet-class>com.poscoict.download.file.FileDownloadServlet</servlet-class> 
+ <init-param> 
+ <param-name>charset</param-name> 
+ <param-value>UTF-8</param-value> 
+ </init-param> 
+ <init-param> 
+ <param-name>dir</param-name> 
+ <param-value>/APP/WAS/FILES/C10/</param-value> 
+ </init-param> 
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>downloadServlet</servlet-name>
+ <url-pattern>/download</url-pattern>
+ </servlet-mapping>
+   
+</web-app>

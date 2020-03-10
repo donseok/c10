@@ -1,0 +1,14 @@
+<items>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item format="doLink" label="&lt;span style=color:red;font-weight:bold;&gt;칼라부재료 업체정보 저장 사유를 입력하세요.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-left" type="template" />
+    </item>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item inputWidth="240" label="사유" labelWidth="30" name="CFM_REA" rows="3" type="input"/>
+    </item>
+    <item type="block">
+        <item command="ok" inputLeft="70" inputTop="5" name="ok" position="absolute" type="button" value="확인"/>
+        <item command="cancel" inputLeft="170" inputTop="5" name="cancel" position="absolute" type="button" value="취소"/>
+    </item>
+</items>

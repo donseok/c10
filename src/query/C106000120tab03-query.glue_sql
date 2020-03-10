@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000120tab03 Page 쿼리파일"> 
+	 <query id="C106000120tab03.select" desc="C106000120tab03 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT WAR_PRT_SEQ_NO,
+        CCL_BOM_NO,
+        (SELECT NAT_KNM 
+           FROM C10APUSER.TB_C10_WAR_NAT_MNG
+          WHERE NAT_CD = A.NAT_CD
+           AND ROWNUM=1) AS NAT_CD,
+        NVL((SELECT USER_NAME
+           FROM M90APUSER.TB_M90_EMP_INF	
+          WHERE USER_NO = A.WAR_PRT_EMP_ID),WAR_PRT_EMP_ID) AS WAR_PRT_EMP_ID,
+	     TO_CHAR(WAR_PRT_DH, 'YYYY-MM-DD HH:MI') AS WAR_PRT_DH,
+	     FNL_CUS_CD ||
+        (SELECT ' : '||CD_V_MEANING     
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'CUS_CD'                      
+        AND CATEGORY_GROUP_NM = 'SZ0000'
+        AND CD_V = FNL_CUS_CD) AS FNL_CUS_CD,    
+	    PRT_RSN,
+	    BRD_CMP_2,
+		PER_FOR_19, 
+		PER_FOR_6, 
+		FA_TRM_7, 
+		FA_TRM_8, 
+		FA_ROF_9, 
+		FA_ROF_10, 
+		FA_WAL_11, 
+		FA_WAL_12, 
+		CH_TRM_13, 
+		CH_TRM_14, 	
+		CH_ROF_15, 
+		CH_ROF_16, 
+		CH_WAL_17, 
+		CH_WAL_18,
+		PE_FL_1,
+		PE_FL_20
+   FROM C10APUSER.TB_C10_WAR_PRT_MNG A,
+        (SELECT USER_NO, USER_NAME FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NAME LIKE '%' || :WAR_PRT_EMP_ID || '%') B
+  WHERE TO_CHAR(WAR_PRT_DH,'YYYY-MM-DD') BETWEEN :WAR_PRT_DH_STR AND :WAR_PRT_DH_END
+    AND NAT_CD LIKE NVL(:NAT_COMB,'%')
+    AND CCL_BOM_NO LIKE :CCL_BOM_NO || '%'
+    AND A.WAR_PRT_EMP_ID = B.USER_NO(+)
+    AND NVL(B.USER_NAME,' ') LIKE :WAR_PRT_EMP_ID || '%'
+  ORDER BY WAR_PRT_SEQ_NO DESC
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab03NatCdCombo.select" desc="C106000120tab03NatCdCombo.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT '%' AS NAT_CD,'전체' AS NAT_NM -- '전체'컬럼 생성
+FROM DUAL
+UNION ALL -- 테이블 조합
+SELECT NAT_CD,
+       (SELECT NAT_KNM 
+          FROM C10APUSER.TB_C10_WAR_NAT_MNG
+         WHERE NAT_CD = A.NAT_CD
+          AND ROWNUM=1) AS NAT_NM
+  FROM C10APUSER.TB_C10_WAR_PRT_MNG A
+ WHERE TO_CHAR(WAR_PRT_DH,'YYYY-MM-DD') BETWEEN :WAR_PRT_DH_STR AND :WAR_PRT_DH_END
+ GROUP BY NAT_CD
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,80 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="DEV_REQ_BOM_NO" 	index="1" sort="sort_str_custom" align="left" width="12" type="ro">개발의뢰BOM번호</column>
+<column id="HUE_CD_FRN_1COT"    index="2" sort="sort_str_custom" align="left" width="12" type="ro">TOP 1C</column>
+<column id="HUE_CD_FRN_2COT" 	index="3" sort="sort_str_custom" align="left" width="12" type="ro">TOP 2C</column>
+<column id="HUE_CD_FRN_3COT"    index="4" sort="sort_str_custom" align="left" width="12" type="ro">TOP 3C</column>
+<column id="HUE_CD_FRN_4COT"   	index="5" sort="sort_str_custom" align="left" width="12" type="ro">TOP 4C</column>
+<column id="HUE_CD_BAK_1COT"    index="6" sort="sort_str_custom" align="left" width="12" type="ro">Back 1C</column>
+<column id="HUE_CD_BAK_2COT"  	index="7" sort="sort_str_custom" align="left" width="12" type="ro">Back 2C</column>
+<column id="HUE_CD_BAK_3COT" 	index="8" sort="sort_str_custom" align="left" width="12" type="ro">Back 3C</column>
+<column id="HUE_CD_BAK_4COT"    index="9" sort="sort_str_custom" align="left" width="12" type="ro">Back 4C</column>
+<column id="HUE_CD_LMN"     	index="10" sort="sort_str_custom" align="left" width="12" type="ro">라미나</column>
+<column id="PRT_ROLL_NO1"  		index="11" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print1도<br>Roll]]></column>
+<column id="PRT_INK_CD1" 		index="12" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print1도<br>Ink]]></column>
+<column id="PRT_ROLL_NO2"  		index="13" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print2도<br>Roll]]></column>
+<column id="PRT_INK_CD2"     	index="14" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print2도<br>Ink]]></column>
+<column id="PRT_ROLL_NO3"  		index="15" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print3도<br>Roll]]></column>
+<column id="PRT_INK_CD3"  		index="16" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print3도<br>Ink]]></column>
+<column id="PRT_ROLL_NO4"  		index="17" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print4도<br>Roll]]></column>
+<column id="PRT_INK_CD4" 	 	index="18" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print4도<br>Ink]]></column>
+<column id="UNI_TEX_ROLL_NO"  	index="19" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[U-TEX<br>Roll]]></column>
+<column id="PICK_UP_ROLL_NO"  	index="20" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[PICK-UP<br>Roll]]></column>
+<column id="IMPT_ROLL_NO" 		index="21" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[IMPRINT<br>Roll]]></column>
+<column id="SIM_HUE_PRG_YN"  	index="22" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[유사색상<br>적용여부]]></column>
+<column id="PNT_CMP_CD"  		index="23" sort="sort_str_custom" align="left" width="12" type="ro">개발업체</column>
+<column id="COT_MTH"  			index="24" sort="sort_str_custom" align="left" width="12" type="ro">코팅방식</column>
+<column id="RSN_TP" 		 	index="25" sort="sort_str_custom" align="left" width="12" type="ro">수지</column>
+<column id="TLP_TP"  			index="26" sort="sort_str_custom" align="left" width="12" type="ro">무독성구분</column>
+<column id="RL_LUS_RT"  		index="27" sort="sort_str_custom" align="left" width="12" type="ro">실광택값</column>
+<column id="PNT_FLM_THK_TXT"  	index="28" sort="sort_str_custom" align="left" width="12" type="ro">도막두께</column>
+<column id="LMN_BND_CMP_CD" 	index="29" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[라미나유형<br>접착제개발업체]]></column>
+<column id="LMN_KND_TP"		  	index="30" sort="sort_str_custom" align="left" width="12" type="ro">라미나유형</column>
+<column id="LMN_FLM_THK"  		index="31" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[라미나<br>필름두께]]></column>
+<column id="DSN_SIM_FILE" 	 	index="32" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[디자인 시안<br>적용가능여부]]></column>
+<column id="PRT_BY_ROLL_CMP_CD" index="33" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print Baby<br>Roll 제작업체]]></column>
+<column id="SPC_PRD_AF_WK"  	index="34" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[특수제품<br>후처리작업]]></column>
+
+<column id="PRD_DEV_NO"    	 index="35" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">제품개발 번호</column>
+<column id="DEV_REQ_SPEC_NO" index="36" sort="sort_str_custom" align="left" width="12" type="ro"  hidden="true">개발요청SPEC번호</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">DEV_REQ_BOM_NO,HUE_CD_FRN_1COT,HUE_CD_FRN_2COT,HUE_CD_FRN_3COT,HUE_CD_FRN_4COT,HUE_CD_BAK_1COT,HUE_CD_BAK_2COT,HUE_CD_BAK_3COT,HUE_CD_BAK_4COT,HUE_CD_LMN,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_NO4,PRT_INK_CD4,UNI_TEX_ROLL_NO,PICK_UP_ROLL_NO,IMPT_ROLL_NO,SIM_HUE_PRG_YN,PNT_CMP_CD,COT_MTH,RSN_TP,TLP_TP,RL_LUS_RT,PNT_FLM_THK_TXT,LMN_BND_CMP_CD,LMN_KND_TP,LMN_FLM_THK,DSN_SIM_FILE,PRT_BY_ROLL_CMP_CD,SPC_PRD_AF_WK,PRD_DEV_NO,DEV_REQ_SPEC_NO</userdata>
+</rows>

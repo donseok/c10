@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.3
+Created-By: 1.6.0_45-b06 (Sun Microsystems Inc.)
+Main-Class: com.unionsteel.mes.c10.activity.nui.GlueHttpServerLauncher
+Class-Path: ./lib/slf4j-api-1.6.4.jar ./lib/slf4j-log4j12-1.6.4.jar ./
+ lib/backport-util-concurrent.jar ./lib/glue-gun.jar ./lib/commons-bea
+ nutils.jar ./lib/commons-codec-1.2.jar ./lib/commons-collections.jar 
+ ./lib/commons-dbcp.jar ./lib/commons-digester.jar ./lib/commons-httpc
+ lient-3.1.jar ./lib/commons-lang.jar ./lib/commons-logging.jar ./lib/
+ commons-pool.jar ./lib/concurrent.jar ./lib/glue-master-jdk1.6.jar ./
+ lib/jcs-1.2.7.7_cache.jar ./lib/log4j-1.2.13.jar ./lib/mina-core-1.0.
+ 10.jar ./lib/quartz-1.5.2.jar ./lib/seadapter.jar ./lib/servlet-api.j
+ ar ./lib/slf4j-api-1.5.2.jar ./lib/slf4j-log4j12-1.5.2.jar ./lib/spri
+ ng.jar ./lib/struts.jar ./lib/glue.jar ./lib/weblogic.jar ./lib/api.j
+ ar ./lib/glue-plus.jar ./lib/ojdbc6.jar ./lib/orai18n.jar ./lib/orai1
+ 8n-mapping.jar
+

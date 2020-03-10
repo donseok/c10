@@ -1,0 +1,92 @@
+div.gridbox_dhx_skyblue table.hdr td {
+text-align: center;
+font-weight : bold;
+font-family : dotum,Verdana;
+color: #464646;
+text-size : 11pt;
+Letter-spacing : -1;
+vertical-align: middle !important;
+}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table {height: 21px; font-size: inherit}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td {font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; text-align: center; vertical-align: middle}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_l {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_custom_btns.gif'); background-repeat: no-repeat; background-position: 0px 0px; width: 5px; height: 21px; font-size: 1px}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_l div.custom_btn_l {width: 5px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_custom td.custom_btn_l {background-position: 0px -42px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_over td.custom_btn_l {background-position: 0px -84px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_pressed td.custom_btn_l {background-position: 0px -126px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_m {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_custom_btns.gif'); background-repeat: repeat-x; background-position: 0px -21px; height: 21px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_custom td.custom_btn_m {background-position: 0px -63px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_over td.custom_btn_m,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.dhx_list_btn_custom_over.custom_btn_m {background-position: 0px -105px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_pressed td.custom_btn_m, 
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.dhx_list_btn_custom_pressed.custom_btn_m {background-position: 0px -147px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_r {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_custom_btns.gif'); background-repeat: no-repeat; background-position: -5px 0px; width: 5px; height: 21px; font-size: 1px}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_r div.custom_btn_r {width: 5px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_custom td.custom_btn_r {background-position: -5px -42px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_over td.custom_btn_r {background-position: -5px -84px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_pressed td.custom_btn_r {background-position: -5px -126px !important}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_custom td.custom_btn_m div.btn_txt {color: #b2b2b2 !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom table.dhx_list_btn_custom_pressed td.custom_btn_m div.btn_txt {padding-top: 2px !important; padding-bottom: 0px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom:visited,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom:active,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom:hover {outline: none; text-decoration: none; color: inherit; cursor: default}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom:focus {outline: #30678a 1px dotted}
+.dhxlist_obj_dhx_skyblue div.item_absolute div.dhx_list_btn_custom {position: absolute}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_m div.multibutton_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; height: 21px; line-height: 21px; vertical-align: middle; padding: 0px 20px; overflow: hidden; white-space: nowrap}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_m div.multibutton_txt:focus {outline: #30678a 1px dotted}
+
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn td.btn_m div.btn_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; padding: 1px 20px; overflow: hidden; white-space: nowrap}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_custom td.custom_btn_m div.custom_btn_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; padding: 1px 20px; overflow: hidden; white-space: nowrap}
+
+
+
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table {height: 21px; font-size: inherit}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td {font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; text-align: center; vertical-align: middle}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_l {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_link_btns.gif'); background-repeat: no-repeat; background-position: 0px 0px; width: 5px; height: 21px; font-size: 1px}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_l div.link_btn_l {width: 5px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_link td.link_btn_l {background-position: 0px -42px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_over td.link_btn_l {background-position: 0px -84px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_pressed td.link_btn_l {background-position: 0px -126px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_m {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_link_btns.gif'); background-repeat: repeat-x; background-position: 0px -21px; height: 21px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_link td.link_btn_m {background-position: 0px -63px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_over td.link_btn_m,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.dhx_list_btn_link_over.link_btn_m {background-position: 0px -105px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_pressed td.link_btn_m, 
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.dhx_list_btn_link_pressed.link_btn_m {background-position: 0px -147px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_r {background-image: url('imgs//dhxform_dhx_skyblue/dhxform_link_btns.gif'); background-repeat: no-repeat; background-position: -5px 0px; width: 5px; height: 21px; font-size: 1px}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_r div.link_btn_r {width: 5px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_link td.link_btn_r {background-position: -5px -42px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_over td.link_btn_r {background-position: -5px -84px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_pressed td.link_btn_r {background-position: -5px -126px !important}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhx_list_btn_link td.link_btn_m div.btn_txt {color: #b2b2b2 !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link table.dhx_list_btn_link_pressed td.link_btn_m div.btn_txt {padding-top: 2px !important; padding-bottom: 0px !important}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link:visited,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link:active,
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link:hover {outline: none; text-decoration: none; color: inherit; cursor: default}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link:focus {outline: #30678a 1px dotted}
+.dhxlist_obj_dhx_skyblue div.item_absolute div.dhx_list_btn_link {position: absolute}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_m div.multibutton_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; height: 21px; line-height: 21px; vertical-align: middle; padding: 0px 20px; overflow: hidden; white-space: nowrap}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_m div.multibutton_txt:focus {outline: #30678a 1px dotted}
+
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn td.btn_m div.btn_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; padding: 1px 20px; overflow: hidden; white-space: nowrap}
+.dhxlist_obj_dhx_skyblue div.dhx_list_btn_link td.link_btn_m div.link_btn_txt {font-size: inherit; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #000000; padding: 1px 20px; overflow: hidden; white-space: nowrap}
+
+
+
+.dhxlist_obj_dhx_skyblue div.dhxlist_txt_label{overflow: hidden; white-space: nowrap; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; font-size: inherit; color: #000000; vertical-align: top; margin: 3px 5px 2px 5px; cursor: default}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhxlist_txt_label{color: #b2b2b2}
+.dhxlist_obj_dhx_skyblue div.dhxlist_txt_label2{font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; font-size: inherit; font-weight: bold; color: #256187; margin: 5px 3px}
+.dhxlist_obj_dhx_skyblue div.disabled div.dhxlist_txt_label2{color: #b2b8bc}
+.dhxlist_obj_dhx_skyblue div.item_absolute div.dhxlist_txt_label2 {position: absolute}
+.dhxlist_obj_dhx_skyblue .dhxlist_txt_select {border: #a4bed4 1px solid; background-color: #ffffff; font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; font-size: inherit; color: #000000; margin: 0px}
+.dhxlist_obj_dhx_skyblue fieldset.dhxlist_fs legend.fs_legend {font-family:돋음,Dotum,Baekmuk Dotum,Undotum,Apple Gothic,Latin font,sans-serif; color: #256187; font-size: inherit; font-weight: bold; padding: 0px 2px 1px 2px; text-align: left;}
+.dhxlist_obj_dhx_skyblue span.nav_link {color: #000000;font-size: 10pt;cursor: default;outline: medium none;text-decoration: none;}
+div.gridbox_dhx_skyblue table.hdr td div.hdrcell{padding-left:0px;width:auto;}
+
+.dhxlist_obj_dhx_skyblue div.dhxlist_base_nested{padding:0 0px;clear:both;}
+.dhx_header_cmenu{background-color:#E3EFFF;border:2px outset silver;z-index:2;}
+.dhx_header_cmenu_item{white-space:nowrap; font-family : dotum,Verdana; font-size : 10pt;}
+.dhxlist_obj_dhx_skyblue div.item_label_right{clear:both;margin-top:6px;}
+.dhxlist_obj_dhx_skyblue div.item_label_left{clear:both;margin-top:6px;}

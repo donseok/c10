@@ -1,0 +1,16 @@
+<items>
+<item type="block" width="530">
+<item inputWidth="70" label="통과공정번호" labelAlign="right" labelWidth="80" name="PAS_PROC_NO" disabled="true" type="input"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="70" label="CCL_BOM" labelAlign="right" labelWidth="70" name="CCL_BOM_NO" disabled="true" type="input"/>
+<item offset="40" type="newcolumn"/>
+<item command="find" name="find" type="button" disabled="true" value="확인"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="530">
+<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+<item offset="2" type="newcolumn"/>
+<item label="통과공정" name="std_title" type="label" />
+</item>
+</items>

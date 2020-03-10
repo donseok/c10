@@ -1,0 +1,68 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="attachHeader">
+<param><![CDATA[#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,주소,수신자,연락처,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="PRD_DEV_CFM"      index="1" clabel="선택" color="FFFFC0" dbname="선택" sort="na" table="TB_C10_PRD_DEV_CMN" type="ch" width="2">선택</column>
+<column align="center" id="PRD_DEV_NO"       index="2" clabel="개발번호" dbname="개발번호" sort="na" table="TB_C10_PRD_DEV_CMN" type="ahref" width="6">개발번호</column>
+<column align="center" id="REQ_RGS_DH"       index="3" sort="sort_int_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="8">요청등록일시</column>
+<column align="left"   id="DEV_PRG_CD"       index="4" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="8">진도코드</column>
+<column align="left"   id="SAL_CHR_PRS_ID"   index="5" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="8">개발요청자</column>
+<column align="left"   id="CUS_CD"           index="6" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">고객사</column>
+<column align="left"   id="USG_CD"           index="7" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">용도</column>
+<column align="left"   id="USE_NAT_CD"       index="8" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="8">사용지역</column>
+<column align="left"   id="APP_SIM_RCV_ADDR" index="9" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">승인시편 수신처 정보</column>
+<column align="left"   id="APP_SIM_RCV_NM"   index="10" sort="sort_int_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="10">#cspan</column>
+<column align="left"   id="APP_SIM_RCV_PHON" index="11" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="10">#cspan</column>
+<column align="left"   id="DEV_REQ_RMK"      index="12" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">개발요청 비고</column>
+<column align="center" id="FILE_YN"          index="13" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="8">첨부파일</column>
+<column align="left"   id="DEV_RGS_DH"       index="14" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">개발접수일시</column>
+<column align="left"   id="DEV_RECV_CHR_UID" index="15" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="10">접수담당자</column>
+<column align="left"   id="PROC_SIM_MO"      index="16" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15"><![CDATA[Line Sample<br>생산 MO]]></column>
+<column align="left"   id="DEV_RECV_RMK"     index="17" sort="sort_str_custom" table="TB_C10_PRD_DEV_CMN" type="ro" width="15">개발접수비고</column>
+<column align="left"   id="COT_MTH"          index="18" sort="sort_str_custom" table="TB_C10_PRD_DEV_SPEC" type="ro" width="8">코팅방식</column>
+<column align="left"   id="IMG_NM"           index="19" sort="sort_str_custom" table="TB_C10_PRD_DEV_SPEC" type="ro" width="8" hidden="true">이미지명</column>
+<column align="left"   id="DEV_REQ_FILE"     index="20" sort="sort_str_custom" table="TB_C10_PRD_DEV_SPEC" type="ro" width="8" hidden="true">첨부파일존재</column>
+
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">PRD_DEV_CFM,PRD_DEV_NO,REQ_RGS_DH,DEV_PRG_CD,SAL_CHR_PRS_ID,CUS_CD,USG_CD,USE_NAT_CD,APP_SIM_RCV_ADDR,APP_SIM_RCV_NM,APP_SIM_RCV_PHON,DEV_REQ_RMK,FILE_YN,DEV_RGS_DH,DEV_RECV_CHR_UID,PROC_SIM_MO,DEV_RECV_RMK,COT_MTH,IMG_NM,DEV_REQ_FILE</userdata>
+</rows>

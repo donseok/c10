@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="userLogging"> 
+	 <query id="userLogging.insert" desc="logging" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO TB_HISTORY_USER
+(SEQ_NO, WORK_LOCATION, USER_NO, USER_NAME, LOGIN_DATE)
+VALUES
+(SQ_HISTORY_USER.NEXTVAL, '2000', ?, ?, SYSDATE)
+		 ]]> 
+	 </query>
+</queryMap>

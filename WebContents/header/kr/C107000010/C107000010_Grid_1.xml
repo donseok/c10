@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,#rspan,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,
+연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,연산자,비교값1,비교값2,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CHK" index="1" sort="na" align="center" width="4" type="ch">선택</column>
+<column id="MD_RULE_CON_NUM" index="2" sort="int" align="center" width="6" table="TB_M00_RULES040" type="ro"><![CDATA[NO.]]></column>
+<column id="MD_RULE_CON_OLSTATR_1" index="3" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">품명코드</column>
+<column id="MD_RULE_CON_MI_V_1" index="4" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_1" index="5" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_2" index="6" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">제품형태</column>
+<column id="MD_RULE_CON_MI_V_2" index="7" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_2" index="8" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_3" index="9" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">규격약호</column>
+<column id="MD_RULE_CON_MI_V_3" index="10" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_3" index="11" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_4" index="12" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">주문용도코드</column>
+<column id="MD_RULE_CON_MI_V_4" index="13" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_4" index="14" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_5" index="15" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">고객사코드</column>
+<column id="MD_RULE_CON_MI_V_5" index="16" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_5" index="17" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_6" index="18" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">고객사양서번호</column>
+<column id="MD_RULE_CON_MI_V_6" index="19" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_6" index="20" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_7" index="21" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">엠보스무늬</column>
+<column id="MD_RULE_CON_MI_V_7" index="22" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_7" index="23" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_8" index="24" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">Spangle구분</column>
+<column id="MD_RULE_CON_MI_V_8" index="25" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_8" index="26" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_9" index="27" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">도금량코드</column>
+<column id="MD_RULE_CON_MI_V_9" index="28" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_9" index="29" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_10" index="30" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">표면처리코드</column>
+<column id="MD_RULE_CON_MI_V_10" index="31" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_10" index="32" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_11" index="33" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">색상코드</column>
+<column id="MD_RULE_CON_MI_V_11" index="34" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_11" index="35" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_12" index="36" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">두께범위</column>
+<column id="MD_RULE_CON_MI_V_12" index="37" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_12" index="38" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_OLSTATR_13" index="39" sort="str" align="center" width="9" table="TB_M00_RULES040" type="ro">폭범위</column>
+<column id="MD_RULE_CON_MI_V_13" index="40" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_CON_MAX_V_13" index="41" sort="str" align="center" width="8" table="TB_M00_RULES040" type="ed"><![CDATA[#cspan]]></column>
+<column id="MD_RULE_DECISION_RST1" index="42" sort="str" align="center" width="7" table="TB_M00_RULES040" type="ed">재질코드</column>
+<column id="MD_RULE_DECISION_RST2" index="43" sort="str" align="center" width="5" table="TB_M00_RULES040" type="ed">원자재코드1</column>
+<column id="MD_RULE_DECISION_RST3" index="44" sort="str" align="center" width="5" table="TB_M00_RULES040" type="ed">원자재코드2</column>
+<column id="MD_RULE_DECISION_RST4" index="45" sort="str" align="center" width="5" table="TB_M00_RULES040" type="ed">원자재코드3</column>
+<column id="MD_RULE_DECISION_RST5" index="46" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">제조표준번호1</column>
+<column id="MD_RULE_DECISION_RST6" index="47" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">제조표준번호2</column>
+<column id="MD_RULE_DECISION_RST7" index="48" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">제조표준번호3</column>
+<column id="MD_RULE_DECISION_RST8" index="49" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">통과공정번호</column>
+<column id="MD_RULE_DECISION_RST9" index="50" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">품질설계확정구분</column>
+<column id="MD_RULE_DECISION_RST10" index="51" sort="str" align="center" width="10" table="TB_M00_RULES040" type="ed">품질Message1</column>
+<column id="MD_RULE_DECISION_RST11" index="52" sort="str" align="center" width="10" table="TB_M00_RULES040" type="ed">품질Message2</column>
+<column id="MD_RULE_DECISION_RST12" index="53" sort="str" align="center" width="10" table="TB_M00_RULES040" type="ed">품질Message3</column>
+<column id="MD_RULE_DECISION_RST13" index="54" sort="str" align="center" width="10" table="TB_M00_RULES040" type="ed">품질정전Message</column>
+<column id="MD_RULE_DECISION_RST14" index="55" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed">외관검사기준</column>
+<column id="USER_NO" index="56" sort="str" align="center" width="6" table="TB_M00_RULES040" type="ed" hidden="true"></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">CHK,MD_RULE_CON_NUM,MD_RULE_CON_OLSTATR_1,MD_RULE_CON_MI_V_1,MD_RULE_CON_MAX_V_1,MD_RULE_CON_OLSTATR_2,MD_RULE_CON_MI_V_2,MD_RULE_CON_MAX_V_2,MD_RULE_CON_OLSTATR_3,MD_RULE_CON_MI_V_3,MD_RULE_CON_MAX_V_3,MD_RULE_CON_OLSTATR_4,MD_RULE_CON_MI_V_4,MD_RULE_CON_MAX_V_4,MD_RULE_CON_OLSTATR_5,MD_RULE_CON_MI_V_5,MD_RULE_CON_MAX_V_5,MD_RULE_CON_OLSTATR_6,MD_RULE_CON_MI_V_6,MD_RULE_CON_MAX_V_6,MD_RULE_CON_OLSTATR_7,MD_RULE_CON_MI_V_7,MD_RULE_CON_MAX_V_7,MD_RULE_CON_OLSTATR_8,MD_RULE_CON_MI_V_8,MD_RULE_CON_MAX_V_8,MD_RULE_CON_OLSTATR_9,MD_RULE_CON_MI_V_9,MD_RULE_CON_MAX_V_9,MD_RULE_CON_OLSTATR_10,MD_RULE_CON_MI_V_10,MD_RULE_CON_MAX_V_10,MD_RULE_CON_OLSTATR_11,MD_RULE_CON_MI_V_11,MD_RULE_CON_MAX_V_11,MD_RULE_CON_OLSTATR_12,MD_RULE_CON_MI_V_12,MD_RULE_CON_MAX_V_12,MD_RULE_CON_OLSTATR_13,MD_RULE_CON_MI_V_13,MD_RULE_CON_MAX_V_13,MD_RULE_DECISION_RST1,MD_RULE_DECISION_RST2,MD_RULE_DECISION_RST3,MD_RULE_DECISION_RST4,MD_RULE_DECISION_RST5,MD_RULE_DECISION_RST6,MD_RULE_DECISION_RST7,MD_RULE_DECISION_RST8,MD_RULE_DECISION_RST9,MD_RULE_DECISION_RST10,MD_RULE_DECISION_RST11,MD_RULE_DECISION_RST12,MD_RULE_DECISION_RST13,MD_RULE_DECISION_RST14,USER_NO</userdata>
+</rows>

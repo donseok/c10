@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="5" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="51054" location="333,25" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="51055" location="341,356" size="-1,-1" input="//@wire.2 //@wire.4 //@wire.6 //@wire.10"/>
+  <child xsi:type="Glue:RouterActivity" id="51056" location="43,80" size="460,-1" input="//@wire.0" output="//@wire.1 //@wire.3 //@wire.9 //@wire.5" name="품질설계 재설계 조회">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 재설계대상조회(설계의뢰일 또는 주문번호를 바탕으로 조회)&#xD;&#xA;   save : TB_C10_QLT_DSN_CMN테이블에 품질설계상태및품질설계에러여부를 UPDATE한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음       "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="51058" location="151,165" size="97,-1" input="//@wire.1" output="//@wire.2" name="재설계 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000040.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계공통테이블(TB_C10_QLT_DSN_CMN)에서 품질설계의뢰일 OR 주문번호로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :  품질설계의뢰일 OR 주문번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음         "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="51060" location="279,166" size="106,-1" input="//@wire.3" output="//@wire.7" name="재설계 update">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000040.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계공통테이블(TB_C10_QLT_DSN_CMN)에 선택한 주문번호의 상태를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호의 품질설계상태를 픔질설계대기('J')로&#xD;&#xA;&#x9;     품질설계에러여부를 'N'으로 업데이트 한다.&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="147504" location="251,288" size="188,-1" input="//@wire.8" output="//@wire.4" name="SubServiceC102100000">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C102100000-service"/>
+    <property key="description" value="이 Activity는 품질설계JOB관리 서비스를 호출하는 Activity이다. "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="155687" location="414,167" size="154,-1" input="//@wire.5" output="//@wire.6" name="JOB상태조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C10_QLT_JOB.select"/>
+    <property key="description" value="이 Activity는 품질설계JOB상태테이블에서 &#xD;&#xA;품질설계JOB기동상태를 추출하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="156293" location="269,235" size="121,-1" input="//@wire.7" output="//@wire.8" name="STATUS_SET">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="RE_QLT_DSN_TP|Y"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- RE_QLT_DSN_TP(재설계 여부 변수)를 'Y'으로 SET한다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="156733" location="51,165" size="86,-1" input="//@wire.9" output="//@wire.10" name="주문상태">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000040.STSselect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계결과-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계 상태를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계를  조회 및 재설계 하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_QLT_DSN_CMN(품질설계공통)&#xD;&#xA;  - 조회조건 :  필수입력조건 : 품질설계의뢰일 OR 주문번호&#xD;&#xA;  - 재설계 : 재설계할 주문을 선택하고 재설계버튼을 클릭하여&#xD;&#xA;             품질설계공통테이블에 품질설계상태를 픔질설계대기('J')로&#xD;&#xA;&#x9;     품질설계에러여부를 'N'으로 업데이트 한다.&#xD;&#xA;  - 닫기 : 해당 Tab을 닫는다."/>
+  <wire id="2967" guardcondition="success" firstRelativePoint="338,44" lastRelativePoint="338,80"/>
+  <wire id="2968" guardcondition="find" firstRelativePoint="298,193" lastRelativePoint="351,292"/>
+  <wire id="2969" guardcondition="success" firstRelativePoint="195,195" lastRelativePoint="340,364">
+    <bendpoint weight="0.5" firstDimension="-4,159" secondDimension="-156,-27"/>
+  </wire>
+  <wire id="2970" guardcondition="save" firstRelativePoint="392,190" lastRelativePoint="351,292"/>
+  <wire id="8709" guardcondition="success" firstRelativePoint="407,311" lastRelativePoint="351,355"/>
+  <wire id="9044" guardcondition="job_sts" firstRelativePoint="472,110" lastRelativePoint="472,167"/>
+  <wire id="9045" guardcondition="success" firstRelativePoint="493,197" lastRelativePoint="360,365">
+    <bendpoint weight="0.5" firstDimension="2,182" secondDimension="142,-2"/>
+  </wire>
+  <wire id="9098" guardcondition="success" firstRelativePoint="333,196" lastRelativePoint="333,234"/>
+  <wire id="9099" guardcondition="success" firstRelativePoint="337,265" lastRelativePoint="337,288"/>
+  <wire id="9118" guardcondition="STS_find" firstRelativePoint="85,110" lastRelativePoint="85,165"/>
+  <wire id="9119" guardcondition="success" firstRelativePoint="88,195" lastRelativePoint="340,365">
+    <bendpoint weight="0.5" firstDimension="-6,186" secondDimension="-263,0"/>
+  </wire>
+</Glue:GlueDiagram>

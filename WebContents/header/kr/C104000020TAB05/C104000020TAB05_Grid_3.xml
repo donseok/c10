@@ -1,0 +1,108 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableResizing">    
+	<param>false,false,false,false</param>    
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d 00:00:00]]></param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="LINE" sort="na" width="15" dbname="소둔CYCLE#3CGL" align="center" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="소둔CYCLE#3CGL">Line</column>
+<column id="HEAT_CYL_NO_2CGL" sort="na" width="24" align="center" dbname="소둔CYCLE#2CGL" table="TB_C10_QLT_DSN_MNF" type="combo_v" clabel="소둔CYCLE#2CGL"  color="FFFFC0">소둔Cycle</column>
+<column id="HTG_TEM_2CGL" sort="na" width="14" align="center" dbname="가열온도#2CGL" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="가열온도#2CGL"  color="FFFFC0">HT</column>
+<column id="CLG_TEM_2CGL" sort="na" width="14" align="center" dbname="냉각온도#2CGL" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="냉각온도#2CGL"  color="FFFFC0">CT</column>
+<column id="SHK_TM_2CGL" sort="na" width="14" align="center" dbname="ShockingTime#2CGL" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="ShockingTime#2CGL"  color="FFFFC0">ST</column>
+<column id="LN_SPD_2CGL" sort="na" width="*" align="center" dbname="LineSpeed#2CGL" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="LineSpeed#2CGL"  color="FFFFC0"><![CDATA[Line Speed]]></column>
+<column id="HEAT_CYL_NO_3CGL" sort="na" width="0" align="center" dbname="소둔CYCLE#3CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="소둔CYCLE#3CGL" hidden="true"></column>
+<column id="HTG_TEM_3CGL" sort="na" width="0" align="center" dbname="가열온도#3CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="가열온도#3CGL" hidden="true"></column>
+<column id="CLG_TEM_3CGL" sort="na" width="0" align="center" dbname="냉각온도#3CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="냉각온도#3CGL" hidden="true"></column>
+<column id="SHK_TM_3CGL" sort="na" width="0" align="center" dbname="ShockingTime#3CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="ShockingTime#3CGL" hidden="true"></column>
+<column id="LN_SPD_3CGL" sort="na" width="0" align="center" dbname="LineSpeed#3CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="LineSpeed#3CGL" hidden="true"></column>
+<column id="HEAT_CYL_NO_4CGL" sort="na" width="0" align="center" dbname="소둔CYCLE#4CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="소둔CYCLE#4CGL" hidden="true"></column>
+<column id="HTG_TEM_4CGL" sort="na" width="0" align="center" dbname="가열온도#4CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="가열온도#4CGL" hidden="true"></column>
+<column id="CLG_TEM_4CGL" sort="na" width="0" align="center" dbname="냉각온도#4CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="냉각온도#4CGL" hidden="true"></column>
+<column id="SHK_TM_4CGL" sort="na" width="0" align="center" dbname="ShockingTime#4CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="ShockingTime#4CGL" hidden="true"></column>
+<column id="LN_SPD_4CGL" sort="na" width="0" align="center" dbname="LineSpeed#4CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="LineSpeed#4CGL" hidden="true"></column>
+<column id="HEAT_CYL_NO_5CGL" sort="na" width="0" align="center" dbname="소둔CYCLE#5CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="소둔CYCLE#5CGL" hidden="true"></column>
+<column id="HTG_TEM_5CGL" sort="na" width="0" align="center" dbname="가열온도#5CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="가열온도#5CGL" hidden="true"></column>
+<column id="CLG_TEM_5CGL" sort="na" width="0" align="center" dbname="냉각온도#5CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="냉각온도#5CGL" hidden="true"></column>
+<column id="SHK_TM_5CGL" sort="na" width="0" align="center" dbname="ShockingTime#5CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="ShockingTime#5CGL" hidden="true"></column>
+<column id="LN_SPD_5CGL" sort="na" width="0" align="center" dbname="LineSpeed#5CGL" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="LineSpeed#5CGL" hidden="true"></column>
+<column id="WK_GW_TOT_LLV" sort="na" width="0" align="center" dbname="작업도금량전체하한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량전체하한값" format="0000.0" hidden="true"></column>
+<column id="WK_GW_TOT_ULV" sort="na" width="0" align="center" dbname="작업도금량전체상한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량전체상한값" format="0000.0" hidden="true"></column>
+<column id="WK_GW_TRV" sort="na" width="0" align="center" dbname="작업도금량목표값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량목표값" format="0000.0" hidden="true"></column>
+<column id="GAL_THK_LLV" sort="na" width="0" align="center" dbname="도금두께하한" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="도금두께하한" hidden="true"></column>
+<column id="GAL_THK_ULV" sort="na" width="0" align="center" dbname="도금두께상한" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="도금두께상한" hidden="true"></column>
+<column id="SPNL_TP" sort="str" width="0" align="center" dbname="Spangle구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="Spangle구분" hidden="true"></column>
+<column id="CGL_LVL_YN" sort="str" width="0" align="center" dbname="CGLLeveler사용여부" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="CGLLeveler사용여부" hidden="true"></column>
+<column id="CGL_SP_ASG_YN" sort="str" width="0" align="center" dbname="CGLSkinPass" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="CGLSkinPass" hidden="true"></column>
+<column id="CGL_SUR_HND_CD" sort="str" width="0" align="center" dbname="CGL표면처리코드" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="CGL표면처리코드" hidden="true"></column>
+<column id="RSN_ATT_AMT_TRV" sort="na" width="0" align="center" dbname="수지부착량기준목표" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="수지부착량기준목표" hidden="true"></column>
+<column id="RSN_ATT_AMT_LLV" sort="na" width="0" align="center" dbname="수지부착량기준하한" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="수지부착량기준하한" hidden="true"></column>
+<column id="RSN_ATT_AMT_ULV" sort="na" width="0" align="center" dbname="수지부착량기준상한" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="수지부착량기준상한" hidden="true"></column>
+<column id="CGL_THK_TRV" sort="na" width="0" align="center" dbname="CGL두께목표값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="CGL두께목표값" format="00.000" hidden="true"></column>
+<column id="CGL_WTH_TRV" sort="na" width="0" align="center" dbname="CGL폭목표값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="CGL폭목표값" format="0000.0" hidden="true"></column>
+<column id="BAK_MRK" sort="str" align="center" dbname="Back마킹" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="Back마킹" hidden="true"></column>
+<column id="WK_GW_FRN_LLV" sort="na" width="0" align="center" dbname="작업도금량전면하한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량전면하한값" format="0000.0" hidden="true"></column>
+<column id="WK_GW_FRN_ULV" sort="na" width="0" align="center" dbname="작업도금량전면상한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량전면상한값" format="0000.0" hidden="true"></column>
+<column id="WK_GW_BAK_LLV" sort="na" width="0" align="center" dbname="작업도금량후면하한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량후면하한값" format="0000.0" hidden="true"></column>
+<column id="WK_GW_BAK_ULV" sort="na" width="0" align="center" dbname="작업도금량후면상한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="작업도금량후면상한값" format="0000.0" hidden="true"></column>
+<column id="GAL_THK_TRV" sort="na" width="0" align="center" dbname="도금두께목표" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="도금두께목표" hidden="true"></column>
+<column id="EGL_SUR_HND_CD" sort="str" width="0" align="center" dbname="EGL표면처리코드" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="EGL표면처리코드" hidden="true"></column>
+<column id="EGL_THK_TRV" sort="na" width="0" align="center" dbname="EGL두께목표값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="EGL두께목표값" format="00.000" hidden="true"></column>
+<column id="EGL_WTH_TRV" sort="na" width="0" align="center" dbname="EGL폭목표값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="EGL폭목표값" format="0000.0" hidden="true"></column>
+<column id="GW_ASG_CD" sort="str" width="0" align="center" dbname="도금량지정코드" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="도금량지정코드" hidden="true"></column>
+<column id="PIL_DIR" sort="na" width="0" align="center" dbname="Piling방향" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="Piling방향" format="0000.0" hidden="true"></column>
+<column id="ORD_THK_MNG_CD" sort="str" width="0" dbname="주문두께관리코드" align="center" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문두께관리코드" hidden="true"></column>
+<column id="OIL_PNT_CD" sort="str" width="0" align="center" dbname="도유코드" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="도유코드" hidden="true"></column>
+<column id="COR_EDG_ASG_TP" sort="str" width="0" align="center" dbname="정전Edge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="정전Edge지정구분" hidden="true"></column>
+<column id="PRD_THK_RNG_LLV" sort="na" width="0" align="center" dbname="제품두께범위하한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="제품두께범위하한값" format="00.000" hidden="true"></column>
+<column id="PRD_THK_RNG_ULV" sort="na" width="0" align="center" dbname="제품두께범위상한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="제품두께범위상한값" format="00.000" hidden="true"></column>
+<column id="PRD_WTH_RNG_LLV" sort="na" width="0" align="center" dbname="제품폭범위하한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="제품폭범위하한값" format="0000.0" hidden="true"></column>
+<column id="PRD_WTH_RNG_ULV" sort="na" width="0" align="center" dbname="제품폭범위상한값" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="제품폭범위상한값" format="0000.0" hidden="true"></column>
+<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">HEAT_CYL_NO_2CGL,HTG_TEM_2CGL,CLG_TEM_2CGL,SHK_TM_2CGL,LN_SPD_2CGL,HEAT_CYL_NO_3CGL,HTG_TEM_3CGL,CLG_TEM_3CGL,SHK_TM_3CGL,LN_SPD_3CGL,HEAT_CYL_NO_4CGL,HTG_TEM_4CGL,CLG_TEM_4CGL,SHK_TM_4CGL,LN_SPD_4CGL,HEAT_CYL_NO_5CGL,HTG_TEM_5CGL,CLG_TEM_5CGL,SHK_TM_5CGL,LN_SPD_5CGL,WK_GW_TOT_LLV,WK_GW_TOT_ULV,WK_GW_TRV,GAL_THK_LLV,GAL_THK_ULV,SPNL_TP,CGL_LVL_YN,CGL_SP_ASG_YN,CGL_SUR_HND_CD,RSN_ATT_AMT_TRV,RSN_ATT_AMT_LLV,RSN_ATT_AMT_ULV,CGL_THK_TRV,CGL_WTH_TRV,BAK_MRK,WK_GW_FRN_LLV,WK_GW_FRN_ULV,WK_GW_BAK_LLV,WK_GW_BAK_ULV,GAL_THK_TRV,EGL_SUR_HND_CD,EGL_THK_TRV,EGL_WTH_TRV,GW_ASG_CD,PIL_DIR,ORD_THK_MNG_CD,OIL_PNT_CD,COR_EDG_ASG_TP,PRD_THK_RNG_LLV,PRD_THK_RNG_ULV,PRD_WTH_RNG_LLV,PRD_WTH_RNG_ULV,QLT_DSN_MNF_TP,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell align="center" class="form_cell">2 CGL</cell>
+<cell id="HEAT_CYL_NO_2CGL"/>
+<cell id="HTG_TEM_2CGL"/>
+<cell id="CLG_TEM_2CGL"/>
+<cell id="SHK_TM_2CGL"/>
+<cell id="LN_SPD_2CGL"/>
+<cell id="QLT_DSN_MNF_TP"/>
+<cell id="ORD_NO"/>
+<cell id="ORD_LN"/>
+</row>
+<row id="1">
+<cell align="center" class="form_cell">4 CGL</cell>
+<cell id="HEAT_CYL_NO_4CGL"/>
+<cell id="HTG_TEM_4CGL"/>
+<cell id="CLG_TEM_4CGL"/>
+<cell id="SHK_TM_4CGL"/>
+<cell id="LN_SPD_4CGL"/>
+<cell id="QLT_DSN_MNF_TP"/>
+<cell id="ORD_NO"/>
+<cell id="ORD_LN"/>
+</row>
+</rows>

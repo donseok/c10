@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="199,20" size="-1,-1" output="//@wire.2"/>
+  <child xsi:type="Glue:FinalState" id="3259" location="198,352" size="-1,-1" input="//@wire.0"/>
+  <child xsi:type="Glue:Activity" id="3295" location="143,160" size="135,-1" input="//@wire.3" output="//@wire.1" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchEaiData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="ifSpecKind" value="SD0070"/>
+    <property key="description" value="이 Activity는 Master Data의 사양기준을 읽어 &#xD;&#xA;송신연동정보를 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 규격공통사양&#xD;&#xA;    - Master Table Code: C10A1010&#xD;&#xA;    - Key: 규격약호, 규격년도&#xD;&#xA;&#xD;&#xA;2. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;3. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="145,247" size="130,-1" input="//@wire.1" output="//@wire.0" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="12"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C101100010.insert"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="SEQ_NO"/>
+    <property key="param2" value="XSEQ"/>
+    <property key="param3" value="XCRUD"/>
+    <property key="param4" value="XSTAT"/>
+    <property key="param5" value="SPC_AVR"/>
+    <property key="param6" value="SPC_YR"/>
+    <property key="param7" value="SPC_NM"/>
+    <property key="param8" value="SPC_FUL_NM"/>
+    <property key="param9" value="GRA"/>
+    <property key="param10" value="ACPT_RT_SPC"/>
+    <property key="param11" value="MQL_CD"/>
+    <property key="description" value="이 Activity는 규격공통사양기준을 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;TB_C10_C101100010"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51008" location="140,79" size="149,-1" input="//@wire.2" output="//@wire.3" name="IFGroupID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 규격공통 Master Data 송신 IF IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계연동의 규격공통정보를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 규격공통성분 전송&#xD;&#xA;&#xD;&#xA;"/>
+  <wire id="2858" guardcondition="success" firstRelativePoint="211,363" lastRelativePoint="211,422"/>
+  <wire id="2863" guardcondition="success" firstRelativePoint="207,143" lastRelativePoint="207,247">
+    <bendpoint weight="0.5" firstDimension="-2,65" secondDimension="-3,-69"/>
+  </wire>
+  <wire id="2961" guardcondition="success" firstRelativePoint="209,39" lastRelativePoint="209,79"/>
+  <wire id="2962" guardcondition="success" firstRelativePoint="207,109" lastRelativePoint="207,160"/>
+</Glue:GlueDiagram>

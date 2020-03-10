@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C105000010 Page 쿼리파일"> 
+	 <query id="C105000010.select" desc="C105000010 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 제조가부검토-제조가부검토이력조회 C105000010.select 박재영 */
+    INQ_NO,
+    (SELECT CD_V || ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'INQ_STS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = INQ_STS_CD) AS INQ_STS_CD_NM,
+    INQ_STS_CD,
+    TO_CHAR(INQ_RCP_DH, 'YYYY-MM-DD HH24:MI') INQ_RCP_DH,
+    PRD_NM_CD,--품명코드
+    PRD_NM_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'PRD_NM_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = PRD_NM_CD) AS PRD_NM_CD_NM, --품명코드(MASTER)  
+    PRD_SHP,--제품형태
+    PRD_SHP || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'PRD_SHP'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = PRD_SHP) AS PRD_SHP_NM, --제품형태(MASTER) 
+    SPC_AVR,--규격약호
+    CUS_CD,--최종수요가
+    CUS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'
+         AND   CD_V = CUS_CD) AS CUS_CD_NM, --최종수요가명(MASTER)  
+     ORD_USG_CD,--주문용도코드
+     ORD_USG_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_USG_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_USG_CD) AS ORD_USG_CD_NM, --주문용도코드(MASTER)     
+    GW_ASG_CD,--도금량지정코드
+    GW_ASG_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'GW_ASG_CD'         
+         AND   CATEGORY_GROUP_NM = (CASE WHEN  PRD_NM_CD = 'G' OR PRD_NM_CD = 'K' OR  PRD_NM_CD = '3' OR PRD_NM_CD = 'J' THEN 'SG0000'
+                                         WHEN  PRD_NM_CD = 'L' OR  PRD_NM_CD = '4' THEN 'SL0000'
+                                         WHEN  PRD_NM_CD = 'V' OR  PRD_NM_CD = '6' THEN 'SV0000'
+                                         WHEN  PRD_NM_CD = 'W' OR  PRD_NM_CD = '9' THEN 'SW0000'
+                                         WHEN  PRD_NM_CD = 'E' OR  PRD_NM_CD = '2' THEN 'SE0000'
+                                         WHEN  PRD_NM_CD = 'N' OR  PRD_NM_CD = '8' THEN 'SE0000'
+                                         ELSE  'SZ0000' END)
+         AND   CD_V = GW_ASG_CD) AS GW_ASG_CD_NM, --도금량지정코드(MASTER) 
+    FLOW_CHL,--유통경로
+    FLOW_CHL || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'FLOW_CHL'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FLOW_CHL) AS FLOW_CHL_NM, --유통경로(MASTER) 
+    ORD_EDG_ASG_TP,--Edge 구분     
+    ORD_EDG_ASG_TP || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_EDG_ASG_TP'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_EDG_ASG_TP) AS ORD_EDG_ASG_TP_NM, --유통경로(MASTER) 
+    ORD_SUR_HND_CD,--표면후처리
+    ORD_SUR_HND_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SUR_HND_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SUR_HND_CD) AS ORD_SUR_HND_CD_NM, --유통경로(MASTER) 
+    ORD_LN_WGT, --주문행번중량
+    ORD_EXC_THK,-- 주문환산두께
+    ORD_EXC_WTH,-- 주문환산폭
+    ORD_EXC_LTH,--주문환산길이
+    INQ_REQ_TXT,--Inquiry요청내역(최종)
+    INQ_REQ_TXT1,--Inquiry요청내역(이력)
+    TO_CHAR(INQ_AUT_SRT_END_DH, 'YYYY-MM-DD HH24:MI') INQ_AUT_SRT_END_DH,--Inquiry자동검토일시
+    ORD_CHR_PRS_ID,--영업담당자ID
+    QLT_CHR_PRS_ID,--품질담당자ID
+    TO_CHAR(INQ_SRT_END_DH, 'YYYY-MM-DD HH24:MI') INQ_SRT_END_DH,--Inquiry검토결과전송일시
+    INQ_PSV_SRT_RSL_CD,--Inquiry자동검토결과코드
+    INQ_SRT_TXT,--검토내역
+    (SELECT (CASE WHEN COUNT(1) > 0 THEN 'Y'
+                     ELSE 'N' END)
+        FROM TB_C10_INQ_HST_FILE
+        WHERE INQ_NO = TB_C10_INQ_HST.INQ_NO) FILE_ADD 
+FROM TB_C10_INQ_HST
+WHERE INQ_NO LIKE :INQ_NO||'%'
+  AND INQ_RCP_DH BETWEEN TO_DATE(DECODE(:INQ_NO,'',:INQ_RCP_DH_STR,NVL(:INQ_RCP_DH_STR, '1900-01-01')),'YYYY-MM-DD')  
+                 AND TO_DATE(DECODE(:INQ_NO,'',:INQ_RCP_DH_END,NVL(:INQ_RCP_DH_END, '2999-12-31')),'YYYY-MM-DD') + 1
+  AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%'
+  AND NVL(CUS_CD,' ') LIKE :CUS_CD||'%'
+  AND NVL(QLT_CHR_PRS_ID,' ') LIKE :QLT_CHR_PRS_ID||'%'
+  AND NVL(INQ_REQ_TXT,' ') LIKE :INQ_REQ_TXT||'%'
+  AND NVL(INQ_REQ_TP,' ') LIKE :INQ_REQ_TP||'%'
+  AND NVL(INQ_STS_CD,' ') LIKE :INQ_STS_CD||'%'
+ORDER BY INQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C105000010.update" desc="C105000010.update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 제조가부검토-제조가부검토이력조회 C105000010.update 이민균 */
+TB_C10_INQ_HST SET
+INQ_RCP_DH = TO_DATE(:INQ_RCP_DH,'yyyy-mm-dd hh24:mi'),--INQUIRY접수일시
+PRD_NM_CD = :PRD_NM_CD,--품명코드
+PRD_SHP = :PRD_SHP,--제품유형
+SPC_AVR = :SPC_AVR,--규격약호
+CUS_CD = :CUS_CD,--최종고객사코드
+ORD_USG_CD = :ORD_USG_CD,--주문용도코드
+ORD_SUR_HND_CD = :ORD_SUR_HND_CD, --표면후처리
+GW_ASG_CD = :GW_ASG_CD, --도금량지정코드
+FLOW_CHL = :FLOW_CHL,--유통경로
+ORD_EDG_ASG_TP = :ORD_EDG_ASG_TP,--Edge구분
+ORD_LN_WGT = :ORD_LN_WGT,--주문행번중량
+ORD_EXC_THK = :ORD_EXC_THK,--주문환산두께
+ORD_EXC_WTH = :ORD_EXC_WTH,--주문환산폭
+ORD_EXC_LTH = :ORD_EXC_LTH,--주문환산길이
+ORD_CHR_PRS_ID = :ORD_CHR_PRS_ID,--영업담당자ID
+QLT_CHR_PRS_ID = :QLT_CHR_PRS_ID,--품질담당자ID
+INQ_REQ_TXT = :INQ_REQ_TXT,--Inquiry요청내역(최종)
+INQ_REQ_TXT1 = :INQ_REQ_TXT1--Inquiry요청내역(이력)
+WHERE  INQ_NO = :INQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C105000010.insert" desc="C105000010.insert" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 제조가부검토-제조가부검토이력조회 C105000010.insert 이민균 */C10APUSER.TB_C10_INQ_HST(
+    INQ_NO,--INQUIRY번호
+    INQ_STS_CD,--INQUIRY상태코드
+    INQ_RCP_DH,--INQUIRY접수일시
+    PRD_NM_CD,--품명코드
+    PRD_SHP,--제품유형
+    SPC_AVR,--규격약호
+    CUS_CD,--최종고객사코드
+    ORD_USG_CD,--주문용도코드
+    ORD_SUR_HND_CD, --표면후처리
+    GW_ASG_CD, --도금량지정코드
+    FLOW_CHL,--유통경로
+    ORD_EDG_ASG_TP,--Edge구분
+    ORD_LN_WGT,--주문행번중량
+    ORD_EXC_THK,--주문환산두께
+    ORD_EXC_WTH,--주문환산폭
+    ORD_EXC_LTH,--주문환산길이
+    ORD_CHR_PRS_ID,--영업담당자ID
+    QLT_CHR_PRS_ID,--품질담당자ID
+    INQ_REQ_TXT,--Inquiry요청내역(최종)
+    INQ_REQ_TXT1,--Inquiry요청내역(이력)
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+        (SELECT NVL(MAX(INQ_NO)+1,TO_CHAR(SYSDATE,'YYYYMMDD') ||'01')
+    FROM TB_C10_INQ_HST
+    WHERE INQ_NO LIKE TO_CHAR(SYSDATE,'YYYYMMDD') || '%'),
+    '1',
+    NVL(TO_DATE(:INQ_RCP_DH,'YYYY-MM-DD HH24:MI'),SYSDATE),
+    :PRD_NM_CD_NM,--품명코드
+    :PRD_SHP_NM,--제품유형
+    :SPC_AVR,--규격약호
+    :CUS_CD,--최종고객사코드
+    :ORD_USG_CD,--주문용도코드
+    :ORD_SUR_HND_CD_NM, --표면후처리
+    :GW_ASG_CD_NM, --도금량지정코드
+    :FLOW_CHL_NM,--유통경로
+    :ORD_EDG_ASG_TP_NM,--Edge구분
+    :ORD_LN_WGT,--주문행번중량
+    :ORD_EXC_THK,--주문환산두께
+    :ORD_EXC_WTH,--주문환산폭
+    :ORD_EXC_LTH,--주문환산길이
+    :ORD_CHR_PRS_ID,--영업담당자ID
+    :QLT_CHR_PRS_ID,--품질담당자ID
+    :INQ_REQ_TXT,--Inquiry요청내역(최종)
+    :INQ_REQ_TXT1,--Inquiry요청내역(이력)
+    :OBJECTTYPE,
+    :OBJECTID,
+    :PROGRAMID,
+    :TIMESTAMP,
+    :OBJECTTYPE,
+    :OBJECTID,
+    :PROGRAMID,
+    :TIMESTAMP
+)
+		 ]]> 
+	 </query>
+	 <query id="C105000010.delete" desc="C105000010.delete" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C10 제조가부검토-제조가부검토이력조회 C105000010.delete 이민균 */ C10APUSER.TB_C10_INQ_HST
+WHERE INQ_NO = :INQ_NO
+		 ]]> 
+	 </query>
+</queryMap>

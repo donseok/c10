@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000110 Page 쿼리파일"> 
+	 <query id="C106000110.select" desc="품질설계 보증서조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000110   품질설계 보증서조회 C106000110.select 원성옥*/
+       B.PER_FOR_19 AS PER_FOR_19,
+       B.BRD_CMP_2 AS BRD_CMP_2,
+       A.CCL_BOM_NO AS F_CCL_BOM_NO,
+       B.BRD_CMP_2 AS BRD_CMP_2_1,
+       C.NAT_ENM,
+       C.NAT_ENM AS NAT_ENM_1,
+       B.BRD_CMP_2 AS BRD_CMP_2_2,
+       B.PER_FOR_6,
+       B.PER_FOR_19 AS PER_FOR_1_1,
+       B.BRD_CMP_2 AS BRD_CMP_2_3,
+       B.FA_TRM_7,
+       B.FA_TRM_8,
+       B.BRD_CMP_2 AS BRD_CMP_2_4,
+       B.FA_WAL_12,
+       B.FA_WAL_11,
+       B.FA_ROF_10,
+       B.FA_ROF_9,
+       B.CH_TRM_14,
+       B.CH_TRM_13,
+       B.CH_WAL_18,
+       B.CH_WAL_17,
+       B.CH_ROF_16,
+       B.CH_ROF_15,
+       B.BRD_CMP_2 AS BRD_CMP_2_5,
+       B.BRD_CMP_2 AS BRD_CMP_2_6,
+       B.BRD_CMP_2 AS BRD_CMP_2_7,
+       B.DIV_CD,
+       B.CLS_CD,
+       B.BRD_CMP_2 AS BRD_CMP_2_CHECK,
+       B.PER_FOR_19 AS PER_FOR_19_1,
+       PE_FL_20,
+       PE_FL_1,
+       func_decode01('CUS_CD','SZ0000',:CUS_CD) CUS_NM
+  FROM TB_C10_CCL_BOM     A,
+       TB_C10_WAR_TRM_MNG B,
+       TB_C10_WAR_NAT_MNG C
+ WHERE A.RSN_TP_FRN = B.RSN_TP
+   AND B.CLS_CD = C.CLS_CD
+   AND A.CCL_BOM_NO = :CCL_BOM_NO
+   AND C.NAT_CD = :NAT_CD
+   AND C.CLS_CD = :CLS_CD
+   AND TO_NUMBER(B.VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_TRM_MNG)
+   AND TO_NUMBER(C.VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_NAT_MNG)
+   AND A.CCL_BOM_WR_YN ='Y'
+		 ]]> 
+	 </query>
+	 <query id="C106000110.insert" desc="C106000110 발행 내역 테이블 저장" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_WAR_PRT_MNG( /*+ C106000110 발행 내역 테이블 저장 C106000110.insert 원성옥*/
+			WAR_PRT_SEQ_NO,
+			CCL_BOM_NO,
+			NAT_CD,
+			WAR_PRT_EMP_ID,
+			WAR_PRT_DH,
+			FNL_CUS_CD,
+			PRT_RSN,
+			BRD_CMP_2,
+			PER_FOR_19, 
+			PER_FOR_6, 
+			FA_TRM_7, 
+			FA_TRM_8, 
+			FA_ROF_9, 
+			FA_ROF_10, 
+			FA_WAL_11, 
+			FA_WAL_12, 
+			CH_TRM_13, 
+			CH_TRM_14, 
+			CH_ROF_15, 
+			CH_ROF_16, 
+			CH_WAL_17, 
+			CH_WAL_18,
+			PE_FL_20,
+			PE_FL_1, 
+	        CREATED_OBJECT_TYPE, 
+	        CREATED_OBJECT_ID,
+	        CREATED_PROGRAM_ID,
+	        CREATION_TIMESTAMP,
+	        LAST_UPDATED_OBJECT_TYPE,
+	        LAST_UPDATED_OBJECT_ID,
+	        LAST_UPDATE_PROGRAM_ID,
+	        LAST_UPDATE_TIMESTAMP)
+	VALUES((SELECT TO_CHAR(SYSDATE,'YYYYMMDD') || TO_CHAR(LPAD(NVL(MAX(TO_NUMBER(SUBSTR(WAR_PRT_SEQ_NO,9,11)))+1,1),3,0))
+   			  FROM C10APUSER.TB_C10_WAR_PRT_MNG
+ 			 WHERE CCL_BOM_NO = :CCL_BOM_NO),
+	       :CCL_BOM_NO,
+	       :NAT_CD,
+	       :ObjectId,
+	        SYSDATE,
+	       :CUS_CD,
+	       :PRT_RSN,
+	       :BRD_CMP_2,
+		   :PER_FOR_19, 
+		   :PER_FOR_6, 
+		   :FA_TRM_7, 
+		   :FA_TRM_8, 
+		   :FA_ROF_9, 
+		   :FA_ROF_10, 
+		   :FA_WAL_11, 
+		   :FA_WAL_12, 
+		   :CH_TRM_13, 
+		   :CH_TRM_14, 
+		   :CH_ROF_15, 
+		   :CH_ROF_16, 
+		   :CH_WAL_17, 
+		   :CH_WAL_18,
+		   :PE_FL_20,
+		   :PE_FL_1,
+	       :ObjectType,
+	       :ObjectId,
+	       :ProgramId,
+	       :Timestamp,
+	       :ObjectType,
+	       :ObjectId,
+	       :ProgramId,
+	       :Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000110_selNat.select" desc="보증서 국가코드 출력" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C106000110   보증서 국가코드 출력 C106000110_selNat.select 원성옥*/ 
+       DISTINCT
+       NAT_CD
+     , NAT_KNM  
+FROM TB_C10_WAR_NAT_MNG
+WHERE TO_NUMBER(VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_NAT_MNG)
+ORDER BY NAT_KNM
+		 ]]> 
+	 </query>
+	 <query id="C106000110_cclBomChk.select" desc="C106000110_cclBomChk.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000110   보증서 CCLBOM 체크여부 출력 C106000110_cclBomChk.select 원성옥*/ 
+  NVL((SELECT NVL(CCL_BOM_WR_YN,'N')
+     FROM TB_C10_CCL_BOM
+    WHERE CCL_BOM_NO = :CCL_BOM_NO),'X')  AS CCL_BOM_WR_YN FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000110.selectExp" desc="보증서예외기준조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000110   보증서예외기준조회 C106000110.selectExp 원성옥*/
+       B.PER_FOR_19 AS PER_FOR_19,
+       B.BRD_CMP_2 AS BRD_CMP_2,
+       A.CCL_BOM_NO AS F_CCL_BOM_NO,
+       B.BRD_CMP_2 AS BRD_CMP_2_1,
+       C.NAT_ENM,
+       C.NAT_ENM AS NAT_ENM_1,
+       B.BRD_CMP_2 AS BRD_CMP_2_2,
+       B.PER_FOR_6,
+       B.PER_FOR_19 AS PER_FOR_1_1,
+       B.BRD_CMP_2 AS BRD_CMP_2_3,
+       B.FA_TRM_7,
+       B.FA_TRM_8,
+       B.BRD_CMP_2 AS BRD_CMP_2_4,
+       B.FA_WAL_12,
+       B.FA_WAL_11,
+       B.FA_ROF_10,
+       B.FA_ROF_9,
+       B.CH_TRM_14,
+       B.CH_TRM_13,
+       B.CH_WAL_18,
+       B.CH_WAL_17,
+       B.CH_ROF_16,
+       B.CH_ROF_15,
+       B.BRD_CMP_2 AS BRD_CMP_2_5,
+       B.BRD_CMP_2 AS BRD_CMP_2_6,
+       B.BRD_CMP_2 AS BRD_CMP_2_7,
+       B.DIV_CD,
+       B.CLS_CD,
+       B.BRD_CMP_2 AS BRD_CMP_2_CHECK,
+       B.PER_FOR_19 AS PER_FOR_19_1,
+       PE_FL_20,
+       PE_FL_1,
+       func_decode01('CUS_CD','SZ0000',:CUS_CD) CUS_NM
+  FROM TB_C10_CCL_BOM A,
+       TB_C10_WAR_TRM_MNG_EXP B,
+       TB_C10_WAR_NAT_MNG C
+ WHERE A.CCL_BOM_NO = B.CCL_BOM_NO   
+   AND B.CLS_CD = C.CLS_CD
+   AND A.CCL_BOM_NO = :CCL_BOM_NO
+   AND C.NAT_CD = :NAT_CD
+   AND C.CLS_CD = :CLS_CD
+   AND TO_NUMBER(C.VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_NAT_MNG)
+   AND A.CCL_BOM_WR_YN ='Y'
+		 ]]> 
+	 </query>
+	 <query id="C106000110.cclBomChk" desc="예외 테이블 내 cclbom값 유무체크" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 'Y' AS CCL_BOM_CHK /*+ C106000110   예외 테이블 내 cclbom값 유무체크 C106000110.cclBomChk 원성옥*/
+  FROM TB_C10_WAR_TRM_MNG_EXP TRM,
+       TB_C10_WAR_NAT_MNG NAT
+ WHERE TRM.CLS_CD = NAT.CLS_CD
+   AND CCL_BOM_NO = :CCL_BOM_NO
+   AND NAT.NAT_CD = :NAT_CD
+   AND NAT.CLS_CD = :CLS_CD
+   AND TO_NUMBER(NAT.VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_NAT_MNG)
+		 ]]> 
+	 </query>
+	 <query id="C106000110.selectClass" desc="Class 대상 가져옴" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C106000110   보증서 CLASS 출력 C106000110.selectClass 전경진*/ 
+       CLS_CD 
+     , CLS_CD AS CLS_KNM
+FROM TB_C10_WAR_NAT_MNG
+WHERE TO_NUMBER(VER_CD) = (SELECT MAX(TO_NUMBER(VER_CD)) FROM TB_C10_WAR_NAT_MNG)
+AND  NAT_CD = :NAT_CD
+ORDER BY CLS_CD
+		 ]]> 
+	 </query>
+</queryMap>

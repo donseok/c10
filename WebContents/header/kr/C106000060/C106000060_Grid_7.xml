@@ -1,0 +1,64 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>./dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="setNoHeader">
+<param>true</param>
+</call>
+<call command="enableAlterCss">
+<param>even</param>
+<param>uneven</param>
+</call>
+<call command="enableMarkedCells">
+<param>true</param>
+</call>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enableMultiline">
+	<param>true</param>
+</call>
+<call command="attachHeader">
+<param>RMK</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="HUE_CD_FRN_4COT" index="1" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">#cspan</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">HUE_CD_FRN_4COT</userdata>
+<row id="0">
+<cell class="form_cell"  style="color:blue;font-weight:bold;">T</cell>
+</row>
+<row id="1">
+<cell class="form_cell" style="color:blue;font-weight:bold;">B</cell>
+</row>
+</rows>

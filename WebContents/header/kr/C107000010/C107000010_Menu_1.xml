@@ -1,0 +1,4 @@
+<menu>
+<item id="add" img="new.gif" imgdis="new_dis.gif" text="행추가"/>
+<item id="remove" img="remove.gif" imgdis="remove_dis.gif" text="삭제"/>
+</menu>

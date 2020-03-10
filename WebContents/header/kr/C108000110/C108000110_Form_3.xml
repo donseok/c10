@@ -1,0 +1,94 @@
+<items>
+	<item type="block" width="1000" name="BLOCK1">
+	    <item labelWidth="110" inputWidth="100" label="개발완료BOM번호" name="DEV_CMP_BOM_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발완료일시" name="DEV_CMP_DH" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+	    <item labelWidth="130" inputWidth="100" label="개발담당자" name="DEV_CHR_UID" type="input" labelAlign="right" value=""/>
+	    <item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="코팅방식" name="COT_MTH" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>	    
+	</item>
+	<item type="block" width="1000" name="BLOCK2">
+		<item labelWidth="110" inputWidth="100" label="TOP 1C" name="HUE_CD_FRN_1COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="TOP 2C" name="HUE_CD_FRN_2COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="TOP 3C" name="HUE_CD_FRN_3COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="TOP 4C" name="HUE_CD_FRN_4COT" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK3">
+		<item labelWidth="110" inputWidth="100" label="Back 1C" name="HUE_CD_BAK_1COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Back 2C" name="HUE_CD_BAK_2COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Back 3C" name="HUE_CD_BAK_3COT" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Back 4C" name="HUE_CD_BAK_4COT" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK4">
+		<item labelWidth="110" inputWidth="100" label="Print1도 Roll" name="PRT_ROLL_NO1" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Print2도 Roll" name="PRT_ROLL_NO2" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print3도 Roll" name="PRT_ROLL_NO3" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print4도 Roll" name="PRT_ROLL_NO4" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK5">
+		<item labelWidth="110" inputWidth="100" label="Print1도 Ink" name="PRT_INK_CD1" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="Print2도 Ink" name="PRT_INK_CD2" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print3도 Ink" name="PRT_INK_CD3" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="Print4도 Ink" name="PRT_INK_CD4" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK6">
+		<item labelWidth="110" inputWidth="100" label="라미나" name="HUE_CD_LMN" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="U-TEX Roll" name="UNI_TEX_ROLL_NO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="PICK-UP Roll" name="PICK_UP_ROLL_NO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="IMPRINT Roll" name="IMPT_ROLL_NO" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK7">
+		<item labelWidth="110" inputWidth="100" label="Unfixed No" name="UNFIX_NO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="내후성보증여부" name="CCL_BOM_WR_YN" type="combo" labelAlign="right">
+			<option value=""  text=" "/>
+			<option value="Y" text="Y - 보증"/>
+			<option value="N" text="N - 미보증"/>
+		</item>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="무독성구분" name="TLP_TP" type="combo" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK8">
+		<item labelWidth="110" inputWidth="100" label="재단선유무" name="CUT_LN_YN" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="핀트종류" name="PT_TP" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="불연속패턴및폭관리" name="DISC_PTN_WTH_CD" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="UNI-TEX패턴" name="UNI_TEX_PTN_CD" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK9">
+		<item labelWidth="110" inputWidth="100" label="프린트용도" name="PRT_USG_CD" type="combo" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="프린트패턴" name="PRT_PTN_CD" type="combo" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="잉크젯개발 No" name="INK_DEV_NO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="특수제품후처리 No" name="SPC_PRD_AF_NO" type="input" labelAlign="right" value=""/>
+		<item offset="1" type="newcolumn"/>
+		<item labelWidth="0" inputWidth="0" label="" name="PRD_DEV_NO" type="hidden" />
+		<item labelWidth="0" inputWidth="0" label="" name="DEV_REQ_SPEC_NO" type="hidden" />
+		<item labelWidth="0" inputWidth="0" label="" name="DEV_REQ_BOM_NO" type="hidden" />
+	</item>
+	<item type="block" width="1000" name="BLOCK10">
+		<item labelWidth="110" inputWidth="500" label="개발완료 비고" name="DEV_CMP_RMK" type="input" labelAlign="right" rows="2" value=""/>
+ 		<item offset="3" type="newcolumn"/>
+		<item command="clr_dev_call" label="Display Name" name="clr_dev_call" type="linkbutton" value="칼라코드등록"/>
+	</item>
+</items>

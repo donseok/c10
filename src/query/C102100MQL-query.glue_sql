@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100MQL"> 
+	 <query id="C102100MQL.insert" desc="재질사양 등록" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과재질등록 C102100MQL.INSERT 김종범*/                           
+TB_C10_QLT_DSN_MQL (                                                                           
+            ORD_NO                    --주문번호                                                                                    
+           ,ORD_LN                    --주문행번                                                                                    
+           ,QLT_DSN_SPC_TP            --품질설계사양구분                                                                            
+           ,TS_LLV_MPA                --TS하한값MPA                                                                                 
+           ,TS_ULV_MPA                --TS상한값MPA                                                                                 
+           ,YP_LLV_MPA                --YP하한값MPA                                                                                 
+           ,YP_ULV_MPA                --YP상한값MPA                                                                                 
+           ,ELGN_LLV                  --연신율하한값                                                                                
+           ,ELGN_ULV                  --연신율상한값                                                                                
+           ,HRB_LLV                   --HRB하한값                                                                                   
+           ,HRB_ULV                   --HRB상한값                                                                                   
+           ,ER_LLV                    --ER하한값                                                                                    
+           ,ER_ULV                    --ER상한값                                                                                    
+           ,MQL_BND_TST_STD_CD        --재질BENDING시험기준코드                                                                     
+           ,TST_PIC_GTH_INST_LOC      --시편채취지시위치                                                                            
+           ,TST_PIC_GTH_INST_LTH      --시편채취지시길이                                                                            
+           ,TPG_RGS_NO                --시편호수                                                                                    
+           ,TST_GW_FRN_LLV            --시험도금량전면하한값                                                                        
+           ,TST_GW_FRN_ULV            --시험도금량전면상한값                                                                        
+           ,TST_GW_BAK_LLV            --시험도금량후면하한값                                                                        
+           ,TST_GW_BAK_ULV            --시험도금량후면상한값                                                                        
+           ,TST_GW_TOT_LLV            --시험도금량전체하한값                                                                        
+           ,TST_GW_TOT_ULV            --시험도금량전체상한값                                                      
+           ,CREATED_OBJECT_TYPE       --생성OBJECT유형                                                                 
+           ,CREATED_OBJECT_ID         --생성OBJECTID                                                                   
+           ,CREATED_PROGRAM_ID        --생성프로그램ID                                                                 
+           ,CREATION_TIMESTAMP        --생성일시                                                                       
+           ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형     
+           ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID       
+           ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID     
+           ,LAST_UPDATE_TIMESTAMP     --최종변경일시           
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?,?,?,?,?,                                                                                     
+?,?,?,?,?,                                                                                     
+?,?,?,?,?,                                                                                     
+?,?,?,?,?,                                                                                     
+?,?,?,                                                                                         
+?,?,?,?,                                                                                       
+?,?,?,?                                                                                        
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100MQL.select" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과재질조회 C102100MQL.select 박재영*/ 
+        TS_LLV_MPA,TS_ULV_MPA,YP_LLV_MPA,YP_ULV_MPA,ELGN_LLV
+       ,ELGN_ULV,HRB_LLV,HRB_ULV,ER_LLV,ER_ULV,MQL_BND_TST_STD_CD
+       ,TST_PIC_GTH_INST_LOC,TST_PIC_GTH_INST_LTH,TPG_RGS_NO
+       ,TST_GW_FRN_LLV,TST_GW_FRN_ULV,TST_GW_BAK_LLV
+       ,TST_GW_BAK_ULV,TST_GW_TOT_LLV,TST_GW_TOT_ULV
+FROM TB_C10_QLT_DSN_MQL
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_SPC_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MQL.insert_gw" desc="C102100MQL.insert_gw" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과재질 도금량등록 C102100MQL.INSERT_GW 박재영*/                           
+TB_C10_QLT_DSN_MQL (                                                                           
+            ORD_NO                    --주문번호                                                                                    
+           ,ORD_LN                    --주문행번                                                                                    
+           ,QLT_DSN_SPC_TP            --품질설계사양구분                                                                            
+           ,TST_GW_FRN_LLV            --시험도금량전면하한값                                                                        
+           ,TST_GW_FRN_ULV            --시험도금량전면상한값                                                                        
+           ,TST_GW_BAK_LLV            --시험도금량후면하한값                                                                        
+           ,TST_GW_BAK_ULV            --시험도금량후면상한값                                                                        
+           ,TST_GW_TOT_LLV            --시험도금량전체하한값                                                                        
+           ,TST_GW_TOT_ULV            --시험도금량전체상한값                                                      
+           ,CREATED_OBJECT_TYPE       --생성OBJECT유형                                                                 
+           ,CREATED_OBJECT_ID         --생성OBJECTID                                                                   
+           ,CREATED_PROGRAM_ID        --생성프로그램ID                                                                 
+           ,CREATION_TIMESTAMP        --생성일시                                                                       
+           ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형     
+           ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID       
+           ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID     
+           ,LAST_UPDATE_TIMESTAMP     --최종변경일시           
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?,?,?,?,?,
+?,?,?,?,                                                                                         
+?,?,?,?,                                                                                       
+?,?,?,?                                                                                        
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100MQL.gw_update" desc="C102100MQL.gw_update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과재질도금량수정 C102100MQL.gw_update 박재영*/
+TB_C10_QLT_DSN_MQL SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,TST_GW_FRN_LLV = ?            --시험도금량전면하한값                                                                        
+           ,TST_GW_FRN_ULV = ?            --시험도금량전면상한값                                                                        
+           ,TST_GW_BAK_LLV = ?            --시험도금량후면하한값                                                                        
+           ,TST_GW_BAK_ULV = ?            --시험도금량후면상한값                                                                        
+           ,TST_GW_TOT_LLV = ?            --시험도금량전체하한값                                                                        
+           ,TST_GW_TOT_ULV = ?            --시험도금량전체상한값                                                      
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_SPC_TP IN ('2','4')
+		 ]]> 
+	 </query>
+	 <query id="C102100MQL.delete" desc="C102100MQL.delete" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계결과재질삭제 C102100MQL.delete 박재영*/
+FROM TB_C10_QLT_DSN_MQL
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+</queryMap>
