@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+
+<project name="UnionSteel_C10_UI" default="ftp_dev">
+    <property file="build.properties"/>
+
+    <target name="Copy_WAR" depends="war">
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.war"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>
+    </target>
+
+    <target name="Copy_EAR" depends="ear">
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.ear"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>
+    </target>
+
+    <target name="makeBuilDir">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="create-manifest" depends="makeBuilDir" description="make the manifest">
+        <tstamp>
+            <format property="TODAY_KO" pattern="yyMMdd.HHmm" timezone="GMT+9" locale="ko"/>
+        </tstamp>
+        <manifest file="${build.dir}/MANIFEST.MF">
+            <section name="POSCO ICT Glue Sample Project">
+                <attribute name="Implementation-Title" value="com.posdata.glue.sample"/>
+                <attribute name="Implementation-Version" value="${project_version}-${TODAY_KO}"/>
+                <attribute name="Implementation-Vendor" value="POSCO ICT, Inc."/>
+            </section>
+        </manifest>
+    </target>
+
+	<target name="ServerXmlChange" description="Creates the WAR file" >
+        <!-- Server 자원으로 변경. (applicationContext, log4j) -->
+        <delete file="${class.dir}/applicationContext.xml" />
+    	<delete file="${class.dir}/log4j.xml" />
+		<!--<rename src="${class.dir}/applicationContext_server.xml" dest="${class.dir}/applicationContext.xml"/>
+        	<rename src="${class.dir}/log4j_server.xml" dest="${class.dir}/log4j.xml"/> -->
+        <copy file="${src.dir}/applicationContext_server.xml" tofile="${class.dir}/applicationContext.xml" overwrite="true"/>
+        <copy file="${src.dir}/log4j_server.xml" tofile="${class.dir}/log4j.xml" overwrite="true"/>
+	</target>
+
+    <target name="war" depends="create-manifest,ServerXmlChange" description="Creates the WAR file">
+        <echo>Start Build WAR to ${build.dir} WAR Name is ${WEB_NAME}.war</echo>
+        <war destfile="${build.dir}/${WEB_NAME}.war"
+            webxml="${WebContent.dir}/WEB-INF/web.xml"
+            manifest="${build.dir}/MANIFEST.MF">
+            <fileset dir="${WebContent.dir}">
+                <patternset>
+					<include name="*.*"/>
+                    <include name="**/*.jsp"/>
+                    <include name="header/**/*.*"/>
+                    <include name="dhtmlx/codebase/imgs/clouds_grid.gif"/>
+                	<include name="dhtmlx/codebase/imgs/refresh.gif"/>
+                	<include name="dhtmlx/codebase/imgs/refresh.gif"/>
+                	<include name="dhtmlx/codebase/imgs/sort_asc.gif"/>
+                	<include name="dhtmlx/codebase/imgs/sort_desc.gif"/>
+                	<include name="dhtmlx/codebase/imgs/item_chk0_dis.gif"/>
+                	<include name="dhtmlx/codebase/imgs/item_chk0.gif"/>
+                	<include name="dhtmlx/codebase/imgs/item_chk1_dis.gif"/>
+                	<include name="dhtmlx/codebase/imgs/item_chk1.gif"/>
+                	<include name="dhtmlx/codebase/imgs/modern/*.*"/>
+                	<include name="dhtmlx/codebase/imgs/new.gif"/>
+                	<include name="dhtmlx/codebase/imgs/remove.gif"/>
+                	<include name="dhtmlx/codebase/imgs/undo.gif"/>
+                	<include name="dhtmlx/codebase/imgs/redo.gif"/>
+                	<include name="dhtmlx/codebase/imgs/copy.gif"/>
+                	<include name="dhtmlx/codebase/imgs/search.gif"/>
+                	<include name="dhtmlx/codebase/imgs/save.gif"/>
+                	<include name="dhtmlx/codebase/imgs/save_dis.gif"/>
+                	<include name="dhtmlx/codebase/imgs/excel.gif"/>
+                	<include name="dhtmlx/codebase/imgs/add.gif"/>
+                	<include name="dhtmlx/codebase/imgs/add_d.gif"/>
+                	<include name="dhtmlx/codebase/imgs/btn_clear.gif"/>
+                	<include name="dhtmlx/codebase/imgs/sky_blue_grid.gif"/>
+                	<include name="dhtmlx/codebase/imgs/btn1.gif"/>
+                	<include name="dhtmlx/codebase/imgs/btn2.gif"/>
+                	<include name="dhtmlx/codebase/imgs/btn3.gif"/>
+                	<include name="dhtmlx/codebase/imgs/upload.gif"/>
+                	<include name="dhtmlx/codebase/imgs/clean.gif"/>
+                	<include name="dhtmlx/codebase/imgs/delete.gif"/>
+                	<include name="dhtmlx/codebase/imgs/pb_back.gif"/>
+                	<include name="dhtmlx/codebase/imgs/pb_demoupload.gif"/>
+                	<include name="dhtmlx/codebase/imgs/pb_empty.gif"/>
+                	<include name="dhtmlx/codebase/imgs/rowsel.gif"/>
+                	<include name="dhtmlx/codebase/imgs/ico_file.png"/>
+                	<include name="dhtmlx/codebase/imgs/ico_image.png"/>
+                	<include name="dhtmlx/codebase/imgs/ico_video.png"/>
+                	<include name="dhtmlx/codebase/imgs/ico_zip.png"/>
+                	<include name="dhtmlx/codebase/imgs/ico_sound.png"/>                	
+                	<include name="dhtmlx/codebase/imgs/modify.gif"/>
+                	<include name="dhtmlx/codebase/imgs/modify_dis.gif"/>                	
+                    <include name="dhtmlx/codebase/glue.ui.bootstrap.js"/>
+                    <include name="dhtmlx/codebase/glue.3x.ui.bootstrap.js"/>
+                    <include name="dhtmlx/codebase/dhtmlxvault.css"/>
+                    <include name="dhtmlx/codebase/dhtmlxvault.js"/>
+                	<include name="js/c10.ui.js"/>
+                	<include name="dhtmlx/codebase/imgs/msds.jpg"/>
+                	<include name="dhtmlx/data/contextmenu.xml"/>                    
+                    <!-- 송범용 추가. 테스트해보세요  --> 
+                    <exclude name="*.html"/>
+                </patternset>
+            </fileset>
+            <webinf dir="${WebContent.dir}/WEB-INF/" >
+                <patternset>
+                    <include name="*.*"/>
+                </patternset>
+            </webinf>
+            <classes dir="${class.dir}">
+                <patternset>
+                    <include name="**/*.*"/>
+                    <exclude name="application.xml"/>
+                    <exclude name="http.xml"/>
+                </patternset>
+            </classes>
+            <lib dir="${WebContent.dir}/WEB-INF/lib">
+                <include name="*.*"/>
+            </lib>
+            
+            
+            
+            <!-- 송범용 변경 
+            <lib dir="${GlueSDK.dir}/lib/gluelib">
+                <include name="glue-gun.jar"/>
+                <include name="glue.jar"/>
+            </lib>
+            <lib dir="${GlueSDK.dir}/lib/gluestd">
+                <include name="struts.jar"/>
+                <include name="spring.jar"/>
+                <include name="log4j-1.2.13.jar"/>
+                <include name="jcs-1.2.7.7_cache.jar"/>
+                <include name="commons-logging.jar"/>
+                <include name="commons-digester.jar"/>
+                <include name="commons-beanutils.jar"/>                
+            </lib>
+            -->
+        </war>
+        <echo>End war</echo>
+    </target>
+
+    <target name="ear" depends="war" description="Creates the EAR file">
+        <echo>Start Build EAR to ${build.dir} EAR Name is ${APP_NAME}.ear</echo>
+        <ear destfile="${build.dir}/${APP_NAME}.ear"
+            appxml="${class.dir}/application.xml"
+            manifest="${build.dir}/MANIFEST.MF">
+            <fileset dir="${build.dir}" includes="${WEB_NAME}.war"/>
+        </ear>
+        <echo>End ear</echo>
+    </target>
+	
+   <target name="ftp_dev" description="Dev FTP Server Send" depends="Copy_WAR">
+        <echo>Dev FTP Server Send</echo>
+        <ftp action="put" userid="${devServer.user}" password="${devServer.password}" server="${devServer.serverIp}"  remotedir="${devServer.scmdir}" passive="yes" >
+        <fileset dir="${build.dir}">
+            <include name="${WEB_NAME}.war"/>
+        </fileset>
+        </ftp>
+        <echo>Success FTP Sending</echo>
+    </target>
+	
+    <!-- test계 deploy.sh 실행시 계발계 C10.war 화일 가져와서 실행함
+    <target name="ftp_test" description="Test FTP Server Send" depends="Copy_WAR">
+        <echo>Test FTP Server Send</echo>
+        <ftp action="put" userid="${testServer.user}" password="${testServer.password}" server="${testServer.serverIp}"  remotedir="${testServer.scmdir}" passive="yes" >
+        <fileset dir="${build.dir}">
+            <include name="${WEB_NAME}.war"/>
+        </fileset>
+        </ftp>
+        <echo>Success FTP Sending</echo>
+    </target>
+    -->
+ 
+</project>

@@ -1,0 +1,78 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableAutoWidth"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="enableColSpan"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+<call command="enableAlterCss"><param>even</param><param>uneven</param></call>
+<call command="setNoHeader"><param>true</param></call>
+</beforeInit>
+<column align="center" id="SPC_AVR_GIJUN" index="1" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="9"></column>
+<column align="center" id="GRD_GIJUN" index="2" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="17"></column>
+<column align="center" id="PRD_THK_RNG_LLV" index="3" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="13"></column>
+<column align="center" id="PRD_THK_RNG_ULV" index="4" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="13"></column>
+<column align="center" id="PRD_WTH_RNG_LLV" index="5" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="12"></column>
+<column align="center" id="PRD_WTH_RNG_ULV" index="6" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="12"></column>
+<column align="center" id="PRD_LTH_RNG_LLV" index="7" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="12"></column>
+<column align="center" id="PRD_LTH_RNG_ULV" index="8" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="12"></column>
+<column align="center" id="PRD_THK_SPC_RNG_LLV" index="9" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="0" hidden="true"></column>
+<column align="center" id="PRD_THK_SPC_RNG_ULV" index="10" sort="str" table="TB_C10_QLT_DSN_MNF" type="ro" width="0" hidden="true"></column>
+<column align="center" id="ORD_NO" index = "11" sort="na" dbname="주문번호" width="0" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="주문번호" hidden = "true">주문번호</column>
+<column align="center" id="ORD_LN" index = "12" sort="na" dbname="주문행번" width="0" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="주문행번" hidden = "true">행번</column>
+<column align="center" id="APR_INP_BAS_CD" index="13" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="0" hidden="true"></column>
+<column align="center" id="PRD_THK_CAL_APL_CD" index="14" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="0"  hidden="true"></column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">SPC_AVR_GIJUN,GRD_GIJUN,PRD_THK_RNG_LLV,PRD_THK_RNG_ULV,PRD_WTH_RNG_LLV,PRD_WTH_RNG_ULV,PRD_LTH_RNG_LLV,PRD_LTH_RNG_ULV,PRD_THK_SPC_RNG_LLV,PRD_THK_SPC_RNG_ULV,ORD_NO,ORD_LN,APR_INP_BAS_CD,PRD_THK_CAL_APL_CD</userdata>
+<row id="0">
+<cell class="form_cell" rowspan="2" colspan="2" style="font-weight:bold;">적용기준</cell>
+<cell class="form_cell">적용기준</cell>
+<cell class="form_cell" colspan="2" style="font-weight:bold;">제품 두께 범위</cell>
+<cell class="form_cell">제품 두께 범위</cell>
+<cell class="form_cell" colspan="2" style="font-weight:bold;">제품 폭 범위</cell>
+<cell class="form_cell">제품 폭 범위</cell>
+<cell class="form_cell" colspan="2" style="font-weight:bold;">제품 길이 범위</cell>
+<cell class="form_cell">제품 길이 범위</cell>
+</row>
+<row id="1">
+<cell class="form_cell">적용기준</cell>
+<cell class="form_cell" style="font-weight:bold;">하한</cell>
+<cell class="form_cell" style="font-weight:bold;">상한</cell>
+<cell class="form_cell" style="font-weight:bold;">하한</cell>
+<cell class="form_cell" style="font-weight:bold;">상한</cell>
+<cell class="form_cell" style="font-weight:bold;">하한</cell>
+<cell class="form_cell" style="font-weight:bold;">상한</cell>
+</row>
+<row id="2">
+<cell class="form_cell" style="font-weight:bold;">설계기준</cell>
+<cell id="GRD_GIJUN"></cell>
+<cell id="PRD_THK_RNG_LLV" type="ed"></cell>
+<cell id="PRD_THK_RNG_ULV" type="ed"></cell>
+<cell id="PRD_WTH_RNG_LLV" type="ed"></cell>
+<cell id="PRD_WTH_RNG_ULV" type="ed"></cell>
+<cell id="PRD_LTH_RNG_LLV" type="ed"></cell>
+<cell id="PRD_LTH_RNG_ULV" type="ed"></cell>
+<cell id="PRD_THK_SPC_RNG_LLV" hidden="true"></cell>
+<cell id="PRD_THK_SPC_RNG_ULV" hidden="true"></cell>
+<cell id="ORD_NO" hidden="true"></cell>
+<cell id="ORD_LN" hidden="true"></cell>
+</row>
+<row id="3">
+<cell class="form_cell" style="font-weight:bold;">규격기준</cell>
+<cell id="SPC_AVR_GIJUN"></cell>
+<cell id="PRD_THK_SPC_RNG_LLV" type="ed"></cell>
+<cell id="PRD_THK_SPC_RNG_ULV" type="ed"></cell>
+<cell class="form_cell" colspan="2">외관검사기준</cell>
+<cell class="form_cell1"></cell>
+<cell id="APR_INP_BAS_CD" colspan="2"></cell>
+<cell class="form_cell"></cell>
+</row>
+</rows>

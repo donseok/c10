@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C107000050pop01-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="end" />
+  </activity>
+</service>
+

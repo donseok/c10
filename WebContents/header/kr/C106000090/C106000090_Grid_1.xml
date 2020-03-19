@@ -1,0 +1,247 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" clabel="칼라코드" dbname="코드" id="CLR_SUB_MTL_CD" index="1" sort="str" table="TB_C10_CLR_CD_MNG"  type="ro" width="22">칼라코드</column>
+<column align="left" clabel="색상명" dbname="색상명" id="CLR_NM" index="2" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="*">색상명</column>
+<column align="center" id="SUB_MTL_TP" index="3" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="15">구분</column>
+
+<column align="center" clabel="BOM코드" dbname="코드" id="CCL_BOM_NO" index="4" sort="str" table="TB_C10_CCL_BOM"  type="ro" width="22">BOM코드</column>
+<column align="left" clabel="대표색상" dbname="대표색상" id="DTL_CLR_NM" index="5" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">대표색상</column>
+<column align="center" id="RSN_TP_FRN" index="6" sort="str" table="TB_C10_CCL_BOM" type="ro" width="15">수지</column>
+
+<column align="center" id="RSN_TP" index="7" sort="str" table="TB_C10_CCL_BOM" type="ro" width="22">수지타입</column>
+<column align="left" id="RSN_TP_NM" index="8" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">타입명</column>
+
+<column align="center" id="PRT_ROLL_NO" index="9" sort="str" table="TB_C10_CCL_BOM" type="ro" width="22">Print Roll</column>
+<column align="left" id="RPV_CLR_NM" index="10" sort="str" table="TB_C10_CCL_BOM" type="ro" width="30">대표색상</column>
+<column align="left" id="PTN_NM" index="11" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">패턴명</column>
+
+<column align="center" id="CCL_BOM_NO1" index="12" sort="str" table="TB_C10_CCL_BOM" type="ro" width="30">CCL BOM</column>
+<column align="left" id="COT_MTH_NM" index="13" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">코팅방법</column>
+
+<column align="center" id="CLR_SUB_MTL_CD_INK" index="14" sort="str" table="TB_C10_CCL_BOM" type="ro" width="22">lnk코드</column>
+<column align="left" id="CLR_NM_INK" index="15" sort="str" table="TB_C10_CCL_BOM" type="ro" width="30">대표색상</column>
+<column align="left" id="RSN_TP_INK" index="16" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">수지타입</column>
+
+<column align="center" id="PTT_FLM_DTL_CD" index="17" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">보호필름상세코드</column>
+
+<column align="center" clabel="접착제코드" dbname="접착제코드" id="LMN_BND_CD" index="18" sort="str" table="TB_C10_CLR_CD_MNG"  type="ro" width="22">접착제코드</column>
+<column align="left" clabel="색상명" dbname="색상명" id="BND_CLR_NM" index="19" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="*">색상명</column>
+<column align="center" id="BND_SUB_MTL_TP" index="20" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="15">구분</column>
+
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,CCL_BOM_NO,DTL_CLR_NM,RSN_TP_FRN,RSN_TP,RSN_TP_NM,PRT_ROLL_NO,RPV_CLR_NM,PTN_NM,CCL_BOM_NO1,COT_MTH_NM,CLR_SUB_MTL_CD_INK,CLR_NM_INK,RSN_TP_INK,PTT_FLM_DTL_CD,LMN_BND_CD,BND_CLR_NM,BND_SUB_MTL_TP</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="17">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="18">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="19">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="20">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="21">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

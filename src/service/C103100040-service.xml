@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C103100040-service" initial="INIT_QLT_ERR">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="MNF_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="success" value="CLEAR_MQL_MNF" />
+    <transition name="exit" value="PROC_LOOP" />
+    <property name="countName" value="MNF_CD_COUNT" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="QLT_DSN_MNF_TP|QLT_DSN_MNF_TP" />
+    <property name="param-count" value="3" />
+    <property name="bind-result" value="MNF_SEARCH" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="MODIFY_MQL" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="MODIFY_MNF" />
+    <transition name="failure" value="ERROR_CD" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param-count" value="8" />
+    <property name="param0" value="TST_GW_FRN_LLV" />
+    <property name="param1" value="TST_GW_FRN_ULV" />
+    <property name="param2" value="TST_GW_BAK_LLV" />
+    <property name="dao" value="mesdao" />
+    <property name="param3" value="TST_GW_BAK_ULV" />
+    <property name="param4" value="TST_GW_TOT_LLV" />
+    <property name="param5" value="TST_GW_TOT_ULV" />
+    <property name="param6" value="ORD_NO" />
+    <property name="param7" value="ORD_LN" />
+    <property name="sqlkey" value="C102100MQL.gw_update" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchGwTotData">
+    <transition name="false" value="MNF_LOOP" />
+    <transition name="failure" value="SUBSERVICE_ERR" />
+    <transition name="success" value="MODIFY_MQL" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="MNF_SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="MNF_LOOP" />
+    <transition name="failure" value="ERROR_LOG" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100MNF.select" />
+    <property name="param0" value="ORD_NO" />
+    <property name="resultkey" value="MNF_SEARCH" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="ERROR_LOG" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SUBSERVICE_ERR" />
+    <property name="param0" value="P_ERR_KEY|N" />
+    <property name="param1" value="QLT_DSN_ERR_CD|TB06" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="MODIFY_ERR" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C1021000CMN.modify" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="CLEAR_MQL_MNF" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH_MD" />
+    <property name="param10" value="WK_GW_BAK_LLV|sp_null" />
+    <property name="param11" value="WK_GW_TOT_ULV|sp_null" />
+    <property name="param-count" value="16" />
+    <property name="param12" value="WK_GW_TOT_LLV|sp_null" />
+    <property name="param13" value="GAL_THK_LLV|sp_null" />
+    <property name="param14" value="GAL_THK_ULV|sp_null" />
+    <property name="param15" value="GAL_THK_TRV|sp_null" />
+    <property name="param0" value="TST_GW_FRN_LLV|sp_null" />
+    <property name="param1" value="TST_GW_FRN_ULV|sp_null" />
+    <property name="param2" value="TST_GW_BAK_LLV|sp_null" />
+    <property name="param3" value="TST_GW_BAK_ULV|sp_null" />
+    <property name="param4" value="TST_GW_TOT_LLV|sp_null" />
+    <property name="param5" value="TST_GW_TOT_ULV|sp_null" />
+    <property name="param6" value="WK_GW_TRV|sp_null" />
+    <property name="param7" value="WK_GW_FRN_ULV|sp_null" />
+    <property name="param8" value="WK_GW_FRN_LLV|sp_null" />
+    <property name="param9" value="WK_GW_BAK_ULV|sp_null" />
+  </activity>
+  <activity name="SUBSERVICE_ERR" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="MODIFY_ERR" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100140-service" />
+  </activity>
+  <activity name="ERROR_CD" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SUBSERVICE_ERR" />
+    <property name="param0" value="P_ERR_KEY|N" />
+    <property name="param1" value="QLT_DSN_ERR_CD|TB03" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100CMN.Jselect" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="MNF_SEARCH" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param3" value="GW_ASG_CD|GW_ASG_CD" />
+    <property name="param-count" value="4" />
+    <property name="bind-result" value="RK_SEARCH" />
+  </activity>
+  <activity name="MODIFY_MNF" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="failure" value="ERROR_LOG" />
+    <transition name="success" value="MNF_LOOP" />
+    <property name="sqlkey" value="C102100MNF.gw_update" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param0" value="WK_GW_TRV" />
+    <property name="param1" value="WK_GW_FRN_ULV" />
+    <property name="param2" value="WK_GW_FRN_LLV" />
+    <property name="param10" value="SPC_GAL_THK" />
+    <property name="param3" value="WK_GW_BAK_ULV" />
+    <property name="param11" value="ORD_NO" />
+    <property name="param4" value="WK_GW_BAK_LLV" />
+    <property name="param12" value="ORD_LN" />
+    <property name="param-count" value="14" />
+    <property name="param5" value="WK_GW_TOT_ULV" />
+    <property name="param13" value="QLT_DSN_MNF_TP" />
+    <property name="param6" value="WK_GW_TOT_LLV" />
+    <property name="param7" value="GAL_THK_LLV" />
+    <property name="param8" value="GAL_THK_ULV" />
+    <property name="param9" value="GAL_THK_TRV" />
+    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
+  </activity>
+</service>
+

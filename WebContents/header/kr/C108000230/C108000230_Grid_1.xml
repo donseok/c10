@@ -1,0 +1,68 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="TST_NO"  	 index="0" sort="sort_str_custom" align="left" width="10" type="ro">TEST번호</column>
+<column id="TST_PRG_CD"  index="1" sort="sort_str_custom" align="left" width="10" type="ro">진도</column>
+<column id="TST_TP"  	 index="2" sort="sort_str_custom" align="left" width="10" type="ro">TEST유형</column>
+<column id="TST_REQ_ID"  index="3" sort="sort_str_custom" align="left" width="10" type="ro">요청자</column>
+<column id="REQ_RGS_DH"  index="4" sort="sort_str_custom" align="left" width="10" type="ro">요청일시</column>
+<column id="PRD_DEV_NO"  index="5" sort="sort_str_custom" align="left" width="10" type="ro">개발번호</column>
+<column id="CLAIM_NO" 	 index="6" sort="sort_str_custom" align="left" width="10" type="ro">불만번호</column>
+<column id="TST_TITLE"   index="7" sort="sort_str_custom" align="left" width="10" type="ro">의뢰제목</column>
+<column id="TST_CONTENT" index="8" sort="sort_str_custom" align="left" width="15" type="ro">의뢰 내용</column>
+<column id="TST_CMP"  	 index="9" sort="sort_str_custom" align="left" width="10" type="ro">수행처</column>
+<column id="TST_OUT_CMP" index="10" sort="sort_str_custom" align="left" width="10" type="ro">수행 외부기관명</column>
+<column id="TST_LINE"    index="11" sort="sort_str_custom" align="left" width="5" type="ro">공정</column>
+<column id="CMP_RGS_DH"  index="12" sort="sort_str_custom" align="left" width="10" type="ro">완료기한</column>
+<column id="ORD_NO"		 index="13" sort="sort_str_custom" align="left" width="12" type="ro">주문번호</column>
+<column id="TST_RMK"     index="14" sort="sort_str_custom" align="left" width="15" type="ro">특기사항</column>
+<column id="FILE_YN"     index="15" sort="sort_str_custom" align="left" width="6" type="ro"><![CDATA[요청<br>첨부파일]]></column>
+<column id="TST_RSP_ID"  index="16" sort="sort_str_custom" align="left" width="12" type="ro">수행담당자</column>
+<column id="TST_CMP_DH"  index="17" sort="sort_str_custom" align="left" width="12" type="ro">완료예정일</column>
+<column id="TST_FLD_LOC" index="18" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Field<br>Test 위치]]></column>
+<column id="TST_START_DH" index="19" sort="sort_str_custom" align="left" width="12" type="ro">Test 시작일</column>
+<column id="TST_END_DH"	 index="20" sort="sort_str_custom" align="left" width="12" type="ro">Test 완료일</column>
+<column id="TST_RST"  	 index="21" sort="sort_str_custom" align="left" width="12" type="ro">결과(요약)</column>
+<column id="DOC_YN"      index="22" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[완료<br>첨부파일]]></column>
+<column id="TST_REQ_FILE"  	 index="23" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">요청YN</column>
+<column id="TST_END_FILE"  	 index="24" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">완료YN</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">TST_NO,TST_PRG_CD,TST_TP,TST_REQ_ID,REQ_RGS_DH,PRD_DEV_NO,CLAIM_NO,TST_TITLE,TST_CONTENT,TST_CMP,TST_OUT_CMP,TST_LINE,CMP_RGS_DH,ORD_NO,TST_RMK,FILE_YN,TST_RSP_ID,TST_CMP_DH,TST_FLD_LOC,TST_START_DH,TST_END_DH,TST_RST,DOC_YN,TST_REQ_FILE,TST_END_FILE</userdata>
+</rows>

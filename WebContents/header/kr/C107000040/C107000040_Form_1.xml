@@ -1,0 +1,55 @@
+<items>
+<item type="block" width="971">
+<item dateFormat="%Y-%m-%d" inputWidth="65" label="설계확정일자" labelAlign="right" labelWidth="80" name="QLT_DSN_CFM_DH_STR" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="QLT_DSN_CFM_DH_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item dateFormat="%Y-%m-%d" inputWidth="65" name="QLT_DSN_CFM_DH_END" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="65" label="도금량" labelAlign="right" labelWidth="40"  name="GW_ASG_CD_NM" type="combo"/>
+<item label="도금량코드" name="GW_ASG_CD" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="70" label="재질" labelAlign="right" labelWidth="30" name="MQL_CD_NM" type="combo"/>
+<item label="재질코드" name="MQL_CD" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="60" label="유형" labelAlign="right" labelWidth="30" name="PRD_SHP_NM" type="combo"/>
+<item label="유형" name="PRD_SHP" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="65" label="수지" labelAlign="right" labelWidth="30" name="RSN_TP_NM" type="combo"/>
+<item label="수지" name="RSN_TP" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="50" label="등록자" labelAlign="right" labelWidth="40" name="ORD_RGS_PRS_NAME" type="input" style="background-color:#FFFFC0"/>
+<item offset="5" type="newcolumn"/>
+<item command="find" label="find" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="971">
+<item inputWidth="70" label="품명" labelAlign="right" labelWidth="80" name="PRD_NM_CD_NM" type="combo"/>
+<item label="품명" name="PRD_NM_CD" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="45" label="압연set" labelAlign="right" labelWidth="45" maxLength="6" name="PLTCM_SET_THK_TRV_STR" style="text-align:right" type="input"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="PLTCM_SET_THK_TRV_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="45" name="PLTCM_SET_THK_TRV_END" style="text-align:right" type="input"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="45" label="제품폭" labelAlign="right" labelWidth="45" maxLength="6" name="ORD_EXC_WTH_STR" style="text-align:right" type="input"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="ORD_EXC_WTH_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="45" name="ORD_EXC_WTH_END" style="text-align:right" type="input"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="60" label="엠보스" labelAlign="right" labelWidth="40" name="EMBS_CD_NM" type="combo"/>
+<item label="엠보스" name="EMBS_CD" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="60" label="조도" labelAlign="right" labelWidth="30" name="ORD_ROU_CD_NM" type="combo"/>
+<item label="조도" name="ORD_ROU_CD" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="60" label="스팽글" labelAlign="right" labelWidth="40" name="ORD_SPNL_TP_NM" type="combo"/>
+<item label="스팽글" name="ORD_SPNL_TP" type="hidden"/>
+<item offset="3" type="newcolumn"/>
+<item inputWidth="60" label="후처리" labelAlign="right" labelWidth="40" name="ORD_SUR_HND_CD_NM" type="combo"/>
+<item label="후처리" name="ORD_SUR_HND_CD" type="hidden"/>
+</item>
+</items>

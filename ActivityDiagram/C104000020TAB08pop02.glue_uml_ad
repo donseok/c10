@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="252,274" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="176,82" size="202,-1" input="//@wire.0" output="//@wire.2" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="236,192" size="95,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020TAB08pop02.select"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="282,211" lastRelativePoint="282,272"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="266,112" lastRelativePoint="282,193">
+    <bendpoint weight="0.5" firstDimension="-57,49" secondDimension="-1,-47"/>
+  </wire>
+  <wire id="8" guardcondition="success" firstRelativePoint="353,209" lastRelativePoint="353,209"/>
+</Glue:GlueDiagram>

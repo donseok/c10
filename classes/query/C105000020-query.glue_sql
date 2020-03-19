@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C105000020"> 
+	 <query id="C105000020.select" desc="생산가부수동검토 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 생산가부수동검토 C105000020.select 이민균 */ 
+    INQ_STS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'INQ_STS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = INQ_STS_CD) AS INQ_STS_CD,--상태
+    PRD_NM_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'PRD_NM_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = PRD_NM_CD) AS PRD_NM_CD,--품명
+    CUS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = CUS_CD) AS CUS_CD, -- 고객사
+    SPC_AVR, --규격약호
+    ORD_USG_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_USG_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_USG_CD) AS  ORD_USG_CD, --주문용도
+    GW_ASG_CD || (SELECT ' : ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'GW_ASG_CD'         
+     AND   CATEGORY_GROUP_NM = (CASE WHEN  PRD_NM_CD = 'G' OR PRD_NM_CD = 'K' OR  PRD_NM_CD = '3' OR PRD_NM_CD = 'J' THEN 'SG0000'
+                                     WHEN  PRD_NM_CD = 'L' OR  PRD_NM_CD = '4' THEN 'SL0000'
+                                     WHEN  PRD_NM_CD = 'V' OR  PRD_NM_CD = '6' THEN 'SV0000'
+                                     WHEN  PRD_NM_CD = 'W' OR  PRD_NM_CD = '9' THEN 'SW0000'
+                                     WHEN  PRD_NM_CD = 'E' OR  PRD_NM_CD = '2' THEN 'SE0000'
+                                     WHEN  PRD_NM_CD = 'N' OR  PRD_NM_CD = '8' THEN 'SE0000'
+                                     ELSE  'SZ0000' END)
+     AND   CD_V = GW_ASG_CD) AS GW_ASG_CD, --도금량코드
+    FLOW_CHL || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'FLOW_CHL'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FLOW_CHL) AS  FLOW_CHL, --유통경로
+    ORD_LN_WGT, --주문행번중량
+    ORD_EXC_THK, --두께
+    ORD_EXC_WTH, --폭
+    ORD_EXC_LTH, --길이
+    PRD_SHP || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'PRD_SHP'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = PRD_SHP) AS  PRD_SHP, --제품형태
+    ORD_REQ_NO, --주문요청번호
+    ORD_REQ_LN, --주문요청행번
+    ORD_SUR_HND_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SUR_HND_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SUR_HND_CD) AS  ORD_SUR_HND_CD, --표면후처리
+    ORD_CHR_PRS_ID, --영업담당자
+    TO_CHAR(INQ_RCP_DH,'yyyy-mm-dd hh24:mi:ss') AS INQ_RCP_DH, --의뢰일시
+    QLT_CHR_PRS_ID, --품질담당자
+    INQ_REQ_TP || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'INQ_REQ_TP'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = INQ_REQ_TP) AS  INQ_REQ_TP, -- Inquiry구분    
+    INQ_AUT_SRT_END_DH, --Inquiry자동검토일시
+    INQ_AUT_SRT_RSL_CD, --Inquiry자동검토결과    
+    (SELECT CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'INQ_SRT_RSL_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = INQ_PSV_SRT_RSL_CD) AS  INQ_PSV_SRT_RSL_CD_NM, --최종검토결과(Inquiry수동검토결과코드)
+    INQ_PSV_SRT_RSL_CD,
+    INQ_SRT_END_DH, --최종검토완료일(Inquiry수동검토일시)
+    INQ_SRT_RSL_SND_DH, --검토결과전송일(Inquiry검토결과전송일시)
+    INQ_PSV_SRT_RSL_CD1, --1차검토결과
+    INQ_PSV_SRT_END_DH1, --1차 수동검토일
+    INQ_SRT_RSL_SND_DH1, --1차 결과전송일
+    INQ_PSV_SRT_RSL_CD2, --2차검토결과
+    INQ_PSV_SRT_END_DH2, --2차 수동검토일
+    INQ_SRT_RSL_SND_DH2, --2차 결과전송일
+    TO_CHAR(INQ_END_DH,'yyyy-mm-dd hh24:mi:ss') AS INQ_END_DH, --종료일시
+    CUS_SPC_RGS_DH,      --고객사양등록일
+    CUS_BTH_PAP_NO,      --고객사양번호
+    INQ_REQ_TXT,         --검토요청(최종)
+    INQ_REQ_TXT1,        --검토요청(이력)
+    INQ_SRT_TXT,         --검토결과(최종)
+    INQ_SRT_TXT1         --검토요청(이력)
+FROM TB_C10_INQ_HST
+WHERE INQ_NO = :INQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C105000020.update" desc="생산가부수동검토 저장" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 생산가부수동검토 C105000020.update 이민균 */ 
+TB_C10_INQ_HST SET
+INQ_STS_CD = :INQ_STS_CD, 
+INQ_PSV_SRT_RSL_CD = :INQ_PSV_SRT_RSL_CD, --최종검토결과(Inquiry수동검토결과코드)
+INQ_SRT_END_DH = DECODE(NVL(:INQ_SRT_END_DH,'%'),'%',INQ_SRT_END_DH, TO_DATE(:INQ_SRT_END_DH,'yyyy-mm-dd HH24miss')), --최종검토완료일(Inquiry수동검토일시)
+INQ_SRT_RSL_SND_DH = DECODE(NVL(:INQ_SRT_RSL_SND_DH,'%'),'%',INQ_SRT_RSL_SND_DH, TO_DATE(:INQ_SRT_RSL_SND_DH,'yyyy-mm-dd HH24miss')), --검토결과전송일(Inquiry검토결과전송일시)
+INQ_PSV_SRT_RSL_CD1 = :INQ_PSV_SRT_RSL_CD1, --1차검토결과
+INQ_PSV_SRT_END_DH1 = DECODE(NVL(:INQ_PSV_SRT_END_DH1,'%'),'%',INQ_PSV_SRT_END_DH1, TO_DATE(:INQ_PSV_SRT_END_DH1,'yyyy-mm-dd HH24miss')), --1차 수동검토일
+INQ_SRT_RSL_SND_DH1 = DECODE(NVL(:INQ_SRT_RSL_SND_DH1,'%'),'%',INQ_SRT_RSL_SND_DH1, TO_DATE(:INQ_SRT_RSL_SND_DH1,'yyyy-mm-dd HH24miss')), --1차 결과전송일
+INQ_PSV_SRT_RSL_CD2 = :INQ_PSV_SRT_RSL_CD2, --2차검토결과
+INQ_PSV_SRT_END_DH2 = DECODE(NVL(:INQ_PSV_SRT_END_DH2,'%'),'%',INQ_PSV_SRT_END_DH2, TO_DATE(:INQ_PSV_SRT_END_DH2,'yyyy-mm-dd HH24miss')), --2차 수동검토일
+INQ_SRT_RSL_SND_DH2 = DECODE(NVL(:INQ_SRT_RSL_SND_DH2,'%'),'%',INQ_SRT_RSL_SND_DH2, TO_DATE(:INQ_SRT_RSL_SND_DH2,'yyyy-mm-dd HH24miss')), --2차 결과전송일
+CUS_SPC_RGS_DH = DECODE(NVL(:CUS_SPC_RGS_DH,'%'),'%',CUS_SPC_RGS_DH, TO_DATE(:CUS_SPC_RGS_DH,'yyyy-mm-dd HH24miss')), --고객사양등록일
+CUS_BTH_PAP_NO = DECODE(NVL(:CUS_BTH_PAP_NO,'%'),'%',CUS_BTH_PAP_NO,:CUS_BTH_PAP_NO),      --고객사양번호
+INQ_SRT_TXT = :INQ_SRT_TXT,         --검토결과(최종)
+INQ_SRT_TXT1 = :INQ_SRT_TXT1,         --검토결과(이력)
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp      
+WHERE  INQ_NO = :INQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C105000020.inquiry_end_update" desc="C105000020.inquiry_end_update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 생산가부수동검토 C105000020.inquiry_end_update 이민균 */ 
+TB_C10_INQ_HST SET
+INQ_STS_CD = :INQ_STS_CD,  -- Inquiry상태코드'9'완료 
+INQ_END_DH = SYSDATE,   --종료일시
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp      
+WHERE  INQ_NO = :INQ_NO
+		 ]]> 
+	 </query>
+</queryMap>

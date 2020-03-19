@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000207120-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="ForwardPop01Page" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="GetChainCode" />
+    <property name="forwardname" value="pop01" />
+  </activity>
+  <activity name="SaveRequestedWord" class="com.poscoict.glue.master.ui.attr.SaveRequestedWord">
+    <transition name="new" value="end" />
+    <transition name="success" value="GetWordForSign" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardPop02Page" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="pop02" />
+  </activity>
+  <activity name="GetChainCode" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00WorkGroup.select" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="ChainCodeList" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="Router" />
+    <property name="cache-key" value="_SYS_V_TERMS_SECTION|_SYS_F_PROGRESS_STS|LANGUAGE_CODE" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetWordList" class="com.poscoict.glue.master.ui.attr.GetRequestedWordList">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="20" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207120.getWordListAllStatus" />
+    <property name="resultkey" value="WordList" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPage" />
+  </activity>
+  <activity name="GetWordForSign" class="com.poscoict.glue.master.ui.attr.GetRequestedWordList">
+    <transition name="success" value="ForwardPop01Page" />
+    <property name="pagesize" value="-1" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207120.getWordListAllStatus" />
+    <property name="resultkey" value="WordList" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPage" />
+  </activity>
+  <activity name="GetStdTermsName" class="com.poscoict.glue.master.ui.attr.GetStandardWordList">
+    <transition name="success" value="ForwardPop02Page" />
+    <property name="pagesize" value="20" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207110.getWordList" />
+    <property name="resultkey" value="WordList" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPage" />
+  </activity>
+  <activity name="Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="new" value="ForwardPop01Page" />
+    <transition name="sign" value="GetWordForSign" />
+    <transition name="pop02" value="GetStdTermsName" />
+    <transition name="success" value="GetWordList" />
+    <transition name="regist" value="SaveRequestedWord" />
+  </activity>
+</service>
+

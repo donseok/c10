@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="135,16" size="-1,-1" output="//@wire.4"/>
+  <child xsi:type="Glue:Activity" id="2240" location="71,148" size="150,-1" input="//@wire.4" output="//@wire.1 //@wire.0" name="CUS_ORD_ERR_CHK">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCusOrderErrorCheck"/>
+    <property key="bind-result" value="RK_MAIN"/>
+    <property key="buni-list" value="RK_SEARCH"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="dao" value="mesdao"/>
+    <property key="prodSpecKind" value="1"/>
+    <property key="description" value="이 Activity는 품질설계를 의뢰받은 주문을 주문행번단위로 주문의 정합성을 검증하고, &#xD;&#xA;정상인 경우 품질설계작업 서비스를 Call하는 Activity이다. &#xD;&#xA;- 정합성Check기준은 FD설계서를 참조&#xD;&#xA;  . 정합성 Check결과 정상인 경우 transition='success', &#xD;&#xA;                                 아닌 경우 'failure'로 Set하고 종료한다.&#xD;&#xA;- 오류가 발생한 경우 오류 내역을 PosContext에 등록한다."/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="2373" location="434,195" size="127,-1" input="//@wire.2" output="//@wire.3" name="SUBSERVICE">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="2972" location="125,252" size="-1,-1" input="//@wire.0 //@wire.3"/>
+  <child xsi:type="Glue:Activity" id="10719" location="300,147" size="121,-1" input="//@wire.1" output="//@wire.2" name="ERROR_LOG2">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|KC02"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 주문정합성을 검증하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문정보의 정합성을 확인하기 위한 기초정보를 편성&#xD;&#xA;    . 주문의 정합성을 검증&#xD;&#xA;"/>
+  <wire id="715" guardcondition="success" firstRelativePoint="135,178" lastRelativePoint="135,251"/>
+  <wire id="1021" guardcondition="failure" firstRelativePoint="221,161" lastRelativePoint="300,161">
+    <bendpoint weight="0.5" firstDimension="109,-3" secondDimension="-101,0"/>
+  </wire>
+  <wire id="1125" guardcondition="success" firstRelativePoint="412,232" lastRelativePoint="495,272">
+    <bendpoint weight="0.5" firstDimension="144,1" secondDimension="2,-55"/>
+  </wire>
+  <wire id="2895" guardcondition="success" firstRelativePoint="496,416" lastRelativePoint="141,452">
+    <bendpoint weight="0.5" firstDimension="3,51" secondDimension="365,-1"/>
+  </wire>
+  <wire id="2940" guardcondition="success" firstRelativePoint="133,36" lastRelativePoint="133,148"/>
+</Glue:GlueDiagram>

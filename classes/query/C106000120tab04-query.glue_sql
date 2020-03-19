@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000120tab04 Page 쿼리파일"> 
+	 <query id="C106000120tab04.select" desc="C106000120tab04 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 'VERSION ' || VER_CD AS VER_CD,
+	   CLS_CD,
+       NAT_CD,
+       NAT_ENM,
+       NAT_KNM,
+       (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF	
+         WHERE USER_NO = LAST_UPDATED_OBJECT_ID) CREATED_OBJECT_ID,
+       TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') AS CREATION_TIMESTAMP,
+       TO_NUMBER(VER_CD) AS VER_CD_DESC
+  FROM C10APUSER.TB_C10_WAR_NAT_MNG
+ WHERE TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') BETWEEN :DH_STR AND :DH_END
+   AND VER_CD LIKE :VER_COMB ||'%'
+   AND TO_NUMBER(VER_CD) >= DECODE(:SETTING,'Y',(SELECT MAX(TO_NUMBER(VER_CD)) FROM C10APUSER.TB_C10_WAR_NAT_MNG), 0)
+  ORDER BY VER_CD_DESC DESC,CLS_CD, NAT_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04.update" desc="C106000120tab04 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_WAR_NAT_MNG
+   SET CLS_CD  = :CLS_CD,
+       NAT_CD  = :NAT_CD,
+       NAT_ENM = :NAT_ENM,
+       NAT_KNM = :NAT_KNM,
+	   LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+	   LAST_UPDATED_OBJECT_ID   = :ObjectId,
+	   LAST_UPDATE_PROGRAM_ID   = :ProgramId,
+	   LAST_UPDATE_TIMESTAMP    =:Timestamp
+ WHERE CLS_CD    = :CLS_CD
+   AND NAT_CD    = :NAT_CD
+   AND VER_CD    = (SELECT MAX(TO_NUMBER(VER_CD)) FROM C10APUSER.TB_C10_WAR_NAT_MNG)
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04.delete" desc="C106000120tab04 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM C10APUSER.TB_C10_WAR_NAT_MNG
+ WHERE CLS_CD    = :CLS_CD
+   AND NAT_CD    = :NAT_CD
+   AND VER_CD    = (SELECT MAX(TO_NUMBER(VER_CD)) FROM C10APUSER.TB_C10_WAR_NAT_MNG)
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04.insert" desc="C106000120tab04 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_WAR_NAT_MNG(
+		    VER_CD,
+		    CLS_CD,
+	        NAT_CD,
+	        NAT_ENM,
+	        NAT_KNM,
+	        CREATED_OBJECT_TYPE, 
+	        CREATED_OBJECT_ID,
+	        CREATED_PROGRAM_ID,
+	        CREATION_TIMESTAMP,
+	        LAST_UPDATED_OBJECT_TYPE,
+	        LAST_UPDATED_OBJECT_ID,
+	        LAST_UPDATE_PROGRAM_ID,
+	        LAST_UPDATE_TIMESTAMP)
+	VALUES(
+	       (SELECT MAX(TO_NUMBER(VER_CD)) FROM C10APUSER.TB_C10_WAR_NAT_MNG),
+           :CLS_CD,
+	       :NAT_CD,
+	       :NAT_ENM,
+	       :NAT_KNM,
+	       :ObjectType,
+	       :ObjectId,
+	       :ProgramId,
+	       :Timestamp,
+	       :ObjectType,
+	       :ObjectId,
+	       :ProgramId,
+	       :Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04VerComb.select" desc="C106000120tab04VerComb.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT '%' AS VER_CD,'전체' AS VER_NM   -- '전체'컬럼 생성
+  FROM DUAL 
+UNION ALL -- 테이블 조합
+SELECT VER_CD, VER_NM FROM
+(SELECT VER_CD, 'VERSION ' || VER_CD AS VER_NM  
+  FROM C10APUSER.TB_C10_WAR_NAT_MNG
+ WHERE TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') BETWEEN :DH_STR AND :DH_END
+ GROUP BY VER_CD
+ ORDER BY TO_NUMBER(VER_CD))
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04.insertNewVer" desc="C106000120tab04.insertNewVer" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_WAR_NAT_MNG /*C106000120tab01.insertNewVer*/
+SELECT 
+    (SELECT (MAX(TO_NUMBER(VER_CD)))+1 FROM C10APUSER.TB_C10_WAR_NAT_MNG),
+    CLS_CD,
+    NAT_CD,
+    NAT_ENM,
+    NAT_KNM, 
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+	:ObjectType,
+	:ObjectId,
+	:ProgramId,
+	:Timestamp,
+    DATA_END_STATUS,
+    DATA_END_OBJECT_TYPE,
+    DATA_END_OBJECT_ID,
+    DATA_END_PROGRAM_ID,
+    DATA_END_TIMESTAMP,
+    ARCHIVE_COMPLETED_FLAG,
+    ARCHIVED_EMPLOYEE_NUM,
+    ARCHIVED_TIMESTAMP,
+    ARCHIVE_PROGRAM_ID 
+FROM C10APUSER.TB_C10_WAR_NAT_MNG
+WHERE VER_CD = (SELECT MAX(TO_NUMBER(VER_CD)) FROM C10APUSER.TB_C10_WAR_NAT_MNG)
+  AND VER_CD IS NOT NULL
+		 ]]> 
+	 </query>
+	 <query id="C106000120tab04.send" desc="국가기준정보 전송" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 1 FROM DUAL
+		 ]]> 
+	 </query>
+</queryMap>

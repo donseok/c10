@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="475,38" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="3259" location="492,505" size="-1,-1" input="//@wire.8 //@wire.9 //@wire.14"/>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="354,327" size="130,-1" input="//@wire.6" output="//@wire.4" name="INSERT_A">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="4"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S1010A.insert"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="param3" value="QLT_DSN_STS_CD"/>
+    <property key="description" value="이 Activity는 품질설계결과를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;TB_C10_B10S1010&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51008" location="416,97" size="149,-1" input="//@wire.0" output="//@wire.15" name="IFGroupID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 설계결과 IF  송신  IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID&#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51029" location="390,420" size="237,-1" input="//@wire.4 //@wire.5 //@wire.18 //@wire.20" output="//@wire.8 //@wire.13" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51091" location="341,233" size="154,-1" input="//@wire.2" output="//@wire.1 //@wire.6" name="SEARCH_A">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="3"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN_AIF"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="QLT_DSN_STS_CD"/>
+    <property key="description" value="이 Activity는 품질설계결과 IF 전 품질설계공통  Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.  &#xD;&#xA;해당 품질상태값의 정합성은 체크한다.&#xD;&#xA;  &#xD;&#xA;param1 : ORD_NO&#xD;&#xA;param2 : ORD_LN&#xD;&#xA;param3 : QLT_DSN_STS_CD"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51779" location="737,270" size="130,-1" input="//@wire.1 //@wire.3 //@wire.12 //@wire.13" output="//@wire.9" name="ERROR_LOG">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|CF73"/>
+    <property key="param2" value="QLT_DSN_ERR_MSG|CF73"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51866" location="422,166" size="138,-1" input="//@wire.15" output="//@wire.10 //@wire.14 //@wire.2 //@wire.16" name="ROUTER_CHK">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
+    <property key="param-count" value="3"/>
+    <property key="param0" value="QLT_DSN_STS_CD|A|success"/>
+    <property key="param1" value="QLT_DSN_STS_CD|E|error"/>
+    <property key="param2" value="QLT_DSN_STS_CD|B|att"/>
+    <property key="description" value="이 Activity는 실행된 SubService가 정상으로 처리되었는지 확인하여&#xD;&#xA;처리 Event로 route하는 Activity이다. &#xD;&#xA;- 품질설계확정 분기,&#xD;&#xA;   품질설계에러 분기"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51886" location="511,234" size="154,-1" input="//@wire.11" output="//@wire.3 //@wire.7" name="SEARCH_E">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="4"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN_EIF"/>
+    <property key="param0" value="QLT_DSN_ERR_MSG"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="param3" value="QLT_DSN_STS_CD"/>
+    <property key="description" value="이 Activity는 품질설계결과 IF 전 품질설계공통  Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.  &#xD;&#xA;해당 품질상태값의 정합성은 체크한다.&#xD;&#xA;  &#xD;&#xA;param0 : QLT_DSN_ERR_MSG&#xD;&#xA;param1 : ORD_NO&#xD;&#xA;param2 : ORD_LN&#xD;&#xA;param3 : QLT_DSN_STS_CD"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="51908" location="524,327" size="136,-1" input="//@wire.7" output="//@wire.5" name="INSERT_E">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="param-count" value="5"/>
+    <property key="isAudit" value="true"/>
+    <property key="dao" value="eaidao"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="param2" value="ORD_LN"/>
+    <property key="description" value=""/>
+    <property key="sqlkey" value="B10S1010E.insert"/>
+    <property key="param3" value="QLT_DSN_STS_CD"/>
+    <property key="param4" value="QLT_DSN_ERR_MSG"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="52050" location="603,172" size="132,-1" input="//@wire.10" output="//@wire.11 //@wire.12" name="ROUTER_IF_THEN">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbConditionRouter"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="QLT_DSN_ERR_MSG"/>
+    <property key="param1" value="sp_null"/>
+    <property key="param2" value="none"/>
+    <property key="param3" value="exist"/>
+    <property key="description" value="이 Activity는 품질설계상태값을 확인하여 Interface하는 서비스로 route하는 Activity이다. &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="265787" location="150,230" size="154,-1" input="//@wire.16" output="//@wire.17" name="SEARCH_B">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN.BSMS"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계결과 IF 전 품질설계공통  Data&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.  &#xD;&#xA;해당 품질상태값의 정합성은 체크한다.&#xD;&#xA;  &#xD;&#xA;param1 : ORD_NO&#xD;&#xA;param2 : ORD_LN&#xD;&#xA;param3 : QLT_DSN_STS_CD"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="265788" location="197,361" size="97,-1" input="//@wire.19" output="//@wire.18" name="INSERT_B">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100CMN.AttSms"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_NO"/>
+    <property key="description" value="이 Activity는 품질설계결과를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;TB_C10_B10S1010&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="265789" location="158,294" size="138,-1" input="//@wire.17" output="//@wire.19 //@wire.20" name="관심주문체크">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="ATT_ORD_YN|Y|success"/>
+    <property key="param1" value="ATT_ORD_YN|N|skip"/>
+    <property key="description" value="이 Activity는 실행된 SubService가 정상으로 처리되었는지 확인하여&#xD;&#xA;처리 Event로 route하는 Activity이다. &#xD;&#xA;- 품질설계확정 분기,&#xD;&#xA;   품질설계에러 분기"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계결과를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문번호, 행번, 품질상태코드, 에러메세지&#xD;&#xA;&#xD;&#xA;"/>
+  <wire id="2961" guardcondition="success" firstRelativePoint="209,39" lastRelativePoint="209,79"/>
+  <wire id="3016" guardcondition="failure" firstRelativePoint="191,245" lastRelativePoint="462,271">
+    <bendpoint weight="0.5" firstDimension="49,41" secondDimension="-335,4"/>
+  </wire>
+  <wire id="3020" guardcondition="success" firstRelativePoint="471,196" lastRelativePoint="471,233"/>
+  <wire id="3023" guardcondition="failure" firstRelativePoint="353,246" lastRelativePoint="462,261">
+    <bendpoint weight="0.5" firstDimension="41,30" secondDimension="-173,-6"/>
+  </wire>
+  <wire id="3033" guardcondition="success" firstRelativePoint="133,339" lastRelativePoint="133,402">
+    <bendpoint weight="0.5" firstDimension="-10,46" secondDimension="-99,-47"/>
+  </wire>
+  <wire id="3034" guardcondition="success" firstRelativePoint="321,339" lastRelativePoint="321,402">
+    <bendpoint weight="0.5" firstDimension="5,45" secondDimension="89,-48"/>
+  </wire>
+  <wire id="3036" guardcondition="success" firstRelativePoint="129,245" lastRelativePoint="129,309">
+    <bendpoint weight="0.5" firstDimension="-13,46" secondDimension="-14,-48"/>
+  </wire>
+  <wire id="3037" guardcondition="success" firstRelativePoint="578,264" lastRelativePoint="578,327"/>
+  <wire id="3039" guardcondition="success" firstRelativePoint="226,432" lastRelativePoint="226,486"/>
+  <wire id="3040" guardcondition="success" firstRelativePoint="535,282" lastRelativePoint="235,496">
+    <bendpoint weight="0.5" firstDimension="9,228" secondDimension="309,-2"/>
+  </wire>
+  <wire id="3046" guardcondition="error" firstRelativePoint="284,166" lastRelativePoint="327,166">
+    <bendpoint weight="0.5" firstDimension="83,3" secondDimension="-95,-3"/>
+  </wire>
+  <wire id="3047" guardcondition="exist" firstRelativePoint="358,184" lastRelativePoint="358,216">
+    <bendpoint weight="0.5" firstDimension="-35,27" secondDimension="46,-35"/>
+  </wire>
+  <wire id="3048" guardcondition="none" firstRelativePoint="365,184" lastRelativePoint="365,216">
+    <bendpoint weight="0.5" firstDimension="147,2" secondDimension="14,-96"/>
+  </wire>
+  <wire id="3049" guardcondition="failure" firstRelativePoint="351,419" lastRelativePoint="487,282">
+    <bendpoint weight="0.5" firstDimension="255,2" secondDimension="-39,152"/>
+  </wire>
+  <wire id="3097" guardcondition="failure" firstRelativePoint="423,176" lastRelativePoint="491,514">
+    <bendpoint weight="0.5" firstDimension="-376,-5" secondDimension="-387,-339"/>
+    <bendpoint weight="0.5" firstDimension="-376,169" secondDimension="-387,-165"/>
+    <bendpoint weight="0.5" firstDimension="-375,333" secondDimension="-386,-1"/>
+  </wire>
+  <wire id="3104" guardcondition="success" firstRelativePoint="491,127" lastRelativePoint="491,166"/>
+  <wire id="12724" guardcondition="att" firstRelativePoint="423,177" lastRelativePoint="231,230">
+    <bendpoint weight="0.5" firstDimension="-260,-4" secondDimension="4,-68"/>
+  </wire>
+  <wire id="12725" guardcondition="success" firstRelativePoint="234,260" lastRelativePoint="234,294"/>
+  <wire id="12726" guardcondition="success" firstRelativePoint="227,391" lastRelativePoint="391,441">
+    <bendpoint weight="0.5" firstDimension="-2,65" secondDimension="-281,6"/>
+  </wire>
+  <wire id="12728" guardcondition="success" firstRelativePoint="234,324" lastRelativePoint="234,361"/>
+  <wire id="12729" guardcondition="skip" firstRelativePoint="180,324" lastRelativePoint="392,442">
+    <bendpoint weight="0.5" firstDimension="-47,133" secondDimension="-328,7"/>
+  </wire>
+</Glue:GlueDiagram>

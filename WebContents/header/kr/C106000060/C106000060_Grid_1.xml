@@ -1,0 +1,283 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="enablePreRendering">
+	<param>3</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" color="FFFFC0" id="CCL_BOM_NO" index="1" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="*">CCL BOM</column>
+<column align="center" color="FFFFC0" id="CCL_BOM_USE_YN" index="2" sort="na_custom" table="TB_C10_CCL_BOM" type="ch" width="4">확정</column>
+<column align="center" id="COT_MTH_NM" index="3" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="10">코팅방식</column>
+<column align="center" id="RSN_TP_FRN_NM" index="4" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="10">수지(T)</column>
+<column align="center" id="RSN_TP_BAK_NM" index="5" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="10">수지(B)</column>
+<column align="center" id="LUS_RT_CD_FRN_NM" index="6" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="10">광택도(T)</column>
+<column align="center" id="LUS_RT_CD_BAK_NM" index="7" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="10">광택도(B)</column>
+<column align="center" id="HUE_CD_FRN" index="8" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="6">색상(T)</column>
+<column align="center" id="HUE_CD_BAK" index="9" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="6">색상(B)</column>
+<column align="center" id="PNT_FLM_THK_FRN_TOT" index="10" sort="int_custom" table="TB_C10_CCL_BOM" type="ro" width="6">도막(T)</column>
+<column align="center" id="PNT_FLM_THK_BAK_TOT" index="11" sort="int_custom" table="TB_C10_CCL_BOM" type="ro" width="6">도막(B)</column>
+<column align="center" hidden="true" id="CCL_BOM_USE_YN_HIDDEN" index="12" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_FRN_4COT" index="13" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_FRN_4COT" index="14" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_4COT" index="15" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_4COT_LLV" index="16" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_4COT" index="17" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_FRN_4COT" index="18" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_4COT" index="19" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_4COT" index="20" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_4COT" index="21" sort="int_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_FRN_4COT" index="22" sort="int_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_4COT" index="23" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_FRN_4COT" index="24" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_FRN_3COT" index="25" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_FRN_3COT" index="26" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_3COT" index="27" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_3COT_LLV" index="28" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_3COT" index="29" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_FRN_3COT" index="30" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_3COT" index="31" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_3COT" index="32" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_3COT" index="33" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_FRN_3COT" index="34" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_3COT" index="35" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_FRN_3COT" index="36" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_FRN_2COT" index="37" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_FRN_2COT" index="38" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_2COT" index="39" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_2COT_LLV" index="40" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_2COT" index="41" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_FRN_2COT" index="42" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_2COT" index="43" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_2COT" index="44" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_2COT" index="45" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_FRN_2COT" index="46" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_2COT" index="47" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_FRN_2COT" index="48" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_FRN_1COT" index="49" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_FRN_1COT" index="50" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_1COT" index="51" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_1COT_LLV" index="52" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_1COT" index="53" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_FRN_1COT" index="54" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_1COT" index="55" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_1COT" index="56" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_1COT" index="57" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_FRN_1COT" index="58" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_1COT" index="59" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_FRN_1COT" index="60" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_BAK_1COT" index="61" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_BAK_1COT" index="62" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_1COT" index="63" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_1COT_LLV" index="64" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_1COT" index="65" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_BAK_1COT" index="66" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_1COT" index="67" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_1COT" index="68" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_1COT" index="69" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_BAK_1COT" index="70" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_1COT" index="71" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_BAK_1COT" index="72" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_BAK_2COT" index="73" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_BAK_2COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_2COT" index="75" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_2COT_LLV" index="76" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_2COT" index="77" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_BAK_2COT" index="78" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_2COT" index="79" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_2COT" index="80" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_2COT" index="81" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_BAK_2COT" index="82" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_2COT" index="83" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_BAK_2COT" index="84" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_BAK_3COT" index="85" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_BAK_3COT" index="86" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_3COT" index="87" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_3COT_LLV" index="88" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_3COT" index="89" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_BAK_3COT" index="90" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_3COT" index="91" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_3COT" index="92" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_3COT" index="93" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_BAK_3COT" index="94" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_3COT" index="95" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_BAK_3COT" index="96" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_BAK_4COT" index="97" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_BAK_4COT" index="98" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_4COT" index="99" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_4COT_LLV" index="100" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_4COT" index="101" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_BAK_4COT" index="102" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_4COT" index="103" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_4COT" index="104" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_4COT" index="105" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="NV_BAK_4COT" index="106" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_4COT" index="107" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="THR_CD_BAK_4COT" index="108" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_LMN" index="109" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_LMN" index="110" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_LMN" index="111" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_LMN_LLV" index="112" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PMT_LMN" index="113" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_FLM_THK_LMN" index="114" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PNT_UNT_LMN" index="115" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="COT_MTH" index="116" sort="na_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_FRN" index="117" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN" index="118" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="HUE_CD_CHM" index="119" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="DTL_CLR_NM" index="120" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="ANON_CD" index="121" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="ANON_UNT" index="122" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_DTL_CD" index="123" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_LUS_RT_CD" index="124" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_THK_CD" index="125" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_MQL_CD" index="126" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_SUS_ADH_CD" index="127" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_PRD_ADH_CD" index="128" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="DISC_PTN_WTH_CD" index="129" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="MAIN_PROC_CD" index="130" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SUB_PROC_CD1" index="131" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SUB_PROC_CD2" index="132" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_4COT_ULV" index="133" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_3COT_ULV" index="134" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_2COT_ULV" index="135" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_FRN_1COT_ULV" index="136" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_1COT_ULV" index="137" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_2COT_ULV" index="138" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_3COT_ULV" index="139" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_BAK_4COT_ULV" index="140" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_LMN_ULV" index="141" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_KND_TP" index="142" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_CD" index="143" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_THR_CD" index="144" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_CD1" index="145" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_THR_CD1" index="146" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_FLM_THK_CD" index="147" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RSN_TP_BAK" index="148" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK" index="149" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_NO1" index="150" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_CD1" index="151" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_CD1" index="152" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_UNT1" index="153" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_NO2" index="154" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_CD2" index="155" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_CD2" index="156" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_UNT2" index="157" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_NO3" index="158" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_CD3" index="159" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_CD3" index="160" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_UNT3" index="161" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_NO4" index="162" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_CD4" index="163" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_CD4" index="164" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_UNT4" index="165" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SUB_PROC_CD3" index="166" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="TLP_TP" index="167" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_USG_CD" index="168" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_PTN_CD" index="169" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="CUT_LN_YN" index="170" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_UNT" index="171" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="LMN_BND_UNT1" index="172" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="QLT_DSN_CFM_TP" index="173" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RGS_PRS_ID" index="174" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="RGS_DH" index="175" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="MDF_PRS_ID" index="176" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="MDF_DH" index="177" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="ERP_SND_DH" index="178" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="ORG_CCL_BOM_USE_YN" index="179" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="SND_LST" index="180" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="UNI_TEX_ROLL_NO" index="181" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="UNI_TEX_PTN_CD" index="182" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PICK_UP_ROLL_NO" index="183" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_BAK_NO1" index="184" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_BAK_CD1" index="185" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_BAK_CD1" index="186" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_BAK_UNT1" index="187" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_BAK_NO2" index="188" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_BAK_CD2" index="189" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_BAK_CD2" index="190" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_BAK_UNT2" index="191" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_BAK_NO3" index="192" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_BAK_CD3" index="193" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_BAK_CD3" index="194" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_BAK_UNT3" index="195" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_BAK_NO4" index="196" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_INK_BAK_CD4" index="197" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_ROLL_PTN_BAK_CD4" index="198" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="PRT_BAK_UNT4" index="199" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" color="FFFFC0" id="CCL_BOM_WR_YN" index="200" sort="na_custom" table="TB_C10_CCL_BOM" type="ch" width="4">보증</column>
+<column align="center" hidden="true" id="PT_TP" index="201" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="IMPT_ROLL_NO" index="202" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="IMPT_ROLL_BAK_NO" index="203" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" hidden="true" id="CLR_SPC_PRD_SCLS" index="204" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
+<column align="center" color="FFFFC0"  id="HUE_CD_FRN_OLD" index="205" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="7">구색상(T)</column>
+<column align="center" color="FFFFC0"  id="CCL_BOM_ATT_YN" index="206" sort="na_custom" table="TB_C10_CCL_BOM" type="ch" width="4">관심</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CCL_BOM_NO,CCL_BOM_USE_YN,COT_MTH_NM,RSN_TP_FRN_NM,RSN_TP_BAK_NM,LUS_RT_CD_FRN_NM,LUS_RT_CD_BAK_NM,HUE_CD_FRN,HUE_CD_BAK,
+PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,CCL_BOM_USE_YN_HIDDEN,HUE_CD_FRN_4COT,RSN_TP_FRN_4COT,LUS_RT_CD_FRN_4COT,LUS_RT_FRN_4COT_LLV,WK_VISCO_FRN_4COT,
+PMT_FRN_4COT,PNT_FLM_THK_FRN_4COT,SLV_GRA_FRN_4COT,PNT_GRA_FRN_4COT,NV_FRN_4COT,PNT_UNT_FRN_4COT,THR_CD_FRN_4COT,HUE_CD_FRN_3COT,RSN_TP_FRN_3COT,
+LUS_RT_CD_FRN_3COT,LUS_RT_FRN_3COT_LLV,WK_VISCO_FRN_3COT,PMT_FRN_3COT,PNT_FLM_THK_FRN_3COT,SLV_GRA_FRN_3COT,PNT_GRA_FRN_3COT,NV_FRN_3COT,PNT_UNT_FRN_3COT,
+THR_CD_FRN_3COT,HUE_CD_FRN_2COT,RSN_TP_FRN_2COT,LUS_RT_CD_FRN_2COT,LUS_RT_FRN_2COT_LLV,WK_VISCO_FRN_2COT,PMT_FRN_2COT,PNT_FLM_THK_FRN_2COT,SLV_GRA_FRN_2COT,
+PNT_GRA_FRN_2COT,NV_FRN_2COT,PNT_UNT_FRN_2COT,THR_CD_FRN_2COT,HUE_CD_FRN_1COT,RSN_TP_FRN_1COT,LUS_RT_CD_FRN_1COT,LUS_RT_FRN_1COT_LLV,WK_VISCO_FRN_1COT,
+PMT_FRN_1COT,PNT_FLM_THK_FRN_1COT,SLV_GRA_FRN_1COT,PNT_GRA_FRN_1COT,NV_FRN_1COT,PNT_UNT_FRN_1COT,THR_CD_FRN_1COT,HUE_CD_BAK_1COT,RSN_TP_BAK_1COT,
+LUS_RT_CD_BAK_1COT,LUS_RT_BAK_1COT_LLV,WK_VISCO_BAK_1COT,PMT_BAK_1COT,PNT_FLM_THK_BAK_1COT,SLV_GRA_BAK_1COT,PNT_GRA_BAK_1COT,NV_BAK_1COT,PNT_UNT_BAK_1COT,
+THR_CD_BAK_1COT,HUE_CD_BAK_2COT,RSN_TP_BAK_2COT,LUS_RT_CD_BAK_2COT,LUS_RT_BAK_2COT_LLV,WK_VISCO_BAK_2COT,PMT_BAK_2COT,PNT_FLM_THK_BAK_2COT,SLV_GRA_BAK_2COT,
+PNT_GRA_BAK_2COT,NV_BAK_2COT,PNT_UNT_BAK_2COT,THR_CD_BAK_2COT,HUE_CD_BAK_3COT,RSN_TP_BAK_3COT,LUS_RT_CD_BAK_3COT,LUS_RT_BAK_3COT_LLV,WK_VISCO_BAK_3COT,
+PMT_BAK_3COT,PNT_FLM_THK_BAK_3COT,SLV_GRA_BAK_3COT,PNT_GRA_BAK_3COT,NV_BAK_3COT,PNT_UNT_BAK_3COT,THR_CD_BAK_3COT,HUE_CD_BAK_4COT,RSN_TP_BAK_4COT,
+LUS_RT_CD_BAK_4COT,LUS_RT_BAK_4COT_LLV,WK_VISCO_BAK_4COT,PMT_BAK_4COT,PNT_FLM_THK_BAK_4COT,SLV_GRA_BAK_4COT,PNT_GRA_BAK_4COT,NV_BAK_4COT,PNT_UNT_BAK_4COT,
+THR_CD_BAK_4COT,HUE_CD_LMN,RSN_TP_LMN,LUS_RT_CD_LMN,LUS_RT_LMN_LLV,PMT_LMN,PNT_FLM_THK_LMN,PNT_UNT_LMN,COT_MTH,RSN_TP_FRN,LUS_RT_CD_FRN,HUE_CD_CHM,
+DTL_CLR_NM,ANON_CD,ANON_UNT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,DISC_PTN_WTH_CD,MAIN_PROC_CD,
+SUB_PROC_CD1,SUB_PROC_CD2,LUS_RT_FRN_4COT_ULV,LUS_RT_FRN_3COT_ULV,LUS_RT_FRN_2COT_ULV,LUS_RT_FRN_1COT_ULV,LUS_RT_BAK_1COT_ULV,LUS_RT_BAK_2COT_ULV,
+LUS_RT_BAK_3COT_ULV,LUS_RT_BAK_4COT_ULV,LUS_RT_LMN_ULV,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,RSN_TP_BAK,LUS_RT_CD_BAK,PRT_ROLL_NO1,PRT_INK_CD1,
+PRT_ROLL_PTN_CD1,PRT_UNT1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_UNT2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_PTN_CD3,PRT_UNT3,PRT_ROLL_NO4,PRT_INK_CD4,
+PRT_ROLL_PTN_CD4,PRT_UNT4,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,CUT_LN_YN,LMN_BND_UNT,LMN_BND_UNT1,QLT_DSN_CFM_TP,RGS_PRS_ID,RGS_DH,
+MDF_PRS_ID,MDF_DH,ERP_SND_DH,ORG_CCL_BOM_USE_YN,SND_LST,UNI_TEX_ROLL_NO,UNI_TEX_PTN_CD,PICK_UP_ROLL_NO,PRT_ROLL_BAK_NO1,PRT_INK_BAK_CD1,
+PRT_ROLL_PTN_BAK_CD1,PRT_BAK_UNT1,PRT_ROLL_BAK_NO2,PRT_INK_BAK_CD2,PRT_ROLL_PTN_BAK_CD2,PRT_BAK_UNT2,PRT_ROLL_BAK_NO3,PRT_INK_BAK_CD3,PRT_ROLL_PTN_BAK_CD3,PRT_BAK_UNT3,
+PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,CCL_BOM_WR_YN,PT_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,CLR_SPC_PRD_SCLS,HUE_CD_FRN_OLD,CCL_BOM_ATT_YN</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

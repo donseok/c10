@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="278,285" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="192,82" size="208,-1" input="//@wire.0" output="//@wire.2" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="221,178" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C107000040.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계결과공통 테이블(TB_C10_QLT_DSN_CMN)에서 품질설계결과를 상세히 조회 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 설계확정일자           &#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="288,208" lastRelativePoint="288,284"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="290,112" lastRelativePoint="290,178">
+    <bendpoint weight="0.5" firstDimension="-3,49" secondDimension="-12,-47"/>
+  </wire>
+</Glue:GlueDiagram>

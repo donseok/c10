@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="5" location="526,136" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="6" location="540,528" size="-1,-1" input="//@wire.3 //@wire.5 //@wire.7 //@wire.9 //@wire.12 //@wire.13 //@wire.18 //@wire.20 //@wire.22 //@wire.31 //@wire.39 //@wire.41 //@wire.43 //@wire.45 //@wire.49"/>
+  <child xsi:type="Glue:RouterActivity" id="7" location="28,218" size="1625,-1" input="//@wire.0" output="//@wire.8 //@wire.11 //@wire.6 //@wire.2 //@wire.16 //@wire.17 //@wire.19 //@wire.4 //@wire.10 //@wire.21 //@wire.24 //@wire.38 //@wire.40 //@wire.42 //@wire.44" name="Event_Router">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;send            : CCL-BOM 정보 및 칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)&#xD;&#xA;                  ,TB_C10_B10S0110(CCL-BOM)정보를 전송 INSERT:칼라물성, UPDATE:CCL-BOM&#xD;&#xA;&#xD;&#xA;colorAjaxFind   : ajax로 입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를&#xD;&#xA;                  조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;colorFind       : 선택한 CCL-BOM NO에 해당하는 칼라물성정보를 조회한다.&#xD;&#xA;detailFind      : 선택한 CCL-BOM NO에 해당하는 고객사 및 주문용도 테이블(TB_C10_CLR_MPR)에서 조회한다.&#xD;&#xA;find            : 검색조건에 해당하는 CCL-BOM 정보를 조회한다.&#xD;&#xA;                  필수조건 : CCL-BOM NO&#xD;&#xA;&#x9;&#x9;  선택조건 : 수지타입,도장방식,광택도코드&#xD;&#xA;&#xD;&#xA;confirmSave     : CCL-BOM NO의 확정처리한다.&#xD;&#xA;                  - TB_C10_CCL_BOM테이블의 CCL_BOM_USE_YN 항목을 UPDATE한다.&#xD;&#xA;&#xD;&#xA;save1           : 선택한 CCL-BOM NO의 컬러물설정보를 TB_C10_CLR_MPR에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;save            : 변경 또는 행추가한 CCL-BOM 정보를 TB_C10_CCL_BOM에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;cusCdFind       : 컬러물성정보 수정/신규입력시 입력한 고객사 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;ordUsgCdFind    : 컬러물성정보 수정/신규입력시 입력한 주문용도 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음       "/>
+  </child>
+  <child xsi:type="Glue:PageSetActivity" id="9" location="540,384" size="97,-1" input="//@wire.4" output="//@wire.12" name="detailFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.detailSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 선택한 CCL-BOM NO에 해당하는 고객사,주문용도등의 정보를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - CCL-BOM정보 중 선택한 CCL-BOM NO를 키값으로 고객사 및 주문용도 테이블(TB_C10_CLR_MPR)에서 조회하여 화면에 Display한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="3907" location="1006,386" size="95,-1" input="//@wire.50" output="//@wire.49" name="customInsert">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000060.cclBomInfoDelete"/>
+    <property key="insert-sql" value="C106000060.cclBomInfoInsert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000060.cclBomInfoUpdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 CCL-BOM 정보를 TB_C10_CCL_BOM에 수정,삭제,저장  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  변경 또는 행추가한 CCL-BOM 정보를 TB_C10_CCL_BOM에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="3919" location="709,336" size="67,-1" input="//@wire.2" output="//@wire.3" name="find">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.cclBomInfoSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 검색조건에 해당하는 CCL-BOM 정보를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  검색조건에 해당하는 CCL-BOM 정보를 TB_C10_CCL_BOM테이블에서 조회하여 화면에 Display한다.&#xD;&#xA;  -   필수조건 : CCL-BOM NO&#xD;&#xA;      선택조건 : 수지타입,도장방식,광택도코드에서 조회하여 화면에 Display한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="3920" location="420,384" size="101,-1" input="//@wire.10" output="//@wire.5" name="colorDetailFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.colorSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 선택한 CCL-BOM NO에 해당하는 칼라물성정보를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - CCL-BOM정보 중 선택한 CCL-BOM NO를 키값으로 칼라물성정보를  조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="3937" location="782,387" size="100,-1" input="//@wire.6" output="//@wire.7" name="CCL-BOM 확정여부 UPDATE">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.cclBomUseUpdate"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 CCL-BOM NO의 확정처리하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  CCL-BOM 정보중에 확정여부의  Checkbox의 값으로 TB_C10_CCL_BOM테이블의 확정유무(CCL_BOM_USE_YN) 항목을 UPDATE한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="4050" location="300,384" size="107,-1" input="//@wire.8" output="//@wire.9" name="colorAjaxFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.colorAjaxSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - ajax로 입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="131241" location="120,324" size="101,-1" input="//@wire.16" output="//@wire.14" name="IF_GRP_ID 생성">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - IF  송신시 사용되는  IF_GRP_ID를 신규생성하는 클래스이다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                 &#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:RouterActivity" id="131242" location="60,384" size="217,-1" input="//@wire.14 //@wire.37" output="//@wire.15 //@wire.13" name="LoopRouter">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.LoopRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;&#x9;- 이 Activity는 화면그리드의 선택된 Row 수만큼 Loop를 돌리는 공통 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#x9;- 목적 : 그리드의 선택된 Row수만큼 LOOP&#xD;&#xA;&#x9;- 조건 : -&#xD;&#xA;&#x9;- 분기 :&#xD;&#xA;&#x9;&#x9;- INSERT :  칼라물성정보중 선택된 ROW&#xD;&#xA;&#x9;&#x9;- UPDATE : CCL-BOM 정보중 선택된  ROW&#x9;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131243" location="744,787" size="96,-1" input="//@wire.35 //@wire.34" output="//@wire.23" name="칼라물성 전송">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.interFaceColor"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 선택한 CCL-BOM NO에 해당하는  칼라물성정보중에 선택한 칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131245" location="164,596" size="95,-1" input="//@wire.52" output="//@wire.36" name="CCL-BOM전송">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.interFaceCCLBOM"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  칼라물성정보를 Interface테이블 TB_C10_B10S0110에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 선택한 CCL-BOM NO에 해당하는  선택한 CCL-BOM NO 정보를 Interface테이블 TB_C10_B10S0110(CCL-BOM)에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131314" location="1115,385" size="89,-1" input="//@wire.17" output="//@wire.18" name="고객사Check">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.cusCdAjaxSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 칼라물성정보중 고객사의  수정/신규입력시 입력한 고객사 정보의 유무를 판단하여 리턴하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  컬러물성정보 수정/신규입력시 입력한 고객사 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131315" location="1220,383" size="89,-1" input="//@wire.19" output="//@wire.20" name="주문용도Check">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.ordUsgCdAjaxSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 칼라물성정보중 주문용도의  수정/신규입력시 입력한 주문용도 정보의 유무를 판단하여 리턴하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  컬러물성정보 수정/신규입력시 입력한 주문용도 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131316" location="1340,388" size="107,-1" input="//@wire.21" output="//@wire.22" name="prtPntCdFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.PrtPntCdSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - ajax로 입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156991" location="747,737" size="96,-1" input="//@wire.23" output="//@wire.48" name="ERP전송일시UPDATE">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.clr_snd_update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="157029" location="893,476" size="101,-1" input="//@wire.24" output="//@wire.25" name="IF_GRP_ID생성2">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - IF  송신시 사용되는  IF_GRP_ID를 신규생성하는 클래스이다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                 &#xD;&#xA;&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:RouterActivity" id="157031" location="853,588" size="198,-1" input="//@wire.25 //@wire.46 //@wire.47" output="//@wire.28 //@wire.29 //@wire.31 //@wire.26 //@wire.27" name="LoopRouter2">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.LoopRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;&#x9;- 이 Activity는 화면그리드의 선택된 Row 수만큼 Loop를 돌리는 공통 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#x9;- 목적 : 그리드의 선택된 Row수만큼 LOOP&#xD;&#xA;&#x9;- 조건 : -&#xD;&#xA;&#x9;- 분기 :&#xD;&#xA;&#x9;&#x9;- INSERT :  칼라물성정보중 선택된 ROW&#xD;&#xA;&#x9;&#x9;- UPDATE : CCL-BOM 정보중 선택된  ROW&#x9;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157032" location="699,836" size="81,-1" input="//@wire.26" output="//@wire.35" name="칼라물성추가">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfoInsert"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  행추가된 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157033" location="792,836" size="81,-1" input="//@wire.27" output="//@wire.34" name="칼라물성변경">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfoUpdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  변경된 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157034" location="878,754" size="81,-1" input="//@wire.28" output="//@wire.33" name="칼라물성삭제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfoDelete"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  삭제할 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에서 삭제하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157035" location="976,756" size="117,-1" input="//@wire.30" output="//@wire.32" name="칼라물성전송삭제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfoDelete"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  삭제할 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에서 삭제하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157036" location="1020,695" size="96,-1" input="//@wire.29" output="//@wire.30" name="칼라물성전송2">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.interFaceColorDel"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  칼라물성정보를 삭제하기전 ERP전송일시가 있을경우  Interface테이블 TB_C10_B10S0120(칼라물성)에 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 기 전송된 칼라물성정보에 대해서는 삭제하기전 삭제여부 &quot;Y&quot; 를 입력하여 인터페이스테이블에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157045" location="129,656" size="122,-1" input="//@wire.36" output="//@wire.37" name="ERP전송일Update">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.ccl_snd_update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="157046" location="653,372" size="67,-1" input="//@wire.38" output="//@wire.39" name="find1">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.cclBomInfoSelec2"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 검색조건에 해당하는 CCL-BOM 정보를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  검색조건에 해당하는 CCL-BOM 정보를 TB_C10_CCL_BOM테이블에서 조회하여 화면에 Display한다.&#xD;&#xA;  -   필수조건 : CCL-BOM NO&#xD;&#xA;      선택조건 : 수지타입,도장방식,광택도코드에서 조회하여 화면에 Display한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="157047" location="1468,387" size="80,-1" input="//@wire.40" output="//@wire.41" name="utPntCDFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.UtPntCdSelect"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="225328" location="372,321" size="88,-1" input="//@wire.42" output="//@wire.43" name="엑셀출력">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060xls.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="229119" location="1576,388" size="74,-1" input="//@wire.44" output="//@wire.45" name="colNmFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.colorName"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 대표색상 코드로 대표 색상 명을 가져오는  Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  검색조건에 해당하는 칼라코드 정보를 TB_C10_CLR_CD_MNG테이블에서 조회하여 칼라코드 명을 가져온다.&#xD;&#xA;  -   필수조건 : 색상코드&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음     "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="229120" location="742,684" size="94,-1" input="//@wire.48" output="//@wire.46" name="물성_IU_Log">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfo_IU_Log_Insert"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  행추가된 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="229121" location="932,681" size="81,-1" input="//@wire.33 //@wire.32" output="//@wire.47" name="물성_D_Log">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.colorInfo_D_Log_Insert"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  행추가된 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="265290" location="1003,331" size="100,-1" input="//@wire.11" output="//@wire.50" name="신뢰성 시험등록">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000060.tru_tst_Insert"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 CCL-BOM NO의 확정처리하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  CCL-BOM번호의 1~5자리가 처음 등록되는 코드일때 신뢰성시험 대상재Table에 Insert처리&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="265292" location="163,469" size="107,-1" input="//@wire.15" output="//@wire.51" name="공정별담당자">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="resultkey" value="RK_C10A2200"/>
+    <property key="sqlkey" value="C106000060.c10A2200Select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  - 이 Activity는  입력한 공정에 따른 공정별사용자정보VIEW(M00APUSER.VI_M00_C10A2200)를 조회하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 입력한 주공정의 정보가 공정별사용자정보VIEW(M00APUSER.VI_M00_C10A2200)에 있는지 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;  -  없음"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="265969" location="166,537" size="93,-1" input="//@wire.51" output="//@wire.52" name="공정담당자편집">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C10UiC106000060InsertActivity"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계 CCL BOM정보를 조회 및 관리하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - CCL-BOM 정보 및 칼라물성정보를 신규저장,수정,삭제하고&#xD;&#xA;    CCL-BOM 정보 및 칼라물성정보를 품질설계 Interface테이블에 &#xD;&#xA;    전송하는 Sevice이다.&#xD;&#xA;"/>
+  <wire id="4" guardcondition="success" firstRelativePoint="536,155" lastRelativePoint="536,216"/>
+  <wire id="7" guardcondition="success" firstRelativePoint="411,246" lastRelativePoint="411,386"/>
+  <wire id="844" guardcondition="find" firstRelativePoint="754,248" lastRelativePoint="754,336"/>
+  <wire id="845" guardcondition="success" firstRelativePoint="746,413" lastRelativePoint="558,533">
+    <bendpoint weight="0.5" firstDimension="22,52" secondDimension="196,-88"/>
+  </wire>
+  <wire id="860" guardcondition="detailFind" firstRelativePoint="585,246" lastRelativePoint="585,384"/>
+  <wire id="864" guardcondition="success" firstRelativePoint="452,414" lastRelativePoint="539,535">
+    <bendpoint weight="0.5" firstDimension="-18,112" secondDimension="-98,-27"/>
+  </wire>
+  <wire id="865" guardcondition="confirmSave" firstRelativePoint="835,246" lastRelativePoint="835,387"/>
+  <wire id="866" guardcondition="success" firstRelativePoint="818,417" lastRelativePoint="559,535">
+    <bendpoint weight="0.5" firstDimension="-14,78" secondDimension="268,-58"/>
+  </wire>
+  <wire id="878" guardcondition="colorAjaxFind" firstRelativePoint="345,248" lastRelativePoint="345,384"/>
+  <wire id="879" guardcondition="success" firstRelativePoint="350,414" lastRelativePoint="538,537">
+    <bendpoint weight="0.5" firstDimension="-2,139" secondDimension="-200,0"/>
+  </wire>
+  <wire id="880" guardcondition="colorFind" firstRelativePoint="475,248" lastRelativePoint="479,384">
+    <bendpoint weight="0.5" firstDimension="-361,155" secondDimension="9,-11"/>
+  </wire>
+  <wire id="883" guardcondition="save" firstRelativePoint="1054,248" lastRelativePoint="1054,331"/>
+  <wire id="8424" guardcondition="success" firstRelativePoint="581,414" lastRelativePoint="553,528">
+    <bendpoint weight="0.5" firstDimension="-5,70" secondDimension="32,-69"/>
+  </wire>
+  <wire id="8425" guardcondition="endLoop" firstRelativePoint="262,414" lastRelativePoint="539,537">
+    <bendpoint weight="0.5" firstDimension="119,105" secondDimension="-263,-34"/>
+    <bendpoint weight="0.5" firstDimension="132,139" secondDimension="-250,0"/>
+  </wire>
+  <wire id="8426" guardcondition="success" firstRelativePoint="164,354" lastRelativePoint="164,383"/>
+  <wire id="8427" guardcondition="UPDATE" firstRelativePoint="254,414" lastRelativePoint="284,568">
+    <bendpoint weight="0.5" firstDimension="32,66" secondDimension="-13,-66"/>
+  </wire>
+  <wire id="8430" guardcondition="send" firstRelativePoint="171,248" lastRelativePoint="171,324"/>
+  <wire id="8434" guardcondition="cusCdFind" firstRelativePoint="1143,246" lastRelativePoint="1143,385"/>
+  <wire id="8435" guardcondition="success" firstRelativePoint="1168,413" lastRelativePoint="559,537">
+    <bendpoint weight="0.5" firstDimension="1,138" secondDimension="618,-2"/>
+  </wire>
+  <wire id="8436" guardcondition="ordUsgCdFind" firstRelativePoint="1255,246" lastRelativePoint="1255,383"/>
+  <wire id="8437" guardcondition="success" firstRelativePoint="1268,413" lastRelativePoint="560,537">
+    <bendpoint weight="0.5" firstDimension="4,139" secondDimension="718,-1"/>
+  </wire>
+  <wire id="8438" guardcondition="prtPntCdFind" firstRelativePoint="1394,246" lastRelativePoint="1394,388"/>
+  <wire id="8439" guardcondition="success" firstRelativePoint="1394,418" lastRelativePoint="560,537">
+    <bendpoint weight="0.5" firstDimension="1,134" secondDimension="844,-1"/>
+  </wire>
+  <wire id="9353" guardcondition="success" firstRelativePoint="806,661" lastRelativePoint="806,628"/>
+  <wire id="9354" guardcondition="save1" firstRelativePoint="947,246" lastRelativePoint="947,315"/>
+  <wire id="9355" guardcondition="success" firstRelativePoint="947,416" lastRelativePoint="947,462"/>
+  <wire id="9356" guardcondition="INSERT" firstRelativePoint="868,487" lastRelativePoint="743,628">
+    <bendpoint weight="0.5" firstDimension="-220,25" secondDimension="-3,-141"/>
+  </wire>
+  <wire id="9357" guardcondition="UPDATE" firstRelativePoint="880,618" lastRelativePoint="858,836"/>
+  <wire id="9358" guardcondition="DELETE" firstRelativePoint="925,492" lastRelativePoint="925,628">
+    <bendpoint weight="0.5" firstDimension="-38,129" secondDimension="-4,-37"/>
+  </wire>
+  <wire id="9360" guardcondition="SENDDELETE" firstRelativePoint="1046,492" lastRelativePoint="1046,569">
+    <bendpoint weight="0.5" firstDimension="83,50" secondDimension="-33,-57"/>
+  </wire>
+  <wire id="9361" guardcondition="success" firstRelativePoint="1075,599" lastRelativePoint="1075,630">
+    <bendpoint weight="0.5" firstDimension="-4,36" secondDimension="30,-25"/>
+  </wire>
+  <wire id="9362" guardcondition="endLoop" firstRelativePoint="859,591" lastRelativePoint="550,547"/>
+  <wire id="9363" guardcondition="success" firstRelativePoint="1005,630" lastRelativePoint="1005,585"/>
+  <wire id="9364" guardcondition="success" firstRelativePoint="955,628" lastRelativePoint="959,585">
+    <bendpoint weight="0.5" firstDimension="30,-32" secondDimension="-24,41"/>
+  </wire>
+  <wire id="9365" guardcondition="success" firstRelativePoint="831,710" lastRelativePoint="831,691"/>
+  <wire id="9366" guardcondition="success" firstRelativePoint="776,710" lastRelativePoint="776,691"/>
+  <wire id="9367" guardcondition="success" firstRelativePoint="227,604" lastRelativePoint="227,656"/>
+  <wire id="9368" guardcondition="success" firstRelativePoint="180,577" lastRelativePoint="160,414">
+    <bendpoint weight="0.5" firstDimension="-49,-37" secondDimension="-8,156"/>
+  </wire>
+  <wire id="9369" guardcondition="find1" firstRelativePoint="668,248" lastRelativePoint="668,372"/>
+  <wire id="9370" guardcondition="success" firstRelativePoint="668,402" lastRelativePoint="556,530">
+    <bendpoint weight="0.5" firstDimension="-61,69" secondDimension="75,-82"/>
+  </wire>
+  <wire id="9371" guardcondition="utPntCDFind" firstRelativePoint="1507,248" lastRelativePoint="1507,387"/>
+  <wire id="9372" guardcondition="success" firstRelativePoint="1509,417" lastRelativePoint="560,537">
+    <bendpoint weight="0.5" firstDimension="1,135" secondDimension="959,-1"/>
+  </wire>
+  <wire id="10967" guardcondition="excelExport" firstRelativePoint="426,248" lastRelativePoint="426,321">
+    <bendpoint weight="0.5" firstDimension="-414,53" secondDimension="10,-50"/>
+  </wire>
+  <wire id="10968" guardcondition="success" firstRelativePoint="411,351" lastRelativePoint="539,537">
+    <bendpoint weight="0.5" firstDimension="-5,202" secondDimension="-139,0"/>
+  </wire>
+  <wire id="11054" guardcondition="colNm" firstRelativePoint="1613,248" lastRelativePoint="1613,388"/>
+  <wire id="11055" guardcondition="success" firstRelativePoint="1605,418" lastRelativePoint="560,537">
+    <bendpoint weight="0.5" firstDimension="-8,134" secondDimension="1055,-1"/>
+  </wire>
+  <wire id="11056" guardcondition="success" firstRelativePoint="819,558" lastRelativePoint="878,492"/>
+  <wire id="11057" guardcondition="success" firstRelativePoint="996,555" lastRelativePoint="996,492"/>
+  <wire id="11058" guardcondition="success" firstRelativePoint="790,611" lastRelativePoint="790,588"/>
+  <wire id="12672" guardcondition="success" firstRelativePoint="1086,416" lastRelativePoint="559,537">
+    <bendpoint weight="0.5" firstDimension="30,96" secondDimension="542,1"/>
+  </wire>
+  <wire id="12675" guardcondition="success" firstRelativePoint="1046,361" lastRelativePoint="1046,386"/>
+  <wire id="12676" guardcondition="success" firstRelativePoint="239,499" lastRelativePoint="260,540"/>
+  <wire id="12678" guardcondition="success" firstRelativePoint="244,567" lastRelativePoint="244,596"/>
+  <wire id="12679" guardcondition="success" firstRelativePoint="242,469" lastRelativePoint="242,469"/>
+</Glue:GlueDiagram>

@@ -1,0 +1,76 @@
+<items>	
+	<item type="block" width="600">
+		<item type="newcolumn" offset="5" />		
+		<item label="생산가부이력 정보" type="fieldset" width="587" offsetLeft="">
+			<item type="block">
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="85" inputWidth="185" label="INQUIRY NO" name="INQ_NO" type="input" labelAlign="right" readonly="true"/>
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="85" inputWidth="185" label="진행상태" name="INQ_STS_CD_NM" type="input" labelAlign="right" readonly="true"/>
+			</item>		
+			<item type="block">
+				<item dateFormat="%Y-%m-%d %H:%i" enableTime="true" inputWidth="185" label="INQUIRY 접수일" labelAlign="right" labelWidth="90" name="INQ_RCP_DH" type="calendar" />
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="85" inputWidth="187" label="품명" name="PRD_NM_CD_NM" type="combo" labelAlign="right" />
+				<item label="품명" name="PRD_NM_CD" type="hidden"/>
+			</item>	
+			<item type="block">
+				<item labelWidth="90" inputWidth="185" label="제품형태" name="PRD_SHP_NM" type="combo" labelAlign="right" />
+				<item label="제품형태" name="PRD_SHP" type="hidden"/>
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="87" inputWidth="187" label="Edge구분" name="ORD_EDG_ASG_TP_NM" type="combo" labelAlign="right" />
+				<item label="Edge구분" name="ORD_EDG_ASG_TP" type="hidden"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="160" label="규격약호" name="SPC_AVR" type="input" labelAlign="right" value="" maxLength="15"/>
+				<item offset="5" type="newcolumn"/>
+				<item type="label" label="&lt;img src=&apos;dhtmlx\codebase\imgs\search.gif&apos;align=absmiddle; onClick=setGluePopup() /&gt;"/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="90" inputWidth="187" label="도금량코드" name="GW_ASG_CD_NM" type="combo" labelAlign="right" value=""/>
+				<item label="도금량코드" name="GW_ASG_CD" type="hidden"/>
+			</item>
+			<item type="block">
+				<item inputWidth="160" label="최종수요가" labelAlign="right" labelWidth="90" name="CUS_CD_NM" type="input" maxLength="6" value=""/>
+				<item label="최종수요가" name="CUS_CD" type="hidden" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item type="label" label="&lt;img src=&apos;dhtmlx\codebase\imgs\search.gif&apos;align=absmiddle; onClick=parent.masterPopup2('CUS_CD','SZ0000','CUS_CD_NM','C105000010pop01_Form_2','Y') /&gt;"/>
+				<item offset="10" type="newcolumn"/>
+				<item inputWidth="160" label="주문용도" labelAlign="right" labelWidth="85" name="ORD_USG_CD_NM" type="input" maxLength="6" value=""/>
+				<item label="주문용도" name="ORD_USG_CD" type="hidden" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item type="label" label="&lt;img src=&apos;dhtmlx\codebase\imgs\search.gif&apos;align=absmiddle; onClick=parent.masterPopup2('ORD_USG_CD','SZ0000','ORD_USG_CD_NM','C105000010pop01_Form_2','Y') /&gt;"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="187" label="유통경로" name="FLOW_CHL_NM" type="combo" labelAlign="right" />
+				<item label="유통경로" name="FLOW_CHL" type="hidden"/>
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="85" inputWidth="185" label="주문행번중량" name="ORD_LN_WGT" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="15"/>
+			</item>			
+			<item type="block">				
+				<item labelWidth="90" inputWidth="56" label="주문치수&lt;br&gt;(두께/폭/길이)" name="ORD_EXC_THK" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item inputWidth="56" name="ORD_EXC_WTH" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item type="newcolumn" offset="5" />
+				<item inputWidth="56" name="ORD_EXC_LTH" type="input" labelAlign="right" style="text-align:right;ime-mode:disabled;padding-right: 1px !important" value="" maxLength="6"/>
+				<item offset="10" type="newcolumn"/>
+				<item labelWidth="85" inputWidth="187" label="표면후처리" name="ORD_SUR_HND_CD_NM" type="combo" labelAlign="right" />
+				<item label="표면후처리" name="ORD_SUR_HND_CD" type="hidden"/>
+			</item>	
+			<item type="block">
+				<item labelWidth="90" inputWidth="185" label="영업담당자" name="ORD_CHR_PRS_ID" type="input" labelAlign="right" value="" maxLength="10"/>
+				<item type="newcolumn" offset="10" />
+				<item labelWidth="85" inputWidth="185" label="품질담당자" name="QLT_CHR_PRS_ID" type="input" labelAlign="right" value="" maxLength="10"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="475" label="요청내용(최종)" name="INQ_REQ_TXT" type="input" rows="3" labelAlign="right"  value="" maxLength="200"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="475" label="요청내용(이력)" name="INQ_REQ_TXT1" type="input" rows="3" labelAlign="right"  value="" maxLength="200"/>
+			</item>
+			<item type="block">
+				<item labelWidth="90" inputWidth="475" label="검토결과(최종)" name="INQ_SRT_TXT" type="input" rows="3" labelAlign="right"  readonly="true" style="text-align:left;" />
+			</item>
+			<item type="hidden" name="messageBox" value=""/>
+		</item>
+	</item>
+</items>

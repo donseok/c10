@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="1" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="438,46" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="440,299" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:Activity" id="2" location="308,156" size="297,-1" input="//@wire.0" output="//@wire.1" name="LOV조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosLOV"/>
+    <property key="dao" value="masterdao"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx4" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="447,65" lastRelativePoint="447,156"/>
+  <wire id="1" guardcondition="success" firstRelativePoint="450,186" lastRelativePoint="450,298"/>
+</Glue:GlueDiagram>

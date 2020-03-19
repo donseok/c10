@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C108000010 Page 쿼리파일"> 
+	 <query id="C108000010.select" desc="C108000010 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 품질설계 제품개발진행 조회 C108000010.select 전경진 */
+    CM.PRD_DEV_NO, 
+    TO_CHAR(CM.REQ_RGS_DH,'yyyy-mm-dd HH24:MI')  AS REQ_RGS_DH,
+    (SELECT EMP_NM
+       FROM M90APUSER.TB_M90_EMP_INF
+     WHERE EMP_ID = CM.SAL_CHR_PRS_ID)  AS SAL_CHR_PRS_ID,
+     CM.DEV_PRG_CD ||' - ' 
+     || (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'DEV_PRG_CD'
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = CM.DEV_PRG_CD)  AS DEV_PRG_CD,
+    (SELECT CD_V_MEANING
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'CUS_CD'
+        AND CATEGORY_GROUP_NM = 'SZ0000'
+        AND CD_V = CM.CUS_CD)  AS CUS_CD,
+     (SELECT CD_V_MEANING
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'ORD_USG_CD'
+        AND CATEGORY_GROUP_NM = 'SZ0000'
+        AND CD_V = CM.USG_CD)  AS USG_CD,
+    (SELECT CD_V_MEANING
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'NAT_CD'
+        AND CATEGORY_GROUP_NM = 'SZ0000'
+        AND CD_V = CM.USE_NAT_CD)  AS USE_NAT_CD,
+    CM.APP_SIM_RCV_ADDR,
+    CM.APP_SIM_RCV_NM,
+    CM.APP_SIM_RCV_PHON,
+    CM.DEV_REQ_RMK,
+    TO_CHAR(CM.DEV_RGS_DH,'yyyy-mm-dd HH24:MI')  AS DEV_RGS_DH,
+   (SELECT EMP_NM
+      FROM M90APUSER.TB_M90_EMP_INF
+    WHERE EMP_ID = CM.DEV_RECV_CHR_UID)  AS DEV_RECV_CHR_UID,
+    CM.PROC_SIM_MO,
+    CM.DEV_RECV_RMK,
+    SP.COT_MTH ||' - ' 
+     || (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'COT_MTH'
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = SP.COT_MTH)  AS COT_MTH,
+     IMG.IMG_NM,
+     DECODE(IMG.IMG_NM,null,'N','Y') AS FILE_YN,
+     IMG.IMG_ADR,
+     DECODE(IMG.IMG_NM,null,'N','Y') AS DEV_REQ_FILE
+FROM C10APUSER.TB_C10_PRD_DEV_CMN  CM
+   ,(SELECT PRD_DEV_NO
+          , MIN(COT_MTH) AS COT_MTH
+     FROM C10APUSER.TB_C10_PRD_DEV_SPEC 
+     GROUP BY PRD_DEV_NO ) SP
+    ,(SELECT PRD_DEV_NO 
+             ,MAX(SEQ_NO)
+             ,MAX(IMG_NM) IMG_NM
+             ,MAX(IMG_ADR) IMG_ADR
+             FROM TB_C10_PRD_DEV_IMG
+      GROUP BY PRD_DEV_NO) IMG
+     
+WHERE CM.PRD_DEV_NO = SP.PRD_DEV_NO (+)
+AND  CM.PRD_DEV_NO = IMG.PRD_DEV_NO (+)
+AND CM.REQ_RGS_DH BETWEEN TO_DATE(NVL(:REQ_RGS_DH_FR,'1900-01-01'),'YYYY-MM-DD')
+                  AND TO_DATE(NVL(:REQ_RGS_DH_TO,'2999-12-31'),'YYYY-MM-DD') + 1
+AND NVL(CM.SAL_CHR_PRS_ID, ' ') LIKE NVL(:SAL_CHR_PRS_ID ,'') || '%'
+AND NVL(CM.CUS_CD , ' ') LIKE NVL(:CUS_CD,'')  || '%'
+AND NVL(CM.DEV_RECV_CHR_UID , ' ') LIKE  NVL(:DEV_RECV_CHR_UID,'')  || '%'
+AND NVL(CM.DEV_PRG_CD, ' ') LIKE  NVL(:DEV_PRG_CD,'') || '%'
+AND NVL(SP.COT_MTH, ' ') LIKE  NVL(:COT_MTH ,'') || '%'
+ORDER BY CM.PRD_DEV_NO, CM.REQ_RGS_DH
+		 ]]> 
+	 </query>
+	 <query id="C108000010.update" desc="C108000010 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE/*+ C10 품질설계 제품개발진행 저장(update) C108000010.update 전경진 */
+    C10APUSER.TB_C10_PRD_DEV_CMN  
+SET DEV_PRG_CD = '91',
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp   
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND	  '1' = :PRD_DEV_CFM
+AND   DEV_PRG_CD != '90'
+		 ]]> 
+	 </query>
+	 <query id="C108000010.delete" desc="C108000010 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE/*+ C10 품질설계 제품개발진행 삭제(delete) C108000010.delete 전경진 */
+FROM  C10APUSER.TB_C10_PRD_DEV_CMN  
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND   DEV_PRG_CD = '20'
+		 ]]> 
+	 </query>
+	 <query id="C108000010.insert" desc="C108000010 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 제품개발진행 C108000010.insert 전경진*/ 
+INTO C10APUSER.TB_C10_PRD_DEV_CMN
+(   PRD_DEV_NO,
+    REQ_RGS_DH,
+    SAL_CHR_PRS_ID,
+    DEV_PRG_CD,
+    CUS_CD,
+    USG_CD,
+    USE_NAT_CD,
+    APP_SIM_RCV_ADDR,
+    APP_SIM_RCV_NM,
+    APP_SIM_RCV_PHON,
+    DEV_REQ_RMK,
+    DEV_REQ_FILE,
+    DEV_RGS_DH,
+    DEV_RECV_CHR_UID,
+    PROC_SIM_MO,
+    DEV_RECV_RMK,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+(SELECT 'D'|| MAX(DECODE(CD_TP, 'YR_TP', CD_V))
+       || MAX(DECODE(CD_TP, 'MN_TP', CD_V))
+ FROM M00APUSER.VI_M00_CODE_ACCESS
+ WHERE (CD_TP = 'YR_TP' AND CD_V_MEANING = TO_CHAR(SYSDATE, 'YYYY'))
+ OR (CD_TP = 'MN_TP' AND CD_V_MEANING = TO_NUMBER(TO_CHAR(SYSDATE, 'MM')))
+ OR (CD_TP = 'DD_TP' AND CD_V_MEANING = TO_NUMBER(TO_CHAR(SYSDATE, 'DD')))
+) || TO_CHAR(LPAD(C10APUSER.SQ_C10_PRD_DEV_CMN.NEXTVAL,3,0))
+,SYSDATE
+,:SAL_CHR_PRS_ID
+,'20'
+,:CUS_CD
+,:USG_CD
+,:USE_NAT_CD
+,:APP_SIM_RCV_ADDR
+,:APP_SIM_RCV_NM
+,:APP_SIM_RCV_PHON
+,:DEV_REQ_RMK
+,:DEV_REQ_FILE
+,:DEV_RGS_DH
+,:DEV_RECV_CHR_UID
+,:PROC_SIM_MO
+,:DEV_RECV_RMK
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C108000010.selectChk" desc="C108000010 존재확인" isNamed="true">
+		 <![CDATA[ 
+SELECT PRD_DEV_NO
+FROM C10APUSER.TB_C10_PRD_DEV_CMN
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND   DEV_PRG_CD = '20'
+		 ]]> 
+	 </query>
+	 <query id="C108000010.deleteSpec" desc="SPEC을 전체 삭제 한다." isNamed="true">
+		 <![CDATA[ 
+DELETE/*+ C10 품질설계 제품개발SPEC 삭제(delete) C108000010.deleteSpec 전경진 */
+FROM C10APUSER.TB_C10_PRD_DEV_SPEC
+WHERE PRD_DEV_NO = (
+SELECT PRD_DEV_NO FROM C10APUSER.TB_C10_PRD_DEV_CMN  
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND   DEV_PRG_CD = '20' )
+		 ]]> 
+	 </query>
+	 <query id="C108000010.updateDevCmp" desc="C108000010 개발완료" isNamed="true">
+		 <![CDATA[ 
+UPDATE/*+ C10 품질설계 제품개발진행 개발완료 C108000010.updateDevCmp 전경진 */
+    C10APUSER.TB_C10_PRD_DEV_CMN  
+SET DEV_PRG_CD = '60',
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp   
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND	  '1' = :PRD_DEV_CFM
+AND   DEV_PRG_CD = '51'
+		 ]]> 
+	 </query>
+	 <query id="C108000010.updateSaveCmp" desc="C108000010 등록완료" isNamed="true">
+		 <![CDATA[ 
+UPDATE/*+ C10 품질설계 제품개발진행 등록완료 C108000010.updateSaveCmp 전경진 */
+    C10APUSER.TB_C10_PRD_DEV_CMN  
+SET DEV_PRG_CD = '90',
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp   
+WHERE PRD_DEV_NO = :PRD_DEV_NO
+AND	  '1' = :PRD_DEV_CFM
+AND   DEV_PRG_CD = '60'
+		 ]]> 
+	 </query>
+</queryMap>

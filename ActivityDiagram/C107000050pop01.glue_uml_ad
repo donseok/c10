@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="265,214" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="176,82" size="202,-1" input="//@wire.0" output="//@wire.1" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="11225" guardcondition="success" firstRelativePoint="275,112" lastRelativePoint="275,213"/>
+</Glue:GlueDiagram>

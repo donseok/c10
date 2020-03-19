@@ -1,0 +1,21 @@
+<items>
+<item type="block" width="980">
+<item inputWidth="70" label="시스템" labelAlign="right" maxlength="10" name="SYS_TP" type="combo"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="100" label="부문" labelAlign="right" maxlength="10" name="CHAIN_CODE" type="combo"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="100" label="항목ID" labelAlign="right" name="STANDARD_ENGLISH_ID" type="input"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="100" label="항목명" labelAlign="right" name="STANDARD_KOREAN_NAME" type="input"/>
+<item offset="60" type="newcolumn"/>
+<item command="migraiton" label="이행" name="migraiton" type="linkbutton" value="이행" width="75"/>
+<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+<item disabled="true" command="find" label="find" name="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<item disabled="true" type="button" name="save" value="저장" command="save"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+<item name="txMsg" type="hidden" readonly="true"/>
+<item name="txErrMsg" type="hidden" readonly="true"/>
+</item>
+</items>

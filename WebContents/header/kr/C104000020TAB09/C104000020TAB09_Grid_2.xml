@@ -1,0 +1,40 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="attachHeader">
+<param>#rspan,#rspan,#rspan,폭,길이</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="EMBS_CD" index="1" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">엠보스무늬</column>
+<column id="ORD_SHT_LOD_MTH" index="2" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">SHEET적치방법</column>
+<column id="OIL_PNT_CD" index="3" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">방청유</column>
+<column id="SKID_WTH" index="4" sort="int" width="16" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[SKID]]></column>
+<column id="SKID_LTH" index="5" sort="int" width="*" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">EMBS_CD,ORD_SHT_LOD_MTH,OIL_PNT_CD,SKID_WTH,SKID_LTH</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

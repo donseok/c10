@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110_KOR" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1200"/>
+	<parameter name="CCL_BOM_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="F_CCL_BOM_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_ENM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_6" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_1_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_TRM_7" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_TRM_8" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_4" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_WAL_12" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_WAL_11" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_ROF_10" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_ROF_9" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_TRM_14" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_TRM_13" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_WAL_18" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_WAL_17" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_ROF_16" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_ROF_15" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_5" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DIV_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_CHECK" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLS_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_ENM_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_6" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRT_RSN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_19_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_7" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PE_FL_20" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PE_FL_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_19" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CUS_NM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+ $P{PER_FOR_19}|| ' YEAR LIMITED WARRANTY
+'|| $P{BRD_CMP_2}||'
+'|| $P{F_CCL_BOM_NO} AS TITLE,
+'
+본 보증서는 동국제강㈜ ' || $P{BRD_CMP_2_1}||' 제품에 대하여 출고일로부터 ' ||$P{PER_FOR_19}||'년 동안 유효합니다.
+또한 아래 보증 항목이 적용됩니다.
+' as detail_1,
+'동국제강㈜는 하기 명기된 항목에 따라 대한민국내 건축물에 적용된 '||$P{BRD_CMP_2_2}||' 에 대하여 다음의 기준으로 제품을 보증합니다.' as detail_2,
+$P{BRD_CMP_2_7}||'는 외부로부터의 손상이 없는 상태에서 '||$P{PER_FOR_19_1}||'년 동안 천공이 발생되지 않습니다.' as detail_2_1_0,
+$P{BRD_CMP_2_3}||'는 외부로부터의 손상이 없는 상태에서 '||$P{PE_FL_1}||'년 동안 도막이 벗겨지지 않습니다.
+단, Roll-Forming 및 절단, 절곡 작업시 발생하는 미세한 균열은 포함되지 않습니다.
+(미세한 균열은 2m 거리에서 육안으로 확인가능 여부로 판정합니다.)' as detail_2_1_1,
+
+$P{BRD_CMP_2_4}||'는 '||$P{FA_TRM_8}||'년 동안 벽체일 경우 △E는 '||$P{FA_WAL_11}||' 이상 변하지 않고 지붕일 경우 △E가 '||$P{FA_ROF_9}||' 이상 변하지
+않습니다. 단, 색상 변화는 외부오염(먼지 및 Chalk 발생부 등) 제거한 제품에 깨끗한 표면, 노출되지 않은 원래의 표면과 비교하여 ASTM D2244-93 방법으로 측정합니다.
+(태양과 외부환경에 동등하게 노출되지 않은 표면은 균일하지 않을 수 있음을 이해합니다.)' as detail_2_1_2,
+
+$P{BRD_CMP_2_6}||'는 '||$P{CH_TRM_13}||'년 동안 가루처럼 일어나는 Chalk에 대해 ASTM D4214, Method C로 측정 시, 벽체일경우 '||$P{CH_WAL_17}||' Rate, 지붕일 경우 '||$P{CH_ROF_16}||' Rate 보다 양호할 것을 보증합니다. 단, 측정방법은 ASTM D3964 에 준하여 Chalk 발생부의 외부오염이나 먼지를 가볍게 제거 후 측정합니다.
+' as detail_2_1_3,
+
+'해안으로부터 1km 이내 또는 염분이 포함된 대기 환경에 대해서는 '|| $P{BRD_CMP_2_5}||'의 보증범위에 포함되지 않습니다. 따라서 해안가 시공의 경우 제조사측과 별도의 협의과정을 거칩니다.
+' as detail_2_2_1,
+
+'본 보증서는 동국제강㈜에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염부과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다.
+' as detail_2_2_2,
+
+'부적절한 운송이나 보관, 가공으로 인해 발생하는 문제는 보증에서 제외됩니다.
+' as detail_2_2_3,
+
+'본 보증서는 동국제강㈜에서 승인된 색상 범위에서만 적용됩니다. 어떤 색상은 표준에 맞지 않을 수 있으며 역시 제조사측과 별도의 협의를 거칩니다.' as detail_2_2_4,
+
+' 6. 동국제강㈜의 책임은 하자가 있는 제품의 교환 또는 환불 등 직접적인 비용에 한정되며,
+     제품의 결함에 의해 발생한 간접적인, 특별한, 필연적인 손해와 노동력 손실에 대한 비용은
+     보상하지 않습니다.
+
+     가. 동국제강㈜의 클레임 보상 책임은 METAL PANEL 또는 STEEL SHEET 가격내에서 보상한다.
+
+     나. 동국제강㈜는 장비사용료, 노동임금 또는 별도의 간접적인 손실 금액에 대해서는 보상하지
+         않는다.
+
+ 7. 동국제강㈜는 하자가 있는 제품에 대해서 재도장 및 재시공 방법을 결정할 권한과 다른 재료
+     교체, 설치, 또는 재처리를 결정하는 자리에 참여와 승인 자격을 가지게 됩니다. 교체나 재처리
+     후, 이 부분은 본 보증서의 목적에 대한 원래의 설치 일에 맞춰 보증합니다.
+
+ 8. 본 보증서에 명시된 제품의 성능 관련된 모든 클레임은 고객이 제품에 대한 결함을 알게 되었
+     거나 알고 있는 시점으로부터 30일 이내에 동국제강㈜에 문서로 제출하여야 하며, 그렇지
+     않을 경우 클레임 청구 권리가 철회됩니다. 동국제강㈜는 필요한 경우 시험분석을 위한 샘플
+     을 요청할 권한이 있으며 클레임 청구자는 샘플을 제공해줘야 합니다.
+
+ 9. 동국제강㈜는 제품이 판매되어 시공되는 과정에 관여한 제조사, 가공처, 유통점, 시공사, 건설사
+     에 대한 정보를 요구할 권리를 가지며, 고객은 이에 대한 충분한 정보를 제공하여야 합니다.
+     또한 제품의 Coil Number, 가공일자, 시공일자 등에 대한 충분한 자료 및 기록을 확인하고 조사할
+     권리를 가집니다.
+
+10. 동국제강㈜는 판매된 제품 자체에 대한 클레임만 수용할 뿐, 보증항목에 해당하지 않는 원인으로
+      발생된 클레임에 대해서는 어떠한 의무도 지지 않습니다.
+
+11. 본 보증서는 발급대상으로 명기된 고객을 제외한 누구에게도 양도 혹은 이전될 수 없습니다. 또한,
+      보증서를 발급받은 고객을 제외한 어떠한 대리인, 대표자, 중개인도 고객을 대신하여 이 보증서에
+      대한 권한을 가질 수 없으며, 제품에 대한 어떠한 책임도 물을 수 없습니다.
+
+12. 보증서는 동국제강㈜에서 발행되는 다른 모든 제품의 보증서에 우선하여 적용됩니다. 본 보증서
+      상의 모든변경, 수정, 추가사항은 반드시 동국제강㈜ 품질담당자의 서명을 포함하여 명문화
+      되어야 합니다. 영업사원이나 중계상의 동의에 의해 변경된 보증서는 효력을 상실하게 됩니다.
+
+13. 본 보증과 관련하여 법적인 분쟁이 발생하는 경우 동국제강㈜ 본사 소재지의 관할법원에서
+      처리함을 원칙으로 합니다.' as detail_3,
+TO_CHAR(SYSDATE, 'MonthDD"일," YYYY"년"','NLS_DATE_LANGUAGE=KOREAN') AS DATE_FORMAT,
+DECODE($P{PRT_RSN},'사전영업용','이 문서는 견본이며, 제품 보증을 하는 것은 아닙니다.',
+'본 보증서는 아래 서명 후에 효력이 발휘됩니다.') as detail_4,
+DECODE($P{PRT_RSN},'사전영업용','　',$P{CUS_NM}) AS CUS_NM,
+DECODE($P{PRT_RSN},'사전영업용','　',
+'
+
+     서 명 : _______________') AS CUS_SIGN,
+DECODE($P{PRT_RSN},'사전영업용','　',
+'동   국   제   강 ') AS DONGKUKSTEEL,
+DECODE($P{PRT_RSN},'사전영업용','　',
+'              품 질 관 리 팀 장
+
+     서 명 : _______________') AS SIGNATURE
+  FROM DUAL]]>
+	</queryString>
+	<field name="TITLE" class="java.lang.String"/>
+	<field name="DETAIL_1" class="java.lang.String"/>
+	<field name="DETAIL_2" class="java.lang.String"/>
+	<field name="DETAIL_2_1_0" class="java.lang.String"/>
+	<field name="DETAIL_2_1_1" class="java.lang.String"/>
+	<field name="DETAIL_2_1_2" class="java.lang.String"/>
+	<field name="DETAIL_2_1_3" class="java.lang.String"/>
+	<field name="DETAIL_2_2_1" class="java.lang.String"/>
+	<field name="DETAIL_2_2_2" class="java.lang.String"/>
+	<field name="DETAIL_2_2_3" class="java.lang.String"/>
+	<field name="DETAIL_2_2_4" class="java.lang.String"/>
+	<field name="DETAIL_3" class="java.lang.String"/>
+	<field name="DATE_FORMAT" class="java.lang.String"/>
+	<field name="DETAIL_4" class="java.lang.String"/>
+	<field name="CUS_NM" class="java.lang.String"/>
+	<field name="CUS_SIGN" class="java.lang.String"/>
+	<field name="DONGKUKSTEEL" class="java.lang.String"/>
+	<field name="SIGNATURE" class="java.lang.String"/>
+	<background>
+		<band height="842" splitType="Stretch">
+			<frame>
+				<reportElement positionType="Float" x="15" y="15" width="565" height="812"/>
+				<box>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+					<topPen lineWidth="1.5" lineStyle="Double"/>
+					<leftPen lineWidth="1.5" lineStyle="Double"/>
+					<bottomPen lineWidth="1.5" lineStyle="Double"/>
+					<rightPen lineWidth="1.5" lineStyle="Double"/>
+				</box>
+				<image hAlign="Center">
+					<reportElement x="0" y="1" width="564" height="811"/>
+					<imageExpression><![CDATA["unionsteel_logo.gif"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</background>
+	<detail>
+		<band height="204" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="160" width="595" height="43" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true" pdfEncoding="Cp1253"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="15.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="133" width="112" height="27"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATE_FORMAT}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="31">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="63" y="0" width="498" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isStrikeThrough="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0" rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="56">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="30" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" isBold="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2" tabStopWidth="20">
+						<tabStop position="0" alignment="Left"/>
+					</paragraph>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="4" width="90" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[-    아    래    -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="30" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="91" y="0" width="441" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_0}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="0" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[가.]]></text>
+			</staticText>
+		</band>
+		<band height="40">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="0" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[나.]]></text>
+			</staticText>
+		</band>
+		<band height="40">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="0" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[다.]]></text>
+			</staticText>
+		</band>
+		<band height="25">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="91" y="0" width="441" height="25" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="0" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[라.]]></text>
+			</staticText>
+		</band>
+		<band height="24">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" isBold="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2" tabStopWidth="20">
+						<tabStop position="0" alignment="Left"/>
+					</paragraph>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+		</band>
+		<band height="24">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[3.]]></text>
+			</staticText>
+		</band>
+		<band height="24">
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[4.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_3}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="24">
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+				</textElement>
+				<text><![CDATA[5.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="199"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="842">
+			<textField pattern="">
+				<reportElement mode="Transparent" x="58" y="141" width="503" height="536"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="677" width="595" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="714" width="165" height="32"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DONGKUKSTEEL}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="406" y="771" width="125" height="41">
+					<printWhenExpression><![CDATA[$P{PRT_RSN}.equals( "WARRANTY발급용" ) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["ChoiJihun.gif"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="337" y="745" width="234" height="67"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SIGNATURE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="747" width="234" height="65"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUS_SIGN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="715" width="234" height="32"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUS_NM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

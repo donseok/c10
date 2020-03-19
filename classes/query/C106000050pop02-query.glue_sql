@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050pop02 Page 쿼리파일"> 
+	 <query id="C106000050pop02.select" desc="C106000050pop02 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라부재료업체 정보 수정이력 popup조회 C106000050pop02.SELECT 성낙원*/
+       USE_YN,--사용여부
+       CLR_SUB_MTL_CD,--칼라부재료코드
+       PNT_CMP_CD,--도료업체코드
+       MDF_SEQ, 
+       MDF_RSN,
+       NV,--고형분
+       PNT_GRA,--도료비중
+       SLV_GRA,--용재비중
+       PNT_UNT,--도료원단위
+       PTC_YN  , -- 입자유무
+       PTC_TYPE , --입자TYPE
+       TEX_KND , --질감종류
+       PTC_MIN , --입자MIN
+       PTC_MAX , --입자MAX
+       PTC_AVG , --입자AVG
+       CMT , --비고
+       QUE_MIN , --소광제MIN
+       QUE_MAX , --소광제 MAX
+       QUE_AVG,   --소광제AVG
+		(SELECT USER_NAME
+		 FROM M90APUSER.TB_M90_EMP_INF
+		 WHERE USER_NO = TB_C10_CLR_CMP_MNG_MDF_LOG.LAST_UPDATED_OBJECT_ID) AS LAST_UPDATED_OBJECT_ID,  --수정자 
+       LAST_UPDATE_TIMESTAMP
+ FROM TB_C10_CLR_CMP_MNG_MDF_LOG
+ WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+ AND   PNT_CMP_CD     = :PNT_CMP_CD
+ order by MDF_SEQ
+		 ]]> 
+	 </query>
+</queryMap>

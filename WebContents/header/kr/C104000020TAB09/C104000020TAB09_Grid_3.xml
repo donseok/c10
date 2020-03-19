@@ -1,0 +1,42 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="attachHeader">
+<param>관리점착력,상세코드,부착위치,두께,폭,SUS점착력,제품점착력</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="PTT_FLM_MNG_ADH_TXT" index="1" sort="str" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">보호필름</column>
+<column id="ORD_PTT_FLM_DTL_CD" index="2" sort="int" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="ORD_PTT_FLM_ADH_LOC_CD" index="3" sort="int" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="PTT_FLM_THK_CD" index="4" sort="int" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="ORD_PTT_FLM_WTH" index="5" sort="int" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="PTT_FLM_SUS_ADH_CD" index="6" sort="int" width="14" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="PTT_FLM_PRD_ADH_CD" index="7" sort="int" width="*" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">PTT_FLM_MNG_ADH_TXT,ORD_PTT_FLM_DTL_CD,ORD_PTT_FLM_ADH_LOC_CD,PTT_FLM_THK_CD,ORD_PTT_FLM_WTH,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

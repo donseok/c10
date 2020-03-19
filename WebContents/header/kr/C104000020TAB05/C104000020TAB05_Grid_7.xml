@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableMultiline"><param>true</param></call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="QLT_MSG_CD" sort="na" align="center" dbname="품질Message코드" width="11" table="TB_C10_QLT_DSN_MSG" type="ro" clabel="품질Message코드">품질Message코드</column>
+<column id="QLT_MSG_NM" sort="na" align="left" dbname="품질Message" width="*" table="TB_C10_QLT_DSN_MSG" type="ed" clabel="품질Message"  color="FFFFC0">품질Message</column>
+<column align="right"  index="14" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP"  sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="8"></column>
+<column align="right"  index="15" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="8"></column>
+<column align="right"  index="16" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN"  sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="8"></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_MSG_CD,QLT_MSG_NM,QLT_DSN_MNF_TP,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell class="form_cell"><![CDATA[<br>메세지<br><br>]]></cell>
+<cell id="QLT_MSG_NM"></cell>
+<cell id="QLT_DSN_MNF_TP"/>
+<cell id="ORD_NO"/>
+<cell id="ORD_LN"/>
+</row>
+</rows>

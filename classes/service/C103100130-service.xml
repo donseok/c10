@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C103100130-service" initial="INIT_QLT_ERR">
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100CMN.Jselect" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_VAILD_SEARCH" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="GET IF_GRP_ID" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH_MD" />
+  </activity>
+  <activity name="CLEAR_ERR_CD" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="GET IF_GRP_ID" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_ERR_KEY|sp_null" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="success" value="CLEAR_ERR_CD" />
+    <transition name="exit" value="COMMIT" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param3" value="QLT_DSN_CFM_TP|QLT_DSN_CFM_TP" />
+    <property name="param20" value="CUT_LN_YN|CUT_LN_YN" />
+    <property name="param-count" value="23" />
+    <property name="param4" value="MQL_CD|MQL_CD" />
+    <property name="param21" value="ATT_ORD_YN|ATT_ORD_YN" />
+    <property name="param5" value="RMTL_CD|RMTL_CD" />
+    <property name="param22" value="POC_AUTO_YN|POC_AUTO_YN" />
+    <property name="param6" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO" />
+    <property name="param7" value="PAS_PROC_NO|PAS_PROC_NO" />
+    <property name="param8" value="QLT_DSN_ERR_YN|QLT_DSN_ERR_YN" />
+    <property name="param9" value="URG_MTL_TP|URG_MTL_TP" />
+    <property name="countName" value="QLT_DSN_VALID_COUNT" />
+    <property name="param10" value="ORD_LN_WGT|ORD_LN_WGT" />
+    <property name="param11" value="GW_ASG_CD|GW_ASG_CD" />
+    <property name="param12" value="ORD_SPC_TXT|ORD_SPC_TXT" />
+    <property name="param13" value="ORD_USG_CD|ORD_USG_CD" />
+    <property name="param14" value="FNL_CUS_CD|FNL_CUS_CD" />
+    <property name="param15" value="ORD_KND|ORD_KND" />
+    <property name="param16" value="ORD_RGS_PRS_ID|ORD_RGS_PRS_ID" />
+    <property name="param17" value="ORD_DSN_CFM_TP|ORD_DSN_CFM_TP" />
+    <property name="param18" value="CCL_BOM_NO|CCL_BOM_NO" />
+    <property name="param19" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP" />
+    <property name="bind-result" value="RK_VAILD_SEARCH" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchDsnValidData">
+    <transition name="false" value="PROC_LOOP" />
+    <transition name="true" value="RESULT_IF" />
+    <property name="dao" value="mesdao" />
+    <property name="bind_result" value="RK_RESULT" />
+  </activity>
+  <activity name="RESULT_IF" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="B10S1010-service" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+</service>
+

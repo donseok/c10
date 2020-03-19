@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202310-service" initial="RuleJCSRouter">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="SaveRuleAttrsJCS" class="com.poscoict.glue.master.ui.rule.SaveJCSRuleAttrsList">
+    <transition name="success" value="GetRuleAttrsJCS" />
+    <transition name="failure" value="ForwardPage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="RuleJCSRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="save" value="SaveRuleListJCS" />
+    <transition name="success" value="GetRuleListJCS" />
+    <transition name="pop01_save" value="SaveRuleAttrsJCS" />
+    <transition name="pop01" value="GetRuleAttrsJCS" />
+  </activity>
+  <activity name="SaveRuleListJCS" class="com.poscoict.glue.master.ui.rule.SaveJCSRuleList">
+    <transition name="success" value="GetRuleListJCS" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="pop01" />
+  </activity>
+  <activity name="GetRuleAttrsJCS" class="com.poscoict.glue.master.ui.rule.GetJCSRuleAttrsList">
+    <transition name="failure" value="ForwardPage" />
+    <transition name="success" value="ForwardPage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetRuleListJCS" class="com.poscoict.glue.master.ui.rule.GetJCSRuleList">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="20" />
+    <property name="sqlkey" value="m000202010.selectRuleList" />
+    <property name="resultkey" value="PosRuleJocListVO" />
+    <property name="dao" value="masterdao" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="param-count" value="0" />
+  </activity>
+</service>
+

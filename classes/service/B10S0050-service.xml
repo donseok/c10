@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10S0050-service" initial="IFGroupID">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="INSERT" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="failure" value="COMMIT" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="param1" value="CUS_BTH_PAP_NO" />
+    <property name="param2" value="SPC_AVR" />
+    <property name="dao" value="eaidao" />
+    <property name="param3" value="SPC_YR" />
+    <property name="param4" value="ORD_USG_CD" />
+    <property name="param5" value="CUS_CD" />
+    <property name="isAudit" value="true" />
+    <property name="param6" value="PRD_NM_CD" />
+    <property name="param7" value="PRD_THK_RNG_LLV" />
+    <property name="param8" value="PRD_THK_RNG_ULV" />
+    <property name="param9" value="PRD_WTH_RNG_LLV" />
+    <property name="sqlkey" value="B10S0050.insert" />
+    <property name="param20" value="CUS_REQ_ROL_THK_UNT" />
+    <property name="param21" value="ORD_THK_TP" />
+    <property name="param22" value="PRD_THK_CAL_APL_CD" />
+    <property name="param23" value="GW_ASG_CD" />
+    <property name="param-count" value="27" />
+    <property name="param24" value="ORD_SUR_HND_CD" />
+    <property name="param10" value="PRD_WTH_RNG_ULV" />
+    <property name="param25" value="CCL_BOM_NO" />
+    <property name="param11" value="PRD_LTH_RNG_LLV" />
+    <property name="param26" value="CUS_BTH_NM" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param12" value="PRD_LTH_RNG_ULV" />
+    <property name="param13" value="CUS_REQ_ROL_THK" />
+    <property name="param14" value="THK_TLN_LLV" />
+    <property name="param15" value="THK_TLN_ULV" />
+    <property name="param16" value="WTH_TLN_LLV" />
+    <property name="param17" value="WTH_TLN_ULV" />
+    <property name="param18" value="LTH_TLN_LLV" />
+    <property name="param19" value="LTH_TLN_ULV" />
+    <property name="param0" value="IF_GRP_ID" />
+  </activity>
+  <activity name="IFGroupID" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C10A1020_IF" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="INSERT" />
+    <property name="param1" value="SPC_AVR|SPC_AVR" />
+    <property name="param2" value="SPC_YR|SPC_YR" />
+    <property name="param3" value="ORD_USG_CD|ORD_USG_CD" />
+    <property name="param4" value="CUS_CD|CUS_CD" />
+    <property name="param5" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param6" value="PRD_THK_RNG_LLV|PRD_THK_RNG_LLV" />
+    <property name="param7" value="PRD_THK_RNG_ULV|PRD_THK_RNG_ULV" />
+    <property name="param8" value="PRD_WTH_RNG_LLV|PRD_WTH_RNG_LLV" />
+    <property name="param9" value="PRD_WTH_RNG_ULV|PRD_WTH_RNG_ULV" />
+    <property name="param20" value="THK_TLN_LLV|THK_TLN_LLV" />
+    <property name="param21" value="THK_TLN_ULV|THK_TLN_ULV" />
+    <property name="param22" value="WTH_TLN_LLV|WTH_TLN_LLV" />
+    <property name="param23" value="WTH_TLN_ULV|WTH_TLN_ULV" />
+    <property name="param-count" value="26" />
+    <property name="param24" value="LTH_TLN_LLV|LTH_TLN_LLV" />
+    <property name="param10" value="PRD_LTH_RNG_LLV|PRD_LTH_RNG_LLV" />
+    <property name="param25" value="LTH_TLN_ULV|LTH_TLN_ULV" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param11" value="PRD_LTH_RNG_ULV|PRD_LTH_RNG_ULV" />
+    <property name="param12" value="CUS_REQ_ROL_THK|CUS_REQ_ROL_THK" />
+    <property name="param13" value="CUS_REQ_ROL_THK_UNT|CUS_REQ_ROL_THK_UNT" />
+    <property name="param14" value="ORD_THK_TP|ORD_THK_TP" />
+    <property name="param15" value="PRD_THK_CAL_APL_CD|PRD_THK_CAL_APL_CD" />
+    <property name="param16" value="GW_ASG_CD|GW_ASG_CD" />
+    <property name="param17" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD" />
+    <property name="param18" value="CCL_BOM_NO|CCL_BOM_NO" />
+    <property name="param19" value="CUS_BTH_NM|CUS_BTH_NM" />
+    <property name="countName" value="SD0100_COUNT" />
+    <property name="param0" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO" />
+  </activity>
+</service>
+

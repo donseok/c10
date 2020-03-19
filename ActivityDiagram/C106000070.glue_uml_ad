@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.3 //@wire.6 //@wire.9 //@wire.11 //@wire.13 //@wire.15 //@wire.17 //@wire.19 //@wire.21 //@wire.23 //@wire.26 //@wire.27 //@wire.29 //@wire.31 //@wire.33"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="-85,82" size="1101,-1" input="//@wire.0" output="//@wire.2 //@wire.4 //@wire.5 //@wire.12 //@wire.7 //@wire.10 //@wire.14 //@wire.16 //@wire.18 //@wire.20 //@wire.22 //@wire.24 //@wire.25 //@wire.28 //@wire.30 //@wire.32" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;find              : 품질설계 Interface현황관리 조회&#xD;&#xA;ajaxFind        : ajax로 선택한 Table에 대한 컬럼을 조회&#xD;&#xA;comboSelect : 필수항목인 Table 목록을 조회&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="43,185" size="60,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계 InterFace 현황을  조회하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - DB owner가 'EAIUSER'인 테이블중 사용자가 선택한 테이블에 대해조회한다.&#xD;&#xA;  - 화면 필수 입력 사항 :   TABLE NAME, 송신일&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="7" location="116,183" size="88,-1" input="//@wire.4" output="//@wire.3" name="컬럼정보조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="sqlkey" value="C106000070.ajaxFind"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 사용자가 선택한 TABLE NAME에 대한 컬럼정보를 조회하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :   TABLE NAME&#xD;&#xA;     - 화면에서 선택한 TABLE NAME에 대한 컬럼정보를 조회하여  Grid의 header정보를 해당 Table에 맞게 재설정한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="8" location="219,187" size="84,-1" input="//@wire.5" output="//@wire.6" name="combo설정">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="sqlkey" value="C106000070.comboSelect"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 DB의 OWNER가 'EAIAPUSER' 이 TABLE 목록을 조회하는  Activity이다    TABLE NAME  Comobo Data를 설정하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 필수항목인 TABLE NAME Combo box에 Data를 만들기 위해   DB의 OWNER가 'EAIAPUSER' 이 TABLE 목록을 조회하여 Data를 설정한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131316" location="312,158" size="63,-1" input="//@wire.7" output="//@wire.8" name="재전송">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="eaidao"/>
+    <property key="update-sql" value="C106000070.reSendUpdate"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 컬러물설정보를 TB_C10_CLR_MPR에 수정,삭제,저장  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  선택한 CCL-BOM NO의 컬러물설정보를 TB_C10_CLR_MPR에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="155719" location="283,224" size="130,-1" input="//@wire.8" output="//@wire.9" name="생산가부Batch Call">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosBatchJobInvoker"/>
+    <property key="job-name" value="batchJobB10R0020"/>
+    <property key="target-chain" value="C10"/>
+    <property key="description" value="Batch Job을 Call하는 Activity이다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="155860" location="399,188" size="78,-1" input="//@wire.10" output="//@wire.11" name="행번 조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.ordLnSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 품질설계결과공통 테이블에서 주문행번을 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   사용자가 입력한 주문번호에 따라 주문행번을 조회 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="155861" location="-68,183" size="102,-1" input="//@wire.12" output="//@wire.13" name="생산가부조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.select2"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계 InterFace 현황을  조회하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - DB owner가 'EAIUSER'인 테이블중 사용자가 선택한 테이블에 대해조회한다.&#xD;&#xA;  - 화면 필수 입력 사항 :   TABLE NAME, 송신일&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="156021" location="483,189" size="110,-1" input="//@wire.14" output="//@wire.15" name="규격공통정보송신">
+    <property key="description" value="이 Activity는 규격공통정보송신을 편성하는 서비스를 호출하는 Activity이다. "/>
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S0010-service"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="156022" location="597,189" size="110,-1" input="//@wire.16" output="//@wire.17" name="주문용도정보송신">
+    <property key="description" value="이 Activity는 주문용도정보송신을 편성하는 서비스를 호출하는 Activity이다. "/>
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S0020-service"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="156023" location="711,189" size="115,-1" input="//@wire.18" output="//@wire.19" name="규격별주문용도정보송신">
+    <property key="description" value="이 Activity는 규격별주문용도정보송신을 편성하는 서비스를 호출하는 Activity이다. "/>
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S0030-service"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="156024" location="829,188" size="110,-1" input="//@wire.20" output="//@wire.21" name="공통코드정보송신">
+    <property key="description" value="이 Activity는 공통코드정보송신을 편성하는 서비스를 호출하는 Activity이다. "/>
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S0040-service"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="156025" location="941,189" size="110,-1" input="//@wire.22" output="//@wire.23" name="고객공통정보송신">
+    <property key="description" value="이 Activity는 고객공통정보송신을 편성하는 서비스를 호출하는 Activity이다. "/>
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="B10S0050-service"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156026" location="148,464" size="88,-1" input="//@wire.24" output="//@wire.26" name="재전송확인1">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="sqlkey" value="C106000070.chk30_find"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 생산가부의 재전송가능 여부를 확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :   주문요청번호, 주문요청행번&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156027" location="-6,378" size="88,-1" input="//@wire.25" output="//@wire.27" name="재전송확인2">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="eaidao"/>
+    <property key="sqlkey" value="C106000070.chk20_find"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 생산가부의 재전송가능 여부를 확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :   주문요청번호, 주문요청행번, PI송신일자, PI송신시간&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156045" location="-73,320" size="102,-1" input="//@wire.28" output="//@wire.29" name="품질설계조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.select3"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계 InterFace 현황을  조회하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - DB owner가 'EAIUSER'인 테이블중 사용자가 선택한 테이블에 대해조회한다.&#xD;&#xA;  - 화면 필수 입력 사항 :   TABLE NAME, 송신일&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="156046" location="432,232" size="78,-1" input="//@wire.30" output="//@wire.31" name="주문행번조회(추가)">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.ordLnSelect1"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 품질설계결과공통 테이블에서 주문행번을 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   사용자가 입력한 주문번호에 따라 주문행번을 조회 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="156047" location="49,337" size="141,-1" input="//@wire.32" output="//@wire.33" name="생산가부검토결과조회">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.SearchTableLoad"/>
+    <property key="dao" value="eaidao"/>
+    <property key="key1" value="#TABLE_NAME#|TABLE_NAME"/>
+    <property key="keyCount" value="1"/>
+    <property key="sqlkey" value="C106000070.select4"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx2" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계 InterFace 현황을  조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - DB owner가 'EAIUSER'인 테이블중 사용자가 선택한 테이블에 대해&#xD;&#xA;    조회한다.&#xD;&#xA;- 조회조건 : 필수입력조건 TABLE NAME,송신일, 송신일은 &#xD;&#xA;                 당일 00:00 ~조회시간까지 이다.&#xD;&#xA;                 선택입력조건 : IF GRP ID와  STATUS CD&#xD;&#xA;"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="71,215" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-2,40" secondDimension="-233,-73"/>
+    <bendpoint weight="0.5" firstDimension="-2,113" secondDimension="-233,0"/>
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-160,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="73,112" lastRelativePoint="73,185"/>
+  <wire id="8" guardcondition="success" firstRelativePoint="151,213" lastRelativePoint="291,312">
+    <bendpoint weight="0.5" firstDimension="-9,114" secondDimension="-153,-1"/>
+    <bendpoint weight="0.5" firstDimension="1,115" secondDimension="117,-2"/>
+  </wire>
+  <wire id="9" guardcondition="ajaxFind" firstRelativePoint="150,112" lastRelativePoint="150,183"/>
+  <wire id="10" guardcondition="comboSelect" firstRelativePoint="268,112" lastRelativePoint="268,187">
+    <bendpoint weight="0.5" firstDimension="-227,77" secondDimension="7,-28"/>
+  </wire>
+  <wire id="11" guardcondition="success" firstRelativePoint="250,217" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-11,109" secondDimension="-54,-2"/>
+  </wire>
+  <wire id="8438" guardcondition="reSend" firstRelativePoint="345,112" lastRelativePoint="345,158"/>
+  <wire id="9079" guardcondition="success" firstRelativePoint="342,188" lastRelativePoint="342,224"/>
+  <wire id="9080" guardcondition="success" firstRelativePoint="304,254" lastRelativePoint="304,302"/>
+  <wire id="9089" guardcondition="OrdLnFind" firstRelativePoint="433,112" lastRelativePoint="433,188"/>
+  <wire id="9090" guardcondition="success" firstRelativePoint="435,218" lastRelativePoint="312,308">
+    <bendpoint weight="0.5" firstDimension="-3,41" secondDimension="131,-69"/>
+  </wire>
+  <wire id="9091" guardcondition="find2" firstRelativePoint="-11,112" lastRelativePoint="-12,183">
+    <bendpoint weight="0.5" firstDimension="-488,53" secondDimension="5,-48"/>
+  </wire>
+  <wire id="9092" guardcondition="success" firstRelativePoint="-23,213" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-6,114" secondDimension="-327,-1"/>
+  </wire>
+  <wire id="9113" guardcondition="Send" firstRelativePoint="530,112" lastRelativePoint="530,189">
+    <bendpoint weight="0.5" firstDimension="35,87" secondDimension="-8,-20"/>
+  </wire>
+  <wire id="9114" guardcondition="success" firstRelativePoint="527,219" lastRelativePoint="313,310">
+    <bendpoint weight="0.5" firstDimension="-11,53" secondDimension="223,-56"/>
+  </wire>
+  <wire id="9115" guardcondition="Send1" firstRelativePoint="639,112" lastRelativePoint="639,189">
+    <bendpoint weight="0.5" firstDimension="144,85" secondDimension="-13,-22"/>
+  </wire>
+  <wire id="9116" guardcondition="success" firstRelativePoint="637,219" lastRelativePoint="313,311">
+    <bendpoint weight="0.5" firstDimension="-16,56" secondDimension="332,-53"/>
+  </wire>
+  <wire id="9117" guardcondition="Send2" firstRelativePoint="749,112" lastRelativePoint="749,189">
+    <bendpoint weight="0.5" firstDimension="254,89" secondDimension="-19,-18"/>
+  </wire>
+  <wire id="9118" guardcondition="success" firstRelativePoint="760,219" lastRelativePoint="313,311">
+    <bendpoint weight="0.5" firstDimension="-8,59" secondDimension="456,-50"/>
+  </wire>
+  <wire id="9119" guardcondition="Send3" firstRelativePoint="877,112" lastRelativePoint="877,188">
+    <bendpoint weight="0.5" firstDimension="382,89" secondDimension="-7,-17"/>
+  </wire>
+  <wire id="9120" guardcondition="success" firstRelativePoint="870,218" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="-14,77" secondDimension="566,-33"/>
+  </wire>
+  <wire id="9121" guardcondition="Send4" firstRelativePoint="995,112" lastRelativePoint="995,189"/>
+  <wire id="9122" guardcondition="success" firstRelativePoint="1003,219" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="7,109" secondDimension="699,0"/>
+  </wire>
+  <wire id="9123" guardcondition="chk30" firstRelativePoint="210,112" lastRelativePoint="210,464">
+    <bendpoint weight="0.5" firstDimension="-285,192" secondDimension="18,-190"/>
+  </wire>
+  <wire id="9124" guardcondition="chk20" firstRelativePoint="38,112" lastRelativePoint="38,460"/>
+  <wire id="9125" guardcondition="success" firstRelativePoint="236,479" lastRelativePoint="303,323">
+    <bendpoint weight="0.5" firstDimension="111,0" secondDimension="-1,166"/>
+  </wire>
+  <wire id="9126" guardcondition="success" firstRelativePoint="82,392" lastRelativePoint="298,320">
+    <bendpoint weight="0.5" firstDimension="212,-1" secondDimension="-54,79"/>
+  </wire>
+  <wire id="9127" guardcondition="find3" firstRelativePoint="-49,112" lastRelativePoint="-49,320">
+    <bendpoint weight="0.5" firstDimension="-519,56" secondDimension="-21,-182"/>
+  </wire>
+  <wire id="9128" guardcondition="success" firstRelativePoint="28,330" lastRelativePoint="304,322"/>
+  <wire id="9129" guardcondition="OrdLnFind1" firstRelativePoint="477,112" lastRelativePoint="477,232">
+    <bendpoint weight="0.5" firstDimension="12,58" secondDimension="6,-92"/>
+  </wire>
+  <wire id="9130" guardcondition="success" firstRelativePoint="437,258" lastRelativePoint="304,302"/>
+  <wire id="9131" guardcondition="find4" firstRelativePoint="111,112" lastRelativePoint="111,337">
+    <bendpoint weight="0.5" firstDimension="-354,88" secondDimension="-8,-167"/>
+  </wire>
+  <wire id="9132" guardcondition="success" firstRelativePoint="186,362" lastRelativePoint="303,323">
+    <bendpoint weight="0.5" firstDimension="184,10" secondDimension="-1,49"/>
+  </wire>
+</Glue:GlueDiagram>

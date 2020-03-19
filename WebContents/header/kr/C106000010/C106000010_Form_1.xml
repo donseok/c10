@@ -1,0 +1,32 @@
+<items>	
+	<item type="block" width="971">	
+		<item inputWidth="80" label="접수일" name="CLR_SMP_DEV_RCP_DH_START" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="~" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item inputWidth="80" name="CLR_SMP_DEV_RCP_DH_END" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+		<item offset="30" type="newcolumn"/>
+		<item inputWidth="80" label="의뢰번호" name="CLR_SMP_REQ_NO" maxLength="10" type="input" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="120" />
+		<item type="custombutton" name="create" value="수정/등록" command="create" width="75" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item command="excelExport" name="excelExport" type="button" value="엑셀출력"/>
+		<item offset="5" type="newcolumn"/>		
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item command="save" name="save" type="button" value="저장" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="971">		
+		<item inputWidth="150" label="접수번호" labelWidth="67" name="CLR_SMP_RCP_NO" maxLength="20" type="input" style="background-color:#FFFFC0"/>	
+		<item offset="28" type="newcolumn"/>
+		<item inputWidth="200" label="도료업체" name="DEV_PNT_CMP_CD" maxLength="10"   type="combo" />
+		<item offset="10" type="newcolumn"/>
+		<item inputWidth="100" label="영업담당자" name="SAL_CHR_PRS_ID" maxLength="20" type="input" style="background-color:#FFFFC0"/>
+		<item offset="10" type="newcolumn"/>
+		<item label="미의뢰" labelAlign="right" labelWidth="75" name="NOT_REC_YN" type="checkbox"/>
+		<item offset="8" type="newcolumn"/>
+		<item type="linkbutton" label="도료사별 담당" name="findClrCmp" command="findClrCmp" value="도료사별 담당" />
+	</item>
+</items>

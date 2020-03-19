@@ -1,0 +1,22 @@
+<items>
+	<item type="block" width="290">
+		<item type="block" width="280">
+			<item offset="20" type="newcolumn"/>
+			<item label="&lt;img src='dhtmlx\codebase\imgs\icon_title.gif'align=absmiddle/&gt; 해당주문의 시험종류를 선택하세요" type="label"/>
+		</item>				
+		<item offset="20" type="newcolumn"/>
+		<item label="시험종류" name="filedSet" type="fieldset" width="220">	
+			<item labelWidth="50" inputWidth="70" label="주문번호" name="ORD_NO" type="input" labelAlign="right" value="" readonly="true"/>
+			<item offset="0" type="newcolumn"/>
+			<item labelWidth="5" inputWidth="25" label="-" name="ORD_LN" type="input" labelAlign="right" value="" readonly="true"/>	
+			<item offset="20" type="newcolumn"/>
+			<item label="신뢰성" name="TRU_TST_KND_TP" position="label-right" type="radio" value="A" checked="true"/> 
+			<item foreground-color="255,140,50" offset="20" type="newcolumn"/>
+			<item label="칼라물성" name="TRU_TST_KND_TP" position="label-right" type="radio" value="B"/>
+		</item> 
+		<item type="block" width="100">
+			<item type="newcolumn" offset="70" />		
+			<item type="button" name="save" value="확인" command="save"/>		
+		</item>
+	</item>
+</items>

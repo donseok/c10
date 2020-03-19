@@ -1,0 +1,67 @@
+<items>
+	<item type="block" width="1000" name="BLOCK1">
+	    <item labelWidth="110" inputWidth="100" label="색상개발 번호" name="CLR_DEV_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발업체" name="CLR_DEV_CHR_UID" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발일시" name="CLR_DEV_DH" type="calendar" labelAlign="right" dateFormat="%Y-%m-%d"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="수 지" name="RSN_TP" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item format="serchIcon_RSN_TP" name="template" type="template" value="search"/>
+	</item>
+	<item type="block" width="1000" name="BLOCK2">
+		<item labelWidth="110" inputWidth="100" label="색번호" name="CLR_NO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="실광택값" name="LUS_RT_CD" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="도막두께" name="PNT_FLM_THK" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="PMT" name="PMT" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK3">
+		<item labelWidth="110" inputWidth="100" label="도료비중" name="PNT_GRA" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="고형분" name="NV" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="용제비중" name="SLV_GRA" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="신너" name="THR_CD" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK4">
+		<item labelWidth="110" inputWidth="100" label="점도" name="VISCO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="작업점도" name="WK_VISCO" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="BabyRoll No" name="PRT_ROLL_NO" type="input" labelAlign="right" value=""/>		
+	</item>
+	<item type="block" width="1000" name="BLOCK5">
+		<item labelWidth="110" inputWidth="100" label="L" name="QT_L" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="A" name="QT_A" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="B" name="QT_B" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK6">
+		<item labelWidth="110" inputWidth="100" label="연필경도" name="MPR_BAS_PNCL_HRDN" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="MEK" name="MPR_BAS_MEK" type="input" labelAlign="right" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="가공성" name="CLR_BND_TST_STD_CD" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="SRI" name="SRI_TXT" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="1000" name="BLOCK7">
+		<item labelWidth="110" inputWidth="100" label="COOL기능여부" name="COOL_FUNC_YN" type="combo" labelAlign="right">
+			<option value="" text =" "/>
+			<option value="Y" text="Y - 여"/>
+			<option value="N" text="N - 부"/>
+		</item>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="질감 입자종류" name="TEX_PTC_TP" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="무독성 여부" name="TLP_YN" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="0" inputWidth="0" label="개발번호" name="PRD_DEV_NO" type="hidden"/>
+	</item>
+</items>

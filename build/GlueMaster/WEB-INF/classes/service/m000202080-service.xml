@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202080-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetDecisionRuleHeader" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetDecisionRuleLayout" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules010" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="resultkey" value="Rule010HeaderRowResult" />
+    <property name="param1" value="MdRuleId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="DecisionRuleDataRouter" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ImportAssRuleData" class="com.poscoict.glue.master.ui.rule.ImportAssoRuleData">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*GetRuleData" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="ForwardSavePage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*GetRuleData" />
+    <property name="forwardname" value="save" />
+  </activity>
+  <activity name="GetDecisionRuleLayout" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="DecisionRuleLayoutDataRowResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules020" />
+    <property name="param0" value="MdRuleId" />
+  </activity>
+  <activity name="SaveAssociationRuleData" class="com.poscoict.glue.master.ui.rule.SaveAssociationRuleData">
+    <transition name="success" value="ForwardSavePage" />
+    <transition name="failure" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="*GetRuleData" class="com.poscoict.glue.master.common.PosSearch">
+    <transition name="success" value="GetDecisionRuleHeader" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202080.AutorityRules050VO" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="resultkey" value="Rules050VO" />
+    <property name="param1" value="MdRuleId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="DeleteAssociationRuleData" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="resultvalue" />
+    <property name="param0" value="TbM00Rules050VOMdRuleId" />
+    <property name="chkname" value="TbM00Rules050VO_chk" />
+    <property name="sqlkey" value="TbM00Rules050.delete.byPK" />
+    <property name="param1" value="MdRuleDtNmConnectChkNo" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="ImportAssRuleData" />
+    <property name="forwardname" value="import" />
+  </activity>
+  <activity name="DecisionRuleDataRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="export" value="ForwardExportPage" />
+    <transition name="success" value="*GetRuleData" />
+    <transition name="save" value="SaveAssociationRuleData" />
+    <transition name="saveData" value="ForwardSavePage" />
+    <transition name="delete" value="DeleteAssociationRuleData" />
+    <transition name="import" value="ForwardImportPage" />
+  </activity>
+</service>
+

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+<bean name="MSG_LOGGER" class="com.poscoict.glue.http.logging.MsgLogger">
+    <property name="connector" ref="JDBC_CONNECTOR" />
+</bean>
+<bean name="MSG_ERROR_LOGGER" class="com.poscoict.glue.http.logging.MsgErrorLogger">
+    <property name="connector" ref="JDBC_CONNECTOR" />
+</bean>
+
+<bean name="JNDI_CONNECTOR" class="com.poscoict.glue.http.logging.connect.JNDIConnector">
+    <property name="jndiName" value="M90JNDI" />
+</bean>
+<bean name="JDBC_CONNECTOR" class="com.poscoict.glue.http.logging.connect.JDBCConnector">
+    <property name="url" value="jdbc:oracle:thin:@10.248.100.29:1521:MESDEV" />
+    <property name="id" value="M90APUSER" />
+    <property name="password" value="M90APUSER" />
+</bean>
+
+<!-- Http 전문 쏘기 모듈 시작 -->
+<bean name="HTTP_SENDER_2000" class="com.poscoict.glue.http.send.HttpSender">
+    <property name="httpURLProperty" ref="HTTP_URL_2000" />
+    <property name="encoder" ref="ENCODER"/> 
+    <property name="receiveType" value="PARAM" />       <!-- PARAM|STREAM -->
+    <property name="paramName" value="msg" />           <!-- receiveType이 PARAM인 경우  -->
+    <property name="isSync" value="false" />
+    <property name="msgLogger" ref="MSG_LOGGER" />
+    <property name="msgErrorLogger" ref="MSG_ERROR_LOGGER" />
+</bean>
+
+<bean name="HTTP_SENDER_3000" class="com.poscoict.glue.http.send.HttpSender">
+    <property name="httpURLProperty" ref="HTTP_URL_3000" />
+    <property name="encoder" ref="ENCODER"/> 
+    <property name="receiveType" value="PARAM" />       <!-- PARAM|STREAM -->
+    <property name="paramName" value="msg" />           <!-- receiveType이 PARAM인 경우  -->
+    <property name="isSync" value="false" />
+    <property name="msgLogger" ref="MSG_LOGGER" />
+    <property name="msgErrorLogger" ref="MSG_ERROR_LOGGER" />
+</bean>
+
+<bean name="HTTP_URL_2000" class="com.poscoict.glue.http.send.DelimiterHttpProperty">
+    <property name="plant" value="2000" />
+    <property name="sourceFacIndex" value="1" />
+    <property name="sourceProcIndex" value="2" />
+    <property name="targetFacIndex" value="3" />
+    <property name="targetProcIndex" value="4" />
+    <property name="transactionIdIndex" value="7" />
+	<property name="url">
+		<props>
+
+<!-- SEND TO MES WITHOUT EAI -->
+            <prop key="C10">http://127.0.0.1:8010/C10/HttpReceiver.http?</prop>
+            <prop key="M20">http://127.0.0.1:8010/M20/HttpReceiver.http?</prop>
+            <prop key="M42">http://127.0.0.1:8010/M42/HttpReceiver.http?</prop>
+            <prop key="M17">http://127.0.0.1:8020/M17/HttpReceiver.http?</prop>
+            <prop key="M47">http://127.0.0.1:8020/M47/HttpReceiver.http?</prop>
+            <prop key="M26">http://127.0.0.1:8020/M26/HttpReceiver.http?</prop>
+            <prop key="M60">http://127.0.0.1:8030/M60/HttpReceiver.http?</prop>
+            <prop key="M77">http://127.0.0.1:8030/M77/HttpReceiver.http?</prop>
+ 
+<!-- SEND TO MES VIA EAI
+            <prop key="C10">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M20">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M42">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M17">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M47">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M26">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M60">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="M77">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0030_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+-->
+ 		</props>
+	</property>
+</bean>
+<bean name="HTTP_URL_3000" class="com.poscoict.glue.http.send.FixedLengthHttpProperty">
+    <property name="plant" value="3000" />
+    <property name="sourceFacBeginIndex" value="14" />
+    <property name="sourceFacEndIndex" value="18" />
+    <property name="sourceProcBeginIndex" value="18" />
+    <property name="sourceProcEndIndex" value="21" />
+    <property name="targetFacBeginIndex" value="21" />
+    <property name="targetFacEndIndex" value="25" />
+    <property name="targetProcBeginIndex" value="25" />
+    <property name="targetProcEndIndex" value="28" />
+    <property name="transactionIdBeginIndex" value="56" />
+    <property name="transactionIdEndIndex" value="68" />
+    <property name="url">
+        <props>
+            <prop key="LGS">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L1P">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L33">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L51">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L44">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L92">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L83">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L84">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L85">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LA2">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LA6">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LA7">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LTE">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L41">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L82">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LA4">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L65">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L76">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LA5">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L66">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L67">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="L68">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LR2">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LR3">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+            <prop key="LR1">http://usiudid1.unionsteel.co.kr:50100/HttpAdapter/HttpMessageServlet?interfaceNamespace=http%3A//unionsteel.co.kr/MES/COM&amp;interface=MC0010_MES_AO&amp;qos=EOIO&amp;j_user=IFWEBPSD&amp;j_password=uniup01&amp;sap-language=EN</prop>
+        </props>
+    </property>
+</bean>
+<!-- Http 전문 쏘기 모듈 종료 -->
+
+<!-- Http 전문 받기 모듈 시작 -->
+<bean name="HTTP_HANDLER" class="com.poscoict.glue.http.receive.HttpUnionHandler">
+    <property name="receiveType" value="STREAM" />		<!-- PARAM|STREAM -->
+    <property name="paramName" value="msg" />			<!-- receiveType이 PARAM인 경우  -->
+    <property name="isSync" value="true" />
+</bean>
+
+<bean id="ENCODER" class="com.poscoict.glue.http.charset.StringEncoder">
+    <property name="characterSet" value="UTF-8" /> 
+</bean>
+<bean id="DECODER" class="com.poscoict.glue.http.charset.StringDecoder">
+    <property name="characterSet" value="UTF-8" /> 
+</bean>
+<!-- Http 전문 받기 모듈 종료 -->
+
+</beans>

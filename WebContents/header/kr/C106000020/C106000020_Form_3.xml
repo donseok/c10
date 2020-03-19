@@ -1,0 +1,23 @@
+<items>
+	<item type="block" width="650">
+		<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+		<item offset="2" type="newcolumn"/>
+		<item label="평균값" name="std_title" type="label" />
+	</item>
+	<item type="block" width="650">		
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="대상건수" name="TOTAL_CNT" inputWidth="80" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="평균중량" name="AVG_WGT" inputWidth="80" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="YP" name="YP_AVG" inputWidth="70" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="TS" name="TS_AVG" inputWidth="70" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="EL" name="EL_AVG" inputWidth="70" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="HRB" name="HRB_AVG" inputWidth="70" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+		<item type="newcolumn" offset="5" />
+		<item type="input" label="ERI" name="ERI_AVG" inputWidth="70" readOnly="true" labelAlign="center" position="label-top" style="text-align:right;"/>
+	</item>
+</items>

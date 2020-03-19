@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.5 //@wire.7"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="521,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.6" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000100.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="16" location="325,179" size="151,-1" input="//@wire.3" output="//@wire.4" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000100.delete"/>
+    <property key="insert-sql" value="C106000100.insert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000100.update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131302" location="329,322" size="145,-1" input="//@wire.4" output="//@wire.5" name="CCLBOM이미지처리">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000100_IMG.delete"/>
+    <property key="insert-sql" value="C106000100_DUMY.select"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131355" location="501,184" size="107,-1" input="//@wire.6" output="//@wire.7" name="CCLBOM조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000100_CCLBOMAJAX.select"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="14" guardcondition="save" firstRelativePoint="403,112" lastRelativePoint="403,179"/>
+  <wire id="15" guardcondition="success" firstRelativePoint="406,209" lastRelativePoint="406,322"/>
+  <wire id="8437" guardcondition="success" firstRelativePoint="406,352" lastRelativePoint="313,439">
+    <bendpoint weight="0.5" firstDimension="5,66" secondDimension="101,-40"/>
+  </wire>
+  <wire id="8438" guardcondition="cclbomajax" firstRelativePoint="559,112" lastRelativePoint="559,184">
+    <bendpoint weight="0.5" firstDimension="209,50" secondDimension="5,-52"/>
+  </wire>
+  <wire id="8439" guardcondition="success" firstRelativePoint="526,214" lastRelativePoint="314,441">
+    <bendpoint weight="0.5" firstDimension="-28,204" secondDimension="221,-40"/>
+  </wire>
+</Glue:GlueDiagram>

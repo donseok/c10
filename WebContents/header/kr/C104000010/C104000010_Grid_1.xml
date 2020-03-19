@@ -1,0 +1,115 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enablePreRendering">
+	<param>19</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="attachHeader"><param>#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan</param></call>
+</beforeInit>
+<column align="center" clabel="주문번호" dbname="주문번호" id="ORD_NO" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">주문번호</column>
+<column align="center" clabel="주문행번" dbname="주문행번" id="ORD_LN" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="4">행번</column>
+<column align="left" clabel="품명코드" dbname="품명코드" id="PRD_NM_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="7">품명</column>
+<column align="left" clabel="제품형태" dbname="제품형태" id="PRD_SHP" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="7">제품유형</column>
+<column align="center" clabel="주문 Edge" dbname="주문 Edge" id="ORD_EDG_ASG_TP" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">주문 Edge</column>
+<column align="center" clabel="규격약호" dbname="규격약호" id="SPC_AVR" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">규격약호</column>
+<column align="center" clabel="고객사양서번호" dbname="고객사양서번호" id="CUS_BTH_PAP_NO" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">고객사양번호</column>
+<column align="left" clabel="주문용도코드" dbname="주문용도코드" id="ORD_USG_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">주문용도</column>
+<column align="left" clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="18">최종수요가</column>
+<column align="center" clabel="긴급재구분" dbname="긴급재구분" id="URG_MTL_TP" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">긴급재</column>
+<column align="center" clabel="주문환산두께" dbname="주문환산두께" format="00.000" id="ORD_EXC_THK" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ron" width="6">두께</column>
+<column align="center" clabel="주문환산폭" dbname="주문환산폭" format="0,000.0" id="ORD_EXC_WTH" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ron" width="6">폭</column>
+<column align="left" clabel="재질코드" dbname="재질코드" id="MQL_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">재질코드</column>
+<column align="center" clabel="품질설계상태코드" dbname="품질설계상태코드" id="QLT_DSN_STS_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="10"><![CDATA[설계상태]]></column>
+<column align="center" clabel="원자재코드" dbname="원자재코드" id="RMTL_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">원자재코드</column>
+<column align="center" clabel="원자재코드1" dbname="원자재코드1" id="RMTL_CD1" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">원자재코드1</column>
+<column align="center" clabel="원자재코드2" dbname="원자재코드2" id="RMTL_CD2" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">원자재코드2</column>
+<column align="center" clabel="냉연제조표준번호" dbname="냉연제조표준번호" id="CRM_MNF_STD_NO" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="8">제조표준</column>
+<column align="center" clabel="냉연제조표준번호1" dbname="냉연제조표준번호1" id="CRM_MNF_STD_NO1" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="8">제조표준1</column>
+<column align="center" clabel="냉연제조표준번호2" dbname="냉연제조표준번호2" id="CRM_MNF_STD_NO2" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="8">제조표준2</column>
+<column align="center" clabel="통과공정번호" dbname="통과공정번호" id="PAS_PROC_NO" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="12"><![CDATA[통과공정번호]]></column>
+<column align="left" clabel="도금량지정코드" dbname="도금량지정코드" id="GW_ASG_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="18">도금량</column>
+<column align="left" clabel="MaterialCode" dbname="MaterialCode" id="MTL_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="18">Material Code</column>
+<column align="center" clabel="CCL-BOMCode" dbname="색상코드전면" id="CCL_BOM_NO" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="14"><![CDATA[CCL-BOM Code]]></column>
+<column align="left" clabel="주문표면처리코드" dbname="주문표면처리코드" id="ORD_SUR_HND_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">주문표면처리코드</column>
+<column align="left" clabel="주문보호필름상세코드" dbname="주문보호필름코드" id="ORD_PTT_FLM_DTL_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">보호상세필름</column>
+<column align="center" clabel="주문행번중량" dbname="주문행번중량" format="0,000" id="ORD_LN_WGT" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="7">주문량</column>
+<column align="center" clabel="MO전환주문여부" dbname="MO전환주문여부" id="MO_CVT_ORD_YN_NM" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="13">MO전환주문여부</column>
+<column align="center" clabel="품질설계유무" dbname="품질설계유무" id="QLT_DSN_YN_NM" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="10">품질설계유무</column>
+<column align="center" clabel="품질설계완료일시" dbname="품질설계완료일시" id="QLT_DSN_END_DH" sort="sort_date_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">설계완료일시</column>
+<column align="center" clabel="품질설계유무" dbname="품질설계유무" id="QLT_DSN_YN" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="0" hidden="true">품질설계유무</column>
+<column align="center" clabel="MO전환주문여부" dbname="MO전환주문여부" id="MO_CVT_ORD_YN" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="0" hidden="true">MO전환주문여부</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">ORD_NO,ORD_LN,PRD_NM_CD,PRD_SHP,ORD_EDG_ASG_TP,SPC_AVR,CUS_BTH_PAP_NO,ORD_USG_CD,FNL_CUS_CD,URG_MTL_TP,ORD_EXC_THK,ORD_EXC_WTH,MQL_CD,QLT_DSN_STS_CD,RMTL_CD,RMTL_CD1,RMTL_CD2,CRM_MNF_STD_NO,CRM_MNF_STD_NO1,CRM_MNF_STD_NO2,PAS_PROC_NO,GW_ASG_CD,MTL_CD,CCL_BOM_NO,ORD_SUR_HND_CD,ORD_PTT_FLM_DTL_CD,ORD_LN_WGT,MO_CVT_ORD_YN_NM,QLT_DSN_YN_NM,QLT_DSN_END_DH,QLT_DSN_YN,MO_CVT_ORD_YN</userdata>
+<row id="0">
+<cell/>
+</row>
+<row id="1">
+<cell/>
+</row>
+<row id="2">
+<cell/>
+</row>
+<row id="3">
+<cell/>
+</row>
+<row id="4">
+<cell/>
+</row>
+<row id="5">
+<cell/>
+</row>
+<row id="6">
+<cell/>
+</row>
+<row id="7">
+<cell/>
+</row>
+<row id="8">
+<cell/>
+</row>
+<row id="9">
+<cell/>
+</row>
+<row id="10">
+<cell/>
+</row>
+<row id="11">
+<cell/>
+</row>
+<row id="12">
+<cell/>
+</row>
+<row id="13">
+<cell/>
+</row>
+<row id="14">
+<cell/>
+</row>
+<row id="15">
+<cell/>
+</row>
+<row id="16">
+<cell/>
+</row>
+<row id="17">
+<cell/>
+</row>
+<row id="18">
+<cell/>
+</row>
+</rows>

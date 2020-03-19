@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="VI_M00"> 
+	 <query id="C10A1022" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객재질사양 조회 C10A1022.SELECT 김종범*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1022
+ WHERE CUS_BTH_PAP_NO = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1010" desc="Master Data 규격공통사양 인수도규격 조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 규격공통사양 MD 조회 C10A1010.SELECT 김종범*/                             
+       SPC_NM,
+       SPC_FUL_NM,
+       ORD_GRA,
+       ACPT_RT_SPC,                    --인수도규격 
+       MQL_CD
+ FROM M00APUSER.VI_M00_C10A1010       --규격공통VIEW                                                                               
+WHERE SPC_AVR = ?                    --규격약호                                                                   
+  AND SPC_YR = ?                     --규격년도
+		 ]]> 
+	 </query>
+	 <query id="C10A1020" desc="Master Data 고객공통사양 조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객공통사양 조회 C10A1020.SELECT 김종범*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1020
+ WHERE CUS_BTH_PAP_NO = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1021" desc="Master Data 고객성분사양 조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객성분사양 조회 C10A1021.SELECT 김종범*/   
+             * 
+  FROM M00APUSER.VI_M00_C10A1021
+ WHERE CUS_BTH_PAP_NO = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1023" desc="Master Data 고객인수도사양 조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객인수도사양 조회 C10A1023.SELECT 김종범*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1023
+ WHERE CUS_BTH_PAP_NO = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1010_IF" desc="Master Data 송신 규격공통조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 송신 규격공통조회 C10A1010_IF.SELECT 김종범*/                             
+       SPC_AVR,
+       SPC_YR,     
+       SPC_NM,
+       SPC_FUL_NM,
+       ORD_GRA,
+       ACPT_RT_SPC,                
+       MQL_CD
+ FROM M00APUSER.VI_M00_C10A1010       --규격공통VIEW
+		 ]]> 
+	 </query>
+	 <query id="C10A2182" desc="C10A2182" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객인수도사양 조회 C10A2182 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A2182
+WHERE ORD_LTH_MNG_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A2181" desc="C10A2181" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 고객인수도사양 조회 C10A2181 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A2181
+WHERE ORD_WTH_MNG_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1020_IF" desc="Master Data 송신 고객공통조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 송신 고객공통조회 C10A1020_IF.SELECT 김종범*/                             
+       A.CUS_BTH_PAP_NO,
+       A.SPC_AVR,     
+       A.SPC_YR,
+       A.ORD_USG_CD,
+       A.CUS_CD,
+       A.PRD_NM_CD,                
+       A.PRD_THK_RNG_LLV,
+       A.PRD_THK_RNG_ULV,
+       A.PRD_WTH_RNG_LLV,
+       A.PRD_WTH_RNG_ULV,
+       A.PRD_LTH_RNG_LLV,
+       A.PRD_LTH_RNG_ULV,
+       A.CUS_REQ_ROL_THK,
+       A.CUS_REQ_ROL_THK_UNT,
+       A.ORD_THK_TP,
+       A.PRD_THK_CAL_APL_CD,
+       A.GW_ASG_CD,
+       A.ORD_SUR_HND_CD,
+       A.CCL_BOM_NO,
+       A.CUS_BTH_NM,  
+       B.THK_TLN_LLV,
+       B.THK_TLN_ULV,
+       B.WTH_TLN_LLV,
+       B.WTH_TLN_ULV,
+       B.LTH_TLN_LLV,
+       B.LTH_TLN_ULV
+ FROM M00APUSER.VI_M00_C10A1020 A, M00APUSER.VI_M00_C10A1023 B
+WHERE A.CUS_BTH_PAP_NO = B.CUS_BTH_PAP_NO(+)  --고객공통MD송신(고객인수도MD 일부)
+		 ]]> 
+	 </query>
+	 <query id="ORD_USG_CD_LAR_IF" desc="Master Code 송신 주문용도코드대분류" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 송신 주문용도코드대분류 ORD_USG_CD_LAR_IF.SELECT 김종범*/                             
+       CD_V AS ORD_USG_CD,
+       CD_V_MEANING AS ORD_USG_NM         
+ FROM M00APUSER.VI_M00_CODE_ACCESS       --MasterCode VIEW
+WHERE CD_TP = 'ORD_USG_CD_LAR'
+		 ]]> 
+	 </query>
+	 <query id="ORD_USG_CD_MID_IF" desc="Master Code 송신 주문용도코드중분류" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 송신 주문용도코드중분류 ORD_USG_CD_MID_IF.SELECT 김종범*/                             
+       CD_V AS ORD_USG_CD,
+       CD_V_MEANING AS ORD_USG_NM       
+ FROM M00APUSER.VI_M00_CODE_ACCESS       --MasterCode VIEW
+WHERE CD_TP = 'ORD_USG_CD_MID'
+		 ]]> 
+	 </query>
+	 <query id="ORD_USG_CD_IF" desc="Master Code 송신 주문용도코드" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 송신 주문용도코드 ORD_USG_CD_IF.SELECT 김종범*/                             
+       CD_V AS ORD_USG_CD,
+       CD_V_MEANING AS ORD_USG_NM       
+ FROM M00APUSER.VI_M00_CODE_ACCESS       --MasterCode VIEW
+WHERE CD_TP = 'ORD_USG_CD'
+		 ]]> 
+	 </query>
+	 <query id="C10A1054" desc="C10A1054" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 통과공정기준 조회 C10A1054 박재영*/    
+          *
+  FROM M00APUSER.VI_M00_C10A1054
+ WHERE PAS_PROC_NO = ?
+ORDER BY PROC_SEQ
+		 ]]> 
+	 </query>
+	 <query id="C10A1054_PROC_CHK" desc="C10A1054_PROC_CHK" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 통과공정기준 칼라공정코드 확인 C10A1054_PROC_CHK 박재영*/    
+       MAIN_PROC_CD
+ FROM M00APUSER.VI_M00_C10A1054
+ WHERE PAS_PROC_NO = ?
+ AND   MAIN_PROC_CD LIKE 'A%'
+		 ]]> 
+	 </query>
+	 <query id="C10A1079" desc="C10A1079" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 정전폭마진량기준 조회 C10A1079 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1079
+ WHERE ORD_EDG_ASG_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="MST_CODE_IF" desc="Master Code 송신 B10S0040_IF" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 송신 B10S0040_IF.SELECT 김종범*/    
+     CD_TP MST_ID
+    ,CD_V CD
+    ,CD_TP_MEANING MST_NM
+    ,CD_V_MEANING NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CATEGORY_GROUP_NM ='SZ0000'
+  AND CD_TP ='CUS_CD' --차후 협의된 코드 목록 추가
+ORDER BY CD_TP, CD_V
+		 ]]> 
+	 </query>
+	 <query id="C10B1014_IF" desc="규격별주문용도정보조회 C10B1014_IF.SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 송신 규격별주문용도정보조회 C10B1014_IF.SELECT 김종범*/    
+    MD_RULE_CON_MI_V_1 SPC_AVR,
+    MD_RULE_CON_MI_V_2 THK_RNG_LLV,
+    MD_RULE_CON_MAX_V_2 THK_RNG_ULV,
+    MD_RULE_CON_MI_V_3 ORD_USG_CD
+FROM M00APUSER.TB_M00_RULES040 WHERE MD_RULE_ID='1452'
+ORDER BY MD_RULE_CON_DO_SEQ ASC,MD_RULE_CON_NUM ASC
+		 ]]> 
+	 </query>
+	 <query id="C10A1061" desc="C10A1061" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 도금량 조회 C10A1061 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1061
+ WHERE PRD_NM_CD = ?
+ AND    GW_ASG_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A2030" desc="C10A2030" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 칼라정전라인 결정기준조회 C10A2030 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A2030
+WHERE PROC_CD_CCL = ?
+		 ]]> 
+	 </query>
+	 <query id="XMSGS_CODE" desc="XMSGS 공통코드정보 조회 XMSGS_CODE.SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 XMSGS 공통코드정보 조회 XMSGS_CODE.SELECT 김종범*/                             
+       CD_V AS ERRCD,
+       CD_V_MEANING AS ERRMSG       
+ FROM M00APUSER.VI_M00_CODE_ACCESS       --MasterCode VIEW
+WHERE CD_TP ='ORD_ERR_MSG'
+		 ]]> 
+	 </query>
+	 <query id="C10A1070" desc="C10A1070" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 제품폭여유기준 조회 C10A1070 박재영*/    
+             *
+  FROM M00APUSER.VI_M00_C10A1070
+ WHERE WTH_MNG_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C10A1054N" desc="C10A1054N" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Data 통과공정기준 조회 C10A1054N 박재영*/    
+       PROC_SEQ, MAIN_PROC_CD, SUB_PROC_CD1, SUB_PROC_CD2, SUB_PROC_CD3, SUB_PROC_CD4, SUB_PROC_CD5, SUB_PROC_CD6,
+       ( SELECT COUNT(*) 
+         FROM M00APUSER.VI_M00_C10A1054 
+         WHERE PAS_PROC_NO = ?
+         AND    SUBSTR(MAIN_PROC_CD,1,1) = ? ) VALUE
+  FROM M00APUSER.VI_M00_C10A1054
+ WHERE PAS_PROC_NO = ?
+ORDER BY PROC_SEQ
+		 ]]> 
+	 </query>
+</queryMap>

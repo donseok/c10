@@ -1,0 +1,66 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>true</param></call>
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="attachHeader">
+<param><![CDATA[<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Ink</div>,RPTy,원단위,<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Ink</div>,RPTy,원단위,<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Ink</div>,RPTy,원단위,<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Ink</div>,RPTy,원단위,<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Roll</div>,<div style="color:blue;font-weight:bold;">Roll</div>]]>
+</param>
+</call><call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="PRT_ROLL_BAK_NO1" index="1" sort="na" width="6" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[Print 1도]]></column>
+<column id="PRT_INK_BAK_CD1" index="2" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ed" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_PTN_BAK_CD1" index="3" sort="na" width="4" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_BAK_UNT1" index="4" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_BAK_NO2" index="5" sort="na" width="6" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[Print 2도]]></column>
+<column id="PRT_INK_BAK_CD2" index="6" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ed" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_PTN_BAK_CD2" index="7" sort="na" width="4" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_BAK_UNT2" index="8" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_BAK_NO3" index="9" sort="na" width="6" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[Print 3도]]></column>
+<column id="PRT_INK_BAK_CD3" index="10" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ed" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_PTN_BAK_CD3" index="11" sort="na" width="4" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_BAK_UNT3" index="12" sort="na" align="center" width="5" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_BAK_NO4" index="13" sort="na" align="center" width="6" table="TB_C10_CCL_BOM" type="ro"><![CDATA[Print 4도]]></column>
+<column id="PRT_INK_BAK_CD4" index="14" sort="na" align="center" width="5" table="TB_C10_CCL_BOM" type="ed" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="PRT_ROLL_PTN_BAK_CD4" index="15" sort="na" width="4" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="PRT_BAK_UNT4" index="16" sort="na" width="5" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="DUMMY1" index="17" sort="na" width="7" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="DUMMY2" index="18" sort="na" width="7" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[#cspan]]></column>
+<column id="IMPT_ROLL_BAK_NO" index="19" sort="na" width="*" align="center" table="TB_C10_CCL_BOM" type="ro"><![CDATA[IMPRINT]]></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">PRT_ROLL_BAK_NO1,PRT_INK_BAK_CD1,PRT_ROLL_PTN_BAK_CD1,PRT_BAK_UNT1,PRT_ROLL_BAK_NO2,PRT_INK_BAK_CD2,PRT_ROLL_PTN_BAK_CD2,PRT_BAK_UNT2,PRT_ROLL_BAK_NO3,PRT_INK_BAK_CD3,PRT_ROLL_PTN_BAK_CD3,PRT_BAK_UNT3,PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,DUMMY1,DUMMY2,IMPT_ROLL_BAK_NO</userdata>
+<row background-color="125,125,125" id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

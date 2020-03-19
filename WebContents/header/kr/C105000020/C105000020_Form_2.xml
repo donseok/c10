@@ -1,0 +1,107 @@
+<items>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="INQUIRY 상태" name="INQ_STS_CD" type="input" labelAlign="right" readonly="true" />
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="품명" name="PRD_NM_CD" type="input" labelAlign="right" readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="고객사" name="CUS_CD" type="input" labelAlign="right" readonly="true"/>		
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="규격약호" name="SPC_AVR" type="input" labelAlign="right" readonly="true"/>		
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="주문용도" name="ORD_USG_CD" type="input" labelAlign="right" readonly="true"/>		
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="도금량코드" name="GW_ASG_CD" type="input" labelAlign="right" readonly="true"/>				
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="유통경로" name="FLOW_CHL" type="input" labelAlign="right" readonly="true"/>		
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="주문행번중량" name="ORD_LN_WGT" type="input" labelAlign="right" readonly="true"/>		
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="55" label="주문칫수" name="ORD_EXC_THK" type="input" labelAlign="right" readonly="true"/>		
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="55" label="" name="ORD_EXC_WTH" type="input" labelAlign="right" readonly="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="55" label="" name="ORD_EXC_LTH" type="input" labelAlign="right" readonly="true"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="제품유형" name="PRD_SHP" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="125" label="주문요청번호" name="ORD_REQ_NO" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="53" name="ORD_REQ_LN" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="표면후처리" name="ORD_SUR_HND_CD" type="input" labelAlign="right"  readonly="true"/>		
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="영업담당자" name="ORD_CHR_PRS_ID" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="의뢰일시" name="INQ_RCP_DH" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="품질담당자" name="QLT_CHR_PRS_ID" type="input" labelAlign="right"  readonly="true"/>			
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="Inguiry 구분" name="INQ_REQ_TP" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="자동검토일" name="INQ_AUT_SRT_END_DH" type="input" labelAlign="right"  readonly="true"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="자동검토결과" name="INQ_AUT_SRT_RSL_CD" type="input" labelAlign="right"  readonly="true"/>		
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="최종검토결과" name="INQ_PSV_SRT_RSL_CD_NM" type="input" labelAlign="right"  readonly="true"/>
+		<item type="hidden" name="INQ_PSV_SRT_RSL_CD" value=""/>
+		<item offset="50" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" inputWidth="185" label="최종검토완료일" labelWidth="90" name="INQ_SRT_END_DH" type="calendar" labelAlign="right" readonly="true"/>
+		<item offset="50" type="newcolumn"/>			
+		<item dateFormat="%Y-%m-%d" inputWidth="179" label="검토결과전송일" labelWidth="90" name="INQ_SRT_RSL_SND_DH" type="calendar" labelAlign="right" readonly="true"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="181" label="1차검토결과" name="INQ_PSV_SRT_RSL_CD1" type="combo" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" inputWidth="185" label="1차 수동검토일" labelWidth="90" name="INQ_PSV_SRT_END_DH1" type="calendar" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" inputWidth="179" label="1차 결과전송일" labelWidth="90" name="INQ_SRT_RSL_SND_DH1" type="calendar" labelAlign="right"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="181" label="2차검토결과" name="INQ_PSV_SRT_RSL_CD2" type="combo" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" labelWidth="90" inputWidth="185" label="2차 수동검토일" name="INQ_PSV_SRT_END_DH2" type="calendar" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" labelWidth="90" inputWidth="179" label="2차 결과전송일" name="INQ_SRT_RSL_SND_DH2" type="calendar" labelAlign="right"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="179" label="종료일시" name="INQ_END_DH" type="input" labelAlign="right" readonly="true"/>
+		<item offset="50" type="newcolumn"/>		
+		<item dateFormat="%Y-%m-%d" inputWidth="185" label="고객사양등록일" labelWidth="90" name="CUS_SPC_RGS_DH" type="calendar" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="179" label="고객사양번호" name="CUS_BTH_PAP_NO" type="input" labelAlign="right" maxLength="10"/>			
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="843" label="검토요청(최종)" name="INQ_REQ_TXT" type="input" labelAlign="right" rows="3" readonly="true"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="843" label="검토요청(이력)" name="INQ_REQ_TXT1" type="input" labelAlign="right" rows="3" readonly="true"/>
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="843" label="검토결과(최종)" name="INQ_SRT_TXT" type="input" labelAlign="right" rows="3" maxLength="2000"/>		
+	</item>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>		
+		<item labelWidth="90" inputWidth="843" label="검토결과(이력)" name="INQ_SRT_TXT1" type="input" labelAlign="right" rows="3" maxLength="2000"/>		
+		<item type="hidden" name="INQ_NO" value=""/>
+		<item type="hidden" name="messageBox" value=""/>
+	</item>
+</items>

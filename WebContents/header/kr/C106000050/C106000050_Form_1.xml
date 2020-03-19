@@ -1,0 +1,28 @@
+<items>
+<item type="block">
+<item inputWidth="100" label="부재료구분" name="SUB_MTL_TP_SH" type="combo" style="background-color:#FFFFC0"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="90" maxLength="5" label="컬러코드" name="CLR_SUB_MTL_CD_SH" type="input"/>
+<item offset="40" type="newcolumn"/>
+<item type="custombutton" command="excelExport" name="excelExport"  value="엑셀출력"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="90" maxLength="10" label="찾기" name="RAL_CD" type="input"/>
+<item foreground-color="255,140,50" offset="30" type="newcolumn"/>
+<item command="send" label="Display Name" name="send" type="custombutton" value="전송" width="75" disabled="true"/>
+<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+<item command="find" label="Display Name" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="save" label="Display Name" name="save" type="button" value="저장" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block">
+<item foreground-color="255,140,50" inputWidth="138" label="TYPE구분" name="TP_CD" type="combo"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item foreground-color="255,140,50" inputWidth="180" label="수지타입" name="RSN_TP_SH" type="combo"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item foreground-color="255,140,50" inputWidth="138" label="INK TYPE" name="PRT_INK_TP_SH" type="combo"/>
+<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+<item foreground-color="255,140,50" inputWidth="130" label="전송대상" name="SND_LST" type="checkbox"/>
+</item>
+</items>

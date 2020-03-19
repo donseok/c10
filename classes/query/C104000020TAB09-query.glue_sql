@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB09"> 
+	 <query id="C104000020TAB09_MNF.select" desc="C104000020TAB09_MNF.select" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과-제조표준3(C104000020TAB09) C104000020TAB09_MNF.select 박재영 */ 
+    TB_C10_QLT_DSN_MNF.ORD_NO,--주문번호
+    TB_C10_QLT_DSN_MNF.ORD_LN,--주문행번     
+    TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP,--제조사양구분     
+    TB_C10_QLT_DSN_MNF.COR_WTH_TRV,-- 정전폭목표값    
+    DECODE((CASE WHEN NVL(TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP,'N') = 'N' OR TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP = 'N'  THEN '0'
+         ELSE TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH1,'FM99,990.0') END),'0','',(CASE WHEN NVL(TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP,'N') = 'N' THEN 0
+         ELSE TB_C10_QLT_DSN_MNF.SLIT_GRP_CNT END)) AS SLIT_GRP_CNT,--Slit조수
+    (CASE WHEN NVL(TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP,'N') = 'N' OR TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP = 'N' THEN ''
+        ELSE DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH1,'0'),'0',TO_CHAR(TB_C10_QLT_DSN_MNF.COR_WTH_TRV,'FM99,990.0'),TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH1,'FM99,990.0')) END) AS MIX_WTH1,--조합폭1
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH2,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH2,'FM99,990.0')) AS MIX_WTH2,--조합폭2
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH3,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH3,'FM99,990.0')) AS MIX_WTH3,--조합폭3
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH4,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH4,'FM99,990.0')) AS MIX_WTH4,--조합폭4
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH5,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH5,'FM99,990.0')) AS MIX_WTH5,--조합폭5
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH6,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH6,'FM99,990.0')) AS MIX_WTH6,--조합폭6
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH7,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH7,'FM99,990.0')) AS MIX_WTH7,--조합폭7
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH8,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH8,'FM99,990.0')) AS MIX_WTH8,--조합폭8
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH9,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH9,'FM99,990.0')) AS MIX_WTH9,--조합폭9
+    DECODE(NVL(TB_C10_QLT_DSN_MNF.MIX_WTH10,'0'),'0','',TO_CHAR(TB_C10_QLT_DSN_MNF.MIX_WTH10,'FM99,990.0')) AS MIX_WTH10,--조합폭10
+    TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP,--정전Edge지정구분(S/T 유무)
+    TB_C10_QLT_DSN_CMN.OT_TC_YN,
+    TB_C10_QLT_DSN_CMN.EMBS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'EMBS_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = EMBS_CD ) EMBS_CD,--EMBOSS무늬    
+    TB_C10_QLT_DSN_CMN.ORD_SHT_LOD_MTH || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_SHT_LOD_MTH'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_SHT_LOD_MTH ) ORD_SHT_LOD_MTH,--주문Sheet적재방법
+    TB_C10_QLT_DSN_MNF.OIL_PNT_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'OIL_PNT_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = OIL_PNT_CD) OIL_PNT_CD,--도유코드(방청유)  
+ /*   TB_C10_QLT_DSN_CMN.OT_TC_YN || (SELECT ' : ' || CD_V_MEANING  --1T2C
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'OT_TC_YN'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = OT_TC_YN) OT_TC_YN,--1T2C */
+    TB_C10_QLT_DSN_CMN.ORD_EXC_WTH,
+    TB_C10_QLT_DSN_CMN.ORD_EXC_LTH,    
+    TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_LLV,--제품폭범위하한값
+    TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_ULV,--제품폭범위상한값
+    TB_C10_QLT_DSN_CMN.PRD_SHP, --제품유형
+    DECODE(TO_CHAR(CASE WHEN TB_C10_QLT_DSN_CMN.PRD_SHP != 'S' THEN 0
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH <= TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_WTH 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH > TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_LTH END, 'FM99,990.0'),'0.0','','0','',
+           TO_CHAR(CASE WHEN TB_C10_QLT_DSN_CMN.PRD_SHP != 'S' THEN 0
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH <= TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_WTH 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH > TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_LTH END, 'FM99,990.0')) AS SKID_WTH, --SKID 폭
+    DECODE(TO_CHAR(CASE WHEN TB_C10_QLT_DSN_CMN.PRD_SHP != 'S' THEN 0 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH <= TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_LTH 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH > TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_WTH END, 'FM99,990.0'),'0.0','','0','',
+           TO_CHAR(CASE WHEN TB_C10_QLT_DSN_CMN.PRD_SHP != 'S' THEN 0 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH <= TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_LTH 
+          WHEN TB_C10_QLT_DSN_CMN.ORD_EXC_WTH > TB_C10_QLT_DSN_CMN.ORD_EXC_LTH THEN  TB_C10_QLT_DSN_CMN.ORD_EXC_WTH END, 'FM99,990.0')) AS SKID_LTH, --SKID 길이
+    TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,--주문보호필름상세코드
+    TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_ADH_LOC_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_PTT_FLM_ADH_LOC_CD'         
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_PTT_FLM_ADH_LOC_CD) ORD_PTT_FLM_ADH_LOC_CD,--주문보호필름부착위치코드
+    (SELECT CD_V || ' : ' || CD_V_MEANING 
+      FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'PTT_FLM_THK_CD'         
+      AND   CATEGORY_GROUP_NM = 'SZ0000'
+      AND   CD_V = SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,2,1)) AS PTT_FLM_THK_CD,--보호필름두께코드 
+    DECODE(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_WTH,'0.0','',0,'',TO_CHAR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_WTH,'FM99,990.0')) AS ORD_PTT_FLM_WTH,--주문보호필름폭
+    SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,4,1)  ||  (SELECT ' : ' || CD_V_MEANING 
+      FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'PTT_FLM_SUS_ADH_CD'         
+      AND   CATEGORY_GROUP_NM = 'SZ0000'
+      AND   CD_V = SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,4,1)) AS PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력
+     SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,5,1) || (SELECT ' : ' || CD_V_MEANING 
+      FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'PTT_FLM_PRD_ADH_CD'         
+      AND   CATEGORY_GROUP_NM = 'SZ0000'
+      AND   CD_V = SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,5,1))  AS PTT_FLM_PRD_ADH_CD, --보호필름 제품점착력
+     NVL((SELECT PTT_FLM_MNG_ADH_TXT    
+           FROM TB_C10_QLT_DSN_CCL_BOM
+          WHERE ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
+            AND ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN)
+        ,(SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,5,1) 
+          || (SELECT ' : ' || CD_V_MEANING 
+              FROM M00APUSER.VI_M00_CODE_ACCESS
+              WHERE CD_TP = 'PTT_FLM_PRD_ADH_CD'         
+              AND   CATEGORY_GROUP_NM = 'SZ0000'
+              AND   CD_V = SUBSTR(TB_C10_QLT_DSN_CMN.ORD_PTT_FLM_DTL_CD,5,1))))  AS PTT_FLM_MNG_ADH_TXT, --보호필름 관리점착력
+     TB_C10_QLT_DSN_CMN.ORD_PAK_MTH || (SELECT ' : ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'ORD_PAK_MTH'         
+     AND   CATEGORY_GROUP_NM = 'SZ0000'
+     AND   CD_V = ORD_PAK_MTH ) ORD_PAK_MTH, --주문포장방법    
+     TB_C10_QLT_DSN_CMN.PAK_MSG_CD ||
+     TB_C10_QLT_DSN_MSG_PKG.QLT_MSG_NM PAK_MSG_CD  --포장메세지
+FROM TB_C10_QLT_DSN_MSG_PKG, TB_C10_QLT_DSN_MNF, TB_C10_QLT_DSN_CMN
+WHERE    TB_C10_QLT_DSN_MNF.ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
+AND      TB_C10_QLT_DSN_MNF.ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
+AND      TB_C10_QLT_DSN_MSG_PKG.ORD_NO(+) = TB_C10_QLT_DSN_CMN.ORD_NO
+AND      TB_C10_QLT_DSN_MSG_PKG.ORD_LN(+) = TB_C10_QLT_DSN_CMN.ORD_LN
+AND      TB_C10_QLT_DSN_MNF.ORD_NO = :ORD_NO
+AND      TB_C10_QLT_DSN_MNF.ORD_LN = :ORD_LN
+AND      TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP = '1'
+AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09_MSG.select" desc="C104000020TAB09_MSG.SELECT" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과-제조표준3(C104000020TAB09)  C104000020TAB09_MSG.SELECT  박재영 */
+   ORD_NO,--주문번호
+   ORD_LN,--주문행번   
+   QLT_MSG_NM--품질MESSAGE
+FROM   TB_C10_QLT_DSN_MSG1 A
+WHERE  ORD_NO = :ORD_NO
+AND    ORD_LN = :ORD_LN
+AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.MNFupdate" desc="C104000020TAB09.MNFupdate" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 후공정-제조표준 C104000020TAB09.MNFupdate 박재영*/                      
+TB_C10_QLT_DSN_MNF 
+SET    
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId          --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
+      ,SLIT_GRP_CNT  =     DECODE(:COR_EDG_ASG_TP,'Y',:SLIT_GRP_CNT, SLIT_GRP_CNT)                  --	Slit조수 
+      ,MIX_WTH1	=	DECODE(:COR_EDG_ASG_TP,'Y',:MIX_WTH1, MIX_WTH1)                        --조합폭1
+      ,MIX_WTH2	=	:MIX_WTH2                        --조합폭2
+      ,MIX_WTH3	=	:MIX_WTH3                        --조합폭3
+      ,MIX_WTH4	=	:MIX_WTH4                        --조합폭4
+      ,MIX_WTH5	=	:MIX_WTH5                        --조합폭5
+      ,MIX_WTH6	=	:MIX_WTH6                        --조합폭6
+      ,MIX_WTH7	=	:MIX_WTH7                        --조합폭7
+      ,MIX_WTH8	=	:MIX_WTH8                        --조합폭8
+      ,MIX_WTH9	=	:MIX_WTH9                        --조합폭9
+      ,MIX_WTH10     =     :MIX_WTH10                      --조합폭10
+      ,COR_EDG_ASG_TP = :COR_EDG_ASG_TP            --정전Edge지정구분
+      ,PRD_WTH_RNG_LLV = :PRD_WTH_RNG_LLV          --제품폭범위하한값
+      ,PRD_WTH_RNG_ULV = :PRD_WTH_RNG_ULV          --제품폭범위상한값
+WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                             --주문행번
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.MSGupdate" desc="C104000020TAB09.MSGupdate" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 후공정-제조표준 C104000020TAB09.MSGupdate 박재영*/                      
+TB_C10_QLT_DSN_MSG1
+SET    
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+      ,QLT_MSG_NM = (CASE WHEN LENGTHB(:QLT_MSG_NM) >1000 THEN substrb(:QLT_MSG_NM,1,1000) ELSE :QLT_MSG_NM END)               --품질Message
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.STSselect" desc="C104000020TAB09.STSselect" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C104000020TAB09.STSselect 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+ AND    ORD_LN = :ORD_LN
+ AND    QLT_DSN_STS_CD = 'A'
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.CHG_HSTinsert" desc="C104000020TAB09.CHG_HSTinsert" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계결과수정이력 C104000020TAB09.CHG_HSTinsert 박재영*/
+            TB_C10_QLT_DSN_CHG_HST
+            (    
+              ORD_NO                      --주문번호
+		     ,ORD_LN                      --주문행번
+		     ,SEQ	                      --수정SEQ
+		     ,CHG_TXT                     --수정내역
+             ,CREATED_OBJECT_TYPE
+             ,CREATED_OBJECT_ID
+             ,CREATED_PROGRAM_ID
+             ,CREATION_TIMESTAMP
+             ,LAST_UPDATED_OBJECT_TYPE
+             ,LAST_UPDATED_OBJECT_ID
+             ,LAST_UPDATE_PROGRAM_ID
+             ,LAST_UPDATE_TIMESTAMP
+            )
+VALUES
+            (
+              :ORD_NO
+              ,:ORD_LN 
+              ,NVL((SELECT MAX(SEQ) + 1 FROM TB_C10_QLT_DSN_CHG_HST WHERE ORD_NO = :ORD_NO AND ORD_LN = :ORD_LN),1)
+              ,'C104000020TAB09'
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+              ,:ObjectType
+              ,:ObjectId
+              ,:ProgramId
+              ,:Timestamp
+            )
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.PKG_MSGupdate" desc="C104000020TAB09.PKG_MSGupdate" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 후공정-제조표준 C104000020TAB09.PKG_MSGupdate 박재영*/                      
+TB_C10_QLT_DSN_CMN
+SET    
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+      ,PAK_MSG_CD = :PAK_MSG_CD               --포장메세지코드
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB09.CMN.OT_TC_YN_update" desc="C104000020TAB09.CMN.OT_TC_YN_update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 후공정-제조표준 C104000020TAB09.CMN.OT_TC_YN_update*/                      
+TB_C10_QLT_DSN_CMN
+SET    
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+ 	,OT_TC_YN = :OT_TC_YN 
+WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                                     --주문행번
+		 ]]> 
+	 </query>
+</queryMap>

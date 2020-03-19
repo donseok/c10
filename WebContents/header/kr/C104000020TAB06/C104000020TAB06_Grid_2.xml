@@ -1,0 +1,61 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="attachHeader"><param>#rspan,#rspan,목표,하한,상한,목표</param></call>
+<call command="enableResizing"><param>false,false,false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" clabel="원자재코드" dbname="원자재코드" id="RMTL_CD" index="1" sort="na" table="TB_C10_QLT_DSN_RMT" type="combo_v" width="45" color="FFFFC0">원자재코드</column>
+<column align="center" clabel="원자재등급" dbname="원자재등급" id="RMTL_GRD" index="2" sort="na" table="TB_C10_QLT_DSN_RMT" type="combo_v" width="15" color="FFFFC0">원자재선호도</column>
+<column align="right" clabel="원자재목표두께" dbname="원자재목표두께" id="RMTL_TAR_THK" index="3" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="10" color="FFFFC0">두께</column>
+<column align="right" clabel="원자재목표두께하한" dbname="원자재목표두께하한" id="RMTL_TAR_THK_LVL" index="4" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="10" color="FFFFC0">#cspan</column>
+<column align="right" clabel="원자재목표두께상한" dbname="원자재목표두께상한" id="RMTL_TAR_THK_UVL" index="5" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="10" color="FFFFC0">#cspan</column>
+<column align="right" clabel="원자재목표폭" dbname="원자재목표폭" id="RMTL_TAR_WTH" index="6" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="*" color="FFFFC0">폭</column>
+<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="8" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="9" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<column align="right" clabel="원자재목표두께하한기준값" dbname="원자재목표두께하한기준값" hidden="true" id="RMTL_TAR_THK_LVL_STD" index="10" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께하한기준값</column>
+<column align="right" clabel="원자재목표두께상한기준값" dbname="원자재목표두께상한기준값" hidden="true" id="RMTL_TAR_THK_UVL_STD" index="11" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께상한기준값</column>
+<column align="right" clabel="원자재목표폭기준값" dbname="원자재목표폭기준값" hidden="true" id="RMTL_TAR_WTH_STD" index="12" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro"   width="0">원자재목표폭기준값</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">RMTL_CD,RMTL_GRD,RMTL_TAR_THK,RMTL_TAR_THK_LVL,RMTL_TAR_THK_UVL,RMTL_TAR_WTH,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,RMTL_TAR_THK_LVL_STD,RMTL_TAR_THK_UVL_STD,RMTL_TAR_WTH_STD</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

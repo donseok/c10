@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000070-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="개발참조샘플 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000070.selectSmp" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="참조샘플 삭제" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="(resultkey)" value="RK_RESULT" />
+    <property name="sqlkey" value="C108000070.updateSmp" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000070.selectSpec" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+    <transition name="findSmp" value="개발참조샘플 조회" />
+    <transition name="removeSmp" value="참조샘플 삭제" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C108000070.insertSpec" />
+    <property name="delete-sql" value="C108000070.deleteSpec" />
+    <property name="update-sql" value="C108000070.updateSpec" />
+  </activity>
+</service>
+

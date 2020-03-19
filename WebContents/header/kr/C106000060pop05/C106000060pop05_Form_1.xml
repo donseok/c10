@@ -1,0 +1,13 @@
+<items>	
+	<item type="block" width="641">
+		<item type="input" name="PRT_ROLL_NO" label="Roll 코드" inputWidth="75" />	
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="RPV_CLR_NM" label="대표색상명" inputWidth="75" />
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="PTN_NM" label="PATTERN명" inputWidth="75" />
+		<item type="newcolumn" offset="22" />
+		<item type="button" name="find" value="조회" command="find"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>

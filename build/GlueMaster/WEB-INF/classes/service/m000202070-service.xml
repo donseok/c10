@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202070-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="DeleteDecisionRuleData" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="deleteCntTbM00Rules040VO" />
+    <property name="param0" value="TbM00Rules040VOMdRuleId" />
+    <property name="chkname" value="TbM00Rules040VO_chk" />
+    <property name="sqlkey" value="TbM00Rules040.delete.byPK" />
+    <property name="param1" value="MdRuleConNum" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="PosDecisionRuleData" class="com.poscoict.glue.master.ui.rule.GetDecisionRuleData">
+    <transition name="success" value="GetDecisionRuleHeader" />
+    <property name="param-count" value="2" />
+    <property name="resultkey" value="DecisionRuleDataRowResult" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="param1" value="MdRuleId" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202070.selDecisionRuleData" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="pagesize" value="15" />
+  </activity>
+  <activity name="GetDecisionRuleHeader" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetDecisionRuleLayout" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules010" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="resultkey" value="Rule010HeaderRowResult" />
+    <property name="param1" value="MdRuleId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="m000202070" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ImportDecisionRuleData" class="com.poscoict.glue.master.ui.rule.ImportDecisionRuleData">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="SaveDecisionRuleData" class="com.poscoict.glue.master.ui.rule.SaveDecisionRuleData">
+    <transition name="success" value="ForwardSavePage" />
+    <transition name="failure" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="PosDecisionRuleDataExport" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="ForwardSavePage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="PosDecisionRuleData" />
+    <property name="forwardname" value="save" />
+  </activity>
+  <activity name="PosDecisionRuleDataExport" class="com.poscoict.glue.master.ui.rule.GetDecisionRuleData">
+    <transition name="success" value="GetDecisionRuleHeader" />
+    <property name="param-count" value="2" />
+    <property name="resultkey" value="DecisionRuleDataRowResult" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="param1" value="MdRuleId" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202070.selDecisionRuleData" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="pagesize" value="-1" />
+  </activity>
+  <activity name="GetDecisionRuleLayout" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="DecisionRuleLayoutDataRowResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules020" />
+    <property name="param0" value="MdRuleId" />
+  </activity>
+  <activity name="m000202070" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="export" value="ForwardExportPage" />
+    <transition name="success" value="PosDecisionRuleData" />
+    <transition name="saveData" value="ForwardSavePage" />
+    <transition name="delete" value="DeleteDecisionRuleData" />
+    <transition name="save" value="SaveDecisionRuleData" />
+    <transition name="import" value="ForwardImportPage" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="ImportDecisionRuleData" />
+    <property name="forwardname" value="import" />
+  </activity>
+</service>
+

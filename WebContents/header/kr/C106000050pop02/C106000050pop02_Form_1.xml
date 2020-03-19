@@ -1,0 +1,11 @@
+<items>	
+	<item type="block" width="691">
+		<item type="input" name="CLR_SUB_MTL_CD" label="칼라코드" inputWidth="60" />	
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="PNT_CMP_CD" label="부재료업체" inputWidth="60" />
+		<item type="newcolumn" offset="250" />
+		<item type="button" name="find" value="조회" command="find"/>
+		<item type="newcolumn" offset="05" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>

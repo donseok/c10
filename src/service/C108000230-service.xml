@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000230-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="부적합샘플 Test번호 해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="Lab샘플 Test번호 해제" />
+    <property name="update-sql" value="C108000230.joinDefTest" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="불만샘플 Test번호 해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="부적합샘플 Test번호 해제" />
+    <property name="update-sql" value="C108000230.joinCmplTest" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="Lab샘플 Test번호 해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="Lot샘플 Test번호 지정" />
+    <property name="update-sql" value="C108000230.joinLabTest" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="샘플조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000230.selectTstSmp" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000230.selectDevTest" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="Lot샘플 Test번호 지정" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="update-sql" value="C108000230.joinLotTest" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="TEST 완료" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C108000230.updateComplete" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="save" value="저장" />
+    <transition name="complete" value="TEST 완료" />
+    <transition name="removeSmp" value="개발참조샘플 Test번호 해제" />
+    <transition name="receive" value="TEST 접수" />
+    <transition name="findSmp" value="샘플조회" />
+    <transition name="find" value="조회" />
+    <transition name="userChk" value="공급업체 체크" />
+  </activity>
+  <activity name="공급업체 체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000230.checkUser" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C108000230.insertDevTest" />
+    <property name="delete-sql" value="C108000230.deleteDevTest" />
+    <property name="update-sql" value="C108000230.updateDevTest" />
+  </activity>
+  <activity name="TEST 접수" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C108000230.updateReceive" />
+  </activity>
+  <activity name="개발참조샘플 Test번호 해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="불만샘플 Test번호 해제" />
+    <property name="update-sql" value="C108000230.joinDevTest" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

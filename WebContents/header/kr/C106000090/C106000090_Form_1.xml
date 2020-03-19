@@ -1,0 +1,29 @@
+<items>
+<item type="block" width="971">	
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="칼라코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="1" checked="true"/>
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="CCLBOM코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="2"/>
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="수지타입" name="SEARCH_CD_SEL" position="label-right" type="radio" value="3"/>		
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="Print Roll" name="SEARCH_CD_SEL" position="label-right" type="radio" value="4"/>		
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="동일Print Roll" name="SEARCH_CD_SEL" position="label-right" type="radio" value="5"/>
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="Ink코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="6"/>
+	
+	<item offset="80" type="newcolumn"/>
+	<item inputWidth="90" label="코드" name="FIND_CD" type="input" maxLength="18"/>
+	<item offset="40" type="newcolumn"/>
+	<item command="find" name="find" type="button" value="조회" disabled="true"/>
+	<item offset="4" type="newcolumn"/>
+	<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="971">
+    <item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="보호필름코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="7"/>
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="접착제코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="8"/>
+</item>    
+</items>

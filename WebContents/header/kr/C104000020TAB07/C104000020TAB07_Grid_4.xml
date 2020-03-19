@@ -1,0 +1,74 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="enableMarkedCells"><param>true</param></call>
+<call command="enableAlterCss">
+<param>even</param>
+<param>uneven</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>7</param>
+</call>
+</beforeInit>
+<column id="PTT_FLM_MNG_ADH_TXT" sort="str" width="10" align="center" dbname="보호필름관리점착력" table="TB_C10_QLT_DSN_CCL_BOM" type="ro">보호필름관리점착력</column>
+<column id="PTT_FLM_DTL_CD" sort="str" width="32" align="center" dbname="보호필름상세코드" table="TB_C10_QLT_DSN_CCL_BOM" type="ro">보호필름상세코드</column>
+<column id="PTT_FLM_LUS_RT_CD" sort="str" width="58" align="right" dbname="보호필름광택코드" table="TB_C10_QLT_DSN_CCL_BOM" type="ro">보호필름광택코드</column>
+<column id="PTT_FLM_THK_CD" sort="str" width="0" align="center" dbname="보호필름두께코드" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" hidden="true">보호필름두께코드</column>
+<column id="PTT_FLM_MQL_CD" sort="str" width="0" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" hidden="true">보호필름재질코드</column>
+<column id="PTT_FLM_SUS_ADH_CD" sort="str" width="0" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" hidden="true">보호필름SUS점착력코드</column>
+<column id="PTT_FLM_PRD_ADH_CD" sort="str" width="0" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" hidden="true">보호필름제품점착력코드</column>
+<column id="UNI_GLS_FLM_CD" sort="str" width="0" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" hidden="true">UGS필름</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">PTT_FLM_MNG_ADH_TXT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,UNI_GLS_FLM_CD</userdata>
+<row id="0">
+<cell align="center" class="form_cell1" rowspan="8" height="50"><![CDATA[보<br>호<br>필<br>름]]></cell>
+<cell class="form_cell" >관리점착력</cell>
+<cell align="left" id = "PTT_FLM_MNG_ADH_TXT" />
+</row>
+<row id="1">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >신/구상세</cell>
+<cell align="left" id = "PTT_FLM_DTL_CD" />
+</row>
+<row id="2">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >광택</cell>
+<cell align="left" id = "PTT_FLM_LUS_RT_CD"></cell>
+</row>
+<row id="3">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >두께</cell>
+<cell  align="left" id = "PTT_FLM_THK_CD"></cell>
+</row>
+<row id="4">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >재질</cell>
+<cell  align="left" id = "PTT_FLM_MQL_CD"></cell>
+</row>
+<row id="5">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >신/구S점착</cell>
+<cell  align="left" id = "PTT_FLM_SUS_ADH_CD"></cell>
+</row>
+<row id="6">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >제품점착력</cell>
+<cell  align="left" id = "PTT_FLM_PRD_ADH_CD"></cell>
+</row>
+<row id="7">
+<cell align="center" class="form_cell"></cell>
+<cell class="form_cell" >UGS필름</cell>
+<cell  align="left" id = "UNI_GLS_FLM_CD"></cell>
+</row>
+</rows>

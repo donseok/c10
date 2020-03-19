@@ -1,0 +1,45 @@
+<items>
+	<item type="block" width="971">
+	    <item labelWidth="110" inputWidth="100" label="색상개발 번호" name="CLR_DEV_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="개발업체" name="CLR_DEV_CHR_UID" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="개발일시" name="CLR_DEV_DH" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="색번호" name="CLR_NO" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="수 지" name="RSN_TP" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="실광택값" name="LUS_RT_CD" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="도막두께" name="PNT_FLM_THK" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="PMT" name="PMT" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="도료비중" name="PNT_GRA" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="고형분" name="NV" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="용제비중" name="SLV_GRA" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="신너" name="THR_CD" type="input" labelAlign="right" value=""/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="점도" name="VISCO" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="작업점도" name="WK_VISCO" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="BabyRoll No" name="PRT_ROLL_NO" type="input" labelAlign="right" value=""/>		
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="110" inputWidth="100" label="L" name="QT_L" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="110" inputWidth="100" label="A" name="QT_A" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="130" inputWidth="100" label="B" name="QT_B" type="input" labelAlign="right" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="0" inputWidth="0" label="개발번호" name="PRD_DEV_NO" type="hidden" labelAlign="right" readonly="true" value=""/>
+	</item>
+</items>

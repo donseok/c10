@@ -1,0 +1,33 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<call command="attachHeader">
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="ORD_PAK_MTH" index="1" sort="str" width="35" align="center" dbname="주문포장방법" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문포장방법">포장방법</column>
+<column id="PAK_MSG_CD" index="2" sort="str" width="65" align="center" dbname="주문포장메세지" table="TB_C10_QLT_DSN_CMN" type="combo_v" clabel="주문포장메세지"  color="FFFFC0">포장메세지</column>
+<column align="center" index="3" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">주문번호</column>
+<column align="center" index="4" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">주문행번</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">ORD_PAK_MTH,PAK_MSG_CD,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

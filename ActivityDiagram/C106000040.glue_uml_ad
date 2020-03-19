@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.4"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="407,-1" input="//@wire.0" output="//@wire.2 //@wire.3" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : Material Code관리 화면 조회&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000040.select"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 Material Code관리 테이블(TB_C10_MTL_MST)에서  Material Code 번호 또는 검색조건으로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :   Material Code, 품명,제품형태&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131320" location="358,179" size="128,-1" input="//@wire.3" output="//@wire.4" name="상세조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000040.detailSelect"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 Material Code를  조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - TB_C10_MTL_MST(Material Code 관리)&#xD;&#xA;- 조회조건 : 필수입력조건 : Material Code, 품명, 제품형태는 필수항목&#xD;&#xA;             선택입력조건 : 재질코드,도금량코드,CCL_BOM번호&#xD;&#xA;             *Material Code 입력하여 조회시는 모든조건을 무시하고 Material Code로만 조회한다.&#xD;&#xA;"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="8438" guardcondition="detailFind" firstRelativePoint="411,112" lastRelativePoint="411,179"/>
+  <wire id="8439" guardcondition="success" firstRelativePoint="431,209" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="9,120" secondDimension="127,1"/>
+  </wire>
+</Glue:GlueDiagram>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="메뉴및권한"> 
+	 <query id="menu.root" desc="루트메뉴를가져온다" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT C.MENU_ID
+,MENU_KEY
+,MENU_NAME
+,MENU_TYPE
+,DISPLAY_NAME
+,DISPLAY_FLAG 
+,C.DESCRIPTION
+FROM TB_SEC_USER A, TB_USER_MENU_MAPPING B,TB_MENU C
+WHERE A.USER_ID = B.USER_ID AND B.MENU_ID=C.MENU_ID
+AND A.USER_NO=?
+--AND (A.work_location ='9999' OR A.work_location = ?)
+--AND (B.work_location = '9999' OR B.work_location = ?)
+AND sysdate BETWEEN C.START_ACTIVE_DATE AND C.END_ACTIVE_DATE
+AND sysdate BETWEEN B.START_ACTIVE_DATE AND B.END_ACTIVE_DATE
+ORDER BY B.SEQUENCE_NUMBER, B.CREATION_TIMESTAMP
+		 ]]> 
+	 </query>
+	 <query id="menu.root.byId" desc="루트메뉴가져오기" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT C.MENU_ID
+,MENU_KEY
+,MENU_NAME
+,MENU_TYPE
+,DISPLAY_NAME
+,DISPLAY_FLAG 
+,C.DESCRIPTION
+FROM TB_SEC_USER A, TB_USER_MENU_MAPPING B,TB_MENU C
+WHERE A.USER_ID = B.USER_ID AND B.MENU_ID=C.MENU_ID
+AND A.USER_ID=?
+--AND (A.work_location ='9999' OR A.work_location = ?)
+--AND (B.work_location = '9999' OR B.work_location = ?)
+AND sysdate BETWEEN C.START_ACTIVE_DATE AND C.END_ACTIVE_DATE
+AND sysdate BETWEEN B.START_ACTIVE_DATE AND B.END_ACTIVE_DATE
+ORDER BY B.SEQUENCE_NUMBER, B.CREATION_TIMESTAMP
+		 ]]> 
+	 </query>
+	 <query id="menu.sub" desc="sub메뉴가져오기" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT 
+MENU_ID
+,MENU_KEY
+,MENU_NAME
+,MENU_TYPE
+,DISPLAY_NAME
+,DISPLAY_FLAG
+,DESCRIPTION
+,ENTRY_SEQUENCE
+,SUB_ENTRY_TP
+,B.PROGRAM_ID
+FROM TB_MENU A,
+    (SELECT MAIN.SUB_MENU_ID
+        , SUB.PROGRAM_ID
+        , MAIN.ENTRY_SEQUENCE
+        , SUB.SUB_ENTRY_TP
+--        , SUB.MENU_ID SUB_MENU_ID
+     FROM TB_MENU_PRG_MAPPING MAIN,
+          TB_MENU_PRG_MAPPING SUB
+     WHERE MAIN.MENU_ID = ?
+           AND MAIN.SUB_MENU_ID = SUB.MENU_ID(+)
+     ) B
+WHERE A.MENU_ID = B.SUB_MENU_ID
+ORDER BY B.ENTRY_SEQUENCE
+		 ]]> 
+	 </query>
+	 <query id="menu.program" desc="프로그램 정보 가져오기" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select 
+PROGRAM_ID
+,PROGRAM_KEY
+,PROGRAM_NAME
+,PROGRAM_URL
+,PARAMETER
+,CONNECTION_TYPE
+,PERMIT_EVENT
+,PAGE_ID
+,SERVICE_NAME
+,BUTTON_FLAG
+,HOST_URL
+,OPEN_TYPE
+,DESCRIPTION pgrm_desc 
+from tb_program where program_id = ?
+		 ]]> 
+	 </query>
+</queryMap>

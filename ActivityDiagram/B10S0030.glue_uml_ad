@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="199,20" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="3259" location="588,205" size="-1,-1" input="//@wire.7"/>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="154,272" size="130,-1" input="//@wire.2" output="//@wire.5 //@wire.6" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="eaidao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="5"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="B10S0030.insert"/>
+    <property key="param0" value="IF_GRP_ID"/>
+    <property key="param1" value="SPC_AVR"/>
+    <property key="param2" value="THK_RNG_LLV"/>
+    <property key="param3" value="THK_RNG_ULV"/>
+    <property key="param4" value="ORD_USG_CD"/>
+    <property key="description" value="이 Activity는 규격별주문용도정보 기준을 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;TB_C10_B10S0030&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51008" location="140,79" size="149,-1" input="//@wire.0" output="//@wire.3" name="IFGroupID">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
+    <property key="description" value="Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는 Activity&#xD;&#xA;&#xD;&#xA;- 규격별주문용도정보 Master Data 송신 IF IF_GRP_ID 편집&#xD;&#xA;&#xD;&#xA;param0 : IF_GRP_ID"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51028" location="147,203" size="135,-1" input="//@wire.4 //@wire.6" output="//@wire.1 //@wire.2" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="SD0420_COUNT"/>
+    <property key="param-count" value="4"/>
+    <property key="param0" value="SPC_AVR|SPC_AVR"/>
+    <property key="param1" value="THK_RNG_LLV|THK_RNG_LLV"/>
+    <property key="param2" value="THK_RNG_ULV|THK_RNG_ULV"/>
+    <property key="param3" value="ORD_USG_CD|ORD_USG_CD"/>
+    <property key="description" value="이 Activity는 규격별주문용도IF Master Data를  1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 편성정보: 규격별주문용도정보&#xD;&#xA;    - Master Table Code: Main key기준 규격공통(C10A1014)&#xD;&#xA;&#xD;&#xA;2. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;3. 오류가 없는 경우 transition='success',&#xD;&#xA;    오류가 있는 경우 'failure'로 Set하고 오류Log 메세지 편집"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51029" location="353,202" size="145,-1" input="//@wire.1 //@wire.5" output="//@wire.7" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx2"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="51091" location="138,137" size="154,-1" input="//@wire.3" output="//@wire.4" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C10B1014_IF"/>
+    <property key="description" value="이 Activity는 품질설계 규격별주문용도정보 Master Data (C10B1014)&#xD;&#xA;정보를 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx2" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계연동의 규격별주문용도정보를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 규격별주문용도정보 전송&#xD;&#xA;&#xD;&#xA;"/>
+  <wire id="2961" guardcondition="success" firstRelativePoint="209,39" lastRelativePoint="209,79"/>
+  <wire id="2969" guardcondition="exit" firstRelativePoint="282,216" lastRelativePoint="353,216">
+    <bendpoint weight="0.5" firstDimension="101,-2" secondDimension="-110,-1"/>
+  </wire>
+  <wire id="2976" guardcondition="success" firstRelativePoint="213,233" lastRelativePoint="213,272"/>
+  <wire id="2977" guardcondition="success" firstRelativePoint="210,109" lastRelativePoint="210,137"/>
+  <wire id="2978" guardcondition="success" firstRelativePoint="216,167" lastRelativePoint="216,203"/>
+  <wire id="2979" guardcondition="failure" firstRelativePoint="498,214" lastRelativePoint="587,214">
+    <bendpoint weight="0.5" firstDimension="207,1" secondDimension="1,71"/>
+  </wire>
+  <wire id="2980" guardcondition="success" firstRelativePoint="154,288" lastRelativePoint="147,218">
+    <bendpoint weight="0.5" firstDimension="-125,1" secondDimension="-120,70"/>
+    <bendpoint weight="0.5" firstDimension="-125,-69" secondDimension="-120,0"/>
+  </wire>
+  <wire id="2981" guardcondition="success" firstRelativePoint="498,214" lastRelativePoint="587,214">
+    <bendpoint weight="0.5" firstDimension="116,-3" secondDimension="-57,-1"/>
+  </wire>
+</Glue:GlueDiagram>

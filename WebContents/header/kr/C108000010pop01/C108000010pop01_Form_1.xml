@@ -1,0 +1,10 @@
+<items>	
+	<item type="block" width="850">	    
+		<item type="newcolumn" offset="530" />
+		<item type="custombutton" name="dev_req_save" value="개발요청저장" command="dev_req_save" width="100" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item type="custombutton" name="dev_recv_save" value="개발접수저장" command="dev_recv_save" width="100"/>
+		<item type="newcolumn" offset="5" />		
+		<item type="button" name="popClose" value="닫기" command="popClose"/>
+	</item>
+</items>

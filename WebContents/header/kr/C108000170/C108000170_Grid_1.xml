@@ -1,0 +1,54 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="LMN_DEV_NO"  	 	 index="1" sort="sort_str_custom" align="left" width="12" type="ro">라미나개발 번호</column>
+<column id="LMN_BND_DEV_CMP_DH"  index="2" sort="sort_str_custom" align="left" width="12" type="ro">접착제 개발완료 일시</column>
+<column id="LMN_BND_DEV_CHR_UID" index="3" sort="sort_str_custom" align="left" width="15" type="ro"><![CDATA[접착제 개발 업체<br>(담당자)]]></column>
+<column id="LMN_FLM_DEV_CHR_UID" index="4" sort="sort_str_custom" align="left" width="10" type="ro"><![CDATA[라미나필름 개발 업체<br>(담당자)]]></column>
+<column id="LMN_KND_TP"   	  	 index="5" sort="sort_str_custom" align="left" width="8" type="ro">라미나유형</column>
+<column id="LMN_FLM_THK_CD"      index="6" sort="sort_str_custom" align="left" width="12" type="ro">라미나필름두께</column>
+<column id="LMN_BND_CD"  	 	 index="7" sort="sort_str_custom" align="left" width="12" type="ro">라미나접착제</column>
+<column id="LMN_BND_THR_CD"    	 index="8" sort="sort_str_custom" align="left" width="12" type="ro">라미나접착제시너</column>
+<column id="LMN_UNT"     	 	 index="9" sort="sort_str_custom" align="left" width="12" type="ro">라미나원단위</column>
+
+<column id="PRD_DEV_NO"      	 index="10" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">제품개발 번호</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">LMN_DEV_NO,LMN_BND_DEV_CMP_DH,LMN_BND_DEV_CHR_UID,LMN_FLM_DEV_CHR_UID,LMN_KND_TP,LMN_FLM_THK_CD,LMN_BND_CD,LMN_BND_THR_CD,LMN_UNT,PRD_DEV_NO</userdata>
+</rows>

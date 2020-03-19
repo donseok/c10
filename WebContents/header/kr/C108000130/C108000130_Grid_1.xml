@@ -1,0 +1,69 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CLR_DEV_NO"  	 index="1" sort="sort_str_custom" align="left" width="12" type="ro">색상개발 번호</column>
+<column id="CLR_DEV_CHR_UID" index="2" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[색상개발 업체<br>(담당자)]]></column>
+<column id="CLR_DEV_DH" 	 index="3" sort="sort_str_custom" align="left" width="15" type="ro">색상개발 일시</column>
+<column id="CLR_NO"  		 index="4" sort="sort_str_custom" align="left" width="10" type="ro">색번호</column>
+<column id="RSN_TP"   	  	 index="5" sort="sort_str_custom" align="left" width="8" type="ro">수지</column>
+<column id="LUS_RT_CD"       index="6" sort="sort_str_custom" align="left" width="12" type="ro">실광택값</column>
+<column id="PNT_FLM_THK"  	 index="7" sort="sort_str_custom" align="left" width="12" type="ro">도막두께</column>
+<column id="PMT"    	 	 index="8" sort="sort_str_custom" align="left" width="12" type="ro">PMT</column>
+<column id="PNT_GRA"     	 index="9" sort="sort_str_custom" align="left" width="12" type="ro">도료비중</column>
+<column id="NV"  			 index="10" sort="sort_str_custom" align="left" width="12" type="ro">고형분</column>
+<column id="SLV_GRA"		 index="11" sort="sort_str_custom" align="left" width="12" type="ro">용제비중</column>
+<column id="THR_CD" 		 index="12" sort="sort_str_custom" align="left" width="15" type="ro">신너</column>
+<column id="VISCO"     		 index="13" sort="sort_str_custom" align="left" width="12" type="ro">점도</column>
+<column id="WK_VISCO"  		 index="14" sort="sort_str_custom" align="left" width="12" type="ro">작업점도</column>
+<column id="QT_L"  			 index="15" sort="sort_str_custom" align="left" width="12" type="ro">L</column>
+<column id="QT_A"  			 index="16" sort="sort_str_custom" align="left" width="12" type="ro">A</column>
+<column id="QT_B"  			 index="17" sort="sort_str_custom" align="left" width="12" type="ro">B</column>
+<column id="MPR_BAS_PNCL_HRDN"   index="18" sort="sort_str_custom" align="left" width="5" type="ro">연필경도</column>
+<column id="MPR_BAS_MEK"  		 index="19" sort="sort_str_custom" align="left" width="5" type="ro">MEK</column>
+<column id="CLR_BND_TST_STD_CD"  index="20" sort="sort_str_custom" align="left" width="5" type="ro">가공성</column>
+<column id="SRI_TXT"  			 index="21" sort="sort_str_custom" align="left" width="5" type="ro">SRI</column>
+<column id="COOL_FUNC_YN"  		 index="22" sort="sort_str_custom" align="left" width="5" type="ro"><![CDATA[COOL기능<br>여부]]></column>
+<column id="TEX_PTC_TP"  		 index="23" sort="sort_str_custom" align="left" width="5" type="ro"><![CDATA[질감 입자<br>종류]]></column>
+<column id="TLP_YN"  			 index="24" sort="sort_str_custom" align="left" width="5" type="ro"><![CDATA[무독성<br>여부]]></column>
+<column id="PRT_ROLL_NO"	 index="25" sort="sort_str_custom" align="left" width="12" type="ro">BabyRoll번호</column>
+<column id="PRD_DEV_NO"      index="26" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">제품개발 번호</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">CLR_DEV_NO,CLR_DEV_CHR_UID,CLR_DEV_DH,CLR_NO,RSN_TP,LUS_RT_CD,PNT_FLM_THK,PMT,PNT_GRA,NV,SLV_GRA,THR_CD,VISCO,WK_VISCO,QT_L,QT_A,QT_B,MPR_BAS_PNCL_HRDN,MPR_BAS_MEK,CLR_BND_TST_STD_CD,SRI_TXT,COOL_FUNC_YN,TEX_PTC_TP,TLP_YN,PRT_ROLL_NO,PRD_DEV_NO</userdata>
+</rows>

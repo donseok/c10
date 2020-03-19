@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="480,-228" size="-1,-1" output="//@wire.5"/>
+  <child xsi:type="Glue:Activity" id="49656" location="413,-169" size="149,-1" input="//@wire.5" output="//@wire.1" name="INIT_QLT_ERR">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="1"/>
+    <property key="param0" value="P_PROC_FLAG|C"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 품질설계 오류Code를 초기화한다.(QLT_DSN_ERR_CD=''l)&#xD;&#xA;- 오류발생여부 Check 변수를 초기화한다.(P_ERR_KEY= 'N‘)&#xD;&#xA;- 시스템 오류시 프로세스 처리구분 내역을 등록한다.(P_PROC_FLAG='C‘)&#xD;&#xA;&#xD;&#xA;param0 : QLT_DSN_ERR_CD|sp_null"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="49657" location="415,-102" size="154,-1" input="//@wire.1" output="//@wire.2" name="SEARCH">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="param-count" value="0"/>
+    <property key="resultkey" value="RK_SEARCH"/>
+    <property key="sqlkey" value="C102100CMN.Jselect"/>
+    <property key="description" value="이 Activity는 품질설계대상 주문정보로 &#xD;&#xA;품질설계상태코드 ='J' 인 값만 &#xD;&#xA;품질설계작업을 수행하는 후속 서비스의 기본 정보로 추출하여 보관하는 Activity이다.    "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="49675" location="422,-35" size="135,-1" input="//@wire.2 //@wire.8 //@wire.10" output="//@wire.4 //@wire.9" name="PROC_LOOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
+    <property key="bind-result" value="RK_SEARCH"/>
+    <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
+    <property key="param-count" value="17"/>
+    <property key="param0" value="ORD_NO|ORD_NO"/>
+    <property key="param1" value="ORD_LN|ORD_LN"/>
+    <property key="param2" value="PRD_NM_CD|PRD_NM_CD"/>
+    <property key="param3" value="ORD_EXC_THK|ORD_EXC_THK"/>
+    <property key="param4" value="ORD_EXC_WTH|ORD_EXC_WTH"/>
+    <property key="param5" value="PRD_SHP|PRD_SHP"/>
+    <property key="param6" value="MQL_CD|MQL_CD"/>
+    <property key="param7" value="ORD_SPNL_TP|ORD_SPNL_TP"/>
+    <property key="param8" value="ORD_SP_ASG_YN|ORD_SP_ASG_YN"/>
+    <property key="param9" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD"/>
+    <property key="param10" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO"/>
+    <property key="param11" value="RMTL_CD|RMTL_CD"/>
+    <property key="param12" value="RMTL_CD1|RMTL_CD1"/>
+    <property key="param13" value="RMTL_CD2|RMTL_CD2"/>
+    <property key="param14" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO"/>
+    <property key="param15" value="CRM_MNF_STD_NO1|CRM_MNF_STD_NO1"/>
+    <property key="param16" value="CRM_MNF_STD_NO2|CRM_MNF_STD_NO2"/>
+    <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;&#xD;&#xA;이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
+  </child>
+  <child xsi:type="Glue:Activity" id="50091" location="204,-36" size="145,-1" input="//@wire.4" output="//@wire.3" name="COMMIT">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetCommit"/>
+    <property key="checkId" value="P_ERR_KEY"/>
+    <property key="exitFlag" value="N"/>
+    <property key="txname" value="tx1"/>
+    <property key="description" value="이 Activity는 판단 변수명을 받아 Commit 또는 Rollback처리하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. checkId를 확인하여 ‘N’인 경우 Commit, ‘Y’인 경우 Rollback&#xD;&#xA;2. exitFlag가 ‘Y’이면 transition=‘exit', 아니면 'success'로 Set&#xD;&#xA;    . 단, 처리 중 오류가 발생하면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="50093" location="118,-30" size="-1,-1" input="//@wire.3"/>
+  <child xsi:type="Glue:Activity" id="50646" location="427,117" size="135,-1" input="//@wire.7" output="//@wire.10 //@wire.11" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchMnfData"/>
+    <property key="dao" value="mesdao"/>
+    <property key="description" value="이 Activity는 Master Data의 업무기준(판단구조)을 읽어 품질설계에 필요한 &#xD;&#xA;정보를 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA; 1. 편성정보:ECL C-D 방지 약품 (CR,EG,CR칼라,EG칼라 제품군만)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2130&#xD;&#xA;&#x9;- ECL C-D 방지 약품 기준 Data 조건항목 : 주문두께&#xD;&#xA;&#x9;-> Read Count = 1 이면 ECL C-D 방지 약품 기준 Data의 ECLC-D방지약품을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 ECL C-D 방지 약품 기준 에러처리한다.&#xD;&#xA;&#xD;&#xA;2. 편성정보:ECL 권취장력 Set기준 (CR,EG,CR칼라,EG칼라 제품군만)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2210&#xD;&#xA;&#x9;- ECL 권취장력 Set 기준 Data 조건항목 : 품명&#xD;&#xA;&#x9;-> Read Count = 1 이면 ECL 권취장력 Set 기준 Data의 ECL권취장력을 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 ECL 권취장력 Set 기준 에러처리한다.&#xD;&#xA;&#xD;&#xA;3. 편성정보:EGL표면처리코드&#xD;&#xA;   - 주문표면처리코드로 EGL표면처리코드를 편성한다.&#xD;&#xA;&#xD;&#xA;4. 편성정보:CGL Leveler Set기준 (용융도금 또는 용융도금칼라 제품군만)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2150&#xD;&#xA;&#x9;- CGL Leveler Set기준 Data 조건항목 : 품명&#xD;&#xA;&#x9;-> Read Count = 1 이면 CGL Leveler Set기준 Data의 CGLLeveler사용여부를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 CGL Leveler Set기준 에러처리한다.&#xD;&#xA;&#xD;&#xA;5. 편성정보:CGL표면처리코드&#xD;&#xA;   - 주문표면처리코드로 CGL표면처리코드를 편성한다.&#xD;&#xA;&#xD;&#xA;6. 편성정보:CGLSkinPass 여부&#xD;&#xA;   - 주문Spangle구분이 '4'인 경우 CGLSkinPass 여부를 'Y'로 편성한다.&#xD;&#xA;   - 주문Spangle구분이 '4'가 아닌 경우 CGLSkinPass 여부를 'N'로 편성한다.&#xD;&#xA;&#xD;&#xA;7. 편성정보:정전공정 방청류 Set기준 (CR,CR칼라 제품군만)&#xD;&#xA;&#x9;- Master Data 정의명 : C10B2170&#xD;&#xA;&#x9;- 정전공정 방청류 Set기준 Data 조건항목 : 품명, 주문표면처리코드, 제품형태&#xD;&#xA;&#x9;-> Read Count = 1 이면 정전공정 방청류 Set기준 Data의 도유코드를 편집한다.&#xD;&#xA;&#x9;-> Read Count = 0 이거나 Read Count > 1 이면 정전공정 방청류 Set기준 에러처리한다.&#xD;&#xA;&#xD;&#xA;8. PosContext에 합성항목과 품질보증구분항목 편집&#xD;&#xA;&#x9;- 합성항목 편집&#xD;&#xA;&#x9;. 항목별로 합성항목은 이전 값이 존재하지 않으면 값을 등록하고,&#xD;&#xA;&#x9;값이 존재하면 이전 값을 변경하지 않는다.&#xD;&#xA;&#xD;&#xA;9. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;10. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="50925" location="623,206" size="113,-1" input="//@wire.6" output="//@wire.8" name="MODIFY_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="2"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C1021000CMN.modify"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="description" value="이 Activity는 품질설계에러여부를 품질설계결과 공통테이블에 &#xD;&#xA;수정하는 Activity이다. &#xD;&#xA;품질설계에러여부(QLT_DSN_ERR_YN)에 'Y'로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:SubServiceActivity" id="50979" location="429,203" size="129,-1" input="//@wire.11" output="//@wire.6" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51272" location="418,42" size="149,-1" input="//@wire.9" output="//@wire.7" name="CLEAR_MNF">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="82"/>
+    <property key="param0" value="PLTCM_5STD_WR_TP|sp_null"/>
+    <property key="param1" value="PLTCM_SLV_USE_YN|sp_null"/>
+    <property key="param2" value="ECL_CDR_CD|sp_null"/>
+    <property key="param3" value="ECL_COILG_TS_CD|sp_null"/>
+    <property key="param4" value="FUR_TP_GEN_ANN|sp_null"/>
+    <property key="param5" value="HEAT_CYL_NO_GEN_ANN|sp_null"/>
+    <property key="param6" value="COR_TM_GEN_ANN|sp_null"/>
+    <property key="param7" value="COIL_TMP_GEN_ANN|sp_null"/>
+    <property key="param8" value="CLG_END_TMP_GEN_ANN|sp_null"/>
+    <property key="param9" value="FUR_TP_HC_ANN|sp_null"/>
+    <property key="param10" value="HEAT_CYL_NO_HC_ANN|sp_null"/>
+    <property key="param11" value="COR_TM_HC_ANN|sp_null"/>
+    <property key="param12" value="COIL_TMP_HC_ANN|sp_null"/>
+    <property key="param13" value="CLG_END_TMP_HC_ANN|sp_null"/>
+    <property key="param14" value="TM_PASS_CNT|sp_null"/>
+    <property key="param15" value="ROU_RA_LLV|sp_null"/>
+    <property key="param16" value="ROU_RA_ULV|sp_null"/>
+    <property key="param17" value="ROU_PPI_LLV|sp_null"/>
+    <property key="param18" value="ROU_PPI_ULV|sp_null"/>
+    <property key="param19" value="ROU_R_MAX_LLV|sp_null"/>
+    <property key="param20" value="HEAT_CYL_NO_2CGL|sp_null"/>
+    <property key="param21" value="HTG_TEM_2CGL|sp_null"/>
+    <property key="param22" value="CLG_TEM_2CGL|sp_null"/>
+    <property key="param23" value="SHK_TM_2CGL|sp_null"/>
+    <property key="param24" value="LN_SPD_2CGL|sp_null"/>
+    <property key="param25" value="HEAT_CYL_NO_3CGL|sp_null"/>
+    <property key="param26" value="HTG_TEM_3CGL|sp_null"/>
+    <property key="param27" value="CLG_TEM_3CGL|sp_null"/>
+    <property key="param28" value="SHK_TM_3CGL|sp_null"/>
+    <property key="param29" value="LN_SPD_3CGL|sp_null"/>
+    <property key="param30" value="HEAT_CYL_NO_4CGL|sp_null"/>
+    <property key="param31" value="HTG_TEM_4CGL|sp_null"/>
+    <property key="param32" value="CLG_TEM_4CGL|sp_null"/>
+    <property key="param33" value="SHK_TM_4CGL|sp_null"/>
+    <property key="param34" value="LN_SPD_4CGL|sp_null"/>
+    <property key="param35" value="HEAT_CYL_NO_5CGL|sp_null"/>
+    <property key="param36" value="HTG_TEM_5CGL|sp_null"/>
+    <property key="param37" value="CLG_TEM_5CGL|sp_null"/>
+    <property key="param38" value="SHK_TM_5CGL|sp_null"/>
+    <property key="param39" value="LN_SPD_5CGL|sp_null"/>
+    <property key="param40" value="SPNL_TP|sp_null"/>
+    <property key="param41" value="CGL_LVL_YN|sp_null"/>
+    <property key="param42" value="CGL_SP_ASG_YN|sp_null"/>
+    <property key="param43" value="CGL_SUR_HND_CD|sp_null"/>
+    <property key="param44" value="EGL_SUR_HND_CD|sp_null"/>
+    <property key="param45" value="RSN_ATT_AMT_LLV|sp_null"/>
+    <property key="param46" value="RSN_ATT_AMT_ULV|sp_null"/>
+    <property key="param47" value="WK_GW_TRV|sp_null"/>
+    <property key="param48" value="WK_GW_FRN_ULV|sp_null"/>
+    <property key="param49" value="WK_GW_FRN_LLV|sp_null"/>
+    <property key="param50" value="WK_GW_BAK_ULV|sp_null"/>
+    <property key="param51" value="WK_GW_BAK_LLV|sp_null"/>
+    <property key="param52" value="WK_GW_TOT_ULV|sp_null"/>
+    <property key="param53" value="WK_GW_TOT_LLV|sp_null"/>
+    <property key="param54" value="PIL_DIR|sp_null"/>
+    <property key="param55" value="OIL_PNT_CD|sp_null"/>
+    <property key="param56" value="PRD_THK_RNG_LLV|sp_null"/>
+    <property key="param57" value="PRD_THK_RNG_ULV|sp_null"/>
+    <property key="param58" value="PRD_WTH_RNG_LLV|sp_null"/>
+    <property key="param59" value="PRD_WTH_RNG_ULV|sp_null"/>
+    <property key="param60" value="GAL_THK_LLV|sp_null"/>
+    <property key="param61" value="GAL_THK_ULV|sp_null"/>
+    <property key="param62" value="GAL_THK_TRV|sp_null"/>
+    <property key="param63" value="COR_THK_TRV|sp_null"/>
+    <property key="param64" value="COR_WTH_TRV|sp_null"/>
+    <property key="param65" value="CGL_THK_TRV|sp_null"/>
+    <property key="param66" value="CGL_WTH_TRV|sp_null"/>
+    <property key="param67" value="EGL_THK_TRV|sp_null"/>
+    <property key="param68" value="EGL_WTH_TRV|sp_null"/>
+    <property key="param69" value="TM_THK_TRV|sp_null"/>
+    <property key="param70" value="TM_WTH_TRV|sp_null"/>
+    <property key="param71" value="TM_WTH_SUB_PROC1_TRV|sp_null"/>
+    <property key="param72" value="TM_WTH_SUB_PROC2_TRV|sp_null"/>
+    <property key="param73" value="PLTCM_SET_THK_TRV|sp_null"/>
+    <property key="param74" value="PLTCM_THK_TRV|sp_null"/>
+    <property key="param75" value="PLTCM_THK_LLV|sp_null"/>
+    <property key="param76" value="PLTCM_THK_ULV|sp_null"/>
+    <property key="param77" value="PLTCM_WTH_TRV|sp_null"/>
+    <property key="param78" value="PLTCM_WTH_SUB_PROC1_TRV|sp_null"/>
+    <property key="param79" value="PLTCM_WTH_SUB_PROC2_TRV|sp_null"/>
+    <property key="param80" value="PLTCM_EDG_ASG_TP|sp_null"/>
+    <property key="param81" value="COR_EDG_ASG_TP|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;품질설계결과-제조사양 항목을 초기화한다."/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 제조표준을 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;     . ECL C-D 방지 약품 편성&#xD;&#xA;     . ECL권취장력 편성&#xD;&#xA;     . EGL표면처리코드 편성&#xD;&#xA;     . CGLLeveler사용여부 편성&#xD;&#xA;     . CGL표면처리코드 편성&#xD;&#xA;     . CGLSkinPass 여부 편성&#xD;&#xA;     . 도유코드 편성&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="2825" guardcondition="success" firstRelativePoint="480,-73" lastRelativePoint="480,-36">
+    <bendpoint weight="0.5" firstDimension="-6,31" secondDimension="-11,-36"/>
+  </wire>
+  <wire id="2826" guardcondition="success" firstRelativePoint="482,-6" lastRelativePoint="482,31">
+    <bendpoint weight="0.5" firstDimension="-9,31" secondDimension="-6,-36"/>
+  </wire>
+  <wire id="2869" guardcondition="success" firstRelativePoint="177,46" lastRelativePoint="88,46">
+    <bendpoint weight="0.5" firstDimension="-121,1" secondDimension="50,-1"/>
+  </wire>
+  <wire id="2870" guardcondition="exit" firstRelativePoint="423,-25" lastRelativePoint="348,-25"/>
+  <wire id="2873" guardcondition="success" firstRelativePoint="486,-143" lastRelativePoint="486,-103"/>
+  <wire id="2949" guardcondition="success" firstRelativePoint="555,209" lastRelativePoint="629,209"/>
+  <wire id="3036" guardcondition="success" firstRelativePoint="500,72" lastRelativePoint="500,117"/>
+  <wire id="3044" guardcondition="success" firstRelativePoint="688,206" lastRelativePoint="555,-28">
+    <bendpoint weight="0.5" firstDimension="9,-249" secondDimension="199,-8"/>
+  </wire>
+  <wire id="3069" guardcondition="success" firstRelativePoint="481,-5" lastRelativePoint="481,42"/>
+  <wire id="3071" guardcondition="success" firstRelativePoint="562,134" lastRelativePoint="557,-18">
+    <bendpoint weight="0.5" firstDimension="151,2" secondDimension="156,154"/>
+    <bendpoint weight="0.5" firstDimension="151,-150" secondDimension="156,2"/>
+  </wire>
+  <wire id="7767" guardcondition="failure" firstRelativePoint="501,147" lastRelativePoint="501,203"/>
+</Glue:GlueDiagram>

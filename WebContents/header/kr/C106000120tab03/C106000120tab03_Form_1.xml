@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<items>	
+	<item type="block" width="950">
+		<item dateFormat="%Y-%m-%d" inputWidth="75" label="발행일자" labelAlign="right" labelWidth="60" name="WAR_PRT_DH_STR" type="calendar" style="background-color:#FFFFC0"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="~" name="WAR_PRT_DH_DUR" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" inputWidth="75" name="WAR_PRT_DH_END" type="calendar" style="background-color:#FFFFC0"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="75" label="발행자" labelAlign="right" maxLength="10" name="WAR_PRT_EMP_ID" type="input"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="140" label="국가" labelAlign="right" name="NAT_COMB" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="75" label="CCLBOM번호" labelAlign="right" maxLength="10" name="CCL_BOM_NO" type="input"/>
+		<item type="newcolumn" offset="140" />
+		<item command="find" name="find" type="button" value="조회"/>
+	</item>
+</items>

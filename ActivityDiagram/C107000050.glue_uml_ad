@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="525,8" size="-1,-1" output="//@wire.3"/>
+  <child xsi:type="Glue:FinalState" id="1" location="416,212" size="-1,-1" input="//@wire.4 //@wire.7 //@wire.8 //@wire.10 //@wire.12 //@wire.15 //@wire.17"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="35,72" size="942,-1" input="//@wire.3" output="//@wire.5 //@wire.9 //@wire.11 //@wire.13 //@wire.16 //@wire.2 //@wire.6" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;  입력 eventName 에 따라 해당 Activity 를 호출하는 분기 Activity 이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  find : 조회 Activity를 호출한다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="266,133" size="97,-1" input="//@wire.2" output="//@wire.4" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="masterdao"/>
+    <property key="sqlkey" value="C107000050.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS)을 조회하는 쿼리 &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131372" location="382,135" size="91,-1" input="//@wire.5" output="//@wire.7" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="masterdao"/>
+    <property key="delete-sql" value="C107000050.delete"/>
+    <property key="insert-sql" value="C107000050.insert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C107000050.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS) 값을 저장&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131392" location="494,134" size="112,-1" input="//@wire.6" output="//@wire.8" name="무결성(유니크)검사">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="masterdao"/>
+    <property key="sqlkey" value="C107000050.chkUnique_U1"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS)값 저장시 무결성을 체크함&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="232885" location="629,135" size="97,-1" input="//@wire.9" output="//@wire.10" name="테스트계이행">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C107000050pop01ProcActivity"/>
+    <property key="chk" value="tstdao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C107000050pop01.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS) 테스트계 이행&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="239892" location="749,134" size="95,-1" input="//@wire.11" output="//@wire.12" name="운영계이행">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C107000050pop01ProcActivity"/>
+    <property key="chk" value="prddao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C107000050pop01.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS) 운영계 이행&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="240011" location="866,134" size="93,-1" input="//@wire.13" output="//@wire.14" name="테스트계이행_all">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C107000050pop01ProcActivity"/>
+    <property key="chk" value="tstdao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C107000050pop01.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS) 테스트계 이행&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:Activity" id="240012" location="868,199" size="92,-1" input="//@wire.14" output="//@wire.15" name="운영계이행_all">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C107000050pop01ProcActivity"/>
+    <property key="chk" value="prddao"/>
+    <property key="param-count" value="0"/>
+    <property key="sqlkey" value="C107000050pop01.update"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;표준항목(TB_M00_ATTRS) 운영계 이행&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="240653" location="151,135" size="93,-1" input="//@wire.16" output="//@wire.17" name="데이터수정여부">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="masterdao"/>
+    <property key="sqlkey" value="C107000050.chkUpdateRow"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;데이터 이행전에 표준항목 값이 업데이트 됐는지 검사&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  1) 필수 입력 사항 : &#xD;&#xA;  2) 선택 입력 사항 : "/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="tx4" value="true"/>
+  <property key="description" value="1. 개요 : 표준항목 정보를 출력한다. &#xD;&#xA;&#xD;&#xA;2. 정의 &#xD;&#xA;&#xD;&#xA; - Lov는 Master data의 코드값을 가져와 출력.&#xD;&#xA; - 시스템, 부문, 항목ID, 항목명에 따라 조회"/>
+  <wire id="7" guardcondition="success" firstRelativePoint="278,49" lastRelativePoint="278,179"/>
+  <wire id="8" guardcondition="success" firstRelativePoint="304,179" lastRelativePoint="304,302"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="319,102" lastRelativePoint="319,133"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="290,39" lastRelativePoint="290,179"/>
+  <wire id="9" guardcondition="success" firstRelativePoint="245,163" lastRelativePoint="339,222">
+    <bendpoint weight="0.5" firstDimension="4,74" secondDimension="-105,-1"/>
+  </wire>
+  <wire id="10979" guardcondition="save" firstRelativePoint="359,102" lastRelativePoint="359,135"/>
+  <wire id="10981" guardcondition="chkUniqueU1" firstRelativePoint="548,102" lastRelativePoint="548,134"/>
+  <wire id="10982" guardcondition="success" firstRelativePoint="336,165" lastRelativePoint="336,211"/>
+  <wire id="10983" guardcondition="success" firstRelativePoint="475,164" lastRelativePoint="363,221">
+    <bendpoint weight="0.5" firstDimension="-2,72" secondDimension="122,-1"/>
+  </wire>
+  <wire id="11075" guardcondition="save1" firstRelativePoint="605,102" lastRelativePoint="643,135"/>
+  <wire id="11076" guardcondition="success" firstRelativePoint="675,165" lastRelativePoint="436,221">
+    <bendpoint weight="0.5" firstDimension="-2,71" secondDimension="249,-1"/>
+  </wire>
+  <wire id="11212" guardcondition="save2" firstRelativePoint="723,102" lastRelativePoint="723,134"/>
+  <wire id="11213" guardcondition="success" firstRelativePoint="731,164" lastRelativePoint="363,221">
+    <bendpoint weight="0.5" firstDimension="8,72" secondDimension="378,-1"/>
+  </wire>
+  <wire id="11214" guardcondition="all" firstRelativePoint="835,102" lastRelativePoint="835,134"/>
+  <wire id="11216" guardcondition="success" firstRelativePoint="907,164" lastRelativePoint="907,199">
+    <bendpoint weight="0.5" firstDimension="0,31" secondDimension="-3,-34"/>
+  </wire>
+  <wire id="11217" guardcondition="success" firstRelativePoint="835,229" lastRelativePoint="352,232">
+    <bendpoint weight="0.5" firstDimension="-5,70" secondDimension="485,62"/>
+    <bendpoint weight="0.5" firstDimension="-485,71" secondDimension="-1,63"/>
+  </wire>
+  <wire id="11222" guardcondition="chkUpdateRow" firstRelativePoint="198,102" lastRelativePoint="198,135"/>
+  <wire id="11223" guardcondition="success" firstRelativePoint="127,165" lastRelativePoint="342,221">
+    <bendpoint weight="0.5" firstDimension="3,71" secondDimension="-226,-1"/>
+  </wire>
+</Glue:GlueDiagram>

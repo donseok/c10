@@ -1,0 +1,5 @@
+<items>
+	<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+	<item offset="2" type="newcolumn"/>
+	<item label="EGL" name="std_title" type="label" />
+</items>

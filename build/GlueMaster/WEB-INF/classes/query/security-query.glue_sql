@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="SecurityFilter"> 
+	 <query id="glue_security.user.info" desc="SecurityFilter용" >
+		 <![CDATA[ 
+SELECT * FROM TB_SEC_USER WHERE USER_NO=?
+		 ]]> 
+	 </query>
+	 <query id="glue_security.root.menu" desc="SecurityFilter용" >
+		 <![CDATA[ 
+SELECT C.*
+FROM TB_SEC_USER A, TB_USER_MENU_MAPPING B, TB_MENU C
+WHERE A.USER_ID=B.USER_ID
+  AND B.MENU_ID=C.MENU_ID
+  AND B.START_ACTIVE_DATE<sysdate
+  AND B.END_ACTIVE_DATE>sysdate
+  AND A.USER_NO=?
+		 ]]> 
+	 </query>
+	 <query id="glue_security.menu.program" desc="SecurityFilter용" >
+		 <![CDATA[ 
+SELECT * FROM TB_MENU_PRG_MAPPING WHERE MENU_ID=?
+		 ]]> 
+	 </query>
+	 <query id="glue_security.program.info" desc="SecurityFilter용" >
+		 <![CDATA[ 
+SELECT * FROM TB_PROGRAM WHERE PROGRAM_ID=?
+		 ]]> 
+	 </query>
+	 <query id="glue_security.sub.menu" desc="SecurityFilter용" >
+		 <![CDATA[ 
+SELECT B.*
+FROM TB_MENU_PRG_MAPPING A, TB_MENU B
+WHERE A.MENU_ID=?
+  AND A.SUB_MENU_ID=B.MENU_ID
+		 ]]> 
+	 </query>
+	 <query id="gluemaster.security.user.info" desc="" isNamed="false">
+		 <![CDATA[ 
+select * from TB_M00_SEC_USER where USER_EMP_NO=?
+		 ]]> 
+	 </query>
+	 <query id="gluemaster.security.user.add" desc="" isNamed="false">
+		 <![CDATA[ 
+insert into TB_M00_SEC_USER ( USER_ID,USER_EMP_NO,USER_NAME,ENCRYPTED_FOUNDATION_PASSWORD,SYS_USER_TP,CREATED_OBJECT_TYPE,CREATED_OBJECT_ID,CREATED_PROGRAM_ID,CREATION_TIMESTAMP,LAST_UPDATED_OBJECT_TYPE,LAST_UPDATED_OBJECT_ID,LAST_UPDATE_PROGRAM_ID,LAST_UPDATE_TIMESTAMP) VALUES(SQ_M00_SEC_USER.nextval,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,?,?,?,CURRENT_TIMESTAMP)
+		 ]]> 
+	 </query>
+	 <query id="gluemaster.security.user.modify" desc="" isNamed="false">
+		 <![CDATA[ 
+update TB_M00_SEC_USER set USER_NAME=?,ENCRYPTED_FOUNDATION_PASSWORD=?,SYS_USER_TP=?,LAST_UPDATED_OBJECT_TYPE=?,LAST_UPDATED_OBJECT_ID=?,LAST_UPDATE_PROGRAM_ID=?,LAST_UPDATE_TIMESTAMP=CURRENT_TIMESTAMP where USER_EMP_NO=?
+		 ]]> 
+	 </query>
+</queryMap>

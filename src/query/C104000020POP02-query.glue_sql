@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020POP02 Page 쿼리파일"> 
+	 <query id="C104000020POP02.select" desc="C104000020POP02" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+WITH CHG AS (SELECT SUBSTR(:RMTL_KND,2,3) AS RMTL_KND,
+                CASE WHEN :ST_WHT <= 700 THEN '700'
+                     WHEN :ST_WHT > 700 AND :ST_WHT <=900 THEN '900'
+                     WHEN :ST_WHT > 900 AND :ST_WHT <=1100 THEN '1100'
+                     WHEN :ST_WHT > 1100 AND :ST_WHT <=1300 THEN '1300'
+                     WHEN :ST_WHT > 1300  THEN '1300U'
+                  END AS ST_WHT,
+                CASE WHEN :PLTCM_THK <= 0.3 THEN '0.3'
+                     WHEN :PLTCM_THK > 0.3 AND :PLTCM_THK <= 0.4 THEN '0.4'
+                     WHEN :PLTCM_THK > 0.4 AND :PLTCM_THK <= 0.6 THEN '0.6'
+                     WHEN :PLTCM_THK > 0.6 AND :PLTCM_THK <= 0.8 THEN '0.8'
+                     WHEN :PLTCM_THK > 0.8 AND :PLTCM_THK <= 1.2 THEN '1.2'
+                     WHEN :PLTCM_THK > 1.2 THEN '1.2 U' 
+                  END AS PLTCM_THK
+                  FROM DUAL
+                  )
+  SELECT  DECODE(CMAKER,'0','전체',CMAKER) AS maker,NECKING_STAND as wht_avg,HIT_RATE,TO_CHAR(CREATE_DT,'YYYYMMDD')
+    FROM  MESAPUSER.BS_FCST_NECKING_MART,
+          CHG
+   WHERE  CSTEELGRADE   = CHG.RMTL_KND
+     AND  WIDTH_GRP     = CHG.ST_WHT
+     AND  THICK_GRP     = CHG.PLTCM_THK
+     AND  TO_CHAR(CREATE_DT,'YYYYMMDD')  =
+        (SELECT  MAX(TO_CHAR(CREATE_DT,'YYYYMMDD')) 
+           FROM  MESAPUSER.BS_FCST_NECKING_MART,
+                 CHG
+          WHERE  CSTEELGRADE   = CHG.RMTL_KND
+            AND  WIDTH_GRP     = CHG.ST_WHT
+            AND  THICK_GRP     = CHG.PLTCM_THK
+       GROUP BY  CHG.RMTL_KND,CHG.ST_WHT,CHG.PLTCM_THK
+           )
+ORDER BY  DECODE(CMAKER,'전체','A',CMAKER)
+		 ]]> 
+	 </query>
+	 <query id="C104000020POP02.simul" desc="simul" fetchSize="1" isNamed="true">
+		 <![CDATA[ 
+select 
+C10APUSER.FUNC_MES_NECKING_SIMULATION
+(
+:I_MTL_COIL_THK,
+:I_MTL_COIL_WTH,
+:I_ST_WISH_WTH,
+:I_COMPRESS_THK,
+:I_YP,
+:I_TS,
+:I_EL,
+:I_C,
+:I_SI,
+:I_MN,
+:I_P,
+:I_S
+) AS CAL
+from dual
+		 ]]> 
+	 </query>
+</queryMap>

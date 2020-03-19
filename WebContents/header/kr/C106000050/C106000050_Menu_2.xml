@@ -1,0 +1,7 @@
+<menu>
+<item id="refresh1" img="refresh.gif" imgdis="refresh_dis.gif" text="새로고침"/>
+<item id="add1" img="new.gif" imgdis="new_dis.gif" text="행추가"/>
+<!--
+<item id="remove" img="remove.gif" imgdis="remove_dis.gif" text="삭제"/>
+-->
+</menu>

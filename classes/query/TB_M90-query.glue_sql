@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="TB_M90"> 
+	 <query id="TB_M90.SMSinsert" desc="TB_M90.SMSinsert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 SMS발송IF TB_M90.SMSinsert 박재영*/
+            EAIAPUSER.TB_M90_SMS
+            (    
+              IF_GRP_ID                                           --인터페이스 GROUP ID
+		,SEQ_NO							--인터페이스 SEQ
+		,SEQNO							--송신일련번호
+		,XSTAT							--처리결과
+              ,XDATE		                                   --PI 송신일자
+              ,XTIME		                                   --PI 송신시간
+		,INTIME							--입력시간
+		,REQTIME							--예약시간
+		,RECVNAME						--수신자명
+		,CALLPHONE						--수신번호
+		,SENDNAME						--회신자명
+		,REQPHONE						--회신번호
+		,MSG							--메시지
+		,RESULT							--결과
+		,KIND							--구분
+		,SYSCODE						--시스템코드
+		,CREATED_OBJECT_TYPE				--생성Object유형
+		,CREATED_OBJECT_ID				--생성ObjectID
+		,CREATED_PROGRAM_ID				--생성프로그램ID
+		,CREATION_TIMESTAMP				--생성일시
+		,LAST_UPDATED_OBJECT_TYPE	              --최종변경Object유형
+		,LAST_UPDATED_OBJECT_ID			--최종변경ObjectID
+		,LAST_UPDATE_PROGRAM_ID			--최종변경프로그램ID
+		,LAST_UPDATE_TIMESTAMP			--최종변경일시
+            )
+VALUES
+            (
+              ?,
+              EAIAPUSER.SQ_M90_SMS.NEXTVAL, 
+              700000000 + TO_NUMBER( TO_CHAR( SYSDATE, 'yy' ) ) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL,
+              'R', 
+              TO_CHAR(SYSDATE,'YYYYMMDD'),
+              TO_CHAR(SYSDATE,'HH24MISS'),
+              TO_CHAR(SYSDATE,'yyyymmddhh24miss'), 
+              '00000000000000',
+  		?,?, 'MES', ?, 
+  		?, '0', 'S', 'UMES',
+              ?,?,?,?,
+              ?,?,?,?
+            )
+		 ]]> 
+	 </query>
+</queryMap>

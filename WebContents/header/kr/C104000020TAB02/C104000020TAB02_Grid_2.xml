@@ -1,0 +1,49 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableAutoWidth"><param>true</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="attachHeader"><param>#rspan,하한,상한,하한,상한,하한,상한,하한,상한,하한,상한,하한,상한,하한,상한</param></call>
+</beforeInit>
+<column id="QLT_DSN_SPC_TP" sort="na" align="center" dbname="품질설계사양구분" width="16" table="TB_C10_QLT_DSN_CHM" type="ro" clabel="품질설계사양구분">사양구분</column>
+<column id="C_LLV" sort="na" align="center" format="0.0000" dbname="C하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="C하한값">C(%)</column>
+<column id="C_ULV" sort="na" align="center" format="0.0000" dbname="C상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="C상한값"><![CDATA[#cspan]]></column>
+<column id="SI_LLV" sort="na" align="center" format="0.0000" dbname="Si하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Si하한값">Si(%)</column>
+<column id="SI_ULV" sort="na" align="center" format="0.0000" dbname="Si상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Si상한값"><![CDATA[#cspan]]></column>
+<column id="MN_LLV" sort="na" align="center" format="0.0000" dbname="Mn하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Mn하한값">Mn(%)</column>
+<column id="MN_ULV" sort="na" align="center" format="0.0000" dbname="Mn상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Mn상한값"><![CDATA[#cspan]]></column>
+<column id="P_LLV" sort="na" align="center" format="0.0000" dbname="P하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="P하한값">P(%)</column>
+<column id="P_ULV" sort="na" align="center" format="0.0000" dbname="P상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="P상한값"><![CDATA[#cspan]]></column>
+<column id="S_LLV" sort="na" align="center" format="0.0000" dbname="S하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="S하한값">S(%)</column>
+<column id="S_ULV" sort="na" align="center" format="0.0000" dbname="S상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="S상한값"><![CDATA[#cspan]]></column>
+<column id="CR_LLV" sort="na" align="center" format="0.0000" dbname="Cr하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Cr하한값">Cr(%)</column>
+<column id="CR_ULV" sort="na" align="center" format="0.0000" dbname="Cr상한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Cr상한값"><![CDATA[#cspan]]></column>
+<column id="NI_LLV" sort="na" align="center" format="0.0000" dbname="Ni하한값" width="6" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Ni하한값">Ni(%)</column>
+<column id="NI_ULV" sort="na" align="center" format="0.0000" dbname="Ni상한값" width="*" table="TB_C10_QLT_DSN_CHM" type="ron" clabel="Ni상한값"><![CDATA[#cspan]]></column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_DSN_SPC_TP,C_LLV,C_ULV,SI_LLV,SI_ULV,MN_LLV,MN_ULV,P_LLV,P_ULV,S_LLV,S_ULV,CR_LLV,CR_ULV,NI_LLV,NI_ULV</userdata>
+<row id="0">
+<cell>고객사양</cell>
+</row>
+<row id="1">
+<cell>규격사양</cell>
+</row>
+<row id="2">
+<cell>보증사양</cell>
+</row>
+<row id="3">
+<cell>사내사양</cell>
+</row>
+</rows>

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4790b600-cd4e-497a-a538-c1b1c3dce62a">
+	<property name="ireport.zoom" value="1.0980750000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CCL_BOM_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="F_CCL_BOM_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_ENM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_6" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_1_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_TRM_7" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_TRM_8" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_4" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_WAL_12" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_WAL_11" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_ROF_10" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FA_ROF_9" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_TRM_14" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_TRM_13" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_WAL_18" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_WAL_17" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_ROF_16" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CH_ROF_15" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_5" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DIV_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_CHECK" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CLS_CD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAT_ENM_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_6" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PRT_RSN" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_19" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PER_FOR_19_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BRD_CMP_2_7" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PE_FL_1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PE_FL_20" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CUS_NM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="GT_MT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="GT_FT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+ $P{PER_FOR_19}|| ' YEAR LIMITED WARRANTY
+'|| $P{BRD_CMP_2}||'
+'|| $P{F_CCL_BOM_NO} AS TITLE,
+'
+DONGKUK STEEL provides the following warranty concerning ' || $P{BRD_CMP_2_1}||' System for building and roofing panel end use in ' ||$P{NAT_ENM}||'
+
+Warranty is subjected to the following terms and conditions :
+' as detail_1,
+CASE WHEN $P{CLS_CD} ='CLASSB' THEN
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # C below apply to metal building and similar structures installed in ' || $P{NAT_ENM_1}||'
+'
+ELSE
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # C below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
+'
+END detail_2,
+'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will have prior to corrosion to perforation in the natural element.
+' as detail_2_1_0,
+'For '||$P{PE_FL_20}|| '('||$P{PE_FL_1}||') years, '||$P{BRD_CMP_2_3}||' will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary outdoor visual observation.
+NOTE : Slight crazing or cracking may occur on roll formed edges or break bends at the time of forming,
+and is considered as standard -such crazing or cracking shall not constitute a basis for complaint under this limited warranty; and
+' as detal_2_1_1,
+
+ 'For '||$P{CH_TRM_14}|| '('||$P{CH_TRM_13}||') years, sidewall panels of '||$P{BRD_CMP_2_6}||' will not chalk more than a number '||$P{CH_WAL_18}|| '('||$P{CH_WAL_17}||') rating and roof panels won’t chalk more than a number '||$P{CH_ROF_16}|| '('||$P{CH_ROF_15}||') rating when measured per ASTM D4214, Method C.
+' as detail_2_1_2,
+
+'No warranty is provided for '|| $P{BRD_CMP_2_5}||' on any substrate that is subjected to sea spray or installed on property located within '||$P{GT_MT}||' meters ('||$P{GT_FT}||' feets) of a salt-water environment.
+' detail_2_2_1,
+
+'3. This warranty is restricted to failures resulted from normal weathering and does not include coating
+    failures caused by scratches, scrapes or any other unnatural damage including improperly formed,
+    fabricated or embossed material. This warranty excludes failures caused by standing water, and direct
+    exposure to corrosive and aggressive atmospheres including salt spray and animal waste products.
+    DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects,
+    explosions, or other external forces beyond Dongkuk steel’s control.
+
+4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK
+    STEEL’s approved color range. DONGKUK STEEL will inform you the time of color matching if the color
+     you have selected is not an approved color.
+
+5. DONGKUK STEEL’s responsibility extends only to the direct cost of refinishing or replacing failed coated
+    substrate. Dongkuk steel cannot accept liability for loss or damage to other property or equipment, loss of
+    profits or sales, or any other claims relative to standard business interruption, or any other incidental or
+    consequential damages.
+
+    A. DONGKUK STEEL shall only be liable for the cost of having the same metal panel or steel sheet
+
+    B. DONGKUK STEEL shall not be liable for the cost of construction equipments, labor or any kind of losses' as detail_2_2_2,
+
+' 6. DONGKUK STEEL reserves the right to establish whether repainting or replacing material is required and
+     to approve and participate in the negotiation of any subcontracted material replacement, installation, or
+     refinishing. After replacement or re-finishing of the repaired area, this area will be considered as installed
+     as of the original installation date for the purpose of the application of this warranty.
+
+ 7. Claims under this warranty must be submitted in writing within thirty (30) days of discovery of the
+     warranted performance failure and DONGKUK STEEL requires the opportunity for site failure inspection
+     and investigation. DONGKUK STEEL also reserves the right to evaluate and determine its obligation under
+     the terms and condition of this limited warranty.
+
+ 8. DONGKUK STEEL shall maintain, or have access to, adequate records to identify the coil coater, coil
+     numbers, product identification and date of installation. In the event of a claim, DONGKUK STEEL reserves
+     the right to inspect all records mentioned above.
+
+ 9. This limited warranty supersedes any and all other warranties of performance, expressed or implied, by
+     DONGKUK STEEL. Any modifications, additions, or adjustments made to this warranty must be officially
+     added as a signed written amendment.
+
+10. This limited warranty is non-transferable, non-assignable, and may not be modified, extended or
+     enlarged by any representative of DONGKUK STEEL or intermediate salesman or agent.' as detail_3,
+
+DECODE($P{PRT_RSN},'사전영업용','This document is a sample only, and does not constitute a product warranty.',
+'This warranty becomes effective when all of the above conditions meet.
+and DONGKUK STEEL have signed this agreement as of the date set forth below.') as detail_4,
+TO_CHAR(SYSDATE, 'Monthdd, yyyy','NLS_DATE_LANGUAGE=AMERICAN') AS DATE_FORMAT,
+DECODE($P{PRT_RSN},'사전영업용','　',$P{CUS_NM}) AS CUS_NM,
+DECODE($P{PRT_RSN},'사전영업용','　','SIGNATURE: __________________________') AS CUS_SIGN,
+DECODE($P{PRT_RSN},'사전영업용','　',
+'DONGKUK STEEL.CO.Ltd.   ') AS DONGKUKSTEEL,
+DECODE($P{PRT_RSN},'사전영업용','　',
+'SIGNATURE: __________________________
+	                Quality control team leader') AS SIGNATURE
+  FROM DUAL]]>
+	</queryString>
+	<field name="TITLE" class="java.lang.String"/>
+	<field name="DETAIL_1" class="java.lang.String"/>
+	<field name="DETAIL_2" class="java.lang.String"/>
+	<field name="DETAIL_2_1_0" class="java.lang.String"/>
+	<field name="DETAL_2_1_1" class="java.lang.String"/>
+	<field name="DETAIL_2_1_2" class="java.lang.String"/>
+	<field name="DETAIL_2_2_1" class="java.lang.String"/>
+	<field name="DETAIL_2_2_2" class="java.lang.String"/>
+	<field name="DETAIL_3" class="java.lang.String"/>
+	<field name="DETAIL_4" class="java.lang.String"/>
+	<field name="DATE_FORMAT" class="java.lang.String"/>
+	<field name="CUS_NM" class="java.lang.String"/>
+	<field name="CUS_SIGN" class="java.lang.String"/>
+	<field name="DONGKUKSTEEL" class="java.lang.String"/>
+	<field name="SIGNATURE" class="java.lang.String"/>
+	<background>
+		<band height="842" splitType="Stretch">
+			<frame>
+				<reportElement positionType="Float" x="15" y="15" width="565" height="812" uuid="83c5adcf-1a9c-4494-8df7-dc04bd684ec1"/>
+				<box>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+					<topPen lineWidth="1.5" lineStyle="Double"/>
+					<leftPen lineWidth="1.5" lineStyle="Double"/>
+					<bottomPen lineWidth="1.5" lineStyle="Double"/>
+					<rightPen lineWidth="1.5" lineStyle="Double"/>
+				</box>
+				<image hAlign="Center">
+					<reportElement x="1" y="1" width="564" height="811" uuid="225bfa52-d6cc-49d8-bf43-d53f2bed5b08"/>
+					<imageExpression><![CDATA["unionsteel_logo.gif"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</background>
+	<detail>
+		<band height="204" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="160" width="595" height="43" isPrintWhenDetailOverflows="true" uuid="fda7bded-4e3f-4611-a44b-160cb6a876c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="15.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="133" width="112" height="27" uuid="1aef765c-d2f6-4369-af3a-c90e3833cd24"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATE_FORMAT}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="31">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="63" y="0" width="470" height="30" isPrintWhenDetailOverflows="true" uuid="0d2ffae9-5ca7-4c7d-b89f-a5bb515cb705"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isBold="true" isStrikeThrough="false" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0" rightIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="50" isPrintWhenDetailOverflows="true" uuid="9f7ad5b4-8d2b-4672-9f72-4930781a913f"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
+						<tabStop position="0" alignment="Left"/>
+					</paragraph>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23" uuid="72571313-6669-4780-aa2f-62bf1d90b496"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
+				</textElement>
+				<text><![CDATA[1.]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement x="75" y="0" width="12" height="20" uuid="0e73afc6-c38d-4d94-b3e6-afc1ad5a7f0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				</textElement>
+				<text><![CDATA[A.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="0" width="441" height="20" isPrintWhenDetailOverflows="true" uuid="b2c7456e-1b83-48ac-93ed-d83bec5e5c3c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_0}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="50">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="0" width="441" height="50" isPrintWhenDetailOverflows="true" uuid="fff03d08-4088-4dee-8e0c-6f17b9d6f5e7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAL_2_1_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="75" y="0" width="12" height="20" uuid="84853777-d3da-4c15-94e9-4731154d72a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				</textElement>
+				<text><![CDATA[B.]]></text>
+			</staticText>
+		</band>
+		<band height="26">
+			<staticText>
+				<reportElement x="75" y="0" width="12" height="20" uuid="e32f1b1a-e8a7-46a8-ab9e-80f668ad7993"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				</textElement>
+				<text><![CDATA[C.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="0" width="441" height="26" isPrintWhenDetailOverflows="true" uuid="db627e41-79d9-492c-8f20-7a6384345a54"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_1_2}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="23">
+			<staticText>
+				<reportElement x="40" y="0" width="33" height="23" uuid="b8ceeef0-e931-4eeb-8dfb-f7b84ac9d666"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="8d43bb03-c925-42b4-8da2-e0d2f38b1097"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
+						<tabStop position="0" alignment="Left"/>
+					</paragraph>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="51">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="63" y="0" width="498" height="50" isPrintWhenDetailOverflows="true" uuid="27edf683-6f22-4903-8e7f-de01f4d9a7f7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_2_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="842">
+			<textField pattern="">
+				<reportElement mode="Transparent" x="58" y="140" width="503" height="307" uuid="ad8c17b9-f8df-46da-bfce-977b89ee405a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="447" width="595" height="62" uuid="5284278b-af23-47f4-aa35-d22fe4edb8b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="12" isBold="true" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="557" width="165" height="32" uuid="e7d1d345-8c6e-4cdf-9f26-8fac448e6848"/>
+				<textElement>
+					<font fontName="Times New Roman" size="13" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DONGKUKSTEEL}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="434" y="589" width="125" height="44" uuid="44d0523c-8d01-4ba4-81a6-43a7e167b54b">
+					<printWhenExpression><![CDATA[$P{PRT_RSN}.equals( "WARRANTY발급용" ) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["ChoiJihun.gif"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="337" y="607" width="234" height="41" uuid="91755cf4-618d-45b4-907c-11f9d976def2"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SIGNATURE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="607" width="234" height="41" uuid="13a7933a-9800-4efc-b7a8-a71735c783bd"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUS_SIGN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="557" width="234" height="32" uuid="b50c40ae-43ac-49b0-b8fc-848f8db2554a"/>
+				<textElement>
+					<font fontName="SansSerif" size="13" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUS_NM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

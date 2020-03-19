@@ -1,0 +1,8 @@
+<tabbar align="left" hrefmode="iframe" margin="5" offset="3">
+<row type="row">
+<tab href="C106000120tab01.jsp" id="TAB_C10A1010" selected="true" type="tab" width="120">보증서기준등록</tab>
+<tab href="C106000120tab02.jsp" id="TAB_C10A1020" type="tab" width="130">보증서기준등록(예외)</tab>
+<tab href="C106000120tab04.jsp" id="TAB_C10A1040" type="tab" width="120">국가기준등록</tab>
+<tab href="C106000120tab03.jsp" id="TAB_C10A1030" type="tab" width="120">보증서발행내역관리</tab>
+</row>
+</tabbar>

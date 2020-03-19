@@ -1,0 +1,53 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,하한,상한,하한,상한,#rspan,#rspan,주공정,대체공정1,대체공정2]]></param></call>
+<call command="enableResizing"><param>false,false,false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight">	<param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d 00:00:00]]></param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="TM_PASS_CNT" sort="na" align="center" dbname="TMPass수" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="TMPass수" color="FFFFC0">Pass수</column>
+<column id="ROU_RA_LLV" sort="na" align="center" dbname="조도RA하한값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="조도RA하한값" color="FFFFC0">RA</column>
+<column id="ROU_RA_ULV" sort="na" align="center" dbname="조도RA상한값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="조도RA상한값" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="ROU_PPI_LLV" sort="na" align="center" dbname="조도PPI하한값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="조도PPI하한값" color="FFFFC0">PPI</column>
+<column id="ROU_PPI_ULV" sort="na" align="center" dbname="조도PPI상한값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="조도PPI상한값" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="ROU_R_MAX_LLV" sort="na" align="center" dbname="조도RMAX하한값" width="10" format="0.00" table="TB_C10_QLT_DSN_MNF" type="ron" clabel="조도RMAX하한값">RMAX</column>
+<column id="EMBS_CD" sort="na" align="center" dbname="EMBS_CD" width="10" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="EMBOSS무늬">엠보스무늬</column>
+<column id="TM_WTH_TRV" sort="na" align="center" dbname="TM폭목표값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="TM폭목표값" color="FFFFC0">폭목표</column>
+<column id="TM_WTH_SUB_PROC1_TRV" sort="na" align="center" dbname="TM폭대체공정1목표값" width="10" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="TM폭대체공정1목표값" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column id="TM_WTH_SUB_PROC2_TRV" sort="na" width="*" align="center" dbname="TM폭대체공정2목표값" table="TB_C10_QLT_DSN_MNF" type="ed" clabel="TM폭대체공정2목표값" color="FFFFC0"><![CDATA[#cspan]]></column>
+<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">TM_PASS_CNT,ROU_RA_LLV,ROU_RA_ULV,ROU_PPI_LLV,ROU_PPI_ULV,ROU_R_MAX_LLV,EMBS_CD,TM_WTH_TRV,TM_WTH_SUB_PROC1_TRV,TM_WTH_SUB_PROC2_TRV,QLT_DSN_MNF_TP,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell id = "TM_PASS_CNT" />
+<cell id = "ROU_RA_LLV" />
+<cell id = "ROU_RA_ULV" />
+<cell id = "ROU_PPI_LLV" />
+<cell id = "ROU_PPI_ULV" />
+<cell id = "ROU_R_MAX_LLV" />
+<cell id = "EMBS_CD" />
+<cell id = "TM_WTH_TRV" />
+<cell id = "TM_WTH_SUB_PROC1_TRV" />
+<cell id = "TM_WTH_SUB_PROC2_TRV" />
+<cell id = "QLT_DSN_MNF_TP" />
+<cell id = "ORD_NO" />
+<cell id = "ORD_LN" />
+</row>
+</rows>

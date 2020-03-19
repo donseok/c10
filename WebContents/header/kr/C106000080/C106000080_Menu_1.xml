@@ -1,0 +1,6 @@
+<menu>
+<item id="refresh" img="refresh.gif" imgdis="refresh_dis.gif" text="새로고침"/>
+<item id="add" img="new.gif" imgdis="new_dis.gif" text="행추가"/>
+<item id="remove" img="remove.gif" imgdis="remove_dis.gif" text="삭제"/>
+<item id="searchRoll" img="search.gif" text="등록할 Roll 검색 및 선택"/>
+</menu>

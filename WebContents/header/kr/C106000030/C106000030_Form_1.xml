@@ -1,0 +1,27 @@
+<items>
+<item inputTop="0" position="absolute" type="block" width="970">
+<item offset="10" type="newcolumn"/>
+<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="91" label="의뢰일" labelWidth="42" name="QLT_IMV_REQ_DH_FR"  style="background-color:#FFFFC0" type="calendar"/>
+<item offset="0" type="newcolumn"/>
+<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="90" label="~" name="QLT_IMV_REQ_DH_TO"  style="background-color:#FFFFC0" type="calendar"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="80" label="의뢰번호" name="QLT_IMV_REQ_NO" type="input"/>
+<item offset="300" type="newcolumn"/>
+<item command="find" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="save" name="save" type="button" value="저장" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="닫기" name="winClose" type="button" value="닫기"/>
+<item offset="5" type="newcolumn"/>
+<item name="saveMessage" type="hidden"/>
+</item>
+<item inputTop="29" position="absolute" type="block" width="950">
+<item offset="10" type="newcolumn"/>
+<item inputWidth="69" label="품질담당자" name="QLT_CHR_PRS_ID" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="70" label="의뢰자" name="QLT_IMV_REQ_PRS_ID" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="60" label="상태코드" labelAlign="right" labelWidth="50" name="QLT_IMV_STS_CD" type="combo"/>
+<item offset="10" type="newcolumn"/>
+</item>
+</items>

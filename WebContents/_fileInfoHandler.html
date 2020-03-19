@@ -1,0 +1,131 @@
+<%@ page contentType="text/xml;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import = "java.io.FileInputStream" %>
+<%@page import = "org.apache.poi.ss.usermodel.Cell" %>
+<%@page import = "org.apache.poi.ss.usermodel.Row" %> 
+<%@page import = "org.apache.poi.ss.usermodel.Sheet" %>
+<%@page import = "org.apache.poi.ss.usermodel.Workbook" %>
+<%@page import = "org.apache.poi.ss.usermodel.WorkbookFactory" %>
+<%@page import = "com.poscoict.glue.dhtmlx.constant.DhtmlxConstantsIF" %> 
+<%
+  try{	  
+		//String filePath = request.getParameter("filePath")!=null ? request.getParameter("filePath") : "";	
+		String filePath = "/APP/WAS/FILES/C10/"+session.getAttribute("FileUpload.fileName");
+		//String filePath = "C://Tmp//"+session.getAttribute("FileUpload.fileName");
+		String blkRowCnt =  request.getParameter("blank-row-count") != null ? request.getParameter("blank-row-count") : "0";
+		int blankRowCnt = Integer.parseInt(blkRowCnt);
+		//out.println("filePath==>"+filePath);
+		FileInputStream excelFIS = new FileInputStream( filePath );
+
+		// Create an Excel Workbook Object using the FileInputStream created
+		// above (which contains the file).
+		// Use error handling around its creation
+		// Here is the main difference between using HSSF and SS in this
+		// example.
+		// Instead of instantiating a new HSSFWorkbook, use
+		// WorkbookFactory.create(FileInputStream) to create a workbook
+		// object to use.
+
+		Workbook excelWB = WorkbookFactory.create( excelFIS );
+
+		StringBuffer columnInfo = new StringBuffer();
+		Sheet topSheet = excelWB.getSheetAt( 0 );
+		Row headerRow = topSheet.getRow( 0 );
+		int headercells = headerRow.getPhysicalNumberOfCells();
+
+		for ( int cellNumber = 0; cellNumber < headercells; cellNumber++ )
+		{
+			Cell headerCell = headerRow.getCell( cellNumber );
+
+			columnInfo.append( headerCell.getStringCellValue() ).append( "," );
+
+		}
+		StringBuffer dhxRows = new StringBuffer();
+
+		dhxRows.append( "<rows>" ).append( "\n" );
+		dhxRows.append( "<userdata name=\"column-info\">" ).append( columnInfo.toString().subSequence( 0, columnInfo.length() - 1 ) ).append( "</userdata>" ).append( "\n" );
+		dhxRows.append( "<userdata name=\"blank-row-count\">" ).append(blankRowCnt).append( "</userdata>" ).append( "\n" );
+
+		// Next, get information out of that Workbook.
+		// Traverse the sheets by looping through sheets, rows, and cells.
+		// Remember, excelWB is the workbook object obtained earlier.
+		// Outer Loop: Loop through each sheet
+		// for (int sheetNumber = 0; sheetNumber <
+		// excelWB.getNumberOfSheets(); sheetNumber++) {
+		Sheet oneSheet = excelWB.getSheetAt( 0 );// 첫번째sheet
+
+		// Now get the number of rows in the sheet
+		int rows = oneSheet.getPhysicalNumberOfRows();
+
+		boolean notNullRowCell = true;
+		// Middle Loop: Loop through rows in the sheet
+		for ( int rowNumber = 1; rowNumber < rows; rowNumber++ )
+		{
+			Row oneRow = oneSheet.getRow( rowNumber );
+
+			// Skip empty (null) rows.
+			if ( oneRow == null )
+			{
+				continue;
+			}
+
+			notNullRowCell = ( oneRow.getCell( 0 ) == null ) ? false : true;
+			;
+			if ( notNullRowCell )
+				dhxRows.append( "<row id=\"xml-result_" + rowNumber + "\">" ).append( "\n" );
+
+			// Get the number of cells in the row
+			int cells = oneRow.getPhysicalNumberOfCells();
+
+			// Inner Loop: Loop through each cell in the row
+
+			for ( int cellNumber = 0; cellNumber < cells; cellNumber++ )
+			{
+				Cell oneCell = oneRow.getCell( cellNumber );
+
+				if ( oneCell == null )
+				{
+					continue;
+				}
+
+				
+				switch ( oneCell.getCellType() )
+				{
+
+					case Cell.CELL_TYPE_STRING:
+						dhxRows.append( "<cell>" ).append( oneCell.getStringCellValue() ).append( "</cell>" ).append( "\n" );
+						break;
+
+					case Cell.CELL_TYPE_FORMULA:
+						dhxRows.append( "<cell>" ).append( oneCell.getCellFormula() ).append( "</cell>" ).append( "\n" );
+						break;
+
+					case Cell.CELL_TYPE_NUMERIC:
+						dhxRows.append( "<cell>" ).append( oneCell.getNumericCellValue() ).append( "</cell>" ).append( "\n" );
+						break;
+
+					case Cell.CELL_TYPE_BLANK:
+						dhxRows.append( "<cell>" ).append( "</cell>" ).append( "\n" );
+						break;
+
+					case Cell.CELL_TYPE_ERROR:
+						System.out.println( "Error!" );
+						break;
+
+				}
+
+				// End Inner Loop
+			}
+			// End Middle Loop
+			if ( notNullRowCell )
+				dhxRows.append( "</row>" ).append( "\n" );
+		}
+		// End Outer Loop
+
+		// }
+		dhxRows.append( "</rows>" );
+		out.println(dhxRows.toString());
+		// End Try
+ }catch (Exception e){
+	e.printStackTrace();
+} 
+%>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000060pop02 Page 쿼리파일"> 
+	 <query id="C106000060pop02.select" desc="C106000060pop02 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 UNI-TEX롤관리기준popup조회 C106000060pop02.SELECT 이돈석*/   
+PRT_ROLL_NO, -- ROLL NO
+RPV_CLR_NM, --대표색상
+PRC_CD, --적용라인
+PTN_NM, --PATTERN 명
+PRT_PTN_CD, --프린트패턴코드
+PRT_ROLL_WHS_DD -- 롤 입고일자
+FROM M00APUSER.VI_M00_C10A1092
+WHERE NVL(PRT_ROLL_NO,'%') LIKE '%'|| :PRT_ROLL_NO ||'%'
+AND NVL(RPV_CLR_NM,'%') LIKE '%'|| :RPV_CLR_NM ||'%'
+AND NVL(PTN_NM,'%') LIKE '%'|| :PTN_NM ||'%'
+AND SUBSTR(PRT_ROLL_NO,1,1) ='R' --R UNITEX, U PICKUP
+ORDER BY PRT_ROLL_NO
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000080pop03 Page 쿼리파일"> 
+	 <query id="C106000080pop03.select" desc="C106000080pop03 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라롤관리기준popup조회 C106000080pop03.SELECT 김종범*/  
+       PRT_ROLL_NO, ROLL_TP, PTN_NM, USG_NM, DTL_USG_NM, RPV_CLR_NM 
+FROM   C10APUSER.VI_C10_PTN_ROLL_INF
+WHERE  NVL(PRT_ROLL_NO,'%') LIKE :ROLL_CD ||'%'
+AND    ROLL_TP              LIKE  :ROLL_TP ||'%'
+AND    NVL(RPV_CLR_NM,'%')  LIKE '%'|| :RPV_CLR_NM ||'%'
+AND    NVL(PTN_NM,'%')      LIKE '%'|| :PTN_NM ||'%'
+ORDER BY decode(ROLL_TP, 'PRINT', 1, 'IMPRINT', 2, 3), PRT_ROLL_NO
+		 ]]> 
+	 </query>
+</queryMap>

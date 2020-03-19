@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="201,-20" size="-1,-1" output="//@wire.6"/>
+  <child xsi:type="Glue:SubServiceActivity" id="2373" location="408,338" size="129,-1" input="//@wire.1 //@wire.5" output="//@wire.2" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="3259" location="203,342" size="-1,-1" input="//@wire.0 //@wire.2"/>
+  <child xsi:type="Glue:Activity" id="3295" location="147,103" size="135,-1" input="//@wire.7" output="//@wire.3 //@wire.5" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchDeliSpec"/>
+    <property key="bind-list" value="RK_SEARCH"/>
+    <property key="bind-result" value="RK_MAIN"/>
+    <property key="dao" value="mesdao"/>
+    <property key="prodSpecKind" value="2"/>
+    <property key="description" value="이 Activity는 Master Data의 규격인수도사양기준을 읽어 &#xD;&#xA;인수도규격코드를 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Master Data 정의명 : C10B1013&#xD;&#xA;  - COIL  : Parameter로 받은 인수도규격,품명코드,주문EDGE,주문두께,주문폭으로 Master Data의 규격인수도를 Read한다. &#xD;&#xA;  - Sheet : Parameter로 받은 인수도규격,품명코드,주문EDGE,주문두께,주문폭,주문길이로 Master Data의 규격인수도를 Read한다.&#xD;&#xA;&#xD;&#xA;2. 관리항목 : Coil,Sheet에 따라 항목 적용&#xD;&#xA;  - COIL   관리항목 : 두께공차,폭공차,반곡,중곡,외곡,Telescope등 규격사양에 정의된 인수도 항목&#xD;&#xA;  - SHEET 관리항목 : 두께공차,폭공차,길이공자,반곡,중곡,외곡,직각도,직선도,대각성공차 등 규격사양에 정의된 인수도 항목&#xD;&#xA;&#xD;&#xA;3. 규격인수도 Master Data의 인수도항목별 인수도값을 품질설계결과인수도(TB_C10_QLT_DSN_DLV)에 Insert한다.&#xD;&#xA;  - 품질설계사양구분(QLT_DSN_SPC_TP)에 규격사양('2')으로 SET한다&#xD;&#xA;  - 설계항목 : 두께공차,폭공차,길이공자,반곡,중곡,외곡,직각도,직선도,대각성공차,Telescope 등 규격사양에 정의된 인수도 항목&#xD;&#xA;- Update 에러시는 Return코드, Return메시지(에러내용)을 Set하고 프로세스를 종료 처리&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;1. 편성정보: 인수도규격코드&#xD;&#xA;    - Master Table Code: 인수도기준(M11A0009)&#xD;&#xA;    - Key: 규격약호, 수주품종구분, 고객사코드, 주문용도지정코드&#xD;&#xA;2. 편성정보: 인수도공차코드&#xD;&#xA;    - Master Table Code: 인수도규격(M11A0010)&#xD;&#xA;    - Key: 인수도규격코드&#xD;&#xA;3. 편성정보: 인수도 공차기준값&#xD;&#xA;   - Master Table Code: 인수도공차(M11B0040)&#xD;&#xA;   - Key: 공차코드, 수주품명코드, Edge구분, 주문두께, 주문폭, 주문길이&#xD;&#xA;     . 인수도규격에서 편성한 공차코드(길이공차코드,두께공차코드,&#xD;&#xA;       수직도공차코드, 직각도공차코드,평탄도공차코드,폭공차코드,&#xD;&#xA;       Burr공차코드,Camber공차코드, Telescope공차코드)에 항목이 &#xD;&#xA;       존재하는 경우 허용공차를 편성&#xD;&#xA;     . 주문두께공차코드가 'T','W'인 경우 기준에 따라 허용공차를 변경&#xD;&#xA;4. 편성정보: 표면등급,형상등급,결함특기코드1~5&#xD;&#xA;    - Master Table Code: 주문용도기준(M11A0001)&#xD;&#xA;    - Key: 수주품종구분, 주문용도지정코드&#xD;&#xA;5. 합성항목처리&#xD;&#xA;    - 인수도별로 합성항목은 이전 값이 존재하지 않으면 값을 등록하고, &#xD;&#xA;      값이 존재하면 이전값을 변경하지 않는다.&#xD;&#xA;   - 결함특기 항목은 결함특기합성항목의 이전 값과 주문용도기준으로 &#xD;&#xA;      편성한 값을 비교하여 동일한 결함특기를 제외하고 5개를 재편성&#xD;&#xA;      (5개 선정시 이전 합성항목값을 우선으로 선정)      &#xD;&#xA;6. 편성한 결과는 PosContext에 등록&#xD;&#xA;7. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="8365" location="341,242" size="130,-1" input="//@wire.4" output="//@wire.1" name="ERROR_LOG">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|TB04"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="150,237" size="130,-1" input="//@wire.3" output="//@wire.0 //@wire.4" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="17"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100DLV.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="QLT_DSN_SPC_TP"/>
+    <property key="param3" value="THK_TLN_ULV"/>
+    <property key="param4" value="THK_TLN_LLV"/>
+    <property key="param5" value="WTH_TLN_LLV"/>
+    <property key="param6" value="WTH_TLN_ULV"/>
+    <property key="param7" value="LTH_TLN_LLV"/>
+    <property key="param8" value="LTH_TLN_ULV"/>
+    <property key="param9" value="HWAV_H"/>
+    <property key="param10" value="MWAV_H"/>
+    <property key="param11" value="EWAV_H"/>
+    <property key="param12" value="SLR_ULV"/>
+    <property key="param13" value="RAR_ULV"/>
+    <property key="param14" value="DGLN_DIF_ULV"/>
+    <property key="param15" value="STPN"/>
+    <property key="param16" value="TLC"/>
+    <property key="description" value="이 Activity는 인수도사양기준을 품질설계결과 규격인수도기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계사양구분(QLT_DSN_SPC_TP)에 규격사양('2')으로 SET한다"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="51086" location="141,34" size="149,-1" input="//@wire.6" output="//@wire.7" name="CLEAR_DLV">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="14"/>
+    <property key="param0" value="THK_TLN_LLV|sp_null"/>
+    <property key="param1" value="THK_TLN_ULV|sp_null"/>
+    <property key="param2" value="WTH_TLN_LLV|sp_null"/>
+    <property key="param3" value="WTH_TLN_ULV|sp_null"/>
+    <property key="param4" value="LTH_TLN_LLV|sp_null"/>
+    <property key="param5" value="LTH_TLN_ULV|sp_null"/>
+    <property key="param6" value="HWAV_H|sp_null"/>
+    <property key="param7" value="MWAV_H|sp_null"/>
+    <property key="param8" value="EWAV_H|sp_null"/>
+    <property key="param9" value="SLR_ULV|sp_null"/>
+    <property key="param10" value="RAR_ULV|sp_null"/>
+    <property key="param11" value="DGLN_DIF_ULV|sp_null"/>
+    <property key="param12" value="STPN|sp_null"/>
+    <property key="param13" value="TLC|sp_null"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;품질설계결과-인수도 항목을 초기화한다."/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 인수도정보를 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 규격인수도사양(C10B1013) 편성&#xD;&#xA;&#xD;&#xA;"/>
+  <wire id="2858" guardcondition="success" firstRelativePoint="211,363" lastRelativePoint="211,422"/>
+  <wire id="2860" guardcondition="success" firstRelativePoint="433,332" lastRelativePoint="433,398">
+    <bendpoint weight="0.5" firstDimension="28,47" secondDimension="-38,-49"/>
+  </wire>
+  <wire id="2862" guardcondition="success" firstRelativePoint="407,449" lastRelativePoint="223,449">
+    <bendpoint weight="0.5" firstDimension="-163,-2" secondDimension="95,-1"/>
+  </wire>
+  <wire id="2863" guardcondition="success" firstRelativePoint="213,193" lastRelativePoint="213,297">
+    <bendpoint weight="0.5" firstDimension="0,65" secondDimension="-1,-69"/>
+  </wire>
+  <wire id="2912" guardcondition="failure" firstRelativePoint="279,258" lastRelativePoint="341,258">
+    <bendpoint weight="0.5" firstDimension="92,6" secondDimension="-99,1"/>
+  </wire>
+  <wire id="2913" guardcondition="failure" firstRelativePoint="213,193" lastRelativePoint="213,297">
+    <bendpoint weight="0.5" firstDimension="286,0" secondDimension="28,-235"/>
+  </wire>
+  <wire id="2961" guardcondition="success" firstRelativePoint="215,-1" lastRelativePoint="215,34"/>
+  <wire id="2962" guardcondition="success" firstRelativePoint="212,64" lastRelativePoint="212,103"/>
+</Glue:GlueDiagram>

@@ -1,0 +1,10 @@
+<items>	
+	<item type="block" width="641">
+		<item type="newcolumn" offset="5" />
+		<item type="input" name="SPC_AVR" label="규격약호" inputWidth="120" style="background-color:#FFFFC0"/>	
+		<item type="newcolumn" offset="285" />
+		<item type="button" name="find" value="조회" command="find"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="popClose" value="닫기" command="popClose"/>
+	</item>
+</items>

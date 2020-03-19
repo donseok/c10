@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,336" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.6"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="514,-1" input="//@wire.0" output="//@wire.3 //@wire.4 //@wire.5" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 칼라시편관리 조회(접수일, 의뢰번호,접수번호 바탕으로 조회)&#xD;&#xA;   save : 칼라시편관리화면에서 입력,수정,삭제된 정보를TB_C10_CLR_SMP 테이블에 insert,update,delete한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.3" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000070.selectSpec"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 제품개발SPEC 테이블(TB_C10_PRD_DEV_SPEC)에서 개발번호, SPEC번호 로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :  개발번호 OR SPEC번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="6" location="310,177" size="161,-1" input="//@wire.4" output="//@wire.2" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C108000170.deleteLmnDev"/>
+    <property key="insert-sql" value="C108000170.insertLmnDev"/>
+    <property key="update-sql" value="C108000170.updateLmnDev"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="225300" location="495,177" size="110,-1" input="//@wire.5" output="//@wire.6" name="조회(excelExport)">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000010xls.select"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 칼라시편관리를  조회, 저장  하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_CLR_SMP(칼라시편관리)&#xD;&#xA;  - 조회조건 :  접수일,의뢰번호,접수번호&#xD;&#xA;  - 저장 : 선택한 의뢰번호를 수정 및 삭제하고&#xD;&#xA;           행추가를 통해 입력된 데이타는 자동으로 의뢰번호(년+월+일+Seq)로 생성되고 &#xD;&#xA;&#x9;   접수일을 입력된값이 없으면 SYSDATE로 insert한다."/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,345">
+    <bendpoint weight="0.5" firstDimension="-8,151" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="4" guardcondition="success" firstRelativePoint="413,207" lastRelativePoint="313,344">
+    <bendpoint weight="0.5" firstDimension="18,136" secondDimension="109,-18"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="886" guardcondition="save" firstRelativePoint="394,112" lastRelativePoint="394,177"/>
+  <wire id="10965" guardcondition="findSmp" firstRelativePoint="533,112" lastRelativePoint="533,177"/>
+  <wire id="10966" guardcondition="success" firstRelativePoint="542,207" lastRelativePoint="314,345">
+    <bendpoint weight="0.5" firstDimension="-8,153" secondDimension="238,-1"/>
+  </wire>
+</Glue:GlueDiagram>

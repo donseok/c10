@@ -1,0 +1,75 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="attachHeader">
+<param>#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,T,B,T,B,T,B,T,B,#rspan</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="enablePreRendering">
+	<param>3</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>23</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="CUS_CD" index="1" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="5"><![CDATA[최종<br>수요가]]></column>
+<column align="center" id="CUS_CD_NM" index="2" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="8"><![CDATA[최종<br>수요가명]]></column>
+<column align="center" id="ORD_USG_CD" index="3" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="5">용도</column>
+<column align="center" id="ORD_USG_CD_NM" index="4" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="9">용도명</column>
+<column align="center" id="PTT_FLM_DTL_CD" index="5" sort="str_custom" table="TB_C10_CLR_MPR" type="ed" width="6">보호필름</column>
+<column align="center" id="PTT_FLM_DTL_CD_N" index="6" sort="str_custom" table="TB_C10_CLR_MPR" type="ed" width="7">구보호필름</column>
+<column align="center" id="UNI_GLS_FLM_CD" index="7" sort="str_custom" table="TB_C10_CLR_MPR" type="ed" width="6"><![CDATA[UGS필름]]></column>
+<column align="center" id="PTT_FLM_MNG_ADH_TXT" index="8" sort="str_custom" table="TB_C10_CLR_MPR" type="ed" width="6"><![CDATA[관리<br>점착력]]></column>
+<column align="center" id="ERP_SND_DH" index="9" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="8"><![CDATA[ERP<br>전송일시]]></column><!--신규항목추가 12-07-09-->
+<column align="center" id="CLR_BND_TST_FRN_STD_CD" index="10" sort="str_custom" table="TB_C10_CLR_MPR" type="combo_v" width="5">Bending</column>
+<column align="center" id="CLR_BND_TST_BAK_STD_CD" index="11" sort="str_custom" table="TB_C10_CLR_MPR" type="combo_v" width="5">#cspan</column>
+<column align="center" id="MPR_BAS_MEK_FRN" index="12" sort="int_custom" table="TB_C10_CLR_MPR" type="ed" width="4">MEK</column>
+<column align="center" id="MPR_BAS_MEK_BAK" index="13" sort="int_custom" table="TB_C10_CLR_MPR" type="ed" width="4">#cspan</column>
+<column align="center" id="MPR_BAS_PNCL_HRDN_FRN" index="14" sort="str_custom" table="TB_C10_CLR_MPR" type="combo_v" width="5">연필경도</column>
+<column align="center" id="MPR_BAS_PNCL_HRDN_BAK" index="15" sort="str_custom" table="TB_C10_CLR_MPR" type="combo_v" width="5">#cspan</column>
+<column align="center" id="CLR_DIF_FRN_ULV" index="16" sort="int_custom" table="TB_C10_CLR_MPR" type="ed" width="4">색차</column>
+<column align="center" id="CLR_DIF_BAK_ULV" index="17" sort="int_custom" table="TB_C10_CLR_MPR" type="ed" width="4">#cspan</column>
+<column align="center" id="CCL_QLT_MSG_TXT" index="18" sort="str_custom" table="TB_C10_CLR_MPR" type="txt" width="10">품질메세지</column>
+<column align="center" hidden="true" id="CCL_BOM_NO" index="19" sort="str_custom" table="TB_C10_CLR_MPR" type="txt" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_PRD_ADH_CD_NM_MASTER" index="20" sort="str_custom" table="TB_C10_CLR_MPR" type="txt" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_THK_CD_NM_MASTER" index="21" sort="str_custom" table="TB_C10_CLR_MPR" type="txt" width="0"></column>
+<column align="center" hidden="true" id="PTT_FLM_MQL_CD_NM_MASTER" index="22" sort="str_custom" table="TB_C10_CLR_MPR" type="txt" width="0"></column>
+<column align="center" hidden="true" id="MDF_RSN" index="23" sort="str_custom" table="TB_C10_CLR_MPR_MDF_LOG" type="txt" width="0"></column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CUS_CD,CUS_CD_NM,ORD_USG_CD,ORD_USG_CD_NM,PTT_FLM_DTL_CD,PTT_FLM_DTL_CD_N,UNI_GLS_FLM_CD,PTT_FLM_MNG_ADH_TXT,ERP_SND_DH,CLR_BND_TST_FRN_STD_CD,CLR_BND_TST_BAK_STD_CD,MPR_BAS_MEK_FRN,MPR_BAS_MEK_BAK,MPR_BAS_PNCL_HRDN_FRN,MPR_BAS_PNCL_HRDN_BAK,CLR_DIF_FRN_ULV,CLR_DIF_BAK_ULV,CCL_QLT_MSG_TXT,CCL_BOM_NO,PTT_FLM_PRD_ADH_CD_NM_MASTER,PTT_FLM_THK_CD_NM_MASTER,PTT_FLM_MQL_CD_NM_MASTER,MDF_RSN</userdata>
+</rows>

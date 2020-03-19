@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C108000130 Page 쿼리파일"> 
+	 <query id="C108000130.selectClrDev" desc="제품색상개발 조회" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 품질설계 제품색상개발 조회 C108000130.selectClrDev 전경진 */
+     CD.PRD_DEV_NO, 
+     CD.CLR_DEV_NO, 
+     CD.CLR_DEV_CHR_UID, 
+     REPLACE(CD.CLR_DEV_DH,'-',''),
+     CD.CLR_NO, 
+     CD.RSN_TP, 
+     CD.LUS_RT_CD, 
+     CD.PNT_FLM_THK, 
+     CD.PMT, 
+     CD.PNT_GRA, 
+     CD.NV, 
+     CD.SLV_GRA, 
+     CD.THR_CD, 
+     CD.VISCO, 
+     CD.WK_VISCO, 
+     CD.QT_L, 
+     CD.QT_A, 
+     CD.QT_B, 
+     CD.MPR_BAS_PNCL_HRDN, 
+     CD.MPR_BAS_MEK, 
+     CD.CLR_BND_TST_STD_CD,
+     CD.SRI_TXT,
+     CD.COOL_FUNC_YN,
+     CD.TEX_PTC_TP,
+     CD.TLP_YN,
+     CD.PRT_ROLL_NO
+FROM C10APUSER.TB_C10_PRD_CLR_DEV CD
+WHERE CD.PRD_DEV_NO = :PRD_DEV_NO
+AND   CD.CLR_DEV_NO LIKE NVL(:CLR_DEV_NO,'')||'%'
+AND   NVL(CD.CLR_DEV_CHR_UID,' ') = NVL(:CLR_DEV_CHR_UID,NVL(CD.CLR_DEV_CHR_UID,' '))
+ORDER BY CD.PRD_DEV_NO, CD.CLR_DEV_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000130.updateClrDev" desc="제품색상개발 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 제품색상개발 수정 C108000130.updateClrDev 전경진 */
+    C10APUSER.TB_C10_PRD_CLR_DEV
+SET CLR_DEV_CHR_UID = :CLR_DEV_CHR_UID,
+    CLR_DEV_DH = REPLACE(:CLR_DEV_DH,'-',''),
+    CLR_NO = :CLR_NO,
+    RSN_TP = :RSN_TP,
+    LUS_RT_CD = :LUS_RT_CD,
+    PNT_FLM_THK = :PNT_FLM_THK,
+    PMT = :PMT,
+    PNT_GRA = :PNT_GRA,
+    NV = :NV, 
+    SLV_GRA = :SLV_GRA, 
+    THR_CD = :THR_CD, 
+    VISCO = :VISCO, 
+    WK_VISCO = :WK_VISCO, 
+    QT_L = :QT_L, 
+    QT_A = :QT_A, 
+    QT_B= :QT_B,
+    MPR_BAS_PNCL_HRDN= :MPR_BAS_PNCL_HRDN, 
+    MPR_BAS_MEK= :MPR_BAS_MEK, 
+    CLR_BND_TST_STD_CD= :CLR_BND_TST_STD_CD,
+    SRI_TXT= :SRI_TXT,
+    COOL_FUNC_YN= :COOL_FUNC_YN,
+    TEX_PTC_TP= :TEX_PTC_TP,
+    TLP_YN= :TLP_YN,
+    PRT_ROLL_NO= :PRT_ROLL_NO,
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,
+    LAST_UPDATED_OBJECT_ID=:ObjectId,  
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,
+    LAST_UPDATE_TIMESTAMP=:Timestamp
+WHERE PRD_DEV_NO = :PRD_DEV_NO 
+AND   CLR_DEV_NO = :CLR_DEV_NO
+AND  NOT EXISTS
+	(SELECT 'X'
+     FROM  C10APUSER.TB_C10_PRD_DEV_CMN  
+	 WHERE PRD_DEV_NO = :PRD_DEV_NO
+  	  AND  DEV_PRG_CD IN ('90','91'))
+		 ]]> 
+	 </query>
+	 <query id="C108000130.insertClrDev" desc="제품색상개발 삽입" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 제품색상개발 등록 C108000130.insertClrDev 전경진*/
+INTO C10APUSER.TB_C10_PRD_CLR_DEV
+(   PRD_DEV_NO, 
+    CLR_DEV_NO, 
+    CLR_DEV_CHR_UID, 
+    CLR_DEV_DH, 
+    CLR_NO, 
+    RSN_TP, 
+    LUS_RT_CD, 
+    PNT_FLM_THK, 
+    PMT, 
+    PNT_GRA, 
+    NV, 
+    SLV_GRA, 
+    THR_CD, 
+    VISCO, 
+    WK_VISCO, 
+    QT_L, 
+    QT_A, 
+    QT_B,
+    MPR_BAS_PNCL_HRDN, 
+    MPR_BAS_MEK, 
+    CLR_BND_TST_STD_CD,
+    SRI_TXT,
+    COOL_FUNC_YN,
+    TEX_PTC_TP,
+    TLP_YN,
+    PRT_ROLL_NO,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+:PRD_DEV_NO, 
+'4'|| CHR(
+        CASE WHEN 
+         ASCII(
+         NVL(
+         (SELECT MAX(SUBSTR(CLR_DEV_NO,2,1))
+          FROM   C10APUSER.TB_C10_PRD_CLR_DEV
+          WHERE  PRD_DEV_NO= :PRD_DEV_NO),'0') ) = 57
+        THEN
+         ASCII(
+         NVL(
+         (SELECT MAX(SUBSTR(CLR_DEV_NO,2,1))
+          FROM   C10APUSER.TB_C10_PRD_CLR_DEV
+          WHERE  PRD_DEV_NO= :PRD_DEV_NO),'0') ) + 8
+        ELSE  
+         ASCII(
+         NVL(
+         (SELECT MAX(SUBSTR(CLR_DEV_NO,2,1))
+          FROM   C10APUSER.TB_C10_PRD_CLR_DEV
+          WHERE  PRD_DEV_NO= :PRD_DEV_NO),'0') ) + 1
+        END),
+:CLR_DEV_CHR_UID, 
+REPLACE(:CLR_DEV_DH,'-',''),
+:CLR_NO, 
+:RSN_TP, 
+:LUS_RT_CD, 
+:PNT_FLM_THK, 
+:PMT, 
+:PNT_GRA, 
+:NV, 
+:SLV_GRA, 
+:THR_CD, 
+:VISCO, 
+:WK_VISCO, 
+:QT_L, 
+:QT_A, 
+:QT_B,
+:MPR_BAS_PNCL_HRDN, 
+:MPR_BAS_MEK, 
+:CLR_BND_TST_STD_CD,
+:SRI_TXT,
+:COOL_FUNC_YN,
+:TEX_PTC_TP,
+:TLP_YN,
+:PRT_ROLL_NO,
+:ObjectType,
+:ObjectId,
+:ProgramId,
+:Timestamp,
+:ObjectType,
+:ObjectId,
+:ProgramId,
+:Timestamp )
+		 ]]> 
+	 </query>
+	 <query id="C108000130.deleteClrDev" desc="제품색상개발 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계 제품색상개발 삭제 C108000130.deleteClrDev 전경진 */
+      C10APUSER.TB_C10_PRD_CLR_DEV
+WHERE PRD_DEV_NO = :PRD_DEV_NO 
+AND   CLR_DEV_NO = :CLR_DEV_NO
+AND  NOT EXISTS
+	(SELECT 'X'
+     FROM  C10APUSER.TB_C10_PRD_DEV_CMN  
+	 WHERE PRD_DEV_NO = :PRD_DEV_NO
+  	  AND  DEV_PRG_CD IN ('90','91'))
+		 ]]> 
+	 </query>
+</queryMap>

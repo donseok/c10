@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'EUC-KR'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <action-mappings>  
+    <action path="/basicGridData" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_gridBasicData.jsp"/>
+    </action>   
+    <action path="/handleDataProcess" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_dataProcess.jsp"/>
+      <forward name="failure" path="/_dataProcess.jsp"/>
+    </action>
+    <action path="/basicFormData" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_formBasicData.jsp"/>
+      <forward name="failure" path="/_formBasicData.jsp"/>
+    </action>
+    <action path="/OrdlnComboData" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_comboBasicData.jsp"/>
+      <forward name="failure" path="/_comboBasicData.jsp"/>
+    </action>
+	<action path="/basicLovData" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/_lovBasicData.jsp"/>
+	</action>   
+    <action path="/C1040000TAB2Data" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_gridC104000020TAB2Data.jsp"/>
+    </action>   
+    <action path="/C104000050handleDataProcess" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_C104000050dataProcess.jsp"/>
+    </action>
+    <action path="/C107000050handleDataProcess" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_C107000050dataProcess.jsp"/>
+    </action>
+	<action path="/verticalGridData" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/_gridVerticalData.jsp"/>
+	</action>  
+	<action path="/masterGridData" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/masterGridData.jsp"/>
+	</action>
+	<action path="/c106000050pop02" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000050pop02.jsp"/>
+	</action>
+	<action path="/c106000060pop01" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop01.jsp"/>
+	</action>
+	<action path="/c106000060pop02" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop02.jsp"/>
+	</action>
+	<action path="/c106000060pop03" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop03.jsp"/>
+	</action>
+	<action path="/c106000060pop04" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop04.jsp"/>
+	</action>
+	<action path="/c106000060pop05" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop05.jsp"/>
+	</action>	
+	<action path="/c106000060pop07" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop07.jsp"/>
+	</action>
+	<action path="/c106000080pop03" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000080pop03.jsp"/>
+	</action>
+	<action path="/c10AjaxData" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_c10AjaxData.jsp"/>
+      <forward name="failure" path="/_c10AjaxData.jsp"/>
+    </action>
+    <action path="/setGridHeaderData" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_gridSetHeader.jsp"/>
+    </action>
+    <action path="/c105000010pop01" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C105000010pop01.jsp"/>
+	</action>
+	<action path="/c105000010pop02" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C105000010pop02.jsp"/>
+	</action>
+	<action path="/excelExport" type="com.posdata.glue.web.control.PosStrutsAction">
+	<forward name="success" path="/_excelExport.jsp" /> 
+	</action>
+	<action path="/excelExportC106000010" type="com.posdata.glue.web.control.PosStrutsAction">
+		<forward name="success" path="/_excelExportC106000010.jsp" /> 
+	</action>
+	<action path="/excelExportC106000060" type="com.posdata.glue.web.control.PosStrutsAction">
+		<forward name="success" path="/_excelExportC106000060.jsp" /> 
+	</action>
+	<action path="/excelExportC106000050" type="com.posdata.glue.web.control.PosStrutsAction">
+		<forward name="success" path="/_excelExportC106000050.jsp" /> 
+	</action>
+	<action path="/excelExportC104000050" type="com.posdata.glue.web.control.PosStrutsAction">
+		<forward name="success" path="/_excelExportC104000050.jsp" /> 
+	</action>
+    <action path="/c105000010pop02" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C105000010pop02.jsp"/>
+	</action>
+    <action path="/c105000010pop03" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C105000010pop03.jsp"/>
+	</action>
+    <action path="/c106000010pop01" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000010pop01.jsp"/> 
+	</action>
+	<action path="C104000020POP01" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C104000020POP01.jsp"/>
+	</action>
+	<action path="/fileUpload" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_fileInfoHandler.jsp"/>
+    </action>
+    <action path="/fileDelete" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_fileDeleteHandler.jsp"/>
+    </action>
+    <action path="/gridC10Data" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_gridC10Data.jsp"/>
+      <forward name="failure" path="/_gridC10Data.jsp"/>
+    </action> 
+    <action path="/basicGridDataJson" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/_gridBasicDataJson.jsp"/>    
+	</action>
+	<action path="/C107000050GridData" type="com.poscoict.glue.web.control.PosLoggingStrutsAction">
+      <forward name="success" path="/_gridC107000050Data.jsp"/>
+    </action> 
+    <action path="/C108000010pop01" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C108000010pop01.jsp"/> 
+	</action>     
+  </action-mappings>
+  <controller nocache="true" />
+  <message-resources parameter="com.posdata.glue.sample.view.ApplicationResources"/>
+</struts-config>

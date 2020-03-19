@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<items>	
+	<item type="block" width="965">
+		<item dateFormat="%Y-%m-%d" inputWidth="65" label="등록일자" labelAlign="right"  name="DH_STR" type="calendar" style="background-color:#FFFFC0"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="~" name="DH_DUR" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item dateFormat="%Y-%m-%d" inputWidth="65" name="DH_END" type="calendar" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="5" />
+		<item inputWidth="95" label="버전" labelAlign="right" name="VER_COMB" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="70" label="클래스" labelAlign="right" name="CLS_COMB" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="70" label="수지" labelAlign="right" name="RSN_COMB" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="70" label="구분" labelAlign="right" name="DIV_COMB" type="combo"/>
+		<item offset="10" type="newcolumn"/>
+		<item type="custombutton" name="send" value="전송" command="send" width="75"/>
+		<item offset="5" type="newcolumn"/>
+		<item command="find" name="find" type="button" value="조회"/>
+		<item offset="5" type="newcolumn"/>
+		<item type="button" name="save" value="저장" command="save"/>
+	</item>
+	<item type="block" width="950">
+		<item offset="5" type="newcolumn"/>
+		<item checked="true" label="조회" name="SETTING" offsetTop="128" position="label-right" type="radio" value="N"/>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item label="수정" name="SETTING" position="label-right" type="radio" value="Y"/>
+	</item>
+</items>

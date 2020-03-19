@@ -1,0 +1,24 @@
+<items>
+<item type="block" width="971">
+<item offset="10" type="newcolumn"/>
+<item inputWidth="70" label="CCL-BOM번호" labelWidth="60" name="CCL_BOM_NO" type="input" /> 
+<item offset="5" type="newcolumn"/>
+<item inputWidth="50" label="사용여부" labelWidth="50" name="CCL_BOM_USE_YN" type="combo" >
+	<option value="%" text="전체">전체</option>
+ 	<option value="Y" selected="true"  text="Y">Y</option>
+ 	<option value="N" text="N">N</option>   
+</item> 
+<item offset="50" type="newcolumn"/>
+<item inputWidth="60" label="칼라코드" labelWidth="50" name="CLR_CD" type="input" /> 
+<item offset="5" type="newcolumn"/>
+<item inputWidth="50" label="사용여부" labelWidth="50" name="CLR_USE_YN" type="combo" >
+	<option value="%" text="전체">전체</option>
+ 	<option value="Y" text="Y">Y</option>
+ 	<option value="N" selected="true" text="N">N</option>   
+</item> 
+<item offset="200" type="newcolumn"/>
+<item command="find" name="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+</items>

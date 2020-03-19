@@ -1,0 +1,84 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="DEV_CMP_BOM_NO" 	index="1" sort="sort_str_custom" align="left" width="12" type="ro">개발완료BOM 번호</column>
+<column id="DEV_CMP_DH" 		index="2" sort="sort_str_custom" align="left" width="12" type="ro">개발완료일시</column>
+<column id="DEV_CHR_UID" 		index="3" sort="sort_str_custom" align="left" width="12" type="ro">개발담당자</column>
+<column id="HUE_CD_FRN_1COT"    index="4" sort="sort_str_custom" align="left" width="12" type="ro">TOP 1C</column>
+<column id="HUE_CD_FRN_2COT" 	index="5" sort="sort_str_custom" align="left" width="15" type="ro">TOP 2C</column>
+<column id="HUE_CD_FRN_3COT"    index="6" sort="sort_str_custom" align="left" width="10" type="ro">TOP 3C</column>
+<column id="HUE_CD_FRN_4COT"   	index="7" sort="sort_str_custom" align="left" width="8" type="ro">TOP 4C</column>
+<column id="HUE_CD_BAK_1COT"    index="8" sort="sort_str_custom" align="left" width="12" type="ro">Back 1C</column>
+<column id="HUE_CD_BAK_2COT"  	index="9" sort="sort_str_custom" align="left" width="12" type="ro">Back 2C</column>
+<column id="HUE_CD_BAK_3COT" 	index="10" sort="sort_str_custom" align="left" width="12" type="ro">Back 3C</column>
+<column id="HUE_CD_BAK_4COT"    index="11" sort="sort_str_custom" align="left" width="12" type="ro">Back 4C</column>
+<column id="HUE_CD_LMN"     	index="12" sort="sort_str_custom" align="left" width="12" type="ro">라미나</column>
+<column id="PRT_ROLL_NO1"  		index="13" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print1도<br>Roll]]></column>
+<column id="PRT_INK_CD1" 		index="14" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print1도<br>Ink]]></column>
+<column id="PRT_ROLL_NO2"  		index="15" sort="sort_str_custom" align="left" width="15" type="ro"><![CDATA[Print2도<br>Roll]]></column>
+<column id="PRT_INK_CD2"     	index="16" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print2도<br>Ink]]></column>
+<column id="PRT_ROLL_NO3"  		index="17" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print3도<br>Roll]]></column>
+<column id="PRT_INK_CD3"  		index="18" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print3도<br>Ink]]></column>
+<column id="PRT_ROLL_NO4"  		index="19" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print4도<br>Roll]]></column>
+<column id="PRT_INK_CD4" 	 	index="20" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Print4도<br>Ink]]></column>
+<column id="UNI_TEX_ROLL_NO"  	index="21" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[U-TEX<br>Roll]]></column>
+<column id="PICK_UP_ROLL_NO"  	index="22" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[PICK-UP<br>Roll]]></column>
+<column id="IMPT_ROLL_NO" 		index="23" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[IMPRINT<br>Roll]]></column>
+<column id="UNFIX_NO"  			index="24" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[Unfixed<br>번호]]></column>
+<column id="COT_MTH"  			index="25" sort="sort_str_custom" align="left" width="12" type="ro">코팅방식</column>
+<column id="TLP_TP"  			index="26" sort="sort_str_custom" align="left" width="12" type="ro">무독성구분</column>
+<column id="CCL_BOM_WR_YN" 		index="27" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[내후성보증<br>여부]]></column>
+<column id="DISC_PTN_WTH_CD"  	index="28" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[불연속패턴<br>및 폭관리]]></column>
+<column id="UNI_TEX_PTN_CD" 	index="29" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[UNI-TEX<br>패턴]]></column>
+<column id="CUT_LN_YN"		  	index="30" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[재단선<br>유무]]></column>
+<column id="PT_TP"  			index="31" sort="sort_str_custom" align="left" width="12" type="ro">핀트종류</column>
+<column id="PRT_USG_CD" 	 	index="32" sort="sort_str_custom" align="left" width="12" type="ro">프린트용도</column>
+<column id="PRT_PTN_CD" 		index="33" sort="sort_str_custom" align="left" width="12" type="ro">프린트패턴</column>
+<column id="SPC_PRD_AF_NO"  	index="34" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[특수제품<br>후처리번호]]></column>
+<column id="INK_DEV_NO"  		index="35" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[잉크젯개발<br>번호]]></column>
+<column id="DEV_CMP_RMK"  		index="36" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[개발완료<br>비고]]></column>
+
+<column id="PRD_DEV_NO"    	 index="37" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">제품개발 번호</column>
+<column id="DEV_REQ_SPEC_NO" index="38" sort="sort_str_custom" align="left" width="12" type="ro"  hidden="true">개발요청SPEC번호</column>
+<column id="DEV_REQ_BOM_NO"  index="39" sort="sort_str_custom" align="left" width="12" type="ro">개발의뢰BOM 번호</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">DEV_CMP_BOM_NO,DEV_CMP_DH,DEV_CHR_UID,HUE_CD_FRN_1COT,HUE_CD_FRN_2COT,HUE_CD_FRN_3COT,HUE_CD_FRN_4COT,HUE_CD_BAK_1COT,HUE_CD_BAK_2COT,HUE_CD_BAK_3COT,HUE_CD_BAK_4COT,HUE_CD_LMN,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_NO4,PRT_INK_CD4,UNI_TEX_ROLL_NO,PICK_UP_ROLL_NO,IMPT_ROLL_NO,UNFIX_NO,COT_MTH,TLP_TP,CCL_BOM_WR_YN,DISC_PTN_WTH_CD,UNI_TEX_PTN_CD,CUT_LN_YN,PT_TP,PRT_USG_CD,PRT_PTN_CD,SPC_PRD_AF_NO,INK_DEV_NO,DEV_CMP_RMK,PRD_DEV_NO,DEV_REQ_SPEC_NO,DEV_REQ_BOM_NO
+</userdata>
+</rows>

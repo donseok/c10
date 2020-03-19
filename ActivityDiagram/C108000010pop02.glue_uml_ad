@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="131356" location="418,91" size="50,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:RouterActivity" id="131357" location="356,164" size="262,-1" input="//@wire.0" output="//@wire.1" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="131359" location="489,371" size="50,-1" input="//@wire.2"/>
+  <child xsi:type="Glue:DinaActivity" id="131360" location="419,266" size="127,-1" input="//@wire.1" output="//@wire.2" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000010pop02.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   등록된 출하검사코일 이미지정보를 조회하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Reference&#xD;&#xA;   1) 기준Table  : 출하검사_Coil_이미지(TB_M20_SHP_INS_COIL_IMG)"/>
+  </child>
+  <wire id="8440" guardcondition="success" firstRelativePoint="433,108" lastRelativePoint="433,164"/>
+  <wire id="8441" guardcondition="success" firstRelativePoint="473,194" lastRelativePoint="473,266"/>
+  <wire id="8442" guardcondition="success" firstRelativePoint="499,296" lastRelativePoint="499,370"/>
+</Glue:GlueDiagram>

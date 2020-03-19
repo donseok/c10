@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="274,472" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.5 //@wire.10 //@wire.14"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="796,-1" input="//@wire.0" output="//@wire.3 //@wire.9 //@wire.11 //@wire.13 //@wire.4" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 칼라시편관리 조회(접수일, 의뢰번호,접수번호 바탕으로 조회)&#xD;&#xA;   save : 칼라시편관리화면에서 입력,수정,삭제된 정보를TB_C10_CLR_SMP 테이블에 insert,update,delete한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="102,315" size="162,-1" input="//@wire.3" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000010.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 제품개발공통 테이블(TB_C10_PRD_DEV_CMN)에서 개발요청일자,개발요청자,고객사,개발(접수)담당자,코팅방식로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 :  개발요청일자 or 개발요청자 or 고객사 or 개발(접수)담당자 or 코팅방식&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="6" location="339,339" size="106,-1" input="//@wire.12" output="//@wire.2" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C108000010.delete"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 제품개발공통 테이블(TB_C10_PRD_DEV_CMNP)에 선택한 개발번호에 해당하는 정보를 update/delete 하거나&#xD;&#xA;                   행추가를 통해 신규로 입력한 정보를 insert하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 개발번호에 해당하는 정보를 수정 및 삭제하고 행추가를 통해 신규로 입력한 행에 개발번호를 &#xD;&#xA;       제외한 나머지 정보를 입력하고 그값을 테이블에 insert한다. 행추가시  필수 요청등록일시,영업담당자(개발요청자),고객사,개발참조 유형(색상),개발참조 유형(디자인) 를 입력해야한다.&#xD;&#xA;&#xD;&#xA;3. Reference"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="225301" location="481,323" size="108,-1" input="//@wire.9" output="//@wire.10" name="반려">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000010.update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="265988" location="338,242" size="94,-1" input="//@wire.11" output="//@wire.12" name="Spec 삭제 저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C108000010.deleteSpec"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="268809" location="755,327" size="108,-1" input="//@wire.13" output="//@wire.14" name="등록완료">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000010.updateSaveCmp"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="268810" location="616,325" size="108,-1" input="//@wire.4" output="//@wire.5" name="개발완료">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000010.updateDevCmp"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 칼라시편관리를  조회, 저장  하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_CLR_SMP(칼라시편관리)&#xD;&#xA;  - 조회조건 :  접수일,의뢰번호,접수번호&#xD;&#xA;  - 저장 : 선택한 의뢰번호를 수정 및 삭제하고&#xD;&#xA;           행추가를 통해 입력된 데이타는 자동으로 의뢰번호(년+월+일+Seq)로 생성되고 &#xD;&#xA;&#x9;   접수일을 입력된값이 없으면 SYSDATE로 insert한다."/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="172,209" lastRelativePoint="293,344">
+    <bendpoint weight="0.5" firstDimension="-31,134" secondDimension="-132,-18"/>
+  </wire>
+  <wire id="4" guardcondition="success" firstRelativePoint="371,369" lastRelativePoint="292,477">
+    <bendpoint weight="0.5" firstDimension="-1,103" secondDimension="68,-51"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="10965" guardcondition="devCmp" firstRelativePoint="635,112" lastRelativePoint="635,325"/>
+  <wire id="10966" guardcondition="success" firstRelativePoint="802,349" lastRelativePoint="293,481">
+    <bendpoint weight="0.5" firstDimension="-8,153" secondDimension="238,-1"/>
+  </wire>
+  <wire id="10967" guardcondition="success" firstRelativePoint="510,112" lastRelativePoint="510,112"/>
+  <wire id="10968" guardcondition="success" firstRelativePoint="515,82" lastRelativePoint="515,82"/>
+  <wire id="10969" guardcondition="success" firstRelativePoint="505,112" lastRelativePoint="505,174"/>
+  <wire id="10970" guardcondition="cancel" firstRelativePoint="501,112" lastRelativePoint="501,174"/>
+  <wire id="10971" guardcondition="success" firstRelativePoint="504,204" lastRelativePoint="313,343">
+    <bendpoint weight="0.5" firstDimension="-1,109" secondDimension="200,-48"/>
+  </wire>
+  <wire id="886" guardcondition="save" firstRelativePoint="385,112" lastRelativePoint="385,212"/>
+  <wire id="12682" guardcondition="success" firstRelativePoint="391,272" lastRelativePoint="391,339"/>
+  <wire id="12766" guardcondition="saveCmp" firstRelativePoint="679,112" lastRelativePoint="679,325"/>
+  <wire id="12767" guardcondition="success" firstRelativePoint="812,354" lastRelativePoint="293,481">
+    <bendpoint weight="0.5" firstDimension="-112,172" secondDimension="455,29"/>
+  </wire>
+</Glue:GlueDiagram>

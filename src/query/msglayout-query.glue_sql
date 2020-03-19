@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="MSG LAYOUT"> 
+	 <query id="get_msg_layout_query" desc="" >
+		 <![CDATA[ 
+SELECT * FROM TB_M00_INTERFACE_ATTRS 
+WHERE MDL_DEFINE_ID IN 
+(SELECT FK_MDL_DEFINE_ID 
+    FROM TB_M00_INTERFACES 
+    WHERE MDL_DEFINE_NM = ?
+    AND START_ACTIVE_DATE < SYSDATE AND END_ACTIVE_DATE > SYSDATE 
+) order by MDL_DEFINE_DT_NM_SEQ ASC
+
+		 ]]> 
+	 </query>
+</queryMap>

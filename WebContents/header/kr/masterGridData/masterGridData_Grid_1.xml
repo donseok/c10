@@ -1,0 +1,28 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CD_V" sort="str" align="center" dbname="CD_V" width="50" table="EMP" type="ro">코드</column>
+<column id="CD_V_MEANING" sort="int" align="center" dbname="CD_V_MEANING" width="50" table="EMP" type="ro">코드명</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CD_V,CD_V_MEANING</userdata>
+</rows>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10S0040-service" initial="IFGroupID">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="INSERT" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="failure" value="COMMIT" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="sqlkey" value="B10S0040.insert" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
+    <property name="param0" value="IF_GRP_ID" />
+    <property name="param1" value="MST_ID" />
+    <property name="param2" value="CD" />
+    <property name="param3" value="MST_NM" />
+    <property name="param4" value="NM" />
+    <property name="param-count" value="5" />
+  </activity>
+  <activity name="IFGroupID" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="resultkey" value="RK_SEARCH" />
+    <property name="dao" value="mesdao" />
+    <property name="param-count" value="0" />
+    <property name="sqlkey" value="MST_CODE_IF" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="INSERT" />
+    <property name="param0" value="MST_ID|MST_ID" />
+    <property name="param1" value="CD|CD" />
+    <property name="param2" value="MST_NM|MST_NM" />
+    <property name="param3" value="NM|NM" />
+    <property name="countName" value="SD0460_COUNT" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param-count" value="4" />
+  </activity>
+</service>
+

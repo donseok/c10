@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000010pop01-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="개발요청 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C108000010pop01.dev_req_insert" />
+    <property name="update-sql" value="C108000010pop01.dev_req_update" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="개발접수 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C108000010pop01.dev_recv_insert" />
+    <property name="update-sql" value="C108000010pop01.dev_recv_update" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000010pop01.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="dev_req_save" value="개발요청 저장" />
+    <transition name="dev_recv_save" value="개발접수 저장" />
+  </activity>
+</service>
+

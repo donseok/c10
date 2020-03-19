@@ -1,0 +1,36 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" dbname="SPC_AVR" id="SPC_AVR" index="1" sort="str_custom" table="VI_M00_C10A1010" type="ro" width="20">규격약호</column>
+<column align="center" dbname="SPC_OFC" id="SPC_OFC" index="2" sort="str_custom" table="VI_M00_C10A1010" type="ro" width="10">규격기관</column>
+<column align="left" dbname="SPC_NM" id="SPC_NM" index="3" sort="str_custom" table="VI_M00_C10A1010" type="ro" width="*">규격명</column>
+<column align="center" dbname="SPC_FUL_NM" id="SPC_FUL_NM" index="4" sort="str_custom" table="VI_M00_C10A1010" type="ro" width="27">규격Full Name</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">SPC_AVR,SPC_OFC,SPC_NM,SPC_FUL_NM</userdata>
+</rows>

@@ -1,0 +1,61 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="DEV_REQ_SPEC_NO" index="1" sort="sort_str_custom" align="left" width="8" type="ro"><![CDATA[개발요청<br>SPEC번호]]></column>
+<column id="CLR_DEV_TP"      index="2" sort="sort_str_custom" align="left" width="10" type="ro">칼라개발유형</column>
+<column id="PRD_NM_CD"       index="3" sort="sort_str_custom" align="left" width="12" type="ro">품명</column>
+<column id="CUS_REQ_HUE_TXT" index="4" sort="sort_str_custom" align="left" width="15" type="ro"><![CDATA[고객정의품명<br>(색상명)]]></column>
+<column id="COT_MTH"  		 index="5" sort="sort_str_custom" align="left" width="10" type="ro">코팅방식</column>
+<column id="RSN_TP"   	  	 index="6" sort="sort_str_custom" align="left" width="8" type="ro">수지</column>
+<column id="TLP_TP"      	 index="7" sort="sort_str_custom" align="left" width="12" type="ro">무독성구분</column>
+<column id="RL_LUS_RT"  	 index="8" sort="sort_str_custom" align="left" width="12" type="ro">실광택값</column>
+<column id="PNT_FLM_THK_TXT" index="9" sort="sort_str_custom" align="left" width="12" type="ro">도막두께</column>
+<column id="PTT_FLM_YN"    	 index="10" sort="sort_str_custom" align="left" width="12" type="ro">보호필름 유무</column>
+<column id="ORD_PRE_WGT"     index="11" sort="sort_str_custom" align="left" width="12" type="ro">예상수주량</column>
+<column id="DEV_REF_TP"  	 index="12" sort="sort_str_custom" align="left" width="12" type="ro">개발참조 유형</column>
+<column id="REF_CLR_CD_TXT"  index="13" sort="sort_str_custom" align="left" width="15" type="ro">참조 칼라코드</column>
+<column id="REF_CCL_BOM"     index="14" sort="sort_str_custom" align="left" width="12" type="ro">참조 CCLBOM</column>
+<column id="SIM_HUE_PRG_YN"  index="15" sort="sort_str_custom" align="left" width="12" type="ro"><![CDATA[유사색상<br>적용가능여부]]></column>
+
+<column id="PRD_DEV_NO"    	 index="16" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true">제품개발 번호</column>
+<column id="PRD_DEV_SPEC_NO" index="17" sort="sort_str_custom" align="left" width="12" type="ro" hidden="true"></column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">DEV_REQ_SPEC_NO,CLR_DEV_TP,PRD_NM_CD,CUS_REQ_HUE_TXT,COT_MTH,RSN_TP,TLP_TP,RL_LUS_RT,PNT_FLM_THK_TXT,PTT_FLM_YN,ORD_PRE_WGT,DEV_REF_TP,REF_CLR_CD_TXT,REF_CCL_BOM,SIM_HUE_PRG_YN,PRD_DEV_NO,PRD_DEV_SPEC_NO</userdata>
+</rows>

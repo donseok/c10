@@ -1,0 +1,199 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>./dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="setNoHeader">
+<param>true</param>
+</call>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="enableAlterCss">
+<param>even</param>
+<param>uneven</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="ANON_CD" index="1" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12" >아농코드</column>
+<column align="center" id="ANON_UNT" index="2" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">아농원단위</column>
+<column align="center" id="DISC_PTN_WTH_CD_NM" index="3" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">불연속패턴및폭관리</column>
+<column align="center" id="HUE_CD_CHM" index="4" sort="str" table="TB_C10_CCL_BOM" type="ro" width="3">색상코드Chemical</column>
+<column align="center" id="DTL_CLR_NM" index="5" sort="str" table="TB_C10_CCL_BOM" type="ro" width="10">상세색상명</column>
+<column align="center" id="COT_MTH" index="6" sort="str" table="TB_C10_CCL_BOM" type="ro" width="15">코딩방식</column>
+<column align="center" id="HUE_CD_FRN" index="7" sort="str" table="TB_C10_CCL_BOM" type="ro" width="3">색상코드(T)</column>
+<column align="center" id="RSN_TP_FRN" index="8" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">수지타입(T)</column>
+<column align="center" id="PTT_FLM_DTL_CD" index="9" sort="int" table="TB_C10_CCL_BOM" type="ro" width="8">보호필름상세코드</column>
+<column align="center" id="PTT_FLM_LUS_RT_CD_NM" index="10" sort="int" table="TB_C10_CCL_BOM" type="ro" width="8">보호필름광택코드 NM</column>
+<column align="center" id="PTT_FLM_THK_CD_NM" index="11" sort="int" table="TB_C10_CCL_BOM" type="ro" width="7">보호필름두께코드NM</column>
+<column align="center" id="PTT_FLM_MQL_CD_NM" index="12" sort="int" table="TB_C10_CCL_BOM" type="ro" width="10">보호필름재질코드NM</column>
+<column align="center" id="PTT_FLM_SUS_ADH_CD_NM" index="13" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름SUS점착력코드NM</column>
+<column align="center" id="PTT_FLM_PRD_ADH_CD_NM" index="14" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름제품점착력코드NM</column>
+<column align="center" id="LMN_KND_TP_NM" index="15" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina유형</column>
+<column align="center" id="LMN_BND_CD" index="16" sort="int" table="TB_C10_CCL_BOM" type="ed" width="0" hidden="true">Lamina접착제코드</column>
+<column align="center" id="LMN_BND_THR_CD" index="17" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina접착제신나코드</column>
+<column align="center" id="LMN_BND_CD1" index="18" sort="int" table="TB_C10_CCL_BOM" type="ed" width="0" hidden="true">Lamina접착제코드1</column>
+<column align="center" id="LMN_BND_THR_CD1" index="19" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina접착제신나코드1</column>
+<column align="center" id="LMN_FLM_THK_CD_NM" index="20" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina필름두께코드</column>
+<column align="center" id="MAIN_PROC_CD" index="21" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">주공정코드</column>
+<column align="center" id="SUB_PROC_CD1" index="22" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">대체공정코드1</column>
+<column align="center" id="SUB_PROC_CD2" index="23" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">대체공정코드2</column>
+<column align="center" id="DISC_PTN_WTH_CD" index="24" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">불연속패턴및폭관리(마스터)</column>
+<column align="center" id="PTT_FLM_LUS_RT_CD" index="25" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름광택코드</column>
+<column align="center" id="PTT_FLM_THK_CD" index="26" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름두께코드</column>
+<column align="center" id="PTT_FLM_MQL_CD" index="27" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름재질코드</column>
+<column align="center" id="PTT_FLM_SUS_ADH_CD" index="28" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름SUS점착력코드</column>
+<column align="center" id="PTT_FLM_PRD_ADH_CD" index="29" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">보호필름제품점착력코드</column>
+<column align="center" id="HUE_CD_BAK" index="30" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">색상코드(B)</column>
+<column align="center" id="RSN_TP_BAK" index="31" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">수지타입(B)</column>
+<column align="center" id="SUB_PROC_CD3" index="32" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">대체공정코드3</column>
+<column align="center" id="TLP_TP" index="33" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">무독성구분</column>
+<column align="center" id="PRT_USG_CD" index="34" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Print용도코드</column>
+<column align="center" id="PRT_PTN_CD" index="35" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">PrintPatternCode</column>
+<column align="center" id="PRT_PTN_CD_NM" index="36" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true" >PrintPatternCode NM</column>
+<column align="center" id="QLT_DSN_CFM_TP_NM" index="37" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">품질설계확정구분</column>
+<column align="center" id="LMN_BND_UNT" index="38" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina접착제원단위</column>
+<column align="center" id="LMN_BND_UNT1" index="39" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Lamina접착제원단위1</column>
+<column align="center" id="RGS_PRS_ID" index="40" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">등록자</column>
+<column align="center" id="RGS_DH" index="41" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true" >등록일</column>
+<column align="center" id="MDF_PRS_ID" index="42" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">수정자</column>
+<column align="center" id="MDF_DH" index="43" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">수정일</column>
+<column align="center" id="ERP_SND_DH" index="44" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">ERP전송일</column>
+<column align="center" id="UNI_TEX_PTN_CD" index="45" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">UNI-TEX패턴코드</column>
+<column align="center" id="CLR_SPC_PRD_SCLS" index="46" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">칼라특수제품소분류</column>
+<column align="center" id="CUT_LN_YN" index="47" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">재단선유무</column>
+
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">ANON_CD,ANON_UNT,DISC_PTN_WTH_CD_NM,HUE_CD_CHM,DTL_CLR_NM,COT_MTH,HUE_CD_FRN,RSN_TP_FRN,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD_NM,PTT_FLM_THK_CD_NM,PTT_FLM_MQL_CD_NM,PTT_FLM_SUS_ADH_CD_NM,PTT_FLM_PRD_ADH_CD_NM,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD_NM,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,DISC_PTN_WTH_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,HUE_CD_BAK,RSN_TP_BAK,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,PRT_PTN_CD_NM,QLT_DSN_CFM_TP_NM,LMN_BND_UNT,LMN_BND_UNT1,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,MDF_DH,ERP_SND_DH,UNI_TEX_PTN_CD,CLR_SPC_PRD_SCLS,CUT_LN_YN</userdata>
+<row id="0">
+	<cell class="form_cell">칼라특수제품분류</cell>
+	<cell id="CLR_SPC_PRD_SCLS" type="combo_v" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell" colspan="2">불연속패턴및폭관리</cell>
+	<cell class="form_cell"></cell>
+	<cell id="DISC_PTN_WTH_CD_NM" type="combo_v"></cell>
+	<cell class="form_cell" rowspan="5"><![CDATA[라<br>미<br>나]]></cell>
+	<cell class="form_cell">유형</cell>
+	<cell id="LMN_KND_TP_NM" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell">재단선유무</cell>
+	<cell id="CUT_LN_YN" type="combo_v" ></cell>
+</row>
+<row id="1">
+	<cell class="form_cell">Chemical Coat</cell>
+	<cell id="HUE_CD_CHM" type="combo_v" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell" colspan="2">UNI-TEX패턴</cell>
+	<cell class="form_cell"></cell>
+    <cell id="UNI_TEX_PTN_CD"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell">접착제</cell>
+	<cell id="LMN_BND_CD" type="ed"></cell>
+	<cell id="LMN_BND_CD1" type="ed"></cell>
+	<cell class="form_cell">핀트종류</cell>
+	<cell id="PT_TP" type="combo_v"></cell>
+</row>
+<row id="2">
+	<cell class="form_cell">상세 색상명</cell>
+	<cell id="DTL_CLR_NM" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell" colspan="2">주공정</cell>
+	<cell class="form_cell"></cell>
+	<cell id="MAIN_PROC_CD" type="combo_v"></cell>
+	<cell class="form_cell" ></cell>
+	<cell class="form_cell">접착제시너</cell>
+	<cell id="LMN_BND_THR_CD"></cell>
+	<cell id="LMN_BND_THR_CD1"></cell>
+	<cell class="form_cell">등록자</cell>
+	<cell id="RGS_PRS_ID" type="ro"></cell>	
+</row>
+<row id="3">
+	<cell class="form_cell">코팅방식</cell>
+	<cell id="COT_MTH" type="combo_v" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell" colspan="2">대체공정1</cell>
+	<cell class="form_cell"></cell>
+	<cell id="SUB_PROC_CD1" type="combo_v"></cell>
+	<cell class="form_cell" ></cell>
+	<cell class="form_cell">필름두께</cell>
+	<cell id="LMN_FLM_THK_CD_NM" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell">등록일</cell>
+	<cell id="RGS_DH"  type="ro"></cell>
+</row>
+<row id="4">
+	<cell class="form_cell"><![CDATA[색상코드(T/B)]]></cell>
+	<cell id="HUE_CD_FRN" type="ed" color="FFFFC0"></cell>
+	<cell id="HUE_CD_BAK" type="ed" color="FFFFC0"></cell>
+	<cell class="form_cell" colspan="2">대체공정2</cell>
+	<cell class="form_cell"></cell>
+	<cell id="SUB_PROC_CD2" type="combo_v"></cell>
+	<cell class="form_cell" ></cell>
+	<cell class="form_cell">원단위</cell>
+	<cell id="LMN_BND_UNT"></cell>
+	<cell id="LMN_BND_UNT1"></cell>
+	<cell class="form_cell">수정자</cell>
+	<cell id="MDF_PRS_ID"  type="ro"></cell>
+</row>
+<row id="5">
+	<cell class="form_cell"><![CDATA[수지타입(T/B)]]></cell>
+	<cell id="RSN_TP_FRN"></cell>
+	<cell id="RSN_TP_BAK"></cell>
+	<cell class="form_cell" colspan="2">대체공정3</cell>
+	<cell class="form_cell"></cell>
+	<cell id="SUB_PROC_CD3" type="combo_v"></cell>
+	<cell class="form_cell" rowspan="2"><![CDATA[프<br>린<br>트]]></cell>
+	<cell class="form_cell">용도</cell>
+	<cell id="PRT_USG_CD" type="combo_v" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell">수정일</cell>
+	<cell id="MDF_DH" type="ro"></cell>
+</row>
+<row id="6">
+	<cell class="form_cell">무독성구분</cell>
+	<cell id="TLP_TP" colspan="2" type="combo_v"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell" colspan="2">설계확정구분</cell>
+	<cell class="form_cell"></cell>
+	<cell id="QLT_DSN_CFM_TP_NM" type="combo_v"></cell>
+	<cell class="form_cell" ></cell>
+	<cell class="form_cell">패턴</cell>
+	<cell id="PRT_PTN_CD_NM" type="ro" colspan="2"></cell>
+	<cell class="form_cell"></cell>
+	<cell class="form_cell">ERP전송일</cell>
+	<cell id="ERP_SND_DH" type="ro"></cell>
+</row>
+</rows>

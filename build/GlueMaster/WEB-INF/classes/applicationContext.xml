@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!-- 마스터그룹 계발계 ex.jdbc/rw/GlueMasterDS -->
+    <bean id="dataSource" class="com.poscoict.glue.master.common.PosJndiObjectFactoryBean"> 
+        <property name="jndiName" value="GlueMaster.dataSource.jndiName.dataSource"/>
+        <property name="resourceRef" value="false"/> 
+    </bean>
+    <!-- 마스터그룹 계발계(공통모듈용) ex.jdbc/rw/GlueMasterDS -->
+    <bean id="masterDataSource" class="com.poscoict.glue.master.common.PosJndiObjectFactoryBean"> 
+        <property name="jndiName" value="GlueMaster.dataSource.jndiName.dataSource"/>
+        <property name="resourceRef" value="false"/> 
+    </bean>
+
+    <bean id="masterdao" class="com.posdata.glue.dao.PosJdbcDao">
+        <property name="dataSource"><ref local="dataSource"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+    </bean>
+
+    <bean id="queryManager" class="com.posdata.glue.dao.manager.PosQueryManagerImpl">
+        <constructor-arg><ref local="cacheManager"/></constructor-arg>
+        <constructor-arg><ref local="queryLoader"/></constructor-arg>
+    </bean>
+
+    <!-- original cache manager -->
+    <!--bean id="cacheManager" class="com.posdata.glue.cache.PosCacheManagerJCS"/-->
+    <bean id="cacheManager" class="com.posdata.glue.cache.remote.PosRemoteCacheManagerJCS">
+        <property name="cacheEventSender" ref="cacheEventSender"/>
+    </bean>
+<!-- 
+    <bean id="cacheEventSender" class="com.posdata.glue.cache.remote.PosHttpCacheEventSender">
+        <property name="targetUrl">
+            <list>
+                <value>http://127.0.0.1:8080/GlueMaster/remove.cache</value>
+            </list>
+        </property>
+        <property name="requestRetryCount" value="0"/>
+        <property name="timeout" value="10000"/>
+    </bean>
+ -->
+    <bean id="cacheEventSender" class="com.poscoict.glue.master.common.GlueMasterHttpCacheEventSender">
+        <property name="targetUrlsWebServer" value="GlueMaster.cacheEventSender.targetUrl.cacheEventSender"/>
+        <property name="targetUrlsScheduler" value="GlueMaster.cacheEventSender.targetUrl.jobEventSender"/>
+        <property name="requestRetryCount" value="0"/>
+        <property name="timeout" value="10000"/>
+    </bean>
+
+    <bean id="queryLoader" class="com.posdata.glue.dao.manager.PosQueryLoader"/>
+
+    <bean id="tx1" class="com.posdata.glue.transaction.PosDataSourceTransactionManager">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>
+
+    <bean id="securitydb" class="com.poscoict.glue.master.common.PosJndiObjectFactoryBean"> 
+        <property name="jndiName" value="GlueMaster.dataSource.jndiName.securitydb"/>
+        <property name="resourceRef" value="false"/> 
+    </bean>
+
+    <bean id="securitydao" class="com.posdata.glue.dao.PosJdbcDao">
+        <property name="dataSource"><ref local="securitydb"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+    </bean>
+</beans>

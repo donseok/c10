@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10S0010-service" initial="IFGroupID">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="exitFlag" value="N" />
+    <property name="txname" value="tx2" />
+    <property name="checkId" value="P_ERR_KEY" />
+  </activity>
+  <activity name="INSERT" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="failure" value="COMMIT" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param-count" value="8" />
+    <property name="param0" value="IF_GRP_ID" />
+    <property name="param1" value="SPC_AVR" />
+    <property name="param2" value="SPC_YR" />
+    <property name="dao" value="eaidao" />
+    <property name="param3" value="SPC_NM" />
+    <property name="param4" value="SPC_FUL_NM" />
+    <property name="param5" value="ORD_GRA" />
+    <property name="param6" value="ACPT_RT_SPC" />
+    <property name="param7" value="MQL_CD" />
+    <property name="sqlkey" value="B10S0010.insert" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="IFGroupID" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C10A1010_IF" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="INSERT" />
+    <property name="param6" value="MQL_CD|MQL_CD" />
+    <property name="countName" value="SD0070_COUNT" />
+    <property name="param-count" value="7" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param0" value="SPC_AVR|SPC_AVR" />
+    <property name="param1" value="SPC_YR|SPC_YR" />
+    <property name="param2" value="SPC_NM|SPC_NM" />
+    <property name="param3" value="SPC_FUL_NM|SPC_FUL_NM" />
+    <property name="param4" value="ORD_GRA|ORD_GRA" />
+    <property name="param5" value="ACPT_RT_SPC|ACPT_RT_SPC" />
+  </activity>
+</service>
+

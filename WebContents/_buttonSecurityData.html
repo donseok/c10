@@ -1,0 +1,73 @@
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@page import = "java.util.*" %> 
+<%@page import = "java.sql.Types" %> 
+<%@page import = "com.posdata.glue.context.PosContext" %> 
+<%@page import = "com.posdata.glue.dao.vo.*" %> 
+<%@page import = "com.posdata.glue.web.control.*" %> 
+<%@page import = "com.posdata.glue.util.log.PosLog" %>
+<%@ page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
+<%@ page import = "com.posdata.glue.web.security.PosUser" %>
+
+<%@page import = "com.poscoict.glue.dhtmlx.constant.DhtmlxConstantsIF" %> 
+<%@page import = "com.posdata.glue.web.security.PosMesMenu" %> 
+<%@ page import = "com.posdata.glue.util.log.PosLogFactory"%>
+<%@ page import = "com.posdata.glue.util.log.PosLog" %>
+
+<%
+
+try {
+	
+	PosUser user = (PosUser)session.getAttribute(PosSecurityConstants.USER);
+	
+	if(user != null){
+		List menuList = user.getMenu();
+		
+		String pageId = request.getParameter("pageID");
+		String programId = request.getParameter("programId");
+
+		System.out.println("pageID : " + pageId + ", programId : " + programId);
+		
+		String buttons = null;
+		PosMesMenu role = null;
+		PosMesMenu permitedPage = null;
+		PosMesMenu highestPage = null;
+		for(int i = 0; i < menuList.size(); i ++){
+			
+			role = (PosMesMenu) menuList.get(i);
+			
+			highestPage = (PosMesMenu) role.isPermitPage(pageId, highestPage);
+			
+			//if(permitedPage != null){
+			//	Map map = permitedPage.getInfo();
+			//	buttons = (String) map.get("BUTTON_FLAG");
+			//	System.out.println("<< Security Buttons : " + buttons + " >>");
+			//	out.println(buttons);
+			//	break;
+			//}
+		}
+		
+		if(highestPage != null){
+			Map map = highestPage.getInfo();
+			buttons = (String) map.get("BUTTON_FLAG");
+			System.out.println("<< 1Security Buttons : " + buttons + " >>");
+			PosLog logger = PosLogFactory.getLogger("security");
+			logger.logInfo("<< Security Buttons : " + buttons + " >>");
+			out.println(buttons);
+		} else {
+			System.out.println("<< 2Security Buttons : null >>");
+			PosLog logger = PosLogFactory.getLogger("security");
+			logger.logInfo("<< Security Buttons : null >>");
+			out.println("");
+		}
+		
+	} else {
+		System.out.println("<< 3Security Buttons : >>");
+		out.println("");
+	}
+} catch(Exception e){
+	System.out.println("<< 4Security Buttons : >>");
+	out.println("");
+}
+out.flush();
+
+%>

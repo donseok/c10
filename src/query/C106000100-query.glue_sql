@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000100 Page 쿼리파일"> 
+	 <query id="C106000100.select" desc="프린트롤 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT A.CCL_BOM_NO,
+       B.DTL_CLR_NM,
+       (SELECT CD_V || ':' || CD_V_MEANING 
+          FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'COT_MTH'         
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = B.COT_MTH) AS COT_MTH, --코팅방식
+       (SELECT CD_V || ':' || CD_V_MEANING 
+          FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'RSN_TP'         
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = B.RSN_TP_FRN) AS RSN_TP_FRN,--수지구분전면(마스터)
+       (SELECT CD_V || ':' || CD_V_MEANING 
+          FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'RSN_TP'         
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = B.RSN_TP_BAK) AS RSN_TP_BAK,--수지구분후면(마스터)
+        B.HUE_CD_FRN,--색상코드전면
+        B.HUE_CD_BAK,--색상코드후면
+        B.PNT_FLM_THK_FRN_TOT,
+        B.PNT_FLM_THK_BAK_TOT,
+        A.CCL_BOM_IMG_SEQ_NO,
+        TO_CHAR(A.CCL_BOM_RGS_DH, 'YYYY-MM-DD') CCL_BOM_RGS_DH,
+        A.CCL_BOM_RGS_PRS_ID,
+        (SELECT USER_NAME
+           FROM M90APUSER.TB_M90_EMP_INF	
+          WHERE USER_NO = A.CCL_BOM_RGS_PRS_ID) CCL_BOM_RGS_PRS_NM,
+	    :USER_NO AS USER_NO,
+	    NVL(A.IMAGE_YN,'N') IMAGE_YN,
+        NVL(A.FILE_YN,'N') FILE_YN,
+        NVL(A.DOC_YN,'N') DOC_YN,
+        NVL(A.OTH_YN,'N') OTH_YN
+  FROM C10APUSER.TB_C10_CCL_BOM_IMG_MNG A,
+       C10APUSER.TB_C10_CCL_BOM B 
+ WHERE A.CCL_BOM_NO LIKE '%'||:CCL_BOM_NO||'%'
+   AND A.CCL_BOM_NO = B.CCL_BOM_NO(+)
+   AND EXISTS (
+   SELECT 1 FROM M90APUSER.TB_M90_EMP_INF 
+   WHERE USER_NO = A.CCL_BOM_RGS_PRS_ID 
+     AND USER_NAME LIKE :CCL_BOM_RGS_PRS_ID_NM || '%'
+     )
+		 ]]> 
+	 </query>
+	 <query id="C106000100.update" desc="C106000100 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE EMP
+            SET SAL=:SAL,
+            ENAME=:ENAME
+            WHERE EMPNO=:EMPNO
+		 ]]> 
+	 </query>
+	 <query id="C106000100.delete" desc="C106000100 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM C10APUSER.TB_C10_CCL_BOM_IMG_MNG
+ 	WHERE CCL_BOM_NO = :CCL_BOM_NO 
+	   AND CCL_BOM_IMG_SEQ_NO = :CCL_BOM_IMG_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000100.insert" desc="C106000100 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_CCL_BOM_IMG_MNG(
+             CCL_BOM_NO
+            ,CCL_BOM_IMG_SEQ_NO
+            ,CCL_BOM_RGS_DH
+            ,CCL_BOM_RGS_PRS_ID
+            ,CCL_BOM_MDF_DH
+            ,CCL_BOM_MDF_PRS_ID 
+            ,IMAGE_YN
+            ,FILE_YN
+            ,DOC_YN
+            ,CREATED_OBJECT_TYPE 
+            ,CREATED_OBJECT_ID 
+            ,CREATED_PROGRAM_ID
+            ,CREATION_TIMESTAMP
+            ,LAST_UPDATED_OBJECT_TYPE
+            ,LAST_UPDATED_OBJECT_ID
+            ,LAST_UPDATE_PROGRAM_ID
+            ,LAST_UPDATE_TIMESTAMP)
+VALUES(:CCL_BOM_NO
+       ,(SELECT NVL(MAX(CCL_BOM_IMG_SEQ_NO)+1,1) 
+        FROM TB_C10_CCL_BOM_IMG_MNG 
+        WHERE CCL_BOM_NO =  :CCL_BOM_NO)
+       ,SYSDATE
+       ,:ObjectId
+       ,SYSDATE
+       ,:ObjectId
+       ,'N'
+       ,'N'
+       ,'N'
+       ,:ObjectType
+       ,:ObjectId 
+       ,:ProgramId
+       ,:Timestamp
+       ,:ObjectType
+       ,:ObjectId
+       ,:ProgramId
+       ,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000100_IMG.delete" desc="10" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C106000100   이미지관리테이블 삭제  C106000100_IMG.delete  이돈석 */
+FROM TB_C10_CCL_BOM_IMG
+WHERE CCL_BOM_NO = :CCL_BOM_NO
+  AND CCL_BOM_IMG_SEQ_NO = :CCL_BOM_IMG_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000100_DUMY.select" desc="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000100   의미없는 쿼리 C106000100_DUMY.select 이돈석 */
+1 DUMY
+FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000100_CCLBOMAJAX.select" desc="10" isNamed="true">
+		 <![CDATA[ 
+SELECT MAX(DTL_CLR_NM) DTL_CLR_NM, 
+       MAX(COT_MTH) COT_MTH,
+       MAX(RSN_TP_FRN) RSN_TP_FRN,
+       MAX(RSN_TP_BAK) RSN_TP_BAK,
+       MAX(HUE_CD_FRN) HUE_CD_FRN,
+       MAX(HUE_CD_BAK) HUE_CD_BAK,
+       MAX(PNT_FLM_THK_FRN_TOT) PNT_FLM_THK_FRN_TOT,
+       MAX(PNT_FLM_THK_BAK_TOT) PNT_FLM_THK_BAK_TOT,
+       MAX(CNT) CNT
+FROM (
+        SELECT 
+        DTL_CLR_NM,
+            (SELECT CD_V || ':' || CD_V_MEANING 
+            FROM M00APUSER.VI_M00_CODE_ACCESS
+            WHERE CD_TP = 'COT_MTH'         
+            AND   CATEGORY_GROUP_NM = 'SZ0000'
+            AND   CD_V = COT_MTH) AS COT_MTH, --코팅방식
+            (SELECT CD_V || ':' || CD_V_MEANING 
+               FROM M00APUSER.VI_M00_CODE_ACCESS
+              WHERE CD_TP = 'RSN_TP'         
+                AND   CATEGORY_GROUP_NM = 'SZ0000'
+                AND   CD_V = RSN_TP_FRN) AS RSN_TP_FRN,--수지구분전면(마스터)
+            (SELECT CD_V || ':' || CD_V_MEANING 
+               FROM M00APUSER.VI_M00_CODE_ACCESS
+              WHERE CD_TP = 'RSN_TP'         
+                AND   CATEGORY_GROUP_NM = 'SZ0000'
+                AND   CD_V = RSN_TP_BAK) AS RSN_TP_BAK,--수지구분후면(마스터)
+            HUE_CD_FRN,--색상코드전면
+            HUE_CD_BAK,--색상코드후면
+            PNT_FLM_THK_FRN_TOT,
+            PNT_FLM_THK_BAK_TOT,
+            0 CNT
+        FROM TB_C10_CCL_BOM
+        WHERE CCL_BOM_NO = :CCL_BOM_NO
+        UNION ALL
+          SELECT
+                 '' DTL_CLR_NM
+                ,'' COT_MTH
+                ,'' RSN_TP_FRN
+                ,'' RSN_TP_BAK
+                ,'' HUE_CD_FRN
+                ,'' HUE_CD_BAK
+                ,0 PNT_FLM_THK_FRN_TOT
+                ,0 PNT_FLM_THK_BAK_TOT
+                ,COUNT(CCL_BOM_NO) CNT
+            FROM TB_C10_CCL_BOM_IMG_MNG
+            WHERE CCL_BOM_NO =REPLACE(:CCL_BOM_NO,' ','') )
+		 ]]> 
+	 </query>
+</queryMap>

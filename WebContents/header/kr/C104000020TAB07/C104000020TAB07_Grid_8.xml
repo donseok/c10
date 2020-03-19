@@ -1,0 +1,45 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableMultiline"><param>true</param></call>
+<call command="enableResizing">    
+	<param>false,false,false,false</param>    
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="QLT_MSG_CD" index="1" sort="na" align="center" dbname="품질Message코드" width="10" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" clabel="품질Message코드">품질Message코드</column>
+<column id="CCL_QLT_MSG_TXT" index="2" sort="na" align="left" dbname="품질Message" width="*" table="TB_C10_QLT_DSN_CCL_BOM" type="ed"  color="FFFFC0" clabel="품질Message">품질Message</column>
+<column align="center" index="3" clabel="ORD_NO" dbname="주문번호" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문번호</column>
+<column align="center" index="4" clabel="ORD_LN" dbname="주문행번" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문행번</column>
+<column align="center" index="5" clabel="FNL_CUS_CD" dbname="최종수요가코드" id="FNL_CUS_CD" sort="na" table="TB_C10_CLR_MPR" type="ro" width="10" hidden="true">고객사코드</column>
+<column align="center" index="6" clabel="ORD_USG_CD" dbname="주문용도코드" id="ORD_USG_CD" sort="na" table="TB_C10_CLR_MPR" type="ro" width="10" hidden="true">주문용도코드</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">QLT_MSG_CD,CCL_QLT_MSG_TXT,ORD_NO,ORD_LN,FNL_CUS_CD,ORD_USG_CD</userdata>
+<row id="0">
+<cell class="form_cell"><![CDATA[<br>메세지<br><br>]]></cell>
+<cell id="CCL_QLT_MSG_TXT"/>
+<cell id="ORD_NO" hidden="true"/>
+<cell id="ORD_LN" hidden="true"/>
+<cell id="FNL_CUS_CD" hidden="true"/>
+<cell id="ORD_USG_CD" hidden="true"/>
+</row>
+</rows>

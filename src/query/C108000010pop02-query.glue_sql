@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C108000010POP02"> 
+	 <query id="C108000010pop02.insert" desc="제품개발이미지등록" fetchSize="1" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000120pop02   제품 개발 업로드  C108000120pop02.insert  정용구  */
+INTO TB_C10_PRD_DEV_IMG (
+       PRD_DEV_NO,
+	PRD_DEV_IMG_SEQ_NO,
+	SEQ_NO,
+	IMG_RGS_TP,
+	IMG_ADR,
+	IMG_NM,
+	PRD_DEV_RGS_DH,
+	PRD_DEV_RGS_PRS_ID,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP)
+VALUES (
+    :IMG_RGS_FLAG_ID, 
+    :IMG_RGS_FLAG_ID2, 
+    (SELECT NVL(MAX(SEQ_NO),0)+1 FROM TB_C10_PRD_DEV_IMG WHERE PRD_DEV_NO = :IMG_RGS_FLAG_ID AND PRD_DEV_IMG_SEQ_NO = nvl(:IMG_RGS_FLAG_ID2,0)), 
+    :IMG_RGS_TP, 
+    :FILE_ADDR,
+    :FILE_NAME,  
+    SYSDATE, 
+    :ObjectId,
+    'C',
+    :ObjectId,
+    'C108000120pop02',
+    SYSTIMESTAMP,
+    'C',
+    :ObjectId,
+    'C108000120pop02',
+    SYSTIMESTAMP)
+		 ]]> 
+	 </query>
+	 <query id="C108000010pop02.select" desc="조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000010pop02   제품개발 이미지 조회   C108000010pop02.select  정용구  */
+       PRD_DEV_NO,
+       PRD_DEV_IMG_SEQ_NO ,
+       SEQ_NO,
+       DECODE(IMG_RGS_TP, '2', '모바일', 'PC') IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       TO_CHAR(PRD_DEV_RGS_DH  , 'YYYY-MM-DD') PRD_DEV_RGS_DH,
+       PRD_DEV_RGS_PRS_ID  ,
+       IMG_NM CHK_IMG_NM,
+       './'||REPLACE(SUBSTR(IMG_ADR, instr(IMG_ADR, 'IMG_UPLOAD')), '\', '/')||'/' CHK_IMG_ADR
+FROM TB_C10_PRD_DEV_IMG
+WHERE PRD_DEV_NO  = :PRD_DEV_NO 
+AND PRD_DEV_IMG_SEQ_NO  = nvl(:PRD_DEV_SEQ_NO,0) 
+ORDER BY PRD_DEV_NO, PRD_DEV_IMG_SEQ_NO, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000010pop02.delete" desc="삭제" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE  /*+ C108000010pop02  제품개발 이미지 삭제  CC108000010pop02.delete  이돈석  */
+TB_C10_PRD_DEV_IMG 
+WHERE  PRD_DEV_NO= :IMG_RGS_FLAG_ID
+AND PRD_DEV_IMG_SEQ_NO =  nvl(:IMG_RGS_FLAG_ID2,0)
+AND SEQ_NO = :SEQ
+		 ]]> 
+	 </query>
+</queryMap>

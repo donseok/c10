@@ -1,0 +1,7 @@
+<menu>	
+	<item id="refresh1" img="refresh.gif" imgdis="refresh_dis.gif" text="새로고침" ></item>
+	<item id="add1" img="new.gif" imgdis="new_dis.gif" text="행추가" />	 
+	<item id="remove1" img="remove.gif" imgdis="remove_dis.gif" text="삭제" />
+	<item id="setCusCd" img="search.gif" imgdis="search_dis.gif" text="고객사" />
+	<item id="setOrdUsgCd" img="search.gif" imgdis="search_dis.gif" text="주문용도" />
+</menu>

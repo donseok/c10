@@ -1,0 +1,30 @@
+<items>
+	<item type="block" width="1000">
+		<item inputWidth="80" label="요청일" labelWidth="80" name="TST_RGS_DH_FR" type="calendar" labelAlign="right" dateFormat="%Y-%m-%d"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="~" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item inputWidth="80" name="TST_RGS_DH_TO" type="calendar" dateFormat="%Y-%m-%d"/>
+		<item offset="30" type="newcolumn"/>
+		<item inputWidth="80" label="요청자" name="TST_REQ_ID" maxLength="10" type="input" labelAlign="right"/>
+		<item offset="50" type="newcolumn"/>
+		<item command="receive" label="Display Name" name="receive" type="linkbutton" value="접수"/>
+		<item offset="3" type="newcolumn"/>
+		<item command="complete" label="Display Name" name="complete" type="linkbutton" value="완료"/>
+		<item offset="50" type="newcolumn"/>
+		<item type="button" name="find" value="조회" command="find"/>
+		<item offset="3" type="newcolumn"/>
+		<item command="save" name="save" type="button" value="요청저장"/>
+		<item offset="3" type="newcolumn"/>
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="1000">		
+		<item inputWidth="80" label="개발번호" labelWidth="80" name="PRD_DEV_NO"  maxLength="10" type="input" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item inputWidth="80" label="진도코드" labelWidth="80" name="TST_PRG_CD" type="combo" labelAlign="right"/>
+		<item offset="3" type="newcolumn"/>
+		<item inputWidth="80" label="수행처" labelWidth="80" name="TST_CMP" type="combo" labelAlign="right"/>		
+		<item offset="3" type="newcolumn"/>
+		<item inputWidth="80" label="외부기간" labelWidth="80" name="TST_OUT_CMP"  maxLength="10" type="input" labelAlign="right"/>
+	</item>
+</items>

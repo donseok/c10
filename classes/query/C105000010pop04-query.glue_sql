@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryMap desc="C105000010pop04 Page 쿼리파일">
+    <query id="C105000010pop04.select" desc="C105000010pop04 조회" fetchSize="10" isNamed="true">
+        <![CDATA[
+             SELECT 
+		EMPNO, ENAME, JOB, MGR,
+                TO_CHAR(HIREDATE,'yyyy-mm-dd') as HIREDATE, 
+                SAL,DEPTNO
+	     FROM EMP WHERE DEPTNO=:DEPTNO
+        ]]>
+    </query> 
+    <query id="C105000010pop04.update" desc="C105000010pop04 정보 수정" isNamed="true">
+        <![CDATA[
+            UPDATE EMP
+            SET ENAME=:ENAME,            
+	    JOB=:JOB,
+	    MGR=:MGR,
+	    HIREDATE=:HIREDATE,
+	    SAL=:SAL,
+	    COMM=:COMM,
+	    DEPTNO=:DEPTNO
+            WHERE EMPNO=:EMPNO
+        ]]>
+    </query>
+    <query id="C105000010pop04.delete" desc="C105000010pop04 정보 삭제" isNamed="true">
+        <![CDATA[
+            DELETE FROM EMP
+            WHERE EMPNO=:EMPNO
+        ]]>
+    </query>    
+    <query id="C105000010pop04.insert" desc="C105000010pop04 정보 추가" isNamed="true">
+        <![CDATA[
+            INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
+            VALUES(:EMPNO,:ENAME, :JOB, :MGR,:HIREDATE, :SAL,:COMM,:DEPTNO)
+        ]]>
+    </query>
+</queryMap>

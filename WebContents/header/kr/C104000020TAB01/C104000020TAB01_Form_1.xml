@@ -1,0 +1,236 @@
+<items>
+<item type="block" width="960">
+<item inputWidth="640" label="주문특기사항" labelWidth="120" name="ORD_SPC_TXT" type="input" labelAlign="right"  style="background-color:#FFFFC0" maxLength="1000"/>
+<item offset="5" type="newcolumn"/>
+<item name="ORD_COP_STP" type="checkbox" label="복사금지"/>
+<item offset="5" type="newcolumn"/>
+<item command="save" name="save" type="button" value="저장" disabled="true"/>
+<item type="hidden" name="ORD_NO" value=""/>
+<item type="hidden" name="ORD_LN" value=""/>
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="품질설계상태" labelWidth="120" name="QLT_DSN_STS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="QLT_HLD_YN" readonly="true" type="input" labelAlign="right" style = "font-weight:bold; color:red" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="주문유형" labelWidth="120" name="ORD_KND" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="유통경로/국가코드" labelWidth="120" name="FLOW_CHL" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="NAT_CD" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="70" label="제품형태/EDGE" labelWidth="120" name="PRD_SHP" readonly="true" type="input" labelAlign="right" />
+<item offset="23" type="newcolumn"/>
+<item inputWidth="70" name="ORD_EDG_ASG_TP" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="규격명" labelWidth="120" name="SPC_NM" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="인수도규격/규격년도" labelWidth="120" name="ACPT_RT_SPC" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="SPC_YR" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="고객사" labelWidth="120" name="CUS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="불연속패턴/폭관리" labelWidth="120" name="DISC_PTN_WTH_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="주문 Actual Size" labelWidth="120" name="ORD_SZ" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="수요가" labelWidth="120" name="ACT_CUS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="주문요청량/단위" labelWidth="120" name="ORD_SHT_CNT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_WGT_UNT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="인도허용차(하/상)" labelWidth="120" name="ORD_DLV_ALW_DIF_LLV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_DLV_ALW_DIF_ULV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="주문량 / 단위중량" labelWidth="120" name="ORD_LN_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_UNT_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="중량결정" labelWidth="120" name="WGT_DCS_MTH_TP" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="주문납기(고객/확정)" labelWidth="120" name="CUS_REQ_DLV_DD" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_PTL_END_DD" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="도금량코드" labelWidth="120" name="GW_ASG_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="49" label="조도/Spangle/조질도" labelWidth="120" name="ORD_ROU_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="49" name="ORD_SPNL_TP" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="49" name="ORD_SKP_DEG" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="표면처리코드" labelWidth="120" name="ORD_SUR_HND_CD" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="포장단중(하/상)" labelWidth="120" name="ORD_PAK_UNT_WGT_LLV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_PAK_UNT_WGT_ULV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="포장길이(하/상)" labelWidth="120" name="ORD_PAK_LTH_LLV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_PAK_LTH_ULV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="Sheet 포장매수/중량" labelWidth="120" name="ORD_PAK_SHT_CNT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_PAK_UNT_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="정포장중량(하/상)" labelWidth="120" name="ORD_STDP_LLV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_STDP_ULV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="정포장매수(하/상)" labelWidth="120" name="ORD_STDP_CNT_LLV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_STDP_CNT_ULV" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="보호필름 폭" labelWidth="120" name="ORD_PTT_FLM_WTH" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="소포장(중량/혼입율)" labelWidth="120" name="ORD_SML_PAK_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_SML_PAK_MIR" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="주문두께구분" labelWidth="120" name="ORD_THK_TP" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="미부착폭 W/S / D/S" labelWidth="120" name="PTT_FLM_NOT_ADH_WS" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="PTT_FLM_NOT_ADH_DS" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="두께관리코드" labelWidth="120" name="ORD_THK_MNG_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="폭관리코드" labelWidth="120" name="ORD_WTH_MNG_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="길이관리코드" labelWidth="120" name="ORD_LTH_MNG_CD" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="압연목표두께/단위" labelWidth="120" name="CUS_REQ_ROL_THK" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="THK_COR_UNT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="40" label="주문내경/종류" labelWidth="120" name="ORD_COIL_IDIA" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="8" type="newcolumn"/>
+<item inputWidth="115" name="ORD_SLV_KND_TP" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="40" label="주문외경/길이관리" labelWidth="120" name="ORD_COIL_ODIA" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="8" type="newcolumn"/>
+<item inputWidth="115" name="LTH_MNG_YN" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="색상코드(T/B)" labelWidth="120" name="HUE_CD_FRN" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="HUE_CD_BAK" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="EMBOSS무늬" labelWidth="120" name="EMBS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="보호필름상세" labelWidth="120" name="ORD_PTT_FLM_DTL_CD" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="78" label="수지구분(T/B)" labelWidth="120" name="RSN_TP_FRN" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="RSN_TP_BAK" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="도막두께(T/B)" labelWidth="120" name="PNT_FLM_THK_FRN_TOT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="PNT_FLM_THK_BAK_TOT" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="광택도(T/B)" labelWidth="120" name="LUS_RT_CD_FRN" readonly="true" type="input" labelAlign="right"/>
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="LUS_RT_CD_BAK" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="967">
+<item inputWidth="165" label="Sheet적치방법" labelWidth="120" name="ORD_SHT_LOD_MTH" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="포장방법" labelWidth="120" name="ORD_PAK_MTH" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="권취방법" labelWidth="120" name="ORD_COILG_MTH" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="Material Code" labelWidth="120" name="MTL_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="48" label="Class/SubClass" labelWidth="120" name="CLS_CD" readonly="true" type="input" labelAlign="right" value="ABCDEF" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="108" name="SUB_CLS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="고객정의색상" labelWidth="120" name="CUS_REQ_CLR_NM" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="488" label="Back Marking" labelWidth="120" name="BAK_MRK" type="input" style="background-color:#FFFFC0" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="164" label="포장재중량" labelWidth="120" name="ORD_PAK_MTL_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+</item>
+<item type="block" width="960">
+<item inputWidth="62" label="조합수/조합폭" labelWidth="120" name="ORD_SLIT_GRP_CNT" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="2" type="newcolumn"/>
+<item inputWidth="62" label="/" labelWidth="8" name="ORD_MIX_WTH1" readonly="true" type="input" labelAlign="left" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH2" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH3" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH4" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH5" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH6" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH7" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="10" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH8" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="9" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH9" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="9" type="newcolumn"/>
+<item inputWidth="62" name="ORD_MIX_WTH10" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="주문등록확정일" labelWidth="120" name="ORD_CFM_DD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="78" label="주문등록자/부서" labelWidth="120" name="ORD_RGS_PRS_ID" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="78" name="ORD_TEM_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="60" label="품질설계자/일시" labelWidth="120" name="QLT_DSN_PRS_ID" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="96" name="QLT_DSN_END_DH" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="60" label="주문종결자/일시" labelWidth="120" name="ORD_END_PRS_ID" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="96" name="ORD_END_DD" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="165" label="주문종결구분" labelWidth="120" name="ORD_END_TP" readonly="true" type="input" labelAlign="right" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="60" label="설계확정자/일시" labelWidth="120" name="QLT_DSN_CFM_PRS_ID" readonly="true" type="input" labelAlign="right" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="96" name="QLT_DSN_CFM_DH" readonly="true" type="input" labelAlign="right" />
+<item type="hidden" name="messageBox" value=""/>
+</item>
+<item type="block" width="960">
+<item inputWidth="70" label="반복주문번호" labelWidth="120" name="ORD_REP_NO" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="25" label="" labelWidth="120" name="ORD_REP_LN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="91" type="newcolumn"/>
+<item inputWidth="30" label="위탁임가공여부" labelWidth="120" name="TRST_PROC_YN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="5" type="newcolumn"/>
+<item inputWidth="50" label="PE-FOAM" labelWidth="68" name="PE_FOAM_TXT" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="25" type="newcolumn"/>
+<item inputWidth="100" label="설계확정자연락" labelWidth="120" name="HND_PHN_NO" readonly="true" type="input" labelAlign="right" />
+</item>
+<item type="block" width="960">
+<item inputWidth="165" label="반제품포장방법" labelWidth="120" name="WIP_PAK_MTH" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="24" type="newcolumn"/>
+<item inputWidth="487" label="지관메시지" labelWidth="120" name="PPR_RNG_PORD_TXT" type="input" labelAlign="right" style="background-color:#FFFFC0" maxLength="500"/>
+</item>
+<item type="block" width="960">
+<item inputWidth="808" label="부적합 감량메세지" labelWidth="120" name="DEF_RED_TXT" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+</item>
+</items>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="MAIN_PROC_CD" index="2" sort="str" width="24" align="center" dbname="주공정" table="VI_M00_C10A1054" type="ro" clabel="주공정">주공정</column>
+<column id="SUB_PROC_CD1" index="3" sort="str" width="24" align="center" dbname="대체공정1" table="VI_M00_C10A1054" type="ro" clabel="대체공정1">대체공정1</column>
+<column id="SUB_PROC_CD2" index="4" sort="str" width="24" align="center" dbname="대체공정2" table="VI_M00_C10A1054" type="ro" clabel="대체공정2">대체공정2</column>
+<column id="SUB_PROC_CD3" index="5" sort="str" width="*" align="center" dbname="대체공정3" table="VI_M00_C10A1054" type="ro" clabel="대체공정3">대체공정3</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>	
+<userdata name="column-info">MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,SUB_PROC_CD3</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

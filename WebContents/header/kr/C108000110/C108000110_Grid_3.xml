@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+			<call command="setSkin"><param>dhx_skyblue</param></call>
+			<call command="enableMultiselect"><param>true</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="setNoHeader"><param>false</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="enableSmartRendering"><param>true</param></call>
+			<call command="attachHeader"><param><![CDATA[#rspan,#rspan,#rspan,#rspan,업체,담당,일자,#rspan,상태,Size,수량,#rspan,#rspan,#rspan,승인,승인자,승인일자,승인,승인자,승인일자,#rspan,#rspan]]></param></call>
+		</beforeInit>
+		<afterInit>
+			<!-- 가변항목 관련 세팅 시작. -->
+			<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+			<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>
+		<column align="center"  id="SMPL_NO" index="1" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="8">샘플번호</column>
+		<column align="center"  id="SMPL_TP" index="2" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">샘플유형</column>
+		<column align="center"  id="SMPL_CHG_TP_NM" index="3" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="6">전환</column>
+		<column align="left"  	id="PRD_DEV_CMP_BOM_NO" index="4" sort="str" type="ro" 	width="14">개발No</column>
+		<column align="left"  	id="SMTL_SLP_NM" index="5" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="14">샘플제작</column>
+		<column align="center"  id="SMPL_PRD_NM" index="6" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="6">#cspan</column>
+		<column align="center"  id="SMPL_PRD_CMP_DH" index="7" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="10">#cspan</column>
+		<column align="left"  	id="CUS_CD_NM" index="8" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="14" >고객사명</column>
+		<column align="left"  	id="SMPL_STS_CD_NM" index="9" sort="str" width="5" table="TB_M20_SMPL_LAB_MNG" type="ro">샘플</column>		
+		<column align="left"  	id="SMPL_SZ_CD_NM" index="10" sort="str" width="5" table="TB_M20_SMPL_LAB_MNG" type="ro">#cspan</column>
+		<column align="right"   id="SMPL_QTY" index="11" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="5">#cspan</column>
+		<column align="left"  	id="DEV_CMP_BOM_NO" index="12" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" width="10"><![CDATA[개발완료<br>BOM]]></column>		
+		<column align="center"  id="CCL_BOM_NO" index="13" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro"	width="7"><![CDATA[CCL<br>BOM]]></column>
+		<column align="center"  id="CLR_SUB_MTL_CD" index="14" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="6">색상</column>
+		<column align="center"  id="CUS_APPR_YN" index="15" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" width="4">고객</column>
+		<column align="center"  id="CUS_APPR_NM" index="16" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" width="6">#cspan</column>
+    	<column align="center"  id="CUS_APPR_DH" index="17" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" width="8">#cspan</column>
+		<column align="center"  id="MKT_APPR_YN" index="18" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" width="4">마케팅</column>
+		<column align="center"  id="MKT_APPR_NM" index="19" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="6" >#cspan</column>
+		<column align="center"  id="MKT_APPR_DH" index="20" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="8" >#cspan</column>
+		<column align="center"  id="SMPL_PUB_YN" index="21" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="5" ><![CDATA[Tag<br>발행]]></column>		
+		<column align="left" 	id="REMARK" index="22" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="20">특기사항</column>
+		<column align="center"  id="APPR_CNT" index="23" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">승인CNT</column>
+		<column align="center"  id="MKT_CNT" index="24" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">마케팅CNT</column>
+		<column align="center"  id="SMPL_TP_NM" index="25" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">유형명</column>
+		<column align="center"  id="SMPL_CHG_TP" index="26" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">전환유형</column>
+		<column align="center"  id="PRD_NM" index="27" sort="str" table="TB_M20_SMPL_LAB_MNG " type="ro" 	width="4" hidden="true">전환유형</column>
+		<settings><colwidth><![CDATA[%]]></colwidth></settings>
+	</head>
+	<userdata name="column-info">SMPL_NO,SMPL_TP,SMPL_CHG_TP_NM,PRD_DEV_CMP_BOM_NO,SMTL_SLP_NM,SMPL_PRD_NM,SMPL_PRD_CMP_DH,CUS_CD_NM,SMPL_STS_CD_NM,SMPL_SZ_CD_NM,SMPL_QTY,DEV_CMP_BOM_NO,CCL_BOM_NO,CLR_SUB_MTL_CD,CUS_APPR_YN,CUS_APPR_NM,CUS_APPR_DH,MKT_APPR_YN,MKT_APPR_NM,MKT_APPR_DH,SMPL_PUB_YN,REMARK,APPR_CNT,MKT_CNT,SMPL_TP_NM,SMPL_CHG_TP,PRD_NM</userdata>
+</rows>

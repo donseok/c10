@@ -1,0 +1,30 @@
+<items>	
+	<item type="block" width="971">
+	    <item offset="20" type="newcolumn"/>
+		<item command="clr_dev_call" label="Display Name" name="clr_dev_call" type="linkbutton" value="색상개발"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="CLR_DEV_NO" type="input" labelAlign="left" readonly="true" value="0"/>
+		<item offset="20" type="newcolumn"/>
+		<item command="spc_prd_af_call" label="Display Name" name="spc_prd_af_call" type="linkbutton" value="특수제품후처리"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="SPC_PRD_AF_NO" type="input" labelAlign="left" readonly="true" value="0"/>
+		<item offset="20" type="newcolumn"/>
+		<item command="prt_by_roll_call" label="Display Name" name="prt_by_roll_call" type="linkbutton" value="BabyRoll제작"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="PRT_BY_ROLL_NO" type="input" labelAlign="left" readonly="true" value="0"/>
+	</item>
+	<item type="block" width="971">
+	    <item offset="20" type="newcolumn"/>
+		<item command="ink_dev_call" label="Display Name" name="ink_dev_call" type="linkbutton" value="잉크젯개발"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="INK_DEV_NO" type="input" labelAlign="right" readonly="true" value="0"/>
+		<item offset="20" type="newcolumn"/>
+		<item command="lmn_dev_call" label="Display Name" name="lmn_dev_call" type="linkbutton" value="라미나개발"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="LMN_DEV_NO" type="input" labelAlign="right" readonly="true" value="0"/>
+		<item offset="20" type="newcolumn"/>
+		<item command="prd_tst_call" label="Display Name" name="prd_tst_call" type="linkbutton" value="시험/분석"/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="20" inputWidth="100" position= "label-right" label="건" name="TST_NO" type="input" labelAlign="right" readonly="true" value="0"/>
+	</item>
+</items>

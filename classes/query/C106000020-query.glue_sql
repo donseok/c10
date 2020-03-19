@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000020 Page 쿼리파일"> 
+	 <query id="C106000020.select" desc="C106000020 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계시물레이션 조회 C106000020.select 이민균 */
+    COIL_ID, --코일ID
+    PRD_NM_CD, --품명코드
+    SPC_AVR, --규격약호
+    ORD_USG_CD, --주문용도코드
+    RMTL_CD, --원자재코드
+    MQL_CD, --재질코드
+    SP_ASG_YN, --SkinPass지정여부
+    COIL_THK, --코일두께
+    COIL_WTH, --코일폭
+    COIL_WGT, --코일중량
+    TO_CHAR(PDN_DH,'yyyy-mm-dd') AS PDN_DH, --생산일시
+    PROC_CD, --공정코드
+   -- RMTL_MAK_FAC_CD, --원자재Maker공장코드
+    RMTL_MAK_FAC_CD || (SELECT ' : ' || CD_V_MEANING 
+	 FROM M00APUSER.VI_M00_CODE_ACCESS
+	 WHERE CD_TP = 'RMTL_MAK_FAC_CD'         
+	 AND   CATEGORY_GROUP_NM = 'SZ0000'
+	 AND   CD_V = RMTL_MAK_FAC_CD) AS RMTL_MAK_FAC_CD, --원자재Maker공장NM
+    MQL_ACT_YP_MPA, --재질실적YPMPA
+    MQL_ACT_TS_MPA, --재질실적TSMPA
+    MQL_ACT_EL, --재질실적EL
+    MQL_ACT_HRB_AVG, --재질실적HRB_AVG
+    MQL_ACT_ERI_AVG --재질실적ER_AVG  
+FROM C10APUSER.TB_C10_QLT_DSN_SML A
+WHERE
+    NVL(PRD_NM_CD,'%') LIKE '%' || DECODE(:PRD_NM_CD,'all','%',:PRD_NM_CD) ||'%'
+AND PDN_DH BETWEEN TO_DATE(:PDN_DH_START,'YYYY-MM-DD')  AND TO_DATE(:PDN_DH_END,'YYYY-MM-DD') + 1
+AND NVL(COIL_THK,0) BETWEEN NVL(:COIL_THK_MIN,0) AND NVL(:COIL_THK_MAX,99)
+AND NVL(COIL_WTH,0) BETWEEN NVL(:COIL_WTH_MIN,0) AND NVL(:COIL_WTH_MAX,9999)
+AND NVL(SPC_AVR,'%') LIKE :SPC_AVR||'%' 
+AND NVL(ORD_USG_CD, '%') LIKE :ORD_USG_CD||'%'
+AND NVL(PROC_CD, '%') LIKE :PROC_CD||'%'  
+AND NVL(SP_ASG_YN, '%') LIKE :SP_ASG_YN||'%'
+AND NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL_COILX_ORD 
+                             WHERE A.COIL_ID = COIL_ID) 
+
+		 ]]> 
+	 </query>
+	 <query id="C106000020.update" desc="C106000020 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE EMP
+            SET ENAME=:ENAME,            
+	    JOB=:JOB,
+	    MGR=:MGR,
+	    HIREDATE=:HIREDATE,
+	    SAL=:SAL,
+	    COMM=:COMM,
+	    DEPTNO=:DEPTNO
+            WHERE EMPNO=:EMPNO
+		 ]]> 
+	 </query>
+	 <query id="C106000020.delete" desc="C106000020 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM EMP
+            WHERE EMPNO=:EMPNO
+		 ]]> 
+	 </query>
+	 <query id="C106000020.insert" desc="C106000020 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계 시물레이션 C106000020.insert 이민균*/ TB_C10_QLT_DSN_SML(
+COIL_ID, 
+PRD_NM_CD,
+SPC_AVR,
+ORD_USG_CD,
+RMTL_CD,
+MQL_CD,
+SP_ASG_YN,
+COIL_THK,
+COIL_WTH,
+COIL_WGT,
+PDN_DH,
+PROC_CD,
+RMTL_MAK_FAC_CD,
+MQL_ACT_YP_MPA,
+MQL_ACT_TS_MPA,
+MQL_ACT_EL,
+MQL_ACT_HRB_AVG,
+MQL_ACT_ERI_AVG,
+CREATED_OBJECT_TYPE,
+CREATED_OBJECT_ID,
+CREATED_PROGRAM_ID,
+CREATION_TIMESTAMP,
+LAST_UPDATED_OBJECT_TYPE,
+LAST_UPDATED_OBJECT_ID,
+LAST_UPDATE_PROGRAM_ID,
+LAST_UPDATE_TIMESTAMP
+)VALUES(
+:COIL_ID,                  
+:PRD_NM_CD,                
+:SPC_AVR,                  
+:ORD_USG_CD,               
+:RMTL_CD,                  
+:MQL_CD,                   
+:SP_ASG_YN,                
+:COIL_THK,                 
+:COIL_WTH,                 
+:COIL_WGT,                 
+:PDN_DH,                   
+:PROC_CD,                  
+:RMTL_MAK_FAC_CD,                 
+:MQL_ACT_YP_MPA,           
+:MQL_ACT_TS_MPA,           
+:MQL_ACT_EL,               
+:MQL_ACT_HRB_AVG,         
+:MQL_ACT_ERI_AVG,         
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp                
+)
+		 ]]> 
+	 </query>
+	 <query id="C106000020.coilIdSelect" desc="C106000020.coilIdSelect" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계시물레이션 CoilId 조회 C106000020.coilIdSelect 이민균 */
+    COIL_ID--코일ID                
+FROM C10APUSER.TB_C10_QLT_DSN_SML
+WHERE COIL_ID =:COIL_ID
+		 ]]> 
+	 </query>
+	 <query id="C106000020.standardSelect" desc="범위기준외건수조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계시물레이션 범위기준외건수조회 C106000020.standardSelect 이민균 */                
+        SUM(CASE WHEN (MQL_ACT_YP_MPA >= NVL(:MQL_ACT_YP_MPA_MIN,-1) AND MQL_ACT_YP_MPA <= NVL(:MQL_ACT_YP_MPA_MAX,1000)) THEN 0 ELSE 1 END) AS MQL_ACT_YP_MPA_CNT,
+        SUM(CASE WHEN (MQL_ACT_TS_MPA >= NVL(:MQL_ACT_TS_MPA_MIN,-1) AND MQL_ACT_TS_MPA <= NVL(:MQL_ACT_TS_MPA_MAX,1000)) THEN 0 ELSE 1 END) AS MQL_ACT_TS_MPA_CNT,
+        SUM(CASE WHEN (MQL_ACT_EL >= NVL(:MQL_ACT_EL_MIN,-1) AND MQL_ACT_EL <= NVL(:MQL_ACT_EL_MAX,100)) THEN 0 ELSE 1 END) AS MQL_ACT_EL_CNT,
+        SUM(CASE WHEN (MQL_ACT_HRB_AVG >= NVL(:MQL_ACT_HRB_AVG_MIN,-1) AND MQL_ACT_HRB_AVG <= NVL(:MQL_ACT_HRB_AVG_MAX,100)) THEN 0 ELSE 1 END) AS MQL_ACT_HRB_AVG_CNT,
+        SUM(CASE WHEN (MQL_ACT_ERI_AVG >= NVL(:MQL_ACT_ERI_AVG_MIN,-1) AND MQL_ACT_ERI_AVG <= NVL(:MQL_ACT_ERI_AVG_MAX,100)) THEN 0 ELSE 1 END) AS MQL_ACT_ERI_AVG_CNT
+    FROM C10APUSER.TB_C10_QLT_DSN_SML
+    WHERE
+       NVL(PRD_NM_CD,'%') LIKE '%' || DECODE(:PRD_NM_CD,'all','%',:PRD_NM_CD) ||'%'
+    AND PDN_DH BETWEEN TO_DATE(:PDN_DH_START,'YYYY-MM-DD')  AND TO_DATE(:PDN_DH_END,'YYYY-MM-DD') + 1
+    AND NVL(COIL_THK,0) BETWEEN NVL(:COIL_THK,0) AND NVL(:COIL_THK,99)
+    AND NVL(COIL_WTH,0) BETWEEN NVL(:COIL_WTH,0) AND NVL(:COIL_WTH,9999)
+    AND NVL(SPC_AVR,'%') LIKE :SPC_AVR||'%' 
+    AND NVL(ORD_USG_CD, '%') LIKE :ORD_USG_CD||'%'
+    AND NVL(PROC_CD, '%') LIKE :PROC_CD||'%'  
+    AND NVL(SP_ASG_YN, '%') LIKE :SP_ASG_YN||'%'
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000020-service" initial="분기">
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="SMS전송상태" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.SMSselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="콤보" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.combo" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="SMS등록" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C104000020.AttOrdInsert" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="CP(RH)공정확인" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.PROCselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="설계확정" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="failure" value="end" />
+    <transition name="success" value="관심주문설계원업데이트" />
+    <property name="insert-sql" value="C104000020.update" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="보류" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C104000020.update1" />
+    <property name="dao" value="mesdao" />
+    <property name=":ORD_NO" value="ORD_NO" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="named" />
+    <property name=":ORD_LN" value="ORD_LN" />
+  </activity>
+  <activity name="설계상태" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.STSselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="관심주문등록" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="SMS등록" />
+    <property name="insert-sql" value="C104000020.update3" />
+    <property name="dao" value="mesdao" />
+    <property name=":ORD_NO" value="ORD_NO" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="named" />
+    <property name=":ORD_LN" value="ORD_LN" />
+  </activity>
+  <activity name="관심주문해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="관심주문SMS대상삭제" />
+    <property name="insert-sql" value="C104000020.update4" />
+    <property name="dao" value="mesdao" />
+    <property name=":ORD_NO" value="ORD_NO" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="named" />
+    <property name=":ORD_LN" value="ORD_LN" />
+  </activity>
+  <activity name="두께범위에러" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020.ERRselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="OrdLnFind" value="콤보" />
+    <transition name="STS_find" value="설계상태" />
+    <transition name="ERR_find" value="두께범위에러" />
+    <transition name="PROC_find" value="CP(RH)공정확인" />
+    <transition name="atty" value="관심주문등록" />
+    <transition name="attn" value="관심주문해제" />
+    <transition name="holdy" value="보류" />
+    <transition name="holdn" value="보류해제" />
+    <transition name="SMS_find" value="SMS전송상태" />
+    <transition name="save" value="설계확정" />
+  </activity>
+  <activity name="보류해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C104000020.update2" />
+    <property name="dao" value="mesdao" />
+    <property name=":ORD_NO" value="ORD_NO" />
+    <property name="isAudit" value="true" />
+    <property name="param-count" value="named" />
+    <property name=":ORD_LN" value="ORD_LN" />
+  </activity>
+  <activity name="설계결과전송" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C104000020.IFinsert" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="관심주문SMS대상삭제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C104000020.AttOrdDelete" />
+  </activity>
+  <activity name="관심주문설계원업데이트" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="설계결과전송" />
+    <property name="insert-sql" value="C104000020.AttSmsupdate" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

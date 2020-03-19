@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000207110-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetStandardWordList" class="com.poscoict.glue.master.ui.attr.GetStandardWordList">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="20" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207110.getWordList" />
+    <property name="resultkey" value="WordList" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPage" />
+  </activity>
+  <activity name="ForwardPopupPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="GetStandardWordList" />
+    <property name="forwardname" value="detail" />
+  </activity>
+  <activity name="GetChainCode" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetStandardWordList" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00WorkGroup.select" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="ChainCodeList" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="Router" />
+    <property name="cache-key" value="_SYS_V_TERMS_SECTION|LANGUAGE_CODE" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="GetStandardWordList" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="SaveWord" class="com.poscoict.glue.master.ui.attr.SaveStandardWord">
+    <transition name="success" value="ForwardPopupPage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="GetChainCode" />
+    <transition name="detail" value="ForwardPopupPage" />
+    <transition name="modify" value="SaveWord" />
+    <transition name="export" value="ForwardExportPage" />
+  </activity>
+</service>
+

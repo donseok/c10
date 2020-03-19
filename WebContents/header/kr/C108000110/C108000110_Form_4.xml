@@ -1,0 +1,12 @@
+<items>
+    <item offset="10" type="newcolumn"/>
+    <item type="label"  label="[승인용 Sample]"/>
+	<item type="newcolumn" offset="3" />
+	<item labelWidth="15" inputWidth="100" position= "label-right" label="건" name="CMP_SIM_CNT" type="input" labelAlign="right" style="text-align:right" readonly="true" value="0"/>
+	<item type="newcolumn" offset="5" />
+	<item command="lab_simple_call" label="Display Name" name="lab_simple_call" type="linkbutton" value="등록"/>
+	<item type="newcolumn" offset="10" />
+	<item command="cnf_simple_call" label="Display Name" name="cnf_simple_call" type="linkbutton" value="승인요청"/>
+	<item type="newcolumn" offset="10" />
+	<item type="custombutton" name="removeSmp" value="연결해제" command="removeSmp" width="70" style="background-color:#D2FFD2"/>
+</items>

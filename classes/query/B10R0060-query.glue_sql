@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0060"> 
+	 <query id="B10R0060.select2" desc="Semi Material_Code마스타(TB_C10_MTL_SEM_PROD)select2" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Semi Material_Code마스타(TB_C10_MTL_SEM_PROD) B10R0060.select2 김종범 */
+         MTL_CD
+        ,PLNT_TP
+        ,PROC_SEQ         
+        ,PROC_CD     
+        ,SEM_PROD_MTL_CD 
+        ,MTL_RCV_DH     
+FROM TB_C10_MTL_SEM_PROD
+WHERE MTL_CD = ? 
+  AND PLNT_TP  = ?                                --플랜트구분
+  AND PROC_SEQ  = ?                             --공정순서
+  AND PROC_CD =?                                 --공정코드
+		 ]]> 
+	 </query>
+	 <query id="B10R0060.modify2" desc="Semi Material_Code마스타(TTB_C10_MTL_SEM_PROD) update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 Semi Material_Code마스타(TB_C10_MTL_SEM_PROD) B10R0060.modify2 김종범*/                      
+       TB_C10_MTL_SEM_PROD
+SET    
+     LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID   = ?     --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID   = ?    --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP    = ?    --최종변경일시 
+    ,MTL_CD           = ?                          --MaterialCode 
+    ,PLNT_TP          = ?                          --플랜트구분
+    ,PROC_SEQ        = ?                         --공정순서      
+    ,PROC_CD          = ?                         --공정코드            
+    ,SEM_PROD_MTL_CD  = ?                 --반제품MaterialCode                           
+WHERE MTL_CD = ?                              --Material Code
+  AND PLNT_TP= ?                                --플랜트구분
+  AND PROC_SEQ= ?                             --공정순서
+  AND PROC_CD=?
+		 ]]> 
+	 </query>
+	 <query id="B10R0060.insert" desc="Semi Material_Code마스타(TB_C10_MTL_SEM_PROD) insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 Semi Material_Code마스타(TB_C10_MTL_SEM_PROD) B10R0060.insert 김종범*/
+            TB_C10_MTL_SEM_PROD
+            (        
+         MTL_CD
+        ,PLNT_TP
+        ,PROC_SEQ   
+        ,PROC_CD
+        ,SEM_PROD_MTL_CD
+        ,MTL_RCV_DH
+        ,CREATED_OBJECT_TYPE
+        ,CREATED_OBJECT_ID
+        ,CREATED_PROGRAM_ID
+        ,CREATION_TIMESTAMP
+        ,LAST_UPDATED_OBJECT_TYPE
+        ,LAST_UPDATED_OBJECT_ID
+        ,LAST_UPDATE_PROGRAM_ID
+        ,LAST_UPDATE_TIMESTAMP 
+)
+VALUES( ?,?,?,?,?
+            ,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
+            ,?,?,?,?
+            ,?,?,?,?)
+		 ]]> 
+	 </query>
+</queryMap>

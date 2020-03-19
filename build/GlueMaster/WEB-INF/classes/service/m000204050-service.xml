@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000204050-service" initial="FormatInfoListRouter">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="*GetFormatList" class="com.poscoict.glue.master.ui.errch.GetFormatList">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="10" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000204050.selFormatList" />
+    <property name="resultkey" value="GetFormatListResults" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPageNum" />
+  </activity>
+  <activity name="*GetFormatList_Export" class="com.poscoict.glue.master.ui.errch.GetFormatList">
+    <transition name="success" value="ForwardExportPage" />
+    <property name="pagesize" value="-1" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000204050.selFormatListExport" />
+    <property name="resultkey" value="GetFormatListResults" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPageNum" />
+  </activity>
+  <activity name="TCListImport" class="com.poscoict.glue.master.ui.errch.ImportTCList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="PosFormatImport" class="com.poscoict.glue.master.ui.errch.ImportFormatList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardImport2Page" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="TCListImport" />
+    <property name="forwardname" value="import2" />
+  </activity>
+  <activity name="*GetTCListBelongtoFormat" class="com.poscoict.glue.master.ui.errch.GetTCListBelongtoFormat">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="GeTCBelongtoFormatResults" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000204050.selTCBelngtoFormat" />
+    <property name="cur-page-name" value="curPageNum" />
+    <property name="pagesize" value="10" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="PosFormatImport" />
+    <property name="forwardname" value="import" />
+  </activity>
+  <activity name="ForwardSubPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*GetTCListBelongtoFormat" />
+    <property name="forwardname" value="iframe" />
+  </activity>
+  <activity name="FormatInfoListRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="export" value="*GetFormatList_Export" />
+    <transition name="success" value="*GetFormatList" />
+    <transition name="iframe" value="ForwardSubPage" />
+    <transition name="import" value="ForwardImportPage" />
+    <transition name="import2" value="ForwardImport2Page" />
+  </activity>
+</service>
+

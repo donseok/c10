@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="266,26" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.2"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="407,-1" input="//@wire.0" output="//@wire.3 //@wire.4" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.4" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000030.select"/>
+    <property key="description" value="품질기준개선이력 테이블 TB_C10_QLT_STD_IMV_HST&#xD;&#xA;에 등록된 데이터를 조회 조건에 따라 조회"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="6" location="323,177" size="151,-1" input="//@wire.3" output="//@wire.2" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000030.delete"/>
+    <property key="insert-sql" value="C106000030.insert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000030.update"/>
+    <property key="description" value="품질기준개선이력관리&#xD;&#xA;&#xD;&#xA;신규등록, 삭제, 수정 처리 후 저장한다.&#xD;&#xA;신규등록시 의뢰번호는 자동 생성&#xD;&#xA;상태코드 및 의뢰자는 필수 등록처리&#xD;&#xA;&#xD;&#xA;삭제 1~n row 모두 처리&#xD;&#xA;&#xD;&#xA;수정시 의뢰번호 및 의뢰일자를 제외한 모든 필드 수정가능&#xD;&#xA;수정시 상태코드 완료 변경시는 완료일자 기재&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="4" guardcondition="success" firstRelativePoint="403,207" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="5,121" secondDimension="99,0"/>
+  </wire>
+  <wire id="5" guardcondition="save" firstRelativePoint="402,112" lastRelativePoint="402,177"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+</Glue:GlueDiagram>

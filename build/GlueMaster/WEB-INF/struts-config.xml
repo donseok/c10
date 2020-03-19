@@ -1,0 +1,195 @@
+<?xml version = '1.0' encoding = 'EUC-KR'?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+  <action-mappings>
+    <action path="/menu" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/login_menu.jsp"/>
+    </action> 
+    <action path="/m000100100" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000100100.jsp"/>
+      <forward name="new" path="/m000100100pop01.jsp"/>
+    </action> 
+    <action path="/m000100200" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000100200.jsp"/>
+      <forward name="pop01" path="/m000100200pop01.jsp"/>
+      <forward name="pop02" path="/m000100200pop02.jsp"/>
+    </action> 
+    <action path="/m000200050" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000200050.jsp"/>
+    </action> 
+    <action path="/m000201010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000201010.jsp"/>
+      <forward name="export"  path="/m000201010export.jsp"/>
+      <forward name="detail"  path="/m000201010detail.jsp"/>
+      <forward name="import"  path="/m000201010import.jsp"/>
+      <forward name="test"    path="/m000201010test.jsp"/>
+      <forward name="jcs"     path="/m000201010joc.jsp"/>
+      <forward name="codeRef" path="/m000201010code.jsp"/>
+      <forward name="layout"  path="/m000201010layout.jsp"/>
+    </action>
+    <action path="/m000201040" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success"  path="/m000201040.jsp"/>
+      <forward name="new"      path="/m000201040new.jsp"/>
+      <forward name="export"   path="/m000201040export.jsp"/>
+      <forward name="import"   path="/m000201040import.jsp"/>
+      <forward name="layout"   path="/m000201040layout.jsp"/>
+      <forward name="category" path="/m000201040pop01.jsp"/>
+    </action>
+    <action path="/m000201050" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success"  path="/m000201050.jsp"/>
+      <forward name="export"   path="/m000201050export.jsp"/>
+      <forward name="import"   path="/m000201050import.jsp"/>
+      <forward name="category" path="/m000201050pop01.jsp"/>
+    </action>
+    <action path="/m000201110" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000201110.jsp"/>
+      <forward name="detail"  path="/m000201110detail.jsp"/>
+      <forward name="export"  path="/m000201110export.jsp"/>
+    </action>
+
+    <!-- Rule list & History -->
+    <action path="/m000202010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success"          path="/m000202010.jsp"/>
+      <forward name="export"           path="/m000202010export.jsp"/>
+      <forward name="jcs"              path="/m000202010joc.jsp"/>
+      <forward name="vlist"            path="/m000202010history.jsp"/>
+      <forward name="general"          path="/m000202090.jsp"/>
+      <forward name="decisionLov"      path="/m000202091.jsp"/>
+      <forward name="multipleDecision" path="/m000202092.jsp"/>
+    </action>
+    <!-- Rule Header -->
+    <action path="/m000202020" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202020.jsp"/>
+      <forward name="import"  path="/m000202020import.jsp"/>
+    </action>
+    <!-- 1A0 Layout -->
+    <action path="/m000202030" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202030.jsp"/>
+      <forward name="export"  path="/m000202030export.jsp"/>
+      <forward name="import"  path="/m000202030import.jsp"/>
+      <forward name="layout"  path="/m000202030layout.jsp"/>
+    </action>
+    <!-- 1A0 Data -->
+    <action path="/m000202040" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202040.jsp"/>
+      <forward name="export"  path="/m000202040export.jsp"/>
+      <forward name="import"  path="/m000202040import.jsp"/>
+      <forward name="save"    path="/m000202040data.jsp"/>
+    </action>
+    <action path="/m000202050" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202050.jsp"/>
+      <forward name="save"    path="/m000202050data.jsp"/>
+    </action>
+    <!-- 1B0,1B1 Layout -->
+    <action path="/m000202060" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202060.jsp"/>
+      <forward name="export"  path="/m000202060export.jsp"/>
+      <forward name="import"  path="/m000202060import.jsp"/>
+      <forward name="layout"  path="/m000202060layout.jsp"/>
+    </action>
+    <action path="/m000202070" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202070.jsp"/>
+      <forward name="export"  path="/m000202070export.jsp"/>
+      <forward name="import"  path="/m000202070import.jsp"/>
+      <forward name="save"    path="/m000202070data.jsp"/>
+    </action>
+    <action path="/m000202080" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202080.jsp"/>
+      <forward name="export"  path="/m000202080export.jsp"/>
+      <forward name="import"  path="/m000202080import.jsp"/>
+      <forward name="save"    path="/m000202080data.jsp"/>
+    </action>
+
+    <action path="/m000202310" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000202310.jsp"/>
+      <forward name="pop01" path="/m000202310pop01.jsp"/>
+    </action>
+
+    <action path="/m000203010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000203010.jsp"/>
+      <forward name="export"  path="/m000203010export.jsp"/>
+      <forward name="export2" path="/m000203010export2.jsp"/>
+      <forward name="detail"  path="/m000203010detail.jsp"/>
+      <forward name="vlist"   path="/m000203010history.jsp"/>
+      <forward name="test"    path="/m000203010test.jsp"/>
+      <forward name="factor"  path="/m000203010factor.jsp"/>
+    </action>
+    <action path="/m000203030" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000203030.jsp"/>
+      <forward name="new"     path="/m000203030new.jsp"/>
+      <forward name="factor"  path="/m000203030factor.jsp"/>
+      <forward name="import"  path="/m000203030import.jsp"/>
+      <forward name="import2" path="/m000203030import2.jsp"/>
+    </action>
+
+    <!--echeck-->
+    <action path="/m000204010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000204010.jsp"/>
+      <forward name="export"  path="/m000204010export.jsp"/>
+      <forward name="jcs"     path="/m000204010jcs.jsp"/>
+    </action>
+    <action path="/m000204020" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success"  path="/m000204020.jsp"/>
+      <forward name="export"   path="/m000204020export.jsp"/>
+      <forward name="import"   path="/m000204020import.jsp"/>
+      <forward name="check"    path="/m000204030.jsp"/>
+      <forward name="checkxls" path="/m000204030export.jsp"/>
+      <forward name="modify"   path="/m000204040.jsp"/>
+    </action>
+    <action path="/m000204050" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000204050.jsp"/>
+      <forward name="export"  path="/m000204050export.jsp"/>
+      <forward name="import"  path="/m000204050import.jsp"/>
+      <forward name="import2" path="/m000204050import2.jsp"/>
+      <forward name="iframe"  path="/m000204050iFrame.jsp"/>
+    </action>
+
+    <action path="/m000205010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000205010.jsp"/>
+      <forward name="export"  path="/m000205010export.jsp"/>
+    </action>
+    <action path="/m000205020" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000205020.jsp"/>
+      <forward name="import"  path="/m000205020import.jsp"/>
+    </action>
+
+    <!--standard-->
+    <action path="/m000207010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000207010.jsp"/>
+      <forward name="modify"  path="/m000207010detail.jsp"/>
+      <forward name="export"  path="/m000207010export.jsp"/>
+    </action>
+    <action path="/m000207030" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000207030.jsp"/>
+      <forward name="export"  path="/m000207030export.jsp"/>
+      <forward name="detail"  path="/m000207030detail.jsp"/>
+    </action>
+    <action path="/m000208010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000208010.jsp"/>
+    </action>
+    <action path="/m000208020" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="sign"    path="/m000208020.jsp"/>
+      <forward name="request" path="/m000208030.jsp"/>
+    </action>
+    <action path="/m000208040" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000208040.jsp"/>
+    </action>
+    <action path="/m000209010" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000209010.jsp"/>
+    </action>
+    <action path="/m000209020" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="sign"    path="/m000209020.jsp"/>
+      <forward name="request" path="/m000209030.jsp"/>
+    </action>
+    <action path="/m000207110" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000207110.jsp"/>
+      <forward name="detail"  path="/m000207110detail.jsp"/>
+      <forward name="export"  path="/m000207110export.jsp"/>
+    </action>
+    <action path="/m000207120" type="com.posdata.glue.web.control.PosStrutsAction">
+      <forward name="success" path="/m000207120.jsp"/>
+      <forward name="pop01"   path="/m000207120pop01.jsp"/>
+      <forward name="pop02"   path="/m000207120pop02.jsp"/>
+    </action>
+  </action-mappings>
+</struts-config>

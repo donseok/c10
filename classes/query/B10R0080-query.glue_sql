@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0080"> 
+	 <query id="B10R0080.select2" desc="고객사코드정보 수신 B10R0080.SELECT 김종범" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 고객사코드정보 수신 B10R0080.SELECT2 김종범*/
+CD_V AS CUS_CD,
+CD_V_MEANING AS CUS_NM
+FROM M00APUSER.TB_M00_CODES030
+WHERE CD_TP_ID ='952' 
+AND CATEGORY_GROUP_ID = '892' 
+AND CD_V = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0080.modify2" desc="고객사_Code마스타(TB_M00_CODES030) B10R0080.modify2 " fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.modify2 김종범*/                      
+       M00APUSER.TB_M00_CODES030
+SET 
+     LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID   = ?     --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID   = ?    --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP    = ?    --최종변경일시 
+    ,CD_V           = ? --고객사코드 
+    ,CD_V_MEANING   = ? --고객사명                  
+WHERE CD_TP_ID ='952' 
+AND CATEGORY_GROUP_ID = '892' 
+AND CD_V  = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0080.insert" desc="고객사_Code마스타(TB_M00_CODES030) B10R0080.insert 김종범" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.insert 김종범*/
+            M00APUSER.TB_M00_CODES030
+            (
+                CD_TP_ID,
+                CATEGORY_GROUP_ID,
+                CD_V,
+                CD_V_MEANING,
+                CD_V_EXPLAIN,
+                LST_UPD_BY_IP,
+                RG_DT_NM_F,
+                RG_MIN_V,
+                RG_MAX_V,
+                CREATED_OBJECT_TYPE,
+                CREATED_OBJECT_ID,
+                CREATED_PROGRAM_ID,
+                CREATION_TIMESTAMP,
+                LAST_UPDATED_OBJECT_TYPE,
+                LAST_UPDATED_OBJECT_ID,
+                LAST_UPDATE_PROGRAM_ID,
+                LAST_UPDATE_TIMESTAMP
+)
+VALUES(
+    '952',
+    '892',
+    ?,
+    ?,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ?,?,?,?,
+    ?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="B10R0080DEV.insert" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.insert 김종범*/
+            M00APUSER.TB_M00_CODES030@UBMADD
+            (
+                CD_TP_ID,
+                CATEGORY_GROUP_ID,
+                CD_V,
+                CD_V_MEANING,
+                CD_V_EXPLAIN,
+                LST_UPD_BY_IP,
+                RG_DT_NM_F,
+                RG_MIN_V,
+                RG_MAX_V,
+                CREATED_OBJECT_TYPE,
+                CREATED_OBJECT_ID,
+                CREATED_PROGRAM_ID,
+                CREATION_TIMESTAMP,
+                LAST_UPDATED_OBJECT_TYPE,
+                LAST_UPDATED_OBJECT_ID,
+                LAST_UPDATE_PROGRAM_ID,
+                LAST_UPDATE_TIMESTAMP
+)
+VALUES(
+    '952',
+    '892',
+    ?,
+    ?,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ?,?,?,?,
+    ?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="B10R0080TST.insert" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.insert 김종범*/
+            M00APUSER.TB_M00_CODES030@UBMADQ
+            (
+                CD_TP_ID,
+                CATEGORY_GROUP_ID,
+                CD_V,
+                CD_V_MEANING,
+                CD_V_EXPLAIN,
+                LST_UPD_BY_IP,
+                RG_DT_NM_F,
+                RG_MIN_V,
+                RG_MAX_V,
+                CREATED_OBJECT_TYPE,
+                CREATED_OBJECT_ID,
+                CREATED_PROGRAM_ID,
+                CREATION_TIMESTAMP,
+                LAST_UPDATED_OBJECT_TYPE,
+                LAST_UPDATED_OBJECT_ID,
+                LAST_UPDATE_PROGRAM_ID,
+                LAST_UPDATE_TIMESTAMP
+)
+VALUES(
+    '952',
+    '892',
+    ?,
+    ?,
+    '',
+    '',
+    '',
+    '',
+    '',
+    ?,?,?,?,
+    ?,?,?,?
+)
+		 ]]> 
+	 </query>
+	 <query id="B10R0080DEV.modify2" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.modify2 김종범*/                      
+       M00APUSER.TB_M00_CODES030@UBMADD
+SET 
+     LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID   = ?     --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID   = ?    --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP    = ?    --최종변경일시 
+    ,CD_V           = ? --고객사코드 
+    ,CD_V_MEANING   = ? --고객사명                  
+WHERE CD_TP_ID ='952' 
+AND CATEGORY_GROUP_ID = '892' 
+AND CD_V  = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0080TST.modify2" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 고객사_Code마스타(TB_M00_CODES030) B10R0080.modify2 김종범*/                      
+       M00APUSER.TB_M00_CODES030@UBMADQ
+SET 
+     LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID   = ?     --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID   = ?    --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP    = ?    --최종변경일시 
+    ,CD_V           = ? --고객사코드 
+    ,CD_V_MEANING   = ? --고객사명                  
+WHERE CD_TP_ID ='952' 
+AND CATEGORY_GROUP_ID = '892' 
+AND CD_V  = ?
+		 ]]> 
+	 </query>
+</queryMap>

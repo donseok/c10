@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C105000010pop03 Page 쿼리파일"> 
+	 <query id="C105000010pop03.select" desc="C105000010pop03 생산가부이력관리 엑셀파일조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C105000010pop03 생산가부이력관리 엑셀파일조회 C105000010pop03.select  김종범  */
+	INQ_NO,
+       SEQ,
+       IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       IMG_NM CHK_IMG_NM,
+       './'||REPLACE(substr(IMG_ADR,instr(IMG_ADR,'FILE_UPLOAD')),'\','/')||'/' CHK_IMG_ADR,
+       TO_CHAR(RGS_DH,'YYYY-MM-DD') RGS_DH,
+       RGS_PRS_ID
+FROM TB_C10_INQ_HST_FILE
+WHERE INQ_NO = :INQ_NO
+ORDER BY SEQ
+		 ]]> 
+	 </query>
+	 <query id="C105000010pop03.insert" desc="C105000010pop03 생산가부이력관리 엑셀파일등록" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C105000010pop03 생산가부이력관리 엑셀파일등록 C105000010pop03.insert  김종범  */
+INTO  TB_C10_INQ_HST_FILE (
+    INQ_NO, 
+    SEQ, 
+    IMG_RGS_TP, 
+    IMG_ADR,
+    IMG_NM,
+    RGS_DH, 
+    RGS_PRS_ID,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP)
+VALUES (
+    :INQ_NO, 
+    (SELECT NVL(MAX(SEQ),0)+1 FROM TB_C10_INQ_HST_FILE  WHERE INQ_NO = :INQ_NO), 
+    '', 
+    :IMG_ADR,
+    :IMG_NM,  
+     SYSDATE, 
+    :ObjectId,
+    'C',
+    :'mesapuser',
+    'C105000010pop03',
+     SYSTIMESTAMP,
+    'C',
+    :'mesapuser',
+    'C105000010pop03',
+     SYSTIMESTAMP)
+		 ]]> 
+	 </query>
+	 <query id="C105000010pop03.delete" desc="C105000010pop03 생산가부이력관리 엑셀파일 삭제" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C105000010pop03 생산가부이력관리 엑셀파일 삭제 C105000010pop03.delete 김종범  */
+FROM TB_C10_INQ_HST_FILE
+WHERE INQ_NO = :INQ_NO
+AND SEQ = :SEQ
+		 ]]> 
+	 </query>
+</queryMap>

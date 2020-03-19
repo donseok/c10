@@ -1,0 +1,63 @@
+<items>    
+	<item type="block" width="900" name="BLOCK1">
+	    <item labelWidth="100" inputWidth="100" label="TEST번호" name="TST_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="진도Code" name="TST_PRG_CD" type="input" labelAlign="right" readonly="true" value=""/>	
+		<item offset="3" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="TEST유형" name="TST_TP" type="combo" labelAlign="right" value=""/>			
+	</item>
+	<item label="요청" type="fieldset" width="1000" offsetLeft="">
+		<item type="block" width="900" name="BLOCK2">
+			<item labelWidth="100" inputWidth="100" label="요청자" name="TST_REQ_ID" type="input" labelAlign="right" readonly="true" value=""/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="요청일시" name="REQ_RGS_DH" type="input" labelAlign="right" readonly="true" value=""/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="개발번호" name="PRD_DEV_NO" type="input" labelAlign="right" value=""/>			
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="불만번호" name="CLAIM_NO" type="input" labelAlign="right" value=""/>			
+		</item>
+		<item type="block" width="1000" name="BLOCK3">
+			<item labelWidth="100" inputWidth="800" label="의뢰제목" name="TST_TITLE" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item labelWidth="100" inputWidth="800" label="의뢰내용" name="TST_CONTENT" type="input" rows="3" labelAlign="right" value=""/>	
+		</item>
+		<item type="block" width="1000" name="BLOCK4">
+			<item labelWidth="100" inputWidth="100" label="수행처" name="TST_CMP" type="combo" labelAlign="right" style="background-color:#FFFFC0"/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="외부기관" name="TST_OUT_CMP" type="input" labelAlign="right" value=""/>
+			<item offset="3" type="newcolumn"/>
+			<item format="serchIcon_TST_OUT_CMP" name="template" type="template" value="search"/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="90" inputWidth="100" label="공정" name="TST_LINE" type="combo" labelAlign="right" value=""/>
+			<item offset="3" type="newcolumn"/>	
+			<item labelWidth="100" inputWidth="100" label="완료기한" name="CMP_RGS_DH" type="calendar" labelAlign="right" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+		</item>
+		<item type="block" width="1000" name="BLOCK5">
+			<item labelWidth="100" inputWidth="100" label="주문번호" name="ORD_NO" type="input" labelAlign="right" value=""/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="500" label="특기사항" name="TST_RMK" type="input" labelAlign="right" value=""/>	
+			<item offset="3" type="newcolumn"/>
+		    <item format="setImgIcon" name="template" type="template" value="save"/>		
+		</item>		
+	</item>
+	<item label="접수" type="fieldset" width="1000" offsetLeft="">
+		<item type="block" width="900" name="BLOCK6">
+			<item labelWidth="100" inputWidth="100" label="수행담당자" name="TST_RSP_ID" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="완료예정일" name="TST_CMP_DH" type="calendar" labelAlign="right" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="Field위치" name="TST_FLD_LOC" type="input" labelAlign="right" value=""/>						
+		</item>
+	</item>
+	<item label="완료" type="fieldset" width="1000" offsetLeft="">
+		<item type="block" width="900" name="BLOCK7">
+			<item labelWidth="100" inputWidth="100" label="시작일" name="TST_START_DH" type="input" labelAlign="right"  readonly="true" value=""/>
+			<item offset="3" type="newcolumn"/>
+			<item labelWidth="100" inputWidth="100" label="완료일" name="TST_END_DH" type="input" labelAlign="right"  readonly="true" value=""/>			
+		</item>
+		<item type="block" width="900" name="BLOCK8">
+			<item labelWidth="100" inputWidth="600" label="결과(요약)" name="TST_RST" type="input" labelAlign="right" rows="2" value="" style="background-color:#FFFFC0"/>
+			<item offset="3" type="newcolumn"/>
+		    <item format="setImgIcon2" name="template" type="template" value="save"/>				
+		</item>
+	</item>
+</items>

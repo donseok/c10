@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020TAB08pop Page 쿼리파일"> 
+	 <query id="C104000020TAB08pop.select" desc="C104000020TAB08pop 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과 통과공정 조회 C104000020TAB08pop.select 원성옥 */ 
+         PROC_SEQ
+       , MAIN_PROC_CD
+       , SUB_PROC_CD1    
+       , SUB_PROC_CD2
+       , SUB_PROC_CD3
+       , SUB_PROC_CD4
+       , SUB_PROC_CD5
+       , SUB_PROC_CD6
+    FROM M00APUSER.VI_M00_C10A1054
+   WHERE PAS_PROC_NO = :PAS_PROC_NO
+ORDER BY PROC_SEQ
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB08popCclBom.select" desc="C104000020TAB08popCclBom 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C10 품질설계결과 CCL-BOM공정 조회 C104000020TAB08popCclBom.select 원성옥 */ 
+    (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'PROC_CD' 
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = MAIN_PROC_CD) MAIN_PROC_CD, --주공정코드
+    (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'PROC_CD' 
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = SUB_PROC_CD1) SUB_PROC_CD1, --대체공정코드1
+                (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'PROC_CD' 
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = SUB_PROC_CD2) SUB_PROC_CD2, --대체공정코드2
+                (SELECT CD_V_MEANING
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+          WHERE CD_TP = 'PROC_CD' 
+            AND CATEGORY_GROUP_NM = 'SZ0000'
+            AND CD_V = SUB_PROC_CD3) SUB_PROC_CD3  --대체공정코드3
+FROM C10APUSER.TB_C10_CCL_BOM
+WHERE CCL_BOM_NO = :CCL_BOM_NO
+		 ]]> 
+	 </query>
+</queryMap>

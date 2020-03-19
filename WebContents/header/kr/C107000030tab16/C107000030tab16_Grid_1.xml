@@ -1,0 +1,526 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,품명,#cspan,규격기관,#cspan,규격약호,#cspan,주문용도,#cspan,고객사,#cspan,주문두께구분,#cspan,두께관리코드,#cspan,도금량코드,#cspan,두께범위,#cspan,#cspan,폭범위,#cspan,#cspan,두께보정치,단위]]></param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,연산,비교값,비교값,연산,비교값,비교값,#rspan,#rspan]]></param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#text_filter,,#numeric_filter,#numeric_filter,,#numeric_filter,#numeric_filter,#rspan,#rspan]]></param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="right" id="SEQ"   index="1"  sort="str" table="C10B2060" type="ro" width="4" >SEQ</column>
+<column align="center" id="CON1"   index="2"  sort="str" table="C10B2060" type="ro" width="9" >조건(C10B2060)</column>
+<column align="left" id="MIN1"  index="3"  sort="str" table="C10B2060" type="ro" width="6" >#cspan</column>
+<column align="center" id="CON2"   index="4"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN2"  index="5"  sort="str" table="C10B2060" type="ro"   width="8" >#cspan</column>
+<column align="center" id="CON3"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN3" index="7" sort="str" table="C10B2060" type="ro"   width="6" >#cspan</column>
+<column align="center" id="CON4"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN4" index="7" sort="str" table="C10B2060" type="ro"   width="6" >#cspan</column>
+<column align="center" id="CON5"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN5" index="7" sort="str" table="C10B2060" type="ro"   width="5" >#cspan</column>
+<column align="center" id="CON6"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN6" index="7" sort="str" table="C10B2060" type="ro"    width="5" >#cspan</column>
+<column align="center" id="CON7"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN7" index="7" sort="str" table="C10B2060" type="ro"    width="5" >#cspan</column>
+<column align="center" id="CON8"   index="6"  sort="str" table="C10B2060" type="ro" width="9" >#cspan</column>
+<column align="center" id="MIN8" index="7" sort="str" table="C10B2060" type="ro"   width="5" >#cspan</column>
+<column align="center" id="CON9"   index="6"  sort="str" table="C10B2060" type="ro" width="10" >#cspan</column>
+<column align="center" id="MIN9" index="7" sort="str" table="C10B2060" type="ron"   format="0.000" width="5" >#cspan</column>
+<column align="center" id="MAX9" index="7" sort="str" table="C10B2060" type="ron"   format="0.000" width="5" >#cspan</column>
+<column align="center" id="CON10"   index="6"  sort="str" table="C10B2060" type="ro" width="10" >#cspan</column>
+<column align="center" id="MIN10" index="7" sort="str" table="C10B2060" type="ron"   format="0000.0" width="5" >#cspan</column>
+<column align="center" id="MAX10" index="7" sort="str" table="C10B2060" type="ron"   format="0000.0" width="5" >#cspan</column>
+<column align="center" id="RST1" index="28" sort="str" table="C10B2060" type="ro"   width="10">결과</column>
+<column align="center" id="RST2" index="28" sort="str" table="C10B2060" type="ro"   width="10">#cspan</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">SEQ,CON1,MIN1,CON2,MIN2,CON3,MIN3,CON4,MIN4,CON5,MIN5,CON6,MIN6,CON7,MIN7,CON8,MIN8,CON9,MIN9,MAX9,CON10,MIN10,MAX10,RST1,RST2</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="10">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="11">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="12">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="13">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="14">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="15">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="16">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

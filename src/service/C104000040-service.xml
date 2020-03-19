@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000040-service" initial="품질설계 재설계 조회">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="JOB상태조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C10_QLT_JOB.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="SubServiceC102100000" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100000-service" />
+  </activity>
+  <activity name="주문상태" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000040.STSselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="품질설계 재설계 조회" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="재설계 조회" />
+    <transition name="save" value="재설계 update" />
+    <transition name="STS_find" value="주문상태" />
+    <transition name="job_sts" value="JOB상태조회" />
+  </activity>
+  <activity name="STATUS_SET" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SubServiceC102100000" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="RE_QLT_DSN_TP|Y" />
+  </activity>
+  <activity name="재설계 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000040.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="재설계 update" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="STATUS_SET" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000040.update" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

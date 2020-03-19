@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu id="0">
+	<item  id="deleteItem" text="삭제" img="btn_clear.gif" imgdis="btn_clear_dis.gif"/>	
+</menu>

@@ -1,0 +1,47 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="USE_YN" index="1" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="5"><![CDATA[사용<br>여부]]></column>
+<column align="center" id="CLR_SUB_MTL_CD" index="2" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="8">컬러코드</column>
+<column align="center" id="PNT_CMP_CD" index="3" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="8">업체코드</column>
+<column align="center" id="MDF_SEQ" index="4" sort="str" table="TB_C10_CLR_MPR_MDF_LOG" type="ro" width="5">Seq</column>
+<column align="left"     id="MDF_RSN" index="5" sort="str" table="TB_C10_CLR_MPR_MDF_LOG" type="ro" width="21">수정사유</column>
+<column align="center" id="NV" index="6" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" >고형분</column>
+<column align="center" id="PNT_GRA" index="7" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[도료<br>비중]]></column>
+<column align="center" id="SLV_GRA" index="8" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[용제<br>비중]]></column>
+<column align="center" id="PNT_UNT" index="9" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[도료<br>원단위]]></column>
+<column align="center" id="PTC_YN" index="10" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" >입자유무</column>
+<column align="center" id="PTC_TYPE" index="11" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" >입자TYPE</column>
+<column align="center" id="TEX_KND" index="12" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" >질감종류</column>
+<column align="center" id="PTC_MIN" index="13" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[입자<br>MIN]]></column>
+<column align="center" id="PTC_MAX" index="14" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[입자<br>MAX]]></column>
+<column align="center" id="PTC_AVG" index="15" sort="sort_int_custom" table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[입자<br>AVG]]></column>
+<column align="center" id="CMT" index="16" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ro" width="22"  >비고</column>
+<column align="center" id="QUE_MIN" index="17" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[소광제<br>MIN]]></column>
+<column align="center" id="QUE_MAX" index="18" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[소광제<br>MAX]]></column>
+<column align="center" id="QUE_AVG" index="19" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="ron" width="8" color="FFFFC0" ><![CDATA[소광제<br>AVG]]></column>
+<column align="center" id="LAST_UPDATED_OBJECT_ID" index="20" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="10">수정자</column>
+<column align="center" id="LAST_UPDATE_TIMESTAMP" index="21" sort="str_custom" table="TB_C10_CLR_MPR" type="ro" width="18">수정일자</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,PNT_CMP_CD,MDF_SEQ,MDF_RSN,NV,PNT_GRA,SLV_GRA,PNT_UNT,PTC_YN,PTC_TYPE,TEX_KND,PTC_MIN,PTC_MAX,PTC_AVG,CMT,QUE_MIN,QUE_MAX,QUE_AVG,LAST_UPDATED_OBJECT_ID,LAST_UPDATE_TIMESTAMP</userdata>
+</rows>

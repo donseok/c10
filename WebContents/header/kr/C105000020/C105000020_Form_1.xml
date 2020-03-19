@@ -1,0 +1,14 @@
+<items>
+	<item type="block" width="971">
+		<item offset="10" type="newcolumn"/>
+		<item labelWidth="90" inputWidth="185" label="INQUIRY 번호" name="INQ_NO" type="input" labelHeight="12" style="background-color:#FFFFC0" labelAlign="right"/>
+		<item offset="330" type="newcolumn"/>	
+		<item command="inquiryEnd" name="inquiryEnd" type="custombutton" value="완료" width="80" disabled="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item command="find" name="find" type="button" value="조회" disabled="true"/>
+		<item offset="5" type="newcolumn"/>
+		<item command="save" name="save" type="button" value="저장" disabled="true"/>
+		<item offset="10" type="newcolumn"/>
+		<item command="winClose" name="winClose" type="button" value="닫기"/>		
+	</item>
+</items>

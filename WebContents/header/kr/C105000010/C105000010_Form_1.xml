@@ -1,0 +1,45 @@
+<items>
+<item type="block">
+<item dateFormat="%Y-%m-%d" inputWidth="75" label="Inquiry접수일" labelAlign="right" labelWidth="80" name="INQ_RCP_DH_STR" style="background-color:#FFFFC0" type="calendar"/>
+<item offset="5" type="newcolumn"/>
+<item label="~" name="INQ_RCP_DH_DUR" type="label"/>
+<item offset="5" type="newcolumn"/>
+<item dateFormat="%Y-%m-%d" inputWidth="75" name="INQ_RCP_DH_END" style="background-color:#FFFFC0" type="calendar"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="80" label="Inquiry번호" labelAlign="right" maxLength="10" name="INQ_NO" style="background-color:#FFFFC0" type="input"/>
+<item offset="30" type="newcolumn"/>
+<item inputWidth="120" label="품명" labelAlign="right" name="PRD_NM_CD" type="combo"/>
+<item offset="25" type="newcolumn"/>
+<item command="create" disabled="true" name="create" type="custombutton" value="등록" width="75"/>
+<item offset="5" type="newcolumn"/>
+<item command="find" disabled="true" name="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<item command="save" disabled="true" name="save" type="button" value="저장"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="971">
+<item inputWidth="75" label="최종수요가" labelAlign="right" labelWidth="80" maxLength="6" name="CUS_CD" type="input"/>
+<item offset="5" type="newcolumn"/>
+<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+<item offset="79" type="newcolumn"/>
+<item inputWidth="80" label="검토자" labelAlign="right" labelWidth="72" name="QLT_CHR_PRS_ID" type="input"/>
+<item offset="1" type="newcolumn"/>
+<item inputWidth="118" label="요청내용" labelAlign="right" labelWidth="55" name="INQ_REQ_TXT" type="input"/>
+<item offset="25" type="newcolumn"/>
+<item command="calculate" name="calculate" type="custombutton" value="길이계산" width="75"/>
+</item>
+<item type="block" width="971">
+<item label="Inquiry상태" labelAlign="right" name="txt_input" type="template"/>
+<item offset="0" type="newcolumn"/>
+<item checked="true" label="전체" name="INQ_STS_CD" position="label-right" value="" type="radio"/>
+<item offset="10" type="newcolumn"/>
+<item label="의뢰" name="INQ_STS_CD" type="radio" value="1"/>
+<item offset="10" type="newcolumn"/>
+<item label="검토중" name="INQ_STS_CD" type="radio" value="2"/>
+<item offset="10" type="newcolumn"/>
+<item label="검토완료" name="INQ_STS_CD" type="radio" value="5"/>
+<item offset="10" type="newcolumn"/>
+<item label="종료" name="INQ_STS_CD" type="radio" value="9"/>
+</item>
+</items>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:Activity" id="155869" location="292,284" size="128,-1" input="//@wire.2" output="//@wire.1 //@wire.3" name="STOP">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.RoutingByStatusActivityB"/>
+    <property key="mode" value="STOP"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="155870" location="346,364" size="-1,-1" input="//@wire.1 //@wire.3"/>
+  <child xsi:type="Glue:InitialState" id="155969" location="342,222" size="-1,-1" output="//@wire.2"/>
+  <property key="tx2" value="true"/>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 ERP 영업관리(SD)에서 요청한 &#xD;&#xA;생산가부요청 주문에 대하여 주문항목 에러체크하고&#xD;&#xA;품질중요항목에 대한 설계결과를 전송하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 주문항목 에러체크&#xD;&#xA;    . 품질설계KEY 편성&#xD;&#xA;    . 중요Size설계&#xD;&#xA;    . 인터페이스테이블 수신처리&#xD;&#xA;    . 생산가부검토결과 송신처리&#xD;&#xA;"/>
+  <wire id="2668" guardcondition="success" firstRelativePoint="371,158" lastRelativePoint="371,158"/>
+  <wire id="9075" guardcondition="success" firstRelativePoint="356,329" lastRelativePoint="356,363"/>
+  <wire id="9080" guardcondition="success" firstRelativePoint="344,245" lastRelativePoint="344,299"/>
+  <wire id="9081" guardcondition="failure" firstRelativePoint="405,314" lastRelativePoint="365,373">
+    <bendpoint weight="0.5" firstDimension="118,75" secondDimension="118,0"/>
+  </wire>
+</Glue:GlueDiagram>

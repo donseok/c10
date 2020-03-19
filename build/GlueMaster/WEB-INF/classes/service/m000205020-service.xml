@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000205020-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetAppMsgSelected" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="AppMsgSelectedVOResult" />
+    <property name="param0" value="ApplicationId" />
+    <property name="sqlkey" value="m000205010.selAppMsgSelected" />
+    <property name="param1" value="LanguageCode" />
+    <property name="param2" value="MessageNm" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="ModifyMsgSelected" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="GetAppMsgSelected" />
+    <property name="param-count" value="12" />
+    <property name="sqlkey" value="TbM00Messages030.update" />
+    <property name="param0" value="MessageTp" />
+    <property name="param1" value="MessageCont" />
+    <property name="param2" value="MessageNm" />
+    <property name="param3" value="MessageExplain" />
+    <property name="param4" value="ApplMsgOwnerEmpNo" />
+    <property name="param5" value="LstUpdByIp" />
+    <property name="param6" value="ObjectType" />
+    <property name="param10" value="LanguageCode" />
+    <property name="param7" value="ObjectId" />
+    <property name="param11" value="MessageNm" />
+    <property name="dao" value="masterdao" />
+    <property name="param8" value="ProgramId" />
+    <property name="param9" value="ApplicationId" />
+    <property name="resultkey" value="update_cnt" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="AppMsgSelectedRouter" />
+    <property name="cache-key" value="LANGUAGE_CODE|_SYS_R_APPLICATION_ID" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="AppMsgSelectedRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="GetAppMsgSelected" />
+    <transition name="modify" value="ModifyMsgSelected" />
+    <transition name="import" value="ForwardImportPage" />
+    <transition name="enter" value="InsertMsg" />
+    <transition name="enterpage" value="end" />
+  </activity>
+  <activity name="ImportAppMsg" class="com.poscoict.glue.master.ui.appmsg.ImportAppMsg">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="InsertMsg" class="com.poscoict.glue.master.ui.appmsg.AddAppMsg">
+    <transition name="failure" value="end" />
+    <transition name="success" value="GetAppMsgSelected" />
+    <property name="resultkey" value="insertCnt" />
+    <property name="sqlkey" value="TbM00Messages030.insert" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="ImportAppMsg" />
+    <property name="forwardname" value="import" />
+  </activity>
+</service>
+

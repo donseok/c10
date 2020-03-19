@@ -1,0 +1,21 @@
+<items>	
+	<item type="block" width="971">		
+		<item type="newcolumn" offset="805" />
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="971">		
+		<item type="input" label="Material Code" name="MTL_CD" inputWidth="130" labelAlign="left" style="background-color:#FFFFC0"/>	
+		<item type="newcolumn" offset="5" />
+		<item type="combo" label="품명" name="PRD_NM_CD" inputWidth="75" labelAlign="left" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="5" />
+		<item type="combo" label="제품유형" name="PRD_SHP" inputWidth="75" labelAlign="left" style="background-color:#FFFFC0"/>
+		<item type="newcolumn" offset="5" />
+		<item type="combo" label="재질코드" name="MQL_CD" inputWidth="75" labelAlign="left"/>	
+		<item type="newcolumn" offset="5" />
+		<item type="combo" label="도금량코드" name="ORD_GW_ASG_CD" inputWidth="75" labelAlign="left"/>	
+		<item type="newcolumn" offset="5" />		
+		<item type="input" label="CCL-BOM번호" name="CCL-BOM번호" inputWidth="75" labelAlign="left"/>	
+	</item>
+</items>

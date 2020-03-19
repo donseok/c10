@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000020TAB07-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="공통 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020TAB07.CMNselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="MSG 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="이력저장" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.CCLupdate" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.CHG_HSTinsert" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="BOM MSG UPD" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="칼라물성 전송" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.CCLBOMupdate" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020TAB07.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="칼라물성 전송" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="물성_I_Log" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.CCLMPRinsert" />
+    <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+    <transition name="CMN_find" value="공통 조회" />
+    <transition name="STS_find" value="상태 조회" />
+    <transition name="MSG_save" value="MSG 저장" />
+    <transition name="MSG_sync" value="BOM MSG UPD" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.MNFupdate" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="물성_I_Log" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB07.CLR_MPR_MDF_LOG_Inst" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="상태 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020TAB07.STSselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--
+ * PROGRAM NAME     :  C104000010.jsp
+ * VERSION          :  V1.0
+ * DESCRIPTION      :  품질설계의뢰현황
+ * DESIGNER NAME    :  한 윤 섭
+ * DEVELOPER NAME   :  박 재 영
+ * CREATE DATE      :  2011.11.07
+ *
+ * Date	          Ver       Name       Description
+ * ------------  ------    --------  ------------------------
+ * 2011.11.07     V1.0      박재영      Initial Version
+ * 변경일자        
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</meta>
+<title>
+</title>
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
+</script>
+<script src="./js/c10.ui.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+<!--
+//<![CDATA[
+//var timerID;
+var items = new Array();  //public dhtmlx component array
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C104000010_Form_1","xml":".\/header\/kr\/C104000010\/C104000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
+      '{"itemType":"grid","renderTo":"C104000010_Grid_1","xml":".\/header\/kr\/C104000010\/C104000010_Grid_1.xml","rowCnt":"19","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"2","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
+      '{"itemType":"messagebox","renderTo":"messagebox","xml":".\/header\/kr\/C104000010\/messagebox.xml","service":"C104000010-service"}' +
+   ']'; 
+var initConfig = JSON.parse(pageConfiguration);	     
+var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
+//form find button item event function (requred)
+/**
+ * @class 품질설계공통
+ * @param {eventName} 이벤트명
+ * @return {} 
+ * @see dhtmlx , parameters, loadData 
+ */
+function find(eventName){ 
+	// 날짜 관련 폼 데이터
+	var fromDate = items['C104000010_Form_1'].getDhxForm().getInput('QLT_DSN_INST_DH_STR').value;
+	var toDate = items['C104000010_Form_1'].getDhxForm().getInput('QLT_DSN_INST_DH_END').value;
+
+	// 입력받을 타입을 검사
+	fromDate = get_DateTypeDay(fromDate);
+	toDate = get_DateTypeDay(toDate);
+	
+	if(fromDate == '' || toDate == ''){
+		dhtmlx.alert({
+            ok:"확인",
+            text:"설계의뢰일자를 입력하지 않았습니다!",
+            callback:function(val){
+              if(val){
+                items['C104000010_Form_1'].setItemFocus('QLT_DSN_INST_DH_STR');
+              }
+           }
+      	});
+	  return ;
+	}
+	if(fromDate > toDate){
+		dhtmlx.alert({
+            ok:"확인",
+            text:"설계의뢰일자를 잘못 입력하였습니다!",
+            callback:function(val){
+              if(val){
+                items['C104000010_Form_1'].setItemFocus('QLT_DSN_INST_DH_STR');
+              }
+           }
+      	});
+		return ;
+	}
+	var findUrl = uiCommon.parameters('C104000010_Form_1','C104000010_Grid_1',eventName); 
+	items['C104000010_Grid_1'].loadData(findUrl); 
+}
+function save(eventName,formDivObj,referenceItem){
+    items[referenceItem].send(items[referenceItem].getServerProcessUrl(),items[referenceItem].getActivityServiceName(),eventName);
+}
+//menu refresh event function
+function refresh(referenceItem){ //grid selection clear event	
+	items[referenceItem].refresh("find");
+}
+//menu new row event function
+function add(referenceItem){
+   items[referenceItem].addRow();
+}
+//menu remove event function
+function remove(referenceItem){
+    items[referenceItem].removeRow();
+}
+//menu rows clipboard copy event function
+function copy(referenceItem){
+	items[referenceItem].copyRowContent();
+}
+//(undo)
+function undo(referenceItem){
+	items[referenceItem].undo();
+}
+//(Redo)
+function redo(referenceItem){
+	items[referenceItem].redo();	
+}
+function onGridContextMenuClick(id,gridObj,menuObj){  	
+    var isChecked = menuObj.getCheckboxState(id);
+    
+    if("copy_row" == id){
+         var rowId=gridObj.getSelectedRowId();
+         var cellInd=gridObj.getSelectedCellIndex();
+        if(rowId !== null){
+           gridObj.cellToClipboard(rowId, cellInd);
+        }
+    }  	
+    if("excel_grid" == id){
+     	gridObj.toExcel('<%=request.getContextPath()%>/gridexcel','color');
+    }
+    
+    
+}
+function findMessage(referenceItem){		
+//	parent.uiLayout.progressOff();
+	uiCommon.message(ui.messagebox.messageBoxDivId,referenceItem.getUserData("","appMsg"));
+	return true;
+}
+/**
+ * @class function Form Load시 동작하는 Event
+ * @param {} 
+ * @return {} 
+ * @see dhtmlx , gluegun.ui 참조 function
+ */
+function onFormLoadEvent(){ 
+	 
+	items['C104000010_Form_1'].setItemValue("QLT_DSN_INST_DH_STR",getCurrentMinusDay('-',1,'YYYYMMDD'));
+	items['C104000010_Form_1'].setItemValue("QLT_DSN_INST_DH_END",uiCommon.getCurrentDate());
+	
+	//Calendar시작일자 변경(2013.05.30 기존 월요일부터 시작 -> 일요일부터 시작으로 변경)
+	items['C104000010_Form_1'].getItem("QLT_DSN_INST_DH_STR").setWeekStartDay(7);
+	items['C104000010_Form_1'].getItem("QLT_DSN_INST_DH_END").setWeekStartDay(7);
+	 
+    var comboList = items['C104000010_Form_1'].getMasterCombos();
+ 	
+	comboList['QLT_DSN_STS_CD'].readonly(true,false);
+	ui.combo.master(comboList['QLT_DSN_STS_CD'],'SZ0000','QLT_DSN_STS_CD','totalValue=,orderBy=value',function(){
+	  comboList['QLT_DSN_STS_CD'].selectOption(0,true,true);
+	});
+	comboList['QLT_DSN_STS_CD'].DOMelem_input.onkeydown = function(e){
+		key = (e) ? e.keyCode : event.keyCode;
+			if(key==8 || key==116){
+				if(e){   //표준         
+					e.preventDefault();
+				}
+				else{ //익스용
+					event.keyCode = 0;
+					event.returnValue = false;
+				}
+			}
+		}
+	comboList['PRD_NM_CD'].readonly(true,false);
+	ui.combo.master(comboList['PRD_NM_CD'],'SZ0000','PRD_NM_CD','totalValue=,orderBy=value',function(){
+	  comboList['PRD_NM_CD'].selectOption(0,true,true);
+	  comboList['PRD_NM_CD'].setOptionHeight(220);
+	});
+	//comboList['PRD_NM_CD'].setOptionHeight(300);
+	comboList['PRD_NM_CD'].DOMelem_input.onkeydown = function(e){
+		key = (e) ? e.keyCode : event.keyCode;
+			if(key==8 || key==116){
+				if(e){   //표준         
+					e.preventDefault();
+				}
+				else{ //익스용
+					event.keyCode = 0;
+					event.returnValue = false;
+				}
+			}
+		}
+	comboList['QLT_DSN_YN'].readonly(true,false);
+	ui.combo.master(comboList['QLT_DSN_YN'],'SZ0000','QLT_DSN_YN','totalValue=,orderBy=value',function(){
+	  comboList['QLT_DSN_YN'].selectOption(2,true,true);
+	});
+	comboList['QLT_DSN_YN'].setOptionHeight(60);
+	comboList['QLT_DSN_YN'].DOMelem_input.onkeydown = function(e){
+		key = (e) ? e.keyCode : event.keyCode;
+			if(key==8 || key==116){
+				if(e){   //표준         
+					e.preventDefault();
+				}
+				else{ //익스용
+					event.keyCode = 0;
+					event.returnValue = false;
+				}
+			}
+		}
+	var inputORD_USG_CD = items["C104000010_Form_1"].getDhxForm().getInput("ORD_USG_CD");
+	inputORD_USG_CD.onkeyup = function(){
+		inputORD_USG_CD.value = inputORD_USG_CD.value.toUpperCase(); 	
+	}	
+	
+	var inputORD_NO = items["C104000010_Form_1"].getDhxForm().getInput("ORD_NO");
+	inputORD_NO.onkeyup = function(){
+		inputORD_NO.value = inputORD_NO.value.toUpperCase(); 	
+	}	
+	
+	var inputSPC_AVR = items["C104000010_Form_1"].getDhxForm().getInput("SPC_AVR");
+	inputSPC_AVR.onkeyup = function(){
+		inputSPC_AVR.value = inputSPC_AVR.value.toUpperCase(); 	
+	}	
+	var inputCUS_CD = items["C104000010_Form_1"].getDhxForm().getInput("CUS_CD");
+	inputCUS_CD.onkeyup = function(){
+		inputCUS_CD.value = inputCUS_CD.value.toUpperCase(); 	
+	}
+	
+	//timerID = setTimeout("timer_test()",5000); 이돈석 테스트
+	
+	items['C104000010_Form_1'].getDhxForm().detachEvent(onXleForm);
+}
+//function timer_test(){
+//	var nowDate = new Date();
+	
+	//var year = nowDate.getFullYear();
+    //var month = nowDate.getMonth() + 1;
+    //var date = nowDate.getDate();
+    //if (month < 10) month = "0" + month;
+    //if (date < 10) date = "0" + date;
+    //var hour = nowDate.getHours();
+    //if (hour < 10) hour = "0" + hour;
+    
+    //var currDate = year + month + date + hour;
+    
+    //if (currDate > "2013082315")
+    //{
+    	//alert("등급 명 변경으로 프로그램을 종료해야 합니다.");
+    	//parent.window.close();
+    	//window.open("about:blank", "_parent").close();
+    	
+		//return;
+    //}
+//} 
+ //안씀
+function dateAdd(date, addDay) {
+ 
+    var nowDate = date;
+    var addDate = nowDate.getTime() + (addDay * 24 * 60 * 60 * 1000);
+    nowDate.setTime(addDate);
+ 
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1;
+    var date = nowDate.getDate();
+    if (month < 10) month = "0" + month;
+    if (date < 10) date = "0" + date;
+ 
+    return year + "-" + month + "-" + date;
+ 
+}
+function doOnRowDblClicked(rowId) {
+	var ORD_NO = items['C104000010_Grid_1'].getDhxGrid().cells(rowId,0).getValue();
+	var ORD_LN = items['C104000010_Grid_1'].getDhxGrid().cells(rowId,1).getValue();
+	var QLT_DSN_YN = items['C104000010_Grid_1'].getDhxGrid().cells(rowId,29).getValue();
+	parent.newRemoveOpenTab("C104000020","ORD_NO=" + ORD_NO + "&ORD_LN=" +ORD_LN + "&QLT_DSN_YN=" +QLT_DSN_YN);
+	}
+function serchIcon_ORD_USG_CD(name,val){
+	return "<img src="+window.dhx_globalImgPath+val+".gif align='top' onMouseOver=this.style.cursor='hand' onMouseOut=this.style.cursor='default' onClick=\"masterPopup('ORD_USG_CD','SZ0000','ORD_USG_CD','C104000010_Form_1');\">";
+}
+function serchIcon_CUS_CD(name,val){
+	return "<img src="+window.dhx_globalImgPath+val+".gif align='top' onMouseOver=this.style.cursor='hand' onMouseOut=this.style.cursor='default' onClick=\"masterPopup('CUS_CD','SZ0000','CUS_CD','C104000010_Form_1');\">";
+}
+function masterPopup(CD_TP,CATEGORY_GROUP_NM,target,formId){
+	winObj = new ui.window("popup","popup","0","0","469","532","masterGridData.do?CD_TP="+CD_TP+"&CATEGORY_GROUP_NM="+CATEGORY_GROUP_NM+"&targetName="+target+"&targetFormID="+formId);
+	winObj.setButtonDisable("park,minmax1");
+	winObj.setModal();
+}
+// popup으로부터 넘겨받은 값 item에 세팅 => 안씀
+function masterSetValue(code,name,target,formId){
+	items[formId].setItemValue(target,code);
+}
+function clear(){
+	items['C104000010_Form_1'].setItemValue("QLT_DSN_INST_DH_STR",getCurrentMinusDay('-',1,'YYYYMMDD'));
+	items['C104000010_Form_1'].setItemValue("QLT_DSN_INST_DH_END",uiCommon.getCurrentDate());
+	
+	var comboList = items['C104000010_Form_1'].getMasterCombos();
+ 	
+	comboList['QLT_DSN_STS_CD'].readonly(true,false);
+	ui.combo.master(comboList['QLT_DSN_STS_CD'],'SZ0000','QLT_DSN_STS_CD','totalValue=,orderBy=value',function(){
+	  comboList['QLT_DSN_STS_CD'].selectOption(0,true,true);
+	});
+	comboList['PRD_NM_CD'].readonly(true,false);
+	ui.combo.master(comboList['PRD_NM_CD'],'SZ0000','PRD_NM_CD','totalValue=,orderBy=value',function(){
+	  comboList['PRD_NM_CD'].selectOption(0,true,true);
+	});
+	comboList['PRD_NM_CD'].setOptionHeight(300);
+//	comboList['QLT_DSN_YN'].readonly(true,false);
+//	ui.combo.master(comboList['QLT_DSN_YN'],'SZ0000','QLT_DSN_YN','totalValue=,orderBy=value',function(){
+//	  comboList['QLT_DSN_YN'].selectOption(0,true,true);
+//	});
+//	comboList['QLT_DSN_YN'].setOptionHeight(300);
+	var inputORD_USG_CD = items["C104000010_Form_1"].getDhxForm().getInput("ORD_USG_CD");
+	inputORD_USG_CD.onkeyup = function(){
+		inputORD_USG_CD.value = inputORD_USG_CD.value.toUpperCase(); 	
+	}	
+	
+	var inputORD_NO = items["C104000010_Form_1"].getDhxForm().getInput("ORD_NO");
+	inputORD_NO.onkeyup = function(){
+		inputORD_NO.value = inputORD_NO.value.toUpperCase(); 	
+	}		
+	
+	var inputSPC_AVR = items["C104000010_Form_1"].getDhxForm().getInput("SPC_AVR");
+	inputSPC_AVR.onkeyup = function(){
+		inputSPC_AVR.value = inputSPC_AVR.value.toUpperCase(); 	
+	}	
+	var inputCUS_CD = items["C104000010_Form_1"].getDhxForm().getInput("CUS_CD");
+	inputCUS_CD.onkeyup = function(){
+		inputCUS_CD.value = inputCUS_CD.value.toUpperCase(); 	
+	}	
+	items['C104000010_Form_1'].setItemValue("ORD_NO","");
+	items['C104000010_Form_1'].setItemValue("SPC_AVR","");
+	items['C104000010_Form_1'].setItemValue("ORD_EXT_THK_STR","");
+	items['C104000010_Form_1'].setItemValue("ORD_EXT_THK_END","");
+	items['C104000010_Form_1'].setItemValue("CUS_CD","");
+}
+function onGridLoadEvent(){
+		var grid =  items['C104000010_Grid_1'].getDhxGrid();
+		var qltDsnInstDhStr = items['C104000010_Form_1'].getDhxForm().getInput('QLT_DSN_INST_DH_STR').value;
+		var qltDsnInstDhEnd = uiCommon.getCurrentDate();		
+		var customParam = {"QLT_DSN_YN":"Y","QLT_DSN_INST_DH_STR":qltDsnInstDhStr,"QLT_DSN_INST_DH_END":qltDsnInstDhEnd};
+		var findUrl = parametersC11("basicGridData.do",'C104000010_Grid_1','find',customParam);
+		items['C104000010_Grid_1'].loadData(findUrl);
+		grid.detachEvent(onXleGrid);
+}
+function parameters12(){
+    if(arguments.length < 1 || arguments.length < 2 || arguments.length < 3){
+      dhtmlx.alert("function arguments setting not found<br>"+
+            "arguments[0] : form div object id<br>"+
+            "arguments[1] : target grid div object id<br>"+
+            "arguments[2] : event name<br>"+
+            "arguments[3] : ServiceUrl\n");
+      return true;
+    }  
+   
+     var _data = [];
+     /** activity serviceName push */
+     _data.push(arguments[3]+"?ServiceName="+items[arguments[0]].getServiceName());
+     /** activity event push */
+     _data.push(arguments[2]+"=1");
+     /** dhtmlx item type 에 대한 key,value 추출 calendar는 data를 추출하는 방법이 다름 */
+     uiCommon.formParameter(_data,items[arguments[0]].getDhxForm());
+     /** item 에 대한 rendering 을 하기위한 정보 */
+     _data.push("column-info="+items[arguments[1]].getColumnInfo());
+     _data.push("blank-row-count="+items[arguments[1]].getBlankRowCntInfo());
+       
+     return _data.join("&");
+}
+function excelExport(eventName,formDivObj,referenceItem)
+{
+	var findUrl = parameters12(formDivObj, referenceItem, eventName, 'excelExport.do');
+	win = window.open(findUrl, "GGGG", "width=310,height=300,scrollbars=yes"); 
+}
+//]]>
+-->
+</script>
+</head>
+<body>
+<div id="C104000010_Form_1" style="position:absolute;height:84px;width:981px;left:0px;top:1px;">
+</div>
+<div id="C104000010_Grid_1" style="position:absolute;height:467px;width:976px;left:-7px;top:88px;">
+</div>
+<div id="messagebox" style="position:absolute;height:19px;width:977px;left:1px;top:567px;">
+</div>
+</body>
+</html>
+<script>
+<!--
+//<![CDATA[
+	ui.initializeDHTMLX();
+	items['C104000010_Form_1'].setBackgroundColor("#FFFFFF");
+	var onXleForm = items['C104000010_Form_1'].onXLEEvent(onFormLoadEvent);
+	items["C104000010_Grid_1"].rowDblClicked(doOnRowDblClicked);
+	var onXleGrid= items['C104000010_Grid_1'].onXLEEvent(onGridLoadEvent);
+	
+//]]>
+-->
+</script>

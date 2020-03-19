@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.6 //@wire.8"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="808,-1" input="//@wire.0" output="//@wire.3 //@wire.4 //@wire.5 //@wire.7" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find : 품질설계시물레이션 조회(품명 또는 생산일을 바탕으로 조회)&#xD;&#xA; save : 배포된 excell로 작성된 파일을 import하여 Grid에 보여주고&#xD;&#xA;그정보를TB_C10_QLT_DSN_SML (품질설계 시물레이션)에 저장.&#xD;&#xA;coilIdFind : import된 정보 중 코일id가 중복인지를 ajax로 판단한다.&#xD;&#xA;standardFind : 입력한 범위기준에 벗어난 범위기준외 건수를 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.4" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000020.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 TB_C10_QLT_DSN_SML (품질설계 시물레이션) 에서 &#xD;&#xA;품명 또는 생산일을 바탕으로 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 품명 또는 생산일&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="6" location="323,177" size="151,-1" input="//@wire.3" output="//@wire.2" name="저장">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C10UiC106000020InsertActivity"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 배포된 excell로 작성된 파일을 import하여 Grid에&#xD;&#xA;  그정보를 보여주고 TB_C10_QLT_DSN_SML (품질설계 시물레이션) 에 &#xD;&#xA;저장 하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - import한 정보를 저장한다.&#xD;&#xA;     (저장은 import 했을경우에만 가능하다.)&#xD;&#xA;3. Reference&#xD;&#xA;없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="51015" location="518,177" size="162,-1" input="//@wire.5" output="//@wire.6" name="COIL_ID 중복조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000020.coilIdSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 Grid에 import된 정보중 COIL_ID가&#xD;&#xA;TB_C10_QLT_DSN_SML (품질설계 시물레이션) 에 이미 존재하는지 &#xD;&#xA;중복체크 하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - Grid의 COIL_ID를 TB_C10_QLT_DSN_SML(품질설계 시물레이션)에 &#xD;&#xA;존재하는지 AJAX로 중복체크한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="51016" location="694,176" size="171,-1" input="//@wire.7" output="//@wire.8" name="standardFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000020.standardSelect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 Grid정보중 입력한 범위기준에 벗어나는 &#xD;&#xA;     범위기준외 건수를 TB_C10_QLT_DSN_SML (품질설계 시물레이션) 에&#xD;&#xA;서 계산하여 조회 하는  Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - Grid의 YP,TS,EL,HRB,ERI 정보가 입력한 범위기준에 벗어난 건수를&#xD;&#xA;TB_C10_QLT_DSN_SML(품질설계 시물레이션)에서 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;없음&#xD;&#xA;"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계값과 생산이력으로 생산제품의 시험 밀적등을 예측할 수 있도록도록 조회, 저장 , import 하는&#xD;&#xA;Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  TB_C10_QLT_DSN_SML (품질설계 시물레이션)&#xD;&#xA;  - 조회조건 :  품명, 생산일&#xD;&#xA;- 저장 : 배포된 excell로 작성된 파일을 import하여 Grid에 보여주고 그정보를&#xD;&#xA;&#x9;&#x9; TB_C10_QLT_DSN_SML (품질설계 시물레이션)에 저장한다.&#xD;&#xA;         저장은 import 했을경우에만 가능하다.&#xD;&#xA; &#xD;&#xA;"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="4" guardcondition="success" firstRelativePoint="403,207" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="5,121" secondDimension="99,0"/>
+  </wire>
+  <wire id="5" guardcondition="save" firstRelativePoint="402,112" lastRelativePoint="402,177"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="2963" guardcondition="coilIdFind" firstRelativePoint="570,112" lastRelativePoint="570,177"/>
+  <wire id="2964" guardcondition="success" firstRelativePoint="596,207" lastRelativePoint="314,312">
+    <bendpoint weight="0.5" firstDimension="-3,120" secondDimension="292,-1"/>
+  </wire>
+  <wire id="2965" guardcondition="standardFind" firstRelativePoint="759,112" lastRelativePoint="759,176"/>
+  <wire id="2966" guardcondition="success" firstRelativePoint="786,206" lastRelativePoint="314,312">
+    <bendpoint weight="0.5" firstDimension="7,121" secondDimension="482,-1"/>
+  </wire>
+</Glue:GlueDiagram>

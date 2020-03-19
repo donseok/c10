@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100DLV"> 
+	 <query id="C102100DLV.insert" desc="인수도 사양 등록" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과인수도등록 C102100DLV.INSERT 김종범*/                         
+TB_C10_QLT_DSN_DLV (                                                                           
+             ORD_NO                   --주문번호                                                                                 
+            ,ORD_LN                   --주문행번                                                                              
+            ,QLT_DSN_SPC_TP            --품질설계사양구분                                                                      
+            ,THK_TLN_ULV               --두께공차상한값                                                                        
+            ,THK_TLN_LLV              --두께공차하한값                                                                        
+            ,WTH_TLN_LLV              --폭공차하한값                                                                          
+            ,WTH_TLN_ULV              --폭공차상한값                                                                          
+            ,LTH_TLN_LLV               --길이공차하한값                                                                        
+            ,LTH_TLN_ULV               --길이공차상한값                                                                        
+            ,HWAV_H                   --반곡H                                                                                 
+            ,MWAV_H                   --중곡H                                                                                 
+            ,EWAV_H                   --외곡H                                                                                 
+            ,SLR_ULV                   --직선도상한값                                                                          
+            ,RAR_ULV                  --직각도상한값                                                                          
+            ,DGLN_DIF_ULV              --대각선차상한값                                                                        
+            ,STPN                     --급준도                                                                                
+            ,TLC                      --TELESCOPE                                                                             
+            ,CREATED_OBJECT_TYPE        --생성OBJECT유형    
+            ,CREATED_OBJECT_ID          --생성OBJECTID      
+            ,CREATED_PROGRAM_ID         --생성프로그램ID    
+            ,CREATION_TIMESTAMP         --생성일시          
+            ,LAST_UPDATED_OBJECT_TYPE   --최종변경OBJECT유형
+            ,LAST_UPDATED_OBJECT_ID     --최종변경OBJECTID  
+            ,LAST_UPDATE_PROGRAM_ID     --최종변경프로그램ID
+            ,LAST_UPDATE_TIMESTAMP      --최종변경일시      
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?,                                                                                    
+?,                                                                                             
+?, ?, ?, ?,                                                                                    
+?, ?, ?, ?                                                                                     
+)
+		 ]]> 
+	 </query>
+	 <query id="C102100DLV.select" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과인수도조회 C102100DLV.select 박재영*/ 
+         THK_TLN_ULV,THK_TLN_LLV,WTH_TLN_LLV,WTH_TLN_ULV
+        ,LTH_TLN_LLV,LTH_TLN_ULV,HWAV_H,MWAV_H,EWAV_H
+        ,SLR_ULV,RAR_ULV,DGLN_DIF_ULV,STPN,TLC 
+FROM TB_C10_QLT_DSN_DLV
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_SPC_TP = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100DLV.delete" desc="C102100DLV.delete" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+DELETE /*+ C10 품질설계결과성분삭제 C102100DLV.delete 박재영*/
+FROM TB_C10_QLT_DSN_DLV
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+</queryMap>

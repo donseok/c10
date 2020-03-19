@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000100100-service" initial="Router">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetLanageCodeList" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00Messages020.select" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="TbM00Messages020" />
+  </activity>
+  <activity name="ForwardNewPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="new" />
+  </activity>
+  <activity name="UpadateLanguageCode" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="GetLanageCodeList" />
+    <property name="resultkey" value="updateCnt" />
+    <property name="param-count" value="6" />
+    <property name="dao" value="masterdao" />
+    <property name="param0" value="UseLangSetF" />
+    <property name="param1" value="UpdByIp" />
+    <property name="param2" value="ObjectType" />
+    <property name="sqlkey" value="TbM00Messages020.update" />
+    <property name="param3" value="ObjectId" />
+    <property name="param4" value="ProgramId" />
+    <property name="param5" value="LanguageCode" />
+  </activity>
+  <activity name="InsertLanguageCode" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="ForwardNewPage" />
+    <property name="param1" value="NlsLang" />
+    <property name="param2" value="NlsArea" />
+    <property name="param3" value="IsoLangTp" />
+    <property name="param4" value="IsoAreaTp" />
+    <property name="param5" value="NlsCdSet" />
+    <property name="param6" value="UseLangSetF" />
+    <property name="param7" value="UpdByIp" />
+    <property name="param8" value="LocalLang" />
+    <property name="param9" value="Utf8Lang" />
+    <property name="resultkey" value="insertCnt" />
+    <property name="param10" value="ObjectType" />
+    <property name="param11" value="ObjectId" />
+    <property name="sqlkey" value="TbM00Messages020.insert" />
+    <property name="param12" value="ProgramId" />
+    <property name="param13" value="ObjectType" />
+    <property name="param14" value="ObjectId" />
+    <property name="param15" value="ProgramId" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="16" />
+    <property name="param0" value="LanguageCode" />
+  </activity>
+  <activity name="Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="GetLanageCodeList" />
+    <transition name="addview" value="ForwardNewPage" />
+    <transition name="modify" value="UpadateLanguageCode" />
+    <transition name="insert" value="InsertLanguageCode" />
+  </activity>
+</service>
+

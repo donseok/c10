@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Unionsteel Portal</title>
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript"></script>
+
+<script>
+//document.domain='unionsteel.co.kr';
+</script>
+<style type="text/css">
+	html, body {width: 1024px;height: 768px;margin: 0 0 0 0;padding: 0 0 0 0;overflow: hidden;}
+	.style1 {font-size: 12px;color: #666666;font-family:dotum,Tahoma;font-weight: bold;}
+	.style2 {font-size: 12px;color: #333333;font-family: dotum,Tahoma;}
+	.style3 {color: #009999;font-weight: bold;}
+	table.dhtmlxLayoutPolyContainer_dhx_skyblue td.dhtmlxLayoutSinglePoly div.dhtmlxPolyInfoBarCollapsedVer div.dhtmlxInfoButtonShowHide_hor {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-family: dotum,Tahoma;
+    font-size: 2px;
+    height: 16px;
+    left: 1px;
+    position: absolute;
+    text-align: center;
+    top: 300px;
+    vertical-align: top;
+    width: 16px;
+	}
+</style>
+</head>
+<body>	
+	<table width="1024" height="768" border="0" cellpadding="0" cellspacing="0" style="text-align:center; position:relative; table-layout:fixed;">
+		<tr height="49">
+			<td>
+				<!-- Header Start -->
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"  style="white-space:nowrap; overflow:hidden; position:relative; padding-left:0px; padding-right:0px; cursor:default; outline:none; text-align:left;">
+					<tr>
+						<td>
+							<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td background="./dhtmlx/codebase/imgs/top_back.gif"><img src="./dhtmlx/codebase/imgs/logo.gif" width="279" height="49" /></td>
+									<td align="right" background="./dhtmlx/codebase/imgs/top_back.gif">
+										<table width="70%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td class="style2"><span class="style3">박경서</span>님 안녕하세요.</td>
+												<td><span class="style2">접속시간 2011-08-09-08:00:00</span></td>
+												<td width="80"><img src="./dhtmlx/codebase/imgs/icon_01.gif" width="18" height="18" align="absmiddle" onClick="javascript:help();"/>&nbsp;<span class="style1" >도움말</span></td>
+												<td width="80"><img src="./dhtmlx/codebase/imgs/icon_02.gif" width="18" height="18" align="absmiddle" onClick="javascript:logout();"/>&nbsp;<span class="style1">로그아웃</span></td>
+												<td width="20">&nbsp;</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<!-- Header End -->
+			</td>
+		</tr>
+		<tr valign="top">
+			<td>
+				<!-- Contents Start -->
+				<div id="contents" style="height:674px; text-align:left; position:relative;"><div id="sub_contents" style="width:1024px; height:674px; text-align:left; position:relative;"></div></div>
+		
+				<!-- Contents End -->
+			</td>
+		</tr>
+	</table>
+<script>
+	uiLayout = new dhtmlXLayoutObject("contents", "2U");//parameters("div","patternType")
+	uiLayout.cells("a").setWidth(210);
+	uiLayout.cells("a").setText("");
+	uiLayout.cells("b").fixSize(false, true);
+	uiLayout.cells("b").hideHeader();
+	uiLayout.cells("a").attachObject("sub_contents");	
+
+	uiLayoutInner = new dhtmlXLayoutObject("sub_contents", "2E");//parameters("div","patternType")	
+	
+	uiLayoutInner.cells("a").setHeight(400);
+	uiLayoutInner.cells("a").setText("메뉴");
+	uiLayoutInner.setCollapsedText("a", "메뉴");
+	uiLayoutInner.cells("b").setText("즐겨찾기");
+	uiLayoutInner.setCollapsedText("b", "즐겨찾기");
+	
+
+	uiLayout.attachEvent("onPanelResizeFinish", function(){
+		var wid = uiLayout.cells("a").getWidth();
+		// changing parent's dimension
+		var parentObj = document.getElementById("sub_contents");
+		parentObj.style.width = wid+"px";
+		uiLayoutInner.setSizes();
+		return;	
+	});
+
+	 //왼쪽 메뉴 Toolbar
+	var uiTreeToolbar = uiLayoutInner.cells("a").attachToolbar();
+	    uiTreeToolbar.setIconsPath("./dhtmlx/codebase/imgs/");
+		uiTreeToolbar.setAlign("left");
+    	uiTreeToolbar.loadXML("./menu_toolbar.xml");
+		uiTreeToolbar.attachEvent("onClick", function(id){  
+			uiTree.findItem(uiTreeToolbar.getValue('menuSearchText'));
+		});
+
+		
+	//contextMenu 오른쪽 마우스 클릭시 나타나는 메뉴
+	var uiTreeMenu = new dhtmlXMenuObject();
+		uiTreeMenu.setIconsPath("./dhtmlx/codebase/imgs/");
+		uiTreeMenu.loadXML("./menu_context.xml");
+		uiTreeMenu.renderAsContextMenu();
+		uiTreeMenu.attachEvent("onClick", onContextMianMenuClick);
+
+	 //왼쪽 메뉴
+	var uiTree = uiLayoutInner.cells("a").attachTree(); // returns tree object
+		uiTree.setSkin('dhx_skyblue'); //default skin
+		uiTree.setImagePath("./dhtmlx/codebase/imgs/csh_vista/");// 폴더 이미지 변경
+		uiTree.enableDragAndDrop(true,false); //Drag option mode(true:가능 false:불가능)
+		uiTree.enableMercyDrag(true); //Drag option mode(target Tree로 이동시 remove 옵션(true:보존 false:삭제)
+		uiTree.enableSmartXMLParsing(true);
+		uiTree.loadXML("./main_menu.xml"); //menu.xml  load
+		uiTree.enableContextMenu(uiTreeMenu);
+		uiTree.attachEvent("onClick",function(id){	
+			if(uiTree.getUserData(id,"url")){
+				openTab(id,uiTree.getSelectedItemText(),uiTree.getUserData(id,"width"), uiTree.getUserData(id,"url"));//Tab Open  width
+				uiLayout.cells("a").collapse(); // 접기 Event										
+				return true;
+			}
+		});		
+		
+		uiTree.attachEvent("onBeforeDrag", function(sId,sobj){
+			if(uiTree.hasChildren(sId) > 0){
+				alert("상위폴더는 이동하실수 없습니다.");		
+				return;
+			}
+			return true;
+		});
+		
+		uiTree.attachEvent("onDragIn",function(sid,tid,sobj,tobj){
+			if(sobj!=uiTree){
+				return;
+		    }else if(tobj != favoritesTree){
+				return;
+			}
+		});
+
+
+	//왼쪽 즐겨찾기 Toolbar
+	var uiFavoritesToolbar = uiLayoutInner.cells("b").attachToolbar();
+	    uiFavoritesToolbar.setIconsPath("./dhtmlx/codebase/imgs/");
+		uiFavoritesToolbar.setAlign("right");
+    	uiFavoritesToolbar.loadXML("./favorites_toolbar.xml");
+		uiFavoritesToolbar.attachEvent("onClick", function(id){  
+				if(id == "save"){					
+					var ids = (favoritesTree.getSubItems(0)).split(",");
+					for (var i=0; i<ids.length; i++){
+						favoritesProcessor.setUpdated(ids[i], true, "updated");
+						favoritesTree.setUserData(ids[i],"url",uiTree.getUserData(ids[i],"url"));
+					}
+					favoritesProcessor.sendData();
+				}else if(id == "removeTree"){
+					onContextFavoritesMenuClick("deleteItem","");
+				}else if(id == "selectItemUp"){
+					favoritesTree.moveItem(favoritesTree.getSelectedItemId(),"up");
+					return true;					
+				}else if(id == "selectItemDown"){
+					favoritesTree.moveItem(favoritesTree.getSelectedItemId(),'down');
+					return true;
+				}
+				//uiTree.findItem(uiTreeToolbar.getValue('menuSearchText'));
+		});
+
+
+	//왼쪽 즐겨찾기
+	//contextMenu 오른쪽 마우스 클릭시 나타나는 메뉴
+	var favoritesMenu = new dhtmlXMenuObject();
+		favoritesMenu.setIconsPath("./dhtmlx/codebase/imgs/");
+		favoritesMenu.loadXML("./favorites_context_menu.xml");
+		favoritesMenu.renderAsContextMenu();
+		favoritesMenu.attachEvent("onClick", onContextFavoritesMenuClick);
+
+	var favoritesTree =  uiLayoutInner.cells("b").attachTree(); // returns tree object
+		favoritesTree.setSkin('dhx_skyblue');//default skin
+		favoritesTree.setImagePath("./dhtmlx/codebase/imgs/csh_vista/");// 폴더 이미지 변경
+		favoritesTree.enableDragAndDrop(true);//Drag option mode(true:가능 false:불가능)
+		favoritesTree.enableSmartXMLParsing(true);
+		favoritesTree.enableMercyDrag(false); //Drag option mode(target Tree로 이동시 remove 옵션(true:보존 false:삭제)
+		favoritesTree.setDragBehavior("sibling");
+		favoritesTree.enableContextMenu(favoritesMenu);
+		//favoritesTree.loadXML("favoritesMenu.do?ServiceName=favorites-service&find=1&USER_ID=1234");
+		
+		favoritesTree.attachEvent("onDrop", function(sId,tId,id,sObject,tObject){
+			if(sObject.hasChildren(sId) > 0){
+				alert("상위폴더는 이동하실수 없습니다.");						
+				return false;
+			}else{			
+				var ids=tObject.getAllSubItems(0).split(",");
+				var check={};
+				for (var i=0; i<ids.length; i++){
+					var label=tObject.getItemText(ids[i]);
+					if (!check[label]){
+						check[label]=true;
+						favoritesTree.setUserData(sId,"url",uiTree.getUserData(sId,"url"));
+					}else{
+						tObject.deleteItem(ids[i]); //delete duplicate
+					}
+				}				
+				return true;
+			}	
+			
+		});		
+		
+		favoritesTree.attachEvent("onDblClick",function(id){				
+			openTab(id,favoritesTree.getSelectedItemText(),favoritesTree.getUserData(id,"width"), favoritesTree.getUserData(id,"url"));//Tab Open  width									
+			return true;
+		});		
+		
+		favoritesProcessor = new dataProcessor("favoritesTreeHandle.do?ServiceName=favorites-service&save=1");
+		favoritesProcessor.enableDataNames(true);				
+		favoritesProcessor.setUpdateMode("off");				
+		favoritesProcessor.setTransactionMode("POST", true);	
+		favoritesProcessor.enableUTFencoding("true");
+		favoritesProcessor.init(favoritesTree);
+
+		favoritesProcessor.defineAction("appMsg", function(node){
+			if(node != null){
+				alert("정상적으로 저장되었습니다.");//alert(node.firstChild.data);
+			}
+        });
+        
+        favoritesProcessor.defineAction("errMsg", function(node){
+			if(node != null){
+				alert(node.firstChild.data);
+			}
+        });
+
+		
+
+	//오른쪽 tabbar
+	var uiTabbar = uiLayout.cells("b").attachTabbar();
+		uiTabbar.setSkin("modern");//default skin
+		uiTabbar.setImagePath("./dhtmlx/codebase/imgs/");//images path
+		uiTabbar.enableTabCloseButton(true);//removeTab Option(true:가능 false:불가능)		
+
+		uiTabbar.setOffset("5");//Tab 간격
+		uiTabbar.setMargin("8");
+		uiTabbar.addTab("notice","공지사항","100px",0);//addTab(id, text, size, position, row)
+		uiTabbar._tabs["notice"].title = "공지사항";//Tabbar tooltip 설정;
+		uiTabbar.setTabActive("notice");//tab to active state 
+		uiTabbar.attachEvent("onTabClose", onTabClose);//Tab close button event
+
+	var uiLayoutInner1 = uiTabbar.cells("notice").attachLayout("1C","dhx_skyblue");
+		uiLayoutInner1.cells("a").hideHeader();
+		uiLayoutInner1.cells("a").attachURL("notice.do");
+		function help(){
+		
+			alert("도움말 이벤트");
+		}
+		function logout(){
+		
+			alert("Logout 이벤트");
+		}
+		
+		//tab open
+		function openTab(tab_id,tab_text,width,url) {
+			uiTabbar.removeTab(tab_id,true);//Tab id가 있으면 remove =>removeTab(tab id, boolean(true:삭제 false:삭제안함))
+			uiTabbar.addTab(tab_id,tab_text,"*");//addTab(id, text, size, position, row)			
+			uiTabbar._tabs[tab_id].title = tab_text;//Tabbar tooltip 설정;
+			var uiLayoutInner2 = uiTabbar.cells(tab_id).attachLayout("1C","dhx_skyblue");
+				uiLayoutInner2.cells("a").hideHeader();
+				uiLayoutInner2.cells("a").attachURL(url);
+				uiTabbar.setTabActive(tab_id);
+		}		
+		
+		//tab close
+		function onTabClose(id){
+			if(id == "notice"){
+				alert("공지사항은 닫을 수 없습니다.");
+				return;
+			}
+			return true;
+		}
+
+		
+		//Main Menu 마우스오른쪽 이벤트
+		function onContextMianMenuClick(menuitemId, type) {
+			
+		}
+
+		//즐겨찾기 마우스오른쪽 이벤트
+		function onContextFavoritesMenuClick(menuitemId, type) {
+			
+		}
+
+		function newOpenTab(itemId,param){
+			if(uiTree.getUserData(itemId,"url")){
+				openTab(itemId,uiTree.getItemText(itemId),uiTree.getUserData(itemId,"width"), uiTree.getUserData(itemId,"url")+"?param="+param);//Tab Open  width
+				uiLayout.cells("a").collapse(); // 접기 Event										
+				return true;
+			}		
+		}
+
+		function tabClose(){
+			if(uiTabbar.getActiveTab()){
+				uiTabbar.removeTab(uiTabbar.getActiveTab(),true);
+			}			
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<items>
+    <item offset="550" type="newcolumn"/>
+    <item inputWidth="60" label="통과공정번호" labelWidth="80" name="PAS_PROC_NO" readonly="true" type="input" labelAlign="left" />
+    <item offset="5" type="newcolumn"/>
+    <item command="chrProbtn" label="공정조회" name="chrProbtn" type="linkbutton" value="공정조회" width="75"/>
+    <item offset="5" type="newcolumn"/>
+    <item command="chrProhstbtn" label="변경이력" name="chrProhstbtn" type="linkbutton" value="변경이력" width="75"/>
+    <item offset="5" type="newcolumn"/>
+    <item command="save" name="save" type="button" value="저장" disabled="true"/>
+</items>

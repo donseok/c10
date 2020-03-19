@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202020-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="RuleHeaderRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="RuleHeaderViewRouter" />
+    <transition name="import" value="ForwardImportPage" />
+    <transition name="save" value="SaveRuleHeader" />
+    <transition name="export" value="ForwardExportPage" />
+  </activity>
+  <activity name="GetGeneralRuleBasicData" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetRuleHierarchyData" />
+    <property name="resultkey" value="TbM00DefinesVOResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="TbM00Defines010.select.byPK" />
+    <property name="param0" value="MdlDefineId" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="RuleHeaderRouter" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="BusinessRuleList_Import" class="com.poscoict.glue.master.ui.rule.ImportRuleList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetDecisionRuleBasicData" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetRuleHierarchyData" />
+    <property name="resultkey" value="TbM00Rules010VOResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="TbM00Rules010.select.byPK" />
+    <property name="param0" value="MdlDefineId" />
+  </activity>
+  <activity name="RuleHeaderViewRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="general" value="GetGeneralRuleBasicData" />
+    <transition name="decision" value="GetDecisionRuleBasicData" />
+    <transition name="success" value="end" />
+  </activity>
+  <activity name="GetRespUser" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="m000202020.select.TbM00MdRespGrUser" />
+    <property name="resultkey" value="TbM00MdRespGrUser_Result" />
+    <property name="dao" value="masterdao" />
+    <property name="param0" value="MdlDefineNm" />
+    <property name="param-count" value="1" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="SaveRuleHeader" class="com.poscoict.glue.master.ui.rule.SaveRuleHeader">
+    <transition name="success" value="RuleHeaderViewRouter" />
+    <transition name="failure" value="RuleHeaderViewRouter" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetRuleHierarchyData" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetRespUser" />
+    <property name="resultkey" value="TbM00Depend010VOResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="TbM00Depend010.select.byPK" />
+    <property name="param0" value="HierarchyDataId" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="BusinessRuleList_Import" />
+    <property name="forwardname" value="import" />
+  </activity>
+</service>
+

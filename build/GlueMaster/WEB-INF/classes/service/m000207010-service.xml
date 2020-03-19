@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000207010-service" initial="GetCachingData">
+  <activity name="GetSysTp" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetTermsInfoList" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00WorkGroup.select.orderbyChainCode" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="SysTpResults" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="TermsInfoListRouter" />
+    <property name="cache-key" value="_SYS_V_TERMS_SECTION" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetSysTp2" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="GetTermsInfo" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00WorkGroup.select.orderbyChainCode" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="SysTpResults" />
+  </activity>
+  <activity name="GetTermsInfoList" class="com.posdata.glue.biz.activity.PosSearchPageSet">
+    <transition name="success" value="end" />
+    <property name="pagesize" value="20" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207010.selTermsInfoVO" />
+    <property name="resultkey" value="selTermsInfoListResults" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPageNum" />
+  </activity>
+  <activity name="ModifyTerms" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="GetSysTp2" />
+    <property name="param-count" value="4" />
+    <property name="resultkey" value="modifyCnt" />
+    <property name="chkname" value="modifyChk" />
+    <property name="param0" value="TermsDescript" />
+    <property name="param1" value="OtherTerms" />
+    <property name="dao" value="masterdao" />
+    <property name="param2" value="TermsName" />
+    <property name="sqlkey" value="m000207020.updateTB_M00_TERMS010" />
+    <property name="param3" value="EngFullName" />
+  </activity>
+  <activity name="GetTermsInfoListExport" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="ForwardPage" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000207010.selTermsInfoVOExport" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="selTermsInfoListExportResults" />
+  </activity>
+  <activity name="GetTermsInfo" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="selTermsInfoResults" />
+    <property name="param-count" value="5" />
+    <property name="param0" value="chainLOV" />
+    <property name="param1" value="SearchTypeLOV" />
+    <property name="dao" value="masterdao" />
+    <property name="param2" value="SearchWord" />
+    <property name="sqlkey" value="m000207020.selTermsInfoVO" />
+    <property name="param3" value="nsynChkBox" />
+    <property name="param4" value="SearchWord" />
+  </activity>
+  <activity name="ForwardPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="TermsInfoListRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="GetSysTp" />
+    <transition name="find" value="GetSysTp2" />
+    <transition name="export" value="GetTermsInfoListExport" />
+    <transition name="modify" value="ModifyTerms" />
+  </activity>
+</service>
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202010-service" initial="GetCachingData">
+  <activity name="ForwardHistoryPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="BusinessRuleList_History" />
+    <property name="forwardname" value="vlist" />
+  </activity>
+  <activity name="BusinessRuleList_Export" class="com.poscoict.glue.master.ui.rule.GetRuleList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="BusinessRuleList" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="sqlkey" value="m000202010.selBusinessRuleListAll" />
+    <property name="pagesize" value="-1" />
+    <property name="param-count" value="1" />
+    <property name="cur-page-name" value="curPageName" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="Router" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetRuleLayout" class="com.poscoict.glue.master.ui.rule.GetRuleLayout">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="BusinessRuleList_Export" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="JCS" class="com.poscoict.glue.master.ui.rule.PosCacheLoadRule">
+    <transition name="failure" value="ForwardJcsPage" />
+    <transition name="success" value="ForwardJcsPage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardJcsPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="jcs" />
+  </activity>
+  <activity name="Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="BusinessRuleList" />
+    <transition name="export" value="ForwardExportPage" />
+    <transition name="jcs" value="JCS" />
+    <transition name="history" value="ForwardHistoryPage" />
+    <transition name="test" value="ForwardTestPage" />
+  </activity>
+  <activity name="BusinessRuleList_History" class="com.poscoict.glue.master.ui.rule.GetRuleList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="BusinessRuleList" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="sqlkey" value="m000202010.selBusinessRuleListAll" />
+    <property name="pagesize" value="-1" />
+    <property name="param-count" value="1" />
+    <property name="cur-page-name" value="curPageName" />
+  </activity>
+  <activity name="ForwardTestPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="GetRuleLayout" />
+    <property name="forwardname" value="test" />
+  </activity>
+  <activity name="BusinessRuleList" class="com.poscoict.glue.master.ui.rule.GetRuleList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="BusinessRuleList" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="sqlkey" value="m000202010.selBusinessRuleListAll" />
+    <property name="pagesize" value="20" />
+    <property name="param-count" value="1" />
+    <property name="cur-page-name" value="curPageName" />
+  </activity>
+</service>
+

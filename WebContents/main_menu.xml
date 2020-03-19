@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tree  id="0" open="1"> 
+<item text="**품질설계" id="C10">
+    <item text="**품질설계결과관리" id="C1040">
+		<item text="*품질설계의뢰현황" id="C104000010">      
+			<userdata name="url"><![CDATA[./C104000010.jsp]]></userdata>
+		</item>
+		<item text="*품질설계결과" id="C104000020">      
+			<userdata name="url"><![CDATA[./C104000020.jsp]]></userdata>
+		</item>
+		<item text="**품질설계결과 -에러현황" id="C104000030">      
+			<userdata name="url"><![CDATA[./C104000030.jsp]]></userdata>
+		</item>
+		<item text="**재설계" id="C104000040">      
+			<userdata name="url"><![CDATA[./C104000040.jsp]]></userdata>
+		</item>
+		<item text="*품질설계확정" id="C104000050">      
+			<userdata name="url"><![CDATA[./C104000050.jsp]]></userdata>
+		</item>
+    </item>
+    <item text="**제조가부검토" id="C1050">
+		<item text="**제조가부검토이력조회" id="C105000010">      
+			<userdata name="url"><![CDATA[./C105000010.jsp]]></userdata>
+		</item>
+		<item text="**제조가부수동검토" id="C105000020">      
+			<userdata name="url"><![CDATA[./C105000020.jsp]]></userdata>
+		</item>
+    </item>
+    <item text="**품질설계공통" id="C1060">
+		<item text="**칼라시편관리" id="C106000010">      
+			<userdata name="url"><![CDATA[./C106000010.jsp]]></userdata>
+		</item>
+		<item text="**품질설계시뮬레이션" id="C106000020">      
+			<userdata name="url"><![CDATA[./C106000020.jsp]]></userdata>
+		</item>
+		<item text="**품질기준개선이력관리" id="C106000030">      
+			<userdata name="url"><![CDATA[./C106000030.jsp]]></userdata>
+		</item>
+		<item text="**Material Code관리" id="C106000040">      
+			<userdata name="url"><![CDATA[./C106000040.jsp]]></userdata>
+		</item>
+		<item text="**칼라코드관리" id="C106000050">      
+			<userdata name="url"><![CDATA[./C106000040.jsp]]></userdata>
+		</item>
+		<item text="**CCL-BOM 관리" id="C106000060">      
+			<userdata name="url"><![CDATA[./C106000060.jsp]]></userdata>
+		</item>
+		<item text="**InterFace 조회" id="C106000070">      
+			<userdata name="url"><![CDATA[./C106000070.jsp]]></userdata>
+		</item>
+    </item>
+  </item>
+
+</tree> 

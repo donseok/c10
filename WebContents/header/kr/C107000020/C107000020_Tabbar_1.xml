@@ -1,0 +1,20 @@
+<tabbar align="left" hrefmode="iframe" margin="5" offset="3">
+<row type="row">
+<tab href="C107000020tab01.jsp" id="TAB_C10A1010" selected="true" type="tab" width="100">규격공통</tab>
+<tab href="C107000020tab02.jsp" id="TAB_C10A1020" type="tab" width="100">고객사양공통</tab>
+<tab href="C107000020tab03.jsp" id="TAB_C10A1022" type="tab" width="100">고객재질사양</tab>
+<tab href="C107000020tab04.jsp" id="TAB_C10A1023" type="tab" width="100">고객인수도</tab>
+<tab href="C107000020tab05.jsp" id="TAB_C10A1054" type="tab" width="100">통과공정</tab>
+<tab href="C107000020tab06.jsp" id="TAB_C10A1061" type="tab" width="100">도금량기준</tab>
+<tab href="C107000020tab07.jsp" id="TAB_C10A1070" type="tab" width="100">제품폭여유</tab>
+</row>
+<row type="row">
+<tab href="C107000020tab08.jsp" id="TAB_C10A1079" type="tab" width="100">PL폭마진량</tab>
+<tab href="C107000020tab09.jsp" id="TAB_C10A1091" type="tab" width="100">칼라Print롤관리</tab>
+<tab href="C107000020tab10.jsp" id="TAB_C10A1092" type="tab" width="100">Uni-Tex롤관리</tab>
+<tab href="C107000020tab11.jsp" id="TAB_C10A2030" type="tab" width="100">칼라정전라인</tab>
+<tab href="C107000020tab12.jsp" id="TAB_C10A2040" type="tab" width="100">보호필름점착력</tab>
+<tab href="C107000020tab13.jsp" id="TAB_C10A2181" type="tab" width="100">고객사양폭공차기준</tab>			
+<tab href="C107000020tab14.jsp" id="TAB_C10A2182" type="tab" width="100">고객사양길이공차기준</tab>
+</row> 
+</tabbar>

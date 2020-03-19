@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="115" location="199,20" size="-1,-1" output="//@wire.4"/>
+  <child xsi:type="Glue:SubServiceActivity" id="2373" location="403,348" size="129,-1" input="//@wire.1 //@wire.5" output="//@wire.2" name="SUBSERVICE_ERR">
+    <property key="class" value="com.posdata.glue.biz.activity.PosSubBizControlActivity"/>
+    <property key="new-transaction" value="false"/>
+    <property key="ServiceName" value="C103100140-service"/>
+    <property key="description" value="이 Activity는 품질설계오류정보를 호출하는 Activity이다.&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="3259" location="198,352" size="-1,-1" input="//@wire.0 //@wire.2 //@wire.7"/>
+  <child xsi:type="Glue:Activity" id="3295" location="142,113" size="135,-1" input="//@wire.4" output="//@wire.3 //@wire.5 //@wire.7" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchMechData"/>
+    <property key="bind-list" value="RK_SEARCH"/>
+    <property key="bind-result" value="RK_MAIN"/>
+    <property key="dao" value="mesdao"/>
+    <property key="prodSpecKind" value="1"/>
+    <property key="description" value="이 Activity는 Master Data의 고객재질사양기준을 읽어 &#xD;&#xA;고객재질사양을 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 고객재질사양&#xD;&#xA;    - Master Table Code: C10A1022&#xD;&#xA;    - Master View Table : m00apuser.VI_M00_C10A1022&#xD;&#xA;    - Key: 제품사양설계종류('1'), 고객사양번호&#xD;&#xA;&#xD;&#xA;2. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;3. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="8365" location="363,248" size="108,-1" input="//@wire.6" output="//@wire.1" name="ERROR_LOG">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
+    <property key="param-count" value="2"/>
+    <property key="param0" value="P_ERR_KEY|Y"/>
+    <property key="param1" value="QLT_DSN_ERR_CD|TB03"/>
+    <property key="description" value="Service 수행 중에 사용될 Binding 변수 및 사전에 Setting되어야 할 사항에 대해 &#xD;&#xA;초기화 하는 Activity이다. &#xD;&#xA;&#xD;&#xA;- 오류발생 내역을 PosContext에 등록한다.&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'Y‘)&#xD;&#xA;   . 오류 logging변수에 발생내역 등록"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="50191" location="145,247" size="130,-1" input="//@wire.3" output="//@wire.0 //@wire.6" name="INSERT">
+    <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="param-count" value="23"/>
+    <property key="resultkey" value="RK_RESULT"/>
+    <property key="sqlkey" value="C102100MQL.insert"/>
+    <property key="param0" value="ORD_NO"/>
+    <property key="param1" value="ORD_LN"/>
+    <property key="param2" value="QLT_DSN_SPC_TP"/>
+    <property key="param3" value="TS_LLV_MPA"/>
+    <property key="param4" value="TS_ULV_MPA"/>
+    <property key="param5" value="YP_LLV_MPA"/>
+    <property key="param6" value="YP_ULV_MPA"/>
+    <property key="param7" value="ELGN_LLV"/>
+    <property key="param8" value="ELGN_ULV"/>
+    <property key="param9" value="HRB_LLV"/>
+    <property key="param10" value="HRB_ULV"/>
+    <property key="param11" value="ER_LLV"/>
+    <property key="param12" value="ER_ULV"/>
+    <property key="param13" value="MQL_BND_TST_STD_CD"/>
+    <property key="param14" value="TST_PIC_GTH_INST_LOC"/>
+    <property key="param15" value="TST_PIC_GTH_INST_LTH"/>
+    <property key="param16" value="TPG_RGS_NO"/>
+    <property key="param17" value="TST_GW_FRN_LLV"/>
+    <property key="param18" value="TST_GW_FRN_ULV"/>
+    <property key="param19" value="TST_GW_BAK_LLV"/>
+    <property key="param20" value="TST_GW_BAK_ULV"/>
+    <property key="param21" value="TST_GW_TOT_LLV"/>
+    <property key="param22" value="TST_GW_TOT_ULV"/>
+    <property key="description" value="이 Activity는 재질사양기준을 품질설계결과 재질기준테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;품질설계사양구분(QLT_DSN_SPC_TP)에 규격사양('1')으로 SET한다"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 품질설계의 고객성분정보를 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 고객성분사양(단일성분, 계산식, 복합성분) 편성&#xD;&#xA;    . 성분합성항목 편집&#xD;&#xA;"/>
+  <wire id="2858" guardcondition="success" firstRelativePoint="211,363" lastRelativePoint="211,422"/>
+  <wire id="2860" guardcondition="success" firstRelativePoint="425,282" lastRelativePoint="425,348">
+    <bendpoint weight="0.5" firstDimension="37,47" secondDimension="-42,-49"/>
+  </wire>
+  <wire id="2862" guardcondition="success" firstRelativePoint="407,449" lastRelativePoint="223,449">
+    <bendpoint weight="0.5" firstDimension="-163,-2" secondDimension="95,-1"/>
+  </wire>
+  <wire id="2863" guardcondition="success" firstRelativePoint="207,143" lastRelativePoint="207,247">
+    <bendpoint weight="0.5" firstDimension="-2,65" secondDimension="-3,-69"/>
+  </wire>
+  <wire id="2917" guardcondition="success" firstRelativePoint="209,39" lastRelativePoint="209,113"/>
+  <wire id="2920" guardcondition="failure" firstRelativePoint="277,126" lastRelativePoint="483,348">
+    <bendpoint weight="0.5" firstDimension="274,-2" secondDimension="16,-237"/>
+  </wire>
+  <wire id="2932" guardcondition="failure" firstRelativePoint="275,261" lastRelativePoint="363,261"/>
+  <wire id="9084" guardcondition="false" firstRelativePoint="142,129" lastRelativePoint="197,361">
+    <bendpoint weight="0.5" firstDimension="-158,1" secondDimension="-157,-233"/>
+    <bendpoint weight="0.5" firstDimension="-159,233" secondDimension="-158,-1"/>
+  </wire>
+</Glue:GlueDiagram>

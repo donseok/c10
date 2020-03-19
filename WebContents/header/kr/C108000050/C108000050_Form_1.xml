@@ -1,0 +1,40 @@
+<items>	
+	<item type="block" width="971">
+	    <item labelWidth="75" inputWidth="100" label="개발번호" name="PRD_DEV_NO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="75" inputWidth="100" label="요청등록일시" name="REQ_RGS_DH" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="75" inputWidth="100" label="개발요청자" name="SAL_CHR_PRS_ID" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="75" inputWidth="100" label="고객사 " name="CUS_CD" type="input" labelAlign="right" readonly="true" value=""/>
+	    <item offset="30" type="newcolumn"/>
+		<item type="button" name="find" value="조회" command="find" disabled="true"/>
+		<item type="newcolumn" offset="3" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+	<item type="block" width="971">
+		<item labelWidth="100" inputWidth="100" label="용 도" name="USG_CD" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="사용지역" name="USE_NAT_CD" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="개발요청 비고" name="DEV_REQ_RMK" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="첨부파일" name="DEV_REQ_FILE" type="input" labelAlign="right" readonly="true" value=""/>			
+	</item>
+	<item type="block" width="971">		
+		<item labelWidth="100" inputWidth="100" label="시편수신주소" name="APP_SIM_RCV_ADDR" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="시편수신자" name="APP_SIM_RCV_NM" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="시편수신전화" name="APP_SIM_RCV_PHON" type="input" labelAlign="right" readonly="true" value=""/>	
+	</item>
+	<item type="block" width="971">		
+		<item labelWidth="100" inputWidth="100" label="개발접수일시" name="DEV_RGS_DH" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="접수담당자" name="DEV_RECV_CHR_UID" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="Sample MO" name="PROC_SIM_MO" type="input" labelAlign="right" readonly="true" value=""/>
+		<item offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" label="개발접수 비고" name="DEV_RECV_RMK" type="input" labelAlign="right" readonly="true" value=""/>
+	</item>
+</items>

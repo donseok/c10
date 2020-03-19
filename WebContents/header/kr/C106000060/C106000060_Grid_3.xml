@@ -1,0 +1,337 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>./dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="enableRowspan">
+<param>true</param>
+</call>
+<call command="enableColSpan">
+<param>true</param>
+</call>
+<call command="setNoHeader">
+<param>true</param>
+</call>
+<call command="enableAlterCss">
+<param>even</param>
+<param>uneven</param>
+</call>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+<call command="enableEditEvents">
+<param>true</param>
+<param>true</param>
+<param>false</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="HUE_CD_FRN_4COT" index="1" sort="str" table="TB_C10_CCL_BOM" type="ed" width="10" color="FFFFC0">색상코드4(전면)</column>
+<column align="center" id="RSN_TP_FRN_4COT" index="2" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">수지타입4(전면)</column>
+<column align="center" id="LUS_RT_CD_FRN_4COT" index="3" sort="str" table="TB_C10_CCL_BOM" type="ro" width="15">광택코드4(전면)</column>
+<column align="center" id="LUS_RT_FRN_4COT_LLV" index="4" sort="str" table="TB_C10_CCL_BOM" type="ro" width="7">광택도4(전면)</column>
+<column align="center" id="WK_VISCO_FRN_4COT" index="5" sort="str" table="TB_C10_CCL_BOM" type="ro" width="6" hidden="true">작업점도4(전면)</column>
+<column align="center" id="PMT_FRN_4COT" index="6" sort="str" table="TB_C10_CCL_BOM" type="ro" width="4">PMT4(전면)</column>
+<column align="center" id="PNT_FLM_THK_FRN_4COT" index="7" sort="str" table="TB_C10_CCL_BOM" type="ed" width="4" color="FFFFC0">도막4(전면)</column>
+<column align="center" id="SLV_GRA_FRN_4COT" index="8" sort="str" table="TB_C10_CCL_BOM" type="ro" width="7">용제비중4(전면)</column>
+<column align="center" id="PNT_GRA_FRN_4COT" index="9" sort="int" table="TB_C10_CCL_BOM" type="ro" width="7">도료비중4(전면)</column>
+<column align="center" id="NV_FRN_4COT" index="10" sort="int" table="TB_C10_CCL_BOM" type="ro" width="7">고형분4(전면)</column>
+<column align="center" id="PNT_UNT_FRN_4COT" index="11" sort="str" table="TB_C10_CCL_BOM" type="ro" width="7">원단위4(전면)</column>
+<column align="center" id="THR_CD_FRN_4COT" index="12" sort="str" table="TB_C10_CCL_BOM" type="ro" width="6">시너4(전면)</column>
+<column align="center" id="HUE_CD_FRN_3COT" index="13" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드3(전면)</column>
+<column align="center" hidden="true" id="RSN_TP_FRN_3COT" index="14" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">수지타입3(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_3COT" index="15" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드3(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_FRN_3COT_LLV" index="16" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도3(전면)</column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_3COT" index="17" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도3(전면)</column>
+<column align="center" hidden="true" id="PMT_FRN_3COT" index="18" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT3(전면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_3COT" index="19" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막3(전면)</column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_3COT" index="20" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중3(전면)</column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_3COT" index="21" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중3(전면)</column>
+<column align="center" hidden="true" id="NV_FRN_3COT" index="22" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분3(전면)</column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_3COT" index="23" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위3(전면)</column>
+<column align="center" hidden="true" id="THR_CD_FRN_3COT" index="24" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너3(전면)</column>
+<column align="center" hidden="true" id="HUE_CD_FRN_2COT" index="25" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">색상코드2(전면)</column>
+<column align="center" hidden="true" id="RSN_TP_FRN_2COT" index="26" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">수지타입2(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_2COT" index="27" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드2(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_FRN_2COT_LLV" index="28" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도2(전면)</column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_2COT" index="29" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도2(전면)</column>
+<column align="center" hidden="true" id="PMT_FRN_2COT" index="30" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT2(전면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_2COT" index="31" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막2(전면)</column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_2COT" index="32" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중2(전면)</column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_2COT" index="33" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중2(전면)</column>
+<column align="center" hidden="true" id="NV_FRN_2COT" index="34" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분2(전면)</column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_2COT" index="35" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위2(전면)</column>
+<column align="center" hidden="true" id="THR_CD_FRN_2COT" index="36" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너2(전면)</column>
+<column align="center" hidden="true" id="HUE_CD_FRN_1COT" index="37" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드1(전면)</column>
+<column align="center" hidden="true" id="RSN_TP_FRN_1COT" index="38" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지타입1(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_1COT" index="39" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드1(전면)</column>
+<column align="center" hidden="true" id="LUS_RT_FRN_1COT_LLV" index="40" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도1(전면)</column>
+<column align="center" hidden="true" id="WK_VISCO_FRN_1COT" index="41" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도1(전면)</column>
+<column align="center" hidden="true" id="PMT_FRN_1COT" index="42" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT1(전면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_FRN_1COT" index="43" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막1(전면)</column>
+<column align="center" hidden="true" id="SLV_GRA_FRN_1COT" index="44" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중1(전면)</column>
+<column align="center" hidden="true" id="PNT_GRA_FRN_1COT" index="45" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중1(전면)</column>
+<column align="center" hidden="true" id="NV_FRN_1COT" index="46" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분1(전면)</column>
+<column align="center" hidden="true" id="PNT_UNT_FRN_1COT" index="47" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위1(전면)</column>
+<column align="center" hidden="true" id="THR_CD_FRN_1COT" index="48" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너1(전면)</column>
+<column align="center" hidden="true" id="HUE_CD_BAK_1COT" index="49" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드1(후면)</column>
+<column align="center" hidden="true" id="RSN_TP_BAK_1COT" index="50" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지타입1(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_1COT" index="51" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드1(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_BAK_1COT_LLV" index="52" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도1(후면)</column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_1COT" index="53" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도1(후면)</column>
+<column align="center" hidden="true" id="PMT_BAK_1COT" index="54" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT1(후면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_1COT" index="55" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막1(후면)</column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_1COT" index="56" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중1(후면)</column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_1COT" index="57" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중1(후면)</column>
+<column align="center" hidden="true" id="NV_BAK_1COT" index="58" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분1(후면)</column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_1COT" index="59" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위1(후면)</column>
+<column align="center" hidden="true" id="THR_CD_BAK_1COT" index="60" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너1(후면)</column>
+<column align="center" hidden="true" id="HUE_CD_BAK_2COT" index="61" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드2(후면)</column>
+<column align="center" hidden="true" id="RSN_TP_BAK_2COT" index="62" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지타입2(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_2COT" index="63" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드2(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_BAK_2COT_LLV" index="64" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도2(후면)</column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_2COT" index="65" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도2(후면)</column>
+<column align="center" hidden="true" id="PMT_BAK_2COT" index="66" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT2(후면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_2COT" index="67" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막2(후면)</column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_2COT" index="68" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중2(후면)</column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_2COT" index="69" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중2(후면)</column>
+<column align="center" hidden="true" id="NV_BAK_2COT" index="70" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분2(후면)</column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_2COT" index="71" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위2(후면)</column>
+<column align="center" hidden="true" id="THR_CD_BAK_2COT" index="72" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너2(후면)</column>
+<column align="center" hidden="true" id="HUE_CD_BAK_3COT" index="73" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드3(후면)</column>
+<column align="center" hidden="true" id="RSN_TP_BAK_3COT" index="74" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지타입3(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_3COT" index="75" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드3(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_BAK_3COT_LLV" index="76" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도3(후면)</column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_3COT" index="77" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도3(후면)</column>
+<column align="center" hidden="true" id="PMT_BAK_3COT" index="78" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT3(후면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_3COT" index="79" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막3(후면)</column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_3COT" index="80" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중3(후면)</column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_3COT" index="81" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중3(후면)</column>
+<column align="center" hidden="true" id="NV_BAK_3COT" index="82" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분3(후면)</column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_3COT" index="83" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위3(후면)</column>
+<column align="center" hidden="true" id="THR_CD_BAK_3COT" index="84" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너3(후면)</column>
+<column align="center" hidden="true" id="HUE_CD_BAK_4COT" index="85" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상코드4(후면)</column>
+<column align="center" hidden="true" id="RSN_TP_BAK_4COT" index="86" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지타입4(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_CD_BAK_4COT" index="87" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드4(후면)</column>
+<column align="center" hidden="true" id="LUS_RT_BAK_4COT_LLV" index="88" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도4(후면)</column>
+<column align="center" hidden="true" id="WK_VISCO_BAK_4COT" index="89" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">작업점도4(후면)</column>
+<column align="center" hidden="true" id="PMT_BAK_4COT" index="90" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT4(후면)</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_BAK_4COT" index="91" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막4(후면)</column>
+<column align="center" hidden="true" id="SLV_GRA_BAK_4COT" index="92" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">용제비중4(후면)</column>
+<column align="center" hidden="true" id="PNT_GRA_BAK_4COT" index="93" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도료비중4(후면)</column>
+<column align="center" hidden="true" id="NV_BAK_4COT" index="94" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">고형분4(후면)</column>
+<column align="center" hidden="true" id="PNT_UNT_BAK_4COT" index="95" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위4(후면)</column>
+<column align="center" hidden="true" id="THR_CD_BAK_4COT" index="96" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">시너4(후면)</column>
+<column align="center" hidden="true" id="HUE_CD_LMN" index="97" sort="str" table="TB_C10_CCL_BOM" type="ro" width="8">색상라미나</column>
+<column align="center" hidden="true" id="RSN_TP_LMN" index="98" sort="str" table="TB_C10_CCL_BOM" type="ro" width="12">수지라미나</column>
+<column align="center" hidden="true" id="LUS_RT_CD_LMN" index="99" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드라미나</column>
+<column align="center" hidden="true" id="LUS_RT_LMN_LLV" index="100" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택도라미나</column>
+<column align="center" hidden="true" id="PMT_LMN" index="101" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">PMT라미나</column>
+<column align="center" hidden="true" id="PNT_FLM_THK_LMN" index="102" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">도막라미나</column>
+<column align="center" hidden="true" id="PNT_UNT_LMN" index="103" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">원단위라미나</column>
+<column align="center" hidden="true" id="RSN_TP_FRN_4COT_HIDDEN" index="104" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">수지타입4(전면) HIDDEN</column>
+<column align="center" hidden="true" id="LUS_RT_CD_FRN_4COT_HIDDEN" index="105" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드4(전면) HIDDEN</column>
+<column align="center" hidden="true" id="4TOP_LUS_RT_LLV_HIDDEN" index="106" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP4(하한) HIDDEN</column>
+<column align="center" hidden="true" id="4TOP_LUS_RT_ULV_HIDDEN" index="107" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP4(상항) HIDDEN</column>
+<column align="center" hidden="true" id="3TOP_LUS_RT_LLV_HIDDEN" index="108" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP3(하한) HIDDEN</column>
+<column align="center" hidden="true" id="3TOP_LUS_RT_ULV_HIDDEN" index="109" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP3(상항) HIDDEN</column>
+<column align="center" hidden="true" id="2TOP_LUS_RT_LLV_HIDDEN" index="110" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP2(하한) HIDDEN</column>
+<column align="center" hidden="true" id="2TOP_LUS_RT_ULV_HIDDEN" index="111" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP2(상항) HIDDEN</column>
+<column align="center" hidden="true" id="1TOP_LUS_RT_LLV_HIDDEN" index="112" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP1(하한) HIDDEN</column>
+<column align="center" hidden="true" id="1TOP_LUS_RT_ULV_HIDDEN" index="113" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도TOP1(상항) HIDDEN</column>
+<column align="center" hidden="true" id="1BACK_LUS_RT_LLV_HIDDEN" index="114" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK1(하한) HIDDEN</column>
+<column align="center" hidden="true" id="1BACK_LUS_RT_ULV_HIDDEN" index="115" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK1(상항) HIDDEN</column>
+<column align="center" hidden="true" id="2BACK_LUS_RT_LLV_HIDDEN" index="116" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK2(하한) HIDDEN</column>
+<column align="center" hidden="true" id="2BACK_LUS_RT_ULV_HIDDEN" index="117" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK2(상항) HIDDEN</column>
+<column align="center" hidden="true" id="3BACK_LUS_RT_LLV_HIDDEN" index="118" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK3(하한) HIDDEN</column>
+<column align="center" hidden="true" id="3BACK_LUS_RT_ULV_HIDDEN" index="119" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK3(상항) HIDDEN</column>
+<column align="center" hidden="true" id="4BACK_LUS_RT_LLV_HIDDEN" index="120" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK4(하한) HIDDEN</column>
+<column align="center" hidden="true" id="4BACK_LUS_RT_ULV_HIDDEN" index="121" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도BACK4(상항) HIDDEN</column>
+<column align="center" hidden="true" id="LMN_LUS_RT_LLV_HIDDEN" index="122" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도라미나(하한) HIDDEN</column>
+<column align="center" hidden="true" id="LMN_LUS_RT_ULV_HIDDEN" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">광택도라미나(상항) HIDDEN</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_FRN_1COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드전면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_FRN_2COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드전면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_FRN_3COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드전면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_FRN_4COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드전면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_BAK_1COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드후면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_BAK_2COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드후면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_BAK_3COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드후면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_BAK_4COT" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">구색상코드후면1Coat</column>
+<column align="center" hidden="true" id="CLR_SUB_MTL_CD_OLD_HUE_CD_LMN" index="123" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0">Lamina구색상코드</column>
+<column align="center" hidden="true" id="LUS_RT_CD_LMN_NM" index="123" sort="na" table="TB_C10_CCL_BOM" type="ro" width="0">광택코드라미나</column>
+<column align="center" hidden="true" id="CLR_NM" index="124" sort="na" table="TB_C10_CLR_CD_MNG" type="ro" width="0">상세색상명</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">HUE_CD_FRN_4COT,RSN_TP_FRN_4COT,LUS_RT_CD_FRN_4COT,LUS_RT_FRN_4COT_LLV,WK_VISCO_FRN_4COT,PMT_FRN_4COT,PNT_FLM_THK_FRN_4COT,SLV_GRA_FRN_4COT,PNT_GRA_FRN_4COT,NV_FRN_4COT,PNT_UNT_FRN_4COT,THR_CD_FRN_4COT,HUE_CD_FRN_3COT,RSN_TP_FRN_3COT,LUS_RT_CD_FRN_3COT,LUS_RT_FRN_3COT_LLV,WK_VISCO_FRN_3COT,PMT_FRN_3COT,PNT_FLM_THK_FRN_3COT,SLV_GRA_FRN_3COT,PNT_GRA_FRN_3COT,NV_FRN_3COT,PNT_UNT_FRN_3COT,THR_CD_FRN_3COT,HUE_CD_FRN_2COT,RSN_TP_FRN_2COT,LUS_RT_CD_FRN_2COT,LUS_RT_FRN_2COT_LLV,WK_VISCO_FRN_2COT,PMT_FRN_2COT,PNT_FLM_THK_FRN_2COT,SLV_GRA_FRN_2COT,PNT_GRA_FRN_2COT,NV_FRN_2COT,PNT_UNT_FRN_2COT,THR_CD_FRN_2COT,HUE_CD_FRN_1COT,RSN_TP_FRN_1COT,LUS_RT_CD_FRN_1COT,LUS_RT_FRN_1COT_LLV,WK_VISCO_FRN_1COT,PMT_FRN_1COT,PNT_FLM_THK_FRN_1COT,SLV_GRA_FRN_1COT,PNT_GRA_FRN_1COT,NV_FRN_1COT,PNT_UNT_FRN_1COT,THR_CD_FRN_1COT,HUE_CD_BAK_1COT,RSN_TP_BAK_1COT,LUS_RT_CD_BAK_1COT,LUS_RT_BAK_1COT_LLV,WK_VISCO_BAK_1COT,PMT_BAK_1COT,PNT_FLM_THK_BAK_1COT,SLV_GRA_BAK_1COT,PNT_GRA_BAK_1COT,NV_BAK_1COT,PNT_UNT_BAK_1COT,THR_CD_BAK_1COT,HUE_CD_BAK_2COT,RSN_TP_BAK_2COT,LUS_RT_CD_BAK_2COT,LUS_RT_BAK_2COT_LLV,WK_VISCO_BAK_2COT,PMT_BAK_2COT,PNT_FLM_THK_BAK_2COT,SLV_GRA_BAK_2COT,PNT_GRA_BAK_2COT,NV_BAK_2COT,PNT_UNT_BAK_2COT,THR_CD_BAK_2COT,HUE_CD_BAK_3COT,RSN_TP_BAK_3COT,LUS_RT_CD_BAK_3COT,LUS_RT_BAK_3COT_LLV,WK_VISCO_BAK_3COT,PMT_BAK_3COT,PNT_FLM_THK_BAK_3COT,SLV_GRA_BAK_3COT,PNT_GRA_BAK_3COT,NV_BAK_3COT,PNT_UNT_BAK_3COT,THR_CD_BAK_3COT,HUE_CD_BAK_4COT,RSN_TP_BAK_4COT,LUS_RT_CD_BAK_4COT,LUS_RT_BAK_4COT_LLV,WK_VISCO_BAK_4COT,PMT_BAK_4COT,PNT_FLM_THK_BAK_4COT,SLV_GRA_BAK_4COT,PNT_GRA_BAK_4COT,NV_BAK_4COT,PNT_UNT_BAK_4COT,THR_CD_BAK_4COT,HUE_CD_LMN,RSN_TP_LMN,LUS_RT_CD_LMN,LUS_RT_LMN_LLV,PMT_LMN,PNT_FLM_THK_LMN,PNT_UNT_LMN,RSN_TP_FRN_4COT_HIDDEN,LUS_RT_CD_FRN_4COT_HIDDEN,4TOP_LUS_RT_LLV_HIDDEN,4TOP_LUS_RT_ULV_HIDDEN,3TOP_LUS_RT_LLV_HIDDEN,3TOP_LUS_RT_ULV_HIDDEN,2TOP_LUS_RT_LLV_HIDDEN,2TOP_LUS_RT_ULV_HIDDEN,1TOP_LUS_RT_LLV_HIDDEN,1TOP_LUS_RT_ULV_HIDDEN,1BACK_LUS_RT_LLV_HIDDEN,1BACK_LUS_RT_ULV_HIDDEN,2BACK_LUS_RT_LLV_HIDDEN,2BACK_LUS_RT_ULV_HIDDEN,3BACK_LUS_RT_LLV_HIDDEN,3BACK_LUS_RT_ULV_HIDDEN,4BACK_LUS_RT_LLV_HIDDEN,4BACK_LUS_RT_ULV_HIDDEN,LMN_LUS_RT_LLV_HIDDEN,LMN_LUS_RT_ULV_HIDDEN,CLR_SUB_MTL_CD_OLD_FRN_1COT,CLR_SUB_MTL_CD_OLD_FRN_2COT,CLR_SUB_MTL_CD_OLD_FRN_3COT,CLR_SUB_MTL_CD_OLD_FRN_4COT,CLR_SUB_MTL_CD_OLD_BAK_1COT,CLR_SUB_MTL_CD_OLD_BAK_2COT,CLR_SUB_MTL_CD_OLD_BAK_3COT,CLR_SUB_MTL_CD_OLD_BAK_4COT,CLR_SUB_MTL_CD_OLD_HUE_CD_LMN,LUS_RT_CD_LMN_NM,CLR_NM</userdata>
+<row id="0">
+<cell class="form_cell"  style="color:blue;font-weight:bold;">색상코드</cell>
+<cell class="form_cell"  style="color:blue;font-weight:bold;">수지타입</cell>
+<cell class="form_cell"  style="color:blue;font-weight:bold;">광택코드</cell>
+<cell class="form_cell">광택도</cell>
+<cell class="form_cell">작업점도</cell>
+<cell class="form_cell">PMT</cell>
+<cell class="form_cell"  style="color:blue;font-weight:bold;">도막</cell>
+<cell class="form_cell">용제비중</cell>
+<cell class="form_cell">도료비중</cell>
+<cell class="form_cell">고형분</cell>
+<cell class="form_cell">원단위</cell>
+<cell class="form_cell">시너</cell>
+<cell class="form_cell">구색상코드</cell>
+</row>
+<row id="1">
+<cell id="HUE_CD_FRN_4COT"></cell>
+<cell id="RSN_TP_FRN_4COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_FRN_4COT"  style="text-align:left"></cell>
+<cell id="LUS_RT_FRN_4COT_LLV"></cell>
+<cell id="WK_VISCO_FRN_4COT" style="text-align:right"></cell>
+<cell id="PMT_FRN_4COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_FRN_4COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_FRN_4COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_FRN_4COT" style="text-align:right"></cell>
+<cell id="NV_FRN_4COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_FRN_4COT" style="text-align:right"></cell>
+<cell id="THR_CD_FRN_4COT" type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_FRN_4COT"></cell>
+</row>
+<row id="2">
+<cell id="HUE_CD_FRN_3COT"></cell>
+<cell id="RSN_TP_FRN_3COT"  style="text-align:left"></cell>
+<cell id="LUS_RT_CD_FRN_3COT"  style="text-align:left"></cell>
+<cell id="LUS_RT_FRN_3COT_LLV"></cell>
+<cell id="WK_VISCO_FRN_3COT" style="text-align:right"></cell>
+<cell id="PMT_FRN_3COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_FRN_3COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_FRN_3COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_FRN_3COT" style="text-align:right"></cell>
+<cell id="NV_FRN_3COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_FRN_3COT" style="text-align:right"></cell>
+<cell id="THR_CD_FRN_3COT" type="ron" style="text-align:center"/>
+<cell id="CLR_SUB_MTL_CD_OLD_FRN_3COT"></cell>
+</row>
+<row id="3">
+<cell id="HUE_CD_FRN_2COT"></cell>
+<cell id="RSN_TP_FRN_2COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_FRN_2COT" style="text-align:left"></cell>
+<cell id="LUS_RT_FRN_2COT_LLV"></cell>
+<cell id="WK_VISCO_FRN_2COT" style="text-align:right"></cell>
+<cell id="PMT_FRN_2COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_FRN_2COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_FRN_2COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_FRN_2COT" style="text-align:right"></cell>
+<cell id="NV_FRN_2COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_FRN_2COT" style="text-align:right"></cell>
+<cell id="THR_CD_FRN_2COT" type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_FRN_2COT"></cell>
+</row>
+<row id="4">
+<cell id="HUE_CD_FRN_1COT"></cell>
+<cell id="RSN_TP_FRN_1COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_FRN_1COT" style="text-align:left"></cell>
+<cell id="LUS_RT_FRN_1COT_LLV"></cell>
+<cell id="WK_VISCO_FRN_1COT" style="text-align:right"></cell>
+<cell id="PMT_FRN_1COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_FRN_1COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_FRN_1COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_FRN_1COT" style="text-align:right"></cell>
+<cell id="NV_FRN_1COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_FRN_1COT" style="text-align:right"></cell>
+<cell id="THR_CD_FRN_1COT" type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_FRN_1COT"></cell>
+</row>
+<row id="5">
+<cell id="HUE_CD_BAK_1COT"></cell>
+<cell id="RSN_TP_BAK_1COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_BAK_1COT" style="text-align:left"></cell>
+<cell id="LUS_RT_BAK_1COT_LLV"></cell>
+<cell id="WK_VISCO_BAK_1COT" style="text-align:right"></cell>
+<cell id="PMT_BAK_1COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_BAK_1COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_BAK_1COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_BAK_1COT" style="text-align:right"></cell>
+<cell id="NV_BAK_1COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_BAK_1COT" style="text-align:right"></cell>
+<cell id="THR_CD_BAK_1COT" type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_BAK_1COT"></cell>
+</row>
+<row id="6">
+<cell id="HUE_CD_BAK_2COT"></cell>
+<cell id="RSN_TP_BAK_2COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_BAK_2COT" style="text-align:left"></cell>
+<cell id="LUS_RT_BAK_2COT_LLV"></cell>
+<cell id="WK_VISCO_BAK_2COT" style="text-align:right"></cell>
+<cell id="PMT_BAK_2COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_BAK_2COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_BAK_2COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_BAK_2COT" style="text-align:right"></cell>
+<cell id="NV_BAK_2COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_BAK_2COT" style="text-align:right"></cell>
+<cell id="THR_CD_BAK_2COT" type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_BAK_2COT"></cell>
+</row>
+<row id="7">
+<cell id="HUE_CD_BAK_3COT"></cell>
+<cell id="RSN_TP_BAK_3COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_BAK_3COT" style="text-align:left"></cell>
+<cell id="LUS_RT_BAK_3COT_LLV"></cell>
+<cell id="WK_VISCO_BAK_3COT" style="text-align:right"></cell>
+<cell id="PMT_BAK_3COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_BAK_3COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_BAK_3COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_BAK_3COT" style="text-align:right"></cell>
+<cell id="NV_BAK_3COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_BAK_3COT" style="text-align:right"></cell>
+<cell id="THR_CD_BAK_3COT"  type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_BAK_3COT"></cell>
+</row>
+<row id="8">
+<cell id="HUE_CD_BAK_4COT"></cell>
+<cell id="RSN_TP_BAK_4COT" style="text-align:left"></cell>
+<cell id="LUS_RT_CD_BAK_4COT" style="text-align:left"></cell>
+<cell id="LUS_RT_BAK_4COT_LLV"></cell>
+<cell id="WK_VISCO_BAK_4COT" style="text-align:right"></cell>
+<cell id="PMT_BAK_4COT" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_BAK_4COT" style="text-align:right"></cell>
+<cell id="SLV_GRA_BAK_4COT" style="text-align:right"></cell>
+<cell id="PNT_GRA_BAK_4COT" style="text-align:right"></cell>
+<cell id="NV_BAK_4COT" style="text-align:right"></cell>
+<cell id="PNT_UNT_BAK_4COT" style="text-align:right"></cell>
+<cell id="THR_CD_BAK_4COT"  type="ron" style="text-align:center"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_BAK_4COT"></cell>
+</row>
+<row id="9">
+<cell id="HUE_CD_LMN"/>
+<cell class="form_cell1" style="text-align:right"></cell>
+<cell id="LUS_RT_CD_LMN_NM" style="text-align:left"></cell>
+<cell id="LUS_RT_LMN_LLV"></cell>
+<cell class="form_cell1" style="text-align:right"></cell>
+<cell id="PMT_LMN" style="text-align:right"></cell>
+<cell id="PNT_FLM_THK_LMN" style="text-align:right"></cell>
+<cell class="form_cell1" style="text-align:right"></cell>
+<cell class="form_cell1" style="text-align:right"></cell>
+<cell class="form_cell1" style="text-align:right"></cell>
+<cell class="form_cell1"  type="ron" style="text-align:right"></cell>
+<cell class="form_cell1"  type="ron" style="text-align:right"></cell>
+<cell id="CLR_SUB_MTL_CD_OLD_HUE_CD_LMN"></cell>
+</row>
+</rows>

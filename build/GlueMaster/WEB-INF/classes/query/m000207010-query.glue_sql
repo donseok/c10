@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="용어 및 항목"> 
+	 <query id="m000207010.selTermsInfoVO" desc="용어전체리스트" fetchSize="10">
+		 <![CDATA[ 
+SELECT TB_M00_TERMS010.*,to_char(REGISTER_DATE,'yyyy-mm-dd') REGISTER_DATE_STR FROM TB_M00_TERMS010 WHERE PROGRESS_STS='4' ORDER BY TERMS_NAME
+		 ]]> 
+	 </query>
+	 <query id="m000208030.checkTerms010" desc="용어중복등록검색" fetchSize="10">
+		 <![CDATA[ 
+SELECT * FROM TB_M00_TERMS010 WHERE TERMS_NAME=? AND ENG_FULL_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000207020.selTermsInfoVO" desc="용어사전" fetchSize="10">
+		 <![CDATA[ 
+SELECT * FROM TB_M00_TERMS010
+WHERE PROGRESS_STS='4'
+  AND CHAIN_CODE LIKE ? ||'%'
+  AND ( UPPER(DECODE(?,'termsNM',TERMS_NAME,'engFullNm',ENG_FULL_NAME))   LIKE UPPER('%'||?||'%')
+     OR       DECODE(?,'true',(SYNONYMOUS_1||SYNONYMOUS_2||SYNONYMOUS_3)) LIKE '%'||?||'%'         )
+		 ]]> 
+	 </query>
+	 <query id="m000207040.selTermsInfoVO" desc="항목상세 조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT * FROM TB_M00_TERMS010
+WHERE CHAIN_CODE LIKE ? ||'%' 
+  AND (       DECODE(?,'termsNM',TERMS_NAME,'engFullNm',ENG_FULL_NAME)    LIKE '%'||?||'%'
+     OR       DECODE(?,'true',(SYNONYMOUS_1||SYNONYMOUS_2||SYNONYMOUS_3)) LIKE '%'||?||'%'  )
+ORDER BY TERMS_NAME
+		 ]]> 
+	 </query>
+	 <query id="m000207010.selTermsInfoVOExport" desc="용어전체리스트 Export" fetchSize="10">
+		 <![CDATA[ 
+SELECT
+  (SELECT SYS_TP   FROM TB_M00_WORK_GROUP WHERE CHAIN_CODE=TB_M00_TERMS010.CHAIN_CODE) as SYS_TP,
+  (SELECT CHAIN_NM FROM TB_M00_WORK_GROUP WHERE CHAIN_CODE=TB_M00_TERMS010.CHAIN_CODE) as CHAIN_NM,
+  TERMS_NAME,ENG_FULL_NAME,ENG_ID,ENG_ABBR,TERMS_SECTION,CHAIN_CODE,to_char(REGISTER_DATE,'yyyy-mm-dd') REGISTER_DATE_STR
+FROM TB_M00_TERMS010
+		 ]]> 
+	 </query>
+	 <query id="oracle.m000208010.TermsApplyListSearch" desc="용어신청리스트조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT 
+  CHAIN_CODE,TERMS_NAME,ENG_FULL_NAME,SUBC_NM,
+  SUBSTR(TO_CHAR(REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE,
+  PROGRESS_STS,
+  INVEST_RESULT
+FROM TB_M00_TERMS010
+WHERE PROGRESS_STS is not null
+  AND MONTHS_BETWEEN(sysdate,REQUEST_DATE)<=(SELECT sysdate - MAX(REQUEST_DATE) FROM TB_M00_TERMS010)+7
+  AND TERMS_NAME LIKE ?||'%'
+  AND ENG_FULL_NAME LIKE ?||'%'
+  AND SUBC_NM LIKE ?||'%'
+ORDER BY CHAIN_CODE,ENG_FULL_NAME
+		 ]]> 
+	 </query>
+	 <query id="db2.m000208010.TermsApplyListSearch" desc="용어신청리스트조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT 
+  CHAIN_CODE,TERMS_NAME,ENG_FULL_NAME,SUBC_NM,
+  SUBSTR(TO_CHAR(REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE,
+  PROGRESS_STS,
+  INVEST_RESULT
+FROM TB_M00_TERMS010
+WHERE PROGRESS_STS is not null
+  AND MONTHS_BETWEEN(CURRENT_TIMESTAMP,REQUEST_DATE)<=(SELECT CURRENT_TIMESTAMP - MAX(REQUEST_DATE) FROM TB_M00_TERMS010)+7
+  AND TERMS_NAME LIKE ?||'%'
+  AND ENG_FULL_NAME LIKE ?||'%'
+  AND SUBC_NM LIKE ?||'%'
+ORDER BY CHAIN_CODE,ENG_FULL_NAME
+		 ]]> 
+	 </query>
+	 <query id="m000208020.RetTermsApply" desc="용어신청승인전 내용조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT 
+  B.SYS_TP,
+  A.CHAIN_CODE,
+  A.TERMS_NAME,
+  A.ENG_FULL_NAME,
+  A.CHINESE_CHAR,
+  A.TERMS_SECTION,
+  A.TERMS_DESCRIPT,
+  A.SUBC_NM,
+  SUBSTR(TO_CHAR(A.REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE,
+  A.ENG_ID,
+  A.PROGRESS_STS,
+  A.INVEST_RESULT,
+  A.SYNONYMOUS_1,
+  A.SYNONYMOUS_2,
+  A.SYNONYMOUS_3
+FROM TB_M00_TERMS010 A,TB_M00_WORK_GROUP B
+WHERE B.CHAIN_CODE=A.CHAIN_CODE
+  AND A.TERMS_NAME=?
+  AND A.ENG_FULL_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000209030.checkAttrs010" desc="시스템구분코드" fetchSize="10">
+		 <![CDATA[ 
+SELECT * FROM TB_M00_DATA_ITEMS010 WHERE DATA_ITEM_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000207030.selDataItemInfoVO" desc="항목조회(DB2/Oracle)" fetchSize="10">
+		 <![CDATA[ 
+SELECT A.*,
+  B.CD_TP_ID,
+  B.FK_CD_TP_ID,
+  DECODE( ( SELECT DISTINCT CD_TP FROM TB_M00_CODES020 WHERE CD_TP=A.DATA_VAR_ID), NULL, '', 'Y') AS CODE_YN1
+FROM TB_M00_DATA_ITEMS010 A
+  LEFT OUTER JOIN TB_M00_CODES020 B ON A.DATA_VAR_ID = B.CD_TP
+WHERE A.PROGRESS_STS='4'  
+  AND A.CHAIN_CODE like ? ||'%'
+  AND ( DECODE( ? , 'dataItemNM', A.DATA_ITEM_NAME, 'dataVarID', A.DATA_VAR_ID ) LIKE '%'||?||'%'
+     OR DECODE( ? , 'true', (A.DATA_SYNONYMOUS_1||A.DATA_SYNONYMOUS_2||A.DATA_SYNONYMOUS_3) ) LIKE '%'||?||'%')
+ORDER BY A.DATA_ITEM_NAME
+		 ]]> 
+	 </query>
+	 <query id="oracle.m000209010.AttrsApplyListSearch" desc="항목신청리스트조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT 
+  CHAIN_CODE,
+  DATA_ITEM_NAME,
+  SUBC_NM,
+  SUBSTR(TO_CHAR(REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE,
+  PROGRESS_STS,
+  INVEST_RESULT
+FROM TB_M00_DATA_ITEMS010
+WHERE PROGRESS_STS IS NOT NULL
+  AND MONTHS_BETWEEN(sysdate,REQUEST_DATE)<=(SELECT sysdate - MAX(REQUEST_DATE) FROM TB_M00_DATA_ITEMS010)+7
+  AND DATA_ITEM_NAME LIKE ? ||'%'
+  AND SUBC_NM LIKE ? ||'%'
+ORDER BY CHAIN_CODE,DATA_ITEM_NAME
+		 ]]> 
+	 </query>
+	 <query id="db2.m000209010.AttrsApplyListSearch" desc="항목신청리스트조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT 
+  CHAIN_CODE,
+  DATA_ITEM_NAME,
+  SUBC_NM,
+  SUBSTR(TO_CHAR(REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE,
+  PROGRESS_STS,
+  INVEST_RESULT
+FROM TB_M00_DATA_ITEMS010
+WHERE PROGRESS_STS IS NOT NULL
+  AND MONTHS_BETWEEN(CURRENT_TIMESTAMP,REQUEST_DATE)<=(SELECT CURRENT_TIMESTAMP - MAX(REQUEST_DATE) FROM TB_M00_DATA_ITEMS010)+7
+  AND DATA_ITEM_NAME LIKE ? ||'%'
+  AND SUBC_NM LIKE ? ||'%'
+ORDER BY CHAIN_CODE,DATA_ITEM_NAME
+		 ]]> 
+	 </query>
+	 <query id="m000207030.selDataItemInfoExportVO" desc="항목조회 Export" fetchSize="10">
+		 <![CDATA[ 
+SELECT A.*,to_char(REGISTER_DATE,'yyyy-mm-dd') REGISTER_DATE_STR,
+  (SELECT CHAIN_NM FROM TB_M00_WORK_GROUP WHERE CHAIN_CODE=A.CHAIN_CODE) as CHAIN_NM,
+  DECODE( ( SELECT DISTINCT CD_TP FROM TB_M00_CODES020 WHERE CD_TP=A.DATA_VAR_ID), NULL, '', 'Y') AS CODE_YN1
+FROM TB_M00_DATA_ITEMS010 A
+ORDER BY OTHER_TERMS
+		 ]]> 
+	 </query>
+	 <query id="m000209020.RetAttrsApply" desc="항목신청승인전 내용조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT A.*,
+  SUBSTR(TO_CHAR(A.REQUEST_DATE,'YYYY-MM-DD'),1,10) as REQUEST_DATE_STR,
+  B.SYS_TP AS SYS_TP_2
+FROM TB_M00_DATA_ITEMS010 A,TB_M00_WORK_GROUP B
+WHERE B.CHAIN_CODE=A.CHAIN_CODE
+  AND A.DATA_ITEM_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000207020.updateTB_M00_TERMS010" desc="용어사전" fetchSize="10">
+		 <![CDATA[ 
+UPDATE TB_M00_TERMS010 SET TERMS_DESCRIPT=?,OTHER_TERMS=? WHERE TERMS_NAME=? AND ENG_FULL_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000208020.SignTermsApply" desc="용어신청승인저장" fetchSize="10">
+		 <![CDATA[ 
+UPDATE TB_M00_TERMS010 SET ENG_ID=?,INVEST_RESULT=?, PROGRESS_STS=? WHERE TERMS_NAME=? AND ENG_FULL_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="m000208030.insertRegist" desc="표중용어 신청등록" fetchSize="10">
+		 <![CDATA[ 
+INSERT INTO TB_M00_TERMS010(
+  CHAIN_CODE,
+  TERMS_NAME,
+  ENG_FULL_NAME,
+  CHINESE_CHAR,
+  TERMS_SECTION,
+  TERMS_DESCRIPT,
+  SUBC_NM,
+  REQUEST_DATE,
+  PROGRESS_STS,
+  SYNONYMOUS_1,
+  SYNONYMOUS_2,
+  SYNONYMOUS_3
+)VALUES(?,?,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),1,?,?,?)
+		 ]]> 
+	 </query>
+	 <query id="m000207120.insertRegist" desc="표준용어 복사" fetchSize="10">
+		 <![CDATA[ 
+insert into TB_M00_TERMS010(
+  TERMS_NAME,
+  ENG_FULL_NAME,
+  ENG_ID,
+  ENG_ABBR,
+  TERMS_SECTION,
+  SYNONYMOUS_1,
+  SYNONYMOUS_2,
+  SYNONYMOUS_3,
+  TERMS_DESCRIPT,
+  OWNER_DEPT,
+  SUBC_NM,
+  CHAIN_CODE,
+  REGISTER_DATE,
+  REQUEST_DATE,
+  PROGRESS_STS,
+  INVEST_RESULT
+) values (?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'4',?)
+		 ]]> 
+	 </query>
+	 <query id="m000209030.insertRegist" desc="시스템구분코드" fetchSize="10">
+		 <![CDATA[ 
+INSERT INTO TB_M00_DATA_ITEMS010(
+  CHAIN_CODE,
+  DATA_ITEM_NAME,
+  DATA_ITEM_DESCRIPT,
+  SUBC_NM,
+  REQUEST_DATE,
+  PROGRESS_STS,
+  DATA_TYPE,
+  DATA_NUMBER,
+  DECIMAL_NUMBER,
+  DATA_UNIT,
+  CODE_YN,
+  KOR_ABBR,
+  ENG_ABBR,
+  DATA_SYNONYMOUS_1,
+  DATA_SYNONYMOUS_2,
+  DATA_SYNONYMOUS_3,
+  OTHER_TERMS,
+  OWNER_DEPT,
+  DATA_VAR_ID,
+  SYS_TP
+)VALUES(?,?,?,?,CURRENT_TIMESTAMP,'1',?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+		 ]]> 
+	 </query>
+	 <query id="m000207110.getWordList" desc="표준용어 목록 조회(m000207110-service,m000207120-service)" isNamed="false">
+		 <![CDATA[ 
+select 
+  a.STD_TERMS_NAME,
+  a.ENG_ID,
+  a.ENG_ABBR,
+  to_char(a.REGISTER_DATE,'yyyy-mm-dd') REGISTER_DATE_STR,
+  a.OWNER_DEPT,
+  a.OTHER_TERMS,
+  b.TERMS_NAME, 
+  b.LANGUAGE_CODE,
+  b.TERMS_DESCRIPT,
+  b.TERMS_SECTION,
+  b.CHAIN_CODE,
+  b.SYNONYMOUS_1,
+  b.SYNONYMOUS_2,
+  b.SYNONYMOUS_3,
+  b.SUBC_NM
+from TB_M00_STD_TERMS010 a, TB_M00_STD_TERMS020 b, TB_M00_MESSAGES020 c
+where a.STD_TERMS_NAME=b.STD_TERMS_NAME
+  and b.PROGRESS_STS='4'
+  and b.LANGUAGE_CODE=c.LANGUAGE_CODE
+  and c.USE_LANG_SET_F IN ('B','C')
+		 ]]> 
+	 </query>
+	 <query id="m000207120.getWordListAllStatus" desc="표준용어 신청현황 목록 조회(m000207120-service)" isNamed="false">
+		 <![CDATA[ 
+select
+  a.CHAIN_CODE,
+  a.TERMS_NAME,
+  a.LANGUAGE_CODE,
+  decode(PROGRESS_STS,'4',b.STD_TERMS_NAME, a.STD_TERMS_NAME) STD_TERMS_NAME,
+  b.ENG_ID,
+  b.ENG_ABBR,
+  b.OWNER_DEPT,
+  a.TERMS_DESCRIPT,
+  a.TERMS_SECTION,
+  a.SYNONYMOUS_1,
+  a.SYNONYMOUS_2,
+  a.SYNONYMOUS_3,
+  a.SUBC_NM,
+  to_char(a.REQUEST_DATE,'yyyy-mm-dd') REQUEST_DATE_STR,
+  a.PROGRESS_STS,
+  a.INVEST_RESULT
+from TB_M00_STD_TERMS020 a
+  LEFT OUTER JOIN TB_M00_STD_TERMS010 b ON a.STD_TERMS_NAME=b.STD_TERMS_NAME
+  INNER JOIN TB_M00_MESSAGES020 c ON a.LANGUAGE_CODE=c.LANGUAGE_CODE
+WHERE c.USE_LANG_SET_F IN ('B','C')
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms010.select" desc="표준용어 조회(m000207120-service)" isNamed="false">
+		 <![CDATA[ 
+select * from TB_M00_STD_TERMS010 where STD_TERMS_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms010.insert" desc="표준용어 등록 " isNamed="false">
+		 <![CDATA[ 
+insert into TB_M00_STD_TERMS010(
+  STD_TERMS_NAME,
+  ENG_ID,
+  ENG_ABBR,
+  REGISTER_DATE,
+  OWNER_DEPT
+) values (?, ?, ?, trunc(CURRENT_TIMESTAMP), ?)
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms010.update" desc="표준용어 수정" isNamed="false">
+		 <![CDATA[ 
+update TB_M00_STD_TERMS010 set OTHER_TERMS=? where STD_TERMS_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms020.insert" desc="표준용어 의뢰(m000207120-service)" isNamed="false">
+		 <![CDATA[ 
+insert into TB_M00_STD_TERMS020(
+  TERMS_NAME,
+  LANGUAGE_CODE,
+  STD_TERMS_NAME,
+  TERMS_DESCRIPT,
+  TERMS_SECTION,
+  CHAIN_CODE,
+  SYNONYMOUS_1,
+  SYNONYMOUS_2,
+  SYNONYMOUS_3,
+  REQUEST_DATE,
+  SUBC_NM,
+  PROGRESS_STS,
+  INVEST_RESULT
+) values (?,?,?,?,?,?,?,?,?,to_date(?,'yyyy-mm-dd'),?,?,?)
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms020.update" desc="표준용어 수정" isNamed="false">
+		 <![CDATA[ 
+update TB_M00_STD_TERMS020 set TERMS_DESCRIPT=?,SYNONYMOUS_1=?,SYNONYMOUS_2=?,SYNONYMOUS_3=? where TERMS_NAME=? and LANGUAGE_CODE=? and STD_TERMS_NAME=?
+		 ]]> 
+	 </query>
+	 <query id="TbM00StdTerms020.update.sts" desc="표준용어 수정" isNamed="false">
+		 <![CDATA[ 
+update TB_M00_STD_TERMS020
+set STD_TERMS_NAME=?,
+  TERMS_DESCRIPT=?,
+  TERMS_SECTION=?,
+  CHAIN_CODE=?,
+  SYNONYMOUS_1=?,
+  SYNONYMOUS_2=?,
+  SYNONYMOUS_3=?,
+  PROGRESS_STS=?,
+  INVEST_RESULT=?
+where TERMS_NAME=?
+  and LANGUAGE_CODE=?
+		 ]]> 
+	 </query>
+</queryMap>

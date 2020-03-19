@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000050 Page 쿼리파일"> 
+	 <query id="C104000050.select" desc="C104000050.select" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과확정 C104000050.select 박재영 */
+       DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_CFM
+      ,ORD_NO
+      ,ORD_LN
+      ,FNL_CUS_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FNL_CUS_CD) FNL_CUS_CD
+      ,PRD_NM_CD
+      ,SPC_AVR
+      ,ORD_USG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_USG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_USG_CD) ORD_USG_CD
+      ,CCL_BOM_NO
+      ,(SELECT MAIN_PROC_CD
+        FROM TB_C10_QLT_DSN_PROC
+        WHERE ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
+         AND ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
+         AND SUBSTR(MAIN_PROC_CD,1,1)='A'
+         AND ROWNUM =1
+         ) CCL_PROC --칼라주공정
+      ,DECODE(DSN_ATO_CFM_YN,'Y','1','0') DSN_ATO_CFM_YN
+      ,QLT_DSN_STS_CD
+      ,ORD_EXC_THK, ORD_EXC_WTH, ORD_EXC_LTH, ORD_LN_WGT
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_INST_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_INST_DH
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_END_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_END_DH
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_CFM_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_CFM_DH
+      ,ORD_RGS_PRS_ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_ID_NM
+      ,QLT_DSN_PRS_ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_DSN_CFM_PRS_ID) QLT_DSN_CFM_PRS_ID_NM --품질설계확정자
+      ,QLT_DSN_CFM_PRS_ID --품질설계확정자ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_RDSN_PRS_ID) QLT_RDSN_PRS_ID_NM --품질재설계자 
+      ,QLT_RDSN_PRS_ID --품질재설계자ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = DSN_ATO_CFM_PRS_ID) DSN_ATO_CFM_PRS_ID_NM --자동확정검증자 
+      ,DSN_ATO_CFM_PRS_ID --자동확정검증자ID
+      ,TO_CHAR(DSN_ATO_CFM_DH, 'YYYY-MM-DD HH24:MI') AS DSN_ATO_CFM_DH  --자동확정검증일시
+      ,(SELECT CD_V_MEANING 
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+           WHERE CD_TP = 'ORD_BAK_SND_TP' 
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = ORD_BAK_SND_TP) ORD_BAK_SND_TP_NM --주문반송구분명
+      ,ORD_BAK_SND_TP --주문반송구분명
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_BAK_SND_PRS_ID) ORD_BAK_SND_PRS_ID_NM --주문반송자
+      ,ORD_BAK_SND_PRS_ID --주문반송자ID      
+      ,TO_CHAR(ORD_BAK_SND_DH, 'YYYY-MM-DD HH24:MI') AS ORD_BAK_SND_DH  --주문반송일시
+      ,ORD_BAK_SND_CAU	        --주문반송원인	
+      ,MO_CVT_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MO_CVT_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MO_CVT_ORD_YN) MO_CVT_ORD_YN --MO전환주문여부
+      ,MTL_PRD_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MTL_PRD_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MTL_PRD_ORD_YN) MTL_PRD_ORD_YN --소재생산주문여부
+      ,SUBSTR(CUS_REQ_DLV_DD,1,4) || '-' || SUBSTR(CUS_REQ_DLV_DD,5,2) || '-' ||  SUBSTR(CUS_REQ_DLV_DD,7,2) CUS_REQ_DLV_DD
+      ,QLT_HLD_YN
+      ,TRST_PROC_YN
+      ,nvl2(ORD_REP_YN,'Y','N') as ORD_REP_YN
+   FROM
+   TB_C10_QLT_DSN_CMN
+   WHERE ORD_NO LIKE :ORD_NO||'%'
+    AND QLT_DSN_INST_DH BETWEEN TO_DATE(DECODE(:ORD_NO,'',replace(:QLT_DSN_INST_DH_STR,'-'),'19000101'),'YYYYMMDD')  
+                        AND     TO_DATE(DECODE(:ORD_NO,'',replace(:QLT_DSN_INST_DH_END,'-'),'30001231'),'YYYYMMDD') + 1
+    AND NVL(QLT_DSN_STS_CD,' ') LIKE :QLT_DSN_STS_CD||'%'
+    AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%' 
+    AND NVL(SPC_AVR,' ') LIKE :SPC_AVR||'%' 
+    AND (  (:ORD_RGS_PRS_NAME is null)
+         or (ORD_RGS_PRS_ID in (SELECT EMP_ID FROM M90APUSER.TB_M90_EMP_INF
+                                WHERE  EMP_NM LIKE '%' || :ORD_RGS_PRS_NAME || '%'))
+        ) 
+    AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
+    AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
+    AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'    
+    AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
+    AND NVL(MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
+    AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
+    AND NVL(QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
+ORDER BY ORD_NO, ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.update" desc="품질설계상태 update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과확인 C104000050.update 박재영 */  
+TB_C10_QLT_DSN_CMN
+SET         LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       QLT_DSN_STS_CD = 'A' ,
+       QLT_DSN_CFM_PRS_ID = :ObjectId,	--품질설계확정자ID
+      QLT_DSN_CFM_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --품질설계완료일시
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.update_confirm" desc="자동확정주문재확인 update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과확인 C104000050.update_confirm 이돈석 */  
+TB_C10_QLT_DSN_CMN
+SET         LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       DSN_ATO_CFM_YN = 'Y' ,
+       DSN_ATO_CFM_PRS_ID = :ObjectId,	--자동확정재확인자ID
+       DSN_ATO_CFM_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')      --자동확정재확인자ID
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.check" desc="품질설계상태 check" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과확인 C104000050.check 박재영 */ 
+        QLT_DSN_STS_CD
+FROM TB_C10_QLT_DSN_CMN
+WHERE ORD_NO = ?
+AND    ORD_LN = ?
+AND    QLT_DSN_STS_CD = 'B'
+AND    NVL(ORD_BAK_SND_TP,' ') <>'R'
+		 ]]> 
+	 </query>
+	 <query id="IFB10S1010.insert" desc="IFB10S1010.insert" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계확정IF TB_C10_B10S1010.insert 박재영*/
+            TB_C10_B10S1010
+            (
+                  IF_GRP_ID
+                 ,SEQ_NO   
+                 ,XSEQ       
+                 ,XCRUD  
+                 ,XSTAT  
+                 ,ORD_NO
+                 ,ORD_LN
+                 ,QLT_DSN_STS
+                 ,QLT_DSN_MSG
+                 ,CREATED_OBJECT_TYPE         
+                 ,CREATED_OBJECT_ID        
+                 ,CREATED_PROGRAM_ID      
+                 ,CREATION_TIMESTAMP     
+                 ,LAST_UPDATED_OBJECT_TYPE
+                 ,LAST_UPDATED_OBJECT_ID  
+                 ,LAST_UPDATE_PROGRAM_ID  
+                 ,LAST_UPDATE_TIMESTAMP     
+            )
+VALUES
+            (
+              :IF_GRP_ID,
+              SQ_C10_B10S1010.NEXTVAL,
+		      '1',
+              'C',
+              'R',
+              :ORD_NO,
+              :ORD_LN,
+              :QLT_DSN_STS,
+              :QLT_DSN_MSG,
+:ObjectType,
+:ObjectId,
+:ProgramId,
+:Timestamp,
+:ObjectType,
+:ObjectId,
+:ProgramId,
+:Timestamp
+            )
+		 ]]> 
+	 </query>
+	 <query id="C104000050.update2" desc="품질설계결과확인 반송" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과확인 반송 C104000050.update2 김종범 */  
+TB_C10_QLT_DSN_CMN
+SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       ORD_BAK_SND_TP = 'R' ,
+       ORD_BAK_SND_PRS_ID = :ObjectId,	--주문반송자
+       ORD_BAK_SND_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS'),--반송일시
+       ORD_BAK_SND_CAU = :ORD_BAK_SND_CAU--주문반송원인
+WHERE ORD_NO = :ORD_NO
+  AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.check2" desc="품질설계결과확인 반송대상 체크" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과확인 반송 C104000050.check2 김종범 */ 
+        QLT_DSN_STS_CD
+FROM TB_C10_QLT_DSN_CMN
+WHERE ORD_NO = ?
+AND    ORD_LN = ?
+AND    QLT_DSN_STS_CD IN ('B','E')
+		 ]]> 
+	 </query>
+	 <query id="C104000050.update3" desc="품질설계결과확인 반송취소" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과확인 반송취소 C104000050.update3 김종범 */  
+TB_C10_QLT_DSN_CMN
+SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       ORD_BAK_SND_TP = 'C' ,
+       ORD_BAK_SND_PRS_ID = :ObjectId,	--반송취소자
+       ORD_BAK_SND_DH = TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS'),--반송취소일시
+       ORD_BAK_SND_CAU = :ORD_BAK_SND_CAU--주문반송원인 및 취소사유
+WHERE ORD_NO = :ORD_NO
+    AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.check3" desc="품질설계결과확인 반송취소 대상 체크" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과확인 반송취소 C104000050.check3 김종범 */ 
+        ORD_BAK_SND_TP
+FROM TB_C10_QLT_DSN_CMN
+WHERE ORD_NO = ?
+AND    ORD_LN = ?
+AND    ORD_BAK_SND_TP = 'R'
+		 ]]> 
+	 </query>
+	 <query id="C104000050.STSselect" desc="C104000050.STSselect" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C104000050.STSselect 박재영*/      
+*                               
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+ AND    ORD_LN = :ORD_LN
+ AND    QLT_DSN_STS_CD = 'A'
+		 ]]> 
+	 </query>
+	 <query id="C104000050.update_redesign" desc="C104000050.update_redesign" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 재설계 C104000050.update_redesign 박재영 */ 
+TB_C10_QLT_DSN_CMN SET
+QLT_DSN_STS_CD = 'I', 
+QLT_DSN_ERR_YN = 'N',
+QLT_RDSN_DH = SYSDATE,
+QLT_RDSN_PRS_ID = SUBSTR(:ObjectId,1,10),
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp      
+WHERE  ORD_NO= :ORD_NO
+AND ORD_LN= :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050Comb.select" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT '%' AS ORD_RGS_PRS_ID,'　' AS ORD_RGS_PRS_NAME -- '전체'컬럼 생성
+FROM DUAL
+UNION ALL -- 테이블 조합
+SELECT ORD_RGS_PRS_ID,
+           (SELECT USER_NAME
+     FROM M90APUSER.TB_M90_EMP_INF
+    WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_NAME
+   FROM
+   TB_C10_QLT_DSN_CMN
+   WHERE ORD_NO LIKE :ORD_NO||'%'
+    AND QLT_DSN_INST_DH BETWEEN TO_DATE(DECODE(:ORD_NO,'',:QLT_DSN_INST_DH_STR,'1900-01-01'),'YYYY-MM-DD')  
+    AND TO_DATE(DECODE(:ORD_NO,'',:QLT_DSN_INST_DH_END,'3000-12-31'),'YYYY-MM-DD') + 1
+    AND NVL(QLT_DSN_STS_CD,' ') LIKE :QLT_DSN_STS_CD||'%'
+    AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%' 
+    AND NVL(SPC_AVR,' ') LIKE :SPC_AVR||'%' 
+    AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
+    AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
+    AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'     
+    AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
+    AND NVL(MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
+    AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
+    AND NVL(QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
+    AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')
+		 ]]> 
+	 </query>
+	 <query id="C104000050.excel" desc="조회결과엑셀전환" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과엑셀변환 C104000050.excel 이돈석 */
+        ORD_NO, 
+        ORD_LN, 
+        DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_STS_CD, 
+        PLNT_TP, 
+        PRD_NM_CD, 
+        PRD_SHP, 
+        FLOW_CHL, 
+        ORD_KND, 
+        ORD_PRD_GRD, 
+        ORD_USG_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'ORD_USG_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ORD_USG_CD) ORD_USG_CD, 
+        CUS_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = CUS_CD) CUS_CD,
+        ACT_CUS_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = ACT_CUS_CD) ACT_CUS_CD, 
+        FNL_CUS_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FNL_CUS_CD) FNL_CUS_CD, 
+        CUS_BTH_PAP_NO, 
+        SPC_OFC, 
+        SPC_AVR, 
+        SPC_YR, 
+        SPC_NM, 
+        SPC_FUL_NM, 
+        ORD_SZ, 
+        ORD_EXC_THK, 
+        ORD_EXC_WTH, 
+        ORD_EXC_LTH, 
+        CUS_REQ_DLV_DD, 
+        ORD_SCH_DLV_DD, 
+        ORD_PTL_STR_DD, 
+        ORD_PTL_END_DD, 
+        GW_ASG_CD, 
+        CCL_BOM_NO, 
+        HUE_CD_FRN, 
+        HUE_CD_BAK, 
+        ORD_ORG_PLT_SPC_AVR, 
+        ORD_ROU_CD, 
+        ORD_SPNL_TP, 
+        ORD_COILG_MTH, 
+        ORD_SUR_HND_CD, 
+        ORD_SKP_DEG, 
+        ORD_EDG_ASG_TP, 
+        ORD_THK_TP, 
+        ORD_GRA, 
+        WGT_DCS_MTH_TP, 
+        ORD_SLV_KND_TP, 
+        EMBS_CD, 
+        ORD_PTT_FLM_DTL_CD, 
+        ORD_PTT_FLM_WTH, 
+        ORD_PTT_FLM_ADH_LOC_CD, 
+        ORD_WGT_UNT, 
+        ORD_LN_WGT, 
+        ORD_SHT_CNT, 
+        ORD_PAK_SHT_CNT, 
+        ORD_PAK_UNT_WGT_LLV, 
+        ORD_PAK_UNT_WGT_ULV, 
+        ORD_DLV_ALW_DIF_LLV, 
+        ORD_DLV_ALW_DIF_ULV, 
+        ORD_PAK_LTH_LLV, 
+        ORD_PAK_LTH_ULV, 
+        ORD_STDP_LLV, 
+        ORD_STDP_ULV, 
+        ORD_STDP_CNT_LLV, 
+        ORD_STDP_CNT_ULV, 
+        ORD_PAK_UNT_CNT, 
+        ORD_PAK_UNT_WGT, 
+        ORD_SML_PAK_WGT, 
+        ORD_SML_PAK_MIR, 
+        ORD_UNT_WGT, 
+        ORD_PAK_MTH, 
+        ORD_COIL_IDIA, 
+        ORD_COIL_ODIA, 
+        ORD_THK_TLN_LLV, 
+        ORD_THK_TLN_ULV, 
+        ORD_WTH_TLN_LLV, 
+        ORD_WTH_TLN_ULV, 
+        ORD_LTH_TLN_LLV, 
+        ORD_LTH_TLN_ULV, 
+        PNT_FLM_THK_FRN_TOT, 
+        PNT_FLM_THK_BAK_TOT, 
+        RSN_TP_FRN, 
+        RSN_TP_BAK, 
+        LUS_RT_CD_FRN, 
+        LUS_RT_CD_BAK, 
+        COT_MTH, 
+        CUS_REQ_ROL_THK, 
+        ORD_THK_MNG_CD, 
+        ORD_WTH_MNG_CD, 
+        ORD_LTH_MNG_CD, 
+        CUS_REQ_CLR_NM, 
+        URG_MTL_TP, 
+        ORD_RCP_DD, 
+        ORD_SHT_LOD_MTH, 
+        ORD_SLIT_GRP_CNT, 
+        ORD_MIX_WTH1, 
+        ORD_MIX_WTH2, 
+        ORD_MIX_WTH3, 
+        ORD_MIX_WTH4, 
+        ORD_MIX_WTH5, 
+        ORD_MIX_WTH6, 
+        ORD_MIX_WTH7, 
+        ORD_MIX_WTH8, 
+        SLIT_MAX_WGT, 
+        TRST_PROC_YN, 
+        TAG_TP, 
+        NAT_CD, 
+        ORD_SPC_TXT, 
+        TAG_PRD_NM, 
+        TAG_PO_NO, 
+        TAG_DST, 
+        TAG_SIZ, 
+        TAG_SPC_NM, 
+        TAG_GAA, 
+        TAG_HUE_FRN, 
+        TAG_HUE_BAK, 
+        TAG_SPC_MRK, 
+        RMTL_PRFR_CD, 
+        BAK_MRK, 
+        ORD_MDF_DD, 
+        ORD_CFM_DD, 
+        (SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_ID, 
+        ORD_TEM_CD, 
+        MTL_CD, 
+        CLS_CD, 
+        SUB_CLS_CD, 
+        TO_CHAR(QLT_DSN_END_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_END_DH, 
+        TO_CHAR(QLT_DSN_INST_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_INST_DH, 
+        QLT_DSN_PRS_ID, 
+        MQL_CD, 
+        RMTL_CD, 
+        RMTL_GRD, 
+        CRM_MNF_STD_NO, 
+        PAS_PROC_NO, 
+        ACPT_RT_SPC, 
+        ORD_END_TP, 
+        ORD_END_DD, 
+        ORD_END_PRS_ID, 
+        TO_CHAR(QLT_DSN_CFM_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_CFM_DH, 
+        (SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_DSN_CFM_PRS_ID) QLT_DSN_CFM_PRS_ID, 
+        TO_CHAR(QLT_RDSN_DH, 'YYYY-MM-DD HH24:MI') QLT_RDSN_DH, 
+        (SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_RDSN_PRS_ID) QLT_RDSN_PRS_ID, 
+        QLT_DSN_ERR_YN,
+        QLT_DSN_YN, 
+        QLT_DSN_CFM_TP, 
+        RMTL_CD1, 
+        RMTL_CD2, 
+        CRM_MNF_STD_NO1, 
+        CRM_MNF_STD_NO2, 
+        ORD_CNL_CAU_CD, 
+        ORD_CNL_DTL_TXT, 
+        THK_COR_UNT, 
+        PRD_THK_CAL_APL_CD, 
+        APR_INP_BAS_CD, 
+        TAG_PO_NO2, 
+        CTR_SHPM_MN, 
+        SVC_CRD_PUB_YN, 
+        PAK_MSG_CD, 
+        ORD_TEM_GRP_CD, 
+        ORD_MIX_WTH9, 
+        ORD_MIX_WTH10, 
+        PTT_FLM_NOT_ADH_WS, 
+        PTT_FLM_NOT_ADH_DS, 
+        TAG_PART_NO,
+        MO_CVT_ORD_YN ||
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'MO_CVT_ORD_YN' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = MO_CVT_ORD_YN) MO_CVT_ORD_YN, 
+        PER_TON_LTH, 
+        (SELECT CD_V_MEANING 
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+           WHERE CD_TP = 'ORD_BAK_SND_TP' 
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = ORD_BAK_SND_TP) ORD_BAK_SND_TP, 
+        (SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_BAK_SND_PRS_ID) ORD_BAK_SND_PRS_ID, 
+        TO_CHAR(ORD_BAK_SND_DH, 'YYYY-MM-DD HH24:MI') ORD_BAK_SND_DH, 
+        ORD_BAK_SND_CAU, 
+        MTL_PRD_ORD_YN || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'MTL_PRD_ORD_YN' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = MTL_PRD_ORD_YN) MTL_PRD_ORD_YN, 
+        ORD_PAK_MTL_WGT, 
+        QLT_DSN_TXT, 
+        ORD_DSN_CFM_TP, 
+        DSN_ATO_CFM_YN, 
+        TO_CHAR(DSN_ATO_CFM_DH, 'YYYY-MM-DD HH24:MI') DSN_ATO_CFM_DH, 
+        (SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = DSN_ATO_CFM_PRS_ID) DSN_ATO_CFM_PRS_ID, 
+        QLT_HLD_YN, 
+        LTH_MNG_YN, 
+        LTH_MNG_FROM, 
+        LTH_MNG_TO, 
+        BORON_ADD_YN, 
+        ORD_REP_YN, 
+        ORD_REP_NO, 
+        ORD_REP_LN, 
+        ORD_COP_STP, 
+        WIP_PAK_MTH
+   FROM TB_C10_QLT_DSN_CMN
+   WHERE ORD_NO LIKE :ORD_NO||'%'
+    AND QLT_DSN_INST_DH BETWEEN TO_DATE(DECODE(:ORD_NO,'',:QLT_DSN_INST_DH_STR,'1900-01-01'),'YYYY-MM-DD')  
+    AND TO_DATE(DECODE(:ORD_NO,'',:QLT_DSN_INST_DH_END,'3000-12-31'),'YYYY-MM-DD') + 1
+    AND NVL(QLT_DSN_STS_CD,' ') LIKE :QLT_DSN_STS_CD||'%'
+    AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%' 
+    AND NVL(SPC_AVR,' ') LIKE :SPC_AVR||'%' 
+    AND NVL(ORD_RGS_PRS_ID,' ') LIKE FUNC_USER_ID(:ORD_RGS_PRS_NAME)||'%'
+    AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
+    AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
+    AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'    
+    AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
+    AND NVL(MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
+    AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
+    AND NVL(QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
+    AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
+                           WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')
+ORDER BY ORD_NO, ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.BRYselect" desc="품질설계상태 설계확정대상여부 확인" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과공통조회 C104000050.BRYselect 성낙원*/      
+         QLT_DSN_STS_CD, ORD_BAK_SND_TP, QLT_HLD_YN                                
+ FROM TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+ AND    ORD_LN = :ORD_LN
+ AND    (QLT_DSN_STS_CD != 'B'
+ OR       ORD_BAK_SND_TP = 'R'
+ OR       QLT_HLD_YN = 'Y')
+		 ]]> 
+	 </query>
+	 <query id="C104000050.selectForB20R5030" desc="품질설계확정결과송신" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C104000050  품질설계확정결과송신  C104000050.selectForB20R5030  이돈석  */
+     'B20R5030' AS TC_CD           --TC코드
+     , ORD_NO AS ORD_NO           --주문번호 
+     , ORD_LN AS ORD_LN          --주문행번
+     , 'Y' AS QLT_DSN_CFM_YN       --품질설계확정여부
+FROM EAIAPUSER.TB_C10_B10S1010
+WHERE QLT_DSN_MSG = 'A'
+		 ]]> 
+	 </query>
+	 <query id="C104000050.UpdateSendFlag" desc="C10 품질설계 송신완료표시" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 송신완료표시 C104000050.UpdateSendFlag 이돈석*/ 
+EAIAPUSER.TB_C10_B10S1010 SET
+QLT_DSN_MSG = 'B',
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp      
+WHERE  ORD_NO= :ORD_NO
+AND ORD_LN= :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.selectBsts" desc="품질설계상태 BE인 것들 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
+       DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_CFM
+      ,ORD_NO
+      ,ORD_LN
+      ,FNL_CUS_CD || 
+        (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD' 
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
+         AND   CD_V = FNL_CUS_CD) FNL_CUS_CD
+      ,PRD_NM_CD
+      ,SPC_AVR
+      ,ORD_USG_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'ORD_USG_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = ORD_USG_CD) ORD_USG_CD
+      ,CCL_BOM_NO
+      ,(SELECT MAIN_PROC_CD
+        FROM TB_C10_QLT_DSN_PROC
+        WHERE ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
+         AND ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
+         AND SUBSTR(MAIN_PROC_CD,1,1)='A'
+         AND ROWNUM =1
+         ) CCL_PROC --칼라주공정
+      ,DECODE(DSN_ATO_CFM_YN,'Y','1','0') DSN_ATO_CFM_YN
+      ,QLT_DSN_STS_CD
+      ,ORD_EXC_THK, ORD_EXC_WTH, ORD_EXC_LTH, ORD_LN_WGT
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_INST_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_INST_DH
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_END_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_END_DH
+      ,TO_CHAR(TB_C10_QLT_DSN_CMN.QLT_DSN_CFM_DH, 'YYYY-MM-DD HH24:MI') QLT_DSN_CFM_DH
+      ,ORD_RGS_PRS_ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_ID_NM
+      ,QLT_DSN_PRS_ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_DSN_CFM_PRS_ID) QLT_DSN_CFM_PRS_ID_NM --품질설계확정자
+      ,QLT_DSN_CFM_PRS_ID --품질설계확정자ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = QLT_RDSN_PRS_ID) QLT_RDSN_PRS_ID_NM --품질재설계자 
+      ,QLT_RDSN_PRS_ID --품질재설계자ID
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = DSN_ATO_CFM_PRS_ID) DSN_ATO_CFM_PRS_ID_NM --자동확정검증자 
+      ,DSN_ATO_CFM_PRS_ID --자동확정검증자ID
+      ,TO_CHAR(DSN_ATO_CFM_DH, 'YYYY-MM-DD HH24:MI') AS DSN_ATO_CFM_DH  --자동확정검증일시
+      ,(SELECT CD_V_MEANING 
+           FROM M00APUSER.VI_M00_CODE_ACCESS
+           WHERE CD_TP = 'ORD_BAK_SND_TP' 
+           AND   CATEGORY_GROUP_NM = 'SZ0000'
+           AND   CD_V = ORD_BAK_SND_TP) ORD_BAK_SND_TP_NM --주문반송구분명
+      ,ORD_BAK_SND_TP --주문반송구분명
+      ,(SELECT USER_NAME
+            FROM M90APUSER.TB_M90_EMP_INF
+            WHERE USER_NO = ORD_BAK_SND_PRS_ID) ORD_BAK_SND_PRS_ID_NM --주문반송자
+      ,ORD_BAK_SND_PRS_ID --주문반송자ID      
+      ,TO_CHAR(ORD_BAK_SND_DH, 'YYYY-MM-DD HH24:MI') AS ORD_BAK_SND_DH  --주문반송일시
+      ,ORD_BAK_SND_CAU	        --주문반송원인	
+      ,MO_CVT_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MO_CVT_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MO_CVT_ORD_YN) MO_CVT_ORD_YN --MO전환주문여부
+      ,MTL_PRD_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MTL_PRD_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MTL_PRD_ORD_YN) MTL_PRD_ORD_YN --소재생산주문여부
+      ,SUBSTR(CUS_REQ_DLV_DD,1,4) || '-' || SUBSTR(CUS_REQ_DLV_DD,5,2) || '-' ||  SUBSTR(CUS_REQ_DLV_DD,7,2) CUS_REQ_DLV_DD
+      ,QLT_HLD_YN
+      ,TRST_PROC_YN
+      ,nvl2(ORD_REP_YN,'Y','N') as ORD_REP_YN
+   FROM
+   TB_C10_QLT_DSN_CMN
+   WHERE ORD_NO LIKE :ORD_NO||'%'
+    AND QLT_DSN_INST_DH BETWEEN TO_DATE(DECODE(:ORD_NO,'',replace(:QLT_DSN_INST_DH_STR,'-'),'19000101'),'YYYYMMDD')  
+                        AND     TO_DATE(DECODE(:ORD_NO,'',replace(:QLT_DSN_INST_DH_END,'-'),'30001231'),'YYYYMMDD') + 1
+    AND QLT_DSN_STS_CD IN ('B','E')
+    AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%' 
+    AND NVL(SPC_AVR,' ') LIKE :SPC_AVR||'%' 
+    AND (  (:ORD_RGS_PRS_NAME is null)
+         or (ORD_RGS_PRS_ID in (SELECT EMP_ID FROM M90APUSER.TB_M90_EMP_INF
+                                WHERE  EMP_NM LIKE '%' || :ORD_RGS_PRS_NAME || '%'))
+        ) 
+    AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
+    AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
+    AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'    
+    AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
+    AND NVL(MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
+    AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
+    AND NVL(QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
+ORDER BY ORD_NO, ORD_LN
+		 ]]> 
+	 </query>
+</queryMap>

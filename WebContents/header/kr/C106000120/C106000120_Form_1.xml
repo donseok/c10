@@ -1,0 +1,6 @@
+<items>
+	<item type="block">
+		<item offset="900" type="newcolumn"/>
+		<item command="winClose" name="winClose" type="button" value="닫기"/>
+	</item>
+</items> 

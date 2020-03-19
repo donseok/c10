@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<toolbar>
+	<item id="menuSearchText" type="buttonInput" value="" width="100" title="input text here"/>
+	<item id="find"   type="button"   img="search.png"  imgdis="search.png"  text="메뉴검색"/>
+</toolbar>

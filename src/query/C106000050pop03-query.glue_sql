@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050pop03 Page 쿼리파일"> 
+	 <query id="C106000050pop03.select" desc="C106000050pop03 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C106000050pop03   물질안전보건   C106000050pop03_Grid_1.select  이돈석  */
+       CLR_SUB_MTL_CD,
+       PNT_CMP_CD,
+       SEQ,
+       DECODE(IMG_RGS_TP, '2', '모바일', 'PC') IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD') RGS_DH,
+       RGS_PRS_ID,
+       IMG_NM CHK_IMG_NM,
+       './'||REPLACE(SUBSTR(IMG_ADR, instr(IMG_ADR, 'IMG_UPLOAD')), '\', '/')||'/' CHK_IMG_ADR
+FROM TB_C10_CLR_CMP_MNG_FILE
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+AND PNT_CMP_CD = :PNT_CMP_CD
+ORDER BY CLR_SUB_MTL_CD, PNT_CMP_CD, SEQ
+		 ]]> 
+	 </query>
+</queryMap>

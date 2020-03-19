@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[./dhtmlx/codebase/imgs/]]></param></call>
+
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+
+<call command="enableMultiselect"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d %H:%i:%s]]></param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="PLNT_TP" index="1" sort="sort_str_custom" width="20" align="center" table="TB_C10_MTL_SEM_PROD" type="ro">플랜트구분</column>
+<column id="PROC_SEQ" index="2" sort="sort_int_custom" width="20" align="center" table="TB_C10_MTL_SEM_PROD" type="ro">공정순서</column>
+<column id="PROC_CD" index="3" sort="sort_str_custom" width="20" align="center" table="TB_C10_MTL_SEM_PROD" type="ro">공정코드</column>
+<column id="SEM_PROD_MTL_CD" index="4" sort="sort_str_custom" width="20" align="center" table="TB_C10_MTL_SEM_PROD" type="ro">반제품MATERIALCODE</column>
+<column id="MTL_RCV_DH" index="5" sort="sort_date_custom" width="20" align="center" table="TB_C10_MTL_SEM_PROD" type="ro">수신일시</column>
+<column id="MTL_CD" index="6" sort="sort_str_custom" align="center" width="0" table="TB_C10_MTL_SEM_PROD" type="ro" hidden="true">MATERIALCODE</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">PLNT_TP,PROC_SEQ,PROC_CD,SEM_PROD_MTL_CD,MTL_RCV_DH,MTL_CD</userdata>
+<row id="0">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="1">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="2">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="3">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="4">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="5">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="6">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="7">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="8">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+<row id="9">
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+<cell/>
+</row>
+</rows>

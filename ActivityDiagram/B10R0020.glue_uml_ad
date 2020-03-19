@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="4" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="131299" location="362,55" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="131300" location="372,199" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:Activity" id="131301" location="260,125" size="231,-1" input="//@wire.0" output="//@wire.1" name="callBatchJob">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosBatchJobInvoker"/>
+    <property key="job-name" value="batchJobB10R0020"/>
+    <property key="target-chain" value="C10"/>
+    <property key="description" value="생산가부검토Batch Job을 Call하는 Activity이다."/>
+  </child>
+  <property key="description" value="이 Activity Diagram은 EAI에서 생산가부검토의뢰요청&#xD;&#xA;이벤트를  받아 생산가부검토 Batch를 호출하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 생산가부검토Batch 호출처리&#xD;&#xA;"/>
+  <wire id="8434" guardcondition="success" firstRelativePoint="372,74" lastRelativePoint="372,111"/>
+  <wire id="8435" guardcondition="success" firstRelativePoint="382,141" lastRelativePoint="382,198"/>
+</Glue:GlueDiagram>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="7" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="51398" location="354,33" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="51399" location="356,281" size="-1,-1" input="//@wire.1 //@wire.2"/>
+  <child xsi:type="Glue:Activity" id="51400" location="229,127" size="262,-1" input="//@wire.0" output="//@wire.1 //@wire.2" name="SEARCH_MD">
+    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbSearchPakMtlWgtData"/>
+    <property key="description" value="이 Activity는 Master Data의 포장재중량기준을 읽어 &#xD;&#xA;포장재중량을 편성하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. 편성정보: 포장재중량 Coil/Sheet&#xD;&#xA;    - Master Table Code: C10B1081, C10B1082&#xD;&#xA;    - Key: 포장방법, 두께, 폭, 길이, 포장단중&#xD;&#xA;&#xD;&#xA;2. 편성한 결과는 PosContext에 등록&#xD;&#xA;&#xD;&#xA;3. 정보가 존재하는 경우 transition='success', 아니면 'failure'로 Set"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="이 Activity Diagram은 포장재중량을 편성하는 Activity이다. &#xD;&#xA; &#xD;&#xA;- 처리내역&#xD;&#xA;    . 포장재중량 Coil/Sheet(C10B1081, C10B1082) 편성&#xD;&#xA;"/>
+  <wire id="3019" guardcondition="success" firstRelativePoint="360,52" lastRelativePoint="360,127"/>
+  <wire id="3020" guardcondition="success" firstRelativePoint="366,157" lastRelativePoint="366,280"/>
+  <wire id="3021" guardcondition="failure" firstRelativePoint="491,143" lastRelativePoint="376,290">
+    <bendpoint weight="0.5" firstDimension="259,1" secondDimension="253,-148"/>
+    <bendpoint weight="0.5" firstDimension="259,148" secondDimension="253,-1"/>
+  </wire>
+</Glue:GlueDiagram>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C103100020-service" initial="INIT_QLT_ERR">
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100CMN.Jselect" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="CLEAR_MNF" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param3" value="ORD_EXC_THK|ORD_EXC_THK" />
+    <property name="param4" value="ORD_EXC_WTH|ORD_EXC_WTH" />
+    <property name="param5" value="PRD_SHP|PRD_SHP" />
+    <property name="param6" value="MQL_CD|MQL_CD" />
+    <property name="param7" value="ORD_SPNL_TP|ORD_SPNL_TP" />
+    <property name="param8" value="ORD_SP_ASG_YN|ORD_SP_ASG_YN" />
+    <property name="param9" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD" />
+    <property name="param-count" value="17" />
+    <property name="param10" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param11" value="RMTL_CD|RMTL_CD" />
+    <property name="param12" value="RMTL_CD1|RMTL_CD1" />
+    <property name="param13" value="RMTL_CD2|RMTL_CD2" />
+    <property name="param14" value="CRM_MNF_STD_NO|CRM_MNF_STD_NO" />
+    <property name="param15" value="CRM_MNF_STD_NO1|CRM_MNF_STD_NO1" />
+    <property name="param16" value="CRM_MNF_STD_NO2|CRM_MNF_STD_NO2" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="MODIFY_ERR" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C1021000CMN.modify" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SUBSERVICE_ERR" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="MODIFY_ERR" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100140-service" />
+  </activity>
+  <activity name="CLEAR_MNF" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH_MD" />
+    <property name="param60" value="GAL_THK_LLV|sp_null" />
+    <property name="param61" value="GAL_THK_ULV|sp_null" />
+    <property name="param62" value="GAL_THK_TRV|sp_null" />
+    <property name="param63" value="COR_THK_TRV|sp_null" />
+    <property name="param64" value="COR_WTH_TRV|sp_null" />
+    <property name="param65" value="CGL_THK_TRV|sp_null" />
+    <property name="param66" value="CGL_WTH_TRV|sp_null" />
+    <property name="param67" value="EGL_THK_TRV|sp_null" />
+    <property name="param68" value="EGL_WTH_TRV|sp_null" />
+    <property name="param69" value="TM_THK_TRV|sp_null" />
+    <property name="param10" value="HEAT_CYL_NO_HC_ANN|sp_null" />
+    <property name="param11" value="COR_TM_HC_ANN|sp_null" />
+    <property name="param12" value="COIL_TMP_HC_ANN|sp_null" />
+    <property name="param13" value="CLG_END_TMP_HC_ANN|sp_null" />
+    <property name="param14" value="TM_PASS_CNT|sp_null" />
+    <property name="param15" value="ROU_RA_LLV|sp_null" />
+    <property name="param16" value="ROU_RA_ULV|sp_null" />
+    <property name="param17" value="ROU_PPI_LLV|sp_null" />
+    <property name="param18" value="ROU_PPI_ULV|sp_null" />
+    <property name="param19" value="ROU_R_MAX_LLV|sp_null" />
+    <property name="param70" value="TM_WTH_TRV|sp_null" />
+    <property name="param71" value="TM_WTH_SUB_PROC1_TRV|sp_null" />
+    <property name="param72" value="TM_WTH_SUB_PROC2_TRV|sp_null" />
+    <property name="param73" value="PLTCM_SET_THK_TRV|sp_null" />
+    <property name="param74" value="PLTCM_THK_TRV|sp_null" />
+    <property name="param75" value="PLTCM_THK_LLV|sp_null" />
+    <property name="param76" value="PLTCM_THK_ULV|sp_null" />
+    <property name="param77" value="PLTCM_WTH_TRV|sp_null" />
+    <property name="param78" value="PLTCM_WTH_SUB_PROC1_TRV|sp_null" />
+    <property name="param79" value="PLTCM_WTH_SUB_PROC2_TRV|sp_null" />
+    <property name="param0" value="PLTCM_5STD_WR_TP|sp_null" />
+    <property name="param1" value="PLTCM_SLV_USE_YN|sp_null" />
+    <property name="param2" value="ECL_CDR_CD|sp_null" />
+    <property name="param3" value="ECL_COILG_TS_CD|sp_null" />
+    <property name="param20" value="HEAT_CYL_NO_2CGL|sp_null" />
+    <property name="param4" value="FUR_TP_GEN_ANN|sp_null" />
+    <property name="param21" value="HTG_TEM_2CGL|sp_null" />
+    <property name="param5" value="HEAT_CYL_NO_GEN_ANN|sp_null" />
+    <property name="param22" value="CLG_TEM_2CGL|sp_null" />
+    <property name="param6" value="COR_TM_GEN_ANN|sp_null" />
+    <property name="param23" value="SHK_TM_2CGL|sp_null" />
+    <property name="param7" value="COIL_TMP_GEN_ANN|sp_null" />
+    <property name="param24" value="LN_SPD_2CGL|sp_null" />
+    <property name="param8" value="CLG_END_TMP_GEN_ANN|sp_null" />
+    <property name="param25" value="HEAT_CYL_NO_3CGL|sp_null" />
+    <property name="param9" value="FUR_TP_HC_ANN|sp_null" />
+    <property name="param26" value="HTG_TEM_3CGL|sp_null" />
+    <property name="param27" value="CLG_TEM_3CGL|sp_null" />
+    <property name="param28" value="SHK_TM_3CGL|sp_null" />
+    <property name="param29" value="LN_SPD_3CGL|sp_null" />
+    <property name="param80" value="PLTCM_EDG_ASG_TP|sp_null" />
+    <property name="param81" value="COR_EDG_ASG_TP|sp_null" />
+    <property name="param30" value="HEAT_CYL_NO_4CGL|sp_null" />
+    <property name="param31" value="HTG_TEM_4CGL|sp_null" />
+    <property name="param32" value="CLG_TEM_4CGL|sp_null" />
+    <property name="param33" value="SHK_TM_4CGL|sp_null" />
+    <property name="param34" value="LN_SPD_4CGL|sp_null" />
+    <property name="param35" value="HEAT_CYL_NO_5CGL|sp_null" />
+    <property name="param36" value="HTG_TEM_5CGL|sp_null" />
+    <property name="param37" value="CLG_TEM_5CGL|sp_null" />
+    <property name="param38" value="SHK_TM_5CGL|sp_null" />
+    <property name="param39" value="LN_SPD_5CGL|sp_null" />
+    <property name="param-count" value="82" />
+    <property name="param40" value="SPNL_TP|sp_null" />
+    <property name="param41" value="CGL_LVL_YN|sp_null" />
+    <property name="param42" value="CGL_SP_ASG_YN|sp_null" />
+    <property name="param43" value="CGL_SUR_HND_CD|sp_null" />
+    <property name="param44" value="EGL_SUR_HND_CD|sp_null" />
+    <property name="param45" value="RSN_ATT_AMT_LLV|sp_null" />
+    <property name="param46" value="RSN_ATT_AMT_ULV|sp_null" />
+    <property name="param47" value="WK_GW_TRV|sp_null" />
+    <property name="param48" value="WK_GW_FRN_ULV|sp_null" />
+    <property name="param49" value="WK_GW_FRN_LLV|sp_null" />
+    <property name="param50" value="WK_GW_BAK_ULV|sp_null" />
+    <property name="param51" value="WK_GW_BAK_LLV|sp_null" />
+    <property name="param52" value="WK_GW_TOT_ULV|sp_null" />
+    <property name="param53" value="WK_GW_TOT_LLV|sp_null" />
+    <property name="param54" value="PIL_DIR|sp_null" />
+    <property name="param55" value="OIL_PNT_CD|sp_null" />
+    <property name="param56" value="PRD_THK_RNG_LLV|sp_null" />
+    <property name="param57" value="PRD_THK_RNG_ULV|sp_null" />
+    <property name="param58" value="PRD_WTH_RNG_LLV|sp_null" />
+    <property name="param59" value="PRD_WTH_RNG_ULV|sp_null" />
+  </activity>
+  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchMnfData">
+    <transition name="success" value="PROC_LOOP" />
+    <transition name="failure" value="SUBSERVICE_ERR" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+</service>
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000203030-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="ModifyCalcRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="new" value="ForwardNewPage" />
+    <transition name="factor" value="ForwardFactorPage" />
+    <transition name="success" value="GetCalcHeader" />
+    <transition name="insert" value="SaveCalcInfo" />
+    <transition name="modify" value="ModifyCalcInfo" />
+    <transition name="import" value="ForwardImportPage" />
+    <transition name="import2" value="ForwardImport2Page" />
+  </activity>
+  <activity name="ForwardNewPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="getUnitsOfMeasures" />
+    <property name="forwardname" value="new" />
+  </activity>
+  <activity name="getFactor" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="getUnitsOfMeasures" />
+    <property name="resultkey" value="Rules030FactorVOResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000203060.selRules030Factor" />
+    <property name="param0" value="MdRuleId" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="ModifyCalcRouter" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="getUnitsOfMeasures" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00UnitsOfMeasures.select" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="UnitsOfMeasuresVO" />
+  </activity>
+  <activity name="GetCalcHeader" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="getCalcLinkFormula" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules010" />
+    <property name="resultkey" value="Rule010HeaderRowResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="param1" value="MdRuleId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="getOutputCondition" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="getCalcInput" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00Rules050.select.actionType" />
+    <property name="param0" value="MdRuleId" />
+    <property name="resultkey" value="OutputVO" />
+    <property name="param1" value="ActionType_C" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="getCalcLinkFormula" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="getOutputCondition" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="TbM00Rules050.select.actionType" />
+    <property name="param0" value="MdRuleId" />
+    <property name="resultkey" value="CalcLinkFormulaVO" />
+    <property name="param1" value="ActionType_L" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SaveCalcInfo" class="com.poscoict.glue.master.ui.calc.SaveCalcInfo">
+    <transition name="new" value="ForwardNewPage" />
+    <transition name="success" value="GetCalcHeader" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="CalcList_Import" class="com.poscoict.glue.master.ui.calc.ImportCalcList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ModifyCalcInfo" class="com.poscoict.glue.master.ui.calc.ModifyCalcInfo">
+    <transition name="success" value="GetCalcHeader" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="ForwardImport2Page" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="CalcInput_Import" />
+    <property name="forwardname" value="import2" />
+  </activity>
+  <activity name="getCalcInput" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="getFactor" />
+    <property name="resultkey" value="CalcDetailListVOResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000202060.getTbM00Rules020" />
+    <property name="param0" value="MdRuleId" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="CalcList_Import" />
+    <property name="forwardname" value="import" />
+  </activity>
+  <activity name="ForwardFactorPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="factor" />
+  </activity>
+  <activity name="CalcInput_Import" class="com.poscoict.glue.master.ui.calc.ImportCalcInput">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+</service>
+

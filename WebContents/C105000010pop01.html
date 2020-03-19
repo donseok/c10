@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--
+ * PROGRAM NAME     :  C105000010pop01.jsp
+ * VERSION          :  V1.0
+ * DESCRIPTION      :  제조가부검토이력조회 popup
+ * DESIGNER NAME    :  한 윤 섭
+ * DEVELOPER NAME   :  박 재 영
+ * CREATE DATE      :  2011.12.23
+ *
+ * Date	          Ver       Name       Description
+ * ------------  ------    --------  ------------------------
+ * 2011.12.23     V1.0      박재영      Initial Version
+ * 변경일자        
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String INQ_NO = request.getParameter("INQ_NO")	!=null ? request.getParameter("INQ_NO") : "";	
+%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</meta>
+<title>
+C105000010pop01
+</title>
+<!--
+style type="text/css" media="screen">
+html, body { width: 90%; height: 90%;}  
+</style
+-->
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
+</script>
+<script type="text/javascript" src="./js/c10.ui.js">
+</script>
+<script type="text/javascript">
+<!--
+//<![CDATA[
+var items = new Array();  //public dhtmlx component array
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C105000010pop01_Form_1","xml":".\/header\/kr\/C105000010pop01\/C105000010pop01_Form_1.xml","url":"basicFormData.do","referenceItem":"C105000010pop01_Form_2","service":"C105000010pop01-service"},' +
+      '{"itemType":"messagebox","renderTo":"C105000010pop01_messagebox","xml":".\/header\/kr\/C105000010pop01\/C105000010pop01_messagebox.xml","service":"C105000010pop01-service"},' +
+      '{"itemType":"form","renderTo":"C105000010pop01_Form_2","xml":".\/header\/kr\/C105000010pop01\/C105000010pop01_Form_2.xml","url":"basicFormData.do","referenceItem":"C105000010pop01_Form_2","service":"C105000010pop01-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
+var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
+//form find button item event function (requred)
+function find(eventName,formDivObj,referenceItem){
+    var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
+    items[referenceItem].loadData(findUrl);
+}
+function save(eventName,formDivObj,referenceItem){
+	var formObj = items['C105000010pop01_Form_2'];
+	var inqStsCdNm = formObj.getItemValue("INQ_STS_CD_NM");
+	if(!isNull(inqStsCdNm)){
+	var inqStsCd = inqStsCdNm.split(" : ");
+		if(inqStsCd.length > 0){
+			if(inqStsCd[0] == "9"){
+				alert("상태가 \"종료\" 인경우 저장하실 수 없습니다.");
+				return;
+			}
+		}
+	}
+	var cus_cd_nm = items['C105000010pop01_Form_2'].getItemValue("CUS_CD_NM");
+	var cus_cd;
+	if(!isNull(cus_cd_nm)){
+		if(cus_cd_nm.length > 6)
+			cus_cd = cus_cd_nm.substring(0,6);
+		else cus_cd = cus_cd_nm;
+	}	
+	items['C105000010pop01_Form_2'].setItemValue("CUS_CD",cus_cd);
+	
+	var ord_use_cd_nm = items['C105000010pop01_Form_2'].getItemValue("ORD_USG_CD_NM");
+	var ord_use_cd;
+	if(!isNull(ord_use_cd_nm)){
+		if(ord_use_cd_nm.length > 6)
+			ord_use_cd = ord_use_cd_nm.substring(0,6);
+		else ord_use_cd = ord_use_cd_nm;
+	}
+	items['C105000010pop01_Form_2'].setItemValue("ORD_USG_CD",ord_use_cd);
+	
+	dhtmlx.confirm({
+		title:"[[ 확인 ]]",
+		ok:"확인", cancel:"취소",
+		text:"저장 하시겠습니까?",
+		callback:function(val){
+			if(val){
+				items['C105000010pop01_Form_2'].sendForm("handleDataProcess.do",'C105000010pop01_Form_2',eventName);
+			}
+		}
+	}); 	
+}
+function findMessage(referenceItem){
+	uiCommon.message("C105000010pop01_messagebox",referenceItem.getUserData("","appMsg"));
+  	return true;
+}
+function serchIcon_CUS_CD(name,val){
+	return "<img src="+window.dhx_globalImgPath+val+".gif align='top' onMouseOver=this.style.cursor='hand' onMouseOut=this.style.cursor='default' onClick=\"parent.masterPopup2('CUS_CD','SZ0000','CUS_CD_NM','C105000010pop01_Form_2','Y');\">";
+}
+function serchIcon_ORD_USG_CD(name,val){
+	return "<img src="+window.dhx_globalImgPath+val+".gif align='top' onMouseOver=this.style.cursor='hand' onMouseOut=this.style.cursor='default' onClick=\"parent.masterPopup2('ORD_USG_CD','SZ0000','ORD_USG_CD_NM','C105000010pop01_Form_2','Y');\">";
+}
+// popup으로부터 넘겨받은 값 item에 세팅
+function masterSetValue(code,name,target,formId){
+	items[formId].setItemValue(target,code);
+}
+function onFormLoadFunction(formDivObj){ 
+	var form  = items['C105000010pop01_Form_2'];
+		
+	var comboList = items['C105000010pop01_Form_2'].getMasterCombos();
+ 	
+	comboList['PRD_NM_CD_NM'].readonly(true,false);
+	ui.combo.master(comboList['PRD_NM_CD_NM'],'SZ0000','PRD_NM_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+	  //comboList['PRD_NM_CD_NM'].selectOption(0,true,true);
+	});
+	//백스페이스 이벤트 막기처리
+	comboList['PRD_NM_CD_NM'].DOMelem_input.onkeydown = function(e){
+	key = (e) ? e.keyCode : event.keyCode;
+		if(key==8 || key==116){
+			if(e){   //표준         
+				e.preventDefault();
+			}
+			else{ //익스용
+				event.keyCode = 0;
+				event.returnValue = false;
+			}
+		}
+	}
+	//도금량 ComboXml 설정
+	comboList['PRD_NM_CD_NM'].attachEvent("onSelectionChange", function(){
+		var gridComboSelectValue = comboList['PRD_NM_CD_NM'].getSelectedValue();
+		form.setItemValue("PRD_NM_CD",gridComboSelectValue);
+		var category = "";
+			if(gridComboSelectValue == "G" || gridComboSelectValue == "3" || gridComboSelectValue == "J" || gridComboSelectValue == "6"){
+				category = "SG0000";
+			}else if(gridComboSelectValue == "L" || gridComboSelectValue == "4"){
+				category = "SL0000";
+			}else if(gridComboSelectValue == "E" || gridComboSelectValue == "2"){
+				category = "SE0000";
+			}
+			if(category != ""){
+				ui.combo.master(comboList['GW_ASG_CD_NM'],category,'GW_ASG_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+				  //comboList['GW_ASG_CD_NM'].selectOption(0,true,true);
+				});
+			}else{
+				comboList['GW_ASG_CD_NM'].setComboText('');
+				comboList['GW_ASG_CD_NM'].clearAll();
+			}
+			//백스페이스 이벤트 막기처리
+			comboList['GW_ASG_CD_NM'].DOMelem_input.onkeydown = function(e){
+			key = (e) ? e.keyCode : event.keyCode;
+				if(key==8 || key==116){
+					if(e){   //표준         
+						e.preventDefault();
+					}
+					else{ //익스용
+						event.keyCode = 0;
+						event.returnValue = false;
+					}
+				}
+			}	
+			
+		//도금량
+		comboList['GW_ASG_CD_NM'].attachEvent("onSelectionChange", function(){
+			var comboSelectValue = comboList['GW_ASG_CD_NM'].getSelectedValue();
+			form.setItemValue("GW_ASG_CD",comboSelectValue);
+		});  
+	});  
+	comboList['PRD_SHP_NM'].readonly(true,false);
+	ui.combo.master(comboList['PRD_SHP_NM'],'SZ0000','PRD_SHP','totalValue=,orderBy=value,displayType=all-code',function(){
+	 // comboList['PRD_SHP_NM'].selectOption(0,true,true);
+	});
+	//제품유형
+	comboList['PRD_SHP_NM'].attachEvent("onSelectionChange", function(){
+		var comboSelectValue1 = comboList['PRD_SHP_NM'].getSelectedValue();
+		form.setItemValue("PRD_SHP",comboSelectValue1);
+	}); 
+	//백스페이스 이벤트 막기처리
+	comboList['PRD_SHP_NM'].DOMelem_input.onkeydown = function(e){
+	key = (e) ? e.keyCode : event.keyCode;
+		if(key==8 || key==116){
+			if(e){   //표준         
+				e.preventDefault();
+			}
+			else{ //익스용
+				event.keyCode = 0;
+				event.returnValue = false;
+			}
+		}
+	}
+	comboList['ORD_EDG_ASG_TP_NM'].readonly(true,false);
+	ui.combo.master(comboList['ORD_EDG_ASG_TP_NM'],'SZ0000','ORD_EDG_ASG_TP','totalValue=,orderBy=value,displayType=all-code',function(){
+	  //comboList['ORD_EDG_ASG_TP_NM'].selectOption(0,true,true);
+	});
+	
+	
+	//Edge구분
+	comboList['ORD_EDG_ASG_TP_NM'].attachEvent("onSelectionChange", function(){
+		var comboSelectValue2 = comboList['ORD_EDG_ASG_TP_NM'].getSelectedValue();
+		form.setItemValue("ORD_EDG_ASG_TP",comboSelectValue2);
+	}); 
+	//백스페이스 이벤트 막기처리
+	comboList['ORD_EDG_ASG_TP_NM'].DOMelem_input.onkeydown = function(e){
+	key = (e) ? e.keyCode : event.keyCode;
+		if(key==8 || key==116){
+			if(e){   //표준         
+				e.preventDefault();
+			}
+			else{ //익스용
+				event.keyCode = 0;
+				event.returnValue = false;
+			}
+		}
+	}
+	comboList['FLOW_CHL_NM'].readonly(true,false);
+	ui.combo.master(comboList['FLOW_CHL_NM'],'SZ0000','FLOW_CHL','totalValue=,orderBy=value,displayType=all-code',function(){
+	 // comboList['FLOW_CHL_NM'].selectOption(0,true,true);
+	});
+	
+	//유통경로
+	comboList['FLOW_CHL_NM'].attachEvent("onSelectionChange", function(){
+		var comboSelectValue3 = comboList['FLOW_CHL_NM'].getSelectedValue();
+		form.setItemValue("FLOW_CHL",comboSelectValue3);
+	}); 
+	//백스페이스 이벤트 막기처리
+	comboList['FLOW_CHL_NM'].DOMelem_input.onkeydown = function(e){
+	key = (e) ? e.keyCode : event.keyCode;
+		if(key==8 || key==116){
+			if(e){   //표준         
+				e.preventDefault();
+			}
+			else{ //익스용
+				event.keyCode = 0;
+				event.returnValue = false;
+			}
+		}
+	}
+	comboList['ORD_SUR_HND_CD_NM'].readonly(true,false);
+	ui.combo.master(comboList['ORD_SUR_HND_CD_NM'],'SZ0000','ORD_SUR_HND_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+	 // comboList['ORD_SUR_HND_CD_NM'].selectOption(0,true,true);
+	});
+	//표면후처리
+	comboList['ORD_SUR_HND_CD_NM'].attachEvent("onSelectionChange", function(){
+		var comboSelectValue4 = comboList['ORD_SUR_HND_CD_NM'].getSelectedValue();
+		form.setItemValue("ORD_SUR_HND_CD",comboSelectValue4);
+	}); 
+	//백스페이스 이벤트 막기처리
+	comboList['ORD_SUR_HND_CD_NM'].DOMelem_input.onkeydown = function(e){
+	key = (e) ? e.keyCode : event.keyCode;
+		if(key==8 || key==116){
+			if(e){   //표준         
+				e.preventDefault();
+			}
+			else{ //익스용
+				event.keyCode = 0;
+				event.returnValue = false;
+			}
+		}
+	}
+	
+	form.setItemValue("INQ_RCP_DH",getCurrentMinitesTime());
+	parent.c10popUp_setVal = masterPopup2SetValue;	
+	if(!isNull("<%=INQ_NO%>")){	
+		items['C105000010pop01_Form_2'].setItemValue("INQ_NO","<%=INQ_NO%>");
+		var findUrl = uiCommon.parameters6("C105000010pop01_Form_2","C105000010pop01_Form_2","find");
+		items['C105000010pop01_Form_2'].loadData(findUrl,findAfterFunction);	
+	}
+	
+	items['C105000010pop01_Form_2'].onAfterUpdateFinishEvent(onFormAfterUpdateFinishEvent);
+	items['C105000010pop01_Form_2'].getDhxForm().detachEvent(onXleForm);
+}
+function onFormAfterUpdateFinishEvent(){	
+	 items['C105000010pop01_Form_2'].getDhxForm().resetDataProcessor("updated");
+	 parent.find("find","C105000010_Form_1","C105000010_Grid_1");
+	 parent.winObj.winClose();
+}
+var masterPopup2SetValue = function(code,name,target,formId){ //최종값 세팅 
+	items[formId].setItemValue(target,code);
+}
+function popClose(){
+	parent.winObj.winClose();
+}
+function findAfterFunction(){
+	var uiFormObj = items['C105000010pop01_Form_2'];
+	var comboList = items['C105000010pop01_Form_2'].getMasterCombos();
+ 	var prdNmCd =  uiFormObj.getItemValue("PRD_NM_CD");
+	var gwAsgCd =  uiFormObj.getItemValue("GW_ASG_CD");	
+	if(!isNull(gwAsgCd)){
+		if(!isNull(prdNmCd)){
+			var category = "";
+			if(prdNmCd == "G" || prdNmCd == "3" || prdNmCd == "J" || prdNmCd == "6"){
+				category = "SG0000";
+			}else if(prdNmCd == "L" || prdNmCd == "4"){
+				category = "SL0000";
+			}else if(prdNmCd == "E" || prdNmCd == "2"){
+				category = "SE0000";
+			}
+			
+			if(category != ""){
+				ui.combo.master(comboList['GW_ASG_CD_NM'],category,'GW_ASG_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+				  //comboList['GW_ASG_CD_NM'].selectOption(0,true,true);
+				});
+			}else{
+				comboList['GW_ASG_CD_NM'].setComboText('');
+				comboList['GW_ASG_CD_NM'].clearAll();
+			}
+		
+		}
+	}
+	
+		uiCommon.message(ui.messagebox.messageBoxDivId,uiFormObj.getItemValue("messageBox"));
+	if(uiFormObj.getItemValue("messageBox") == "0"){	
+		uiFormObj.clear();
+		uiCommon.message(ui.messagebox.messageBoxDivId,"0건 조회되었습니다.");
+	}else{
+		uiCommon.message(ui.messagebox.messageBoxDivId,uiFormObj.getItemValue("messageBox"));
+	}
+  	return true;
+	
+}
+//]]>
+-->
+</script>
+</head>
+<body>
+<div id="C105000010pop01_Form_1" style="position:absolute;height:28px;width:615px;left:0px;top:0px;">
+</div>
+<div id="C105000010pop01_messagebox" style="position:absolute;height:19px;width:612px;left:1px;top:475px;">
+</div>
+<div id="C105000010pop01_Form_2" style="position:absolute;height:445px;width:615px;left:0px;top:31px;">
+</div>
+</body>
+</html>
+<script>
+<!--
+//<![CDATA[
+	ui.initializeDHTMLX();       
+	var onXleForm = items["C105000010pop01_Form_2"].onXLEEvent(onFormLoadFunction);
+	
+//]]>
+-->
+</script>

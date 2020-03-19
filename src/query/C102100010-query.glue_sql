@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100010"> 
+	 <query id="C102100010.GW_ASG_CD_SELECT" desc="C10 Master Code 주문에러체크 GW_ASG_CD.SELECT 김종범" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 주문에러체크 C102100010.GW_ASG_CD_SELECT 김종범*/   
+            CD_V,
+            CATEGORY_GROUP_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'GW_ASG_CD' 
+AND   CD_V =  ?
+AND   CATEGORY_GROUP_NM = DECODE(?,'4','SL0000','L','SL0000','2','SE0000','E','SE0000','8','SE0000','N','SE0000','V','SV0000','6','SV0000','W','SW0000','9','SW0000','SG0000')
+		 ]]> 
+	 </query>
+	 <query id="C102100010.ORD_PAK_MTH_SELECT" desc="C10 Master Code 주문에러체크 C102100010.ORD_PAK_MTH_SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 주문에러체크 C102100010.ORD_PAK_MTH_SELECT 김종범*/ 
+      CD_V,
+      CATEGORY_GROUP_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'ORD_PAK_MTH' 
+AND   CD_V =  ? 
+AND   CATEGORY_GROUP_NM = DECODE(?,'C','SC0000','S','SS0000')
+		 ]]> 
+	 </query>
+	 <query id="C102100010.ORD_SPNL_TP_SELECT" desc="C10 Master Code 주문에러체크 C102100010.ORD_SPNL_TP_SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 주문에러체크 C102100010.ORD_SPNL_TP_SELECT 김종범*/ 
+      CD_V,
+      CATEGORY_GROUP_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'ORD_SPNL_TP' 
+AND   CD_V =  ? 
+AND   CATEGORY_GROUP_NM = DECODE(?,'4','SL0000','L','SL0000','G','SG0000','K','SG0000','J','SG0000','V','SV0000','6','SV0000','W','SW0000','9','SW0000',
+                                  '3','SG0000','N','SZ0000','8','SZ0000')
+		 ]]> 
+	 </query>
+	 <query id="C102100010.ACT_CUS_CD_SELECT" desc="C10 Master Code 주문에러체크 C102100010.ACT_CUS_CD_SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 주문에러체크 C102100010.ACT_CUS_CD_SELECT 김종범*/ 
+      CD_V,
+      CATEGORY_GROUP_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'CUS_CD' 
+AND   CD_V =  ?
+AND  CATEGORY_GROUP_NM = 'SZ0000'
+		 ]]> 
+	 </query>
+	 <query id="C102100010.FNL_CUS_CD_SELECT" desc="C10 Master Code 주문에러체크 C102100010.FNL_CUS_CD_SELECT" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 Master Code 주문에러체크 C102100010.FNL_CUS_CD_SELECT 김종범*/ 
+      CD_V,
+      CATEGORY_GROUP_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'CUS_CD' 
+AND   CD_V =  ?
+AND  CATEGORY_GROUP_NM = 'SZ0000'
+		 ]]> 
+	 </query>
+	 <query id="C102100010.GAL_PTT_FLM_SELECT" desc="도금보호필름상세코드 조회 GAL_PTT_FLM_DTL_CD.SELECT 김종범" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /*+ C10 도금보호필름상세코드 조회 C102100010.GAL_PTT_FLM_SELECT 김종범*/                             
+       CD_V,
+       CD_V_MEANING       
+ FROM M00APUSER.VI_M00_CODE_ACCESS       --MasterCode VIEW
+WHERE CD_TP ='GAL_PTT_FLM_DTL_CD'
+AND   CD_V =  ?
+		 ]]> 
+	 </query>
+	 <query id="C102100010_CLR_MPR.SELECT" desc="C10 칼라물성기준 조회 C102100010_MPR.SELECT 김종범" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT  /*+ C10 칼라물성기준 조회 C102100010_CLR_MPR.SELECT 김종범*/     
+         PTT_FLM_DTL_CD
+  FROM   TB_C10_CLR_MPR
+ WHERE   CCL_BOM_NO     =   ?
+   AND   CUS_CD         IN (?,'******')
+   AND   ORD_USG_CD     IN (?,'******')
+   AND   DECODE(CUS_CD,?,'1','******','2')||DECODE(ORD_USG_CD,?,'1','******','2')
+         IN    (SELECT   MIN(DECODE(CUS_CD,?,'1','******','2')||DECODE(ORD_USG_CD,?,'1','******','2'))
+                  FROM   TB_C10_CLR_MPR
+                 WHERE   CCL_BOM_NO     =   ?
+                   AND   CUS_CD         IN (?,'******')
+                   AND   ORD_USG_CD     IN (?,'******')
+               )
+		 ]]> 
+	 </query>
+</queryMap>

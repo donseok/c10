@@ -1,0 +1,9 @@
+<items>	
+	<item type="block" width="441">
+		<item type="input" name="CD_V_MEANING" label="코드명" inputWidth="75" />	
+		<item type="newcolumn" offset="10" />
+		<item type="input" name="CD_V" label="코드" inputWidth="75" />
+		<item type="newcolumn" offset="110" />
+		<item type="button" name="find" value="조회" command="find"/>
+	</item>
+</items>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<project name="GlueSample" default="Copy_WAR">
+    <property file="build.properties"/>
+
+    <target name="Copy_WAR" depends="war">
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.war"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>
+    </target>
+
+    <target name="Copy_EAR" depends="ear">
+        <echo>Start Copy from ${WebContent.dir} to ${target.WebContent.dir}</echo>
+        <copy todir="${target.WebContent.dir}">
+            <fileset dir="${build.dir}">
+                <include name="*.ear"/>
+            </fileset>
+        </copy>
+        <echo>End Copy</echo>
+    </target>
+
+    <target name="makeBuilDir">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="create-manifest" depends="makeBuilDir" description="make the manifest">
+        <tstamp>
+            <format property="TODAY_KO" pattern="yyMMdd.HHmm" timezone="GMT+9" locale="ko"/>
+        </tstamp>
+        <manifest file="${build.dir}/MANIFEST.MF">
+            <section name="POSCO ICT Glue Sample Project">
+                <attribute name="Implementation-Title" value="com.posdata.glue.sample"/>
+                <attribute name="Implementation-Version" value="${project_version}-${TODAY_KO}"/>
+                <attribute name="Implementation-Vendor" value="POSCO ICT, Inc."/>
+            </section>
+        </manifest>
+    </target>
+
+    <target name="war" depends="create-manifest" description="Creates the WAR file">
+        <echo>Start Build WAR to ${build.dir} WAR Name is ${WEB_NAME}.war</echo>
+        <war destfile="${build.dir}/${WEB_NAME}.war"
+            webxml="${WebContent.dir}/WEB-INF/web.xml"
+            manifest="${build.dir}/MANIFEST.MF">
+            <fileset dir="${WebContent.dir}">
+                <patternset>
+                    <include name="*.*"/>
+                    <include name="**/*.jsp"/>
+                    <include name="css/*.css"/>
+                    <include name="header/**/*.*"/>
+                    <include name="dhtmlx/**/*.*"/>
+                    <include name="js/*.js"/>
+                    <include name="img/*.*"/>
+                    
+                    <!-- 송범용 추가. 테스트해보세요  --> 
+                    <exclude name="*.html"/>
+                </patternset>
+            </fileset>
+            <webinf dir="${WebContent.dir}/WEB-INF/" >
+                <patternset>
+                    <include name="*.*"/>
+                </patternset>
+            </webinf>
+            <classes dir="${class.dir}">
+                <patternset>
+                    <include name="**/*.*"/>
+                    <exclude name="application.xml"/>
+                </patternset>
+            </classes>
+            <lib dir="${WebContent.dir}/WEB-INF/lib">
+                <include name="*.*"/>
+            </lib>
+            
+            
+            
+            <!-- 송범용 변경 
+            <lib dir="${GlueSDK.dir}/lib/gluelib">
+                <include name="glue-gun.jar"/>
+                <include name="glue.jar"/>
+            </lib>
+            <lib dir="${GlueSDK.dir}/lib/gluestd">
+                <include name="struts.jar"/>
+                <include name="spring.jar"/>
+                <include name="log4j-1.2.13.jar"/>
+                <include name="jcs-1.2.7.7_cache.jar"/>
+                <include name="commons-logging.jar"/>
+                <include name="commons-digester.jar"/>
+                <include name="commons-beanutils.jar"/>                
+            </lib>
+            -->
+        </war>
+        <echo>End war</echo>
+    </target>
+
+    <target name="ear" depends="war" description="Creates the EAR file">
+        <echo>Start Build EAR to ${build.dir} EAR Name is ${APP_NAME}.ear</echo>
+        <ear destfile="${build.dir}/${APP_NAME}.ear"
+            appxml="${class.dir}/application.xml"
+            manifest="${build.dir}/MANIFEST.MF">
+            <fileset dir="${build.dir}" includes="${WEB_NAME}.war"/>
+        </ear>
+        <echo>End ear</echo>
+    </target>
+</project>

@@ -1,0 +1,16 @@
+<items>
+<item type="block" width="680">
+<item inputWidth="75" label="주문번호" labelAlign="right" labelWidth="60" name="ORD_NO" disabled="true" type="input"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="25" label="~" labelAlign="right" labelWidth="5" name="ORD_LN" disabled="true" type="input"/>
+<item offset="320" type="newcolumn"/>
+<item command="find" name="find" type="button" disabled="true" value="확인"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block" width="530">
+<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+<item offset="2" type="newcolumn"/>
+<item label="통과공정이력" name="std_title" type="label" />
+</item>
+</items>
