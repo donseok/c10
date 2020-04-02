@@ -36,19 +36,19 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="left" id="규격약호" index="1" sort="str" table="VI_M00_C10A1010" type="ro" width="140" >조건</column>
-<column align="center"   id="규격년도" index="2" sort="str" table="VI_M00_C10A1010" type="ro" width="80" >#cspan</column>
-<column align="left"   id="규격명" index="3" sort="str" table="VI_M00_C10A1010" type="ro" width="300" >결과</column>
-<column align="left"   id="규격전체명" index="4" sort="str" table="VI_M00_C10A1010" type="ro" width="150" >#cspan</column>
-<column align="right"   id="비중" index="5" sort="str" table="VI_M00_C10A1010" type="ro" width="60" >#cspan</column>
-<column align="left"   id="인수도규격" index="6" sort="str" table="VI_M00_C10A1010" type="ro" width="100" >#cspan</column>
-<column align="center"   id="재질코드" index="7" sort="str" table="VI_M00_C10A1010" type="ro" width="60" >#cspan</column>
-<column align="center"   id="규격기관" index="8" sort="str" table="VI_M00_C10A1010" type="ro" width="60" >#cspan</column>
-<column align="left"   id="적용규격" index="9" sort="str" table="VI_M00_C10A1010" type="ro" width="100" >#cspan</column>
-<column align="left"   id="적용강종" index="10" sort="str" table="VI_M00_C10A1010" type="ro" width="100" >#cspan</column>
-<column align="left"   id="변환강종" index="11" sort="str" table="VI_M00_C10A1010" type="ro" width="100" >#cspan</column>
+<column align="left" id="규격약호" index="1" sort="str" table="VI_M00_C10A1010" type="ro" width="14" >조건</column>
+<column align="center"   id="규격년도" index="2" sort="str" table="VI_M00_C10A1010" type="ro" width="8" >#cspan</column>
+<column align="left"   id="규격명" index="3" sort="str" table="VI_M00_C10A1010" type="ro" width="30" >결과</column>
+<column align="left"   id="규격전체명" index="4" sort="str" table="VI_M00_C10A1010" type="ro" width="15" >#cspan</column>
+<column align="right"   id="비중" index="5" sort="str" table="VI_M00_C10A1010" type="ro" width="6" >#cspan</column>
+<column align="left"   id="인수도규격" index="6" sort="str" table="VI_M00_C10A1010" type="ro" width="10" >#cspan</column>
+<column align="center"   id="재질코드" index="7" sort="str" table="VI_M00_C10A1010" type="ro" width="6" >#cspan</column>
+<column align="center"   id="규격기관" index="8" sort="str" table="VI_M00_C10A1010" type="ro" width="6" >#cspan</column>
+<column align="left"   id="적용규격" index="9" sort="str" table="VI_M00_C10A1010" type="ro" width="10" >#cspan</column>
+<column align="left"   id="적용강종" index="10" sort="str" table="VI_M00_C10A1010" type="ro" width="10" >#cspan</column>
+<column align="left"   id="변환강종" index="11" sort="str" table="VI_M00_C10A1010" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">SPC_AVR,SPC_YR,SPC_NM,SPC_FUL_NM,ORD_GRA,ACPT_RT_SPC,MQL_CD,SPC_OFC,APLY_SPC,APLY_STL_KND,DOM_CVT_SPC_AVR</userdata>

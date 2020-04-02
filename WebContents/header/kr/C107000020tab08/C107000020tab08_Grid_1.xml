@@ -38,10 +38,10 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="ORD_EDG_ASG_TP" index="1" sort="str" table="VI_M00_C10A1079" type="ro" width="120" >조건</column>
-<column align="center"   id="RSL_VAL" index="2" sort="str" table="VI_M00_C10A1079" type="ro" width="100" >결과</column>
+<column align="center" id="ORD_EDG_ASG_TP" index="1" sort="str" table="VI_M00_C10A1079" type="ro" width="12" >조건</column>
+<column align="center"   id="RSL_VAL" index="2" sort="str" table="VI_M00_C10A1079" type="ro" width="10" >결과</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">ORD_EDG_ASG_TP,RSL_VAL</userdata>

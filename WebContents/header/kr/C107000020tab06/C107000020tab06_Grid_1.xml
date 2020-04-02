@@ -38,29 +38,29 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center"   id="PRD_NM_CD" index="1" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >조건</column>
-<column align="center"   id="GW_ASG_CD" index="2" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SPC_GW_KS" index="3" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >결과</column>
-<column align="center"   id="SPC_GW_JIS" index="4" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SPC_GW_ASTM" index="5" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SPC_GW_ISO" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SPC_GW_EU" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SPC_GW_AS" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_TRV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_TRV_FRN" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_TRV_BAK" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_FRN_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_FRN_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_BAK_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_BAK_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_TOT_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WK_GW_TOT_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="GAL_THK_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="GAL_THK_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="GAL_THK_TRV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
-<column align="right"   id="SPC_GAL_THK" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="100" >#cspan</column>
+<column align="center"   id="PRD_NM_CD" index="1" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >조건</column>
+<column align="center"   id="GW_ASG_CD" index="2" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SPC_GW_KS" index="3" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >결과</column>
+<column align="center"   id="SPC_GW_JIS" index="4" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SPC_GW_ASTM" index="5" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SPC_GW_ISO" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SPC_GW_EU" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SPC_GW_AS" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_TRV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_TRV_FRN" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_TRV_BAK" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_FRN_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_FRN_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_BAK_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_BAK_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_TOT_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WK_GW_TOT_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="GAL_THK_LLV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="GAL_THK_ULV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="GAL_THK_TRV" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
+<column align="right"   id="SPC_GAL_THK" index="6" sort="str" table="VI_M00_C10A1061" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">PRD_NM_CD,GW_ASG_CD,SPC_GW_KS,SPC_GW_JIS,SPC_GW_ASTM,SPC_GW_ISO,SPC_GW_EU,SPC_GW_AS,WK_GW_TRV,WK_GW_TRV_FRN,WK_GW_TRV_BAK,WK_GW_FRN_LLV,WK_GW_FRN_ULV,WK_GW_BAK_LLV,WK_GW_BAK_ULV,WK_GW_TOT_LLV,WK_GW_TOT_ULV,GAL_THK_LLV,GAL_THK_ULV,GAL_THK_TRV,SPC_GAL_THK</userdata>

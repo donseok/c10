@@ -167,8 +167,10 @@ function save(eventName,formDivObj,referenceItem){
 			text:"확정하시겠습니까?",
 			callback:function(val){
 				 if(val){
-					var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
-					form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
+					//var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
+					var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
+					form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
+					//form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
 					return;
 				 }
 			}

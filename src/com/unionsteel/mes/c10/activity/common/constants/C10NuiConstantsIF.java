@@ -3528,6 +3528,7 @@ public interface C10NuiConstantsIF {
     public static final String SELECT_ERR = "C103100140.select"; // 에러코드조회
     public static final String UPDATE_STS_OMS = "C102100CMN.Oms_modify"; // 품질설계상태(oms)
     public static final String UPDATE_STS = "C102100CMN.StsME_modify"; // 품질설계상태
+    public static final String UPDATE_MQL = "C102100MQL.cs_update"; // 보증사양최종수정
     public static final String INSERT_ATT_ORD_SMS = "C102100CMN.AttSms"; // 관심주문SMS등록
 								       // 수정
 								       // 에러여부

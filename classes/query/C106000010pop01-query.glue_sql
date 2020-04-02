@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000010pop01 Page 쿼리파일"> 
+	 <query id="C106000010pop01.select" desc="C106000010pop01 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010pop01.select 박재영 */
+    CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT ,--수지TXT
+    RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD,--광택도코드
+    SMP_LUS_YN, --샘플광
+    CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT, --고객사명
+    USE_REG_TXT,--사용지역명
+    PRD_NM_CD,--품명코드
+    PRD_TP_YN, --품명구분여부
+    TO_CHAR(SAL_CHR_REQ_DH,'yyyy-mm-dd') AS SAL_CHR_REQ_DH,--영업담당자요청일
+    TO_CHAR(SAL_CHR_RGN_DH,'yyyy-mm-dd') AS SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK,--비고
+    CLR_SMP_RCP_NO,--칼라시편접수번호
+    DEV_PNT_CMP_CD,--개발도료업체코드
+    RSN_TP, --수지구분
+    TO_CHAR(CLR_SMP_DEV_REQ_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_REQ_DH,--칼라시편개발의뢰일
+    TO_CHAR(CLR_SMP_DEV_LMT_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_LMT_DH,--칼라시편개발예정일
+    TO_CHAR(CLR_SMP_DEV_END_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_END_DH,--칼라시편개발완료일
+    TO_CHAR(CLR_SMP_DEV_SND_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_SND_DH,--칼라시편개발송부일
+    SMP_SND_INF, --시편송부정보
+    DSN_CHR_RGN_YN,--설계담당자승인여부
+    HUE_CD,--색상코드 
+    CCL_BOM_NO,--CCLBOM번호
+    TO_CHAR(CCL_BOM_RGS_DH,'yyyy-mm-dd') AS CCL_BOM_RGS_DH,--CCLBOM등록일
+    CLR_TP, --색구분
+    CLR_SMP_DSN_RMK, --설계 비고
+    ORD_PRE_WGT,
+    PTT_FLM_YN,
+    DSN_CHR_PRS_ID, 
+    decode(SIM_HUE_PRG_YN,'Y','1','0') as SIM_HUE_PRG_YN
+FROM  C10APUSER.TB_C10_CLR_SMP
+WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sal_update" desc="C106000010pop01 정보 수정(영업원)" isNamed="true">
+		 <![CDATA[ 
+UPDATE/*+ C10 품질설계 칼라시편관리 저장(update) C106000010pop01.sal_update 박재영 */ 
+TB_C10_CLR_SMP SET
+    CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT = :CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT = :RSN_TP_TXT ,--수지구분TXT
+    RSN_ANL_REQ_YN = :RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN = :SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT = :PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD = :LUS_RT_CD,--광택도코드
+    SMP_LUS_YN = :SMP_LUS_YN, --샘플광
+    CLR_USE_NM = :CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID = :SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT = :CUS_CD_TXT, --고객사명
+    USE_REG_TXT = :USE_REG_TXT,--사용지역명
+    PRD_NM_CD = :PRD_NM_CD,--품명코드
+    PRD_TP_YN = :PRD_TP_YN, --품명구분여부
+    SAL_CHR_REQ_DH = :SAL_CHR_REQ_DH,--영업담당자요청일
+    SAL_CHR_RGN_DH = :SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK = :CLR_SMP_RMK,--비고
+    CLR_SMP_DEV_RCP_DH = :SAL_CHR_REQ_DH,--칼라시편개발접수일
+    ORD_PRE_WGT = :ORD_PRE_WGT,
+    PTT_FLM_YN = :PTT_FLM_YN,
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp     
+WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.dsn_update" desc="C106000010pop01 정보 수정(설계원)" isNamed="true">
+		 <![CDATA[ 
+UPDATE/*+ C10 품질설계 칼라시편관리 저장(update) C106000010pop01.dsn_update 박재영 */ 
+TB_C10_CLR_SMP SET
+    CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT = :CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT = :RSN_TP_TXT ,--수지구분TXT
+    RSN_ANL_REQ_YN = :RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN = :SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT = :PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD = :LUS_RT_CD,--광택도코드
+    SMP_LUS_YN = :SMP_LUS_YN, --샘플광
+    CLR_USE_NM = :CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID = :SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT = :CUS_CD_TXT, --고객사명
+    USE_REG_TXT = :USE_REG_TXT,--사용지역명
+    PRD_NM_CD = :PRD_NM_CD,--품명코드
+    PRD_TP_YN = :PRD_TP_YN, --품명구분여부
+    SAL_CHR_REQ_DH = :SAL_CHR_REQ_DH,--영업담당자요청일
+    SAL_CHR_RGN_DH = :SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK = :CLR_SMP_RMK,--비고
+    CLR_SMP_RCP_NO = :CLR_SMP_RCP_NO,--칼라시편접수번호
+    DEV_PNT_CMP_CD = :DEV_PNT_CMP_CD,--개발도료업체코드
+    RSN_TP = :RSN_TP, --수지구분
+    CLR_SMP_DEV_RCP_DH = :SAL_CHR_REQ_DH,--칼라시편개발접수일
+    CLR_SMP_DEV_REQ_DH = nvl(trim(:CLR_SMP_DEV_REQ_DH), sysdate),--칼라시편개발의뢰일
+    CLR_SMP_DEV_LMT_DH = nvl(trim(:CLR_SMP_DEV_LMT_DH), nvl(to_date(trim(:CLR_SMP_DEV_REQ_DH)), sysdate) + (select to_number(rtrim(trim(LED_TIM_1),'일')) from TB_C10_CLR_CMP_DEV_MNG where PNT_CMP_CD = :DEV_PNT_CMP_CD)),--칼라시편개발예정일
+    CLR_SMP_DEV_END_DH = :CLR_SMP_DEV_END_DH,--칼라시편개발완료일
+    CLR_SMP_DEV_SND_DH = :CLR_SMP_DEV_SND_DH,--칼라시편개발송부일
+    SMP_SND_INF = :SMP_SND_INF, --시편송부정보
+    DSN_CHR_RGN_YN = :DSN_CHR_RGN_YN,--설계담당자승인여부
+    HUE_CD = :HUE_CD,--색상코드 
+    CCL_BOM_NO = :CCL_BOM_NO,--CCLBOM번호
+    CCL_BOM_RGS_DH = :CCL_BOM_RGS_DH,--CCLBOM등록일 
+    CLR_TP = :CLR_TP, --색구분
+    CLR_SMP_DSN_RMK = :CLR_SMP_DSN_RMK, --설계비고
+    ORD_PRE_WGT = :ORD_PRE_WGT,
+    PTT_FLM_YN = :PTT_FLM_YN,
+    DSN_CHR_PRS_ID = nvl((select emp_nm from M90APUSER.TB_M90_EMP_INF where emp_id = :DSN_CHR_PRS_ID), :DSN_CHR_PRS_ID), 
+    SIM_HUE_PRG_YN = decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','N'),
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp     
+WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.delete" desc="C106000010pop01 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE/*+ C10 품질설계 칼라시편관리 삭제(update) C106000010pop01.delete 박재영 */  
+FROM TB_C10_CLR_SMP
+WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sal_insert" desc="C106000010pop01 정보 추가(영업원)" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 칼라시편관리 C106000010pop01.sal_insert 박재영*/ 
+INTO TB_C10_CLR_SMP
+(   CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT ,--수지구분TXT
+    RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD,--광택도코드
+    SMP_LUS_YN, --샘플광
+    CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT, --고객사명
+    USE_REG_TXT,--사용지역명
+    PRD_NM_CD,--품명코드
+    PRD_TP_YN, --품명구분여부
+    CLR_SMP_DEV_RCP_DH,--시편개발접수일
+    SAL_CHR_REQ_DH,--영업담당자요청일
+    SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK,--비고
+    ORD_PRE_WGT,
+    PTT_FLM_YN,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+(SELECT NVL(MAX(CLR_SMP_REQ_NO),TO_CHAR(SYSDATE,'yyyymmdd')||'00')+1 FROM TB_C10_CLR_SMP
+      WHERE CLR_SMP_REQ_NO LIKE TO_CHAR(SYSDATE,'yyyymmdd') || '%' )
+,:CUS_REQ_HUE_TXT
+,:RSN_TP_TXT
+,:RSN_ANL_REQ_YN
+,:SMP_SND_YN
+,(CASE WHEN LENGTHB(:PNT_FLM_THK_TXT) >10 THEN substrb(:PNT_FLM_THK_TXT,1,10) ELSE :PNT_FLM_THK_TXT END)
+,:LUS_RT_CD
+,:SMP_LUS_YN
+,(CASE WHEN LENGTHB(:CLR_USE_NM) >20 THEN substrb(:CLR_USE_NM,1,20) ELSE :CLR_USE_NM END)
+,(CASE WHEN LENGTHB(:SAL_CHR_PRS_ID) >10 THEN substrb(:SAL_CHR_PRS_ID,1,10) ELSE :SAL_CHR_PRS_ID END)
+,:CUS_CD_TXT
+,(CASE WHEN LENGTHB(:USE_REG_TXT) >20 THEN substrb(:USE_REG_TXT,1,20) ELSE :USE_REG_TXT END)
+,:PRD_NM_CD
+,:PRD_TP_YN
+,DECODE(:SAL_CHR_REQ_DH,NULL,SYSDATE,:SAL_CHR_REQ_DH) 
+,:SAL_CHR_REQ_DH
+,:SAL_CHR_RGN_DH
+,:CLR_SMP_RMK
+,:ORD_PRE_WGT
+,:PTT_FLM_YN
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.dsn_insert" desc="C106000010pop01 정보 추가(설계원)" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 칼라시편관리 C106000010pop01.dsn_insert 박재영*/ 
+INTO TB_C10_CLR_SMP
+(   CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT ,--수지구분TXT
+    RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD,--광택도코드
+    SMP_LUS_YN, --샘플광
+    CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT, --고객사명
+    USE_REG_TXT,--사용지역명
+    PRD_NM_CD,--품명코드
+    PRD_TP_YN, --품명구분여부
+    CLR_SMP_DEV_RCP_DH,--시편개발접수일
+    SAL_CHR_REQ_DH,--영업담당자요청일
+    SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK,--비고
+    CLR_SMP_RCP_NO,--칼라시편접수번호
+    DEV_PNT_CMP_CD,--개발도료업체코드
+    RSN_TP, --수지구분
+    CLR_SMP_DEV_REQ_DH,--칼라시편개발의뢰일
+    CLR_SMP_DEV_LMT_DH,--칼라시편개발예정일
+    CLR_SMP_DEV_END_DH,--칼라시편개발완료일
+    CLR_SMP_DEV_SND_DH,--칼라시편개발송부일
+    SMP_SND_INF, --시편송부정보
+    DSN_CHR_RGN_YN,--설계담당자승인여부
+    HUE_CD,--색상코드 
+    CCL_BOM_NO,--CCLBOM번호
+    CCL_BOM_RGS_DH,--CCLBOM등록일
+    CLR_TP, --색구분
+    CLR_SMP_DSN_RMK, --설계비고
+    ORD_PRE_WGT,
+    PTT_FLM_YN,
+    DSN_CHR_PRS_ID, 
+    SIM_HUE_PRG_YN, 
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+(SELECT NVL(MAX(CLR_SMP_REQ_NO),TO_CHAR(SYSDATE,'yyyymmdd')||'00')+1 FROM TB_C10_CLR_SMP
+      WHERE CLR_SMP_REQ_NO LIKE TO_CHAR(SYSDATE,'yyyymmdd') || '%' )
+,:CUS_REQ_HUE_TXT
+,:RSN_TP_TXT
+,:RSN_ANL_REQ_YN
+,:SMP_SND_YN
+,(CASE WHEN LENGTHB(:PNT_FLM_THK_TXT) >10 THEN substrb(:PNT_FLM_THK_TXT,1,10) ELSE :PNT_FLM_THK_TXT END)
+,:LUS_RT_CD
+,:SMP_LUS_YN
+,(CASE WHEN LENGTHB(:CLR_USE_NM) >20 THEN substrb(:CLR_USE_NM,1,20) ELSE :CLR_USE_NM END)
+,(CASE WHEN LENGTHB(:SAL_CHR_PRS_ID) >10 THEN substrb(:SAL_CHR_PRS_ID,1,10) ELSE :SAL_CHR_PRS_ID END)
+,:CUS_CD_TXT
+,(CASE WHEN LENGTHB(:USE_REG_TXT) >20 THEN substrb(:USE_REG_TXT,1,20) ELSE :USE_REG_TXT END)
+,:PRD_NM_CD
+,:PRD_TP_YN
+,DECODE(:SAL_CHR_REQ_DH,NULL,SYSDATE,:SAL_CHR_REQ_DH) 
+,:SAL_CHR_REQ_DH
+,:SAL_CHR_RGN_DH
+,:CLR_SMP_RMK
+,:CLR_SMP_RCP_NO
+,:DEV_PNT_CMP_CD
+,:RSN_TP
+,nvl(trim(:CLR_SMP_DEV_REQ_DH), sysdate)--칼라시편개발의뢰일
+,nvl(trim(:CLR_SMP_DEV_LMT_DH), nvl(to_date(trim(:CLR_SMP_DEV_REQ_DH)), sysdate) + (select to_number(rtrim(trim(LED_TIM_1),'일')) from TB_C10_CLR_CMP_DEV_MNG where PNT_CMP_CD = :DEV_PNT_CMP_CD) )--칼라시편개발예정일
+,:CLR_SMP_DEV_END_DH
+,:CLR_SMP_DEV_SND_DH
+,:SMP_SND_INF
+,:DSN_CHR_RGN_YN
+,:HUE_CD
+,:CCL_BOM_NO
+,:CCL_BOM_RGS_DH
+,:CLR_TP
+,:CLR_SMP_DSN_RMK
+,:ORD_PRE_WGT
+,:PTT_FLM_YN
+,nvl((select emp_nm from M90APUSER.TB_M90_EMP_INF where emp_id = :DSN_CHR_PRS_ID), :DSN_CHR_PRS_ID)
+,decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','N')
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp)
+		 ]]> 
+	 </query>
+</queryMap>

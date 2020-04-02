@@ -38,28 +38,28 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >조건</column>
-<column align="left"   id="SPC_AVR" index="2" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >결과</column>
-<column align="center"   id="SPC_YR" index="3" sort="str" table="VI_M00_C10A1020" type="ro" width="60" >#cspan</column>
-<column align="center"   id="ORD_USG_CD" index="4" sort="str" table="VI_M00_C10A1020" type="ro" width="60" >#cspan</column>
-<column align="center"   id="CUS_CD" index="5" sort="str" table="VI_M00_C10A1020" type="ro" width="60" >#cspan</column>
-<column align="center"   id="PRD_NM_CD" index="6" sort="str" table="VI_M00_C10A1020" type="ro" width="40" >#cspan</column>
-<column align="right"   id="PRD_THK_RNG_LLV" index="7" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="right"   id="PRD_THK_RNG_ULV" index="8" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="right"   id="PRD_WTH_RNG_LLV" index="9" sort="str" table="VI_M00_C10A1020" type="ro" width="120" >#cspan</column>
-<column align="right"   id="PRD_WTH_RNG_ULV" index="10" sort="str" table="VI_M00_C10A1020" type="ro" width="120" >#cspan</column>
-<column align="right"   id="PRD_LTH_RNG_LLV" index="11" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="right" id="PRD_LTH_RNG_ULV" index="12" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="right"   id="CUS_REQ_ROL_THK" index="13" sort="str" table="VI_M00_C10A1020" type="ro" width="120" >#cspan</column>
-<column align="right"   id="CUS_REQ_ROL_THK_UNT" index="14" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="right"   id="ORD_THK_TP" index="15" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >#cspan</column>
-<column align="center"   id="PRD_THK_CAL_APL_CD" index="16" sort="str" table="VI_M00_C10A1020" type="ro" width="140" >#cspan</column>
-<column align="center"   id="GW_ASG_CD" index="17" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >#cspan</column>
-<column align="center"   id="ORD_SUR_HND_CD" index="18" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >#cspan</column>
-<column align="center"   id="CCL_BOM_NO" index="19" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >#cspan</column>
-<column align="left"   id="CUS_BTH_NM" index="20" sort="str" table="VI_M00_C10A1020" type="ro" width="100" >#cspan</column>
+<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >조건</column>
+<column align="left"   id="SPC_AVR" index="2" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >결과</column>
+<column align="center"   id="SPC_YR" index="3" sort="str" table="VI_M00_C10A1020" type="ro" width="6" >#cspan</column>
+<column align="center"   id="ORD_USG_CD" index="4" sort="str" table="VI_M00_C10A1020" type="ro" width="6" >#cspan</column>
+<column align="center"   id="CUS_CD" index="5" sort="str" table="VI_M00_C10A1020" type="ro" width="6" >#cspan</column>
+<column align="center"   id="PRD_NM_CD" index="6" sort="str" table="VI_M00_C10A1020" type="ro" width="4" >#cspan</column>
+<column align="right"   id="PRD_THK_RNG_LLV" index="7" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="right"   id="PRD_THK_RNG_ULV" index="8" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="right"   id="PRD_WTH_RNG_LLV" index="9" sort="str" table="VI_M00_C10A1020" type="ro" width="12" >#cspan</column>
+<column align="right"   id="PRD_WTH_RNG_ULV" index="10" sort="str" table="VI_M00_C10A1020" type="ro" width="12" >#cspan</column>
+<column align="right"   id="PRD_LTH_RNG_LLV" index="11" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="right" id="PRD_LTH_RNG_ULV" index="12" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="right"   id="CUS_REQ_ROL_THK" index="13" sort="str" table="VI_M00_C10A1020" type="ro" width="12" >#cspan</column>
+<column align="right"   id="CUS_REQ_ROL_THK_UNT" index="14" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="right"   id="ORD_THK_TP" index="15" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >#cspan</column>
+<column align="center"   id="PRD_THK_CAL_APL_CD" index="16" sort="str" table="VI_M00_C10A1020" type="ro" width="14" >#cspan</column>
+<column align="center"   id="GW_ASG_CD" index="17" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >#cspan</column>
+<column align="center"   id="ORD_SUR_HND_CD" index="18" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >#cspan</column>
+<column align="center"   id="CCL_BOM_NO" index="19" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >#cspan</column>
+<column align="left"   id="CUS_BTH_NM" index="20" sort="str" table="VI_M00_C10A1020" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">CUS_BTH_PAP_NO,SPC_AVR,SPC_YR,ORD_USG_CD,CUS_CD,PRD_NM_CD,PRD_THK_RNG_LLV,PRD_THK_RNG_ULV,PRD_WTH_RNG_LLV,PRD_WTH_RNG_ULV,PRD_LTH_RNG_LLV,PRD_LTH_RNG_ULV,CUS_REQ_ROL_THK,CUS_REQ_ROL_THK_UNT,ORD_THK_TP,PRD_THK_CAL_APL_CD,GW_ASG_CD,ORD_SUR_HND_CD,CCL_BOM_NO,CUS_BTH_NM</userdata>

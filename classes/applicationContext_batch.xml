@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@210.1.1.139:2020:UBMADQ"/>
+        <property name="username" value="C10APUSER"/>
+        <property name="password" value="C10APUSER_TST"/>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="minIdle" value="0"/>
+        <property name="maxActive" value="-1"/>
+        <property name="maxIdle" value="1000"/>
+    </bean>
+    
+    
+    <bean id="masterDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@210.1.1.139:2020:UBMADQ"/>
+        <property name="username" value="M00APUSER"/>
+        <property name="password" value="M00APUSER_TST"/>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="minIdle" value="0"/>
+        <property name="maxActive" value="-1"/>
+        <property name="maxIdle" value="1000"/>
+    </bean>
+
+    <bean id="eaiDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@210.1.1.139:2020:UBMADQ"/>
+        <property name="username" value="EAIAPUSER"/>
+        <property name="password" value="EAIAPUSER_TST"/>
+        <property name="defaultAutoCommit" value="false"/>
+        <property name="minIdle" value="0"/>
+        <property name="maxActive" value="-1"/>
+        <property name="maxIdle" value="1000"/>
+    </bean>
+
+<!--
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+        <property name="jndiName" value="jdbc/rw/C10DS"/> 
+        <property name="resourceRef" value="false"/> 
+    </bean>
+
+   
+    <bean id="m00DataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+       <property name="jndiName" value="jdbc/rw/M00DS"/> 
+       <property name="resourceRef" value="false"/> 
+    </bean>
+-->
+<!--
+    # JDBC url for MYSQL : jdbc:mysql://host:port/database
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/dbname?characterEncoding=euckr"/>
+        <property name="username" value="user"/>
+        <property name="password" value = "pass"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+    # JDBC url for DB2 : jdbc:db2://host:port/database
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver"/>
+        <property name="url" value="jdbc:db2://127.0.0.1:50000/gluedb2:deferPrepares=false;"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="tiger"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+    # JDBC url for PostgreeSQL : jdbc:postgresql://host:port/database
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://127.0.0.1:5432/uCOMPOSER_00"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="tiger"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+    # JDBC url for MSSQL Server : jdbc:microsoft:sqlserver://host:port;DatabaseName=database
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.microsoft.jdbc.sqlserver.SQLServerDriver"/>
+        <property name="url" value="jdbc:microsoft:sqlserver://127.0.0.1:1433\\TKTRN1"/>
+        <property name="username" value="WGTUSER"/>
+        <property name="password" value="trnwgtuser"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+    # JDBC url for MSSQL Server 2005 : jdbc:sqlserver://host:port;databaseName=database
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="jdbc:sqlserver://172.30.176.34:2111;databaseName=TKTRN1"/>
+        <property name="username" value="WGTUSER"/>
+        <property name="password" value="trnwgtuser"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+    # JDBC url for TimesTen : jdbc:timesten:direct:dsn=sampledb_1121
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.timesten.jdbc.TimesTenDriver"/>
+        <property name="url" value="jdbc:timesten:direct:dsn=sampledb_1121"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="tiger"/>
+        <property name="defaultAutoCommit" value = "false"/>
+    </bean>
+-->
+    <bean id="mesdao" class="com.posdata.glue.dao.PosJdbcDao">
+        <property name="dataSource"><ref local="dataSource"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+		<property name="columnDefCache" value="true" ></property>
+		<property name="auditAttributeOption" value="true"/>
+    </bean>
+
+    <bean id="masterdao" class="com.posdata.glue.dao.PosJdbcDao">
+        <property name="dataSource"><ref local="masterDataSource"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+    </bean>
+
+    <bean id="eaidao" class="com.posdata.glue.dao.PosJdbcDao">
+        <property name="dataSource"><ref local="eaiDataSource"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+		<property name="columnDefCache" value="true" ></property>
+		<property name="auditAttributeOption" value="true"/>
+    </bean>
+
+    <bean id="queryManager" class="com.posdata.glue.dao.manager.PosQueryManagerImpl">
+        <constructor-arg><ref local="cacheManager"/></constructor-arg>
+        <constructor-arg><ref local="queryLoader"/></constructor-arg>
+    </bean>
+
+    <bean id="cacheManager" class="com.posdata.glue.cache.PosCacheManagerJCS"/>
+    <bean id="queryLoader" class="com.posdata.glue.dao.manager.PosQueryLoader"/>
+
+    <bean id="tx1" class="com.posdata.glue.transaction.PosDataSourceTransactionManager">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+    </bean>
+    
+    <bean id="tx2" class="com.posdata.glue.transaction.PosDataSourceTransactionManager">
+        <property name="dataSource">
+            <ref local="eaiDataSource"/>
+        </property>
+    </bean>
+          
+    <bean id="delimiterLayout" class="com.poscoict.glue.biz.dhtmlx.msg.DelimiterMessageLayout"/>
+ 	<bean id="fixedLengthLayout" class="com.poscoict.glue.biz.dhtmlx.msg.FixedLengthMessageLayout"/>
+ 	
+<!--
+    # Transaction Manager
+    <bean id="tx" class="com.posdata.glue.transaction.PosDataSourceTransactionManager">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>
+    # Transaction Manager in Spring
+    <bean id="tx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>
+-->
+
+<!--
+    <bean id="testdao" class="com.posdata.glue.dao.PosJdbcDaoForHugeData">
+        <property name="dataSource"><ref local="dataSource"/></property>
+        <property name="queryManager"><ref local="queryManager"/></property>
+    </bean>
+    <bean id="tx" class="com.posdata.glue.transaction.PosLazyDataSourceTransactionManager">
+        <property name="dataSource"><ref local="dataSource"/></property>
+    </bean>
+-->
+</beans>

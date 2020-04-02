@@ -50,8 +50,8 @@ var items = new Array();  //public dhtmlx component array
 //    ']';
 // var initConfig = JSON.parse(pageConfiguration);	     
 
-var Form_1 = {"itemType":"form","renderTo":"C106000050_Form_1","xml":".\/header\/kr\/C106000050\/C106000050_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000050_Grid_1","service":"C106000050-service","actionType":"find","security":"true"};
-var Form_3 = {"itemType":"form","renderTo":"C106000050_Form_3","xml":".\/header\/kr\/C106000050\/C106000050_Form_3.xml","url":"basicGridData.do","referenceItem":"C106000050_Form_1","service":"C106000050-service","actionType":"save","security":"true"};
+var Form_1 = {"itemType":"form","renderTo":"C106000050_Form_1","xml":".\/header\/kr\/C106000050\/C106000050_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000050_Grid_1","service":"C106000050-service","actionType":"find","security":"true"};
+var Form_3 = {"itemType":"form","renderTo":"C106000050_Form_3","xml":".\/header\/kr\/C106000050\/C106000050_Form_3.xml","url":"gridC10Data.do","referenceItem":"C106000050_Form_1","service":"C106000050-service","actionType":"save","security":"true"};
 var Grid_1 = {"itemType":"grid","renderTo":"C106000050_Grid_1","xml":".\/header\/kr\/C106000050\/C106000050_Grid_1.xml","rowCnt":"10","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000050_Grid_2","service":"C106000050-service","actionType":"save"};
 var Grid_2 = {"itemType":"grid","renderTo":"C106000050_Grid_2","xml":".\/header\/kr\/C106000050\/C106000050_Grid_2.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000050_Grid_2","service":"C106000050-service","actionType":"save"};
 var Menu_1 = {"itemType":"menu","renderTo":"C106000050_Menu_1","xml":".\/header\/kr\/C106000050\/C106000050_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000050_Grid_1","service":"C106000050-service"};
@@ -1077,6 +1077,23 @@ function onGrid2LoadFunction(){
 	var gridObj = items['C106000050_Grid_2'].getDhxGrid();	
 		//items['C106000050_Grid_2'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent2);
 		//items['C106000050_Grid_2'].getDhxGrid().detachEvent(onXleGrid2);
+}
+
+//(물성) 등록을 위한 POP-UP
+function doImgPopUp2(rowIdx){	
+	var gridObj = items['C106000050_Grid_2'].getDhxGrid();
+	var rowId = gridObj.getRowIndex(rowIdx);
+	
+	var md_url = "C106000050pop03.jsp?rowId="+rowId;
+		md_url += "&CLR_SUB_MTL_CD="+items['C106000050_Grid_2'].getCellByIndexValue(rowId,gridObj.getColIndexById('CLR_SUB_MTL_CD'));
+		md_url += "&PNT_CMP_CD="+items['C106000050_Grid_2'].getCellByIndexValue(rowId,gridObj.getColIndexById('PNT_CMP_CD'));
+		md_url += "&SEQ=1";  // 1로 고정
+		md_url += "&parent_item=C106000050_Grid_2";
+
+	var cusWinObj = new ui.window("C106000050PopWin","MSDS 파일 다운로드","0","0","465","405",md_url);
+		cusWinObj.setButtonDisable("park,minmax1");
+		cusWinObj.setModal();
+	
 }
 
 

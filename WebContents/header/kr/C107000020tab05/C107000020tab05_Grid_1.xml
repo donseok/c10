@@ -38,14 +38,14 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >조건</column>
-<column align="center"   id="PROC_SEQ" index="2" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="center"   id="MAIN_PROC_CD" index="3" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >결과</column>
-<column align="center"   id="SUB_PROC_CD1" index="4" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SUB_PROC_CD2" index="5" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="center"   id="SUB_PROC_CD3" index="6" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
+<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >조건</column>
+<column align="center"   id="PROC_SEQ" index="2" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="center"   id="MAIN_PROC_CD" index="3" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >결과</column>
+<column align="center"   id="SUB_PROC_CD1" index="4" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SUB_PROC_CD2" index="5" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="center"   id="SUB_PROC_CD3" index="6" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">PAS_PROC_NO,PROC_SEQ,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,SUB_PROC_CD3</userdata>

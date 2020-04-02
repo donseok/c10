@@ -38,23 +38,23 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1022" type="ro" width="100" >조건</column>
-<column align="right"   id="YP_LLV_MPA" index="2" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >결과</column>
-<column align="right"   id="YP_ULV_MPA" index="3" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="TS_LLV_MPA" index="4" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="TS_ULV_MPA" index="5" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="ELGN_LLV" index="6" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="ELGN_ULV" index="7" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="HRB_LLV" index="8" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="HRB_ULV" index="9" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="ER_LLV" index="10" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="right"   id="ER_ULV" index="11" sort="str" table="VI_M00_C10A1022" type="ro" width="80" >#cspan</column>
-<column align="center" id="MQL_BND_TST_STD_CD" index="12" sort="str" table="VI_M00_C10A1022" type="ro" width="40" >#cspan</column>
-<column align="center"   id="TST_PIC_GTH_INST_LOC" index="13" sort="str" table="VI_M00_C10A1022" type="ro" width="100" >#cspan</column>
-<column align="center"   id="TST_PIC_GTH_INST_LTH" index="14" sort="str" table="VI_M00_C10A1022" type="ro" width="100" >#cspan</column>
-<column align="center"   id="TPG_RGS_N" index="15" sort="str" table="VI_M00_C10A1022" type="ro" width="100" >#cspan</column>
+<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1022" type="ro" width="10" >조건</column>
+<column align="right"   id="YP_LLV_MPA" index="2" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >결과</column>
+<column align="right"   id="YP_ULV_MPA" index="3" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="TS_LLV_MPA" index="4" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="TS_ULV_MPA" index="5" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="ELGN_LLV" index="6" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="ELGN_ULV" index="7" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="HRB_LLV" index="8" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="HRB_ULV" index="9" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="ER_LLV" index="10" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="right"   id="ER_ULV" index="11" sort="str" table="VI_M00_C10A1022" type="ro" width="8" >#cspan</column>
+<column align="center" id="MQL_BND_TST_STD_CD" index="12" sort="str" table="VI_M00_C10A1022" type="ro" width="4" >#cspan</column>
+<column align="center"   id="TST_PIC_GTH_INST_LOC" index="13" sort="str" table="VI_M00_C10A1022" type="ro" width="10" >#cspan</column>
+<column align="center"   id="TST_PIC_GTH_INST_LTH" index="14" sort="str" table="VI_M00_C10A1022" type="ro" width="10" >#cspan</column>
+<column align="center"   id="TPG_RGS_N" index="15" sort="str" table="VI_M00_C10A1022" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">CUS_BTH_PAP_NO,YP_LLV_MPA,YP_ULV_MPA,TS_LLV_MPA,TS_ULV_MPA,ELGN_LLV,ELGN_ULV,HRB_LLV,HRB_ULV,ER_LLV,ER_ULV,MQL_BND_TST_STD_CD,TST_PIC_GTH_INST_LOC,TST_PIC_GTH_INST_LTH,TPG_RGS_N</userdata>

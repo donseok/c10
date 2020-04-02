@@ -36,28 +36,28 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center"  id="PRT_ROLL_NO"  index="1" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >조건</column>
-<column align="right"   id="PRT_ROLL_QTY" index="2" sort="str" table="VI_M00_C10A1091" type="ro" width="50" >결과</column>
-<column align="left"    id="RPV_CLR_NM" index="3" sort="str" table="VI_M00_C10A1091" type="ro" width="150" >#cspan</column>
-<column align="center"  id="PRC_CD" index="4" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >#cspan</column>
-<column align="left"   id="PTN_NM" index="5" sort="str" table="VI_M00_C10A1091" type="ro" width="150" >#cspan</column>
-<column align="left"    id="PRT_PTN_NM" index="6" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >#cspan</column>
-<column align="center"  id="PRT_PTN_CD" index="7" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >#cspan</column>
-<column align="center"  id="PRT_ROLL_PTN_CD" index="8" sort="str" table="VI_M00_C10A1091" type="ro" width="80" >#cspan</column>
-<column align="left"    id="USG_NM" index="9" sort="str" table="VI_M00_C10A1091" type="ro" width="80" >#cspan</column>
-<column align="left"    id="EAR_USG_NM" index="10" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >#cspan</column>
-<column align="right"   id="PRT_ROLL_DIA" index="11" sort="str" table="VI_M00_C10A1091" type="ro" width="70" >#cspan</column>
-<column align="right"   id="PRT_ROLL_CRCM" index="12" sort="str" table="VI_M00_C10A1091" type="ro" width="70" >#cspan</column>
-<column align="right"   id="PRT_ROLL_WTH" index="13" sort="str" table="VI_M00_C10A1091" type="ro" width="70" >#cspan</column>
-<column align="right"   id="PRT_ROLL_ENGR" index="14" sort="str" table="VI_M00_C10A1091" type="ro" width="120" >#cspan</column>
-<column align="left"    id="PRT_ROLL_CMP" index="15" sort="str" table="VI_M00_C10A1091" type="ro" width="100" >#cspan</column>
-<column align="center"  id="PRT_ROLL_MNF_DD" index="16" sort="str" table="VI_M00_C10A1091" type="ro" width="80" >#cspan</column>
-<column align="center"  id="PRT_ROLL_WHS_DD" index="17" sort="str" table="VI_M00_C10A1091" type="ro" width="80" >#cspan</column>
-<column align="center"  id="PRT_ROLL_CRYT_DD" index="18" sort="str" table="VI_M00_C10A1091" type="ro" width="80" >#cspan</column>
-<column align="left"    id="PRT_BABY_ROLL" index="19" sort="str" table="VI_M00_C10A1091" type="ro" width="150" >#cspan</column>
-<column align="left"    id="WHS_CRYT_REA" index="20" sort="str" table="VI_M00_C10A1091" type="ro" width="150" >#cspan</column>
+<column align="center"  id="PRT_ROLL_NO"  index="1" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >조건</column>
+<column align="right"   id="PRT_ROLL_QTY" index="2" sort="str" table="VI_M00_C10A1091" type="ro" width="5" >결과</column>
+<column align="left"    id="RPV_CLR_NM" index="3" sort="str" table="VI_M00_C10A1091" type="ro" width="15" >#cspan</column>
+<column align="center"  id="PRC_CD" index="4" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >#cspan</column>
+<column align="left"   id="PTN_NM" index="5" sort="str" table="VI_M00_C10A1091" type="ro" width="15" >#cspan</column>
+<column align="left"    id="PRT_PTN_NM" index="6" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >#cspan</column>
+<column align="center"  id="PRT_PTN_CD" index="7" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >#cspan</column>
+<column align="center"  id="PRT_ROLL_PTN_CD" index="8" sort="str" table="VI_M00_C10A1091" type="ro" width="8" >#cspan</column>
+<column align="left"    id="USG_NM" index="9" sort="str" table="VI_M00_C10A1091" type="ro" width="8" >#cspan</column>
+<column align="left"    id="EAR_USG_NM" index="10" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >#cspan</column>
+<column align="right"   id="PRT_ROLL_DIA" index="11" sort="str" table="VI_M00_C10A1091" type="ro" width="7" >#cspan</column>
+<column align="right"   id="PRT_ROLL_CRCM" index="12" sort="str" table="VI_M00_C10A1091" type="ro" width="7" >#cspan</column>
+<column align="right"   id="PRT_ROLL_WTH" index="13" sort="str" table="VI_M00_C10A1091" type="ro" width="7" >#cspan</column>
+<column align="right"   id="PRT_ROLL_ENGR" index="14" sort="str" table="VI_M00_C10A1091" type="ro" width="12" >#cspan</column>
+<column align="left"    id="PRT_ROLL_CMP" index="15" sort="str" table="VI_M00_C10A1091" type="ro" width="10" >#cspan</column>
+<column align="center"  id="PRT_ROLL_MNF_DD" index="16" sort="str" table="VI_M00_C10A1091" type="ro" width="8" >#cspan</column>
+<column align="center"  id="PRT_ROLL_WHS_DD" index="17" sort="str" table="VI_M00_C10A1091" type="ro" width="8" >#cspan</column>
+<column align="center"  id="PRT_ROLL_CRYT_DD" index="18" sort="str" table="VI_M00_C10A1091" type="ro" width="8" >#cspan</column>
+<column align="left"    id="PRT_BABY_ROLL" index="19" sort="str" table="VI_M00_C10A1091" type="ro" width="15" >#cspan</column>
+<column align="left"    id="WHS_CRYT_REA" index="20" sort="str" table="VI_M00_C10A1091" type="ro" width="15" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">PRT_ROLL_NO,PRT_ROLL_QTY,RPV_CLR_NM,PRC_CD,PTN_NM,PRT_PTN_NM,PRT_PTN_CD,PRT_ROLL_PTN_CD,USG_NM,EAR_USG_NM,PRT_ROLL_DIA,PRT_ROLL_CRCM,PRT_ROLL_WTH,PRT_ROLL_ENGR,PRT_ROLL_CMP,PRT_ROLL_MNF_DD,PRT_ROLL_WHS_DD,PRT_ROLL_CRYT_DD,PRT_BABY_ROLL,WHS_CRYT_REA,FCT_NM,PRT_ROLL_CTD_LOC,PRT_ROLL_LOT_NO,PRT_ROLL_CHR_NM,PRT_ROLLTXT</userdata>

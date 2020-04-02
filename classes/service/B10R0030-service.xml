@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10R0030-service" initial="callBatchJob">
+  <activity name="callBatchJob" class="com.poscoict.glue.biz.dhtmlx.PosBatchJobInvoker">
+    <transition name="success" value="end" />
+    <property name="target-chain" value="C10" />
+    <property name="job-name" value="batchJobB10R0030" />
+  </activity>
+</service>
+

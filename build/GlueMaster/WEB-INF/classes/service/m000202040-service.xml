@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000202040-service" initial="GetCachingData">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetGeneralRuleHeader1" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="SaveGeneralRuleData" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202030.getTbM00Defines010" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="resultkey" value="Defind010HeaderRowResult" />
+    <property name="param1" value="MdlDefineId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="*GetRuleLayoutExport" class="com.poscoict.glue.master.common.PosSearch">
+    <transition name="success" value="PosDatas010ListExport" />
+    <property name="resultkey" value="Defind020DataLayoutRowResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000202030.getTbM00Defines020" />
+    <property name="param0" value="MdlDefineId" />
+  </activity>
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="GeneralRuleDataRouter" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="sqlkey" value="system.code.value" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GetGeneralRuleHeader" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000202030.getTbM00Defines010" />
+    <property name="param0" value="UserEmpNo" />
+    <property name="resultkey" value="Defind010HeaderRowResult" />
+    <property name="param1" value="MdlDefineId" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="DeleteGeneralRuleData" class="com.posdata.glue.biz.activity.PosDelete">
+    <transition name="success" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="deleteCnt" />
+    <property name="param0" value="MdMrgBasId" />
+    <property name="chkname" value="TbM00Datas010VO_chk" />
+    <property name="sqlkey" value="TbM00Datas010.delete.byPK" />
+    <property name="param1" value="MdMrgBasDataSeq" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="ForwardExportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*GetRuleLayoutExport" />
+    <property name="forwardname" value="export" />
+  </activity>
+  <activity name="PosDatas010ListExport" class="com.poscoict.glue.master.ui.rule.GetGeneralRuleData">
+    <transition name="success" value="GetGeneralRuleHeader" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="dao" value="masterdao" />
+    <property name="pagesize" value="-1" />
+    <property name="page-size-name" value="pageSize" />
+  </activity>
+  <activity name="ForwardSavePage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*GetRuleLayout" />
+    <property name="forwardname" value="save" />
+  </activity>
+  <activity name="SaveGeneralRuleData" class="com.poscoict.glue.master.ui.rule.SaveGeneralRuleData">
+    <transition name="success" value="ForwardSavePage" />
+    <transition name="failure" value="ForwardSavePage" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="PosDatas010List" class="com.poscoict.glue.master.ui.rule.GetGeneralRuleData">
+    <transition name="skip" value="end" />
+    <transition name="success" value="GetGeneralRuleHeader" />
+    <property name="cur-page-name" value="curPage" />
+    <property name="dao" value="masterdao" />
+    <property name="pagesize" value="20" />
+    <property name="page-size-name" value="pageSize" />
+  </activity>
+  <activity name="*ImportGenRuleData" class="com.poscoict.glue.master.ui.rule.ImportGenRuleData">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="GeneralRuleDataRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="success" value="*GetRuleLayout" />
+    <transition name="save" value="GetGeneralRuleHeader1" />
+    <transition name="saveData" value="ForwardSavePage" />
+    <transition name="delete" value="DeleteGeneralRuleData" />
+    <transition name="export" value="ForwardExportPage" />
+    <transition name="import" value="ForwardImportPage" />
+  </activity>
+  <activity name="ForwardImportPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="*ImportGenRuleData" />
+    <property name="forwardname" value="import" />
+  </activity>
+  <activity name="*GetRuleLayout" class="com.poscoict.glue.master.common.PosSearch">
+    <transition name="success" value="PosDatas010List" />
+    <property name="resultkey" value="Defind020DataLayoutRowResult" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="m000202030.getTbM00Defines020" />
+    <property name="param0" value="MdlDefineId" />
+  </activity>
+</service>
+

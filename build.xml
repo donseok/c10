@@ -105,6 +105,7 @@
                     <include name="dhtmlx/codebase/dhtmlxvault.css"/>
                     <include name="dhtmlx/codebase/dhtmlxvault.js"/>
                 	<include name="js/c10.ui.js"/>
+                	<include name="dhtmlx/codebase/imgs/msds.jpg"/>
                 	<include name="dhtmlx/data/contextmenu.xml"/>                    
                     <!-- 송범용 추가. 테스트해보세요  --> 
                     <exclude name="*.html"/>

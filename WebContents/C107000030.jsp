@@ -8,31 +8,18 @@
 <title>
 업무기준조회(판단)
 </title>
-<script src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js" type="text/javascript">
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C107000030_Form_1","xml":".\/header\/kr\/C107000030\/C107000030_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000030_Tabbar_1","service":"C107000030-service"},' +
-//       '{"itemType":"tabbar","renderTo":"C107000030_Tabbar_1","xml":".\/header\/kr\/C107000030\/C107000030_Tabbar_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","skin":"modern","service":"C107000030-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C107000030_Form_1","xml":".\/header\/kr\/C107000030\/C107000030_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000030_Tabbar_1","service":"C107000030-service"};
-var Tabbar_1 = {"itemType":"tabbar","renderTo":"C107000030_Tabbar_1","xml":".\/header\/kr\/C107000030\/C107000030_Tabbar_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","skin":"modern","service":"C107000030-service"};
-
-var initLayout = 
-{
-	  "programId":"C107000030",
-	  "itemType": "layout", "dirType":"row", "childSize":"30,*", "splitter":false, "components": 
-	  [
-      Form_1,
-      Tabbar_1
-	  ] 
-};
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C107000030_Form_1","xml":".\/header\/kr\/C107000030\/C107000030_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000030_Tabbar_1","service":"C107000030-service"},' +
+      '{"itemType":"tabbar","renderTo":"C107000030_Tabbar_1","xml":".\/header\/kr\/C107000030\/C107000030_Tabbar_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","skin":"modern","service":"C107000030-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
@@ -90,22 +77,25 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   	}
 } 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C107000030_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C107000030_Form_1" style="position:absolute;height:30px;width:980px;left:0px;top:0px;">
+<div id="C107000030_Form_1" style="position:absolute;height:30px;width:980px;left:0px;top:0px;">
 </div>
 <div id="C107000030_Tabbar_1" style="position:absolute;height:562px;width:980px;left:0px;top:31px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();          
 //]]>
+-->
 </script>

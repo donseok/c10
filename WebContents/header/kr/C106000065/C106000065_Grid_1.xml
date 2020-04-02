@@ -13,35 +13,35 @@
 <!-- 가변항목 관련 세팅 시작.-->
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column width="60" index="1"  sort="str" type="ro" align="center" id="CCL_BOM_NO">CCL-BOM</column>
-<column width="30"  index="2"  sort="str" type="ro" align="center" id="CCL_BOM_USE_YN">사용여부</column>
-<column width="80" index="3"  sort="str" type="ro" align="left" id="DTL_CLR_NM">상세색상</column>
-<column width="50" index="4"  sort="str" type="ro" align="center" id="HUE_CD_FRN">전면</column>
-<column width="20"  index="5"  sort="str" type="ro" align="center" id="FRN_YN">사용</column>
-<column width="50" index="6"  sort="str" type="ro" align="center" id="HUE_CD_BAK">후면</column>
-<column width="20"  index="7"  sort="str" type="ro" align="center" id="BAK_YN">사용</column>
-<column width="50" index="8" sort="str" type="ro" align="center" id="HUE_CD_FRN_4COT">Top4</column>
-<column width="20"  index="9" sort="str" type="ro" align="center" id="FRN4_YN">사용</column>
-<column width="50" index="10" sort="str" type="ro" align="center" id="HUE_CD_FRN_3COT">Top3</column>
-<column width="20"  index="11" sort="str" type="ro" align="center" id="FRN3_YN">사용</column>
-<column width="50" index="12" sort="str" type="ro" align="center" id="HUE_CD_FRN_2COT">Top2</column>
-<column width="20"  index="13" sort="str" type="ro" align="center" id="FRN2_YN">사용</column>
-<column width="50" index="14" sort="str" type="ro" align="center" id="HUE_CD_FRN_1COT">Top1</column>
-<column width="20"  index="15" sort="str" type="ro" align="center" id="FRN1_YN">사용</column>
-<column width="50" index="16" sort="str" type="ro" align="center" id="HUE_CD_BAK_1COT">Back1</column>
-<column width="20"  index="17" sort="str" type="ro" align="center" id="BAK1_YN">사용</column>
-<column width="50" index="18" sort="str" type="ro" align="center" id="HUE_CD_BAK_2COT">Back1</column>
-<column width="20"  index="19" sort="str" type="ro" align="center" id="BAK2_YN">사용</column>
-<column width="50" index="20" sort="str" type="ro" align="center" id="HUE_CD_BAK_3COT">Back1</column>
-<column width="20"  index="21" sort="str" type="ro" align="center" id="BAK3_YN">사용</column>
-<column width="50" index="22" sort="str" type="ro" align="center" id="HUE_CD_BAK_4COT">Back1</column>
-<column width="20"  index="23" sort="str" type="ro" align="center" id="BAK4_YN">사용</column>
-<column width="50" index="24" sort="str" type="ro" align="center" id="HUE_CD_LMN">Lamina</column>
-<column width="20"  index="25" sort="str" type="ro" align="center" id="LMN_YN">사용</column>
-<column width="50" index="26"  sort="str" type="ro" align="center" id="HUE_CD_SUB">SUB</column>
-<column width="20"  index="27"  sort="str" type="ro" align="center" id="SUB_YN">사용</column>
+<column width="6" index="1"  sort="str" type="ro" align="center" id="CCL_BOM_NO">CCL-BOM</column>
+<column width="3"  index="2"  sort="str" type="ro" align="center" id="CCL_BOM_USE_YN">사용여부</column>
+<column width="8" index="3"  sort="str" type="ro" align="left" id="DTL_CLR_NM">상세색상</column>
+<column width="5" index="4"  sort="str" type="ro" align="center" id="HUE_CD_FRN">전면</column>
+<column width="2"  index="5"  sort="str" type="ro" align="center" id="FRN_YN">사용</column>
+<column width="5" index="6"  sort="str" type="ro" align="center" id="HUE_CD_BAK">후면</column>
+<column width="2"  index="7"  sort="str" type="ro" align="center" id="BAK_YN">사용</column>
+<column width="5" index="8" sort="str" type="ro" align="center" id="HUE_CD_FRN_4COT">Top4</column>
+<column width="2"  index="9" sort="str" type="ro" align="center" id="FRN4_YN">사용</column>
+<column width="5" index="10" sort="str" type="ro" align="center" id="HUE_CD_FRN_3COT">Top3</column>
+<column width="2"  index="11" sort="str" type="ro" align="center" id="FRN3_YN">사용</column>
+<column width="5" index="12" sort="str" type="ro" align="center" id="HUE_CD_FRN_2COT">Top2</column>
+<column width="2"  index="13" sort="str" type="ro" align="center" id="FRN2_YN">사용</column>
+<column width="5" index="14" sort="str" type="ro" align="center" id="HUE_CD_FRN_1COT">Top1</column>
+<column width="2"  index="15" sort="str" type="ro" align="center" id="FRN1_YN">사용</column>
+<column width="5" index="16" sort="str" type="ro" align="center" id="HUE_CD_BAK_1COT">Back1</column>
+<column width="2"  index="17" sort="str" type="ro" align="center" id="BAK1_YN">사용</column>
+<column width="5" index="18" sort="str" type="ro" align="center" id="HUE_CD_BAK_2COT">Back1</column>
+<column width="2"  index="19" sort="str" type="ro" align="center" id="BAK2_YN">사용</column>
+<column width="5" index="20" sort="str" type="ro" align="center" id="HUE_CD_BAK_3COT">Back1</column>
+<column width="2"  index="21" sort="str" type="ro" align="center" id="BAK3_YN">사용</column>
+<column width="5" index="22" sort="str" type="ro" align="center" id="HUE_CD_BAK_4COT">Back1</column>
+<column width="2"  index="23" sort="str" type="ro" align="center" id="BAK4_YN">사용</column>
+<column width="5" index="24" sort="str" type="ro" align="center" id="HUE_CD_LMN">Lamina</column>
+<column width="2"  index="25" sort="str" type="ro" align="center" id="LMN_YN">사용</column>
+<column width="5" index="26"  sort="str" type="ro" align="center" id="HUE_CD_SUB">SUB</column>
+<column width="2"  index="27"  sort="str" type="ro" align="center" id="SUB_YN">사용</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
 <userdata name="column-info">CCL_BOM_NO,CCL_BOM_USE_YN,DTL_CLR_NM,HUE_CD_FRN,FRN_YN,HUE_CD_BAK,BAK_YN,HUE_CD_FRN_4COT,FRN4_YN,HUE_CD_FRN_3COT,FRN3_YN,HUE_CD_FRN_2COT,FRN2_YN,HUE_CD_FRN_1COT,FRN1_YN,HUE_CD_BAK_1COT,BAK1_YN,HUE_CD_BAK_2COT,BAK2_YN,HUE_CD_BAK_3COT,BAK3_YN,HUE_CD_BAK_4COT,BAK4_YN,HUE_CD_LMN,LMN_YN,HUE_CD_SUB,SUB_YN</userdata>

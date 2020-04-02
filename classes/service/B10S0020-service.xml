@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10S0020-service" initial="IFGroupID_LAR">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="SEARCH_CD" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP_CD" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="ORD_USG_CD_IF" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="SEARCH_MID" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP_MID" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="ORD_USG_CD_MID_IF" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="PROC_LOOP_CD" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="success" value="INSERT_CD" />
+    <transition name="exit" value="COMMIT_CD" />
+    <property name="param1" value="ORD_USG_NM|ORD_USG_NM" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param-count" value="2" />
+    <property name="countName" value="SD0090_COUNT" />
+    <property name="param0" value="ORD_USG_CD|ORD_USG_CD" />
+  </activity>
+  <activity name="INSERT_CD" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="PROC_LOOP_CD" />
+    <transition name="failure" value="COMMIT_CD" />
+    <property name="param-count" value="3" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="IF_GRP_ID" />
+    <property name="param1" value="ORD_USG_CD" />
+    <property name="param2" value="ORD_USG_NM" />
+    <property name="dao" value="eaidao" />
+    <property name="sqlkey" value="B10S0020.insert" />
+  </activity>
+  <activity name="INSERT_LAR" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="PROC_LOOP_LAR" />
+    <transition name="failure" value="COMMIT_LAR" />
+    <property name="sqlkey" value="B10S0020.insert lar" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
+    <property name="param0" value="IF_GRP_ID" />
+    <property name="param1" value="ORD_USG_CD" />
+    <property name="param2" value="ORD_USG_NM" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="PROC_LOOP_LAR" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="success" value="INSERT_LAR" />
+    <transition name="exit" value="COMMIT_LAR" />
+    <property name="param1" value="ORD_USG_NM|ORD_USG_NM" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param-count" value="2" />
+    <property name="countName" value="SD0090_LAR_COUNT" />
+    <property name="param0" value="ORD_USG_CD|ORD_USG_CD" />
+  </activity>
+  <activity name="SEARCH_LAR" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP_LAR" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="ORD_USG_CD_LAR_IF" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="IFGroupID_CD" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH_CD" />
+  </activity>
+  <activity name="IFGroupID_MID" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH_MID" />
+  </activity>
+  <activity name="PROC_LOOP_MID" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="success" value="INSERT_MID" />
+    <transition name="exit" value="COMMIT_MID" />
+    <property name="param1" value="ORD_USG_NM|ORD_USG_NM" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param-count" value="2" />
+    <property name="countName" value="SD0090_MID_COUNT" />
+    <property name="param0" value="ORD_USG_CD|ORD_USG_CD" />
+  </activity>
+  <activity name="COMMIT_LAR" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="IFGroupID_MID" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="COMMIT_MID" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="IFGroupID_CD" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="IFGroupID_LAR" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="SEARCH_LAR" />
+  </activity>
+  <activity name="COMMIT_CD" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="INSERT_MID" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="PROC_LOOP_MID" />
+    <transition name="failure" value="COMMIT_MID" />
+    <property name="sqlkey" value="B10S0020.insert mid" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
+    <property name="param0" value="IF_GRP_ID" />
+    <property name="param1" value="ORD_USG_CD" />
+    <property name="param2" value="ORD_USG_NM" />
+    <property name="param-count" value="3" />
+  </activity>
+</service>
+

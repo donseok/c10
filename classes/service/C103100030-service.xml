@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C103100030-service" initial="INIT_QLT_ERR">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchProcData">
+    <transition name="failure" value="SUBSERVICE_ERR" />
+    <transition name="success" value="ROUTER_CHK" />
+    <property name="dao" value="mesdao" />
+    <property name="txname" value="tx1" />
+  </activity>
+  <activity name="MODIFY_ERR" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C1021000CMN.modify" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="SUBSERVICE_ERR" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="MODIFY_ERR" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C103100140-service" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C102100CMN.Jselect" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
+  </activity>
+  <activity name="ROUTER_CHK" class="com.poscoict.glue.biz.dhtmlx.PosValueRouter">
+    <transition name="success" value="PROC_LOOP" />
+    <transition name="error" value="SUBSERVICE_ERR" />
+    <property name="param0" value="P_ERR_KEY|N|success" />
+    <property name="param1" value="P_ERR_KEY|Y|error" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="SEARCH_MD" />
+    <property name="param14" value="EMBS_CD|EMBS_CD" />
+    <property name="param15" value="ORD_PAK_UNT_WGT_LLV|ORD_PAK_UNT_WGT_LLV" />
+    <property name="param16" value="ORD_COIL_ODIA|ORD_COIL_ODIA" />
+    <property name="param17" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT" />
+    <property name="param18" value="ORD_MIX_WTH1|ORD_MIX_WTH1" />
+    <property name="param19" value="ORD_MIX_WTH2|ORD_MIX_WTH2" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param20" value="ORD_MIX_WTH3|ORD_MIX_WTH3" />
+    <property name="param21" value="ORD_MIX_WTH4|ORD_MIX_WTH4" />
+    <property name="param22" value="ORD_MIX_WTH5|ORD_MIX_WTH5" />
+    <property name="param23" value="ORD_MIX_WTH6|ORD_MIX_WTH6" />
+    <property name="param24" value="ORD_MIX_WTH7|ORD_MIX_WTH7" />
+    <property name="param25" value="ORD_MIX_WTH8|ORD_MIX_WTH8" />
+    <property name="param26" value="ORD_MIX_WTH9|ORD_MIX_WTH9" />
+    <property name="param27" value="ORD_MIX_WTH10|ORD_MIX_WTH10" />
+    <property name="param28" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP" />
+    <property name="param29" value="TRST_PROC_YN|TRST_PROC_YN" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="param1" value="ORD_LN|ORD_LN" />
+    <property name="param2" value="RMTL_CD|RMTL_CD" />
+    <property name="param3" value="ORD_EXC_THK|ORD_EXC_THK" />
+    <property name="param4" value="ORD_EXC_WTH|ORD_EXC_WTH" />
+    <property name="param-count" value="37" />
+    <property name="param5" value="PRD_NM_CD|PRD_NM_CD" />
+    <property name="param6" value="PRD_SHP|PRD_SHP" />
+    <property name="param7" value="MTL_CD|MTL_CD" />
+    <property name="param8" value="PAS_PROC_NO|PAS_PROC_NO" />
+    <property name="param9" value="BAK_MRK|BAK_MRK" />
+    <property name="param30" value="MQL_CD|MQL_CD" />
+    <property name="param31" value="SPC_AVR|SPC_AVR" />
+    <property name="param32" value="FNL_CUS_CD|FNL_CUS_CD" />
+    <property name="param33" value="ORD_USG_CD|ORD_USG_CD" />
+    <property name="param34" value="LUS_RT_CD_FRN|LUS_RT_CD_FRN" />
+    <property name="param35" value="CCL_BOM_NO|CCL_BOM_NO" />
+    <property name="param36" value="ORD_COILG_MTH|ORD_COILG_MTH" />
+    <property name="param10" value="ORD_COIL_IDIA|ORD_COIL_IDIA" />
+    <property name="param11" value="ORD_SLV_KND_TP|ORD_SLV_KND_TP" />
+    <property name="param12" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD" />
+    <property name="param13" value="GW_ASG_CD|GW_ASG_CD" />
+  </activity>
+</service>
+

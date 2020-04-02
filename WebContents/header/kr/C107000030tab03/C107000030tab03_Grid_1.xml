@@ -17,31 +17,31 @@
 <call command="attachHeader"><param><![CDATA[#rspan,,#text_filter,,#text_filter,,#numeric_filter,#numeric_filter,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="right" id="SEQ"   index="1"  sort="str" table="C10B1012" type="ro" width="40" >SEQ</column>
-<column align="center" id="CON1"   index="2"  sort="str" table="C10B1012" type="ro" width="50" >조건(C10B1012)</column>
-<column align="left" id="MIN1"  index="3"  sort="str" table="C10B1012" type="ro" width="150" >#cspan</column>
-<column align="center" id="CON2"   index="4"  sort="str" table="C10B1012" type="ro" width="50" >#cspan</column>
-<column align="center" id="MIN2"  index="5"  sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="CON3"   index="6"  sort="str" table="C10B1012" type="ro" width="80" >#cspan</column>
-<column align="right" id="MIN3" index="7" sort="str" table="C10B1012" type="ron" width="60" format="0.000">#cspan</column>
-<column align="right" id="MAX3" index="8" sort="str" table="C10B1012" type="ron" width="60" format="0.000">#cspan</column>
+<column align="right" id="SEQ"   index="1"  sort="str" table="C10B1012" type="ro" width="4" >SEQ</column>
+<column align="center" id="CON1"   index="2"  sort="str" table="C10B1012" type="ro" width="5" >조건(C10B1012)</column>
+<column align="left" id="MIN1"  index="3"  sort="str" table="C10B1012" type="ro" width="15" >#cspan</column>
+<column align="center" id="CON2"   index="4"  sort="str" table="C10B1012" type="ro" width="5" >#cspan</column>
+<column align="center" id="MIN2"  index="5"  sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="CON3"   index="6"  sort="str" table="C10B1012" type="ro" width="8" >#cspan</column>
+<column align="right" id="MIN3" index="7" sort="str" table="C10B1012" type="ron" width="6" format="0.000">#cspan</column>
+<column align="right" id="MAX3" index="8" sort="str" table="C10B1012" type="ron" width="6" format="0.000">#cspan</column>
 
-<column align="center" id="RST1" index="28" sort="str" table="C10B1012" type="ron" width="60">결과</column>
-<column align="center" id="RST2" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
-<column align="center" id="RST3" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST4" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST5" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST6" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST7" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST8" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST9" index="28" sort="str" table="C10B1012" type="ro" width="60" >#cspan</column>
-<column align="center" id="RST10" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
-<column align="center" id="RST11" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
-<column align="center" id="RST12" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
-<column align="center" id="RST13" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
-<column align="center" id="RST14" index="28" sort="str" table="C10B1012" type="ro" width="60">#cspan</column>
+<column align="center" id="RST1" index="28" sort="str" table="C10B1012" type="ron" width="6">결과</column>
+<column align="center" id="RST2" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
+<column align="center" id="RST3" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST4" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST5" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST6" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST7" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST8" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST9" index="28" sort="str" table="C10B1012" type="ro" width="6" >#cspan</column>
+<column align="center" id="RST10" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
+<column align="center" id="RST11" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
+<column align="center" id="RST12" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
+<column align="center" id="RST13" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
+<column align="center" id="RST14" index="28" sort="str" table="C10B1012" type="ro" width="6">#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">SEQ,CON1,MIN1,CON2,MIN2,CON3,MIN3,MAX3,RST1,RST2,RST3,RST4,RST5,RST6,RST7,RST8,RST9,RST10,RST11,RST12,RST13,RST14</userdata>

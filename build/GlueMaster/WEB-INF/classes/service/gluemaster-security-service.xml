@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="gluemaster-security-service" initial="Router">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="end" />
+    <property name="cache-key" value="_SYS_R_APPLICATION_ID|HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="system.code.value" />
+  </activity>
+  <activity name="InitUser" class="com.poscoict.glue.master.web.GlueMasterSecurityInitUser">
+    <transition name="success" value="GetCachingData" />
+  </activity>
+  <activity name="MakeMunu" class="com.poscoict.glue.master.web.GlueMasterSecurityMenu">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="gluemaster.security.user.info" />
+    <property name="dao" value="masterdao" />
+  </activity>
+  <activity name="SearchUserInfo" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="TbM00SecUser" />
+    <property name="dao" value="masterdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="gluemaster.security.user.info" />
+    <property name="param0" value="UserEmpNo" />
+  </activity>
+  <activity name="Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="login" value="SearchUserInfo" />
+    <transition name="menu" value="MakeMunu" />
+    <transition name="init" value="InitUser" />
+  </activity>
+</service>
+

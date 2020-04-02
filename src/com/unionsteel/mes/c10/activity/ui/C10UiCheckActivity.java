@@ -162,7 +162,7 @@ public class C10UiCheckActivity extends PosActivity
                         param.setNamedParamter( C10ConstantsIF.ORD_NO, sORD_NO );
                         param.setNamedParamter( C10ConstantsIF.ORD_LN, sORD_LN );
                         param.setNamedParamter( C10ConstantsIF.COL_QLT_DSN_STS, C10ConstantsIF.A );
-                        param.setNamedParamter( C10ConstantsIF.COL_QLT_DSN_MSG, C10ConstantsIF.BLANK );
+                        param.setNamedParamter( C10ConstantsIF.COL_QLT_DSN_MSG, C10ConstantsIF.A );
                         param.setNamedParamter( C10ConstantsIF.OBJECT_TYPE, 
                                 (String) ctx.get( C10ConstantsIF.OBJECT_TYPE ) );
                         param.setNamedParamter( C10ConstantsIF.OBJECT_ID, 

@@ -248,14 +248,14 @@ public class DbSearchDeliSpec extends PosActivity implements C10NuiConstantsIF
                 colValue[6] = ord_exc_lth;
 
                 // 로깅시작
-//                logger.logDebug( "=== 규격인수도 기준 ===" );
-//                logger.logDebug( "조건값 - 인수도규격     : " + acrt_rt_spc );
-//                logger.logDebug( "조건값 - 품명           : " + prd_nm_cd );
-//                logger.logDebug( "조건값 - 제품형태       : " + prd_shp );
-//                logger.logDebug( "조건값 - 주문에지구분   : " + ord_edg_asg_tp );
-//                logger.logDebug( "조건값 - 주문두께       : " + ord_exc_thk );
-//                logger.logDebug( "조건값 - 주문폭         : " + ord_exc_wth );
-//                logger.logDebug( "조건값 - 주문길이       : " + ord_exc_lth );
+                logger.logDebug( "=== 규격인수도 기준 ===" );
+                logger.logDebug( "조건값 - 인수도규격     : " + acrt_rt_spc );
+                logger.logDebug( "조건값 - 품명           : " + prd_nm_cd );
+                logger.logDebug( "조건값 - 제품형태       : " + prd_shp );
+                logger.logDebug( "조건값 - 주문에지구분   : " + ord_edg_asg_tp );
+                logger.logDebug( "조건값 - 주문두께       : " + ord_exc_thk );
+                logger.logDebug( "조건값 - 주문폭         : " + ord_exc_wth );
+                logger.logDebug( "조건값 - 주문길이       : " + ord_exc_lth );
 
                 checker = EasyAccess.getPosDecisionChecker( C10B1013, null );
                 result = null;
@@ -280,6 +280,10 @@ public class DbSearchDeliSpec extends PosActivity implements C10NuiConstantsIF
                     arrayTest.add( new String[] { result.getRuleValueAt( COL_THK_TLN_ULV ) } );
                     arrayTest.add( new String[] { ord_thk_mng_cd } );
                     arrayTest.add( new String[] { C10STR_L } );
+                    
+                    logger.logDebug( "두께관리코드 : " + ord_thk_mng_cd );
+                    logger.logDebug( "하한값 : " + result.getRuleValueAt( COL_THK_TLN_LLV ) );
+                    
                     try
                     {
                         posCalcVO = EasyAccess.getPosCalc( C10B2180, arrayTest );

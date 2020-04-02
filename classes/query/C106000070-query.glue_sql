@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000070"> 
+	 <query id="C106000070.select2" desc="생산가부선택시 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회(생산가부) C106000070.find2 이민균 */   
+           A.* , A.IF_GRP_ID AS P_IF_GRP_ID,'#TABLE_NAME#' AS P_TBL_NM
+    FROM #TABLE_NAME# A
+    WHERE NVL(IF_GRP_ID,'%') LIKE  :IF_GRP_ID_CD ||'%'
+    AND   NVL(XSTAT,'%') LIKE  :XSTAT_CD ||'%'
+    AND LAST_UPDATE_TIMESTAMP BETWEEN TO_DATE(:XDATE_START,'YYYY-MM-DD HH24:MI')  
+                                                              AND TO_DATE(:XDATE_END,'YYYY-MM-DD HH24:MI') + 1
+    AND NVL(ORD_REQ_NO,' ') LIKE :ORD_REQ_NO||'%' 
+    AND NVL(ORD_REQ_LN,' ') LIKE :ORD_REQ_LN||'%' 
+    AND NVL(PRD_NM_CD,' ') LIKE :PRD_NM_CD||'%' 
+    AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
+    AND NVL(ACT_CUS_CD,' ') LIKE :CUS_CD||'%'
+    AND NVL(ORD_RGS_PRS_ID,' ') LIKE :ORD_RGS_PRS_ID||'%'
+    AND NVL(ORD_EXC_THK,0) BETWEEN NVL(:ORD_EXT_THK_STR,0) 
+                                        AND NVL(:ORD_EXT_THK_END,10)
+    ORDER BY IF_GRP_ID DESC, XTIME  DESC
+		 ]]> 
+	 </query>
+	 <query id="C106000070.ajaxFind" desc="C106000070.ajaxFind" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회 C106000070.AJAXFIND 이민균 */   
+    SEQ,
+    COLUMN_CODE_INFO,
+    COLUMN_NAME_INFO 
+FROM (SELECT
+       1 as SEQ,
+       T1.COLUMN_NAME AS COLUMN_CODE_INFO,
+       T2.COMMENTS    AS COLUMN_NAME_INFO,
+       COLUMN_ID
+FROM ALL_TAB_COLUMNS T1, ALL_COL_COMMENTS T2
+WHERE T1.TABLE_NAME = T2.TABLE_NAME
+AND   T1.COLUMN_NAME = T2.COLUMN_NAME
+AND   T1.OWNER = T2.OWNER
+AND   T1.OWNER = 'EAIAPUSER'
+AND   T1.TABLE_NAME = :TABLE_NAME
+AND   T1.COLUMN_NAME NOT IN ('COLUMN_NAME'
+                        ,'CREATED_OBJECT_TYPE'
+                        ,'CREATED_OBJECT_ID'
+                        ,'CREATED_PROGRAM_ID'
+                        ,'CREATION_TIMESTAMP'
+                        ,'LAST_UPDATED_OBJECT_TYPE'
+                        ,'LAST_UPDATED_OBJECT_ID'
+                        ,'LAST_UPDATE_PROGRAM_ID'
+                        ,'LAST_UPDATE_TIMESTAMP'
+                        ,'DATA_END_STATUS'
+                        ,'DATA_END_OBJECT_TYPE'
+                        ,'DATA_END_OBJECT_ID'
+                        ,'DATA_END_PROGRAM_ID'
+                        ,'DATA_END_TIMESTAMP'
+                        ,'ARCHIVE_COMPLETED_FLAG'
+                        ,'ARCHIVED_EMPLOYEE_NUM'
+                        ,'ARCHIVED_TIMESTAMP'
+                        ,'ARCHIVE_PROGRAM_ID')  
+UNION ALL
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회 C106000070.AJAXFIND 이민균 */ 
+       2 as SEQ,
+       'P_IF_GRP_ID' AS COLUMN_CODE_INFO,
+       'P_IF_GRP_ID' AS COLUMN_NAME_INFO,
+       998 AS COLUMN_ID
+FROM DUAL
+UNION ALL
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회 C106000070.AJAXFIND 이민균 */ 
+       3 as SEQ,
+       'P_TBL_NM' AS COLUMN_CODE_INFO,
+       'P_TBL_NM' AS COLUMN_NAME_INFO,
+       999 AS COLUMN_ID
+FROM DUAL) ORDER BY  COLUMN_ID
+		 ]]> 
+	 </query>
+	 <query id="C106000070.comboSelect" desc="C106000070.comboSelect" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COMBOBOX 조회 C106000070.comboSelect 이민균 */   
+ DISTINCT B.TABLE_NAME AS CODE,
+ B.TABLE_NAME || ' - ' || COMMENTS AS NAME
+FROM ALL_TAB_COLUMNS A,USER_TAB_COMMENTS B
+WHERE A.OWNER = 'EAIAPUSER'
+AND A.TABLE_NAME = B.TABLE_NAME
+AND B.TABLE_NAME LIKE 'TB_C10%'
+ORDER BY CODE
+		 ]]> 
+	 </query>
+	 <query id="C106000070.reSendUpdate" desc="C106000070.reSendUpdate" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 제조가부검토-제조가부검토이력조회 C105000010.update 이민균 */
+TB_C10_B10R0020 SET
+XSTAT = 'D',--PI 처리 상태
+XMSGS = '',--PI 에러 메시지
+XSTAT_CALLBACK  = ''--PI 처리 상태
+WHERE  IF_GRP_ID = :P_IF_GRP_ID
+		 ]]> 
+	 </query>
+	 <query id="C106000070.ordLnSelect" desc="C106000070.ordLnSelect" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 INTERFACE조회 C106000070.ordLnSelect 김종범 */ 
+  DISTINCT A.ORD_REQ_LN
+FROM #TABLE_NAME# A
+WHERE A.ORD_REQ_NO = :ORD_REQ_NO
+ORDER BY A.ORD_REQ_LN
+		 ]]> 
+	 </query>
+	 <query id="C106000070.select" desc="기본조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회 C106000070.find 이민균 */   
+           A.* , A.IF_GRP_ID AS P_IF_GRP_ID,'#TABLE_NAME#' AS P_TBL_NM
+    FROM #TABLE_NAME# A
+    WHERE NVL(IF_GRP_ID,'%') LIKE  :IF_GRP_ID_CD ||'%'
+    AND   NVL(XSTAT,'%') LIKE  :XSTAT_CD ||'%'
+    AND LAST_UPDATE_TIMESTAMP BETWEEN TO_DATE(:XDATE_START,'YYYY-MM-DD HH24:MI')  
+                                                              AND TO_DATE(:XDATE_END,'YYYY-MM-DD HH24:MI') + 1
+    ORDER BY IF_GRP_ID, XTIME  DESC
+		 ]]> 
+	 </query>
+	 <query id="C106000070.chk30_find" desc="C106000070.chk30_find" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+select /*+ C10 INTERFACE조회- 재전송확인 품질요청 AJAX조회 C106000070.chk30_find 박재영 */ 
+         *
+from EAIAPUSER.TB_C10_B10R0030
+where ORD_REQ_NO = :ORD_REQ_NO
+and   ORD_REQ_LN = :ORD_REQ_LN
+		 ]]> 
+	 </query>
+	 <query id="C106000070.chk20_find" desc="C106000070.chk20_find" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+select /*+ C10 INTERFACE조회- 재전송확인 생산가부 AJAX조회 C106000070.chk20_find 박재영 */ 
+         *
+from EAIAPUSER.TB_C10_B10R0020
+where ORD_REQ_NO = :ORD_REQ_NO
+and   ORD_REQ_LN = :ORD_REQ_LN
+and   XDATE >= :XDATE
+and   XTIME > :XTIME
+		 ]]> 
+	 </query>
+	 <query id="C106000070.select3" desc="품질설계선택시 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회(품질설계) C106000070.find3 원성옥 */   
+           A.* , A.IF_GRP_ID AS P_IF_GRP_ID,'#TABLE_NAME#' AS P_TBL_NM
+    FROM #TABLE_NAME# A
+    WHERE NVL(IF_GRP_ID,'%') LIKE  :IF_GRP_ID_CD ||'%'
+    AND   NVL(XSTAT,'%') LIKE  :XSTAT_CD ||'%'
+    AND LAST_UPDATE_TIMESTAMP BETWEEN TO_DATE(:XDATE_START,'YYYY-MM-DD HH24:MI')  
+                                                              AND TO_DATE(:XDATE_END,'YYYY-MM-DD HH24:MI') + 1
+    AND NVL(ORD_NO,' ') LIKE :ORD_REQ_NO||'%' 
+    AND NVL(ORD_LN,' ') LIKE :ORD_REQ_LN||'%' 
+    ORDER BY IF_GRP_ID DESC, XTIME  DESC
+		 ]]> 
+	 </query>
+	 <query id="C106000070.ordLnSelect1" desc="C106000070.ordLnSelect1" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 INTERFACE조회 C106000070.ordLnSelect1 원성옥 */ 
+  DISTINCT A.ORD_LN
+FROM #TABLE_NAME# A
+WHERE A.ORD_NO = :ORD_REQ_NO
+ORDER BY A.ORD_LN
+
+		 ]]> 
+	 </query>
+	 
+	 <query id="C106000070.select4" desc="생산가부검토 결과 선택 시 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT/*+ C10 INTERFACE조회- COLUMN NAME AJAX조회(생산가부검토결과) C106000070.find4 원성옥 */   
+           A.* , A.IF_GRP_ID AS P_IF_GRP_ID,'#TABLE_NAME#' AS P_TBL_NM
+    FROM #TABLE_NAME# A
+    WHERE NVL(IF_GRP_ID,'%') LIKE  :IF_GRP_ID_CD ||'%'
+    AND   NVL(XSTAT,'%') LIKE  :XSTAT_CD ||'%'
+    AND LAST_UPDATE_TIMESTAMP BETWEEN TO_DATE(:XDATE_START,'YYYY-MM-DD HH24:MI')  
+                                                              AND TO_DATE(:XDATE_END,'YYYY-MM-DD HH24:MI') + 1
+    AND NVL(ORD_REQ_NO,' ') LIKE :ORD_REQ_NO||'%' 
+    AND NVL(ORD_REQ_LN,' ') LIKE :ORD_REQ_LN||'%' 
+    ORDER BY IF_GRP_ID DESC, XTIME  DESC
+		 ]]> 
+	 </query>
+</queryMap>

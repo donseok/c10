@@ -6,13 +6,14 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
     <property key="dao" value="eaidao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="4"/>
+    <property key="param-count" value="5"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="B10S1010A.insert"/>
     <property key="param0" value="IF_GRP_ID"/>
     <property key="param1" value="ORD_NO"/>
     <property key="param2" value="ORD_LN"/>
     <property key="param3" value="QLT_DSN_STS_CD"/>
+    <property key="param4" value="QLT_DSN_MSG"/>
     <property key="description" value="이 Activity는 품질설계결과를 EAI 품질연동테이블에 &#xD;&#xA;등록하는 Activity이다. &#xD;&#xA;&#xD;&#xA;TB_C10_B10S1010&#xD;&#xA;"/>
   </child>
   <child xsi:type="Glue:Activity" id="51008" location="416,97" size="149,-1" input="//@wire.0" output="//@wire.15" name="IFGroupID">

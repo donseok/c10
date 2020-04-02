@@ -31,7 +31,7 @@
     <property key="isAudit" value="true"/>
     <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계상태를 품질설계확정('A')으로 업데이트하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문번호의 품질설계상태를 업데이트한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="156960" location="533,316" size="100,-1" input="//@wire.26" output="//@wire.28" name="설계결과전송">
+  <child xsi:type="Glue:DinaActivity" id="156960" location="533,316" size="100,-1" input="//@wire.26" output="//@wire.27" name="설계결과전송">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="insert-sql" value="C104000020.IFinsert"/>
@@ -103,7 +103,7 @@
     <property key="sqlkey" value="C104000020.SMSselect"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계상태를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
   </child>
-  <child xsi:type="Glue:FinalState" id="265627" location="567,667" size="-1,-1" input="//@wire.7 //@wire.30"/>
+  <child xsi:type="Glue:FinalState" id="265627" location="567,768" size="-1,-1" input="//@wire.7 //@wire.27"/>
   <child xsi:type="Glue:DinaActivity" id="265631" location="1061,241" size="105,-1" input="//@wire.24" output="//@wire.25" name="SMS등록">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
@@ -117,33 +117,6 @@
     <property key="insert-sql" value="C104000020.AttSmsupdate"/>
     <property key="isAudit" value="true"/>
     <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계상태를 품질설계확정('A')으로 업데이트하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문번호의 품질설계상태를 업데이트한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
-  </child>
-  <child xsi:type="Glue:Activity" id="265827" location="533,585" size="106,-1" input="//@wire.27" output="//@wire.30" name="확정결과송신">
-    <property key="class" value="com.poscoict.glue.biz.dhtmlx.msg.PosSendMessage"/>
-    <property key="message-id" value="B20R5030,MES"/>
-    <property key="message-map" value="messageMap"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;- 이 Activity는 생성 된 MESSAGE를 송신하는 공통 Activity이다. &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;- 목적 : 품질설계확정결과(B20R5030) MESSAGE 송신.&#xD;&#xA;- 수신처 : 품질&#xD;&#xA;"/>
-  </child>
-  <child xsi:type="Glue:DinaActivity" id="265841" location="532,518" size="100,-1" input="//@wire.29" output="//@wire.27" name="B20R5030전문생성">
-    <property key="class" value="com.poscoict.glue.biz.dhtmlx.rowset.PosRowSetCreateMessage"/>
-    <property key="bind-result" value="tc-result"/>
-    <property key="dao" value="mesdao"/>
-    <property key="layout" value="delimiterLayout"/>
-    <property key="resultkey" value="messageMap"/>
-    <property key="tc-code" value="B20R5030"/>
-    <property key="message-map" value="messageMap"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;- 이 Activity는 조회 된 정보를 담고 있는 RESULT-KEY의 정보를 가지고 MESSAGE를 생성하는 공통 Activity이다. &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;- 목적 : B20R5030(품질설계확정정보) 전문 MESSAGE 생성."/>
-  </child>
-  <child xsi:type="Glue:DinaActivity" id="265842" location="536,444" size="100,-1" input="//@wire.31" output="//@wire.29" name="전문송신정보조회">
-    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
-    <property key="dao" value="mesdao"/>
-    <property key="resultkey" value="tc-result"/>
-    <property key="sqlkey" value="C104000020.selectForB20R5030"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;- 이 Activity는 B20R5030(품질설계결과) 전문 송신시 사용할 MASSAGE정보를 조회하는 Activity이다."/>
-  </child>
-  <child xsi:type="Glue:Activity" id="277464" location="530,381" size="108,-1" input="//@wire.28" output="//@wire.31" name="Grid to Ctx">
-    <property key="class" value="com.unionsteel.mes.c10.activity.common.GridToCtx"/>
-    <property key="description" value=""/>
   </child>
   <property key="tx1" value="true"/>
   <property key="tx2" value="true"/>
@@ -163,9 +136,9 @@
   <wire id="9121" guardcondition="success" firstRelativePoint="268,203" lastRelativePoint="313,302">
     <bendpoint weight="0.5" firstDimension="0,115" secondDimension="-56,0"/>
   </wire>
-  <wire id="9125" guardcondition="failure" firstRelativePoint="617,201" lastRelativePoint="587,634">
-    <bendpoint weight="0.5" firstDimension="83,64" secondDimension="92,-268"/>
-    <bendpoint weight="0.5" firstDimension="85,448" secondDimension="90,-1"/>
+  <wire id="9125" guardcondition="failure" firstRelativePoint="617,201" lastRelativePoint="586,777">
+    <bendpoint weight="0.5" firstDimension="86,65" secondDimension="91,-527"/>
+    <bendpoint weight="0.5" firstDimension="87,590" secondDimension="92,-2"/>
   </wire>
   <wire id="9352" guardcondition="ERR_find" firstRelativePoint="464,121" lastRelativePoint="464,170">
     <bendpoint weight="0.5" firstDimension="-200,41" secondDimension="-5,-38"/>
@@ -206,9 +179,5 @@
     <bendpoint weight="0.5" firstDimension="7,50" secondDimension="131,0"/>
   </wire>
   <wire id="12730" guardcondition="success" firstRelativePoint="583,271" lastRelativePoint="583,316"/>
-  <wire id="12736" guardcondition="success" firstRelativePoint="584,548" lastRelativePoint="584,585"/>
-  <wire id="12737" guardcondition="success" firstRelativePoint="580,346" lastRelativePoint="580,381"/>
-  <wire id="12738" guardcondition="success" firstRelativePoint="585,474" lastRelativePoint="585,518"/>
-  <wire id="12740" guardcondition="success" firstRelativePoint="577,615" lastRelativePoint="577,666"/>
-  <wire id="12741" guardcondition="success" firstRelativePoint="595,411" lastRelativePoint="595,444"/>
+  <wire id="12757" guardcondition="success" firstRelativePoint="577,346" lastRelativePoint="577,767"/>
 </Glue:GlueDiagram>

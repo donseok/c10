@@ -2,7 +2,9 @@
 	<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
 	<item offset="2" type="newcolumn"/>
 	<item label="PLTCM" name="std_title" type="label" />
-	<item offset="700" type="newcolumn"/>
+	<item offset="100" type="newcolumn"/>
+	<item label="※시스템 설계값 복원은 '재설계'하시기 바랍니다!" name="std_title1" type="label" />
+	<item offset="230" type="newcolumn"/>
     <item command="simul" name="simul" type="button" value="폭수축"/>
     <item offset="10" type="newcolumn"/>
     <item command="save" name="save" type="button" value="저장" disabled="true"/>

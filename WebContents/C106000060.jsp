@@ -1314,6 +1314,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 	var subMtlTp3 = "";
 	var subMtlTp4 = "";
 	var subMtlTp5 = "";
+	var subMtlTp6 = "";
 	var param = ""; 
 	if(stage == 1 ){	
 		if(isNull(grid.getRowSelectedId())){
@@ -1575,8 +1576,9 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 						subMtlTp3 = "S35";
 					    subMtlTp4 = "ZZZ";  
 					    subMtlTp5 = "";
+					    subMtlTp6 = "S37";
 					    //Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,CLR_SUB_MTL_CD_OLD,SUB_MTL_TP,CLR_NM,USE_YN,ERP_SND_DH";	
+						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,CLR_SUB_MTL_CD_OLD,SUB_MTL_TP,CLR_NM,USE_YN,ERP_SND_DH";	
 					    var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 					    var cells = xmlObj.getElementsByTagName("cell"); 
 					     
@@ -1761,7 +1763,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 								}
 								//items['C106000060_Grid_1'].setUpdated(grid.getRowSelectedId(),true,"updated"); 
 							}else{
-								alert("해당하는 색상코드가 없습니다.");
+								alert("해당하는 색상코드가 없습니다1.");
 								items['C106000060_Grid_3'].setCellValue(rId,cInd,"");
 								items['C106000060_Grid_3'].setUpdated(rId,false,""); 
 								return;					
@@ -1864,7 +1866,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 						subMtlTp4 = "";
 						subMtlTp5 = "";
 						//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_KND_TP_NM,LMN_BND_CD_NM,LMN_BND_CD_NM1,LMN_FLM_THK_CD_NM,CLR_SUB_MTL_CD_OLD,LMN_BND_UNT,LMN_BND_UNT1,CLR_NM,USE_YN";	
+						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_KND_TP_NM,LMN_BND_CD_NM,LMN_BND_CD_NM1,LMN_FLM_THK_CD_NM,CLR_SUB_MTL_CD_OLD,LMN_BND_UNT,LMN_BND_UNT1,CLR_NM,USE_YN";	
 						var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 						var cells = xmlObj.getElementsByTagName("cell"); 
 							if(cells.length > 0){
@@ -1900,8 +1902,9 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 										subMtlTp3 = "";
 										subMtlTp4 = "";
 										subMtlTp5 = "";
+										subMtlTp6 = "";
 										//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-										param = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+cells.item(17).firstChild.nodeValue+"&column-info=PNT_UNT";	
+										param = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+cells.item(17).firstChild.nodeValue+"&column-info=PNT_UNT";	
 										var pntUntXml = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 										var pntUntCells = pntUntXml.getElementsByTagName("cell"); 
   										items['C106000060_Grid_5'].setCellByIndexValue(4,8, pntUntCells.item(0).firstChild.nodeValue);//Lamina접착제원단위
@@ -1913,8 +1916,9 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 										subMtlTp3 = "";
 										subMtlTp4 = "";
 										subMtlTp5 = "";
+										subMtlTp6 = "";
 										//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-										param = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+cells.item(19).firstChild.nodeValue+"&column-info=PNT_UNT";	
+										param = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+cells.item(19).firstChild.nodeValue+"&column-info=PNT_UNT";	
 										var pntUntXml = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 										var pntUntCells = pntUntXml.getElementsByTagName("cell"); 
   										items['C106000060_Grid_5'].setCellByIndexValue(4,9, pntUntCells.item(0).firstChild.nodeValue);//Lamina접착제원단위
@@ -1940,7 +1944,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setUpdated(grid.getRowSelectedId(),true,"updated"); 
 								}
 							}else{
-								alert("해당하는 색상코드가 없습니다.");
+								alert("해당하는 색상코드가 없습니다2.");
 								items['C106000060_Grid_3'].setCellValue(rId,cInd,"");
 								items['C106000060_Grid_3'].setUpdated(rId,false,""); 
 								return;					
@@ -1973,6 +1977,7 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 	var subMtlTp3 = "";
 	var subMtlTp4 = "";	
 	var subMtlTp5 = "";
+	var subMtlTp6 = "";
 	var param= "";	
 	if(stage == 1 ){	
 		if(isNull(grid.getRowSelectedId())){
@@ -2061,8 +2066,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp3 = "";
 				subMtlTp4 = "";
 				subMtlTp5 = "";
+				subMtlTp6 = "";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,THR_CD,PNT_UNT";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,THR_CD,PNT_UNT";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2085,8 +2091,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp3 = "";
 				subMtlTp4 = "";
 				subMtlTp5 = "";
+				subMtlTp6 = "";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,THR_CD,PNT_UNT";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,THR_CD,PNT_UNT";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2208,8 +2215,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp3 = "S35";
 				subMtlTp4 = "S38";
 				subMtlTp5 = "ZZZ";
+				subMtlTp6 = "S37";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2245,8 +2253,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp3 = "S35";
 				subMtlTp4 = "S38";
 				subMtlTp5 = "ZZZ";
+				subMtlTp6 = "S37";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2317,8 +2326,9 @@ function onEditCellEvent4(stage,rId,cInd,nValue,oValue){
 				var subMtlTp3 = "";
 				var subMtlTp4 = "";
 				var subMtlTp5 = "";
+				var subMtlTp6 = "";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 				var cells = xmlObj.getElementsByTagName("cell");
 				if(cells.length > 0){
@@ -2404,8 +2414,9 @@ function onEditCellEvent9(stage,rId,cInd,nValue,oValue){
 				var subMtlTp3 = "";
 				var subMtlTp4 = "";
 				var subMtlTp5 = "";
+				var subMtlTp6 = "";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 				var cells = xmlObj.getElementsByTagName("cell");
 				if(cells.length > 0){
@@ -2805,8 +2816,9 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 			var subMtlTp3 = "";
 			var subMtlTp4 = "";
 			var subMtlTp5 = "";
+			var subMtlTp6 = "";
 			//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-			var param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,PTT_FLM_PRD_ADH_CD_NM_MASTER,PTT_FLM_THK_CD_NM_MASTER,PTT_FLM_MQL_CD_NM_MASTER";	
+			var param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,PTT_FLM_PRD_ADH_CD_NM_MASTER,PTT_FLM_THK_CD_NM_MASTER,PTT_FLM_MQL_CD_NM_MASTER";	
 			var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
       		var cells = xmlObj.getElementsByTagName("cell");
 			if(cells.length > 0){

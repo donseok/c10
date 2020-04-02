@@ -21,35 +21,20 @@
 <title>
 품질기준개선이력관리
 </title>
-<script src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js" type="text/javascript">
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C106000030_Form_1","xml":".\/header\/kr\/C106000030\/C106000030_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000030_Grid_1","service":"C106000030-service","actionType":"find","security":"true"},' +
-//       '{"itemType":"grid","renderTo":"C106000030_Grid_1","xml":".\/header\/kr\/C106000030\/C106000030_Grid_1.xml","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","rowCnt":"19","split":"0","referenceItem":"C106000030_Form_1","service":"C106000030-service","actionType":"save"},' +
-//       '{"itemType":"messagebox","renderTo":"C106000030_messagebox","xml":".\/header\/kr\/C106000030\/C106000030_messagebox.xml","service":"C106000030-service"},' +
-//       '{"itemType":"menu","renderTo":"C106000030_Menu_2","xml":".\/header\/kr\/C106000030\/C106000030_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000030_Grid_1","service":"C106000030-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C106000030_Form_1","xml":".\/header\/kr\/C106000030\/C106000030_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000030_Grid_1","service":"C106000030-service","actionType":"find","security":"true"};
-var Grid_1 = {"itemType":"grid","renderTo":"C106000030_Grid_1","xml":".\/header\/kr\/C106000030\/C106000030_Grid_1.xml","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","rowCnt":"19","split":"0","referenceItem":"C106000030_Form_1","service":"C106000030-service","actionType":"save"};
-var Menu_2 = {"itemType":"menu","renderTo":"C106000030_Menu_2","xml":".\/header\/kr\/C106000030\/C106000030_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000030_Grid_1","service":"C106000030-service"};
-
-var initLayout = 
-{
-	"programId":"C106000030",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"60,30,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		Menu_2,
-        Grid_1
-	]
-};  
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C106000030_Form_1","xml":".\/header\/kr\/C106000030\/C106000030_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000030_Grid_1","service":"C106000030-service","actionType":"find","security":"true"},' +
+      '{"itemType":"grid","renderTo":"C106000030_Grid_1","xml":".\/header\/kr\/C106000030\/C106000030_Grid_1.xml","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","rowCnt":"19","split":"0","referenceItem":"C106000030_Form_1","service":"C106000030-service","actionType":"save"},' +
+      '{"itemType":"messagebox","renderTo":"C106000030_messagebox","xml":".\/header\/kr\/C106000030\/C106000030_messagebox.xml","service":"C106000030-service"},' +
+      '{"itemType":"menu","renderTo":"C106000030_Menu_2","xml":".\/header\/kr\/C106000030\/C106000030_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000030_Grid_1","service":"C106000030-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 //form find button item event function (requred)
 /**
@@ -206,8 +191,9 @@ function getMessage(messageBoxId) {
 	return msg.replace("&nbsp;MESSAGE&nbsp;&nbsp;|&nbsp;","");
 }
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
-  	return true;
+	//저장 후 조회라면 저장 메세지를 출력하도록 수정
+	uiCommon.message("C106000030_messagebox",referenceItem.getUserData("","appMsg"));
+	return true;	
 }
 var formLoadFlag = false;
 function onFormLoadFunction(formDivObj){ 
@@ -402,21 +388,23 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
    return true;														
 }	
 //]]>
+-->
 </script>
 
 </head>
 <body>
-<!-- <div id="C106000030_Form_1" style="position:absolute;height:62px;width:981px;left:0px;top:0px;">
+<div id="C106000030_Form_1" style="position:absolute;height:62px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C106000030_Grid_1" style="position:absolute;height:465px;width:977px;left:1px;top:92px;">
 </div>
 <div id="C106000030_messagebox" style="position:absolute;height:19px;width:978px;left:0px;top:567px;">
 </div>
 <div id="C106000030_Menu_2" style="position:absolute;height:25px;width:981px;left:0px;top:67px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();          
 	var onXleForm = items['C106000030_Form_1'].onXLEEvent(onFormLoadFunction);
@@ -433,4 +421,5 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 	var dataProcessor = items["C106000030_Grid_1"].getDhxDataProcess();
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}
 //]]>
+-->
 </script>

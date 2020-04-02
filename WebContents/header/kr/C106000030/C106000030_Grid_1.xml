@@ -35,18 +35,18 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" clabel="품질개선의뢰번호" dbname="품질개선의뢰번호" id="QLT_IMV_REQ_NO" sort="sort_int_custom" table="TB_C10_QLT_STD_IMV_HST" type="ro" width="80">의뢰번호</column>
-<column align="center" clabel="품질개선상태코드" color="FFFFC0" dbname="품질개선상태코드" id="QLT_IMV_STS_CD" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="combo_v" width="60">상태코드</column>
-<column align="center" clabel="품질개선의뢰일시" color="FFFFC0" dbname="품질개선의뢰일시" id="QLT_IMV_REQ_DH" sort="sort_date_custom" table="TB_C10_QLT_STD_IMV_HST" type="dhxCalendar" width="90">의뢰일자</column>
-<column align="center" clabel="품질개선의뢰자" color="FFFFC0" dbname="품질개선의뢰자" id="QLT_IMV_REQ_PRS_ID" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="combo_v" width="80">의뢰자</column>
-<column align="center" clabel="품질담당자ID" color="FFFFC0" dbname="품질담당자ID" id="QLT_CHR_PRS_ID" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="ed" width="80">품질담당자</column>
-<column align="center" clabel="품질개선사유" color="FFFFC0" dbname="품질개선사유" id="QLT_IMV_REA" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="130">개선사유</column>
-<column align="center" clabel="품질개선내용" color="FFFFC0" dbname="품질개선내용" id="QLT_IMV_CTT" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="140">개선주요내역</column>
-<column align="center" clabel="기준변경내용" color="FFFFC0" dbname="기준변경내용" id="QLT_STD_CHG_CTT" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="140">기준변경내용</column>
-<column align="center" clabel="품질개선효과" color="FFFFC0" dbname="품질개선효과" id="QLT_IMV_EFF" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="130">개선효과</column>
+<column align="center" clabel="품질개선의뢰번호" dbname="품질개선의뢰번호" id="QLT_IMV_REQ_NO" sort="sort_int_custom" table="TB_C10_QLT_STD_IMV_HST" type="ro" width="8">의뢰번호</column>
+<column align="center" clabel="품질개선상태코드" color="FFFFC0" dbname="품질개선상태코드" id="QLT_IMV_STS_CD" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="combo_v" width="6">상태코드</column>
+<column align="center" clabel="품질개선의뢰일시" color="FFFFC0" dbname="품질개선의뢰일시" id="QLT_IMV_REQ_DH" sort="sort_date_custom" table="TB_C10_QLT_STD_IMV_HST" type="dhxCalendar" width="9">의뢰일자</column>
+<column align="center" clabel="품질개선의뢰자" color="FFFFC0" dbname="품질개선의뢰자" id="QLT_IMV_REQ_PRS_ID" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="combo_v" width="8">의뢰자</column>
+<column align="center" clabel="품질담당자ID" color="FFFFC0" dbname="품질담당자ID" id="QLT_CHR_PRS_ID" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="ed" width="8">품질담당자</column>
+<column align="center" clabel="품질개선사유" color="FFFFC0" dbname="품질개선사유" id="QLT_IMV_REA" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="13">개선사유</column>
+<column align="center" clabel="품질개선내용" color="FFFFC0" dbname="품질개선내용" id="QLT_IMV_CTT" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="14">개선주요내역</column>
+<column align="center" clabel="기준변경내용" color="FFFFC0" dbname="기준변경내용" id="QLT_STD_CHG_CTT" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="14">기준변경내용</column>
+<column align="center" clabel="품질개선효과" color="FFFFC0" dbname="품질개선효과" id="QLT_IMV_EFF" sort="sort_str_custom" table="TB_C10_QLT_STD_IMV_HST" type="txt" width="13">개선효과</column>
 <column align="center" color="FFFFC0" id="FILE_ADD" sort="na" type="link" width="*">파일첨부</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">QLT_IMV_REQ_NO,QLT_IMV_STS_CD,QLT_IMV_REQ_DH,QLT_IMV_REQ_PRS_ID,QLT_CHR_PRS_ID,QLT_IMV_REA,QLT_IMV_CTT,QLT_STD_CHG_CTT,QLT_IMV_EFF,FILE_ADD</userdata>

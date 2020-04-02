@@ -132,6 +132,7 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
         String ord_edg_asg_tp = C10STR_SPACE;
         String ccl_bom_no = C10STR_SPACE;
         String fnl_cus_cd = C10STR_SPACE;
+        //String poc_auto_yn = C10STR_SPACE;
         //String att_ord_yn = C10STR_SPACE;
         //String ord_rgs_prs_id = C10STR_SPACE; //자동설계 조건(영업사원 - 주문등록자)
 
@@ -157,7 +158,6 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
             ord_dsn_cfm_tp = (String) ctx.get( COL_ORD_DSN_CFM_TP );
         if ( !DbCommonUtil.isNull( ctx.get( COL_FNL_CUS_CD ) ) ) //최종고객사 
             fnl_cus_cd = (String) ctx.get( COL_FNL_CUS_CD );
-
         
         //2015.8.19 추가(박성용기사 -> BOM재단선 Y인 경우, Edge가 'M'으로 되어 있는 경우는 주문에러 발생)
         //if ( !DbCommonUtil.isNull( ctx.get( COL_CCL_BOM_NO ) ) ) //CCLBOM번호
@@ -2243,6 +2243,11 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
     public boolean ErrProc( PosGenericDao dao, String ORD_NO, String ORD_LN, String QLT_DSN_CFM_TP, String ORD_DSN_CFM_TP, String ERR_CODE, PosAuditAttributes audit, PosContext ctx, String QLT_DSN_ERR_YN, String ORD_KND )
     {
         PosParameter param = null;
+        PosParameter param1 = null;
+        PosParameter param2 = null;
+        PosParameter param3 = null;
+        PosParameter param4 = null;
+        
         String[] ERR_CD_ARR = ERR_CODE.split( C10STR_COLON );
         PosRowSet rowset = null;
         PosDecisionChecker checker = null;
@@ -2304,7 +2309,9 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
         String ord_dsn_cfm_tp = C10STR_SPACE;  //OMS주문 입력 값(자동/수동설계)
         String chk_tmp = C10STR_SPACE;         //OMS수동 품질설계 자동인 경우 그 다음 판단을 위해 잠시 값을 담아 놓음
         String att_ord_yn = C10STR_SPACE;
-        
+        String poc_auto_yn = C10STR_SPACE;
+        String cus_bth_pap_no = C10STR_SPACE;
+                
         if ( !DbCommonUtil.isNull( ctx.get( COL_RE_QLT_DSN_TP ) ) )
             re_qlt_dsn_tp = (String) ctx.get( COL_RE_QLT_DSN_TP );
         if ( !DbCommonUtil.isNull( ctx.get( COL_PRD_NM_CD ) ) )
@@ -2325,6 +2332,10 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
             ord_dsn_cfm_tp = (String) ctx.get( COL_ORD_DSN_CFM_TP );
         if ( !DbCommonUtil.isNull( ctx.get( COL_ATT_ORD_YN ) ) ) //최종고객사 
         	att_ord_yn = (String) ctx.get( COL_ATT_ORD_YN );
+        if ( !DbCommonUtil.isNull( ctx.get( COL_POC_AUTO_YN ) ) ) //광신스틸위탁임가공 
+            poc_auto_yn = (String) ctx.get( COL_POC_AUTO_YN );
+        if ( !DbCommonUtil.isNull( ctx.get( COL_CUS_BTH_PAP_NO ) ) ) //광신스틸위탁임가공 
+        	cus_bth_pap_no = (String) ctx.get( COL_CUS_BTH_PAP_NO );
         
         if ( re_qlt_dsn_tp.equals( C10STR_NO ) )
         {
@@ -2529,17 +2540,29 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
                 param.setWhereClauseParameter( 1, ORD_NO );
                 param.setWhereClauseParameter( 2, ORD_LN );
                 param.setAuditAttributes( audit );
-
+                
+                //2020.03.03 고객사양 (재질)추가
+                param1 = new PosParameter(); // MD View param
+                param1.setWhereClauseParameter( 0, ORD_NO );
+                param1.setWhereClauseParameter( 1, ORD_LN );
+                param1.setAuditAttributes( audit );
+                
                 try
                 {
                     dao.update( UPDATE_STS, param );
+                    //2020.03.03 고객사양 (재질)추가
+                    if(cus_bth_pap_no.isEmpty())
+                    {
+                    }
+                    else{
+                    	dao.update( UPDATE_MQL, param1 );
+                    }
                 } catch ( Exception e )
                 {
                     logger.logError( e.getMessage() );
                     return false;
                 }
-                //관심주문SMS등록 추가... (확정대기이며, 관심주문인경우 TB_C10_ATT_ORD_MNG 테이블에 인서트
-                logger.logError( "ATT_ORD_YN : " + att_ord_yn );
+
                 if(att_ord_yn.equals( C10STR_YES ) )
                 {
                 	
@@ -2565,10 +2588,23 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
                 param.setWhereClauseParameter( 0, ORD_NO );
                 param.setWhereClauseParameter( 1, ORD_LN );
                 param.setAuditAttributes( audit );
+                
+                //2020.03.03 고객사양 (재질)추가
+                param2 = new PosParameter(); // MD View param
+                param2.setWhereClauseParameter( 0, ORD_NO );
+                param2.setWhereClauseParameter( 1, ORD_LN );
+                param2.setAuditAttributes( audit );
 
                 try
                 {
                     dao.update( UPDATE_STS_ATU, param );
+                    if(cus_bth_pap_no.isEmpty())
+                    {
+                    }
+                    else{
+                    	dao.update( UPDATE_MQL, param2 );
+                    }
+                    
                 } catch ( Exception e )
                 {
                     logger.logError( e.getMessage() );
@@ -2576,8 +2612,8 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
                 }
             }
             
+            //예외주문 - 반품주문인 경우 무조건 자동설계
             if (ORD_NO.substring(0,1).equals("R"))
-            //if (ORD_KND.equals(ORD_KND_ZRE1)) //주문유형추가(반품주문인 경우 무조건 자동설계)
             {
             	ctx.put( COL_QLT_DSN_STS_CD, QLT_DSN_STS_CD_A );
                 param = new PosParameter(); // MD View param
@@ -2594,6 +2630,37 @@ public class DbSearchDsnValidData extends PosActivity implements C10NuiConstants
                     return false;
                 }
             }
+            
+            //(광신스틸 임가공 주문인 경우 무조건 자동설계)
+            if (poc_auto_yn.equals("Y"))
+            {
+            	ctx.put( COL_QLT_DSN_STS_CD, QLT_DSN_STS_CD_A );
+                param = new PosParameter(); // MD View param
+                param.setWhereClauseParameter( 0, ORD_NO );
+                param.setWhereClauseParameter( 1, ORD_LN );
+                param.setAuditAttributes( audit );
+                
+                param3 = new PosParameter(); // MD View param
+                param3.setWhereClauseParameter( 0, ORD_NO );
+                param3.setWhereClauseParameter( 1, ORD_LN );
+                param3.setAuditAttributes( audit );
+
+                try
+                {
+                    dao.update( UPDATE_STS_ATU, param );
+                    if(cus_bth_pap_no.isEmpty())
+                    {
+                    }
+                    else{
+                    	dao.update( UPDATE_MQL, param3 );
+                    }
+                } catch ( Exception e )
+                {
+                    logger.logError( e.getMessage() );
+                    return false;
+                }
+            }
+            
         }
         
         return true;

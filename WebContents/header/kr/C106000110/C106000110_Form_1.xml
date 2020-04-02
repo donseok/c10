@@ -40,6 +40,8 @@
 <item name="CH_ROF_16" type="hidden" readonly="true"/>	
 <item name="PE_FL_20" type="hidden" readonly="true"/>
 <item name="PE_FL_1" type="hidden" readonly="true"/>	 
-<item name="CUS_NM" type="hidden" readonly="true"/>	 
+<item name="CUS_NM" type="hidden" readonly="true"/>	
+<item name="GT_MT" type="hidden" readonly="true"/>
+<item name="GT_FT" type="hidden" readonly="true"/> 
 </item>
 </items>

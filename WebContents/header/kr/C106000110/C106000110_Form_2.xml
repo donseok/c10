@@ -58,7 +58,11 @@
 </item>
 <item offset="10" type="newcolumn"/>
 <item type="block" width="945" >
-<item name="S1A_1"               label="A. For" type="label" />
+<item name="S1A0_1"               label="A. The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK STEEL - whichever occurs first " type="label" />
+</item>
+<item offset="10" type="newcolumn"/>
+<item type="block" width="945" >
+<item name="S1A_1"               label="B. For" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="PER_FOR_6"         label="6)" type="input" inputWidth="35"/>
 <item offset="3" type="newcolumn"/>
@@ -72,7 +76,7 @@
 </item>
 <item offset="10" type="newcolumn"/>
 <item type="block" width="945" >
-<item name="S1B_1"               label="B. For" type="label" />
+<item name="S1B_1"               label="C. For" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="PE_FL_20"            label="20)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
@@ -89,7 +93,7 @@
 
 
 <item type="block" width="945" name="blockC">
-<item name="S1C_1"               label="C. For" type="label" />
+<item name="S1C_1"               label="D. For" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="FA_TRM_7"          label="7)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
@@ -122,7 +126,7 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 </item>
 
 <item type="block" width="945" >
-<item name="labelD"               label="D. For" type="label" />
+<item name="labelD"               label="E. For" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="labelChgToC"       label="C. For" type="label" />
 <item offset="3" type="newcolumn"/>
@@ -155,10 +159,19 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item offset="3" type="newcolumn"/>
 <item name="BRD_CMP_2_5"      label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
-<item name="S2_2"                 label="on any substrate that is subjected to sea spray or installed on property located within 1,000 meters (3,250 feets) of a salt-water environment." type="label" />
+<item name="S2_2"                 label="on any substrate that is subjected to sea spray or installed on property located within"  type="label" />
+<item offset="3" type="newcolumn"/>
+<item name="GT_MT"      label="3)" type="input" inputWidth="35" />
+<item offset="3" type="newcolumn"/>
+<item name="S2_3"                 label="meters"  type="label" />
+<item offset="3" type="newcolumn"/>
+<item name="GT_FT"      label="4)" type="input" inputWidth="35" />
+<item offset="3" type="newcolumn"/>
+<item name="S2_4"                 label="feets of a salt-water environment."  type="label" />
+<item offset="3" type="newcolumn"/>
 </item>
 <item type="block" width="945" >
-<item name="S3"                    label="3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk steel&#39;s control." type="label" />
+<item name="S3"                    label="3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. Corrosion, Peel or other effects due to shear or cut surface exposure are also excluded. DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk steel&#39;s control." type="label" />
 </item>
 <item type="block" width="945" >
 <item name="S4"                    label="4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK STEEL&#39;s approved color range. DONGKUK STEEL will inform you the time of color matching if the color you have selected is not an approved color." type="label" />

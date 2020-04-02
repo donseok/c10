@@ -20,11 +20,11 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center"  id="ORD_WTH_MNG_CD"  index="1" sort="str" table="VI_M00_C10A2030" type="ro" width="150" >조건</column>
-<column align="center"   id="WTH_TLN_LLV" index="2" sort="str" table="VI_M00_C10A2030" type="ro" width="150" >결과</column>
-<column align="center"   id="WTH_TLN_ULV" index="3" sort="str" table="VI_M00_C10A2030" type="ro" width="150" >#cspan</column>
+<column align="center"  id="ORD_WTH_MNG_CD"  index="1" sort="str" table="VI_M00_C10A2030" type="ro" width="15" >조건</column>
+<column align="center"   id="WTH_TLN_LLV" index="2" sort="str" table="VI_M00_C10A2030" type="ro" width="15" >결과</column>
+<column align="center"   id="WTH_TLN_ULV" index="3" sort="str" table="VI_M00_C10A2030" type="ro" width="15" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">ORD_WTH_MNG_CD,WTH_TLN_LLV,WTH_TLN_ULV</userdata>

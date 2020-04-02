@@ -30,6 +30,7 @@
 <column align="center" clabel="칼라부재료코드" dbname="칼라부재료코드" id="CLR_SUB_MTL_CD" index="2" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="100">컬러코드</column>
 <column align="center" clabel="도료업체코드" dbname="도료업체코드" id="PNT_CMP_CD" index="3" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="220">업체코드</column>
 <column align="left" id="PNT_CMP_NM" index="4" sort="sort_str_custom" type="ro" width="220">업체코드명</column>
+<column align="center" clabel="첨부파일여부" dbname="첨부파일여부" id="DOC_YN" index="5" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="100" color="FFFFC0"><![CDATA[<img src="dhtmlx/codebase/imgs/msds.jpg">MSDS</img>]]> </column>
 <column align="center" clabel="고형분" dbname="고형분" id="NV" index="5" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >고형분</column>
 <column align="center" clabel="도료비중" dbname="도료비중" id="PNT_GRA" index="6" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >도료비중</column>
 <column align="center" clabel="용재비중" dbname="용제비중" id="SLV_GRA" index="7" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >용제비중</column>
@@ -53,5 +54,5 @@
 <colwidth>px</colwidth>
 </settings>
 </head>
-<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,PNT_CMP_CD,PNT_CMP_NM,NV,PNT_GRA,SLV_GRA,PNT_UNT,PTC_YN,PTC_TYPE,TEX_KND,PTC_MIN,PTC_MAX,PTC_AVG,CMT,QUE_MIN,QUE_MAX,QUE_AVG,USE_YN_BAK,MOD_YN_BAK,MDF_RSN</userdata>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,NV,PNT_GRA,SLV_GRA,PNT_UNT,PTC_YN,PTC_TYPE,TEX_KND,PTC_MIN,PTC_MAX,PTC_AVG,CMT,QUE_MIN,QUE_MAX,QUE_AVG,USE_YN_BAK,MOD_YN_BAK,MDF_RSN</userdata>
 </rows>

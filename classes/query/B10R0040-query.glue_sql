@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0040"> 
+	 <query id="B10R0040.select" desc="B10R0040.select" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+/*+ C10 주문종결취소 B10R0040.select 강연준 */
+SELECT *
+FROM EAIAPUSER.TB_C10_B10R0040
+WHERE  XSTAT = 'D'
+ORDER BY IF_GRP_ID, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="B10R0040.modify" desc="B10R0040.modify" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 주문종결취소 B10R0040.modify 강연준*/                      
+EAIAPUSER.TB_C10_B10R0040
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,XSTAT = ?                     --PI 처리 상태
+      ,XMSGS = ?                     --PI 에러 메세지
+      ,XSTAT_CALLBACK = ?            --PI 처리 상태
+WHERE IF_GRP_ID = ?                  --Interface Group ID                                                                                      
+  AND SEQ_NO = ?                     --Interface SEQ
+  AND XSEQ = ?                       --PI Sequence Key Value
+		 ]]> 
+	 </query>
+</queryMap>

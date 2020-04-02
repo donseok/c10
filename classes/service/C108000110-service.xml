@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000110-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="제품개발BOM완료 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000110.selectCmpBom" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="공통진도코드 UPDATE" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <transition name="failure" value="end" />
+    <property name="insert-sql" value="C108000110.updateDevCmn" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C108000110.updateDevCmn" />
+    <property name="delete-sql" value="C108000110.updateDevCmn" />
+  </activity>
+  <activity name="LAB개발샘플 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000110.selectLabSmp" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="LAB샘플 연결 해제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="update-sql" value="C108000110.updateLabSmp" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="제품개발BOM의뢰 조회" />
+    <transition name="save" value="저장" />
+    <transition name="findGrid2" value="제품개발BOM완료 조회" />
+    <transition name="removeSmp" value="LAB샘플 연결 해제" />
+    <transition name="findLabSmp" value="LAB개발샘플 조회" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="공통진도코드 UPDATE" />
+    <transition name="failure" value="end" />
+    <property name="insert-sql" value="C108000110.insertCmpBom" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C108000110.updateCmpBom" />
+    <property name="delete-sql" value="C108000110.deleteCmpBom" />
+  </activity>
+  <activity name="제품개발BOM의뢰 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000110.selectReqBom" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

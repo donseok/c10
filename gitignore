@@ -1,0 +1,12 @@
+/.settings
+/.svn
+/bin
+/build
+/classes
+/IOSpec
+/JavaDoc
+.classpath
+.project
+C10.iml
+/.idea
+/doc

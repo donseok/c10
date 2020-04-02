@@ -13,43 +13,43 @@
 <!-- 가변항목 관련 세팅 시작.-->
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column width="00"   index="1"  sort="int" type="ron" align="right" id="SEQ"  hidden="true">SEQ</column>
-<column width="80"  index="2"  sort="str" type="ro" align="center" id="CLR_LOC">구분</column>
-<column width="80"  index="3"  sort="str" type="ro" align="center" id="CLR_CD">칼라코드</column>
-<column width="40"   index="4"  sort="str" type="ro" align="center" id="USE_YN"><![CDATA[사용</br>여부]]></column>
-<column width="160"  index="5"  sort="str" type="ro" align="left" id="CLR_NM">색상명</column>
-<column width="120"   index="6"  sort="str" type="ro" align="left" id="SUB_MTL_TP">부자재구분</column>
-<column width="120"   index="7"  sort="str" type="ro" align="left" id="RSN_TP">수지</column>
-<column width="120"  index="8"  sort="str" type="ro" align="left" id="LUS_RT_CD">광택도</column>
-<column width="60"  index="9"  sort="int" type="ron" align="right" id="RL_LUS_RT" format="000.0">실광택값</column>
-<column width="60"  index="10" sort="int" type="ron" align="right" id="LUS_RT_LLV" format="000.0"><![CDATA[광택도</br>하한값]]></column>
-<column width="60"  index="11" sort="int" type="ron" align="right" id="LUS_RT_ULV" format="000.0"><![CDATA[광택도</br>상한값]]></column>
-<column width="40"  index="12" sort="str" type="ro" align="center" id="TP_CD"><![CDATA[Type</br>구분]]></column>
-<column width="60"  index="13" sort="int" type="ron" align="right" id="WK_VISCO"><![CDATA[작업</br>점도]]></column>
-<column width="60"  index="14" sort="int" type="ron" align="right" id="PNT_FLM_THK"><![CDATA[도막</br>두께]]></column>
-<column width="40"  index="15" sort="str" type="ro" align="center" id="PRT_INK_TP"><![CDATA[Ink</br>type]]></column>
-<column width="60" index="16" sort="int" type="ron" align="right" id="NV" format="0,000.00">고형분</column>
-<column width="60" index="17" sort="int" type="ron" align="right" id="PNT_GRA"  format="0,000.00">도료비중</column>
-<column width="60" index="18" sort="int" type="ron" align="right" id="SLV_GRA"  format="0,000.00">용제비중</column>
-<column width="60" index="19" sort="str" type="ro" align="center" id="THR_CD">신나코드</column>
-<column width="60" index="20" sort="int" type="ron" align="center" id="PNT_UNT"  format="0,000.00"><![CDATA[도료</br>원단위]]></column>
-<column width="60" index="21" sort="int" type="ron" align="center" id="PMT">PMT</column>
-<column width="60" index="22" sort="int" type="ron" align="center" id="QT_L"  format="0,000.000">L</column>
-<column width="60" index="23" sort="int" type="ron" align="center" id="QT_A"  format="0,000.000">A</column>
-<column width="60" index="24" sort="int" type="ron" align="center" id="QT_B"  format="0,000.000">B</column>
-<column width="160" index="25" sort="str" type="ro" align="left" id="STD_CLR_NM">표준색상명</column>
-<column width="60"  index="26" sort="str" type="ro" align="center" id="LMN_KND_TP"><![CDATA[Lamina</br>유형]]></column>
-<column width="100" index="27" sort="str" type="ro" align="center" id="LMN_BND_CD"><![CDATA[Lamina</br>접착제]]></column>
-<column width="100"  index="28" sort="str" type="ro" align="center" id="LMN_BND_THR_CD"><![CDATA[Lamina</br>접착제신나]]></column>
-<column width="60"  index="29" sort="str" type="ro" align="center" id="LMN_FLM_THK_CD"><![CDATA[Lamina</br>두께코드]]></column>
-<column width="60"  index="30" sort="str" type="ro" align="center" id="PTT_FLM_LUS_RT_CD"><![CDATA[보호필름</br>광택코드]]></column>
-<column width="60"  index="31" sort="str" type="ro" align="center" id="PTT_FLM_THK_CD"><![CDATA[보호필름</br>두께코드]]></column>
-<column width="60"  index="32" sort="str" type="ro" align="center" id="PTT_FLM_MQL_CD"><![CDATA[보호필름</br>재질코드]]></column>
-<column width="60"  index="33" sort="str" type="ro" align="center" id="PTT_FLM_SUS_ADH_CD"><![CDATA[보호필름</br>SUS점착]]></column>
-<column width="60"  index="34" sort="str" type="ro" align="center" id="PTT_FLM_PRD_ADH_CD"><![CDATA[보호필름</br>제품점착]]></column>
-<column width="200"  index="35" sort="str" type="ro" align="center" id="RMRK">비고</column>
+<column width="0"   index="1"  sort="int" type="ron" align="right" id="SEQ"  hidden="true">SEQ</column>
+<column width="8"  index="2"  sort="str" type="ro" align="center" id="CLR_LOC">구분</column>
+<column width="8"  index="3"  sort="str" type="ro" align="center" id="CLR_CD">칼라코드</column>
+<column width="4"   index="4"  sort="str" type="ro" align="center" id="USE_YN"><![CDATA[사용</br>여부]]></column>
+<column width="16"  index="5"  sort="str" type="ro" align="left" id="CLR_NM">색상명</column>
+<column width="12"   index="6"  sort="str" type="ro" align="left" id="SUB_MTL_TP">부자재구분</column>
+<column width="12"   index="7"  sort="str" type="ro" align="left" id="RSN_TP">수지</column>
+<column width="12"  index="8"  sort="str" type="ro" align="left" id="LUS_RT_CD">광택도</column>
+<column width="6"  index="9"  sort="int" type="ron" align="right" id="RL_LUS_RT" format="000.0">실광택값</column>
+<column width="6"  index="10" sort="int" type="ron" align="right" id="LUS_RT_LLV" format="000.0"><![CDATA[광택도</br>하한값]]></column>
+<column width="6"  index="11" sort="int" type="ron" align="right" id="LUS_RT_ULV" format="000.0"><![CDATA[광택도</br>상한값]]></column>
+<column width="4"  index="12" sort="str" type="ro" align="center" id="TP_CD"><![CDATA[Type</br>구분]]></column>
+<column width="6"  index="13" sort="int" type="ron" align="right" id="WK_VISCO"><![CDATA[작업</br>점도]]></column>
+<column width="6"  index="14" sort="int" type="ron" align="right" id="PNT_FLM_THK"><![CDATA[도막</br>두께]]></column>
+<column width="4"  index="15" sort="str" type="ro" align="center" id="PRT_INK_TP"><![CDATA[Ink</br>type]]></column>
+<column width="6" index="16" sort="int" type="ron" align="right" id="NV" format="0,000.00">고형분</column>
+<column width="6" index="17" sort="int" type="ron" align="right" id="PNT_GRA"  format="0,000.00">도료비중</column>
+<column width="6" index="18" sort="int" type="ron" align="right" id="SLV_GRA"  format="0,000.00">용제비중</column>
+<column width="6" index="19" sort="str" type="ro" align="center" id="THR_CD">신나코드</column>
+<column width="6" index="20" sort="int" type="ron" align="center" id="PNT_UNT"  format="0,000.00"><![CDATA[도료</br>원단위]]></column>
+<column width="6" index="21" sort="int" type="ron" align="center" id="PMT">PMT</column>
+<column width="6" index="22" sort="int" type="ron" align="center" id="QT_L"  format="0,000.000">L</column>
+<column width="6" index="23" sort="int" type="ron" align="center" id="QT_A"  format="0,000.000">A</column>
+<column width="6" index="24" sort="int" type="ron" align="center" id="QT_B"  format="0,000.000">B</column>
+<column width="16" index="25" sort="str" type="ro" align="left" id="STD_CLR_NM">표준색상명</column>
+<column width="6"  index="26" sort="str" type="ro" align="center" id="LMN_KND_TP"><![CDATA[Lamina</br>유형]]></column>
+<column width="10" index="27" sort="str" type="ro" align="center" id="LMN_BND_CD"><![CDATA[Lamina</br>접착제]]></column>
+<column width="10"  index="28" sort="str" type="ro" align="center" id="LMN_BND_THR_CD"><![CDATA[Lamina</br>접착제신나]]></column>
+<column width="6"  index="29" sort="str" type="ro" align="center" id="LMN_FLM_THK_CD"><![CDATA[Lamina</br>두께코드]]></column>
+<column width="6"  index="30" sort="str" type="ro" align="center" id="PTT_FLM_LUS_RT_CD"><![CDATA[보호필름</br>광택코드]]></column>
+<column width="6"  index="31" sort="str" type="ro" align="center" id="PTT_FLM_THK_CD"><![CDATA[보호필름</br>두께코드]]></column>
+<column width="6"  index="32" sort="str" type="ro" align="center" id="PTT_FLM_MQL_CD"><![CDATA[보호필름</br>재질코드]]></column>
+<column width="6"  index="33" sort="str" type="ro" align="center" id="PTT_FLM_SUS_ADH_CD"><![CDATA[보호필름</br>SUS점착]]></column>
+<column width="6"  index="34" sort="str" type="ro" align="center" id="PTT_FLM_PRD_ADH_CD"><![CDATA[보호필름</br>제품점착]]></column>
+<column width="20"  index="35" sort="str" type="ro" align="center" id="RMRK">비고</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
 <userdata name="column-info">SEQ,CLR_LOC	CLR_CD,USE_YN,CLR_NM,SUB_MTL_TP,RSN_TP,LUS_RT_CD,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,TP_CD,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,STD_CLR_NM,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,RMRK</userdata>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020POP01 Page 쿼리파일"> 
+	 <query id="C104000020POP01.select" desc="C104000020POP01 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 
+    (SELECT CD_V_MEANING
+       FROM   M00APUSER.VI_M00_CODE_ACCESS
+       WHERE  CD_TP= 'CUS_CD'
+       AND    CATEGORY_GROUP_NM ='SZ0000'
+       AND    CD_V = FNL_CUS_CD) FNL_CUS_CD
+    ,(SELECT CD_V_MEANING
+       FROM   M00APUSER.VI_M00_CODE_ACCESS
+       WHERE  CD_TP= 'CUS_CD'
+       AND    CATEGORY_GROUP_NM ='SZ0000'
+       AND    CD_V = CUS_CD) CUS_CD
+    ,(SELECT CD_V_MEANING
+       FROM   M00APUSER.VI_M00_CODE_ACCESS
+       WHERE  CD_TP= 'CUS_CD'
+       AND    CATEGORY_GROUP_NM ='SZ0000'
+       AND    CD_V = ACT_CUS_CD) ACT_CUS_CD
+    ,SPC_AVR			
+    ,SPC_NM			
+    ,ORD_SZ				
+    ,ORD_PAK_MTH			
+    ,TAG_PRD_NM			
+    ,TAG_PO_NO				
+    ,TAG_PO_NO2				
+    ,TAG_DST				
+    ,TAG_SIZ				
+    ,TAG_SPC_NM			
+    ,TAG_GAA				
+    ,TAG_HUE_FRN	 
+    ,TAG_HUE_BAK	
+    ,TAG_SPC_MRK	
+    ,TAG_PART_NO
+    ,ORD_NO messageBox
+FROM TB_C10_QLT_DSN_CMN
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+</queryMap>

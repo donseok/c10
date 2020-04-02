@@ -23,53 +23,23 @@
 <title>
 코드사용조회
 </title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C106000065_Form_1","xml":".\/header\/kr\/C106000065\/C106000065_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"},' +
-//       '{"itemType":"form","renderTo":"C106000065_Form_2","xml":".\/header\/kr\/C106000065\/C106000065_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000065_Grid_1","xml":".\/header\/kr\/C106000065\/C106000065_Grid_1.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"},' +
-//       '{"itemType":"form","renderTo":"C106000065_Form_3","xml":".\/header\/kr\/C106000065\/C106000065_Form_3.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_2","service":"C106000065-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000065_Grid_2","xml":".\/header\/kr\/C106000065\/C106000065_Grid_2.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"},' +
-//       '{"itemType":"messagebox","renderTo":"C106000065_messagebox","xml":".\/header\/kr\/C106000065\/C106000065_messagebox.xml","service":"C106000065-service"}' +
-//    ']';
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C106000065_Form_1","xml":".\/header\/kr\/C106000065\/C106000065_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"},' +
+      '{"itemType":"form","renderTo":"C106000065_Form_2","xml":".\/header\/kr\/C106000065\/C106000065_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"},' +
+      '{"itemType":"grid","renderTo":"C106000065_Grid_1","xml":".\/header\/kr\/C106000065\/C106000065_Grid_1.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"},' +
+      '{"itemType":"form","renderTo":"C106000065_Form_3","xml":".\/header\/kr\/C106000065\/C106000065_Form_3.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_2","service":"C106000065-service"},' +
+      '{"itemType":"grid","renderTo":"C106000065_Grid_2","xml":".\/header\/kr\/C106000065\/C106000065_Grid_2.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"},' +
+      '{"itemType":"messagebox","renderTo":"C106000065_messagebox","xml":".\/header\/kr\/C106000065\/C106000065_messagebox.xml","service":"C106000065-service"}' +
+   ']';
 
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C106000065_Form_1","xml":".\/header\/kr\/C106000065\/C106000065_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"};
-var Form_2 = {"itemType":"form","renderTo":"C106000065_Form_2","xml":".\/header\/kr\/C106000065\/C106000065_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_1","service":"C106000065-service"};
-var Form_3 = {"itemType":"form","renderTo":"C106000065_Form_3","xml":".\/header\/kr\/C106000065\/C106000065_Form_3.xml","url":"basicGridData.do","referenceItem":"C106000065_Grid_2","service":"C106000065-service"};
-var Grid_1 = {"itemType":"grid","renderTo":"C106000065_Grid_1","xml":".\/header\/kr\/C106000065\/C106000065_Grid_1.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"};
-var Grid_2 = {"itemType":"grid","renderTo":"C106000065_Grid_2","xml":".\/header\/kr\/C106000065\/C106000065_Grid_2.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000065_Form_1","service":"C106000065-service"};
-
-var initLayout = 
-{
-	"programId":"C106000065",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"30,40%,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		{
-			"itemType": "layout", "dirType":"row", "childSize":"30,*", "splitter":false, "components": 
-			[
-				Form_2,
-				Grid_1
-			]
-		},
-		{
-			"itemType": "layout", "dirType":"row", "childSize":"30,*", "splitter":false, "components": 
-			[
-				Form_3,
-        		Grid_2
-			]
-		}
-	]
-};  
-
-
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 
 //form find button item event function (requred)
@@ -113,7 +83,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
 }
 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C106000065_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 
@@ -149,28 +119,31 @@ function onRowSelect_Grid1(id){
 }
 
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C106000065_Form_1" style="position:absolute;height:30px;width:979px;left:0px;top:0px;">
+<div id="C106000065_Form_1" style="position:absolute;height:30px;width:979px;left:0px;top:0px;">
 </div>
 <div id="C106000065_Form_2" style="position:absolute;height:20px;width:979px;left:0px;top:31px;">
 </div>
 <div id="C106000065_Grid_1" style="position:absolute;height:200px;width:977px;left:1px;top:52px;">
 </div>
-<div id="C106000065_Form_3" style="position:absolute;height:0px;width:0px;left:0px;top:253px;">
+<div id="C106000065_Form_3" style="position:absolute;height:20px;width:979px;left:0px;top:253px;">
 </div>
 <div id="C106000065_Grid_2" style="position:absolute;height:292px;width:977px;left:1px;top:274px;">
 </div>
 <div id="C106000065_messagebox" style="position:absolute;height:19px;width:979px;left:0px;top:567px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C106000065_Grid_1'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid1);
 	items['C106000065_Grid_1'].onXLEEvent(onGridLoad1);
     
 //]]>
+-->
 </script>

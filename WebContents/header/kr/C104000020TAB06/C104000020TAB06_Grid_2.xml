@@ -24,13 +24,16 @@
 <column align="right" clabel="원자재목표두께상한" dbname="원자재목표두께상한" id="RMTL_TAR_THK_UVL" index="5" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="10" color="FFFFC0">#cspan</column>
 <column align="right" clabel="원자재목표폭" dbname="원자재목표폭" id="RMTL_TAR_WTH" index="6" sort="na" table="TB_C10_QLT_DSN_RMT" type="ed" width="*" color="FFFFC0">폭</column>
 <column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
-<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
-<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="8" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="9" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<column align="right" clabel="원자재목표두께하한기준값" dbname="원자재목표두께하한기준값" hidden="true" id="RMTL_TAR_THK_LVL_STD" index="10" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께하한기준값</column>
+<column align="right" clabel="원자재목표두께상한기준값" dbname="원자재목표두께상한기준값" hidden="true" id="RMTL_TAR_THK_UVL_STD" index="11" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께상한기준값</column>
+<column align="right" clabel="원자재목표폭기준값" dbname="원자재목표폭기준값" hidden="true" id="RMTL_TAR_WTH_STD" index="12" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro"   width="0">원자재목표폭기준값</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">RMTL_CD,RMTL_GRD,RMTL_TAR_THK,RMTL_TAR_THK_LVL,RMTL_TAR_THK_UVL,RMTL_TAR_WTH,QLT_DSN_MNF_TP,ORD_NO,ORD_LN</userdata>
+<userdata name="column-info">RMTL_CD,RMTL_GRD,RMTL_TAR_THK,RMTL_TAR_THK_LVL,RMTL_TAR_THK_UVL,RMTL_TAR_WTH,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,RMTL_TAR_THK_LVL_STD,RMTL_TAR_THK_UVL_STD,RMTL_TAR_WTH_STD</userdata>
 <row id="0">
 <cell/>
 <cell/>

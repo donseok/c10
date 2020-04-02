@@ -272,7 +272,9 @@ function mapValues(chkIF){
     var sPE_FL_20     = uiFormObjSub.getItemValue("PE_FL_20");
     var sPE_FL_1      = uiFormObjSub.getItemValue("PE_FL_1"); 
  	var sBRD_CMP_2_7  = uiFormObjSub.getItemValue("BRD_CMP_2_7"); //새로추가된부분 A.항목 
- 	var sCusNm        = uiFormObjSub.getItemValue("CUS_NM");     //최종수요가
+ 	var sCusNm        = uiFormObjSub.getItemValue("CUS_NM");      //최종수요가
+ 	var sGT_MT        = uiFormObjSub.getItemValue("GT_MT");       //거리미터
+ 	var sGT_FT        = uiFormObjSub.getItemValue("GT_FT");       //거리피트
  	
  	var arryList = new Array(8);
  	arryList[0] = sBRD_CMP_2;
@@ -319,7 +321,8 @@ function mapValues(chkIF){
 		   sCH_WAL_18    + "$" + sCH_WAL_17    + "$" + sCH_ROF_15   + "$" + sCH_ROF_16   + "$" +
 		   sBRD_CMP_2_5  + "$" + sClsCd        + "$" + sDivCd       + "$" + sBrdCmp2Check+ "$" + 
 		   sNAT_ENM_1    + "$" + sBRD_CMP_2_6  + "$" + sPrtRsn      + "$" + sBRD_CMP_2_7 + "$" +
-		   sPE_FL_20     + "$" + sPE_FL_1 + "$" + sCusNm;
+		   sPE_FL_20     + "$" + sPE_FL_1      + "$" + sCusNm       + "$" + sGT_MT       + "$" +
+		   sGT_FT;
  		}
  		
  		//폼2의 값을 폼1에도 세팅 
@@ -341,7 +344,9 @@ function mapValues(chkIF){
 	 		uiFormObj.setItemValue("CH_ROF_16" ,sCH_ROF_16);
 	 		uiFormObj.setItemValue("PE_FL_20"  ,sPE_FL_20);
 	 		uiFormObj.setItemValue("PE_FL_1"   ,sPE_FL_1);
-	 		uiFormObj.setItemValue("CUS_NM"   ,sCusNm);
+	 		uiFormObj.setItemValue("CUS_NM"    ,sCusNm);
+	 		uiFormObj.setItemValue("GT_MT"     ,sGT_MT);
+	 		uiFormObj.setItemValue("GT_FT"     ,sGT_FT);
 	 		returnVal = "true";
  		}
  	return returnVal;
@@ -375,7 +380,7 @@ function prtRpt(){
 	               "NAT_ENM,BRD_CMP_2_2,PER_FOR_6,PER_FOR_19_1,BRD_CMP_2_3,FA_TRM_7,"+
 	               "FA_TRM_8,BRD_CMP_2_4,FA_WAL_12,FA_WAL_11,FA_ROF_10,FA_ROF_9,CH_TRM_14,"+
 	               "CH_TRM_13,CH_WAL_18,CH_WAL_17,CH_ROF_16,CH_ROF_15,BRD_CMP_2_5,CLS_CD,DIV_CD,"+
-	               "BRD_CMP_2_CHECK,NAT_ENM_1,BRD_CMP_2_6,PRT_RSN,BRD_CMP_2_7,PE_FL_20,PE_FL_1,CUS_NM";
+	               "BRD_CMP_2_CHECK,NAT_ENM_1,BRD_CMP_2_6,PRT_RSN,BRD_CMP_2_7,PE_FL_20,PE_FL_1,CUS_NM,GT_MT,GT_FT";
 	
 	winObj = new ui.window("popup","보증서출력","0","0","550","600",false,"iReport_list.jsp?reportFileName="+reportFileName +
 			                                                         "&keyValue=" + keyValue + 
@@ -606,7 +611,7 @@ function checkCode(){
 				FormD2.setItemLabel('S1B_1', "나. ");
 				FormD2.setItemLabel('S1B_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_3") + "는 외부로부터의 손상이 없는 상태에서 ");
 				FormD2.setItemLabel('S1B_3',  items['C106000110_Form_2'].getItemValue("PE_FL_1") + "년 동안 도막이 벗겨지지 않습니다. ");
-				FormD2.setItemLabel('S1B_4', "       단, Roll-Forming 및 절단, 절곡 작업시 발생하는 미세한 균열은 포함되지 않습니다.(미세한 균열은 2m 거리에서 육안으로 확인가능 여부로 판정합니다.) ");
+				FormD2.setItemLabel('S1B_4', "       단, Roll-Forming 및 절단, 절곡 작업시 발생하는 미세한 균열 및 이로인해 유발된 현상은 포함되지 않습니다. ");
 				
 			    FormD2.setItemLabel('S1C_1', "다. ");
 				FormD2.setItemLabel('S1C_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_6") + "는 ");
@@ -619,36 +624,36 @@ function checkCode(){
 			    FormD2.setItemLabel('labelD', "라.");
 				FormD2.setItemLabel('labelChgToC', "다.");
 				FormD2.setItemLabel('S1D_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_4") + "는 ,");
-				FormD2.setItemLabel('S1D_3',  items['C106000110_Form_2'].getItemValue("CH_TRM_13") + "년 동안, 가루처럼 일어나는 Chalk에 대해 ASTM D4214, Method C로 측정 시, 벽체일경우 ");
+				FormD2.setItemLabel('S1D_3',  items['C106000110_Form_2'].getItemValue("CH_TRM_13") + "년 동안, 분필가루처럼 일어나는 Chalk현상에 대해 ASTM D4214, Method C로 측정 시, 벽체일경우 ");
 				FormD2.setItemLabel('S1D_4',  items['C106000110_Form_2'].getItemValue("CH_WAL_17") + "Rate, 지붕일경우 ");
 				FormD2.setItemLabel('S1D_5',  items['C106000110_Form_2'].getItemValue("CH_ROF_15") + "Rate 보다 양호할 것을 보증합니다. 단, 측정방법은 ASTM D3964에 준하여 Chalk 발생부의 외부오염이나 먼지를 가볍게 제거 후 측정합니다.");
 
 			    FormD2.setItemLabel('S2_1', "2. 해안으로부터 1km 이내 또는 염분이 포함된 대기 환경에 대해서는 ");
-				FormD2.setItemLabel('S2_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_5") + "의 보증범위에 포함되지 않습니다. 따라서 해안가 시공의 경우 제조사측과 별도의 협의과정을 거칩니다. ");
+				FormD2.setItemLabel('S2_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_5") + "의 보증범위에 포함되지 않습니다. 따라서 해안가 시공의 경우 제조사측과 별도의 협의과정을 거쳐야 합니다. ");
 
-				FormD2.setItemLabel('S3', "3. 본 보증서는 동국제강(주)에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염분과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다. ");
+				FormD2.setItemLabel('S3', "3. 본 보증서는 동국제강(주)에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염분과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다. 그리고 외부로 노출되는 절단 또는 타공면에서 발생되는 녹, 페인트 불량은 보증에서 제외됩니다.");
 
 				FormD2.setItemLabel('S4', "4. 부적절한 운송이나 보관, 가공으로 인해 발생하는 문제는 보증에서 제외됩니다. ");
 
-			    FormD2.setItemLabel('S5', "5. 본 보증서는 동국제강(주)에서 승인된 색상 범위에서만 적용됩니다. 어떤 색상은 표준에 맞지 않을 수 있으며 역시 제조사측과 별도의 협의를 거칩니다. ");
+			    FormD2.setItemLabel('S5', "5. 본 보증서는 동국제강(주)에서 승인된 색상 및 용도 범위에서만 적용됩니다. 고객의 요구로 추가 개발 및 조정된 색상은 상기 표준에 맞지 않을 수 있으며, 별도의 협의를 거칩니다. ");
 			    FormD2.setItemLabel('S5_1', "");
 			    FormD2.setItemLabel('S5_2', "");
 
-			    FormD2.setItemLabel('S6', "6. 동국제강(주)의 책임은 하자가 있는 제품의 교환 또는 환불 등 직접적인 비용에 한정되며, 제품의 결함에 의해 발생한 간접적인, 특별한, 필연적인 손해와 노동력 손실에 대한 비용은 보상하지 않습니다. ");
+			    FormD2.setItemLabel('S6', "6. 동국제강(주)의 책임은 하자가 있는 제품의 교환 또는 환불 등 직접적인 비용에 한정되며, 제품의 결함에 의해 추가 발생한 간접적인, 특별한, 필연적인 손해와 노동력 손실에 대한 비용은 보상하지 않습니다. ");
 			    FormD2.setItemLabel('S6_1', "가. 동국제강(주)의 클레임 보상 책임은 METAL PANEL 또는 STEEL SHEET 가격내에서 보상한다. ");			    
-			    FormD2.setItemLabel('S6_2', "나. 동국제강(주)는 장비사용료, 노동임금 또는 별도의 간접적인 손실 금액에 대해서는 보상하지 않는다. ");
+			    FormD2.setItemLabel('S6_2', "나. 동국제강(주)는 장비사용료, 노동임금 또는 별도의 간접적인 손실 금액 등에 대해서는 보상하지 않는다. ");
 
-			    FormD2.setItemLabel('S7', "7. 동국제강(주)는 하자가 있는 제품에 대해서 재도장 및 재시공 방법을 결정할 권한과 다른 재료 교체, 설치, 또는 재처를 결정하는 자리에 참여와 승인 자격을 가지게 됩니다. 교체나 재처리 후, 이부분은 본 보증서의 목적에 대한 원래의 설치 일에 맞춰 보증합니다. ");
+			    FormD2.setItemLabel('S7', "7. 동국제강(주)는 하자가 있는 제품에 대해서 재도장 및 재시공 방법을 결정할 권한과 다른 재료 교체, 설치, 또는 재처를 결정하는 자리에 참여와 승인 자격을 가지게 됩니다. 교체나 재처리 후, 보증의 연장 부분은 최소 보증의 잔여기간 동안만 유효합니다. ");
 
-			    FormD2.setItemLabel('S8', "8. 본 보증서에 명시된 제품의 성능 관련된 모든 클레임은 고객이 제푸에 대한 결함을 알게 되었거나 알고 있는 시점으로부터 30일 이내에 동국제강(주)에 문서로 제출하여야 하며, 그렇지 않을 경우 클레임 청구 권리가 철회됩니다. 동국제강(주)는 필요한 경우 시험분석을 위한 샘플을 요청할 권한이 있으며 클레임 청구자는 샘플을 제공해줘야 합니다. ");
+			    FormD2.setItemLabel('S8', "8. 본 보증서에 명시된 제품의 성능 관련된 모든 클레임은 고객이 제푸에 대한 결함을 알게 되었거나 알고 있는 시점으로부터 30일 이내에 동국제강(주)에 문서로 제출하여야 하며, 그렇지 않을 경우 클레임 청구 권리가 철회됩니다. 동국제강(주)은 필요한 경우 시험분석을 위한 샘플을 요청할 권한이 있으며 동국제강(주) 요구시 클레임 청구자는 샘플을 제공해야 할 책임이 있습니다. ");
 
-			    FormD2.setItemLabel('S9', "9. 동국제강(주)는 제품이 판매되어 시공되는 과정에 관여한 제조사, 가공처, 유통점, 시공사, 건설사에 대한 정보를 요구할 권리를 가지며, 고객은 이에 대한 충분한 정보를 제공하여야 합니다. 또한 제품의 Coil Number, 가공일자, 시공일자 등에 대한 충분한 자료 및 기록을 확인하고 조사할 권리를 가집니다. ");
+			    FormD2.setItemLabel('S9', "9. 동국제강(주)는 제품이 판매되어 시공되는 과정에 관여한 제조사, 가공처, 유통점, 시공사, 건설사에 대한 정보를 요구할 권리를 가지며, 고객은 이에 대한 충분한 정보를 제공하여야 합니다. 또한 동국제강(주)은 제품의 Coil Number, 가공일자, 시공일자 등에 대한 충분한 자료 및 기록을 확인하고 조사할 권리를 가집니다. ");
 
 			    FormD2.setItemLabel('SA', "10. 동국제강(주)는 판매된 제품 자체에 대한 클레임만 수용할 뿐, 보증항목에 해당하지 않는 원인으로 발생된 클레임에 대해서는 어떠한 의무도 지지 않습니다. ");
 
-			    FormD2.setItemLabel('SB', "11. 본 보증서는 발급대상으로 명기된 고객을 제외한 누구에게도 양도 혹은 이전될 수 없습니다. 또한, 보증서를 발급받은 고객을 제외한 어떠한 대리인, 대표자, 중개인도 고객을 대신하여 이 보증서에 대한 권한을 가질 수 없으며, 제품에 대한 어떠한 책임도 물을 수 없습니다. ");
+			    FormD2.setItemLabel('SB', "11. 본 보증서는 발급대상으로 명기된 고객을 제외한 누구에게도 양도 혹은 이전될 수 없습니다. 또한, 보증서를 발급받은 고객을 제외한 어떠한 대리인, 대표자, 중개인도 고객을 대신하여 이 보증서에 대한 권리를 가질 수 없으며, 제품에 대한 어떠한 책임도 물을 수 없습니다. ");
 
-			    FormD2.setItemLabel('SC', "12. 보증서는 동국제강(주)에서 발행되는 다른 모든 제품의 보증서에 우선하여 적용됩니다. 본 보증서 상의 모든 변경, 수정, 추가사항은 반드시 동국제강(주) 품질담당자의 서명을 포함하여 명문화 되어야 합니다. 영업사원이나 중계상의 동의에 의해 변경된 보증서는 효력을 상실하게 됩니다.");
+			    FormD2.setItemLabel('SC', "12. 본 보증서는 동국제강(주)에서 발행되는 다른 모든 제품의 보증서에 우선하여 적용됩니다. 본 보증서 상의 모든 변경, 수정, 추가사항은 반드시 동국제강(주) 품질담당자의 서명을 포함하여 명문화 되어야 합니다. 영업사원이나 중계상의 동의에 의해 변경된 보증서는 효력을 상실하게 됩니다.");
 
 			    FormD2.setItemLabel('SD', "13. 본 보증과 관련하여 법적인 분쟁이 발생하는 경우 동국제강(주) 본사 소재지의 관할법원에서 처리함을 원칙으로 합니다.");
 

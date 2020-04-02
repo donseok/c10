@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C102100MSG"> 
+	 <query id="C102100MSG.select" desc="C102100MSG.select " fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과메세지조회 C102100MSG.select 박재영*/ 
+       QLT_MSG_NM
+FROM TB_C10_QLT_DSN_MSG
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   RMTL_CD = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MSG.Insert" desc="C102100MSG.Insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과메세지등록 C102100MSG.Insert 박재영*/                           
+TB_C10_QLT_DSN_MSG (                                                                           
+            ORD_NO	                  --주문번호
+           ,ORD_LN	                  --주문행번
+           ,QLT_DSN_MNF_TP         --품질설계제조구분
+           ,RMTL_CD                     --원자재코드
+           ,QLT_MSG_NM               --주문행번
+           ,CREATED_OBJECT_TYPE       --생성OBJECT유형                                                                 
+           ,CREATED_OBJECT_ID         --생성OBJECTID                                                                   
+           ,CREATED_PROGRAM_ID        --생성프로그램ID                                                                 
+           ,CREATION_TIMESTAMP        --생성일시                                                                       
+           ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형     
+           ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID       
+           ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID     
+           ,LAST_UPDATE_TIMESTAMP     --최종변경일시           
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?,?,?,?,?,
+?,?,?,?,
+?,?,?,?)
+		 ]]> 
+	 </query>
+	 <query id="C102100MSG.update" desc="C102100MSG.update" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+update /*+ C10 품질설계결과제조사양수정 C102100MSG.update 박재영*/
+TB_C10_QLT_DSN_MSG SET
+            LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+           ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+           ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+           ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+           ,QLT_MSG_NM	= ?			--일반ANN소둔로유형
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MSG.delete" desc="C102100MSG.delete" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+delete /*+ C10 품질설계결과메세지삭제 C102100MSG.delete 박재영*/
+FROM TB_C10_QLT_DSN_MSG
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+		 ]]> 
+	 </query>
+	 <query id="C102100MSG.InsertCOR" desc="C102100MSG.InsertCOR" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO  /*+ C10 품질설계결과메세지등록 C102100MSG.InsertCOR 박재영*/                           
+TB_C10_QLT_DSN_MSG1 (                                                                           
+            ORD_NO	                  --주문번호
+           ,ORD_LN	                  --주문행번
+           ,QLT_MSG_NM               --주문행번
+           ,CREATED_OBJECT_TYPE       --생성OBJECT유형                                                                 
+           ,CREATED_OBJECT_ID         --생성OBJECTID                                                                   
+           ,CREATED_PROGRAM_ID        --생성프로그램ID                                                                 
+           ,CREATION_TIMESTAMP        --생성일시                                                                       
+           ,LAST_UPDATED_OBJECT_TYPE  --최종변경OBJECT유형     
+           ,LAST_UPDATED_OBJECT_ID    --최종변경OBJECTID       
+           ,LAST_UPDATE_PROGRAM_ID    --최종변경프로그램ID     
+           ,LAST_UPDATE_TIMESTAMP     --최종변경일시           
+)                                                                                              
+VALUES                                                                                         
+(                                                                                              
+?,?,?,
+?,?,?,?,
+?,?,?,?)
+		 ]]> 
+	 </query>
+</queryMap>

@@ -15,13 +15,13 @@
 <call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column id="CCL_CLR_SUB_MTL_CD" index="1" sort="str" align="center" width="200" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">CCLBOM 칼라코드</column>
-<column id="CLR_SUB_MTL_CD" index="2" sort="str" align="center" width="200" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">실사용칼라코드</column>
-<column id="CCL_MAPP_RGS_DH" index="3" format="%Y-%m-%d" sort="center" align="center" width="200" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록일자</column>
-<column id="CCL_MAPP_RGS_PRS_ID" index="4" sort="str" align="center" width="200" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자ID</column>
-<column id="CCL_MAPP_RGS_PRS_NM" index="5" sort="str" align="center" width="200" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자명</column>
+<column id="CCL_CLR_SUB_MTL_CD" index="1" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">CCLBOM 칼라코드</column>
+<column id="CLR_SUB_MTL_CD" index="2" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">실사용칼라코드</column>
+<column id="CCL_MAPP_RGS_DH" index="3" format="%Y-%m-%d" sort="center" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록일자</column>
+<column id="CCL_MAPP_RGS_PRS_ID" index="4" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자ID</column>
+<column id="CCL_MAPP_RGS_PRS_NM" index="5" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자명</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
 <userdata name="column-info">CCL_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD,CCL_MAPP_RGS_DH,CCL_MAPP_RGS_PRS_ID,CCL_MAPP_RGS_PRS_NM</userdata>

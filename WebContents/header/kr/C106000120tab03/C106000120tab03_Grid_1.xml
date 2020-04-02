@@ -38,11 +38,13 @@
 <column id="CH_WAL_18" sort="sort_date_custom" align="left" dbname="CH_WAL_18" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL18</column>
 <column id="PE_FL_1" sort="sort_date_custom" align="left" dbname="PE_FL_1" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE1</column>
 <column id="PE_FL_20" sort="sort_date_custom" align="left" dbname="PE_FL_20" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE20</column>
+<column id="GT_MT" sort="sort_date_custom" align="left" dbname="GT_MT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">GT_MT</column>
+<column id="GT_FT" sort="sort_date_custom" align="left" dbname="GT_FT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">GT_FT</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">WAR_PRT_SEQ_NO,CCL_BOM_NO,NAT_CD,WAR_PRT_EMP_ID,WAR_PRT_DH,FNL_CUS_CD,PRT_RSN,BRD_CMP_2,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20</userdata>
+<userdata name="column-info">WAR_PRT_SEQ_NO,CCL_BOM_NO,NAT_CD,WAR_PRT_EMP_ID,WAR_PRT_DH,FNL_CUS_CD,PRT_RSN,BRD_CMP_2,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT</userdata>
 <row id="0">
 <cell></cell>
 <cell></cell>

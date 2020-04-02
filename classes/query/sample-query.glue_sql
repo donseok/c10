@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="EMP Project 한글 "> 
+	 <query id="emp.select" desc="EMP 조회" fetchSize="10">
+		 <![CDATA[ 
+select EMPNO, ENAME, JOB, MGR, HIREDATE, SAL,DEPTNO
+from EMP 
+where DEPTNO=?
+		 ]]> 
+	 </query>
+	 <query id="emp.select.by.deptno" desc="EMP조회" isNamed="true">
+		 <![CDATA[ 
+select EMPNO, ENAME, JOB, MGR, HIREDATE, SAL,DEPTNO
+from EMP 
+where DEPTNO=:DeptnoP
+		 ]]> 
+	 </query>
+	 <query id="emp.update" desc="EMP 수정" >
+		 <![CDATA[ 
+update emp
+set sal=?, ename=?
+where empno=?
+		 ]]> 
+	 </query>
+	 <query id="emp.delete" desc="EMP 삭제" >
+		 <![CDATA[ 
+delete from emp
+where empno=?
+		 ]]> 
+	 </query>
+	 <query id="emp.insert" desc="EMP 등록" >
+		 <![CDATA[ 
+insert into emp(empno, ename, sal,deptno)
+values(?, ?, ?,?)
+		 ]]> 
+	 </query>
+	 <query id="callTest" desc="프로시져호출" fetchSize="1">
+		 <![CDATA[ 
+{call proc1(?, ?)}
+		 ]]> 
+	 </query>
+</queryMap>

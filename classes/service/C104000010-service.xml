@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000010-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000010.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="excelExport" value="조회(excelExport)" />
+  </activity>
+  <activity name="조회(excelExport)" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000010.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

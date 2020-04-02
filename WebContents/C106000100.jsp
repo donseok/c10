@@ -35,35 +35,20 @@
 <title>
 CCLBOM이미지관리
 </title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C106000100_Form_1","xml":".\/header\/kr\/C106000100\/C106000100_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save","security":"true"},' +
-//       '{"itemType":"menu","renderTo":"C106000100_Menu_1","xml":".\/header\/kr\/C106000100\/C106000100_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000100_Grid_1","service":"C106000100-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000100_Grid_1","xml":".\/header\/kr\/C106000100\/C106000100_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save"},' +
-//       '{"itemType":"messagebox","renderTo":"C106000100_messagebox","xml":".\/header\/kr\/C106000100\/C106000100_messagebox.xml","service":"C106000100-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C106000100_Form_1","xml":".\/header\/kr\/C106000100\/C106000100_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save","security":"true"};
-var Grid_1 = {"itemType":"grid","renderTo":"C106000100_Grid_1","xml":".\/header\/kr\/C106000100\/C106000100_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save"};
-var Menu_1 = {"itemType":"menu","renderTo":"C106000100_Menu_1","xml":".\/header\/kr\/C106000100\/C106000100_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000100_Grid_1","service":"C106000100-service"};
-
-var initLayout = 
-{
-	"programId":"C106000100",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"30,30,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		Menu_1,
-		Grid_1
-	]
-}; 
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C106000100_Form_1","xml":".\/header\/kr\/C106000100\/C106000100_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save","security":"true"},' +
+      '{"itemType":"menu","renderTo":"C106000100_Menu_1","xml":".\/header\/kr\/C106000100\/C106000100_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000100_Grid_1","service":"C106000100-service"},' +
+      '{"itemType":"grid","renderTo":"C106000100_Grid_1","xml":".\/header\/kr\/C106000100\/C106000100_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000100_Grid_1","service":"C106000100-service","actionType":"save"},' +
+      '{"itemType":"messagebox","renderTo":"C106000100_messagebox","xml":".\/header\/kr\/C106000100\/C106000100_messagebox.xml","service":"C106000100-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
@@ -283,7 +268,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   	}
 } 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C106000100_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 function onFormLoadFunction(formDivObj){ 
@@ -330,20 +315,22 @@ function doOnRowDblClicked(rowId) {
 	parent.newRemoveOpenTab("C106000060","CCL_BOM_NO=" + CCL_BOM_NO);
 	}
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C106000100_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
+<div id="C106000100_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C106000100_Menu_1" style="position:absolute;height:25px;width:981px;left:0px;top:28px;">
 </div>
 <div id="C106000100_Grid_1" style="position:absolute;height:511px;width:980px;left:-1px;top:54px;">
 </div>
 <div id="C106000100_messagebox" style="position:absolute;height:19px;width:980px;left:-1px;top:567px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C106000100_Grid_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
@@ -354,4 +341,5 @@ function doOnRowDblClicked(rowId) {
 	items["C106000100_Grid_1"].rowDblClicked(doOnRowDblClicked);
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}	
 //]]>
+-->
 </script>

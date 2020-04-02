@@ -20,34 +20,21 @@
 </meta>
 <title>
 </title>
-<script src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js" type="text/javascript">
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript">
 </script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 //var timerID;
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C104000010_Form_1","xml":".\/header\/kr\/C104000010\/C104000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
-//       '{"itemType":"grid","renderTo":"C104000010_Grid_1","xml":".\/header\/kr\/C104000010\/C104000010_Grid_1.xml","rowCnt":"19","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"2","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
-//       '{"itemType":"messagebox","renderTo":"messagebox","xml":".\/header\/kr\/C104000010\/messagebox.xml","service":"C104000010-service"}' +
-//    ']'; 
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C104000010_Form_1","xml":".\/header\/kr\/C104000010\/C104000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000010_Grid_1","service":"C104000010-service"};
-var Grid_1 = {"itemType":"grid","renderTo":"C104000010_Grid_1","xml":".\/header\/kr\/C104000010\/C104000010_Grid_1.xml","rowCnt":"19","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"2","referenceItem":"C104000010_Grid_1","service":"C104000010-service"};
-
-var initLayout = 
-{
-	"programId":"C104000010",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"90,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		Grid_1
-	]
-}; 
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C104000010_Form_1","xml":".\/header\/kr\/C104000010\/C104000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
+      '{"itemType":"grid","renderTo":"C104000010_Grid_1","xml":".\/header\/kr\/C104000010\/C104000010_Grid_1.xml","rowCnt":"19","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"2","referenceItem":"C104000010_Grid_1","service":"C104000010-service"},' +
+      '{"itemType":"messagebox","renderTo":"messagebox","xml":".\/header\/kr\/C104000010\/messagebox.xml","service":"C104000010-service"}' +
+   ']'; 
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 //form find button item event function (requred)
 /**
@@ -135,9 +122,10 @@ function onGridContextMenuClick(id,gridObj,menuObj){
     
     
 }
-function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
-  	return true;
+function findMessage(referenceItem){		
+//	parent.uiLayout.progressOff();
+	uiCommon.message(ui.messagebox.messageBoxDivId,referenceItem.getUserData("","appMsg"));
+	return true;
 }
 /**
  * @class function Form Load시 동작하는 Event
@@ -371,18 +359,20 @@ function excelExport(eventName,formDivObj,referenceItem)
 	win = window.open(findUrl, "GGGG", "width=310,height=300,scrollbars=yes"); 
 }
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C104000010_Form_1" style="position:absolute;height:84px;width:981px;left:0px;top:1px;">
+<div id="C104000010_Form_1" style="position:absolute;height:84px;width:981px;left:0px;top:1px;">
 </div>
 <div id="C104000010_Grid_1" style="position:absolute;height:467px;width:976px;left:-7px;top:88px;">
 </div>
 <div id="messagebox" style="position:absolute;height:19px;width:977px;left:1px;top:567px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C104000010_Form_1'].setBackgroundColor("#FFFFFF");
@@ -391,4 +381,5 @@ function excelExport(eventName,formDivObj,referenceItem)
 	var onXleGrid= items['C104000010_Grid_1'].onXLEEvent(onGridLoadEvent);
 	
 //]]>
+-->
 </script>

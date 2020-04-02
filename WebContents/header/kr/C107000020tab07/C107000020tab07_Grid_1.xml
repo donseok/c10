@@ -38,10 +38,10 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="WTH_MNG_CD" index="1" sort="str" table="VI_M00_C10A1070" type="ro" width="100" >조건</column>
-<column align="center"   id="MRG_WTH" index="2" sort="str" table="VI_M00_C10A1070" type="ro" width="100" >결과</column>
+<column align="center" id="WTH_MNG_CD" index="1" sort="str" table="VI_M00_C10A1070" type="ro" width="10" >조건</column>
+<column align="center"   id="MRG_WTH" index="2" sort="str" table="VI_M00_C10A1070" type="ro" width="10" >결과</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">WTH_MNG_CD,MRG_WTH</userdata>

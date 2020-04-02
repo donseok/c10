@@ -21,36 +21,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
 <title>실사용도료칼라코드관리</title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-// '{"itemType":"form","renderTo":"C107000060_Form_1","xml":".\/header\/kr\/C107000060\/C107000060_Form_1.xml","url":"gridC10Data.do","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save","security":"true"},' +
-// '{"itemType":"menu","renderTo":"C107000060_Menu_1","xml":".\/header\/kr\/C107000060\/C107000060_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C107000060_Grid_1","service":"C107000060-service"},' +
-// '{"itemType":"grid","renderTo":"C107000060_Grid_1","xml":".\/header\/kr\/C107000060\/C107000060_Grid_1.xml","rowCnt":"21","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save"},' +
-// '{"itemType":"messagebox","renderTo":"C107000060_messagebox","xml":".\/header\/kr\/C107000060\/C107000060_messagebox.xml","service":"C107000060-service"}' +
-// ']';
+var pageConfiguration = '[' + 
+'{"itemType":"form","renderTo":"C107000060_Form_1","xml":".\/header\/kr\/C107000060\/C107000060_Form_1.xml","url":"gridC10Data.do","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save","security":"true"},' +
+'{"itemType":"menu","renderTo":"C107000060_Menu_1","xml":".\/header\/kr\/C107000060\/C107000060_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C107000060_Grid_1","service":"C107000060-service"},' +
+'{"itemType":"grid","renderTo":"C107000060_Grid_1","xml":".\/header\/kr\/C107000060\/C107000060_Grid_1.xml","rowCnt":"21","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save"},' +
+'{"itemType":"messagebox","renderTo":"C107000060_messagebox","xml":".\/header\/kr\/C107000060\/C107000060_messagebox.xml","service":"C107000060-service"}' +
+']';
 
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C107000060_Form_1","xml":".\/header\/kr\/C107000060\/C107000060_Form_1.xml","url":"gridC10Data.do","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save","security":"true"};
-var Grid_1 = {"itemType":"grid","renderTo":"C107000060_Grid_1","xml":".\/header\/kr\/C107000060\/C107000060_Grid_1.xml","rowCnt":"21","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save"};
-var Menu_1 = {"itemType":"menu","renderTo":"C107000060_Menu_1","xml":".\/header\/kr\/C107000060\/C107000060_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C107000060_Grid_1","service":"C107000060-service"};
-
-var initLayout = 
-{
-	"programId":"C107000060",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"30,30,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		Menu_1,
-		Grid_1
-	]
-}; 
-
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 
 //form find button item event function (requred)
@@ -114,7 +99,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
 } 
 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C107000060_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 
@@ -137,20 +122,22 @@ function firstFind(){
 
 
 //]]>
+-->
 </script>	    
 </head>
 <body>
-<!-- <div id="C107000060_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
+<div id="C107000060_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C107000060_Menu_1" style="position:absolute;height:25px;width:981px;left:0px;top:28px;">
 </div>
 <div id="C107000060_Grid_1" style="position:absolute;height:511px;width:980px;left:-1px;top:54px;">
 </div>
 <div id="C107000060_messagebox" style="position:absolute;height:19px;width:980px;left:-1px;top:567px;">
-</div>   -->
+</div>  
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C107000060_Grid_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
@@ -159,4 +146,5 @@ function firstFind(){
 	var dataProcessor = items["C107000060_Grid_1"].getDhxDataProcess();
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}
 //]]>
+-->
 </script>

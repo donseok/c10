@@ -37,13 +37,15 @@
 <column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(18)</column>
 <column id="PE_FL_1" sort="str" align="right" dbname="PE_FL_1" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(1)</column>
 <column id="PE_FL_20" sort="str" align="left" dbname="PE_FL_20" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(20)</column>
+<column id="GT_MT" sort="str" align="right" dbname="GT_MT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">GT_MT</column>
+<column id="GT_FT" sort="str" align="right" dbname="GT_FT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">GT_FT</column>
 <column id="CREATED_OBJECT_ID" sort="str" align="left" dbname="CREATED_OBJECT_ID" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록자</column>
 <column id="CREATION_TIMESTAMP" sort="sort_date_custom" align="center" dbname="CREATION_TIMESTAMP" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록일자</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">CCL_BOM_NO,CLS_CD,DIV_CD,RSN_TP,BRD_CMP_2,RSN_TP_NM,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,CREATED_OBJECT_ID,CREATION_TIMESTAMP</userdata>
+<userdata name="column-info">CCL_BOM_NO,CLS_CD,DIV_CD,RSN_TP,BRD_CMP_2,RSN_TP_NM,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT,CREATED_OBJECT_ID,CREATION_TIMESTAMP</userdata>
 <row id="0">
 <cell></cell>
 <cell></cell>

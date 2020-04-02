@@ -70,6 +70,10 @@ var fg_grid3_update = "N";
 
 var rmtlKind = "";
 
+//원재료 두께, 폭 조정 사용자 오류방지
+var redflag1 = 0;
+var redflag2 = 0;
+
 
 //form find button item event function (requred)
 function find(eventName){
@@ -565,10 +569,13 @@ function findMessage(referenceItem){
 	document.getElementById("C104000020TAB06_messagebox").innerHTML = "&nbsp;MESSAGE&nbsp;&nbsp;|&nbsp" + grid.getUserData("","appMsg"); //원자재 조회메세지 설정
 }
 function upt_clear(){
+	
 	var grid = items['C104000020TAB06_Grid_2'];
-	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
-	grid.setUpdated(grid.getDhxGrid().getRowId(1),false,""); 
-	grid.setUpdated(grid.getDhxGrid().getRowId(2),false,""); 
+	var gridObj = items["C104000020TAB06_Grid_2"].getDhxGrid();
+	
+	//grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
+	//grid.setUpdated(grid.getDhxGrid().getRowId(1),false,""); 
+	//grid.setUpdated(grid.getDhxGrid().getRowId(2),false,""); 
 	grid = items['C104000020TAB06_Grid_3'];
 	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
 	grid = items['C104000020TAB06_Grid_4'];
@@ -582,8 +589,62 @@ function upt_clear(){
 	grid = items['C104000020TAB06_Grid_8'];
 	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
 	fg_grid3_update = "N";
+	
+	if(redflag2 ==1){
+		  gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+		}
+	if(redflag1 ==1){
+		  gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	}
 }
 function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
+	var grid = items["C104000020TAB06_Grid_2"];
+	var gridObj = items["C104000020TAB06_Grid_2"].getDhxGrid();
+	var rmtlKind = grid.getCellValue(grid.getSelectedRowId(),0);
+	var Rmtltarthk = grid.getCellValue(grid.getSelectedRowId(),2);
+	var Thklvl = grid.getCellValue(grid.getSelectedRowId(),3);
+	var Thkuvl = grid.getCellValue(grid.getSelectedRowId(),4);
+	var Rmtltarwth = grid.getCellValue(grid.getSelectedRowId(),5);
+	var Thklvlstd = grid.getCellValue(grid.getSelectedRowId(),9);
+	var Thkuvlstd = grid.getCellValue(grid.getSelectedRowId(),10);
+	var Rmtltarwthstd = grid.getCellValue(grid.getSelectedRowId(),11);
+	 
+	if(stage==2){
+		if (cInd==2){
+			if(Number(nValue) < Number(Thklvlstd) || Number(nValue) > Number(Thkuvlstd))
+	   		{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	    		redflag1 = 1;
+	    		if(redflag2 ==1){
+	      			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		}
+			}else{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:white");
+	    		redflag1 = 0;
+	    		if(redflag2 ==1){
+	      			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		}
+	    	}
+		}
+		if(cInd==5){
+			if(Number(nValue) < Number(Rmtltarwthstd) || Number(nValue) > Number(Rmtltarwthstd)+25)
+	   		{  
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		redflag2 =1;
+	     		if(redflag1 ==1){
+	    			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	      		}
+			}else{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:white");
+	    		redflag2 =0;
+	    		if(redflag1 ==1){
+	    			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	      		}
+	    	}
+	 	}
+		return true;
+	}
+	/*
 	var grid = items["C104000020TAB06_Grid_2"];
 	var gridObj = items["C104000020TAB06_Grid_2"].getDhxGrid();
 	
@@ -629,6 +690,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 		}
 	}
    return true;
+   */
 }
 function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 	var grid = items["C104000020TAB06_Grid_3"];

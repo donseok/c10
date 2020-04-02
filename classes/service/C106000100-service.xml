@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000100-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="CCLBOM이미지처리" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C106000100_DUMY.select" />
+    <property name="delete-sql" value="C106000100_IMG.delete" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000100.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+    <transition name="cclbomajax" value="CCLBOM조회" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="CCLBOM이미지처리" />
+    <property name="insert-sql" value="C106000100.insert" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C106000100.update" />
+    <property name="isAudit" value="true" />
+    <property name="delete-sql" value="C106000100.delete" />
+  </activity>
+  <activity name="CCLBOM조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000100_CCLBOMAJAX.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

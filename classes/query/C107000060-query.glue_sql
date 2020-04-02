@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C107000060 Page 쿼리파일"> 
+	 <query id="C107000060.select" desc="C107000060 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C107000060   CCLBOM실사용칼라코드Mapping조회   C107000060.select 이돈석  */
+        CCL_CLR_SUB_MTL_CD,
+        CLR_SUB_MTL_CD,
+        TO_CHAR(CCL_MAPP_RGS_DH, 'YYYY-MM-DD') CCL_MAPP_RGS_DH,
+        CCL_MAPP_RGS_PRS_ID,
+        NVL((SELECT USER_NAME FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = CCL_MAPP_RGS_PRS_ID), CCL_MAPP_RGS_PRS_ID) CCL_MAPP_RGS_PRS_NM
+   FROM TB_C10_CCL_BOM_CLR_MAPP
+  WHERE NVL(CCL_CLR_SUB_MTL_CD,'%') LIKE NVL(:CCL_CLR_SUB_MTL_CD,'%')
+		 ]]> 
+	 </query>
+	 <query id="C107000060.update" desc="C107000060 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_CCL_BOM_CLR_MAPP
+SET      CLR_SUB_MTL_CD               = :CLR_SUB_MTL_CD,            
+	      LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+          LAST_UPDATED_OBJECT_ID    = :ObjectId, 
+          LAST_UPDATE_PROGRAM_ID  = :ProgramId, 
+          LAST_UPDATE_TIMESTAMP    = :Timestamp 
+WHERE CCL_CLR_SUB_MTL_CD = :CCL_CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C107000060.delete" desc="C107000060 정보 삭제" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM TB_C10_CCL_BOM_CLR_MAPP
+ 	WHERE CCL_CLR_SUB_MTL_CD = :CCL_CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C107000060.insert" desc="C107000060 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CCL_BOM_CLR_MAPP(
+        CCL_CLR_SUB_MTL_CD, 
+        CLR_SUB_MTL_CD, 
+        CCL_MAPP_RGS_DH, 
+        CCL_MAPP_RGS_PRS_ID, 
+        CREATED_OBJECT_TYPE, 
+        CREATED_OBJECT_ID, 
+        CREATED_PROGRAM_ID, 
+        CREATION_TIMESTAMP, 
+        LAST_UPDATED_OBJECT_TYPE, 
+        LAST_UPDATED_OBJECT_ID, 
+        LAST_UPDATE_PROGRAM_ID, 
+        LAST_UPDATE_TIMESTAMP)
+ VALUES (
+        :CCL_CLR_SUB_MTL_CD, 
+        :CLR_SUB_MTL_CD, 
+        SYSDATE, 
+        :ObjectId,
+        :ObjectType,
+        :ObjectId,
+        :ProgramId,
+        :Timestamp,
+        :ObjectType,
+        :ObjectId,
+        :ProgramId,
+        :Timestamp
+        )
+		 ]]> 
+	 </query>
+</queryMap>

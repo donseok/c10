@@ -21,50 +21,22 @@
 <title>
 프린트롤관리
 </title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //테스트
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C106000080_Form_1","xml":".\/header\/kr\/C106000080\/C106000080_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save","security":"true"},' +
-//       '{"itemType":"menu","renderTo":"C106000080_Menu_1","xml":".\/header\/kr\/C106000080\/C106000080_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000080_Grid_1","service":"C106000080-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000080_Grid_1","xml":".\/header\/kr\/C106000080\/C106000080_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save"},' +
-//       '{"itemType":"form","renderTo":"C106000080_Form_2","xml":".\/header\/kr\/C106000080\/C106000080_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000080_Form_1","service":"C106000080-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000080_Grid_2","xml":".\/header\/kr\/C106000080\/C106000080_Grid_2.xml","rowCnt":"6","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_2","service":"C106000080-service"},' +
-//       '{"itemType":"messagebox","renderTo":"C106000080_messagebox","xml":".\/header\/kr\/C106000080\/C106000080_messagebox.xml","service":"C106000080-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);
-
-var Form_1 = {"itemType":"form","renderTo":"C106000080_Form_1","xml":".\/header\/kr\/C106000080\/C106000080_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save","security":"true"};
-var Form_2 = {"itemType":"form","renderTo":"C106000080_Form_2","xml":".\/header\/kr\/C106000080\/C106000080_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000080_Form_1","service":"C106000080-service"};
-var Grid_1 = {"itemType":"grid","renderTo":"C106000080_Grid_1","xml":".\/header\/kr\/C106000080\/C106000080_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save"};
-var Grid_2 = {"itemType":"grid","renderTo":"C106000080_Grid_2","xml":".\/header\/kr\/C106000080\/C106000080_Grid_2.xml","rowCnt":"6","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_2","service":"C106000080-service"};
-var Menu_1 = {"itemType":"menu","renderTo":"C106000080_Menu_1","xml":".\/header\/kr\/C106000080\/C106000080_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000080_Grid_1","service":"C106000080-service"};
-
-var initLayout = 
-{
-	"programId":"C106000080",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"30,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		{
-			"itemType": "layout", "dirType":"row", "childSize":"30,*", "splitter":false, "components": 
-			[
-				Menu_1,
-				Grid_1
-			]
-		},
-		{
-			"itemType": "layout", "dirType":"row", "childSize":"*", "splitter":false, "header":"* 공정별 Pring Roll 집계 현", "components": 
-			[
-				Grid_2
-			]
-		}
-	]
-}; 
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C106000080_Form_1","xml":".\/header\/kr\/C106000080\/C106000080_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save","security":"true"},' +
+      '{"itemType":"menu","renderTo":"C106000080_Menu_1","xml":".\/header\/kr\/C106000080\/C106000080_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000080_Grid_1","service":"C106000080-service"},' +
+      '{"itemType":"grid","renderTo":"C106000080_Grid_1","xml":".\/header\/kr\/C106000080\/C106000080_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_1","service":"C106000080-service","actionType":"save"},' +
+      '{"itemType":"form","renderTo":"C106000080_Form_2","xml":".\/header\/kr\/C106000080\/C106000080_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000080_Form_1","service":"C106000080-service"},' +
+      '{"itemType":"grid","renderTo":"C106000080_Grid_2","xml":".\/header\/kr\/C106000080\/C106000080_Grid_2.xml","rowCnt":"6","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000080_Grid_2","service":"C106000080-service"},' +
+      '{"itemType":"messagebox","renderTo":"C106000080_messagebox","xml":".\/header\/kr\/C106000080\/C106000080_messagebox.xml","service":"C106000080-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);
 var procCdComboVal = [['A4', 'A4'], ['A5', 'A5'], ['A6', 'A6'], ['A7', 'A7'], ['A8', 'A8'], ['A9', 'A9']];
 var useYnComboVal = [['Y', 'Y'], ['N', 'N'], ['Y(SPARE)', 'Y(SPARE)']];
 var rollWthComboVal = [[1350, '1,350'], [1600, '1,600']];
@@ -295,7 +267,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   	}
 } 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C106000080_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 function onFormLoadFunction(formDivObj){ 
@@ -433,10 +405,11 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 	return true;
 }
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C106000080_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
+<div id="C106000080_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C106000080_Menu_1" style="position:absolute;height:25px;width:981px;left:0px;top:28px;">
 </div>
@@ -447,10 +420,11 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 <div id="C106000080_Grid_2" style="position:absolute;height:161px;width:980px;left:-1px;top:406px;">
 </div>
 <div id="C106000080_messagebox" style="position:absolute;height:19px;width:980px;left:-1px;top:567px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items["C106000080_Grid_1"].onEditCellEvent(onEditCellEvent);
@@ -462,4 +436,5 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 	var dataProcessor = items["C106000080_Grid_1"].getDhxDataProcess();
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}	
 //]]>
+-->
 </script>

@@ -8,31 +8,19 @@
 <title>
 보호필름점착력기준
 </title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"grid","renderTo":"C107000020tab12_Grid_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Grid_1.xml","rowCnt":"20","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000020tab12_Grid_1","service":"C107000020tab12-service"},' +
-//       '{"itemType":"messagebox","renderTo":"C107000020tab12_messagebox","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_messagebox.xml","service":"C107000020tab12-service"},' +
-//       '{"itemType":"form","renderTo":"C107000020tab12_Form_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000020tab12_Form_1","service":"C107000020tab12-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);	     
-
-var Form_1 = {"itemType":"form","renderTo":"C107000020tab12_Form_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000020tab12_Form_1","service":"C107000020tab12-service"};
-var Grid_1 = {"itemType":"grid","renderTo":"C107000020tab12_Grid_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Grid_1.xml","rowCnt":"20","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000020tab12_Grid_1","service":"C107000020tab12-service"};
-
-var initLayout = 
-{
-	  "programId":"C107000020tab12",
-	  "itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"*", "splitter":false, "components": 
-	  [
-		  Grid_1
-	  ] 
-};
-
+var pageConfiguration = '[' + 
+      '{"itemType":"grid","renderTo":"C107000020tab12_Grid_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Grid_1.xml","rowCnt":"20","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000020tab12_Grid_1","service":"C107000020tab12-service"},' +
+      '{"itemType":"messagebox","renderTo":"C107000020tab12_messagebox","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_messagebox.xml","service":"C107000020tab12-service"},' +
+      '{"itemType":"form","renderTo":"C107000020tab12_Form_1","xml":".\/header\/kr\/C107000020tab12\/C107000020tab12_Form_1.xml","url":"basicGridData.do","referenceItem":"C107000020tab12_Form_1","service":"C107000020tab12-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 var flag = false;
 //form find button item event function (requred)
@@ -88,7 +76,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   	}
 } 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C107000020tab12_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 function onLoadGrid (){
@@ -98,21 +86,24 @@ function onLoadGrid (){
 	items["C107000020tab12_Grid_1"].getDhxGrid().detachEvent(onXLE);
 }
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C107000020tab12_Form_1" style="position:absolute;height:30px;width:282px;left:0px;top:450px;">
+<div id="C107000020tab12_Form_1" style="position:absolute;height:30px;width:282px;left:0px;top:450px;">
 </div>
 <div id="C107000020tab12_Grid_1" style="position:absolute;height:492px;width:976px;left:0px;top:0px;">
 </div>
 <div id="C107000020tab12_messagebox" style="position:absolute;height:18px;width:976px;left:0px;top:493px;">
-</div> -->
+</div>
 
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();          
 	var onXLE = items['C107000020tab12_Grid_1'].onXLEEvent(onLoadGrid);  
 //]]>
+-->
 </script>

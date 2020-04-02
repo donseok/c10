@@ -21,35 +21,20 @@
 <title>
 칼라시편관리
 </title>
-<script src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js" type="text/javascript">
+<script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
+<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-// var pageConfiguration = '[' + 
-//       '{"itemType":"form","renderTo":"C106000010_Form_1","xml":".\/header\/kr\/C106000010\/C106000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000010_Grid_1","service":"C106000010-service","actionType":"find","security":"true"},' +
-//       '{"itemType":"menu","renderTo":"C106000010_Menu_1","xml":".\/header\/kr\/C106000010\/C106000010_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000010_Grid_1","service":"C106000010-service"},' +
-//       '{"itemType":"grid","renderTo":"C106000010_Grid_1","xml":".\/header\/kr\/C106000010\/C106000010_Grid_1.xml","rowCnt":"18","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000010_Form_1","service":"C106000010-service","actionType":"save"},' +
-//       '{"itemType":"messagebox","renderTo":"C106000010_messagebox","xml":".\/header\/kr\/C106000010\/C106000010_messagebox.xml","service":"C106000010-service"}' +
-//    ']';
-// var initConfig = JSON.parse(pageConfiguration);	   
-
-var Form_1 = {"itemType":"form","renderTo":"C106000010_Form_1","xml":".\/header\/kr\/C106000010\/C106000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000010_Grid_1","service":"C106000010-service","actionType":"find","security":"true"};
-var Menu_1 = {"itemType":"menu","renderTo":"C106000010_Menu_1","xml":".\/header\/kr\/C106000010\/C106000010_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000010_Grid_1","service":"C106000010-service"};
-var Grid_1 = {"itemType":"grid","renderTo":"C106000010_Grid_1","xml":".\/header\/kr\/C106000010\/C106000010_Grid_1.xml","rowCnt":"18","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000010_Form_1","service":"C106000010-service","actionType":"save"};
-
-var initLayout = 
-{
-	"programId":"C106000010",
-	"itemType": "layout", "messageBox":true, "dirType":"row", "childSize":"60,30,*", "splitter":false, "components": 
-	[
-	    Form_1,
-		Menu_1,
-        Grid_1
-	]
-};  
-
+var pageConfiguration = '[' + 
+      '{"itemType":"form","renderTo":"C106000010_Form_1","xml":".\/header\/kr\/C106000010\/C106000010_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000010_Grid_1","service":"C106000010-service","actionType":"find","security":"true"},' +
+      '{"itemType":"menu","renderTo":"C106000010_Menu_1","xml":".\/header\/kr\/C106000010\/C106000010_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000010_Grid_1","service":"C106000010-service"},' +
+      '{"itemType":"grid","renderTo":"C106000010_Grid_1","xml":".\/header\/kr\/C106000010\/C106000010_Grid_1.xml","rowCnt":"18","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000010_Form_1","service":"C106000010-service","actionType":"save"},' +
+      '{"itemType":"messagebox","renderTo":"C106000010_messagebox","xml":".\/header\/kr\/C106000010\/C106000010_messagebox.xml","service":"C106000010-service"}' +
+   ']';
+var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 var columnList = "CLR_SMP_REQ_NO,CLR_SMP_RCP_NO,CUS_REQ_HUE_TXT,RSN_TP_TXT,RSN_ANL_REQ_YN,SMP_SND_YN,PNT_FLM_THK_TXT,SMP_LUS_YN,LUS_RT_CD,CLR_USE_NM,SAL_CHR_PRS_ID,CUS_CD_TXT,USE_REG_TXT,PRD_NM_CD,PRD_TP_YN,SAL_CHR_REQ_DH,SAL_CHR_RGN_DH,CLR_SMP_RMK,DEV_PNT_CMP_CD,DEV_PNT_CMP_CD_NM,RSN_TP,CLR_SMP_DEV_REQ_DH,CLR_SMP_DEV_LMT_DH,CLR_SMP_DEV_END_DH,CLR_SMP_DEV_SND_DH,SMP_SND_INF,DSN_CHR_RGN_YN,HUE_CD,CCL_BOM_NO,CCL_BOM_RGS_DH,CLR_TP,CLR_TP_NM,SIM_HUE_PRG_YN,DSN_CHR_PRS_ID,CLR_SMP_DSN_RMK,SMP_PRC_MAN,MGR_CAL";
 //form find button item event function (requred)
@@ -212,7 +197,7 @@ function onGridAfterUpdateFinishEvent(){
 
 
 function findMessage(referenceItem){
-	uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
+	uiCommon.message("C106000010_messagebox",referenceItem.getUserData("","appMsg"));
   	return true;
 }
 /*
@@ -297,23 +282,26 @@ function findClrCmp(){
     
 }
 //]]>
+-->
 </script>
 </head>
 <body>
-<!-- <div id="C106000010_Form_1" style="position:absolute;height:71px;width:981px;left:0px;top:0px;">
+<div id="C106000010_Form_1" style="position:absolute;height:71px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C106000010_Menu_1" style="position:absolute;height:25px;width:981px;left:0px;top:73px;">
 </div>
 <div id="C106000010_Grid_1" style="position:absolute;height:467px;width:977px;left:0px;top:97px;">
 </div>
 <div id="C106000010_messagebox" style="position:absolute;height:19px;width:977px;left:1px;top:567px;">
-</div> -->
+</div>
 </body>
 </html>
 <script>
+<!--
 //<![CDATA[
 	ui.initializeDHTMLX();          
 	var onXleForm = items['C106000010_Form_1'].onXLEEvent(onFormLoadFunction);
 	//var onXleGrid = items['C106000010_Grid_1'].onXLEEvent(onGridLoadFunction);
 //]]>
+-->
 </script>

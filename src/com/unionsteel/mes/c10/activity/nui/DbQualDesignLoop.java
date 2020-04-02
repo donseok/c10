@@ -160,7 +160,7 @@ public class DbQualDesignLoop extends PosActivity implements C10NuiConstantsIF
         } catch ( Exception e )
         {
 
-            logger.logError( "DbQualDesignLoop 에러 발생 : " );
+            logger.logError( "DbQualDesignLoop 에러 발생 : " +  ctx);
             e.printStackTrace();
             ctx.setException( e );
             return PosBizControlConstants.FAILURE;

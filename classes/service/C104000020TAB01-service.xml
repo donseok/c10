@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000020TAB01-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020TAB01.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="텍스트수정" />
+  </activity>
+  <activity name="텍스트수정" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="복사금지전송" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C104000020TAB01.update" />
+  </activity>
+  <activity name="복사금지전송" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C104000020TAB01.interFace" />
+    <property name="isAudit" value="true" />
+  </activity>
+</service>
+

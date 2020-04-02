@@ -38,23 +38,23 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >조건</column>
-<column align="right"   id="THK_TLN_LLV" index="2" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >결과</column>
-<column align="right"   id="THK_TLN_ULV" index="3" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WTH_TLN_LLV" index="4" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="right"   id="WTH_TLN_ULV" index="5" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="right"   id="LTH_TLN_LLV" index="6" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="right"   id="LTH_TLN_ULV" index="7" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="right"   id="HWAV_H" index="8" sort="str" table="VI_M00_C10A1023" type="ro" width="40" >#cspan</column>
-<column align="right"   id="MWAV_H" index="9" sort="str" table="VI_M00_C10A1023" type="ro" width="40" >#cspan</column>
-<column align="right"   id="EWAV_H" index="10" sort="str" table="VI_M00_C10A1023" type="ro" width="40" >#cspan</column>
-<column align="right"   id="SLR_ULV" index="11" sort="str" table="VI_M00_C10A1023" type="ro" width="60" >#cspan</column>
-<column align="center" id="RAR_ULV" index="12" sort="str" table="VI_M00_C10A1023" type="ro" width="60" >#cspan</column>
-<column align="center"   id="DGLN_DIF_ULV" index="13" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="center"   id="STPN" index="14" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
-<column align="center"   id="TLC" index="15" sort="str" table="VI_M00_C10A1023" type="ro" width="100" >#cspan</column>
+<column align="center" id="CUS_BTH_PAP_NO" index="1" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >조건</column>
+<column align="right"   id="THK_TLN_LLV" index="2" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >결과</column>
+<column align="right"   id="THK_TLN_ULV" index="3" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WTH_TLN_LLV" index="4" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="right"   id="WTH_TLN_ULV" index="5" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="right"   id="LTH_TLN_LLV" index="6" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="right"   id="LTH_TLN_ULV" index="7" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="right"   id="HWAV_H" index="8" sort="str" table="VI_M00_C10A1023" type="ro" width="4" >#cspan</column>
+<column align="right"   id="MWAV_H" index="9" sort="str" table="VI_M00_C10A1023" type="ro" width="4" >#cspan</column>
+<column align="right"   id="EWAV_H" index="10" sort="str" table="VI_M00_C10A1023" type="ro" width="4" >#cspan</column>
+<column align="right"   id="SLR_ULV" index="11" sort="str" table="VI_M00_C10A1023" type="ro" width="6" >#cspan</column>
+<column align="center" id="RAR_ULV" index="12" sort="str" table="VI_M00_C10A1023" type="ro" width="6" >#cspan</column>
+<column align="center"   id="DGLN_DIF_ULV" index="13" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="center"   id="STPN" index="14" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
+<column align="center"   id="TLC" index="15" sort="str" table="VI_M00_C10A1023" type="ro" width="10" >#cspan</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">CUS_BTH_PAP_NO,THK_TLN_LLV,THK_TLN_ULV,WTH_TLN_LLV,WTH_TLN_ULV, LTH_TLN_LLV,LTH_TLN_ULV,HWAV_H,MWAV_H,EWAV_H,SLR_ULV,RAR_ULV,DGLN_DIF_ULV,STPN,TLC</userdata>

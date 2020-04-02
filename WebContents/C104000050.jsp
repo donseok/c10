@@ -42,6 +42,9 @@ function find(eventName){
 	var fromDate = items['C104000050_Form_1'].getItemValue('QLT_DSN_INST_DH_STR');
 	var toDate = items['C104000050_Form_1'].getItemValue('QLT_DSN_INST_DH_END');
 	
+	// 조회구분
+	var stsCd  = items['C104000050_Form_1'].getDhxForm().getItemValue('QLT_DSN_STS_CD');
+	
 	// 입력받을 타입을 검사
 	fromDate = get_DateTypeDay(fromDate);
 	toDate = get_DateTypeDay(toDate);
@@ -71,8 +74,14 @@ function find(eventName){
 		return ;
 	}
 	
-	var findUrl = uiCommon.parameters('C104000050_Form_1','C104000050_Grid_1',eventName); 
-	items['C104000050_Grid_1'].loadData(findUrl,findAfterEvent); 
+	//품질설계 확정대기, 설계오류 동시에 보여줌 (2020.2.12 이상현대리요청)
+	if(stsCd == 'B'){
+		var findUrl = uiCommon.parameters('C104000050_Form_1','C104000050_Grid_1','findBsts');
+		items['C104000050_Grid_1'].loadData(findUrl,findAfterEvent);
+	}else{
+		var findUrl = uiCommon.parameters('C104000050_Form_1','C104000050_Grid_1','find');
+		items['C104000050_Grid_1'].loadData(findUrl,findAfterEvent);
+	}
 }
 
 function save(eventName,formDivObj,referenceItem){
@@ -514,7 +523,8 @@ function onGridLoadEvent(){
 		else grid.cellByIndex(i, 0).setDisabled(false);
 		
 	}*/
-	find('find','C104000050_Form_1','C104000050_Grid_1');
+	//find('find','C104000050_Form_1','C104000050_Grid_1');
+	find('findBsts','C104000050_Form_1','C104000050_Grid_1'); 
 	gridObj.detachEvent(onXleGrid);
 
 }
@@ -609,34 +619,16 @@ function findAfterEvent(){
 	
 	for(var i=0;i<grid.getRowsNum();i++)
 	{
-	    //var stat = grid.cellByIndex(i,10).getValue();
-	    //var stat1 = grid.cellByIndex(i,22).getValue();
-	    
+   
 	    ORD_BAK_SND_TP =  grid.cellByIndex(i,grid.getColIndexById("ORD_BAK_SND_TP")).getValue();
 	    qlt_hld_yn = grid.cellByIndex(i,grid.getColIndexById("QLT_HLD_YN")).getValue();
 	    
-		/*
-	    if(stat != "" && stat.substring(0,1) != "B" && stat.substring(0,1) != "E")				
-		{
-	        grid.cellByIndex(i, 0).setDisabled(true);
-		}else{
-			grid.cellByIndex(i, 0).setDisabled(false);
-		}
-		*/
-		
+
 		//보류 or 반송인 경우는 붉은 색으로 표시 및 설계확정을 위한 체크박스 비활성
 		if(ORD_BAK_SND_TP == "R" || qlt_hld_yn == "Y"){
 		  grid.setRowTextStyle(grid.getRowId(i),"color:red;");
 		  grid.cellByIndex(i,0).setDisabled(true);
 		}
-		
-		/*
-		if(stat1 != "")
-		{
-			grid.cellByIndex(i,9).setDisabled(true);	
-		}
-		*/
-		
 		
 	}
 	return true;

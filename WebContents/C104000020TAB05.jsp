@@ -60,12 +60,12 @@ var pageConfiguration = '[' +
       '{"itemType":"messagebox","renderTo":"C104000020TAB05_messagebox","xml":".\/header\/kr\/C104000020TAB05\/C104000020TAB05_messagebox.xml","service":"C104000020TAB05-service"}' +
    ']';
 var initConfig = JSON.parse(pageConfiguration);
-
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
-
 var fg_grid2_update = "N";
-
 var rmtlKind = "";
+//원재료 두께, 폭 조정 사용자 오류방지
+var redflag1 = 0;
+var redflag2 = 0;
 
 
 
@@ -645,6 +645,7 @@ function findMessage(referenceItem){
 	//document.getElementById("C104000020TAB05_messagebox").innerHTML = "&nbsp;MESSAGE&nbsp;&nbsp;|&nbsp" + grid.getUserData("","appMsg"); //원자재 조회메세지 설정
 }
 function upt_clear(){
+	/*
 	var grid = items['C104000020TAB05_Grid_1'];
 	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
 	grid.setUpdated(grid.getDhxGrid().getRowId(1),false,""); 
@@ -662,56 +663,80 @@ function upt_clear(){
 	grid = items['C104000020TAB05_Grid_7'];
 	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
 	fg_grid2_update = "N";
+	*/
+	var grid = items["C104000020TAB05_Grid_1"];
+	var gridObj = items["C104000020TAB05_Grid_1"].getDhxGrid();
+
+	grid = items['C104000020TAB05_Grid_2'];
+	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,"");
+	grid = items['C104000020TAB05_Grid_3'];
+	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,"");
+	grid.setUpdated(grid.getDhxGrid().getRowId(1),false,"");
+	grid = items['C104000020TAB05_Grid_4'];
+	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,"");
+	grid.setUpdated(grid.getDhxGrid().getRowId(1),false,"");
+	grid = items['C104000020TAB05_Grid_5'];
+	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,"");
+	grid = items['C104000020TAB05_Grid_7'];
+	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,"");
+	fg_grid2_update = "N";
+	
+	if(redflag2 ==1){
+	  gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	}
+	if(redflag1 ==1){
+	  gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	}
 }
 
 function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
 	var grid = items["C104000020TAB05_Grid_1"];
 	var gridObj = items["C104000020TAB05_Grid_1"].getDhxGrid();
 	
-	
-    rmtlKind = grid.getCellValue(grid.getSelectedRowId(),0);
-	
-	
-	if(stage==1){
-		if(cInd == 2 || cInd == 3 || cInd == 4 ) { //MAX LENGTH 체크
-			gridObj.editor.obj.onkeyup = function(e){
-				e = e||window.event;
-				if((e.keyCode >= 47) || (e.keyCode == 0)){
-					if(!grid_qnty_check("두께목표,하한,상한",2,3,true,this.value)){
-						if(this.value.length > 5){
-							gridObj.editor.obj.value = this.value.substring(0,this.value.length-1);
-						}else{
-							gridObj.editor.obj.value = "";
-						}
-						return true;
-					}else{
-						gridObj.editor.obj.value = this.value;							
-						return true;
-					}				
-				}
-			}
-		}else if(cInd == 5 ) { //MAX LENGTH 체크
-			gridObj.editor.obj.onkeyup = function(e){
-				e = e||window.event;
-				if((e.keyCode >= 47) || (e.keyCode == 0)){
-					if(!grid_qnty_check("폭목표",4,1,true,this.value)){
-						if(this.value.length > 5){
-							gridObj.editor.obj.value = this.value.substring(0,this.value.length-1);
-						}else{
-							gridObj.editor.obj.value = "";
-						}
-						return true;
-					}else{
-						gridObj.editor.obj.value = this.value;							
-						return true;
-					}				
-				}
-			}
-		}else{
-			return true;
+	var rmtlKind = grid.getCellValue(grid.getSelectedRowId(),0);
+	var Rmtltarthk = grid.getCellValue(grid.getSelectedRowId(),2);
+	var Thklvl = grid.getCellValue(grid.getSelectedRowId(),3);
+	var Thkuvl = grid.getCellValue(grid.getSelectedRowId(),4);
+	var Rmtltarwth = grid.getCellValue(grid.getSelectedRowId(),5);
+	var Thklvlstd = grid.getCellValue(grid.getSelectedRowId(),9);
+	var Thkuvlstd = grid.getCellValue(grid.getSelectedRowId(),10);
+	var Rmtltarwthstd = grid.getCellValue(grid.getSelectedRowId(),11);
+	 
+	if(stage==2){
+		if (cInd==2){
+			if(Number(nValue) < Number(Thklvlstd) || Number(nValue) > Number(Thkuvlstd))
+	   		{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	    		redflag1 = 1;
+	    		if(redflag2 ==1){
+	      			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		}
+			}else{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:white");
+	    		redflag1 = 0;
+	    		if(redflag2 ==1){
+	      			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		}
+	    	}
 		}
+		if(cInd==5){
+			if(Number(nValue) < Number(Rmtltarwthstd) || Number(nValue) > Number(Rmtltarwthstd)+25)
+	   		{  
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:red");
+	     		redflag2 =1;
+	     		if(redflag1 ==1){
+	    			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	      		}
+			}else{
+	    		gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_WTH"),"background:white");
+	    		redflag2 =0;
+	    		if(redflag1 ==1){
+	    			gridObj.setCellTextStyle(grid.getSelectedRowId(),gridObj.getColIndexById("RMTL_TAR_THK"),"background:red");
+	      		}
+	    	}
+	 	}
+		return true;
 	}
-   return true;
 }
 
 function onEditCellEvent2(stage,rId,cInd,nValue,oValue){

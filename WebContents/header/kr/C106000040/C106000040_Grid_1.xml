@@ -33,24 +33,24 @@
 </call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column align="center" id="MTL_CD" index="1" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="150">Material Code</column>
-<column align="left" id="MAT_TYPE" index="2" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="100">자재유형</column>
-<column align="left" id="PRD_NM_CD" index="3" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="100">품명코드</column>
-<column align="left" id="PRD_SHP" index="4" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="200">제품형태</column>
-<column align="left" id="MQL_CD" index="5" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="160">재질코드</column>
-<column align="left" id="ORD_GW_ASG_CD" index="6" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="170">도금량 지정코드</column>
-<column align="center" id="ORD_ROU_CD" index="7" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="100">표면조도</column>
-<column align="left" id="ORD_SPNL_TP" index="8" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="170">Spangle</column>
-<column align="left" id="ORD_SUR_HND_CD" index="9" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="170">표면처리</column>
-<column align="center" id="CCL_BOM_NO" index="10" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="170">CCL BOM 코드</column>
-<column align="right" id="CUS_REQ_ROL_THK" index="11" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ro" width="170">압연Set두께</column>
-<column align="right" id="ORD_EXC_WTH" index="12" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ron" format="0,000" width="80">주문폭</column>
-<column align="left" id="ORD_PAK_MTH" index="13" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="130">포장벙법</column>
-<column align="center" id="PTT_FLM_DTL_CD" index="14" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="100">보호필름</column>
-<column align="right" id="STD_CST" index="15" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ro" width="100">표준원가</column>
-<column align="center" id="MTL_RCV_DH" index="16" sort="sort_date_custom" table="TB_C10_MTL_MST" type="dhxCalendarA" width="150">수신일시</column>
+<column align="center" id="MTL_CD" index="1" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="15">Material Code</column>
+<column align="left" id="MAT_TYPE" index="2" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="10">자재유형</column>
+<column align="left" id="PRD_NM_CD" index="3" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="10">품명코드</column>
+<column align="left" id="PRD_SHP" index="4" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="20">제품형태</column>
+<column align="left" id="MQL_CD" index="5" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="16">재질코드</column>
+<column align="left" id="ORD_GW_ASG_CD" index="6" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="17">도금량 지정코드</column>
+<column align="center" id="ORD_ROU_CD" index="7" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="10">표면조도</column>
+<column align="left" id="ORD_SPNL_TP" index="8" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="17">Spangle</column>
+<column align="left" id="ORD_SUR_HND_CD" index="9" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="17">표면처리</column>
+<column align="center" id="CCL_BOM_NO" index="10" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="17">CCL BOM 코드</column>
+<column align="right" id="CUS_REQ_ROL_THK" index="11" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ro" width="17">압연Set두께</column>
+<column align="right" id="ORD_EXC_WTH" index="12" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ron" format="0,000" width="8">주문폭</column>
+<column align="left" id="ORD_PAK_MTH" index="13" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="13">포장벙법</column>
+<column align="center" id="PTT_FLM_DTL_CD" index="14" sort="sort_str_custom" table="TB_C10_MTL_MST" type="ro" width="10">보호필름</column>
+<column align="right" id="STD_CST" index="15" sort="sort_int_custom" table="TB_C10_MTL_MST" type="ro" width="10">표준원가</column>
+<column align="center" id="MTL_RCV_DH" index="16" sort="sort_date_custom" table="TB_C10_MTL_MST" type="dhxCalendarA" width="15">수신일시</column>
 <settings>
-<colwidth>px</colwidth>
+<colwidth>%</colwidth>
 </settings>
 </head>
 <userdata name="column-info">MTL_CD,MAT_TYPE,PRD_NM_CD,PRD_SHP,MQL_CD,ORD_GW_ASG_CD,ORD_ROU_CD,ORD_SPNL_TP,ORD_SUR_HND_CD,CCL_BOM_NO,CUS_REQ_ROL_THK,ORD_EXC_WTH,ORD_PAK_MTH,PTT_FLM_DTL_CD,STD_CST,MTL_RCV_DH</userdata>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000201110-service" initial="GetCachingData">
+  <activity name="GetCachingData" class="com.poscoict.glue.master.common.GetCachingData">
+    <transition name="success" value="TransCodeListRouter" />
+    <property name="cache-key" value="HIERARCHY_OP_TP|HIERARCHY_OWNER_SHIP_TP|LANGUAGE_CODE" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="system.code.meaning" />
+  </activity>
+  <activity name="PosTransCodeListExport" class="com.poscoict.glue.master.ui.code.GetCodeList">
+    <transition name="success" value="ForwardPage" />
+    <property name="pagesize" value="-1" />
+    <property name="isTransCodeList" value="true" />
+    <property name="dao" value="masterdao" />
+    <property name="sqlkey" value="m000201010.selCodeList" />
+    <property name="resultkey" value="CodeListVOResult" />
+    <property name="param-count" value="0" />
+  </activity>
+  <activity name="TransCodeListRouter" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="export" value="PosTransCodeListExport" />
+    <transition name="success" value="PosTransCodeList" />
+  </activity>
+  <activity name="PosTransCodeList" class="com.poscoict.glue.master.ui.code.GetCodeList">
+    <transition name="success" value="end" />
+    <property name="dao" value="masterdao" />
+    <property name="resultkey" value="CodeListVOResult" />
+    <property name="isTransCodeList" value="true" />
+    <property name="sqlkey" value="m000201010.selCodeList" />
+    <property name="pagesize" value="20" />
+    <property name="param-count" value="0" />
+    <property name="cur-page-name" value="curPage" />
+  </activity>
+  <activity name="ForwardPage" class="com.posdata.glue.biz.activity.PosForwardPage">
+    <transition name="success" value="end" />
+    <property name="forwardname" value="export" />
+  </activity>
+</service>
+

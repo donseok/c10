@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="m000208040-service" initial="*CheckTermsWordList">
+  <activity name="*CheckTermsWordList" class="com.poscoict.glue.master.ui.attr.ParseTermsWords">
+    <transition name="success" value="end" />
+    <property name="resultkey" value="resultkey" />
+    <property name="dao" value="masterdao" />
+  </activity>
+</service>
+
