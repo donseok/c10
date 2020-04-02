@@ -269,50 +269,50 @@ function onFormLoad(){
 		grid1.setColumnHiddenFlag("0,1,2",false);
 		grid1.setColumnHiddenFlag("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",true);		
 		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,57,59,60,61,62",false);
-		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,63",true);		
+		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,63,64",true);		
 	}else if(radioValue == "2"){
 		items['C106000090_Form_2'].setItemValue("ALERT","CCL BOM이 사용된 주문검색");
 		grid1.setColumnHiddenFlag("3,4,5",false);
 		grid1.setColumnHiddenFlag("0,1,2,6,7,8,9,10,11,12,13,14,15,16,17,18,19",true);
-		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20",false);		
+		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,64",false);		
 		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);
 	}else if(radioValue == "3"){
 		items['C106000090_Form_2'].setItemValue("ALERT","수지타입이 사용된 칼라코드 검색");	
 		grid1.setColumnHiddenFlag("6,7",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,8,9,10,11,12,13,14,15,16,17,18,19",true);
 		grid2.setColumnHiddenFlag("21,22,23,24,25,26,27",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",true);		
 	}else if(radioValue == "4"){
 		items['C106000090_Form_2'].setItemValue("ALERT","Print Roll이 사용된 CCL BOM 검색");	
 		grid1.setColumnHiddenFlag("8,9,10",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,11,12,13,14,15,16,17,18,19",true);
 		grid2.setColumnHiddenFlag("28,29,30,31,32,33,34,35,36,37",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",true);		
 	}else if(radioValue == "5"){
 		items['C106000090_Form_2'].setItemValue("ALERT","동일Print Roll이 사용된 CCL BOM 검색");	
 		grid1.setColumnHiddenFlag("11,12",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19",true);
 		grid2.setColumnHiddenFlag("38,39,40,41,42,43,44,45,46",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",true);		
 	}else if(radioValue == "6"){
 		items['C106000090_Form_2'].setItemValue("ALERT","Ink코드가 사용된 CCL BOM 검색");	
 		grid1.setColumnHiddenFlag("13,14,15",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,16,17,18,19",true);
 		grid2.setColumnHiddenFlag("47,48,49,50,51,52,53,54,55,56",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,57,58,59,60,61,62,63",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,57,58,59,60,61,62,63,64",true);		
 	}else if(radioValue == "7"){
 		items['C106000090_Form_2'].setItemValue("ALERT","보호필름코드가 사용된 CCL BOM 검색");	
 		grid1.setColumnHiddenFlag("16",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19",true);
 		grid2.setColumnHiddenFlag("58,59,60,61,62",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,63",true);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,63,64",true);
 	}else if(radioValue == "8"){
 		items['C106000090_Form_2'].setItemValue("ALERT","접착제가 사용된 CCL BOM 검색");	
 		grid1.setColumnHiddenFlag("17,18,19",false);
 		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",true);
 		
 		grid2.setColumnHiddenFlag("58,59,60,61,62,63",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,64",true);		
 	}
 }
 
@@ -578,6 +578,20 @@ function Grid_doLink(val,rowIdx,cellIdx){
 		param += "&ORD_NO="+ORD_NO;
 		param += "&ORD_LN="+ORD_LN;
 		parent.newRemoveOpenTab(link_url,param);
+	}
+}
+
+function C106000090_doLink(val,rowIdx,cellIdx){
+	var gridObj 	= items['C106000090_Grid_2'].getDhxGrid();
+	var link_url 	= "", param = "";
+	if(cellIdx == gridObj.getColIndexById('PRD_WHS_OX')) {
+		
+			var ORD_NO	= gridObj.cells(rowIdx,gridObj.getColIndexById("ORD_NO")).getValue().substring(0,10);
+			var ORD_LN 	= gridObj.cells(rowIdx,gridObj.getColIndexById("ORD_NO")).getValue().substring(11,14);
+			link_url = "M472020090";
+			param += "&ORD_NO="+ORD_NO;
+			param += "&ORD_LN="+ORD_LN;
+			parent.newRemoveOpenTab(link_url,param);
 	}
 }
 

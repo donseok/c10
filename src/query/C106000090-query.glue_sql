@@ -99,26 +99,30 @@ ORDER BY a.CCL_BOM_NO, decode(b.CUS_CD,'******','0',b.CUS_CD), decode(b.ORD_USG_
 	 </query>
 	 <query id="C106000090_Grid2_CCLBOM.select" desc="10" fetchSize="100" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
-      ORD_NO ||'-'||ORD_LN ORD_NO
-      ,SPC_AVR
+ SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
+      A.ORD_NO ||'-'||A.ORD_LN AS ORD_NO
+      ,A.SPC_AVR
       ,(SELECT CD_V_MEANING 
         FROM M00APUSER.VI_M00_CODE_ACCESS
         WHERE CD_TP = 'ORD_USG_CD' 
         AND   CATEGORY_GROUP_NM = 'SZ0000'
-        AND   CD_V = ORD_USG_CD) ORD_USG_CD  --주문용도코드
-      ,PRD_NM_CD
+        AND   CD_V = A.ORD_USG_CD) AS ORD_USG_CD  --주문용도코드
+      ,A.PRD_NM_CD
       ,(SELECT CD_V_MEANING 
         FROM M00APUSER.VI_M00_CODE_ACCESS
         WHERE CD_TP = 'CUS_CD' 
         AND   CATEGORY_GROUP_NM = 'SZ0000'
-        AND   CD_V = FNL_CUS_CD) FNL_CUS_CD -- 최종수요가코드
-      ,ORD_EXC_THK --주문환산두께
-      ,ORD_EXC_WTH --주문환산폭
-      ,TO_CHAR(QLT_DSN_END_DH, 'YYYY-MM-DD') QLT_DSN_END_DH
- FROM   C10APUSER.TB_C10_QLT_DSN_CMN 
- WHERE CCL_BOM_NO = :CCL_BOM_NO
- ORDER BY QLT_DSN_END_DH DESC
+        AND   CD_V = A.FNL_CUS_CD) AS FNL_CUS_CD -- 최종수요가코드
+      ,A.ORD_EXC_THK --주문환산두께
+      ,A.ORD_EXC_WTH --주문환산폭
+      ,TO_CHAR(A.QLT_DSN_END_DH, 'YYYY-MM-DD') AS QLT_DSN_END_DH
+      ,DECODE((SELECT COUNT(WH.COIL_ID)
+                 FROM MESAPUSER.TB_M60_WHS_RET WH
+                WHERE WH.ORD_NO = A.ORD_NO
+                  AND WH.ORD_LN = A.ORD_LN),0,'X','O') AS PRD_WHS_OX
+ FROM   C10APUSER.TB_C10_QLT_DSN_CMN A
+ WHERE A.CCL_BOM_NO = :CCL_BOM_NO
+ ORDER BY A.QLT_DSN_END_DH DESC
 		 ]]> 
 	 </query>
 	 <query id="C106000090_Grid2_RSNTP.select" desc="10" fetchSize="100" isNamed="true">

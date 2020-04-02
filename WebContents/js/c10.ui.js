@@ -1000,7 +1000,7 @@ function eXcell_ahref_idx(cell){
     this.getValue=function(){
 		 return this.cell.childNodes[0].innerHTML; // get value
 	};
-}/** nest all other methods from base class */eXcell_ahref_idx.prototype = new eXcell;  
+}/** nest all other methods from base class */eXcell_ahref_idx.prototype = new eXcell;  function eXcell_ahref_C106000090(cell){         /** default pattern, just copy it */	if (cell){                                                     		this.cell = cell;		this.grid = this.cell.parentNode.grid;	}	this.setValue=function(val){	  /** get related row id */		var row_id=this.cell.parentNode.idd; 		  var cell_idx = this.cell._cellIndex;			  if(val == "O") {			  this.setCValue("<a href='javascript:void(0)' onclick='C106000090_doLink(\""+val+"\",\""+row_id+"\",\""+cell_idx+"\")' onFocus='blur()'>"+val+"</a>",val);		  } else {			  this.setCValue(val,val);		  }		},    this.getValue=function(){		 return this.cell.childNodes[0].innerHTML; // get value	};}/** nest all other methods from base class */eXcell_ahref_C106000090.prototype = new eXcell;  
 //form input item backspace event 방지 이벤트호출
 function readOnlyItemBackEvent(formId){    
 	var formdata = items[formId].getDhxForm().getFormData(); 
