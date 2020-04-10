@@ -99,14 +99,15 @@ ORDER BY a.CCL_BOM_NO, decode(b.CUS_CD,'******','0',b.CUS_CD), decode(b.ORD_USG_
 	 </query>
 	 <query id="C106000090_Grid2_CCLBOM.select" desc="10" fetchSize="100" isNamed="true">
 		 <![CDATA[ 
- SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
+SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
       A.ORD_NO ||'-'||A.ORD_LN AS ORD_NO
       ,A.SPC_AVR
       ,(SELECT CD_V_MEANING 
         FROM M00APUSER.VI_M00_CODE_ACCESS
         WHERE CD_TP = 'ORD_USG_CD' 
-        AND   CATEGORY_GROUP_NM = 'SZ0000'
-        AND   CD_V = A.ORD_USG_CD) AS ORD_USG_CD  --주문용도코드
+        AND   CATEGORY_GROUP_NM = 'SZ0001'
+        AND   CD_V = A.ORD_USG_CD)
+        AS ORD_USG_CD  --주문용도코드
       ,A.PRD_NM_CD
       ,(SELECT CD_V_MEANING 
         FROM M00APUSER.VI_M00_CODE_ACCESS
