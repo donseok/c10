@@ -34,8 +34,7 @@ SELECT /*+ C10 품질설계결과Main C104000020.select 박재영 */
        WHERE CD_TP = 'PRD_NM_CD' 
        AND   CATEGORY_GROUP_NM = 'SZ0000'
        AND   CD_V = PRD_NM_CD) PRD_NM_CD
-      ,ORD_USG_CD || 
-      (SELECT ' : ' || CD_V_MEANING 
+      ,(SELECT CD_V_MEANING 
        FROM M00APUSER.VI_M00_CODE_ACCESS 
        WHERE CD_TP = 'ORD_USG_CD' 
        AND   CATEGORY_GROUP_NM = 'SZ0000'
