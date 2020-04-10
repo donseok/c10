@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<service name="C103100110-service" initial="SEARCH_MD">
-  <transaction-manager id="tx1" commit="true" />
-  <activity name="SEARCH_MD" class="com.unionsteel.mes.c10.activity.nui.DbSearchPakMtlWgtData">
-    <transition name="success" value="end" />
-    <transition name="failure" value="end" />
-  </activity>
-</service>
-

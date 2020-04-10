@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Ant-Version: Apache Ant 1.8.3
-Created-By: 1.6.0_45-b06 (Sun Microsystems Inc.)
-
-Name: POSCO ICT Glue Sample Project
-Implementation-Title: com.posdata.glue.sample
-Implementation-Version: 1.0.0-200318.1059
-Implementation-Vendor: POSCO ICT, Inc.
-

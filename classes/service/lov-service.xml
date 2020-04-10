@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<service name="lov-service" initial="LOV조회">
-  <transaction-manager id="tx4" commit="true" />
-  <activity name="LOV조회" class="com.poscoict.glue.biz.dhtmlx.PosLOV">
-    <transition name="success" value="end" />
-    <property name="dao" value="masterdao" />
-  </activity>
-</service>
-
