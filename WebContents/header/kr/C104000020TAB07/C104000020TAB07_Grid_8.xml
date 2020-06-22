@@ -7,15 +7,9 @@
 <call command="enableValidation"><param>true</param></call>
 <call command="setNoHeader"><param>true</param></call>
 <call command="enableMultiline"><param>true</param></call>
-<call command="enableResizing">    
-	<param>false,false,false,false</param>    
-</call>
-<call command="enableSmartRendering">
-	<param>true</param>
-</call>
-<call command="setAwaitedRowHeight">
-	<param>22</param>
-</call>
+<call command="enableResizing"><param>false,false,false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
 </beforeInit>
 <afterInit>
 <!-- 가변항목 관련 세팅 시작.-->
@@ -24,7 +18,7 @@
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
 <column id="QLT_MSG_CD" index="1" sort="na" align="center" dbname="품질Message코드" width="10" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" clabel="품질Message코드">품질Message코드</column>
-<column id="CCL_QLT_MSG_TXT" index="2" sort="na" align="left" dbname="품질Message" width="*" table="TB_C10_QLT_DSN_CCL_BOM" type="ed"  color="FFFFC0" clabel="품질Message">품질Message</column>
+<column id="CCL_QLT_MSG_TXT" index="2" sort="na" align="left" dbname="품질Message" width="*" table="TB_C10_QLT_DSN_CCL_BOM" type="txt" color="FFFFC0" clabel="품질Message">품질Message</column>
 <column align="center" index="3" clabel="ORD_NO" dbname="주문번호" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문번호</column>
 <column align="center" index="4" clabel="ORD_LN" dbname="주문행번" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문행번</column>
 <column align="center" index="5" clabel="FNL_CUS_CD" dbname="최종수요가코드" id="FNL_CUS_CD" sort="na" table="TB_C10_CLR_MPR" type="ro" width="10" hidden="true">고객사코드</column>

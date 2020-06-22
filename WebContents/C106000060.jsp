@@ -616,10 +616,11 @@ function add1(referenceItem){
 			return;
 		}
 		var gridDhxObj = items['C106000060_Grid_2'].getDhxGrid();  
-        gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("CLR_BND_TST_FRN_STD_CD"), "combo_v"); //T
-        gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("CLR_BND_TST_BAK_STD_CD"), "combo_v"); //콤보설정
-        gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("MPR_BAS_PNCL_HRDN_FRN"), "combo_v"); //콤보설정 
-        gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("MPR_BAS_PNCL_HRDN_BAK"), "combo_v"); //콤보설정 		      
+		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("CLR_BND_TST_FRN_STD_CD"), "combo_v");	//T
+		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("CLR_BND_TST_BAK_STD_CD"), "combo_v");	//콤보설정
+		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("MPR_BAS_PNCL_HRDN_FRN"), "combo_v");	//콤보설정 
+		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("MPR_BAS_PNCL_HRDN_BAK"), "combo_v");	//콤보설정
+		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), gridDhxObj.getColIndexById("CCL_QLT_MSG_TXT"), "txt");				//텍스트처리
 	}else{
 		alert("CCL-BOM번호를 선택해주세요.");
 		return;		
