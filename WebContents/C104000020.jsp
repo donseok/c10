@@ -462,6 +462,49 @@ function onChange(id,value){
 		ui.combo(comboList['ORD_LN'],"OrdlnComboData.do","ServiceName=C104000020-service&OrdLnFind=1&column-info=ORD_LN,ORD_LN&ORD_NO="+ORD_NO);
 	}	
 }
+
+function openBom(){
+	var vUrl = "";
+	var cclbom_tmp  = items["C104000020_Form_2"].getItemValue("CCL_BOM_NO");
+	var cclbom = cclbom_tmp.substring(0,5);
+	
+	if(isNull(cclbom)){
+		alert("BOM정보가 없습니다!");
+	}
+	else{
+		vUrl += "CCL_BOM_NO="+encodeURIComponent(cclbom);
+		parent.newRemoveOpenTab("C106000060", vUrl);
+	}
+}
+
+function openColImg(){
+	var vUrl = "";
+	var cclbom_tmp  = items["C104000020_Form_2"].getItemValue("CCL_BOM_NO");
+	var cclbom = cclbom_tmp.substring(0,5);
+	
+	if(isNull(cclbom)){
+		alert("BOM정보가 없습니다!");
+	}
+	else{
+		vUrl += "CCL_BOM_NO="+encodeURIComponent(cclbom);
+		parent.newRemoveOpenTab("C106000100", vUrl);
+	}
+}
+
+function openCdUsg(){
+	var vUrl = "";
+	var cclbom_tmp  = items["C104000020_Form_2"].getItemValue("CCL_BOM_NO");
+	var cclbom = cclbom_tmp.substring(0,5);
+	
+	if(isNull(cclbom)){
+		alert("BOM정보가 없습니다!");
+	}
+	else{
+		vUrl += "CCL_BOM_NO="+encodeURIComponent(cclbom);
+		parent.newRemoveOpenTab("C106000090", vUrl);
+	}
+}
+
 function custom_call(){
 	var fnlCusCd  = items["C104000020_Form_2"].getItemValue("FNL_CUS_CD");
 	var cusCD     = items["C104000020_Form_2"].getItemValue("CUS_CD");     // 고객사
