@@ -16,36 +16,36 @@
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
 <column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">CCLBOM</column>
-<column id="CLS_CD" sort="str" align="center" dbname="CLS_CD" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">클래스구분</column>
-<column id="DIV_CD" sort="str" align="left" dbname="DIV_CD" width="10" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">구분</column>
+<column id="CLS_CD" sort="str" align="center" dbname="CLS_CD" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">국가구분</column>
+<column id="DIV_CD" sort="str" align="left" dbname="DIV_CD" width="10" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">브랜드구분</column>
+<column id="PER_FOR_19" sort="str" align="right" dbname="PER_FOR_19" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION,기간(1)</column>
+<column id="BRD_CMP_2" sort="str" align="left" dbname="BRD_CMP_2" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">브랜드명</column>
+<column id="RSN_TP_NM" sort="str" align="left" dbname="RSN_TP_NM" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">수지타입명</column>
 <column id="RSN_TP" sort="str" align="center" dbname="RSN_TP" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">수지구분</column>
-<column id="BRD_CMP_2" sort="str" align="left" dbname="BRD_CMP_2" width="12" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">BRAND구성(2)</column>
-<column id="RSN_TP_NM" sort="str" align="left" dbname="RSN_TP_NM" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">수지타입</column>
-<column id="PER_FOR_19" sort="str" align="right" dbname="PER_FOR_19" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION(1)</column>
-<column id="PER_FOR_6" sort="str" align="left" dbname="PER_FOR_6" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION(6)</column>
-<column id="FA_TRM_7" sort="str" align="left" dbname="FA_TRM_7" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(7)</column>
-<column id="FA_TRM_8" sort="str" align="right" dbname="FA_TRM_8" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(8)</column>
-<column id="FA_ROF_9" sort="str" align="right" dbname="FA_ROF_9" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(9)</column>
-<column id="FA_ROF_10" sort="str" align="left" dbname="FA_ROF_10" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(10)</column>
-<column id="FA_WAL_11" sort="str" align="right" dbname="FA_WAL_11" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">WALL(11)</column>
-<column id="FA_WAL_12" sort="str" align="left" dbname="FA_WAL_12" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">WALL(12)</column>
-<column id="CH_TRM_13" sort="str" align="right" dbname="CH_TRM_13" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(13)</column>
-<column id="CH_TRM_14" sort="str" align="left" dbname="CH_TRM_14" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">기간(14)</column>
-<column id="CH_ROF_15" sort="str" align="right" dbname="CH_ROF_15" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(15)</column>
-<column id="CH_ROF_16" sort="str" align="left" dbname="CH_ROF_16" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(16)</column>
-<column id="CH_WAL_17" sort="str" align="right" dbname="CH_WAL_17" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(17)</column>
-<column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ROOF(18)</column>
-<column id="PE_FL_1" sort="str" align="right" dbname="PE_FL_1" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(1)</column>
-<column id="PE_FL_20" sort="str" align="left" dbname="PE_FL_20" width="13" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE(20)</column>
-<column id="GT_MT" sort="str" align="right" dbname="GT_MT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">GT_MT</column>
-<column id="GT_FT" sort="str" align="right" dbname="GT_FT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">GT_FT</column>
-<column id="CREATED_OBJECT_ID" sort="str" align="left" dbname="CREATED_OBJECT_ID" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록자</column>
+<column id="PER_FOR_6" sort="str" align="left" dbname="PER_FOR_6" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PERFORATION,기간(6)</column>
+<column id="FA_TRM_7" sort="str" align="left" dbname="FA_TRM_7" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,기간(7)</column>
+<column id="FA_TRM_8" sort="str" align="right" dbname="FA_TRM_8" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,기간(8)</column>
+<column id="FA_ROF_9" sort="str" align="right" dbname="FA_ROF_9" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,ROOF(9)</column>
+<column id="FA_ROF_10" sort="str" align="left" dbname="FA_ROF_10" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,ROOF(10)</column>
+<column id="FA_WAL_11" sort="str" align="right" dbname="FA_WAL_11" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,WALL(11)</column>
+<column id="FA_WAL_12" sort="str" align="left" dbname="FA_WAL_12" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">ChangeColor,WALL(12)</column>
+<column id="CH_TRM_13" sort="str" align="right" dbname="CH_TRM_13" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,기간(13)</column>
+<column id="CH_TRM_14" sort="str" align="left" dbname="CH_TRM_14" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,기간(14)</column>
+<column id="CH_ROF_15" sort="str" align="right" dbname="CH_ROF_15" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,ROOF(15)</column>
+<column id="CH_ROF_16" sort="str" align="left" dbname="CH_ROF_16" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,ROOF(16)</column>
+<column id="CH_WAL_17" sort="str" align="right" dbname="CH_WAL_17" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,WALL(17)</column>
+<column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">Chalk,WALL(18)</column>
+<column id="PE_FL_1" sort="str" align="right" dbname="PE_FL_1" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE,기간(1)</column>
+<column id="PE_FL_20" sort="str" align="left" dbname="PE_FL_20" width="20" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">PEELFLAKE,기간(20)</column>
+<column id="GT_MT" sort="str" align="right" dbname="GT_MT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">미터</column>
+<column id="GT_FT" sort="str" align="right" dbname="GT_FT" width="8" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">피트</column>
+<column id="CREATED_OBJECT_ID" sort="str" align="center" dbname="CREATED_OBJECT_ID" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록자</column>
 <column id="CREATION_TIMESTAMP" sort="sort_date_custom" align="center" dbname="CREATION_TIMESTAMP" width="10" table="TB_C10_WAR_TRM_MNG" type="ro">등록일자</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">CCL_BOM_NO,CLS_CD,DIV_CD,RSN_TP,BRD_CMP_2,RSN_TP_NM,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT,CREATED_OBJECT_ID,CREATION_TIMESTAMP</userdata>
+<userdata name="column-info">CCL_BOM_NO,CLS_CD,DIV_CD,PER_FOR_19,BRD_CMP_2,RSN_TP_NM,RSN_TP,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT,CREATED_OBJECT_ID,CREATION_TIMESTAMP</userdata>
 <row id="0">
 <cell></cell>
 <cell></cell>

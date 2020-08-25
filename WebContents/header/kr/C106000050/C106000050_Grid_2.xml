@@ -31,28 +31,29 @@
 <column align="center" clabel="도료업체코드" dbname="도료업체코드" id="PNT_CMP_CD" index="3" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="220">업체코드</column>
 <column align="left" id="PNT_CMP_NM" index="4" sort="sort_str_custom" type="ro" width="220">업체코드명</column>
 <column align="center" clabel="첨부파일여부" dbname="첨부파일여부" id="DOC_YN" index="5" sort="str" table="TB_C10_CCL_BOM_IMG_MNG" type="ro" width="100" color="FFFFC0"><![CDATA[<img src="dhtmlx/codebase/imgs/msds.jpg">MSDS</img>]]> </column>
-<column align="center" clabel="고형분" dbname="고형분" id="NV" index="5" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >고형분</column>
-<column align="center" clabel="도료비중" dbname="도료비중" id="PNT_GRA" index="6" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >도료비중</column>
-<column align="center" clabel="용재비중" dbname="용제비중" id="SLV_GRA" index="7" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >용제비중</column>
-<column align="center" clabel="도료원단위" dbname="도료원단위" id="PNT_UNT" index="8" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >도료원단위</column>
+<column align="left" id="CCL_TXT" index="6" sort="sort_str_custom" type="ed" width="220" table="TB_C10_CLR_CMP_MNG" >CCL</column>
+<column align="center" clabel="고형분" dbname="고형분" id="NV" index="7" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >고형분</column>
+<column align="center" clabel="도료비중" dbname="도료비중" id="PNT_GRA" index="8" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >도료비중</column>
+<column align="center" clabel="용재비중" dbname="용제비중" id="SLV_GRA" index="9" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >용제비중</column>
+<column align="center" clabel="도료원단위" dbname="도료원단위" id="PNT_UNT" index="10" sort="sort_int_custom" format="00,000.00" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >도료원단위</column>
 
-<column align="center" clabel="입자유무" dbname="입자유무" id="PTC_YN" index="9" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자유무</column>
-<column align="center" clabel="입자TYPE" dbname="입자TYPE" id="PTC_TYPE" index="10" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자TYPE</column>
-<column align="center" clabel="질감종류" dbname="질감종류" id="TEX_KND" index="11" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >질감종류</column>
-<column align="center" clabel="입자MIN" dbname="입자MIN" id="PTC_MIN" index="12" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자MIN</column>
-<column align="center" clabel="입자MAX" dbname="입자MAX" id="PTC_MAX" index="13" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자MAX</column>
-<column align="center" clabel="입자AVG" dbname="입자AVG" id="PTC_AVG" index="14" sort="sort_int_custom" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자AVG</column>
-<column align="center" clabel="비고" dbname="비고" id="CMT" index="15" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="220"  >비고</column>
-<column align="center" clabel="소광제MIN" dbname="소광제MIN" id="QUE_MIN" index="16" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제MIN</column>
-<column align="center" clabel="소광제MAX" dbname="소광제MAX" id="QUE_MAX" index="17" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제MAX</column>
-<column align="center" clabel="소광제AVG" dbname="소광제AVG" id="QUE_AVG" index="18" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제AVG</column>
+<column align="center" clabel="입자유무" dbname="입자유무" id="PTC_YN" index="11" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자유무</column>
+<column align="center" clabel="입자TYPE" dbname="입자TYPE" id="PTC_TYPE" index="12" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자TYPE</column>
+<column align="center" clabel="질감종류" dbname="질감종류" id="TEX_KND" index="13" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >질감종류</column>
+<column align="center" clabel="입자MIN" dbname="입자MIN" id="PTC_MIN" index="14" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자MIN</column>
+<column align="center" clabel="입자MAX" dbname="입자MAX" id="PTC_MAX" index="15" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자MAX</column>
+<column align="center" clabel="입자AVG" dbname="입자AVG" id="PTC_AVG" index="16" sort="sort_int_custom" table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >입자AVG</column>
+<column align="center" clabel="비고" dbname="비고" id="CMT" index="17" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="220"  >비고</column>
+<column align="center" clabel="소광제MIN" dbname="소광제MIN" id="QUE_MIN" index="18" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제MIN</column>
+<column align="center" clabel="소광제MAX" dbname="소광제MAX" id="QUE_MAX" index="19" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제MAX</column>
+<column align="center" clabel="소광제AVG" dbname="소광제AVG" id="QUE_AVG" index="20" sort="sort_int_custom"  table="TB_C10_CLR_CMP_MNG" type="edn" width="100" color="FFFFC0" >소광제AVG</column>
 
-<column align="center"   hidden="true" clabel="사용여부" dbname="사용여부" id="USE_YN_BAK" index="19" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ch" width="50">여부</column>
-<column align="center"   hidden="true" clabel="사용여부" dbname="사용여부" id="MOD_YN_BAK" index="20" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="50">사용</column>
-<column align="center"   hidden="true" id="MDF_RSN" index="21" sort="str_custom" table="TB_C10_CLR_CMP_MNG_MDF_LOG" type="txt" width="00"></column>
+<column align="center"   hidden="true" clabel="사용여부" dbname="사용여부" id="USE_YN_BAK" index="21" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ch" width="50">여부</column>
+<column align="center"   hidden="true" clabel="사용여부" dbname="사용여부" id="MOD_YN_BAK" index="22" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="ro" width="50">사용</column>
+<column align="center"   hidden="true" id="MDF_RSN" index="23" sort="str_custom" table="TB_C10_CLR_CMP_MNG_MDF_LOG" type="txt" width="00"></column>
 <settings>
 <colwidth>px</colwidth>
 </settings>
 </head>
-<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,NV,PNT_GRA,SLV_GRA,PNT_UNT,PTC_YN,PTC_TYPE,TEX_KND,PTC_MIN,PTC_MAX,PTC_AVG,CMT,QUE_MIN,QUE_MAX,QUE_AVG,USE_YN_BAK,MOD_YN_BAK,MDF_RSN</userdata>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,CCL_TXT,NV,PNT_GRA,SLV_GRA,PNT_UNT,PTC_YN,PTC_TYPE,TEX_KND,PTC_MIN,PTC_MAX,PTC_AVG,CMT,QUE_MIN,QUE_MAX,QUE_AVG,USE_YN_BAK,MOD_YN_BAK,MDF_RSN</userdata>
 </rows>

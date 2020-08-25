@@ -18,6 +18,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String rollCd = request.getParameter("ROLL_CD") != null? request.getParameter("ROLL_CD") : "";
+	String CCL_BOM_NO = request.getParameter("CCL_BOM_NO") != null ? request.getParameter("CCL_BOM_NO") : "";
 %>    
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -45,12 +46,12 @@ var pageConfiguration = '[' +
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 var rollCd = '<%=rollCd%>';
+var CCL_BOM_NO = '<%=CCL_BOM_NO%>';
 
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
 	var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
     items[referenceItem].loadData(findUrl);
-	
 	
 	var formObj = items['C106000090_Form_1'].getDhxForm();
 	var radioValue = formObj.getItemValue("SEARCH_CD_SEL");
@@ -83,7 +84,8 @@ function find(eventName,formDivObj,referenceItem){
 			items['C106000090_Form_1'].getServiceUrl()+"?ServiceName="+items['C106000090_Form_1'].getServiceName()+"&useFindBnd=1&column-info="+items['C106000090_Grid_2'].getColumnInfo()+"&blank-row-count="+items['C106000090_Grid_2'].getBlankRowCntInfo();	
 	}
 
-	items["C106000090_Grid_2"].loadData(useFindUrl,"");	
+	items["C106000090_Grid_2"].loadData(useFindUrl,"");
+	CCL_BOM_NO = ""; 
 }
 
 function useFindcolor(){
@@ -235,13 +237,19 @@ function onFormLoad(){
 		grid1.setColumnHiddenFlag("0,1,2",false);
 		grid1.setColumnHiddenFlag("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",true);		
 		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,57,59,60,61,62",false);
-		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,63,64",true);		
+		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,63,64",true);			
 	}else if(radioValue == "2"){
 		items['C106000090_Form_2'].setItemValue("ALERT","CCL BOM이 사용된 주문검색");
 		grid1.setColumnHiddenFlag("3,4,5",false);
 		grid1.setColumnHiddenFlag("0,1,2,6,7,8,9,10,11,12,13,14,15,16,17,18,19",true);
 		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,64",false);		
 		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);
+		
+		
+		if(CCL_BOM_NO != ""){
+			items['C106000090_Form_1'].setItemValue("FIND_CD",CCL_BOM_NO);
+		}
+		
 	}else if(radioValue == "3"){
 		items['C106000090_Form_2'].setItemValue("ALERT","수지타입이 사용된 칼라코드 검색");	
 		grid1.setColumnHiddenFlag("6,7",false);
@@ -437,8 +445,19 @@ function onGridLoad2(){
 			}		
 	        if(CLR_SUB_MTL_CD == HUE_CD_LMN){
 			    gridObj2.setCellTextStyle(gridObj2.getRowId(i),gridObj2.getColIndexById('HUE_CD_LMN'),"color:blue;");
-			}	        
-		}		
+			}	
+
+		}
+	}else if(radioValue == "2"){
+		
+		/* 수정필요
+		var Find_cd_temp = items['C106000090_Form_1'].getItemValue("FIND_CD",CCL_BOM_NO);
+		
+		if(Find_cd_temp != ""){
+			firstFind();
+		}
+		*/
+		
 	}else if(radioValue == "4"){
 	    var PRT_ROLL_NO = getGridCellData(gridObj1,gridObj1.getSelectedRowId(),"PRT_ROLL_NO");
 		var grid_cnt = gridObj2.getRowsNum();
@@ -561,6 +580,17 @@ function C106000090_doLink(val,rowIdx,cellIdx){
 	}
 }
 
+
+function firstFind(){
+				
+	var parentFindUrl = uiCommon.parameters('C106000090_Form_1','C106000090_Grid_1','find');
+	items["C106000090_Grid_1"].loadData(parentFindUrl);	
+	uiCommon.progressOff(parent);	
+	
+	items['C106000090_Grid_1'].getDhxGrid().detachEvent(grdXle);
+}
+
+
 //]]>
 -->
 </script>
@@ -591,7 +621,7 @@ function C106000090_doLink(val,rowIdx,cellIdx){
 	items['C106000090_Grid_1'].onXLEEvent(onGridLoad1);
 	items['C106000090_Grid_2'].onXLEEvent(onGridLoad2);	
     items['C106000090_Form_2'].setBackgroundColor("#FFFFFF");	
-	
+    //var grdXle = items['C106000090_Grid_2'].onXLEEvent(firstFind);
 //]]>
 -->
 </script>

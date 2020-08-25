@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110_KOR" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110_KOR" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ae69825c-a952-4843-bcf7-758f103f659b">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="288"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
 	<parameter name="CCL_BOM_NO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -111,6 +112,8 @@
 	<parameter name="CUS_NM" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="GT_MT" class="java.lang.String"/>
+	<parameter name="GT_FT" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
  $P{PER_FOR_19}|| ' YEAR LIMITED WARRANTY
@@ -120,7 +123,7 @@
 본 보증서는 동국제강㈜ ' || $P{BRD_CMP_2_1}||' 제품에 대하여 출고일로부터 ' ||$P{PER_FOR_19}||'년 동안 유효합니다.
 또한 아래 보증 항목이 적용됩니다.
 ' as detail_1,
-'동국제강㈜는 하기 명기된 항목에 따라 대한민국내 건축물에 적용된 '||$P{BRD_CMP_2_2}||' 에 대하여 다음의 기준으로 제품을 보증합니다.' as detail_2,
+'동국제강㈜는 하기 명기된 항목에 따라 대한민국내 건축물에 적용된 '||$P{BRD_CMP_2_2}||' 에 대하여 다음의 기준으로 제품을 보증합니다.효력 발생은 출고일 혹은 동국제강 도장 공정 생산 이후 6개월 이후부터 발생하며, 이중 먼저 도래하는 시점을 기준일로 합니다.' as detail_2,
 $P{BRD_CMP_2_7}||'는 외부로부터의 손상이 없는 상태에서 '||$P{PER_FOR_19_1}||'년 동안 천공이 발생되지 않습니다.' as detail_2_1_0,
 $P{BRD_CMP_2_3}||'는 외부로부터의 손상이 없는 상태에서 '||$P{PE_FL_1}||'년 동안 도막이 벗겨지지 않습니다.
 단, Roll-Forming 및 절단, 절곡 작업시 발생하는 미세한 균열은 포함되지 않습니다.
@@ -133,7 +136,7 @@ $P{BRD_CMP_2_4}||'는 '||$P{FA_TRM_8}||'년 동안 벽체일 경우 △E는 '||$
 $P{BRD_CMP_2_6}||'는 '||$P{CH_TRM_13}||'년 동안 가루처럼 일어나는 Chalk에 대해 ASTM D4214, Method C로 측정 시, 벽체일경우 '||$P{CH_WAL_17}||' Rate, 지붕일 경우 '||$P{CH_ROF_16}||' Rate 보다 양호할 것을 보증합니다. 단, 측정방법은 ASTM D3964 에 준하여 Chalk 발생부의 외부오염이나 먼지를 가볍게 제거 후 측정합니다.
 ' as detail_2_1_3,
 
-'해안으로부터 1km 이내 또는 염분이 포함된 대기 환경에 대해서는 '|| $P{BRD_CMP_2_5}||'의 보증범위에 포함되지 않습니다. 따라서 해안가 시공의 경우 제조사측과 별도의 협의과정을 거칩니다.
+$P{BRD_CMP_2_1}||'는 해안가 혹은 염수에 '||$P{GT_MT}||' meters ('||$P{GT_FT}||' feets) 이상 인접하지 않아야 보증합니다. 해당 범위 이내로 인접할 경우 보증 대상에서 제외됩니다.
 ' as detail_2_2_1,
 
 '본 보증서는 동국제강㈜에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염부과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다.
@@ -216,7 +219,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 	<background>
 		<band height="842" splitType="Stretch">
 			<frame>
-				<reportElement positionType="Float" x="15" y="15" width="565" height="812"/>
+				<reportElement positionType="Float" x="15" y="15" width="565" height="812" uuid="9202a421-a4c9-4af0-a19a-416c51806609"/>
 				<box>
 					<pen lineWidth="1.5" lineStyle="Double"/>
 					<topPen lineWidth="1.5" lineStyle="Double"/>
@@ -225,7 +228,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 					<rightPen lineWidth="1.5" lineStyle="Double"/>
 				</box>
 				<image hAlign="Center">
-					<reportElement x="0" y="1" width="564" height="811"/>
+					<reportElement x="0" y="1" width="564" height="811" uuid="bf75c9e0-05d7-4c57-aa28-081e8d40ccb5"/>
 					<imageExpression><![CDATA["unionsteel_logo.gif"]]></imageExpression>
 				</image>
 			</frame>
@@ -234,7 +237,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 	<detail>
 		<band height="204" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="160" width="595" height="43" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="0" y="160" width="595" height="43" isPrintWhenDetailOverflows="true" uuid="3263c0e6-4023-400c-9ea3-f165aff7862f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="16" isBold="true" pdfEncoding="Cp1253"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="15.0"/>
@@ -242,7 +245,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{TITLE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="459" y="133" width="112" height="27"/>
+				<reportElement x="459" y="133" width="112" height="27" uuid="ff4f032e-929f-46fa-956b-797d980fb8f4"/>
 				<textElement textAlignment="Right">
 					<font fontName="SansSerif" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="9.0"/>
@@ -252,7 +255,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="31">
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement x="63" y="0" width="498" height="30" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="63" y="0" width="498" height="30" isPrintWhenDetailOverflows="true" uuid="9bd241e2-8c4b-47e4-8fc7-fd118d6dcc65"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="12" isBold="true" isItalic="false" isStrikeThrough="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0" rightIndent="3"/>
@@ -262,7 +265,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="56">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="30" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="74" y="30" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="3d28f069-e4e1-4df9-b7ae-221b870a0fe1"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2" tabStopWidth="20">
@@ -272,7 +275,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="250" y="4" width="90" height="26"/>
+				<reportElement x="250" y="4" width="90" height="26" uuid="523be03a-74e2-43c4-b375-e6b7bd7d7105"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="11" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
@@ -280,7 +283,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<text><![CDATA[-    아    래    -]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="30" width="33" height="23"/>
+				<reportElement x="40" y="30" width="33" height="23" uuid="b8c5baf1-8430-45aa-ba36-320cf8da414d"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
@@ -290,7 +293,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="20">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="91" y="0" width="441" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="20" isPrintWhenDetailOverflows="true" uuid="eada079d-88dd-4afe-a19f-4aa7e02547aa"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -298,7 +301,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_0}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="73" y="0" width="17" height="20"/>
+				<reportElement x="73" y="0" width="17" height="20" uuid="fcf74564-1055-4bbf-9fab-bfb46570d9c0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -308,7 +311,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="40">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true" uuid="183efee6-0af8-4e19-b856-0730fd06cb3d"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -316,7 +319,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="73" y="0" width="17" height="20"/>
+				<reportElement x="73" y="0" width="17" height="20" uuid="659c16e7-fabb-469b-943e-fae0053da680"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -326,7 +329,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="40">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="40" isPrintWhenDetailOverflows="true" uuid="dc58c980-c12e-4ea0-8f60-7f7fd1faf795"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -334,7 +337,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="73" y="0" width="17" height="20"/>
+				<reportElement x="73" y="0" width="17" height="20" uuid="c84cdc29-99b2-4b01-a9b9-15cab5e90dc6"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -344,7 +347,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="25">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="91" y="0" width="441" height="25" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="25" isPrintWhenDetailOverflows="true" uuid="c3f93c5f-3cff-4b73-8fe2-0c94c1b52c0b"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -352,7 +355,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_3}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="73" y="0" width="17" height="20"/>
+				<reportElement x="73" y="0" width="17" height="20" uuid="bbe4691d-dfb5-4c70-956f-da3fe5f5a5d6"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
@@ -362,27 +365,25 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="24">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="SansSerif" size="10" isBold="false" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2" tabStopWidth="20">
-						<tabStop position="0" alignment="Left"/>
-					</paragraph>
+				<reportElement x="74" y="1" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="19683b00-604a-4ee3-928a-75546620cfd6"/>
+				<textElement>
+					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DETAIL_2_2_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="0" width="33" height="23"/>
+				<reportElement x="40" y="1" width="33" height="23" uuid="1b67fbc5-2fba-4475-bc4c-356a0824295f"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="6.0"/>
 				</textElement>
 				<text><![CDATA[2.]]></text>
 			</staticText>
 		</band>
 		<band height="24">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="74" y="1" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="593fb08a-d157-44ea-97d5-b83b0e15a60a"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
@@ -390,7 +391,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_2_2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="0" width="33" height="23"/>
+				<reportElement x="40" y="1" width="33" height="23" uuid="6b5dc394-0be6-45ab-b924-430f786560da"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
@@ -400,7 +401,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="24">
 			<staticText>
-				<reportElement x="40" y="0" width="33" height="23"/>
+				<reportElement x="40" y="1" width="33" height="23" uuid="104c56b4-14ce-4b2e-a5cd-63d316159aaf"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
@@ -408,7 +409,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<text><![CDATA[4.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="74" y="1" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="4195b935-3d10-417d-8cb6-62c64672faef"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
@@ -418,7 +419,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="24">
 			<staticText>
-				<reportElement x="40" y="0" width="33" height="23"/>
+				<reportElement x="40" y="1" width="33" height="23" uuid="32b9597f-5348-41a8-93d4-9a2e4c2cf3a7"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0"/>
@@ -426,7 +427,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<text><![CDATA[5.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="74" y="1" width="460" height="23" isPrintWhenDetailOverflows="true" uuid="c6f10197-b029-44c5-9d06-910acf4d8af9"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
@@ -441,7 +442,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 	<lastPageFooter>
 		<band height="842">
 			<textField pattern="">
-				<reportElement mode="Transparent" x="58" y="141" width="503" height="540"/>
+				<reportElement mode="Transparent" x="58" y="141" width="503" height="540" uuid="f5a68595-2474-47aa-b319-489f8d9d061d"/>
 				<textElement>
 					<font fontName="SansSerif" size="10" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.0" leftIndent="2"/>
@@ -449,7 +450,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_3}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="681" width="595" height="34"/>
+				<reportElement x="0" y="681" width="595" height="34" uuid="d310ff47-5a10-4367-b56c-0d28889cfa69"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="SansSerif" size="12" isBold="true" pdfFontName="HYSMyeongJo-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="11.0"/>
@@ -457,34 +458,34 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="718" width="165" height="32"/>
+				<reportElement x="380" y="718" width="165" height="32" uuid="ab7b4c86-c3a0-4c84-b908-c3c4e9f130e3"/>
 				<textElement>
 					<font fontName="SansSerif" size="14" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DONGKUKSTEEL}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="406" y="775" width="125" height="41">
+				<reportElement x="406" y="775" width="125" height="41" uuid="c087fabe-0af7-4e9d-9e66-723a2a5c4f40">
 					<printWhenExpression><![CDATA[$P{PRT_RSN}.equals( "WARRANTY발급용" ) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<imageExpression><![CDATA["ChoiJihun.gif"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="337" y="749" width="234" height="67"/>
+				<reportElement x="337" y="749" width="234" height="67" uuid="3f7cd1d9-d4c1-4017-8d77-5b7eea0a29f1"/>
 				<textElement>
 					<font fontName="SansSerif" size="11" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SIGNATURE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="751" width="234" height="65"/>
+				<reportElement x="60" y="751" width="234" height="65" uuid="0c7d0757-ea06-4425-b20c-ca275d4f27b5"/>
 				<textElement>
 					<font fontName="SansSerif" size="11" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CUS_SIGN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="719" width="234" height="32"/>
+				<reportElement x="60" y="719" width="234" height="32" uuid="07c76950-6f81-41ee-8841-884980337efd"/>
 				<textElement>
 					<font fontName="SansSerif" size="14" pdfFontName="HYGoThic-Medium" pdfEncoding="UniKS-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>

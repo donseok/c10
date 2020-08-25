@@ -33,6 +33,16 @@
 <title>
 칼라코드관리
 </title>
+<style>
+
+/*
+.dhxlist_obj_dhx_skyblue > div > div:nth-child(1) > div > div > div:nth-child(5) > div > div > table{
+
+visibility : hidden;
+*/
+ 
+
+</style>
 <script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
@@ -563,7 +573,7 @@ function save(eventName,formDivObj,referenceItem){
 	}); 
 
 	//2013.07.25 저장 후 2.5초 이후 전송 버튼 누르지 않아도 전송되게 변경(컬러코드전송 버튼 히든처리) -> 김종민 대리요청으로 취소
-//	setTimeout('send()',2500);
+	//setTimeout('send()',3000);
 }
 
 //도료업체정보 저장
@@ -632,6 +642,7 @@ function send(eventName,formDivObj,referenceItem){
 	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
 	var selectedId1 = grid.getSelectedRowId();
 	
+	
 	var START_DATE = grid.getCellValue(selectedId1,gridObj.getColIndexById("ERP_SND_DH"));
 	if(isNull(START_DATE)){
 		//한번도 전송한적이 없음.diff를 10이상으로 하기위해 임의 날짜 set
@@ -641,11 +652,14 @@ function send(eventName,formDivObj,referenceItem){
 	
 	var diff = getDiffTime(START_DATE, END_DATE);
 	
+	/*
 	if(diff < 10) {
 		diff = 10 - diff;
 		dhtmlx.alert("이전 전송작업이 완료되지 않았습니다.<br><br> " + diff + "분 뒤에 전송하세요.");
 		return;
 	}
+	*/
+	
 	
 	//도료업체 등록여부 확인 12-07-10 추가
 	var gridObj2 = items['C106000050_Grid_2'].getDhxGrid();
@@ -679,7 +693,7 @@ function send(eventName,formDivObj,referenceItem){
 				return;
 				}
 			}
-		}); 
+		});  
 	}else{
 		dhtmlx.alert("전송할 컬러코드를 선택해주세요.");
 		return;
@@ -1539,7 +1553,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 	var gridObj1 = items["C106000050_Grid_1"].getDhxGrid();
 	
 	if(stage==1){
-		if(cInd == 4 ) { //MAX LENGTH 체크
+		if(cInd == 6 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1552,7 +1566,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 5 ) { //MAX LENGTH 체크
+		}else if(cInd == 7 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1565,7 +1579,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 6 ) { //MAX LENGTH 체크
+		}else if(cInd == 8 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1578,7 +1592,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 7 ) { //MAX LENGTH 체크
+		}else if(cInd == 9 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){

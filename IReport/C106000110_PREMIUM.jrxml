@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4790b600-cd4e-497a-a538-c1b1c3dce62a">
 	<property name="ireport.zoom" value="1.0980750000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="CCL_BOM_NO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -131,17 +131,19 @@ DONGKUK STEEL provides the following warranty concerning ' || $P{BRD_CMP_2_1}||'
 Warranty is subjected to the following terms and conditions :
 ' as detail_1,
 CASE WHEN $P{CLS_CD} ='CLASSB' THEN
-'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # C below apply to metal building and similar structures installed in ' || $P{NAT_ENM_1}||'
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # D below apply to metal building and similar structures installed in ' || $P{NAT_ENM_1}||'
 '
 ELSE
-'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # C below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # D below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
 '
 END detail_2,
+'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK STEEL - whichever occurs first.
+' as detail_2_0_1,
 'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will have prior to corrosion to perforation in the natural element.
 ' as detail_2_1_0,
 'For '||$P{PE_FL_20}|| '('||$P{PE_FL_1}||') years, '||$P{BRD_CMP_2_3}||' will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary outdoor visual observation.
 NOTE : Slight crazing or cracking may occur on roll formed edges or break bends at the time of forming,
-and is considered as standard -such crazing or cracking shall not constitute a basis for complaint under this limited warranty; and
+and is considered as standard -such crazing or cracking shall not constitute a basis for complaint under this limited warranty.
 ' as detal_2_1_1,
 
  'For '||$P{CH_TRM_14}|| '('||$P{CH_TRM_13}||') years, sidewall panels of '||$P{BRD_CMP_2_6}||' will not chalk more than a number '||$P{CH_WAL_18}|| '('||$P{CH_WAL_17}||') rating and roof panels won’t chalk more than a number '||$P{CH_ROF_16}|| '('||$P{CH_ROF_15}||') rating when measured per ASTM D4214, Method C.
@@ -154,6 +156,7 @@ and is considered as standard -such crazing or cracking shall not constitute a b
     failures caused by scratches, scrapes or any other unnatural damage including improperly formed,
     fabricated or embossed material. This warranty excludes failures caused by standing water, and direct
     exposure to corrosive and aggressive atmospheres including salt spray and animal waste products.
+    Corrosion, Peel or other effects dut to shear or cut surface exposure are also excluded.
     DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects,
     explosions, or other external forces beyond Dongkuk steel’s control.
 
@@ -207,6 +210,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 	<field name="TITLE" class="java.lang.String"/>
 	<field name="DETAIL_1" class="java.lang.String"/>
 	<field name="DETAIL_2" class="java.lang.String"/>
+	<field name="DETAIL_2_0_1" class="java.lang.String"/>
 	<field name="DETAIL_2_1_0" class="java.lang.String"/>
 	<field name="DETAL_2_1_1" class="java.lang.String"/>
 	<field name="DETAIL_2_1_2" class="java.lang.String"/>
@@ -266,9 +270,9 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_1}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="50">
+		<band height="64">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="50" isPrintWhenDetailOverflows="true" uuid="9f7ad5b4-8d2b-4672-9f72-4930781a913f"/>
+				<reportElement x="74" y="0" width="460" height="37" isPrintWhenDetailOverflows="true" uuid="9f7ad5b4-8d2b-4672-9f72-4930781a913f"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
@@ -285,16 +289,24 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				</textElement>
 				<text><![CDATA[1.]]></text>
 			</staticText>
-		</band>
-		<band height="20">
 			<staticText>
-				<reportElement x="75" y="0" width="12" height="20" uuid="0e73afc6-c38d-4d94-b3e6-afc1ad5a7f0d"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Times New Roman" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				<reportElement x="75" y="42" width="12" height="20" uuid="8520a6f1-fe55-4c0b-ab43-2e829d26df25"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
 				</textElement>
 				<text><![CDATA[A.]]></text>
 			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="42" width="441" height="20" isPrintWhenDetailOverflows="true" uuid="7d314dd9-b708-451e-ad9b-53ff91b3729a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_0_1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="23">
 			<textField isStretchWithOverflow="true">
 				<reportElement x="90" y="0" width="441" height="20" isPrintWhenDetailOverflows="true" uuid="b2c7456e-1b83-48ac-93ed-d83bec5e5c3c"/>
 				<textElement>
@@ -303,18 +315,8 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_0}]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="50">
-			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="0" width="441" height="50" isPrintWhenDetailOverflows="true" uuid="fff03d08-4088-4dee-8e0c-6f17b9d6f5e7"/>
-				<textElement>
-					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{DETAL_2_1_1}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="75" y="0" width="12" height="20" uuid="84853777-d3da-4c15-94e9-4731154d72a2"/>
+				<reportElement x="75" y="0" width="12" height="20" uuid="0e73afc6-c38d-4d94-b3e6-afc1ad5a7f0d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Times New Roman" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
@@ -322,17 +324,35 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<text><![CDATA[B.]]></text>
 			</staticText>
 		</band>
-		<band height="26">
+		<band height="55">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="4" width="441" height="50" isPrintWhenDetailOverflows="true" uuid="fff03d08-4088-4dee-8e0c-6f17b9d6f5e7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAL_2_1_1}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="75" y="0" width="12" height="20" uuid="e32f1b1a-e8a7-46a8-ab9e-80f668ad7993"/>
+				<reportElement x="75" y="4" width="12" height="20" uuid="84853777-d3da-4c15-94e9-4731154d72a2"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Times New Roman" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
 				</textElement>
 				<text><![CDATA[C.]]></text>
 			</staticText>
+		</band>
+		<band height="26">
+			<staticText>
+				<reportElement x="75" y="4" width="12" height="20" uuid="e32f1b1a-e8a7-46a8-ab9e-80f668ad7993"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				</textElement>
+				<text><![CDATA[D.]]></text>
+			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="0" width="441" height="26" isPrintWhenDetailOverflows="true" uuid="db627e41-79d9-492c-8f20-7a6384345a54"/>
+				<reportElement x="90" y="4" width="441" height="20" isPrintWhenDetailOverflows="true" uuid="db627e41-79d9-492c-8f20-7a6384345a54"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>

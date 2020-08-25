@@ -279,6 +279,20 @@ function showMenuItems(){
 	menuObj.showItem("remove");
 	
 }
+
+function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
+	/*
+	var grid = items['C106000120tab01_Grid_1'];
+	var grdObj = items['C106000120tab01_Grid_1'].getDhxGrid();
+	
+	param= "ServiceName=C106000120tab01-service&RsnAjaxFind=1&RSN_TP="+RSN_TP+"&column-info=RSN_TP_NM";	
+    var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+    var cells = xmlObj.getElementsByTagName("cell"); 
+    
+    items['C106000120tab01_Grid_1'].setCellValue(rId,5, cells.item(0).firstChild.nodeValue);//수지명
+    */
+}
+
 //전송버튼 클릭 시 실행 
 function send(){
 	dhtmlx.confirm({
@@ -315,6 +329,7 @@ function send(){
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C106000120tab01_Grid_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
+	items["C106000120tab01_Grid_1"].onEditCellEvent(onEditCellEvent1);
 	var onXLEForm = items['C106000120tab01_Form_1'].onXLEEvent(onLoadForm);
 	var onXLEGrid = items['C106000120tab01_Grid_1'].onXLEEvent(onLoadGrid);
 	items['C106000120tab01_Form_1'].onChangeEvent(onFormChangeEvent);

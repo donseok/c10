@@ -202,7 +202,14 @@ function onFormLoadFunction(formDivObj){
 		comboList['RSN_TP'].selectOption(0,true,true);
 		comboList['RSN_TP'].readonly(true);
 		comboList['RSN_TP'].setOptionHeight(240);
-	});	
+	});
+	
+	comboList['PRJ_DEV_CD'].readonly(true,false);
+	ui.combo.master(comboList['PRJ_DEV_CD'],'SZ0000','PRJ_DEV_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+		comboList['PRJ_DEV_CD'].selectOption(0,true,true);
+		comboList['PRJ_DEV_CD'].readonly(true);
+		comboList['PRJ_DEV_CD'].setOptionHeight(240);
+	});
 	
 //	form.setItemValue("INQ_RCP_DH",getCurrentMinitesTime());
 	parent.c10popUp_setVal = masterPopup2SetValue;	
@@ -250,7 +257,8 @@ function fieldEnable(){
         formObj.disableItem("CCL_BOM_RGS_DH");
         formObj.disableItem("CLR_TP");
         formObj.disableItem("DSN_CHR_PRS_ID");
-        formObj.disableItem("CLR_SMP_DSN_RMK");        
+        formObj.disableItem("CLR_SMP_DSN_RMK");
+        formObj.disableItem("PRJ_DEV_CD");
          
         if('<%=ctl_tp%>' == 'Y'){ 
          	formObj.enableItem("CLR_SMP_RCP_NO");
@@ -269,6 +277,7 @@ function fieldEnable(){
             formObj.enableItem("CLR_TP");  
             formObj.enableItem("DSN_CHR_PRS_ID");
             formObj.enableItem("CLR_SMP_DSN_RMK");
+            formObj.enableItem("PRJ_DEV_CD");
         }        
 }
 

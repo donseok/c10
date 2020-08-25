@@ -181,6 +181,14 @@ function dateAdd(date, addDay) {
     return year + "-" + month + "-" + date;
  
 }
+
+function doOnRowDblClicked(rowId) {
+	var ORD_NO = items['C104000030_Grid_1'].getDhxGrid().cells(rowId,0).getValue();
+	var ORD_LN = items['C104000030_Grid_1'].getDhxGrid().cells(rowId,1).getValue();
+	parent.newRemoveOpenTab("C104000020","ORD_NO=" + ORD_NO + "&ORD_LN=" +ORD_LN);
+}
+
+
 function winClose(){
 	if(typeof(parent.winObj) !== 'undefined'){
 		parent.winObj.winClose();					
@@ -208,6 +216,7 @@ function winClose(){
     items['C104000030_Form_1'].onXLEEvent(onFormLoadEvent);
 	var _onXLE =  items['C104000030_Grid_1'].onXLEEvent(onGridLoadEvent);
     items['C104000030_Form_1'].setBackgroundColor("#FFFFFF");
+    items["C104000030_Grid_1"].rowDblClicked(doOnRowDblClicked);
 //]]>
 -->
 </script>

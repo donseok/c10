@@ -2,7 +2,7 @@
 <queryMap desc="C106000120tab02 Page 쿼리파일"> 
 	 <query id="C106000120tab02.select" desc="보증서 예외 기준 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C106000120tab02  보증서 예외 기준 조회   C106000120tab02.select 원성옥  */
+SELECT /* C106000120tab02  보증서 예외 기준 조회   C106000120tab02.select 원성옥  */
        CCL_BOM_NO,
 	   CLS_CD,
        DIV_CD,
@@ -26,10 +26,12 @@ SELECT /*+ C106000120tab02  보증서 예외 기준 조회   C106000120tab02.sel
        PE_FL_20,
        PE_FL_1,
        (SELECT USER_NAME
-          FROM M90APUSER.TB_M90_EMP_INF	
-         WHERE USER_NO = LAST_UPDATED_OBJECT_ID) CREATED_OBJECT_ID,
-       TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') AS CREATION_TIMESTAMP
-   FROM C10APUSER.TB_C10_WAR_TRM_MNG_EXP
+           FROM M90APUSER.TB_M90_EMP_INF	
+          WHERE USER_NO = A.CREATED_OBJECT_ID) AS CREATED_OBJECT_ID,
+       TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') AS CREATION_TIMESTAMP,
+       GT_MT,
+       GT_FT
+   FROM C10APUSER.TB_C10_WAR_TRM_MNG_EXP A
   WHERE CCL_BOM_NO LIKE :CCL_BOM_NO ||'%'
     AND CLS_CD LIKE :CLS_COMB ||'%'
     AND DIV_CD LIKE :DIV_COMB ||'%'

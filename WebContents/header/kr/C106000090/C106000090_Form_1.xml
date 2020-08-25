@@ -1,9 +1,9 @@
 <items>
 <item type="block" width="971">	
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
-	<item label="칼라코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="1" checked="true"/>
+	<item label="칼라코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="1" />
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
-	<item label="CCLBOM코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="2"/>
+	<item label="CCLBOM코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="2" checked="true"/>
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
 	<item label="수지타입" name="SEARCH_CD_SEL" position="label-right" type="radio" value="3"/>		
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>

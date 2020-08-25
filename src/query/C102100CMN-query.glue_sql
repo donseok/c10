@@ -784,12 +784,12 @@ WHERE QLT_DSN_STS_CD ='T'
 	 </query>
 	 <query id="C102100CMN.Rselect" desc="C102100CMN.Rselect" fetchSize="10" isNamed="false">
 		 <![CDATA[ 
-  SELECT *
+SELECT *
     FROM TB_C10_QLT_DSN_CMN A
    WHERE QLT_DSN_STS_CD = 'A'
      AND NVL(ORD_COP_STP,'@') = '@' 
      AND QLT_DSN_YN = 'Y'
-     AND PRD_NM_CD IN ('3','4','6','9') -- 20190214 CCI, CCEI, CCAI, CCUS,  CCNI 外
+     AND PRD_NM_CD IN ('1','2','3','4','5','6','7','8','9') -- 2020.4.21 전현진과장요청
      AND QLT_DSN_END_DH > (SELECT MAX(ERP_SND_DH) AS ERP_SND_DH_LST FROM TB_C10_CLR_MPR WHERE CCL_BOM_NO = A.CCL_BOM_NO)
      AND ORD_NO = ?       
      AND ORD_LN = ?              

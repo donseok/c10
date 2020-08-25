@@ -30,6 +30,11 @@
     <property name="sqlkey" value="C106000120tab01.insertNewVer" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="수지타입명" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000120tab01.RsnAjaxFind" />
+  </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="findItemCls" value="클래스콤보" />
     <transition name="findItemRsn" value="수지구분콤보" />
@@ -38,6 +43,7 @@
     <transition name="find" value="조회" />
     <transition name="send" value="전송" />
     <transition name="save" value="버전추가" />
+    <transition name="RsnAjaxFind" value="수지타입명" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">

@@ -1380,7 +1380,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             String main_proc_cd = C10STR_SPACE;
             ArrayList<String> DEL_PROC = new ArrayList<String>();
             ArrayList<String> DATA_PROC = new ArrayList<String>();
-            colValue = new String[21];
+            colValue = new String[22];
             colValue[0] = prd_nm_cd;
             colValue[1] = C10STR_SPACE;
             colValue[2] = ord_coil_idia;
@@ -1400,8 +1400,9 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             colValue[16] = Double.toString( ord_exc_lth );  //주문길이추가
             colValue[17] = prd_shp;                         //제품형태추가
             colValue[18] = ord_coilg_mth;                   //주문권취방법추가	
-            colValue[19] = fnl_cus_cd;                       //최종수요가	
-            colValue[20] = ord_usg_cd;                     //주문용도	
+            colValue[19] = fnl_cus_cd;                      //최종수요가	
+            colValue[20] = ord_usg_cd;                      //주문용도	
+            colValue[21] = ord_spnl_tp;                     //spangle구분	
 
             try
             {
@@ -1409,9 +1410,11 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
                 PosDecisionRuleVO result1 = EasyAccess.getPosDecisionRuleLov( C10B2010, colValue, null );
                 result1.next();
                 DEL_PROC.add( result1.getRuleValueAt( COL_PROC_CD ) );
+                logger.logDebug( "DEL_PROC       : " + DEL_PROC );
                 while ( result1.next() )
                 {
                     DEL_PROC.add( result1.getRuleValueAt( COL_PROC_CD ) );
+                    logger.logDebug( "DEL_PROC_WHILE       : " + DEL_PROC );
                 }
 
             } catch ( MasterDataException e )

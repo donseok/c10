@@ -37,7 +37,8 @@ SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010pop01.select 박�
     ORD_PRE_WGT,
     PTT_FLM_YN,
     DSN_CHR_PRS_ID, 
-    decode(SIM_HUE_PRG_YN,'Y','1','0') as SIM_HUE_PRG_YN
+    decode(SIM_HUE_PRG_YN,'Y','1','0') as SIM_HUE_PRG_YN,
+    PRJ_DEV_CD
 FROM  C10APUSER.TB_C10_CLR_SMP
 WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
 		 ]]> 
@@ -66,6 +67,7 @@ TB_C10_CLR_SMP SET
     CLR_SMP_DEV_RCP_DH = :SAL_CHR_REQ_DH,--칼라시편개발접수일
     ORD_PRE_WGT = :ORD_PRE_WGT,
     PTT_FLM_YN = :PTT_FLM_YN,
+    PRJ_DEV_CD = :PRJ_DEV_CD,
     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
     LAST_UPDATED_OBJECT_ID=:ObjectId,      
     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -113,6 +115,7 @@ TB_C10_CLR_SMP SET
     PTT_FLM_YN = :PTT_FLM_YN,
     DSN_CHR_PRS_ID = nvl((select emp_nm from M90APUSER.TB_M90_EMP_INF where emp_id = :DSN_CHR_PRS_ID), :DSN_CHR_PRS_ID), 
     SIM_HUE_PRG_YN = decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','N'),
+    PRJ_DEV_CD = :PRJ_DEV_CD,
     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
     LAST_UPDATED_OBJECT_ID=:ObjectId,      
     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -151,6 +154,7 @@ INTO TB_C10_CLR_SMP
     CLR_SMP_RMK,--비고
     ORD_PRE_WGT,
     PTT_FLM_YN,
+    PRJ_DEV_CD,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -181,6 +185,7 @@ INTO TB_C10_CLR_SMP
 ,:CLR_SMP_RMK
 ,:ORD_PRE_WGT
 ,:PTT_FLM_YN
+,:PRJ_DEV_CD
 ,:ObjectType
 ,:ObjectId
 ,:ProgramId

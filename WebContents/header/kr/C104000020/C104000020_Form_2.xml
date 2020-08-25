@@ -15,15 +15,21 @@
 </item>
 <item type="block" width="961">
 <item offset="5" type="newcolumn"/>
-<item inputWidth="70" label="품명" labelWidth="65" maxLength="2" name="PRD_NM_CD" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="50" label="품명" labelWidth="30" maxLength="2" name="PRD_NM_CD" readonly="true" type="input" labelAlign="right" />
 <item offset="5" type="newcolumn"/>
-<item inputWidth="230" label="용도" labelWidth="30" maxLength="4" name="ORD_USG_CD" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="200" label="용도" labelWidth="30" maxLength="4" name="ORD_USG_CD" readonly="true" type="input" labelAlign="right" />
 <item offset="5" type="newcolumn"/>
-<item inputWidth="80" label="재질/원자재코드" labelWidth="110" maxLength="3" name="MQL_CD" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="70" label="재질/원자재" labelWidth="70" maxLength="3" name="MQL_CD" readonly="true" type="input" labelAlign="right" />
 <item offset="5" type="newcolumn"/>
-<item inputWidth="153" maxLength="3" name="RMTL_CD" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="120" maxLength="3" name="RMTL_CD" readonly="true" type="input" labelAlign="right" />
 <item offset="5" type="newcolumn"/>
-<item inputWidth="60" label="CCL-BOM" labelWidth="80" maxLength="6" name="CCL_BOM_NO" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="50" label="BOM" labelWidth="30" maxLength="6" name="CCL_BOM_NO" readonly="true" type="input" labelAlign="right" />
+<item offset="5" type="newcolumn"/>
+<item label="BOM_LNK" name="BOM_LNK" type="linkbutton" value="BOM" width="60" command="openBom" />
+<item offset="5" type="newcolumn"/>
+<item label="COR_IMG" name="COR_IMG" type="linkbutton" value="이미지" width="60" command="openColImg"/>
+<item offset="5" type="newcolumn"/>
+<item label="CD_USG" name="CD_USG" type="linkbutton" value="코드사용" width="70" command="openCdUsg"/>
 <item inputWidth="40" label="CUS_CD" maxLength="10" name="CUS_CD" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="ACT_CUS_CD" maxLength="10" name="ACT_CUS_CD" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="TRST_PROC_YN" maxLength="10" name="TRST_PROC_YN" readonly="true" type="hidden" labelAlign="right" />

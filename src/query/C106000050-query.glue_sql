@@ -439,14 +439,15 @@ SELECT
        PTC_MAX , --입자MAX
        PTC_AVG , --입자AVG
        CMT , --비고
-    QUE_MIN , --소광제MIN
-    QUE_MAX , --소광제 MAX
-    QUE_AVG ,  --소광제AVG
-    (SELECT (CASE WHEN COUNT(1) > 0 THEN 'Y'
+       QUE_MIN , --소광제MIN
+       QUE_MAX , --소광제 MAX
+       QUE_AVG ,  --소광제AVG
+       (SELECT (CASE WHEN COUNT(1) > 0 THEN 'Y'
                      ELSE 'N' END)
-        FROM TB_C10_CLR_CMP_MNG_FILE
-        WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD
-          AND PNT_CMP_CD = A.PNT_CMP_CD) DOC_YN
+          FROM TB_C10_CLR_CMP_MNG_FILE
+         WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD
+           AND PNT_CMP_CD = A.PNT_CMP_CD) DOC_YN,
+       CCL_TXT  -- 2020.5.19 추가
  FROM TB_C10_CLR_CMP_MNG A
  WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 		 ]]> 
@@ -556,6 +557,7 @@ UPDATE TB_C10_CLR_CMP_MNG
             QUE_MIN =:QUE_MIN, --소광제MIN
             QUE_MAX =:QUE_MAX, --소광제 MAX
             QUE_AVG  =:QUE_AVG, --소광제AVG
+            CCL_TXT =:CCL_TXT,  -- CCL텍스트
 	     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
 	     LAST_UPDATED_OBJECT_ID=:ObjectId,      
 	     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -584,6 +586,7 @@ INSERT INTO TB_C10_CLR_CMP_MNG/*+ C10 품질설계 칼라코드관리 C106000050
     QUE_MIN , --소광제MIN
     QUE_MAX , --소광제 MAX
     QUE_AVG  , --소광제AVG
+    CCL_TXT,  --CCL TXT
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -610,6 +613,7 @@ INSERT INTO TB_C10_CLR_CMP_MNG/*+ C10 품질설계 칼라코드관리 C106000050
     :QUE_MIN , --소광제MIN
     :QUE_MAX , --소광제 MAX
     :QUE_AVG ,  --소광제AVG
+    :CCL_TXT, -- CCLTXT
     :ObjectType,
     :ObjectId,
     :ProgramId,

@@ -128,22 +128,22 @@ DONGKUK STEEL provides the following warranty concerning ' || $P{BRD_CMP_2_1}||'
 Warranty is subjected to the following terms and conditions :
 ' as detail_1,
 CASE WHEN $P{CLS_CD} ='CLASSB' THEN
-'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # D below apply to metal building and similar structures installed in ' || $P{NAT_ENM_1}||'
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # E below apply to metal building and similar structures installed in ' || $P{NAT_ENM_1}||'
 '
 ELSE
-'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # D below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
+'DONGKUK STEEL warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # E below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
 '
 END detail_2,
-'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK STEEL - whichever occurs frist.
+'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK STEEL - whichever occurs first.
 ' as detail_2_1_4,
 'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will have prior to corrosion to perforation in the natural element.
 ' as detail_2_1_0,
 'For '||$P{PE_FL_20}|| '('||$P{PE_FL_1}||') years, '||$P{BRD_CMP_2_3}||' will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary outdoor visual observation.
 NOTE : Slight crazing or cracking may occur on roll formed edges or break bends at the time of forming,
-and is considered as standard -such crazing or cracking shall not constitute a basis for complaint under this limited warranty; and
+and is considered as standard -such crazing or cracking shall not constitute a basis for complaint under this limited warranty.
 ' as detail_2_1_1,
 
-'For '||$P{FA_TRM_7}|| '('||$P{FA_TRM_8}||') years, sidewall panels of '||$P{BRD_CMP_2_4}||' will not change color more than '||$P{FA_WAL_12}|| '('||$P{FA_WAL_11}||') delta E Hunter units and roof panels will not change more than '||$P{FA_ROF_10}|| '('||$P{FA_ROF_9}||') delta E Hunter units.
+'For '||$P{FA_TRM_7}|| '('||$P{FA_TRM_8}||') years, sidewall panels of '||$P{BRD_CMP_2_4}||' will not change color more than '||$P{FA_WAL_12}|| '('||$P{FA_WAL_11}||') delta E units and roof panels will not change more than '||$P{FA_ROF_10}|| '('||$P{FA_ROF_9}||') delta E units.
 Color change shall be measured on an exposed painted surface that has been cleaned of surface soils and Chalk, and the corresponding values measured on the original or unexposed painted surface.
 It is undersood that fading or color changes may not be uniform if the surfaces are not equally exposed to the sun and elements.
 ' as detail_2_1_2,
@@ -158,7 +158,7 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
     failures caused by scratches, scrapes or any other unnatural damage including improperly formed,
     fabricated or embossed material. This warranty excludes failures caused by standing water, and direct
     exposure to corrosive and aggressive atmospheres including salt spray and animal waste products.
-    Corrosion, Peel or other effects due to shear or cut surface pxposure are also excluded.
+    Corrosion, Peel or other effects due to shear or cut surface exposure are also excluded.
     DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects,
     explosions, or other external forces beyond Dongkuk steel’s control.
 

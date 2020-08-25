@@ -14,32 +14,32 @@
 <call command="setNoHeader"><param>false</param></call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column id="WAR_PRT_SEQ_NO" sort="str" align="center" dbname="WAR_PRT_SEQ_NO" width="9" table="TB_C10_WAR_PRT_MNG" type="ro">순번</column>
-<column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">CCLBOM 번호</column>
-<column id="NAT_CD" sort="str" align="left"  dbname="NAT_CD" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">국가</column>
-<column id="WAR_PRT_EMP_ID" sort="str" align="left"  dbname="WAR_PRT_EMP_ID" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">발행자명</column>
-<column id="WAR_PRT_DH" sort="sort_date_custom" align="center"  dbname="WAR_PRT_DH" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
-<column id="FNL_CUS_CD" sort="str" align="left"  dbname="FNL_CUS_CD" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">최종수요가</column>
-<column id="PRT_RSN" sort="sort_date_custom" align="left" dbname="PRT_RSN" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">발행목적</column>
-<column id="BRD_CMP_2" sort="sort_date_custom" align="left" dbname="BRD_CMP_2" width="17" table="TB_C10_WAR_PRT_MNG" type="ro">BRAND구성2</column>
-<column id="PER_FOR_19" sort="sort_date_custom" align="left" dbname="PER_FOR_19" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION1</column>
-<column id="PER_FOR_6" sort="sort_date_custom" align="left" dbname="PER_FOR_6" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION6</column>
-<column id="FA_TRM_7" sort="sort_date_custom" align="left" dbname="FA_TRM_7" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간7</column>
-<column id="FA_TRM_8" sort="sort_date_custom" align="left" dbname="FA_TRM_8" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간8</column>
-<column id="FA_ROF_9" sort="sort_date_custom" align="left" dbname="FA_ROF_9" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF9</column>
-<column id="FA_ROF_10" sort="sort_date_custom" align="left" dbname="FA_ROF_10" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF10</column>
-<column id="FA_WAL_11" sort="sort_date_custom" align="left" dbname="FA_WAL_11" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL11</column>
-<column id="FA_WAL_12" sort="sort_date_custom" align="left" dbname="FA_WAL_12" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL12</column>
-<column id="CH_TRM_13" sort="sort_date_custom" align="left" dbname="CH_TRM_13" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간13</column>
-<column id="CH_TRM_14" sort="sort_date_custom" align="left" dbname="CH_TRM_14" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">기간14</column>
-<column id="CH_ROF_15" sort="sort_date_custom" align="left" dbname="CH_ROF_15" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF15</column>
-<column id="CH_ROF_16" sort="sort_date_custom" align="left" dbname="CH_ROF_16" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">ROOF16</column>
-<column id="CH_WAL_17" sort="sort_date_custom" align="left" dbname="CH_WAL_17" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL17</column>
-<column id="CH_WAL_18" sort="sort_date_custom" align="left" dbname="CH_WAL_18" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">WALL18</column>
-<column id="PE_FL_1" sort="sort_date_custom" align="left" dbname="PE_FL_1" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE1</column>
-<column id="PE_FL_20" sort="sort_date_custom" align="left" dbname="PE_FL_20" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE20</column>
-<column id="GT_MT" sort="sort_date_custom" align="left" dbname="GT_MT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">GT_MT</column>
-<column id="GT_FT" sort="sort_date_custom" align="left" dbname="GT_FT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">GT_FT</column>
+<column id="WAR_PRT_SEQ_NO" sort="str" align="center" dbname="WAR_PRT_SEQ_NO" width="9" table="TB_C10_WAR_PRT_MNG" type="ro">발행순번</column>
+<column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">CCLBOM</column>
+<column id="NAT_CD" sort="str" align="left"  dbname="NAT_CD" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">국가</column>
+<column id="WAR_PRT_EMP_ID" sort="str" align="center"  dbname="WAR_PRT_EMP_ID" width="13" table="TB_C10_WAR_PRT_MNG" type="ro">발행자명</column>
+<column id="WAR_PRT_DH" sort="sort_date_custom" align="center"  dbname="WAR_PRT_DH" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
+<column id="FNL_CUS_CD" sort="str" align="left"  dbname="FNL_CUS_CD" width="23" table="TB_C10_WAR_PRT_MNG" type="ro">최종수요가</column>
+<column id="PRT_RSN" sort="sort_date_custom" align="left" dbname="PRT_RSN" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행목적</column>
+<column id="BRD_CMP_2" sort="sort_date_custom" align="left" dbname="BRD_CMP_2" width="17" table="TB_C10_WAR_PRT_MNG" type="ro">BRAND명</column>
+<column id="PER_FOR_19" sort="sort_date_custom" align="left" dbname="PER_FOR_19" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION,기간(1)</column>
+<column id="PER_FOR_6" sort="sort_date_custom" align="left" dbname="PER_FOR_6" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">PERFORATION,기간(6)</column>
+<column id="FA_TRM_7" sort="sort_date_custom" align="left" dbname="FA_TRM_7" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,기간(7)</column>
+<column id="FA_TRM_8" sort="sort_date_custom" align="left" dbname="FA_TRM_8" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,기간(8)</column>
+<column id="FA_ROF_9" sort="sort_date_custom" align="left" dbname="FA_ROF_9" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,ROOF(9)</column>
+<column id="FA_ROF_10" sort="sort_date_custom" align="left" dbname="FA_ROF_10" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,ROOF(10)</column>
+<column id="FA_WAL_11" sort="sort_date_custom" align="left" dbname="FA_WAL_11" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,WALL(11)</column>
+<column id="FA_WAL_12" sort="sort_date_custom" align="left" dbname="FA_WAL_12" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">ChangeColor,WALL(12)</column>
+<column id="CH_TRM_13" sort="sort_date_custom" align="left" dbname="CH_TRM_13" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,기간(13)</column>
+<column id="CH_TRM_14" sort="sort_date_custom" align="left" dbname="CH_TRM_14" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,기간(14)</column>
+<column id="CH_ROF_15" sort="sort_date_custom" align="left" dbname="CH_ROF_15" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,ROOF(15)</column>
+<column id="CH_ROF_16" sort="sort_date_custom" align="left" dbname="CH_ROF_16" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,ROOF(16)</column>
+<column id="CH_WAL_17" sort="sort_date_custom" align="left" dbname="CH_WAL_17" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,WALL(17)</column>
+<column id="CH_WAL_18" sort="sort_date_custom" align="left" dbname="25" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">Chalk,WALL(18)</column>
+<column id="PE_FL_1" sort="sort_date_custom" align="left" dbname="PE_FL_1" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE,기간(1)</column>
+<column id="PE_FL_20" sort="sort_date_custom" align="left" dbname="PE_FL_20" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE,기간(20)</column>
+<column id="GT_MT" sort="sort_date_custom" align="right" dbname="GT_MT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">미터</column>
+<column id="GT_FT" sort="sort_date_custom" align="right" dbname="GT_FT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">피트</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>

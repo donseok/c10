@@ -22,7 +22,9 @@
 				<item labelWidth="57" inputWidth="85" label="샘플광" name="SMP_LUS_YN" type="combo" labelAlign="right" value=""/>
 			</item>
 			<item type="block">
-				<item labelWidth="100" inputWidth="260" label="광택도코드 " name="LUS_RT_CD" type="combo" labelAlign="right" value=""/>
+				<item labelWidth="100" inputWidth="100" label="광택도코드 " name="LUS_RT_CD" type="combo" labelAlign="right" value=""/>
+				<item offset="1" type="newcolumn"/>
+				<item labelWidth="89" inputWidth="58" label="프로젝트성개발" name="PRJ_DEV_CD" type="combo" labelAlign="right" value=""/>
 			</item>			
 			<item type="block">
 				<item labelWidth="100" inputWidth="260" label="사용용도" name="CLR_USE_NM" type="input" labelAlign="right" maxLength="20" value=""/>

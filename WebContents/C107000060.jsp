@@ -30,6 +30,7 @@
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
 '{"itemType":"form","renderTo":"C107000060_Form_1","xml":".\/header\/kr\/C107000060\/C107000060_Form_1.xml","url":"gridC10Data.do","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save","security":"true"},' +
+'{"itemType":"form","renderTo":"C107000060_Form_2","xml":".\/header\/kr\/C107000060\/C107000060_Form_2.xml","url":"gridC10Data.do","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save","security":"true"},' +
 '{"itemType":"menu","renderTo":"C107000060_Menu_1","xml":".\/header\/kr\/C107000060\/C107000060_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C107000060_Grid_1","service":"C107000060-service"},' +
 '{"itemType":"grid","renderTo":"C107000060_Grid_1","xml":".\/header\/kr\/C107000060\/C107000060_Grid_1.xml","rowCnt":"21","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C107000060_Grid_1","service":"C107000060-service","actionType":"save"},' +
 '{"itemType":"messagebox","renderTo":"C107000060_messagebox","xml":".\/header\/kr\/C107000060\/C107000060_messagebox.xml","service":"C107000060-service"}' +
@@ -103,7 +104,12 @@ function findMessage(referenceItem){
   	return true;
 }
 
-function onFormLoadFunction(formDivObj){ 
+function onFormLoadFunction(){ 
+
+	var formObj   = items['C107000060_Form_2'].getDhxForm();
+	var form   = items['C107000060_Form_2'];
+	
+	form.setItemLabel("cau_lab", "<span style='color:red;'>※ BOM 칼라코드와 다른 실사용 도료 적용 시 출측특기사항에 실사용 칼라코드와 도료사 기록 必</span>");
  return true;
 }
 
@@ -120,6 +126,17 @@ function firstFind(){
 	items['C107000060_Grid_1'].getDhxGrid().detachEvent(grdXle);
 }
 
+function onGridLoadFunction(){
+	var grid =  items['C107000060_Grid_1'];
+	var gridObj = items['C107000060_Grid_1'].getDhxGrid();
+	var gridDhxObj = items['C107000060_Grid_1'].getDhxGrid();		
+	var pntCmpCdCombo = gridDhxObj.getColumnCombo(gridObj.getColIndexById('PNT_CMP_CD'));
+	
+	pntCmpCdCombo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=PNT_CMP_CD&totalValue=&orderBy=value&displayType=all-code");   
+	pntCmpCdCombo.enableOptionAutoPositioning(true);
+	pntCmpCdCombo.readonly(true,true);
+	pntCmpCdCombo.setOptionHeight(220);
+}
 
 //]]>
 -->
@@ -129,6 +146,8 @@ function firstFind(){
 <div id="C107000060_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:0px;">
 </div>
 <div id="C107000060_Menu_1" style="position:absolute;height:25px;width:981px;left:0px;top:28px;">
+</div>
+<div id="C107000060_Form_2" style="position:absolute;height:25px;width:749px;left:231px;top:28px;">
 </div>
 <div id="C107000060_Grid_1" style="position:absolute;height:511px;width:980px;left:-1px;top:54px;">
 </div>
@@ -140,8 +159,10 @@ function firstFind(){
 <!--
 //<![CDATA[
 	ui.initializeDHTMLX();
+	var onXleForm= items['C107000060_Form_2'].onXLEEvent(onFormLoadFunction);
 	items['C107000060_Grid_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
-	var grdXle = items['C107000060_Grid_1'].onXLEEvent(firstFind);	
+	var grdXle = items['C107000060_Grid_1'].onXLEEvent(firstFind);
+	var onXleGrid = items["C107000060_Grid_1"].onXLEEvent(onGridLoadFunction);
 	// 행삭제시 삭제데이타 붉은색 실선으로 표시
 	var dataProcessor = items["C107000060_Grid_1"].getDhxDataProcess();
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}

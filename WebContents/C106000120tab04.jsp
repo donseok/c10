@@ -149,7 +149,7 @@ function onLoadForm(){
 	items[formId].setItemValue("DH_END",uiCommon.getCurrentDate());
 	
 	var toDate = items[formId].getDhxForm().getItemValue('DH_END');
-	var fromDate = dateAdd(new Date(toDate.substring(5,7)+"/"+toDate.substring(8,10)+"/"+toDate.substring(0,4)),-90);
+	var fromDate = dateAdd(new Date(toDate.substring(5,7)+"/"+toDate.substring(8,10)+"/"+toDate.substring(0,4)),-900);
 	 
 	items[formId].setItemValue("DH_STR",fromDate);
 	fromDate = items[formId].getDhxForm().getItemValue('DH_STR');

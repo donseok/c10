@@ -179,6 +179,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         String ord_usg_cd = C10STR_SPACE;
         String tm_proc_cd = C10STR_SPACE;
         String ord_coilg_mth = C10STR_SPACE;
+        String ord_spnl_tp = C10STR_SPACE;
         double mix_wth = 0;
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
@@ -269,6 +270,8 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
             ccl_bom_no = (String) ctx.get( COL_CCL_BOM_NO );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_COILG_MTH ) ) )
         	ord_coilg_mth = (String) ctx.get( COL_ORD_COILG_MTH );
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
+            ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
 
         //폭조합 중 가장 작은것으로 저장(정전공정추가기준 조건용)
         if ( ord_slit_grp_cnt > 0 ){
@@ -397,7 +400,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
 
         ArrayList<String> DEL_PROC = new ArrayList<String>();
         ArrayList<String> DATA_PROC = new ArrayList<String>();
-        colValue = new String[21];
+        colValue = new String[22];
         colValue[0] = prd_nm_cd;
         colValue[1] = bak_mrk;
         colValue[2] = ord_coil_idia;
@@ -419,6 +422,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         colValue[18] = ord_coilg_mth;  // 권취방법추가(2016.04.14 이돈석 - 김태훈기사 요청)
         colValue[19] = fnl_cus_cd;  // 최종수요가추가(2017.07.17 - 우병우과장 요청)
         colValue[20] = ord_usg_cd;  // 주문용도추가(2017.07.17 - 우병우과장 요청)
+        colValue[21] = ord_spnl_tp;  //스팽글추가(2020.04.17 - 이동윤기사 요청)
         
         logger.logDebug( "==='통과공정삭제' 기준 조건 Param=== ");
         logger.logDebug("품명                 : " + colValue[0]);

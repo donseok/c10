@@ -377,6 +377,8 @@ function onGridLoadEvent8(){
 		uiCommon.renderToGrid('C104000020TAB07_Grid_8',xmlObj);
     items['C104000020TAB07_Grid_8'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent2);		
 	items['C104000020TAB07_Grid_8'].getDhxGrid().detachEvent(_onXLE8);
+	
+	document.getElementById("C104000020TAB07_Grid_8").onmousemove = function(event) { event.target.title = event.target.innerText; }
 	return false;
 }
 function upt_clear(){

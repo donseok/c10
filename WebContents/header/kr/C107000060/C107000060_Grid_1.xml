@@ -15,16 +15,18 @@
 <call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column id="CCL_CLR_SUB_MTL_CD" index="1" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">CCLBOM 칼라코드</column>
-<column id="CLR_SUB_MTL_CD" index="2" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">실사용칼라코드</column>
-<column id="CCL_MAPP_RGS_DH" index="3" format="%Y-%m-%d" sort="center" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록일자</column>
-<column id="CCL_MAPP_RGS_PRS_ID" index="4" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자ID</column>
-<column id="CCL_MAPP_RGS_PRS_NM" index="5" sort="str" align="center" width="20" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자명</column>
+<column id="CCL_CLR_SUB_MTL_CD" index="1" sort="str" align="center" width="9" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">칼라코드</column>
+<column id="CLR_SUB_MTL_CD" index="2" sort="str" align="center" width="11" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">실사용칼라코드</column>
+<column align="center" clabel="도료업체코드" dbname="도료업체코드" id="PNT_CMP_CD" index="3" sort="sort_str_custom" table="TB_C10_CLR_CMP_MNG" type="combo_v" width="25">업체코드</column>
+<column id="RSN_TXT" index="4" sort="str" align="left" width="32" table="TB_C10_CCL_BOM_CLR_MAPP" type="ed" color="FFFFC0">사유</column>
+<column id="CCL_MAPP_RGS_DH" index="5" format="%Y-%m-%d" sort="center" align="center" width="8" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록일자</column>
+<column id="CCL_MAPP_RGS_PRS_ID" index="6" sort="str" align="center" width="8" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자ID</column>
+<column id="CCL_MAPP_RGS_PRS_NM" index="7" sort="str" align="center" width="7" table="TB_C10_CCL_BOM_CLR_MAPP" type="ro">등록자명</column>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
-<userdata name="column-info">CCL_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD,CCL_MAPP_RGS_DH,CCL_MAPP_RGS_PRS_ID,CCL_MAPP_RGS_PRS_NM</userdata>
+<userdata name="column-info">CCL_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD,PNT_CMP_CD,RSN_TXT,CCL_MAPP_RGS_DH,CCL_MAPP_RGS_PRS_ID,CCL_MAPP_RGS_PRS_NM</userdata>
 <row id="0">
 <cell/>
 <cell/>
