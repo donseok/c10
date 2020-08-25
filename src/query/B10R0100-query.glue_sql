@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0100"> 
+	 <query id="B10R0100.insert" desc="고객불만HTML(C10_CUS_CMPL_HTML) B10R0100.insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 고객불만HTML(TB_C10_CUS_CMPL_HTML) B10R0100.insert 김민섭*/
+            C10APUSER.TB_C10_CUS_CMPL_HTML
+            (
+				CUS_CMPL_NO
+				,CUS_CMPL_LN
+				,CUS_CMPL_HTML_SEQ_NO
+				,CUS_CMPL_HTML_CD
+				,CREATED_OBJECT_TYPE
+				,CREATED_OBJECT_ID
+				,CREATED_PROGRAM_ID
+				,CREATION_TIMESTAMP
+				,LAST_UPDATED_OBJECT_TYPE
+				,LAST_UPDATED_OBJECT_ID
+				,LAST_UPDATE_PROGRAM_ID
+				,LAST_UPDATE_TIMESTAMP
+)
+VALUES(
+?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+)
+		 ]]> 
+	 </query>
+	 <query id="B10R0100.select" desc="고객불만HTML수신" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /* 고객불만이력수신 B10R0100.select 김민섭 */ 
+*
+FROM
+EAIAPUSER.TB_C10_B10R0100
+WHERE XSTAT='D'
+ORDER BY IF_GRP_ID, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="B10R0100_C10.select" desc="고객불만HTML 존재유무 조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT
+CUS_CMPL_NO, 
+CUS_CMPL_LN,
+CUS_CMPL_HTML_SEQ_NO,
+CUS_CMPL_HTML_CD
+FROM C10APUSER.TB_C10_CUS_CMPL_HTML
+WHERE CUS_CMPL_NO = ?
+AND CUS_CMPL_LN = ?
+AND CUS_CMPL_HTML_SEQ_NO = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0100.modify" desc="." fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 고객불만HTML B10R0100 update_ B10R0100.modify 김민섭*/                      
+EAIAPUSER.TB_C10_B10R0100
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,XSTAT = ?                     --PI 처리 상태
+      ,XMSGS = ?                     --PI 에러 메세지
+      ,XSTAT_CALLBACK = ?            --PI 처리 상태
+WHERE IF_GRP_ID = ?                  --Interface Group ID                                                                                      
+  AND SEQ_NO = ?                     --Interface SEQ
+  AND XSEQ = ?                       --PI Sequence Key Value
+		 ]]> 
+	 </query>
+</queryMap>

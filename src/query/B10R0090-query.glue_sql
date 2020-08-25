@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0090"> 
+	 <query id="B10R0090.insert" desc="고객불만이력(C10_CUS_CMPL_HST) B10R0090.insert" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 고객불만이력(TB_C10_CUS_CMPL_HST) B10R0090.insert 김민섭*/
+            C10APUSER.TB_C10_CUS_CMPL_HST
+            (
+				CUS_CMPL_NO
+				,FNL_CUS_CD
+				,FNL_CUS_NM
+				,SAL_END_DD
+				,PRD_NM
+				,CCL_BOM_NO
+				,ORD_USG_NM
+				,CMPL_CFM_COIL_WGT
+				,RET_COIL_WGT
+				,CMPL_SIT_QLT
+				,ACTL_CPN_AMT
+				,CUR_UNT
+				,CMPL_DATE
+				,CUS_CMPL_LN
+				,COIL_ID
+				,TRN_DD_CNT
+				,DOC_STS
+				,CUS_CD
+				,CUS_NM
+				,PRD_GRP
+				,FLOW_CHL
+				,SAL_TEM
+				,SAL_CHR
+				,QLT_CHR
+				,MTL_CD
+				,ORD_NO
+				,ORD_LN
+				,PROC_NM
+				,PRD_DD
+				,DLV_DD
+				,PRD_SIZE
+				,REC_WGT
+				,CMPL_CFM_WGT_UNT
+				,CMPL_CTT
+				,CMPL_TP
+				,CMPL_SIT_CUS
+				,OCC_CAU
+				,PRD_STS
+				,REQ_CPN_PLN
+				,CPN_PLN_QLT
+				,FNL_CPN_PLN_SAL
+				,CPN_YN
+				,CPN_AMT_QLT
+				,CPN_AMT_SAL
+				,CSH_CPN_WGT
+				,QLT_END_DD
+				,RET_PRD_ORD_NO
+				,CSH_CPN_ORD
+				,ACNT_YR
+				,ACNT_DOC
+				,CREATED_OBJECT_TYPE
+				,CREATED_OBJECT_ID
+				,CREATED_PROGRAM_ID
+				,CREATION_TIMESTAMP
+				,LAST_UPDATED_OBJECT_TYPE
+				,LAST_UPDATED_OBJECT_ID
+				,LAST_UPDATE_PROGRAM_ID
+				,LAST_UPDATE_TIMESTAMP
+)
+VALUES(
+?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+,?
+)
+		 ]]> 
+	 </query>
+	 <query id="B10R0090.select" desc="고객불만이력수신" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /* 고객불만이력수신 B10R0090.select 김민섭 */ 
+*
+FROM
+EAIAPUSER.TB_C10_B10R0090
+WHERE XSTAT='D'
+ORDER BY IF_GRP_ID, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="B10R0090_C10.select" desc="고객불만이력 존재유무 조회" fetchSize="10">
+		 <![CDATA[ 
+SELECT
+CUS_CMPL_NO, 
+FNL_CUS_CD, 
+FNL_CUS_NM, 
+SAL_END_DD, 
+PRD_NM, 
+CCL_BOM_NO, 
+ORD_USG_NM, 
+CMPL_CFM_COIL_WGT, 
+RET_COIL_WGT, 
+CMPL_SIT_QLT, 
+ACTL_CPN_AMT, 
+CUR_UNT, 
+CMPL_DATE, 
+CUS_CMPL_LN, 
+COIL_ID, 
+TRN_DD_CNT, 
+DOC_STS, 
+CUS_CD, 
+CUS_NM, 
+PRD_GRP, 
+FLOW_CHL, 
+SAL_TEM, 
+SAL_CHR, 
+QLT_CHR, 
+MTL_CD, 
+ORD_NO, 
+ORD_LN, 
+PROC_NM, 
+PRD_DD, 
+DLV_DD, 
+PRD_SIZE, 
+REC_WGT, 
+CMPL_CFM_WGT_UNT, 
+CMPL_CTT, 
+CMPL_TP, 
+CMPL_SIT_CUS, 
+OCC_CAU, 
+PRD_STS, 
+REQ_CPN_PLN, 
+CPN_PLN_QLT, 
+FNL_CPN_PLN_SAL, 
+CPN_YN, 
+CPN_AMT_QLT, 
+CPN_AMT_SAL, 
+CSH_CPN_WGT, 
+QLT_END_DD, 
+RET_PRD_ORD_NO, 
+CSH_CPN_ORD, 
+ACNT_YR, 
+ACNT_DOC 
+FROM C10APUSER.TB_C10_CUS_CMPL_HST
+WHERE CUS_CMPL_NO = ?
+AND CUS_CMPL_LN = ?
+AND COIL_ID = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0090.modify" desc="." fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ C10 고객불만이력 B10R0090 update_ B10R0090.modify 김민섭*/                      
+EAIAPUSER.TB_C10_B10R0090
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,XSTAT = ?                     --PI 처리 상태
+      ,XMSGS = ?                     --PI 에러 메세지
+      ,XSTAT_CALLBACK = ?            --PI 처리 상태
+WHERE IF_GRP_ID = ?                  --Interface Group ID                                                                                      
+  AND SEQ_NO = ?                     --Interface SEQ
+  AND XSEQ = ?                       --PI Sequence Key Value
+		 ]]> 
+	 </query>
+	 <query id="B10R0090_C10.update" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE 
+C10APUSER.TB_C10_CUS_CMPL_HST                                                                             
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?
+      ,LAST_UPDATED_OBJECT_ID = ?    
+      ,LAST_UPDATE_PROGRAM_ID = ?    
+      ,LAST_UPDATE_TIMESTAMP = ?  
+      ,CUS_CD = SUBSTR(CUS_CD, -6)
+      ,ORD_LN = SUBSTR(ORD_LN, -3)
+      ,FNL_CUS_CD = SUBSTR(FNL_CUS_CD, -6)                                                                                                                
+WHERE CUS_CMPL_NO = ?
+AND CUS_CMPL_LN = ?
+AND COIL_ID = ?
+		 ]]> 
+	 </query>
+</queryMap>

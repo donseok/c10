@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10R0100-service" initial="INIT_QLT_ERR">
+  <activity name="STAT_SET_S" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|S" />
+    <property name="param1" value="XMSGS|sp_null" />
+    <property name="param2" value="XSTAT_CALLBACK|sp_null" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="failure" value="end" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="resultkey" value="RK_SEARCH" />
+    <property name="dao" value="eaidao" />
+    <property name="param-count" value="0" />
+    <property name="sqlkey" value="B10R0100.select" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="COMMIT_IF" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="CHECK_CNT_CMN" />
+    <property name="param1" value="SEQ_NO|SEQ_NO" />
+    <property name="param2" value="XSEQ|XSEQ" />
+    <property name="param3" value="XCRUD|XCRUD" />
+    <property name="param4" value="XSTAT|XSTAT" />
+    <property name="param5" value="XMSGS|XMSGS" />
+    <property name="param6" value="XDATE|XDATE" />
+    <property name="param7" value="XTIME|XTIME" />
+    <property name="param8" value="XSTAT_CALLBACK|XSTAT_CALLBACK" />
+    <property name="param9" value="CUS_CMPL_NO|CUS_CMPL_NO" />
+    <property name="param-count" value="13" />
+    <property name="param10" value="CUS_CMPL_LN|CUS_CMPL_LN" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param11" value="CUS_CMPL_HTML_SEQ_NO|CUS_CMPL_HTML_SEQ_NO" />
+    <property name="param12" value="CUS_CMPL_HTML_CD|CUS_CMPL_HTML_CD" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param0" value="IF_GRP_ID|IF_GRP_ID" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="MODIFY_IF" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="sqlkey" value="B10R0100.modify" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
+    <property name="param0" value="XSTAT" />
+    <property name="param1" value="XMSGS" />
+    <property name="param2" value="XSTAT_CALLBACK" />
+    <property name="param3" value="IF_GRP_ID" />
+    <property name="param4" value="SEQ_NO" />
+    <property name="param5" value="XSEQ" />
+    <property name="param-count" value="6" />
+  </activity>
+  <activity name="COMMIT_IF" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="CHECK_CNT_CMN" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="false" value="INSERT_CUS_CMPL_HTML" />
+    <transition name="true" value="STAT_SET_E" />
+    <property name="sqlkey" value="B10R0100_C10.select" />
+    <property name="dao" value="mesdao" />
+    <property name="param0" value="CUS_CMPL_NO" />
+    <property name="param1" value="CUS_CMPL_LN" />
+    <property name="param2" value="CUS_CMPL_HTML_SEQ_NO" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="STAT_SET_E" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|E" />
+    <property name="param1" value="XMSGS|품질설계DB에 해당주문번호가 등록이 되어 있지 않습니다.!" />
+    <property name="param2" value="XSTAT_CALLBACK|R" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="INSERT_CUS_CMPL_HTML" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="failure" value="PROC_LOOP" />
+    <transition name="success" value="STAT_SET_S" />
+    <property name="sqlkey" value="B10R0100.insert" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="mesdao" />
+    <property name="param0" value="CUS_CMPL_NO" />
+    <property name="param1" value="CUS_CMPL_LN" />
+    <property name="param2" value="CUS_CMPL_HTML_SEQ_NO" />
+    <property name="param3" value="CUS_CMPL_HTML_CD" />
+    <property name="param-count" value="4" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+</service>
+
