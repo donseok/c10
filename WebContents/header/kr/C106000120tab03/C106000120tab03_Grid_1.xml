@@ -17,6 +17,8 @@
 <column id="WAR_PRT_SEQ_NO" sort="str" align="center" dbname="WAR_PRT_SEQ_NO" width="9" table="TB_C10_WAR_PRT_MNG" type="ro">발행순번</column>
 <column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="10" table="TB_C10_WAR_PRT_MNG" type="ro">CCLBOM</column>
 <column id="NAT_CD" sort="str" align="left"  dbname="NAT_CD" width="15" table="TB_C10_WAR_PRT_MNG" type="ro">국가</column>
+<column align="center" clabel="영문보증서첨부파일여부" dbname="영문보증서첨부파일여부" id="WTY_ENG_YN" index="4" sort="str" table="TB_C10_WAR_PRT_MNG" type="ro" width="11" color="FFFFC0">보증서</column>
+<column id="SPC_TXT" sort="str" align="left"  dbname="SPC_TXT" width="35" table="TB_C10_WAR_PRT_MNG" type="ro">비고</column>
 <column id="WAR_PRT_EMP_ID" sort="str" align="center"  dbname="WAR_PRT_EMP_ID" width="13" table="TB_C10_WAR_PRT_MNG" type="ro">발행자명</column>
 <column id="WAR_PRT_DH" sort="sort_date_custom" align="center"  dbname="WAR_PRT_DH" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
 <column id="FNL_CUS_CD" sort="str" align="left"  dbname="FNL_CUS_CD" width="23" table="TB_C10_WAR_PRT_MNG" type="ro">최종수요가</column>
@@ -40,11 +42,15 @@
 <column id="PE_FL_20" sort="sort_date_custom" align="left" dbname="PE_FL_20" width="25" table="TB_C10_WAR_PRT_MNG" type="ro">PEELFLAKE,기간(20)</column>
 <column id="GT_MT" sort="sort_date_custom" align="right" dbname="GT_MT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">미터</column>
 <column id="GT_FT" sort="sort_date_custom" align="right" dbname="GT_FT" width="12" table="TB_C10_WAR_PRT_MNG" type="ro">피트</column>
+<column id="CCL_BOM_WTY_SEQ_NO"  hidden="true" index="2" sort="str" align="center" width="15" table="TB_C10_CCL_BOM_IMG_MNG" type="ro">순서</column>
+<column align="center" hidden="true" id="IMG_ADR" index="8" sort="str" type="ro"/>
+<column align="center" hidden="true" id="IMG_NM" index="9" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CNT" index="9" sort="str" type="ro"/>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">WAR_PRT_SEQ_NO,CCL_BOM_NO,NAT_CD,WAR_PRT_EMP_ID,WAR_PRT_DH,FNL_CUS_CD,PRT_RSN,BRD_CMP_2,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT</userdata>
+<userdata name="column-info">WAR_PRT_SEQ_NO,CCL_BOM_NO,NAT_CD,WTY_ENG_YN,SPC_TXT,WAR_PRT_EMP_ID,WAR_PRT_DH,FNL_CUS_CD,PRT_RSN,BRD_CMP_2,PER_FOR_19,PER_FOR_6,FA_TRM_7,FA_TRM_8,FA_ROF_9,FA_ROF_10,FA_WAL_11,FA_WAL_12,CH_TRM_13,CH_TRM_14,CH_ROF_15,CH_ROF_16,CH_WAL_17,CH_WAL_18,PE_FL_1,PE_FL_20,GT_MT,GT_FT,CCL_BOM_WTY_SEQ_NO,IMG_ADR,IMG_NM,CNT</userdata>
 <row id="0">
 <cell></cell>
 <cell></cell>

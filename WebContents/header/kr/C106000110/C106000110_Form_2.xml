@@ -12,16 +12,16 @@
 </item>
 <item type="block" width="945">
 <item offset="350" type="newcolumn"/>
-<item inputWidth="100" label="2)" labelWidth="80" name="BRD_CMP_2" type="input" labelAlign="right" readonly="true"/>
+<item inputWidth="100" label="2)" labelWidth="80" name="BRD_CMP_2" type="input" labelAlign="right" />
 </item>
 <item type="block" width="945">
 <item offset="350" type="newcolumn"/>
-<item inputWidth="80" label="3)" labelWidth="80" name="F_CCL_BOM_NO" type="input" labelAlign="right" readonly="true"/>
+<item inputWidth="80" label="3)" labelWidth="80" name="F_CCL_BOM_NO" type="input" labelAlign="right" />
 </item>
 <item type="block" width="945">
 <item name="SS_1"                 label="DONGKUK STEEL provides the following warranty concerning" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_1"     label="2)" labelAlign="right" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_1"     label="2)" labelAlign="right" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="SS_2"                 label="System for building and roofing panel end" type="label" />
 </item>
@@ -29,7 +29,7 @@
 <item type="block" width="945">
 <item name="SS_3"                 label=" use in " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="NAT_ENM"          label="4)" labelAlign="right" type="input" inputWidth="150" readonly="true"/>
+<item name="NAT_ENM"          label="4)" labelAlign="right" type="input" inputWidth="150" />
 <item offset="3" type="newcolumn"/>
 <item name="SS_4"                 label="" type="label" />
 
@@ -42,7 +42,7 @@
 <item type="block" width="945" >
 <item name="S1_1"                 label="1. DONGKUK STEEL warrants that the" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_2"     label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_2"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1_2"                 label="covered by this warranty will conform to the performance standards listed below. " type="label" />
 </item>
@@ -52,7 +52,7 @@
 <item name ="universalClassB"   label="Items #A through # D below apply to metal building and similar structures installed in"  type="label" />
 <item name ="universalClassA"   label="Items #A through # D below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:"  type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="NAT_ENM_1"        label="4)" labelAlign="right" type="input" inputWidth="100" readonly="true"/>
+<item name="NAT_ENM_1"        label="4)" labelAlign="right" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1_3"                 label="" type="label" />
 </item>
@@ -64,13 +64,13 @@
 <item type="block" width="945" >
 <item name="S1A_1"               label="B. For" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="PER_FOR_6"         label="6)" type="input" inputWidth="35" readonly="true"/>
+<item name="PER_FOR_6"         label="6)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="PER_FOR_19_1"     label="19)" type="input" inputWidth="35" readonly="true"/>
+<item name="PER_FOR_19_1"     label="19)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1A_2"               label="years, " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_7"     label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_7"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1A_3"               label="will have prior to corrosion to perforation in the natural element. " type="label" />
 </item>
@@ -78,13 +78,13 @@
 <item type="block" width="945" >
 <item name="S1B_1"               label="C. For" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="PE_FL_20"            label="20)" type="input" inputWidth="35" readonly="true"/>
+<item name="PE_FL_20"            label="20)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="PE_FL_1"             label="1)" type="input" inputWidth="35" readonly="true"/>
+<item name="PE_FL_1"             label="1)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1B_2"               label="years, " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_3"     label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_3"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1B_3"               label="will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary " type="label" />
 <item offset="3" type="newcolumn"/>
@@ -95,27 +95,27 @@
 <item type="block" width="945" name="blockC">
 <item name="S1C_1"               label="D. For" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_TRM_7"          label="7)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_TRM_7"          label="7)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_TRM_8"          label="8)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_TRM_8"          label="8)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1C_2"               label="years, sidewall panels of " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_4"     label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_4"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1C_3"               label="will not change color more than " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_WAL_12"        label="12)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_WAL_12"        label="12)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_WAL_11"        label="11)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_WAL_11"        label="11)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1C_4"               label= "delta E Hunter" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="S1C_5"               label=" units and roof panels will not change more than " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_ROF_10"         label="10)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_ROF_10"         label="10)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="FA_ROF_9"          label="9)" type="input" inputWidth="35" readonly="true"/>
+<item name="FA_ROF_9"          label="9)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1C_6"               label="delta E Hunter units." type="label" />
 <item offset="3" type="newcolumn"/>
@@ -130,25 +130,25 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item offset="3" type="newcolumn"/>
 <item name="labelChgToC"       label="C. For" type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="CH_TRM_14"        label="14)" type="input" inputWidth="35" readonly="true"/>
+<item name="CH_TRM_14"        label="14)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
-<item name="CH_TRM_13"        label="13)" type="input" inputWidth="35" readonly="true"/>
+<item name="CH_TRM_13"        label="13)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S1D_2"               label="years, sidewall panels of " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_6"     label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_6"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S1D_3"               label="will not chalk more than a number" type="label" />
 <item offset="3" type="newcolumn"/>
-<item inputWidth="35" label="18)" name="CH_WAL_18" type="input" readonly="true"/>
+<item inputWidth="35" label="18)" name="CH_WAL_18" type="input" />
 <item offset="3" type="newcolumn"/>
-<item inputWidth="35" label="17)" name="CH_WAL_17" type="input" readonly="true"/>
+<item inputWidth="35" label="17)" name="CH_WAL_17" type="input" />
 <item offset="3" type="newcolumn"/>
 <item name="S1D_4"               label="roof panels won&#39;t chalk more than a number"  type="label" />
 <item offset="3" type="newcolumn"/>
-<item inputWidth="35" label="16)" name="CH_ROF_16" type="input" readonly="true"/>
+<item inputWidth="35" label="16)" name="CH_ROF_16" type="input" />
 <item offset="3" type="newcolumn"/>
-<item inputWidth="35" label="15)" name="CH_ROF_15" type="input" readonly="true"/>
+<item inputWidth="35" label="15)" name="CH_ROF_15" type="input" />
 <item offset="3" type="newcolumn"/>
 <item name="S1D_5"               label="rating when measured per ASTM D4214, Method C." type="label" />
 </item>
@@ -157,15 +157,15 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item type="block" width="945" >
 <item name="S2_1"                 label="2. No warranty is provided for " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_5"      label="2)" type="input" inputWidth="100" readonly="true"/>
+<item name="BRD_CMP_2_5"      label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
 <item name="S2_2"                 label="on any substrate that is subjected to sea spray or installed on property located within"  type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="GT_MT"      label="3)" type="input" inputWidth="35" readonly="true"/>
+<item name="GT_MT"      label="3)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S2_3"                 label="meters"  type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="GT_FT"      label="4)" type="input" inputWidth="35" readonly="true"/>
+<item name="GT_FT"      label="4)" type="input" inputWidth="35" />
 <item offset="3" type="newcolumn"/>
 <item name="S2_4"                 label="feets of a salt-water environment."  type="label" />
 <item offset="3" type="newcolumn"/>
@@ -211,6 +211,9 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item name="SE"                    label="This warranty becomes effective when all of the above conditions meet and DONGKUK STEEL have signed this agreement as of the date set forth below." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="CUS_NM"      label="최종수요가명" type="input" inputWidth="100" readonly="true"/>
+<item name="CUS_NM"      label="최종수요가명" type="input" inputWidth="100" />
+</item>
+<item type="block" width="945" >
+<item name="SPC_TXT"      label="비고" type="input" inputWidth="700" />
 </item>
 </items>

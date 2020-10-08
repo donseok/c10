@@ -345,6 +345,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
         String ccl_bom_no = C10STR_SPACE;
         String ord_wth_mng_cd = C10STR_SPACE;
         String qlt_dsn_mnf_tp = C10STR_SPACE;
+        String ord_spnl_tp = C10STR_SPACE;
         double pltcm_set_thk_trv = 0;
         double gal_thk_trv = 0;
         double cor_thk_trv = 0;
@@ -463,6 +464,8 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
             ord_mix_wth10 = Double.parseDouble( ctx.get( COL_ORD_MIX_WTH10 ).toString() );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_WTH_MNG_CD ) ) )
             ord_wth_mng_cd = (String) ctx.get( COL_ORD_WTH_MNG_CD );
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
+            ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
 
         if ( !qlt_dsn_mnf_tp.equals("1")  && 
             	!rmtl_cd.toString().substring(0,1).equals("H") && !rmtl_cd.toString().substring(0,1).equals("M") && 
@@ -622,7 +625,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
         }
 
         // 정전폭마진량
-        colValue = new String[7];
+        colValue = new String[8];
         colValue[0] = ord_edg_asg_tp; // 주문에지구분
         colValue[1] = prd_nm_cd; // 품명코드
         colValue[2] = prd_shp; // 제품형태
@@ -630,6 +633,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
         colValue[4] = rsn_tp_frn; // 수지구분 전면
         colValue[5] = Double.toString( ord_exc_thk ); //정전폭마진기준에서 주문두께 추가(2013.05.29 김태성대리 요청)
         colValue[6] = ccl_bom_no; //정전폭마진기준에서 ccl bom번호 추가(2015.09.03 김태훈사원 요청)
+        colValue[7] = ord_spnl_tp; //주문스팽글구분(2020.09.25 전현진과장요청)
         checker = EasyAccess.getPosDecisionChecker( C10B1079, null );
         result = null;
         try

@@ -1218,14 +1218,15 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         wth_trv = exc_wth;
 
         // 정전폭마진
-        colValue = new String[7];
+        colValue = new String[8];
         colValue[0] = ord_edg_asg_tp; // 주문에지구분
         colValue[1] = prd_nm_cd; // 품명코드
         colValue[2] = prd_shp; // 제품형태
         colValue[3] = cot_mth; // 코팅방식
         colValue[4] = rsn_tp_frn; // 수지구분 전면
         colValue[5] = Double.toString( ord_exc_thk );  //정전폭마진기준에서 주문두께 추가(2013.05.29 김태성대리 요청)
-        colValue[6] = ccl_bom_no; //정전폭마진기준에서 ccl bom번호 추가(2015.09.03 김태훈사원 요청) 
+        colValue[6] = ccl_bom_no; //정전폭마진기준에서 ccl bom번호 추가(2015.09.03 김태훈사원 요청)
+        colValue[7] = ord_spnl_tp; //주문Spangle구분(2020.9.25 전현진과장 요청)
         checker = EasyAccess.getPosDecisionChecker( C10B1079, null );
         result = null;
         try

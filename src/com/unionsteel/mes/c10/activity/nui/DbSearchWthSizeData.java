@@ -168,6 +168,7 @@ public class DbSearchWthSizeData extends PosActivity implements C10NuiConstantsI
         String pltcm_set_thk_trv = C10STR_SPACE;
         String ccl_bom_no = C10STR_SPACE;
         String qlt_dsn_mnf_tp = C10STR_SPACE;
+        String ord_spnl_tp = C10STR_SPACE;
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
         double ord_mix_wth2 = 0;
@@ -193,6 +194,8 @@ public class DbSearchWthSizeData extends PosActivity implements C10NuiConstantsI
 
         if ( !DbCommonUtil.isNull( ctx.get( COL_QLT_DSN_MNF_TP ) ) )
         	qlt_dsn_mnf_tp = ctx.get( COL_QLT_DSN_MNF_TP ).toString();
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
+            ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
         if ( !DbCommonUtil.isNull( ctx.get( COL_RMTL_CD ) ) )
             rmtl_cd = (String) ctx.get( COL_RMTL_CD );
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_EXC_THK ) ) )
@@ -441,7 +444,7 @@ public class DbSearchWthSizeData extends PosActivity implements C10NuiConstantsI
             ctx.put( COL_COR_EDG_ASG_TP, C10STR_NO );
 
         // 정전폭마진
-        colValue = new String[7];
+        colValue = new String[8];
         colValue[0] = ord_edg_asg_tp; // 주문에지구분
         colValue[1] = prd_nm_cd; // 품명코드
         colValue[2] = prd_shp; // 제품형태
@@ -449,6 +452,7 @@ public class DbSearchWthSizeData extends PosActivity implements C10NuiConstantsI
         colValue[4] = rsn_tp_frn; // 수지구분 전면
         colValue[5] = Double.toString( ord_exc_thk ); //정전폭마진기준에서 주문두께 추가(2013.05.29 김태성대리 요청) 
         colValue[6] = ccl_bom_no; //정전폭마진기준에서 ccl bom번호 추가(2015.09.03 김태훈사원 요청)
+        colValue[7] = ord_spnl_tp; //주문스팽글구분(2020.09.25 전현진과장요청)
         
         logger.logDebug( "DONSEOK CHECK1 ord_edg_asg_tp : " + colValue[0] );
         logger.logDebug( "DONSEOK CHECK1 prd_nm_cd : " + colValue[1] );
@@ -457,6 +461,7 @@ public class DbSearchWthSizeData extends PosActivity implements C10NuiConstantsI
         logger.logDebug( "DONSEOK CHECK2 rsn_tp_frn : " + colValue[4] );
         logger.logDebug( "DONSEOK CHECK1 ord_exc_thk : " + colValue[5] );
         logger.logDebug( "DONSEOK CHECK1 ccl_bom_no : " + colValue[6] );
+        logger.logDebug( "DONSEOK CHECK1 ord_spnl_tp : " + colValue[7] );
 
         checker = EasyAccess.getPosDecisionChecker( C10B1079, null );
         result = null;

@@ -61,7 +61,9 @@ SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010.select 이민균 
     CLR_SMP_RMK, --비고  
     CLR_SMP_DSN_RMK, --설계비고
     RSN_TP_TXT,
-    ORD_PRE_WGT  
+    ORD_PRE_WGT,
+    COL_CFM_ACT_YN,
+    DECODE(PRJ_DEV_CD,'1','1~3회','2','반복','') AS PRJ_DEV_CD --프로젝트성개발   
 FROM  C10APUSER.TB_C10_CLR_SMP A,
           C10APUSER.TB_C10_CLR_CMP_DEV_MNG B
 WHERE  CLR_SMP_DEV_RCP_DH BETWEEN TO_DATE(NVL(:CLR_SMP_DEV_RCP_DH_START,'1900-01-01'),'YYYY-MM-DD')
@@ -219,7 +221,7 @@ INTO TB_C10_CLR_SMP
 	 </query>
 	 <query id="C106000010xls.select" desc="C106000010 정보 조회" isNamed="true">
 		 <![CDATA[ 
-SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010xls.select 김종화 */
+SELECT/* C10 품질설계 칼라시편관리조회 C106000010xls.select 김종화 */
     CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CLR_SMP_RCP_NO,--칼라시편접수번호
     CUS_REQ_HUE_TXT,--고객요청색상명
@@ -264,7 +266,9 @@ SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010xls.select 김종�
     DSN_CHR_PRS_ID, --설계담당자         
     CLR_SMP_DSN_RMK, --설계비고
     B.SMP_PRC_MAN,
-    B.MGR_CAL   
+    B.MGR_CAL,
+    COL_CFM_ACT_YN, --색상확인활동
+    DECODE(PRJ_DEV_CD,'1','1~3회','2','반복','') AS PRJ_DEV_CD  --프로젝트성개발  
 FROM  C10APUSER.TB_C10_CLR_SMP A,
           C10APUSER.TB_C10_CLR_CMP_DEV_MNG B
 WHERE  CLR_SMP_DEV_RCP_DH BETWEEN TO_DATE(NVL(:CLR_SMP_DEV_RCP_DH_START,'1900-01-01'),'YYYY-MM-DD')

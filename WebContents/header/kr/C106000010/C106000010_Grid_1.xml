@@ -23,7 +23,7 @@
 <param>true</param>
 </call>
 <call command="attachHeader">
-<param><![CDATA[#rspan,#rspan,고객색상,도막두께,광택도,사용용도,영업담당,고객사,사용지역,품명,요청일,승인일,도료업체,수지,의뢰일,예정일,완료일,송부일,승인,색상코드,CCL-BOM,CCL-BOM등록일,색구분,유사,설계담당,샘플담당자,담당자연락처]]></param>
+<param><![CDATA[#rspan,#rspan,고객색상,도막두께,광택도,사용용도,영업담당,고객사,사용지역,품명,요청일,승인일,도료업체,수지,의뢰일,예정일,완료일,송부일,승인,색상코드,CCL-BOM,CCL-BOM등록일,색구분,유사,설계담당,샘플담당자,담당자연락처,색상확인활동,프로젝트성개발]]></param>
 </call>
 </beforeInit>
 <afterInit>
@@ -63,6 +63,8 @@
 <column align="center" id="DSN_CHR_PRS_ID" index="34" sort="sort_str_custom" table="TB_C10_CLR_SMP" type="ro" width="8">#cspan</column>
 <column align="center" id="SMP_PRC_MAN" index="35" sort="sort_str_custom" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" width="16">#cspan</column>
 <column align="center" id="MGR_CAL" index="36" sort="sort_str_custom" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" width="12">#cspan</column>
+<column align="center" id="COL_CFM_ACT_YN" index="37" sort="sort_str_custom" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" width="12">#cspan</column>
+<column align="center" id="PRJ_DEV_CD" index="38" sort="sort_str_custom" table="TB_C10_CLR_CMP_DEV_MNG" type="ro" width="12">#cspan</column>
 <column align="center" id="RSN_ANL_REQ_YN" index="32"  hidden="true" sort="sort_str_custom" table="TB_C10_CLR_SMP" type="ro" width="8">#cspan</column>
 <column align="center" id="SMP_SND_YN" index="32"  hidden="true" sort="sort_str_custom" table="TB_C10_CLR_SMP" type="ro" width="8">#cspan</column>
 <column align="center" id="SMP_LUS_YN" index="32"  hidden="true" sort="sort_str_custom" table="TB_C10_CLR_SMP" type="ro" width="8">#cspan</column>
@@ -79,7 +81,7 @@
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">CLR_SMP_REQ_NO,CLR_SMP_RCP_NO,CUS_REQ_HUE_TXT,PNT_FLM_THK_TXT,LUS_RT_CD,CLR_USE_NM,SAL_CHR_PRS_ID,CUS_CD_TXT,USE_REG_TXT,PRD_NM_CD,SAL_CHR_REQ_DH,SAL_CHR_RGN_DH,DEV_PNT_CMP_CD_NM,RSN_TP,CLR_SMP_DEV_REQ_DH,CLR_SMP_DEV_LMT_DH,CLR_SMP_DEV_END_DH,CLR_SMP_DEV_SND_DH,DSN_CHR_RGN_YN_NM,HUE_CD,CCL_BOM_NO,CCL_BOM_RGS_DH,CLR_TP_NM,SIM_HUE_PRG_YN,DSN_CHR_PRS_ID,SMP_PRC_MAN,MGR_CAL,RSN_ANL_REQ_YN,SMP_SND_YN,SMP_LUS_YN,PRD_TP_YN,CLR_SMP_RMK,DEV_PNT_CMP_CD,CLR_TP,DSN_CHR_RGN_YN,SMP_SND_INF,CLR_SMP_DSN_RMK,RSN_TP_TXT,ORD_PRE_WGT</userdata>
+<userdata name="column-info">CLR_SMP_REQ_NO,CLR_SMP_RCP_NO,CUS_REQ_HUE_TXT,PNT_FLM_THK_TXT,LUS_RT_CD,CLR_USE_NM,SAL_CHR_PRS_ID,CUS_CD_TXT,USE_REG_TXT,PRD_NM_CD,SAL_CHR_REQ_DH,SAL_CHR_RGN_DH,DEV_PNT_CMP_CD_NM,RSN_TP,CLR_SMP_DEV_REQ_DH,CLR_SMP_DEV_LMT_DH,CLR_SMP_DEV_END_DH,CLR_SMP_DEV_SND_DH,DSN_CHR_RGN_YN_NM,HUE_CD,CCL_BOM_NO,CCL_BOM_RGS_DH,CLR_TP_NM,SIM_HUE_PRG_YN,DSN_CHR_PRS_ID,SMP_PRC_MAN,MGR_CAL,COL_CFM_ACT_YN,PRJ_DEV_CD,RSN_ANL_REQ_YN,SMP_SND_YN,SMP_LUS_YN,PRD_TP_YN,CLR_SMP_RMK,DEV_PNT_CMP_CD,CLR_TP,DSN_CHR_RGN_YN,SMP_SND_INF,CLR_SMP_DSN_RMK,RSN_TP_TXT,ORD_PRE_WGT</userdata>
 <row background-color="125,125,125" id="0">
 <cell/>
 <cell/>

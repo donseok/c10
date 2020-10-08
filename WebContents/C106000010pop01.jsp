@@ -79,8 +79,9 @@ function save(eventName,formDivObj,referenceItem){
     var CLR_SMP_DEV_LMT_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_LMT_DH");
     var CLR_SMP_DEV_END_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_END_DH");
     var CLR_SMP_DEV_SND_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_SND_DH");
-    var PTT_FLM_YN = items['C106000010pop01_Form_2'].getItemValue("PTT_FLM_YN"); 
-
+    var PTT_FLM_YN = items['C106000010pop01_Form_2'].getItemValue("PTT_FLM_YN");
+    var PRJ_DEV_CD = items['C106000010pop01_Form_2'].getItemValue("PRJ_DEV_CD");
+    
     items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_REQ_DH", SAL_CHR_REQ_DH);
    	items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_RGN_DH", SAL_CHR_RGN_DH);
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_REQ_DH", CLR_SMP_DEV_REQ_DH);
@@ -96,6 +97,11 @@ function save(eventName,formDivObj,referenceItem){
 	
 	if(PTT_FLM_YN == null ){
 		dhtmlx.alert("보호필름유무는 필수입력입니다.");
+		return;
+	}
+	
+	if(PRJ_DEV_CD == null ){
+		dhtmlx.alert("프로젝트성 개발유무는 필수입력입니다.");
 		return;
 	}
    	
@@ -211,6 +217,20 @@ function onFormLoadFunction(formDivObj){
 		comboList['PRJ_DEV_CD'].setOptionHeight(240);
 	});
 	
+	comboList['SIM_HUE_PRG_YN'].readonly(true,false);
+	ui.combo.master(comboList['SIM_HUE_PRG_YN'],'SZ0000','SIM_HUE_PRG_YN','totalValue=,orderBy=value,displayType=all-code',function(){
+		comboList['SIM_HUE_PRG_YN'].selectOption(0,true,true);
+		comboList['SIM_HUE_PRG_YN'].readonly(true);
+		comboList['SIM_HUE_PRG_YN'].setOptionHeight(80);
+	});
+	
+	comboList['COL_CFM_ACT_YN'].readonly(true,false);
+	ui.combo.master(comboList['COL_CFM_ACT_YN'],'SZ0000','COL_CFM_ACT_YN','totalValue=,orderBy=value,displayType=all-code',function(){
+		comboList['COL_CFM_ACT_YN'].selectOption(0,true,true);
+		comboList['COL_CFM_ACT_YN'].readonly(true);
+		comboList['COL_CFM_ACT_YN'].setOptionHeight(80);
+	});
+	
 //	form.setItemValue("INQ_RCP_DH",getCurrentMinitesTime());
 	parent.c10popUp_setVal = masterPopup2SetValue;	
 	if(!isNull("<%=CLR_SMP_REQ_NO%>")){	
@@ -258,7 +278,10 @@ function fieldEnable(){
         formObj.disableItem("CLR_TP");
         formObj.disableItem("DSN_CHR_PRS_ID");
         formObj.disableItem("CLR_SMP_DSN_RMK");
-        formObj.disableItem("PRJ_DEV_CD");
+        //formObj.disableItem("PRJ_DEV_CD");
+        formObj.disableItem("SIM_HUE_PRG_YN");
+        formObj.disableItem("COL_CFM_ACT_YN");
+        
          
         if('<%=ctl_tp%>' == 'Y'){ 
          	formObj.enableItem("CLR_SMP_RCP_NO");
@@ -278,6 +301,8 @@ function fieldEnable(){
             formObj.enableItem("DSN_CHR_PRS_ID");
             formObj.enableItem("CLR_SMP_DSN_RMK");
             formObj.enableItem("PRJ_DEV_CD");
+            formObj.enableItem("SIM_HUE_PRG_YN");
+            formObj.enableItem("COL_CFM_ACT_YN");
         }        
 }
 

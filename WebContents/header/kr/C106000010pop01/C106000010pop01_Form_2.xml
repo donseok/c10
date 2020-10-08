@@ -91,13 +91,16 @@
 			<item type="block">
 				<item labelWidth="100" inputWidth="100" label="색상코드" name="HUE_CD" type="input" labelAlign="right" maxLength="5" value=""/>
 				<item offset="5" type="newcolumn"/>
-				<item labelWidth="120" width="2" label="유사색상진행" name="SIM_HUE_PRG_YN" type="checkbox" labelAlign="right" />
 			</item>						
 			<item type="block">
 				<item labelWidth="100" inputWidth="100" label="CCLBOM번호" name="CCL_BOM_NO" type="input" labelAlign="right" maxLength="6" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="75" width="67" label="유사색상진행" name="SIM_HUE_PRG_YN" type="combo" labelAlign="right" value=""/>
 			</item>
 			<item type="block">
 				<item dateFormat="%Y-%m-%d"  inputWidth="100" label="CCLBOM등록일" labelAlign="right" labelWidth="100" name="CCL_BOM_RGS_DH" type="calendar" value=""/>
+				<item offset="5" type="newcolumn"/>
+				<item labelWidth="75" width="67" label="색상확인활동" name="COL_CFM_ACT_YN" type="combo" labelAlign="right" value=""/>
 			</item>
 			<item type="block">
 				<item labelWidth="100" inputWidth="100" label="색구분" name="CLR_TP" type="combo" labelAlign="right" value=""/>

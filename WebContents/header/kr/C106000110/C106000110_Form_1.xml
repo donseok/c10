@@ -43,5 +43,6 @@
 <item name="CUS_NM" type="hidden" readonly="true"/>	
 <item name="GT_MT" type="hidden" readonly="true"/>
 <item name="GT_FT" type="hidden" readonly="true"/> 
+<item name="SPC_TXT" type="hidden" readonly="true"/> 
 </item>
 </items>

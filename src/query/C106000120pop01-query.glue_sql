@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000120pop01 Page 쿼리파일"> 
+	 <query id="C106000120pop01.update" desc="C106000120pop01 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE  /* C106000120pop01   CCLBOM 보증서 등록여부 yn  C106000120pop01.update  이돈석  */
+TB_C10_CCL_BOM_IMG_MNG
+SET DOC_YN = DECODE((SELECT COUNT(IMG_NM) CNT
+                FROM   TB_C10_CCL_BOM_IMG
+                WHERE  CCL_BOM_NO =  :IMG_RGS_FLAG_ID
+                AND    CCL_BOM_IMG_SEQ_NO =  :IMG_RGS_FLAG_ID2
+                AND    PRD_SPC_TP = '3') , 0, 'N', 'Y' ) ,
+         LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+         LAST_UPDATED_OBJECT_ID = :ObjectId,
+         LAST_UPDATE_PROGRAM_ID = :ProgramId,
+         LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE  CCL_BOM_NO =  :IMG_RGS_FLAG_ID
+AND    CCL_BOM_IMG_SEQ_NO =  :IMG_RGS_FLAG_ID2
+		 ]]> 
+	 </query>
+	 <query id="C106000120pop01.delete" desc="C106000120pop01 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE  /* C106000120pop01  CCLBOM 보증서 삭제  C106000120pop01.delete  이돈석  */
+TB_C10_WAR_FILE_MNG
+WHERE WAR_PRT_SEQ_NO = :IMG_RGS_FLAG_ID
+AND CCL_BOM_NO = :IMG_RGS_FLAG_ID1
+AND CCL_BOM_WAR_SEQ_NO = 1
+AND SEQ_NO = :SEQ
+		 ]]> 
+	 </query>
+	 <query id="C106000120pop01.insert" desc="C106000120pop01 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000120pop01   CCLBOM 보증서 업로드  C106000120pop01.insert  이돈석  */
+INTO TB_C10_WAR_FILE_MNG (
+    WAR_PRT_SEQ_NO,
+    CCL_BOM_NO,
+	CCL_BOM_WAR_SEQ_NO,
+	SEQ_NO,
+	IMG_RGS_TP,
+	IMG_ADR,
+	IMG_NM,
+	CCL_BOM_RGS_DH,
+	CCL_BOM_RGS_PRS_ID,
+	PRD_SPC_TP,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP)
+VALUES (
+    :IMG_RGS_FLAG_ID, 
+    :IMG_RGS_FLAG_ID1, 
+    1,
+    1, 
+    :IMG_RGS_TP, 
+    :FILE_ADDR,
+    :FILE_NAME,  
+    SYSDATE, 
+    :ObjectId,
+    :PRD_SPC_TP,
+    'C',
+    :ObjectId,
+    'C106000120pop01',
+    SYSTIMESTAMP,
+    'C',
+    :ObjectId,
+    'C106000120pop01',
+    SYSTIMESTAMP
+    )
+		 ]]> 
+	 </query>
+	 <query id="C106000120pop01_Grid_1.select" desc="물성파일등록" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000120pop01   CCLBOM 보증서 발행파일조회   C106000120pop01_Grid_1.select  이돈석  */
+       WAR_PRT_SEQ_NO,
+       CCL_BOM_NO,
+       CCL_BOM_WAR_SEQ_NO,
+       SEQ_NO,
+       DECODE(IMG_RGS_TP, '2', '모바일', 'PC') IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       TO_CHAR(CCL_BOM_RGS_DH, 'YYYY-MM-DD') CCL_BOM_RGS_DH,
+       CCL_BOM_RGS_PRS_ID,
+       IMG_NM CHK_IMG_NM,
+       './'||REPLACE(SUBSTR(IMG_ADR, instr(IMG_ADR, 'IMG_UPLOAD')), '\', '/')||'/' CHK_IMG_ADR
+FROM C10APUSER.TB_C10_WAR_FILE_MNG
+WHERE WAR_PRT_SEQ_NO = :WAR_PRT_SEQ_NO
+AND CCL_BOM_NO = :CCL_BOM_NO
+AND CCL_BOM_WAR_SEQ_NO = 1
+AND PRD_SPC_TP = '1' 
+ORDER BY WAR_PRT_SEQ_NO, CCL_BOM_NO, CCL_BOM_WAR_SEQ_NO, SEQ_NO
+		 ]]> 
+	 </query>
+</queryMap>

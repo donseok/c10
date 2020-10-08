@@ -28,7 +28,7 @@
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
-      '{"itemType":"form","renderTo":"C106000120tab03_Form_1","xml":".\/header\/kr\/C106000120tab03\/C106000120tab03_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000120tab03_Grid_1","service":"C106000120tab03-service","actionType":"find"},' +
+      '{"itemType":"form","renderTo":"C106000120tab03_Form_1","xml":".\/header\/kr\/C106000120tab03\/C106000120tab03_Form_1.xml","url":"gridC10Data.do","referenceItem":"C106000120tab03_Grid_1","service":"C106000120tab03-service","actionType":"find"},' +
       '{"itemType":"menu","renderTo":"C106000120tab03_Menu_1","xml":".\/header\/kr\/C106000120tab03\/C106000120tab03_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000120tab03_Grid_1","service":"C106000120tab03-service"},' +
       '{"itemType":"grid","renderTo":"C106000120tab03_Grid_1","xml":".\/header\/kr\/C106000120tab03\/C106000120tab03_Grid_1.xml","rowCnt":"19","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"3","referenceItem":"C106000120tab03_Grid_1","service":"C106000120tab03-service"},' +
       '{"itemType":"messagebox","renderTo":"C106000120tab03_messagebox","xml":".\/header\/kr\/C106000120tab03\/C106000120tab03_messagebox.xml","service":"C106000120tab03-service"}' +
@@ -177,6 +177,23 @@ function onLoadGrid (){
     var findUrl = uiCommon.parameters('C106000120tab03_Form_1','C106000120tab03_Grid_1','find');
     items['C106000120tab03_Grid_1'].loadData(findUrl);
 	items["C106000120tab03_Grid_1"].getDhxGrid().detachEvent(onXLEGrid);
+}
+
+//(보증서파일) 등록을 위한 POP-UP
+function doImgPopUp4(rowIdx){	
+	var gridObj = items['C106000120tab03_Grid_1'].getDhxGrid();
+	var rowId = gridObj.getRowIndex(rowIdx);
+	var md_url = "C106000120pop01.jsp?rowId="+rowId;
+	    md_url += "&WAR_PRT_SEQ_NO="+items['C106000120tab03_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('WAR_PRT_SEQ_NO'));
+		md_url += "&CCL_BOM_NO="+items['C106000120tab03_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('CCL_BOM_NO'));
+		md_url += "&CCL_BOM_WTY_SEQ_NO=1";
+		md_url += "&parent_item=C106000120tab03_Grid_1";
+		md_url += "&IMG_RGS_TP=1";  // 1로 고정(PC)
+		md_url += "&PRD_SPC_TP=1";  // 1로 고정(보증서)
+		
+	var cusWinObj = new ui.window("C106000120PopWin","보증서 파일 등록","0","0","465","405",md_url);
+	cusWinObj.setButtonDisable("park,minmax1");
+	cusWinObj.setModal();
 }
 
 //]]>

@@ -275,6 +275,7 @@ function mapValues(chkIF){
  	var sCusNm        = uiFormObjSub.getItemValue("CUS_NM");      //최종수요가
  	var sGT_MT        = uiFormObjSub.getItemValue("GT_MT");       //거리미터
  	var sGT_FT        = uiFormObjSub.getItemValue("GT_FT");       //거리피트
+ 	var sSPC_TXT      = uiFormObjSub.getItemValue("SPC_TXT");    //비고
  	
  	var arryList = new Array(8);
  	arryList[0] = sBRD_CMP_2;
@@ -347,6 +348,7 @@ function mapValues(chkIF){
 	 		uiFormObj.setItemValue("CUS_NM"    ,sCusNm);
 	 		uiFormObj.setItemValue("GT_MT"     ,sGT_MT);
 	 		uiFormObj.setItemValue("GT_FT"     ,sGT_FT);
+	 		uiFormObj.setItemValue("SPC_TXT"   ,sSPC_TXT);
 	 		returnVal = "true";
  		}
  	return returnVal;
