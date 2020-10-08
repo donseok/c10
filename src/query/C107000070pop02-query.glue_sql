@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C107000070pop02 Page 쿼리파일"> 
+	 <query id="C107000070pop02.select" desc="C107000070pop02 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*고객불만이력 상세이력 HTML코드 조회 */ 
+CUS_CMPL_HTML_CD FROM C10APUSER.TB_C10_CUS_CMPL_HTML
+WHERE CUS_CMPL_NO = :CUS_CMPL_NO
+AND CUS_CMPL_LN = :CUS_CMPL_LN
+ORDER BY TO_NUMBER(CUS_CMPL_HTML_SEQ_NO) ASC
+		 ]]> 
+	 </query>
+</queryMap>

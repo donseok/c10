@@ -1,0 +1,20 @@
+<items>
+<item type="block">
+
+<item inputWidth="80" label="접수일" name="SAL_END_DD_FR" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="80" name="SAL_END_DD_TO" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
+<item offset="5" type="newcolumn"/>
+<item name="find" command="find" type="button" value="조회"/>
+<item offset="5" type="newcolumn"/>
+<!-- <item name="winClose" command="winClose" type="button" value="닫기"/> -->
+<item name="popUpBlock" command="popUpBlock" type="button" value="2시간동안팝업차단" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="90" label="최종수요가 " name="FNL_CUS_CD" type="hidden"/>
+<item inputWidth="40" name="CCL_BOM_NO" type="hidden"/>
+<item inputWidth="40" name="PRD_NM_CD" type="hidden"/>
+
+</item>
+</items>

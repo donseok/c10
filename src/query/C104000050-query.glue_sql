@@ -80,6 +80,28 @@ SELECT /*+ C10 품질설계결과확정 C104000050.select 박재영 */
       ,QLT_HLD_YN
       ,TRST_PROC_YN
       ,nvl2(ORD_REP_YN,'Y','N') as ORD_REP_YN
+	  ,(
+        SELECT 
+        CASE WHEN COUNT(*)>0 THEN 'Y'
+        END
+        AS CUS_CMPL_HST_YN
+        FROM C10APUSER.TB_C10_CUS_CMPL_HST
+        WHERE SAL_END_DD BETWEEN TO_CHAR(ADD_MONTHS(SYSDATE,-24),'YYYYMMDD') AND TO_CHAR(SYSDATE, 'YYYYMMDD')
+        AND ( 
+              (
+                ( (FNL_CUS_CD IS NOT NULL) AND (CCL_BOM_NO  IS NOT NULL)  ) 
+                AND (CCL_BOM_NO = TB_C10_QLT_DSN_CMN.CCL_BOM_NO) 
+                AND (FNL_CUS_CD = TB_C10_QLT_DSN_CMN.FNL_CUS_CD)
+                AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = TB_C10_QLT_DSN_CMN.PRD_NM_CD)
+              )
+            OR (
+                ((FNL_CUS_CD IS NOT NULL) AND (CCL_BOM_NO  IS NULL)) 
+                AND (FNL_CUS_CD =  TB_C10_QLT_DSN_CMN.FNL_CUS_CD) 
+                AND (CCL_BOM_NO IS NULL)
+                AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = TB_C10_QLT_DSN_CMN.PRD_NM_CD)
+               ) 
+            )
+   ) AS CUS_CMPL_HST_YN
    FROM
    TB_C10_QLT_DSN_CMN
    WHERE ORD_NO LIKE :ORD_NO||'%'
@@ -100,6 +122,8 @@ SELECT /*+ C10 품질설계결과확정 C104000050.select 박재영 */
     AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
     AND NVL(QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
 ORDER BY ORD_NO, ORD_LN
+		  
+	 
 		 ]]> 
 	 </query>
 	 <query id="C104000050.update" desc="품질설계상태 update" fetchSize="10" isNamed="true">
@@ -581,6 +605,8 @@ AND ORD_LN= :ORD_LN
 	 </query>
 	 <query id="C104000050.selectBsts" desc="품질설계상태 BE인 것들 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
+
+		  
 SELECT /*+ C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
        DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_CFM
       ,ORD_NO
@@ -659,6 +685,28 @@ SELECT /*+ C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
       ,QLT_HLD_YN
       ,TRST_PROC_YN
       ,nvl2(ORD_REP_YN,'Y','N') as ORD_REP_YN
+	  ,(
+        SELECT 
+        CASE WHEN COUNT(*)>0 THEN 'Y'
+        END
+        AS CUS_CMPL_HST_YN
+        FROM C10APUSER.TB_C10_CUS_CMPL_HST
+        WHERE SAL_END_DD BETWEEN TO_CHAR(ADD_MONTHS(SYSDATE,-24),'YYYYMMDD') AND TO_CHAR(SYSDATE, 'YYYYMMDD')
+        AND ( 
+              (
+                ( (FNL_CUS_CD IS NOT NULL) AND (CCL_BOM_NO  IS NOT NULL)  ) 
+                AND (CCL_BOM_NO = TB_C10_QLT_DSN_CMN.CCL_BOM_NO) 
+                AND (FNL_CUS_CD = TB_C10_QLT_DSN_CMN.FNL_CUS_CD)
+                AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = TB_C10_QLT_DSN_CMN.PRD_NM_CD)
+              )
+            OR (
+                ((FNL_CUS_CD IS NOT NULL) AND (CCL_BOM_NO  IS NULL)) 
+                AND (FNL_CUS_CD =  TB_C10_QLT_DSN_CMN.FNL_CUS_CD) 
+                AND (CCL_BOM_NO IS NULL)
+                AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = TB_C10_QLT_DSN_CMN.PRD_NM_CD)
+               ) 
+            )
+   ) AS CUS_CMPL_HST_YN
    FROM
    TB_C10_QLT_DSN_CMN
    WHERE ORD_NO LIKE :ORD_NO||'%'

@@ -6,7 +6,7 @@
 <call command="enableMultiselect"><param>true</param></call>
 <call command="enableValidation"><param>true</param></call>
 <call command="setColValidators"><param>NotEmpty</param></call>
-<call command="attachHeader"><param><![CDATA[#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,두께,폭,길이,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
+<call command="attachHeader"><param><![CDATA[#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,두께,폭,길이,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan,#rspan]]></param></call>
 <call command="enableSmartRendering">
 	<param>true</param>
 </call>
@@ -29,6 +29,7 @@
 </afterInit>
 <column id="QLT_DSN_CFM" sort="na" width="3" dbname="설계확정" align="center" table="TB_C10_QLT_DSN_CMN" type="ch" clabel="설계확정" color="FFFFC0">설계확정</column>
 <column id="ORD_REP_YN" sort="na" width="3" dbname="반복주문여부" align="center" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="설계확정" >반복주문</column>
+<column id="CUS_CMPL_HST_YN" sort="na" width="4" dbname="고객불만여부"  align="center"  table="TB_C10_QLT_DSN_CMN" type="ahref" >클레임여부</column>
 <column id="ORD_NO" sort="sort_str_custom" width="9" dbname="주문번호" align="center" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문번호">주문번호</column>
 <column id="ORD_LN" sort="sort_int_custom" align="center" width="3" dbname="주문행번" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문행번">행번</column>
 <column id="FNL_CUS_CD" sort="sort_str_custom" align="left" dbname="최종수요가코드" width="18" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="최종수요가코드">최종수요가</column>
@@ -69,7 +70,7 @@
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
-<userdata name="column-info">QLT_DSN_CFM,ORD_REP_YN,ORD_NO,ORD_LN,FNL_CUS_CD,PRD_NM_CD,SPC_AVR,ORD_USG_CD,CCL_BOM_NO,CCL_PROC,DSN_ATO_CFM_YN,QLT_DSN_STS_CD,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,ORD_LN_WGT,MTL_PRD_ORD_YN,MO_CVT_ORD_YN,TRST_PROC_YN,CUS_REQ_DLV_DD,QLT_DSN_INST_DH,QLT_DSN_END_DH,QLT_DSN_CFM_DH,ORD_RGS_PRS_ID_NM,QLT_DSN_CFM_PRS_ID_NM,QLT_RDSN_PRS_ID_NM,DSN_ATO_CFM_PRS_ID_NM,DSN_ATO_CFM_DH,ORD_BAK_SND_TP_NM,ORD_BAK_SND_PRS_ID_NM,ORD_BAK_SND_DH,ORD_BAK_SND_CAU,ORD_BAK_SND_TP,QLT_DSN_CFM_PRS_ID,QLT_RDSN_PRS_ID,DSN_ATO_CFM_PRS_ID,ORD_BAK_SND_PRS_ID,QLT_HLD_YN</userdata>
+<userdata name="column-info">QLT_DSN_CFM,ORD_REP_YN,CUS_CMPL_HST_YN,ORD_NO,ORD_LN,FNL_CUS_CD,PRD_NM_CD,SPC_AVR,ORD_USG_CD,CCL_BOM_NO,CCL_PROC,DSN_ATO_CFM_YN,QLT_DSN_STS_CD,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,ORD_LN_WGT,MTL_PRD_ORD_YN,MO_CVT_ORD_YN,TRST_PROC_YN,CUS_REQ_DLV_DD,QLT_DSN_INST_DH,QLT_DSN_END_DH,QLT_DSN_CFM_DH,ORD_RGS_PRS_ID_NM,QLT_DSN_CFM_PRS_ID_NM,QLT_RDSN_PRS_ID_NM,DSN_ATO_CFM_PRS_ID_NM,DSN_ATO_CFM_DH,ORD_BAK_SND_TP_NM,ORD_BAK_SND_PRS_ID_NM,ORD_BAK_SND_DH,ORD_BAK_SND_CAU,ORD_BAK_SND_TP,QLT_DSN_CFM_PRS_ID,QLT_RDSN_PRS_ID,DSN_ATO_CFM_PRS_ID,ORD_BAK_SND_PRS_ID,QLT_HLD_YN</userdata>
 <row id="0">
 <cell/>
 </row>

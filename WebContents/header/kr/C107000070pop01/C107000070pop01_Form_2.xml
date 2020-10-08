@@ -1,0 +1,55 @@
+<items>
+<item background-color="255,128,128" type="block" width="650" style="font-weight:bold; font-size:22px;">
+<item inputWidth="380" label="보상금액(백만원)" name="ACTL_CPN_AMT" type="input"  labelWidth="180" labelAlign="left" readonly="true" style="background-color:#FFFFC0; font-weight:bold; color:red"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-weight:bold; font-size:22px;">
+<item inputWidth="380" label="보상중량(톤)" name="CMPL_CFM_COIL_WGT" type="input" labelWidth="180" labelAlign="left" readonly="true" style="background-color:#FFFFC0; font-weight:bold; color:red"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-weight:bold; font-size:22px;">
+<item inputWidth="380" label="CCL-BOM" name="CCL_BOM_NO" type="input" labelWidth="180" labelAlign="left" readonly="true" style="background-color:#FFFFC0; font-weight:bold; color:red"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-weight:bold; font-size:22px;">
+<item inputWidth="188" label="불만유형(현상)" name="CMPL_SIT_QLT_FREQ1" type="input" labelWidth="180" labelAlign="left" readonly="true" style="background-color:#FFFFC0; font-weight:bold; color:red"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="187" name="CMPL_SIT_QLT_FREQ2" type="input" labelWidth="90" labelAlign="right" readonly="true" style="background-color:#FFFFC0; font-weight:bold; color:red"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="188" label="품명" name="PRD_NM_FREQ1" type="input" labelWidth="180" labelAlign="left" readonly="true"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="187" name="PRD_NM_FREQ2" type="input" labelWidth="90" labelAlign="right" readonly="true"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="380" label="주문용도" name="ORD_USG_NM_FREQ1" type="input" labelWidth="180" labelAlign="left" readonly="true"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="380" label="      " name="ORD_USG_NM_FREQ2" type="input" labelWidth="180" labelAlign="right" readonly="true"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="245" label="불만상세조회" name="SAL_END_DD1" type="input" labelWidth="180" labelAlign="left" readonly="true"/>
+<item offset="5" type="newcolumn"/>
+<item name="CUS_CMPL_DETAIL1" id="CUS_CMPL_DETAIL1" command="CUS_CMPL_DETAIL1" type="button" value="상세보기"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="245" label="         " name="SAL_END_DD2" type="input" labelWidth="180" labelAlign="right" readonly="true"/>
+<item offset="5" type="newcolumn"/>
+<item name="CUS_CMPL_DETAIL2" id="CUS_CMPL_DETAIL2" command="CUS_CMPL_DETAIL2" type="button" value="상세보기"/>
+</item>
+
+<item background-color="255,128,128" type="block" width="650" style="font-size:19px;">
+<item inputWidth="245" label="         " name="SAL_END_DD3" type="input" labelWidth="180" labelAlign="right" readonly="true"/>
+<item offset="5" type="newcolumn"/>
+<item name="CUS_CMPL_DETAIL3" id="CUS_CMPL_DETAIL3" command="CUS_CMPL_DETAIL3" type="button" value="상세보기"/>
+</item>
+
+<item  name="CUS_CMPL_NO_FREQ1" type="hidden"/>
+<item  name="CUS_CMPL_NO_FREQ2" type="hidden"/>
+<item  name="CUS_CMPL_NO_FREQ3" type="hidden"/>
+</items>

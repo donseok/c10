@@ -1,28 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="B10R0090-service" initial="INIT_QLT_ERR">
-  <activity name="STAT_SET_S" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="MODIFY_IF" />
-    <property name="param0" value="XSTAT|S" />
-    <property name="param1" value="XMSGS|sp_null" />
-    <property name="param2" value="XSTAT_CALLBACK|sp_null" />
-    <property name="param-count" value="3" />
+  <activity name="insert_CUS" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="PROC_LOOP" />
+    <transition name="success" value="modify_CUS_CMPL_HST" />
+    <property name="param6" value="ORD_USG_NM" />
+    <property name="param33" value="CMPL_CTT" />
+    <property name="param7" value="CMPL_CFM_COIL_WGT" />
+    <property name="param34" value="CMPL_TP" />
+    <property name="param8" value="RET_COIL_WGT" />
+    <property name="param35" value="CMPL_SIT_CUS" />
+    <property name="param9" value="CMPL_SIT_QLT" />
+    <property name="param36" value="OCC_CAU" />
+    <property name="param37" value="PRD_STS" />
+    <property name="param38" value="REQ_CPN_PLN" />
+    <property name="param39" value="CPN_PLN_QLT" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param40" value="FNL_CPN_PLN_SAL" />
+    <property name="param41" value="CPN_YN" />
+    <property name="param42" value="CPN_AMT_QLT" />
+    <property name="param43" value="CPN_AMT_SAL" />
+    <property name="param44" value="CSH_CPN_WGT" />
+    <property name="param45" value="QLT_END_DD" />
+    <property name="param46" value="RET_PRD_ORD_NO" />
+    <property name="param47" value="CSH_CPN_ORD" />
+    <property name="param48" value="ACNT_YR" />
+    <property name="param49" value="ACNT_DOC" />
+    <property name="param10" value="ACTL_CPN_AMT" />
+    <property name="param11" value="CUR_UNT" />
+    <property name="param12" value="CMPL_DATE" />
+    <property name="param13" value="CUS_CMPL_LN" />
+    <property name="param14" value="COIL_ID" />
+    <property name="param15" value="TRN_DD_CNT" />
+    <property name="param16" value="DOC_STS" />
+    <property name="param17" value="CUS_CD" />
+    <property name="param18" value="CUS_NM" />
+    <property name="param19" value="PRD_GRP" />
+    <property name="isAudit" value="true" />
+    <property name="param20" value="FLOW_CHL" />
+    <property name="param21" value="SAL_TEM" />
+    <property name="param22" value="SAL_CHR" />
+    <property name="param23" value="QLT_CHR" />
+    <property name="param24" value="MTL_CD" />
+    <property name="param25" value="ORD_NO" />
+    <property name="param26" value="ORD_LN" />
+    <property name="dao" value="mesdao" />
+    <property name="param27" value="PROC_NM" />
+    <property name="param28" value="PRD_DD" />
+    <property name="param29" value="DLV_DD" />
+    <property name="param-count" value="50" />
+    <property name="param0" value="CUS_CMPL_NO" />
+    <property name="param1" value="FNL_CUS_CD" />
+    <property name="param2" value="FNL_CUS_NM" />
+    <property name="sqlkey" value="B10R0090.insert" />
+    <property name="param3" value="SAL_END_DD" />
+    <property name="param30" value="PRD_SIZE" />
+    <property name="param4" value="PRD_NM" />
+    <property name="param31" value="REC_WGT" />
+    <property name="param5" value="CCL_BOM_NO" />
+    <property name="param32" value="CMPL_CFM_WGT_UNT" />
+  </activity>
+  <activity name="modify_CUS" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <transition name="success" value="modify_CUS_CMPL_HST" />
+    <property name="param14" value="COIL_ID" />
+    <property name="param15" value="TRN_DD_CNT" />
+    <property name="param16" value="DOC_STS" />
+    <property name="param17" value="CUS_CD" />
+    <property name="param18" value="CUS_NM" />
+    <property name="param19" value="PRD_GRP" />
+    <property name="param40" value="FNL_CPN_PLN_SAL" />
+    <property name="param41" value="CPN_YN" />
+    <property name="param42" value="CPN_AMT_QLT" />
+    <property name="param43" value="CPN_AMT_SAL" />
+    <property name="param44" value="CSH_CPN_WGT" />
+    <property name="param45" value="QLT_END_DD" />
+    <property name="param46" value="RET_PRD_ORD_NO" />
+    <property name="param47" value="CSH_CPN_ORD" />
+    <property name="isAudit" value="true" />
+    <property name="param48" value="ACNT_YR" />
+    <property name="param49" value="ACNT_DOC" />
+    <property name="sqlkey" value="B10R0090.update" />
+    <property name="param20" value="FLOW_CHL" />
+    <property name="param21" value="SAL_TEM" />
+    <property name="param22" value="SAL_CHR" />
+    <property name="param23" value="QLT_CHR" />
+    <property name="param24" value="MTL_CD" />
+    <property name="param25" value="ORD_NO" />
+    <property name="param26" value="ORD_LN" />
+    <property name="param27" value="PROC_NM" />
+    <property name="param28" value="PRD_DD" />
+    <property name="param29" value="DLV_DD" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param0" value="CUS_CMPL_NO" />
+    <property name="param1" value="FNL_CUS_CD" />
+    <property name="param50" value="CUS_CMPL_NO" />
+    <property name="param2" value="FNL_CUS_NM" />
+    <property name="param51" value="CUS_CMPL_LN" />
+    <property name="param3" value="SAL_END_DD" />
+    <property name="param52" value="COIL_ID" />
+    <property name="param4" value="PRD_NM" />
+    <property name="param-count" value="53" />
+    <property name="param5" value="CCL_BOM_NO" />
+    <property name="param6" value="ORD_USG_NM" />
+    <property name="param7" value="CMPL_CFM_COIL_WGT" />
+    <property name="param8" value="RET_COIL_WGT" />
+    <property name="param9" value="CMPL_SIT_QLT" />
+    <property name="param30" value="PRD_SIZE" />
+    <property name="param31" value="REC_WGT" />
+    <property name="param32" value="CMPL_CFM_WGT_UNT" />
+    <property name="param33" value="CMPL_CTT" />
+    <property name="param34" value="CMPL_TP" />
+    <property name="param35" value="CMPL_SIT_CUS" />
+    <property name="param36" value="OCC_CAU" />
+    <property name="param37" value="PRD_STS" />
+    <property name="param38" value="REQ_CPN_PLN" />
+    <property name="param39" value="CPN_PLN_QLT" />
+    <property name="param10" value="ACTL_CPN_AMT" />
+    <property name="param11" value="CUR_UNT" />
+    <property name="param12" value="CMPL_DATE" />
+    <property name="param13" value="CUS_CMPL_LN" />
   </activity>
   <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
     <transition name="failure" value="end" />
     <transition name="success" value="PROC_LOOP" />
-    <property name="resultkey" value="RK_SEARCH" />
-    <property name="sqlkey" value="B10R0090.select" />
     <property name="dao" value="eaidao" />
+    <property name="sqlkey" value="B10R0090.select" />
+    <property name="param-count" value="0" />
+    <property name="resultkey" value="RK_SEARCH" />
   </activity>
   <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
     <transition name="success" value="COMMIT_IF" />
     <property name="checkId" value="P_ERR_KEY" />
-    <property name="txname" value="tx1" />
+    <property name="txname" value="tx4" />
     <property name="exitFlag" value="N" />
   </activity>
   <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
     <transition name="exit" value="COMMIT" />
-    <transition name="success" value="CHECK_CNT_CMN" />
+    <transition name="success" value="CHECK_CNT_CUS" />
     <property name="param24" value="TRN_DD_CNT|TRN_DD_CNT" />
     <property name="param25" value="DOC_STS|DOC_STS" />
     <property name="param26" value="CUS_CD|CUS_CD" />
@@ -111,9 +226,16 @@
     <property name="txname" value="tx2" />
     <property name="exitFlag" value="N" />
   </activity>
-  <activity name="CHECK_CNT_CMN" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
-    <transition name="false" value="INSERT_CUS_CMPL_HST" />
-    <transition name="true" value="STAT_SET_E" />
+  <activity name="STAT_SET" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|S" />
+    <property name="param1" value="XMSGS|sp_null" />
+    <property name="param2" value="XSTAT_CALLBACK|sp_null" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="CHECK_CNT_CUS" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="false" value="insert_CUS" />
+    <transition name="true" value="modify_CUS" />
     <property name="dao" value="mesdao" />
     <property name="sqlkey" value="B10R0090_C10.select" />
     <property name="param0" value="CUS_CMPL_NO" />
@@ -121,84 +243,19 @@
     <property name="param2" value="COIL_ID" />
     <property name="param-count" value="3" />
   </activity>
-  <activity name="MODIFY_CUS_CMPL_HST" class="com.posdata.glue.biz.activity.PosModify">
-    <transition name="success" value="STAT_SET_S" />
-    <property name="sqlkey" value="B10R0090_C10.update" />
-    <property name="isAudit" value="true" />
+  <activity name="modify_CUS_CMPL_HST" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="STAT_SET" />
+    <property name="param-count" value="3" />
     <property name="resultkey" value="RK_RESULT" />
-    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
     <property name="param0" value="CUS_CMPL_NO" />
     <property name="param1" value="CUS_CMPL_LN" />
     <property name="param2" value="COIL_ID" />
-    <property name="param-count" value="3" />
-  </activity>
-  <activity name="STAT_SET_E" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="MODIFY_IF" />
-    <property name="param0" value="XSTAT|E" />
-    <property name="param1" value="XMSGS|품질설계DB에 해당주문번호가 등록이 되어 있지 않습니다.!" />
-    <property name="param2" value="XSTAT_CALLBACK|R" />
-    <property name="param-count" value="3" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0090_C10.update" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <transaction-manager id="tx2" commit="true" />
-  <activity name="INSERT_CUS_CMPL_HST" class="com.posdata.glue.biz.activity.PosInsert">
-    <transition name="failure" value="PROC_LOOP" />
-    <transition name="success" value="MODIFY_CUS_CMPL_HST" />
-    <property name="param6" value="ORD_USG_NM" />
-    <property name="param33" value="CMPL_CTT" />
-    <property name="param7" value="CMPL_CFM_COIL_WGT" />
-    <property name="param34" value="CMPL_TP" />
-    <property name="param8" value="RET_COIL_WGT" />
-    <property name="param35" value="CMPL_SIT_CUS" />
-    <property name="param9" value="CMPL_SIT_QLT" />
-    <property name="param36" value="OCC_CAU" />
-    <property name="param37" value="PRD_STS" />
-    <property name="param38" value="REQ_CPN_PLN" />
-    <property name="param39" value="CPN_PLN_QLT" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="param40" value="FNL_CPN_PLN_SAL" />
-    <property name="param41" value="CPN_YN" />
-    <property name="param42" value="CPN_AMT_QLT" />
-    <property name="param43" value="CPN_AMT_SAL" />
-    <property name="param44" value="CSH_CPN_WGT" />
-    <property name="param45" value="QLT_END_DD" />
-    <property name="param46" value="RET_PRD_ORD_NO" />
-    <property name="param47" value="CSH_CPN_ORD" />
-    <property name="param48" value="ACNT_YR" />
-    <property name="param49" value="ACNT_DOC" />
-    <property name="param10" value="ACTL_CPN_AMT" />
-    <property name="param11" value="CUR_UNT" />
-    <property name="param12" value="CMPL_DATE" />
-    <property name="param13" value="CUS_CMPL_LN" />
-    <property name="param14" value="COIL_ID" />
-    <property name="param15" value="TRN_DD_CNT" />
-    <property name="param16" value="DOC_STS" />
-    <property name="param17" value="CUS_CD" />
-    <property name="param18" value="CUS_NM" />
-    <property name="param19" value="PRD_GRP" />
-    <property name="isAudit" value="true" />
-    <property name="param20" value="FLOW_CHL" />
-    <property name="param21" value="SAL_TEM" />
-    <property name="param22" value="SAL_CHR" />
-    <property name="param23" value="QLT_CHR" />
-    <property name="param24" value="MTL_CD" />
-    <property name="param25" value="ORD_NO" />
-    <property name="param26" value="ORD_LN" />
-    <property name="dao" value="mesdao" />
-    <property name="param27" value="PROC_NM" />
-    <property name="param28" value="PRD_DD" />
-    <property name="param29" value="DLV_DD" />
-    <property name="param-count" value="50" />
-    <property name="param0" value="CUS_CMPL_NO" />
-    <property name="param1" value="FNL_CUS_CD" />
-    <property name="param2" value="FNL_CUS_NM" />
-    <property name="sqlkey" value="B10R0090.insert" />
-    <property name="param3" value="SAL_END_DD" />
-    <property name="param30" value="PRD_SIZE" />
-    <property name="param4" value="PRD_NM" />
-    <property name="param31" value="REC_WGT" />
-    <property name="param5" value="CCL_BOM_NO" />
-    <property name="param32" value="CMPL_CFM_WGT_UNT" />
-  </activity>
+  <transaction-manager id="tx4" commit="true" />
 </service>
 

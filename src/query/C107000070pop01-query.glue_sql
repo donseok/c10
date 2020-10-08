@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C107000070pop01 Page 쿼리파일"> 
+	 <query id="C107000070pop01.select" desc="C107000070pop01 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+
+		  
+SELECT
+:SAL_END_DD_FR AS SAL_END_DD_FR,
+:SAL_END_DD_TO AS SAL_END_DD_TO,
+(
+    SELECT PRD_NM
+    FROM
+    (
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT PRD_NM FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY PRD_NM
+            ORDER BY count(PRD_NM) DESC
+       ) A
+       WHERE ROWNUM<3
+    )
+    WHERE R_NO=1
+) AS PRD_NM_FREQ1,
+
+(
+    SELECT PRD_NM
+    FROM
+    (
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT PRD_NM FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY PRD_NM
+            ORDER BY count(PRD_NM) DESC
+       ) A
+       WHERE ROWNUM<3
+    )
+    WHERE R_NO=2
+) AS PRD_NM_FREQ2,
+
+(
+    SELECT 
+    LISTAGG(CCL_BOM_NO, ',') WITHIN GROUP (ORDER BY CCL_BOM_NO) AS CCL_BOM_NO
+    FROM 
+    (
+    select
+    DISTINCT CCL_BOM_NO
+    FROM C10APUSER.TB_C10_CUS_CMPL_HST
+    WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+    AND( 
+          (  
+              ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+              AND (CCL_BOM_NO = :CCL_BOM_NO) 
+              AND (FNL_CUS_CD = :FNL_CUS_CD)
+              AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+          )
+        OR (  
+             ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+             AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+             AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+           ) 
+       )
+    )
+) AS CCL_BOM_NO,
+
+(
+    SELECT ORD_USG_NM
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT ORD_USG_NM FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY ORD_USG_NM
+            ORDER BY count(ORD_USG_NM) DESC
+       )A    
+       WHERE ROWNUM<3
+    )
+    WHERE R_NO=1   
+) AS ORD_USG_NM_FREQ1,
+
+(
+    SELECT ORD_USG_NM
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT ORD_USG_NM FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY ORD_USG_NM
+            ORDER BY count(ORD_USG_NM) DESC
+       )A    
+       WHERE ROWNUM<3
+    )
+    WHERE R_NO=2   
+) AS ORD_USG_NM_FREQ2,
+
+(
+         SELECT '1위 : ' || CMPL_SIT_QLT AS CMPL_SIT_QLT
+         FROM
+         (
+            SELECT ROWNUM AS R_NO, A.* FROM
+            (
+                SELECT CMPL_SIT_QLT FROM C10APUSER.TB_C10_CUS_CMPL_HST
+                WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+                AND( 
+                      (  
+                          ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                          AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                          AND (FNL_CUS_CD = :FNL_CUS_CD)
+                          AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                      )
+                    OR (  
+                         ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                         AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                         AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                       ) 
+                   )
+                GROUP BY CMPL_SIT_QLT
+                ORDER BY count(CMPL_SIT_QLT) DESC
+            ) A
+            WHERE ROWNUM<3
+          )
+         WHERE R_NO=1
+) AS CMPL_SIT_QLT_FREQ1,
+
+(
+         SELECT '2위 : ' || CMPL_SIT_QLT AS CMPL_SIT_QLT
+         FROM
+         (
+            SELECT ROWNUM AS R_NO, A.* FROM
+            (
+                SELECT CMPL_SIT_QLT FROM C10APUSER.TB_C10_CUS_CMPL_HST
+                WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+                AND( 
+                      (  
+                          ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                          AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                          AND (FNL_CUS_CD = :FNL_CUS_CD)
+                          AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                      )
+                    OR (  
+                         ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                         AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                         AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                       ) 
+                   )
+                GROUP BY CMPL_SIT_QLT
+                ORDER BY count(CMPL_SIT_QLT) DESC
+            ) A
+            WHERE ROWNUM<3
+          )
+         WHERE R_NO=2
+) AS CMPL_SIT_QLT_FREQ2,
+
+(
+    select SUM(CMPL_CFM_COIL_WGT)
+    FROM C10APUSER.TB_C10_CUS_CMPL_HST
+    WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+    AND( 
+          (  
+              ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+              AND (CCL_BOM_NO = :CCL_BOM_NO) 
+              AND (FNL_CUS_CD = :FNL_CUS_CD)
+              AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+          )
+        OR (  
+             ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+             AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+             AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+           ) 
+       )
+) AS CMPL_CFM_COIL_WGT,
+
+(
+select TRUNC(SUM(A.ACTL_CPN_AMT)/1000000)
+FROM
+(
+    select
+    CASE WHEN CUR_UNT='USD' THEN TRUNC(ACTL_CPN_AMT*1198)
+         WHEN CUR_UNT='JPY' THEN TRUNC(ACTL_CPN_AMT*11)
+         WHEN CUR_UNT='KRW' THEN ACTL_CPN_AMT*100
+         WHEN CUR_UNT='EUR' THEN TRUNC(ACTL_CPN_AMT*1362.17)
+    END
+    AS ACTL_CPN_AMT
+    FROM C10APUSER.TB_C10_CUS_CMPL_HST
+    WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+    AND( 
+          (  
+              ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+              AND (CCL_BOM_NO = :CCL_BOM_NO) 
+              AND (FNL_CUS_CD = :FNL_CUS_CD)
+              AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+          )
+        OR (  
+             ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+             AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+             AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+           ) 
+       )
+    ) A
+) AS ACTL_CPN_AMT,
+
+(
+    SELECT CUS_CMPL_NO
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=1
+) AS CUS_CMPL_NO_FREQ1,
+
+(
+    SELECT CUS_CMPL_NO
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=2
+) AS CUS_CMPL_NO_FREQ2,
+
+(
+    SELECT CUS_CMPL_NO
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=3
+) AS CUS_CMPL_NO_FREQ3,
+
+(
+    SELECT SAL_END_DD
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=1
+) AS SAL_END_DD1,
+
+(
+    SELECT SAL_END_DD
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=2
+) AS SAL_END_DD2,
+
+(
+    SELECT SAL_END_DD
+    FROM
+    ( 
+       SELECT ROWNUM AS R_NO, A.* FROM
+       (
+            SELECT  CUS_CMPL_NO || '-' || CUS_CMPL_LN AS CUS_CMPL_NO,SAL_END_DD FROM C10APUSER.TB_C10_CUS_CMPL_HST
+            WHERE SAL_END_DD BETWEEN REPLACE(:SAL_END_DD_FR, '-', '') AND REPLACE(:SAL_END_DD_TO, '-', '')
+            AND( 
+                  (  
+                      ((:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NOT NULL)) 
+                      AND (CCL_BOM_NO = :CCL_BOM_NO) 
+                      AND (FNL_CUS_CD = :FNL_CUS_CD)
+                      AND PRD_NM = (SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                  )
+                OR (  
+                     ( (:FNL_CUS_CD IS NOT NULL) AND (:CCL_BOM_NO IS NULL) ) 
+                     AND (FNL_CUS_CD = :FNL_CUS_CD) AND CCL_BOM_NO IS NULL
+                     AND PRD_NM =(SELECT CD_V_MEANING FROM   M00APUSER.VI_M00_CODE_ACCESS WHERE  CD_TP='PRD_NM_CD' AND CATEGORY_GROUP_NM ='SZ0000' AND CD_V = :PRD_NM_CD)
+                   ) 
+               )
+            GROUP BY SAL_END_DD, CUS_CMPL_NO, CUS_CMPL_LN
+            ORDER BY SAL_END_DD DESC
+       )A    
+       WHERE ROWNUM<4
+    )
+    WHERE R_NO=3
+) AS SAL_END_DD3
+FROM DUAL
+		 ]]> 
+	 </query>
+</queryMap>

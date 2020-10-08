@@ -12,8 +12,34 @@
  * 2011.12.23     V1.0      박재영      Initial Version
  * 변경일자        
 --%>
+<%@ page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
+<%@ page import = "com.posdata.glue.web.security.PosUser" %>
+<%@ page import = "com.posdata.glue.master.easyaccess.easymaster.EasyAccess" %>
+<%@ page import = "com.posdata.glue.master.easyaccess.returnType.PosRuleVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	PosUser	user		= (PosUser)session.getAttribute(PosSecurityConstants.USER);
+	String	userNo		= "";
+	String	userName	= "";
+	if(user!=null) {
+		userNo = (String) user.getUserInfo("USER_NO");
+		userName = (String) user.getUserInfo("USER_NAME");
+	}
+	//2020.08.22 김민섭  - 고객불만이력사무현장별항목제어기준(C10A2186)을 읽어 고객불만팝업 제어를 한다.
+	String[] valList = {userNo, userName};
+	String ctl_tp = ""; 
+	try{
+	//MASTER 기준 데이터를 읽어온다.
+	PosRuleVO result = EasyAccess.getPosRule("C10A2186", valList, null);
+	    
+	    if(result.getRecordCount() > 0){
+	    ctl_tp      = result.getRuleValueAt("TP");        //화면제어여부
+	    }
+	}catch(Exception e){
+	}
+	
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -35,6 +61,7 @@ var pageConfiguration = '[' +
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":"./dhtmlx/codebase/imgs/"};
 var columnList = "ORD_NO,ORD_LN,QLT_DSN_STS_CD,PLNT_TP,PRD_NM_CD,PRD_SHP,FLOW_CHL,ORD_KND,ORD_PRD_GRD,ORD_USG_CD,CUS_CD,ACT_CUS_CD,FNL_CUS_CD,CUS_BTH_PAP_NO,SPC_OFC,SPC_AVR,SPC_YR,SPC_NM,SPC_FUL_NM,ORD_SZ,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,CUS_REQ_DLV_DD,ORD_SCH_DLV_DD,ORD_PTL_STR_DD,ORD_PTL_END_DD,GW_ASG_CD,CCL_BOM_NO,HUE_CD_FRN,HUE_CD_BAK,ORD_ORG_PLT_SPC_AVR,ORD_ROU_CD,ORD_SPNL_TP,ORD_COILG_MTH,ORD_SUR_HND_CD,ORD_SKP_DEG,ORD_EDG_ASG_TP,ORD_THK_TP,ORD_GRA,WGT_DCS_MTH_TP,ORD_SLV_KND_TP,EMBS_CD,ORD_PTT_FLM_DTL_CD,ORD_PTT_FLM_WTH,ORD_PTT_FLM_ADH_LOC_CD,ORD_WGT_UNT,ORD_LN_WGT,ORD_SHT_CNT,ORD_PAK_SHT_CNT,ORD_PAK_UNT_WGT_LLV,ORD_PAK_UNT_WGT_ULV,ORD_DLV_ALW_DIF_LLV,ORD_DLV_ALW_DIF_ULV,ORD_PAK_LTH_LLV,ORD_PAK_LTH_ULV,ORD_STDP_LLV,ORD_STDP_ULV,ORD_STDP_CNT_LLV,ORD_STDP_CNT_ULV,ORD_PAK_UNT_CNT,ORD_PAK_UNT_WGT,ORD_SML_PAK_WGT,ORD_SML_PAK_MIR,ORD_UNT_WGT,ORD_PAK_MTH,ORD_COIL_IDIA,ORD_COIL_ODIA,ORD_THK_TLN_LLV,ORD_THK_TLN_ULV,ORD_WTH_TLN_LLV,ORD_WTH_TLN_ULV,ORD_LTH_TLN_LLV,ORD_LTH_TLN_ULV,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,RSN_TP_FRN,RSN_TP_BAK,LUS_RT_CD_FRN,LUS_RT_CD_BAK,COT_MTH,CUS_REQ_ROL_THK,ORD_THK_MNG_CD,ORD_WTH_MNG_CD,ORD_LTH_MNG_CD,CUS_REQ_CLR_NM,URG_MTL_TP,ORD_RCP_DD,ORD_SHT_LOD_MTH,ORD_SLIT_GRP_CNT,ORD_MIX_WTH1,ORD_MIX_WTH2,ORD_MIX_WTH3,ORD_MIX_WTH4,ORD_MIX_WTH5,ORD_MIX_WTH6,ORD_MIX_WTH7,ORD_MIX_WTH8,SLIT_MAX_WGT,TRST_PROC_YN,TAG_TP,NAT_CD,ORD_SPC_TXT,TAG_PRD_NM,TAG_PO_NO,TAG_DST,TAG_SIZ,TAG_SPC_NM,TAG_GAA,TAG_HUE_FRN,TAG_HUE_BAK,TAG_SPC_MRK,RMTL_PRFR_CD,BAK_MRK,ORD_MDF_DD,ORD_CFM_DD,ORD_RGS_PRS_ID,ORD_TEM_CD,MTL_CD,CLS_CD,SUB_CLS_CD,QLT_DSN_END_DH,QLT_DSN_INST_DH,QLT_DSN_PRS_ID,MQL_CD,RMTL_CD,RMTL_GRD,CRM_MNF_STD_NO,PAS_PROC_NO,ACPT_RT_SPC,ORD_END_TP,ORD_END_DD,ORD_END_PRS_ID,QLT_DSN_CFM_DH,QLT_DSN_CFM_PRS_ID,QLT_RDSN_DH,QLT_RDSN_PRS_ID,QLT_DSN_ERR_YN,QLT_DSN_YN,QLT_DSN_CFM_TP,RMTL_CD1,RMTL_CD2,CRM_MNF_STD_NO1,CRM_MNF_STD_NO2,ORD_CNL_CAU_CD,ORD_CNL_DTL_TXT,THK_COR_UNT,PRD_THK_CAL_APL_CD,APR_INP_BAS_CD,TAG_PO_NO2,CTR_SHPM_MN,SVC_CRD_PUB_YN,PAK_MSG_CD,ORD_TEM_GRP_CD,ORD_MIX_WTH9,ORD_MIX_WTH10,PTT_FLM_NOT_ADH_WS,PTT_FLM_NOT_ADH_DS,TAG_PART_NO,MO_CVT_ORD_YN,PER_TON_LTH,ORD_BAK_SND_TP,ORD_BAK_SND_PRS_ID,ORD_BAK_SND_DH,ORD_BAK_SND_CAU,MTL_PRD_ORD_YN,ORD_PAK_MTL_WGT,QLT_DSN_TXT,ORD_DSN_CFM_TP,DSN_ATO_CFM_YN,DSN_ATO_CFM_DH,DSN_ATO_CFM_PRS_ID,QLT_HLD_YN,LTH_MNG_YN,LTH_MNG_FROM,LTH_MNG_TO,BORON_ADD_YN,ORD_REP_YN,ORD_REP_NO,ORD_REP_LN,ORD_COP_STP,WIP_PAK_MTH";
+var winPop;
 //form find button item event function (requred)
 function find(eventName){
 	items['C104000050_Grid_1'].getDhxDataProcess().updatedRows = [];
@@ -583,9 +610,13 @@ function onCheckboxHeaderClick(ind,obj){
   return true;
 }
 function doOnRowDblClicked(rowId,cellIndex) {
-	var ORD_NO = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,2).getValue();
-	var ORD_LN = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,3).getValue();
-	var QLT_DSN_STS_CD = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,11).getValue();
+// 	var ORD_NO = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,2).getValue();
+// 	var ORD_LN = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,3).getValue();
+// 	var QLT_DSN_STS_CD = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,11).getValue();
+	
+	var ORD_NO = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,3).getValue();
+	var ORD_LN = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,4).getValue();
+	var QLT_DSN_STS_CD = items['C104000050_Grid_1'].getDhxGrid().cells(rowId,12).getValue();
 	
 	if(QLT_DSN_STS_CD == "") return;
 	
@@ -682,6 +713,32 @@ function parameters13(){
      _data.push("column-info="+arguments[3]);
              
      return _data.join("&");
+}
+
+function doLink(val,rId,cInd){
+	var gridObj = items['C104000050_Grid_1'].getDhxGrid();
+	if (cInd == gridObj.getColIndexById('CUS_CMPL_HST_YN')) {
+		var CCL_BOM_NO = items['C104000050_Grid_1'].getCellValue(rId,gridObj.getColIndexById("CCL_BOM_NO"));
+		var FNL_CUS_CD = items['C104000050_Grid_1'].getCellValue(rId,gridObj.getColIndexById("FNL_CUS_CD")).substr(0,6);
+		var PRD_NM_CD = items['C104000050_Grid_1'].getCellValue(rId,gridObj.getColIndexById("PRD_NM_CD"));
+        if([].slice.call(document.getElementsByClassName("dhtmlx_wins_title")).filter(function(f){return f.innerText=="고객불만이력"}).length==1){
+        	winPop.winClose();
+        }
+		if("<%=ctl_tp%>" == '1' || "<%=ctl_tp%>" == '2'){
+			if(CCL_BOM_NO==null){
+				CCL_BOM_NO="";
+			}
+			popUrl = parent.customPopupLinkUrl('C107000070pop01', 'CCL_BOM_NO=' + CCL_BOM_NO + '&FNL_CUS_CD=' +FNL_CUS_CD+'&PRD_NM_CD='+PRD_NM_CD);
+			winPop = new ui.window('popup','고객불만이력','0','0','619','505',popUrl);
+		} else{
+			// 업무기준에 등록되지 않은 사용자는 팝업버튼허용X
+		}
+	}
+}
+
+function parentPop(CUS_CMPL_NO,CUS_CMPL_LN){
+	popUrl = parent.customPopupLinkUrl('C107000070pop02', 'CUS_CMPL_NO=' + CUS_CMPL_NO + '&CUS_CMPL_LN=' +CUS_CMPL_LN);
+	winObj = new ui.window('popup','고객불만 상세보기','0','0','1200','800',popUrl);
 }
 
 //]]>

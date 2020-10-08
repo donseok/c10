@@ -74,4 +74,22 @@ WHERE IF_GRP_ID = ?                  --Interface Group ID
   AND XSEQ = ?                       --PI Sequence Key Value
 		 ]]> 
 	 </query>
+	 <query id="B10R0100.update" desc="" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE 
+C10APUSER.TB_C10_CUS_CMPL_HTML                                                                            
+SET    
+				LAST_UPDATED_OBJECT_TYPE = ?
+				,LAST_UPDATED_OBJECT_ID = ?
+				,LAST_UPDATE_PROGRAM_ID = ?
+				,LAST_UPDATE_TIMESTAMP = ?
+				,CUS_CMPL_NO = ?
+				,CUS_CMPL_LN = ?
+				,CUS_CMPL_HTML_SEQ_NO = ?
+				,CUS_CMPL_HTML_CD = ?	
+WHERE CUS_CMPL_NO = ?
+AND CUS_CMPL_LN = ?
+AND CUS_CMPL_HTML_SEQ_NO = ?
+		 ]]> 
+	 </query>
 </queryMap>
