@@ -157,7 +157,7 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item type="block" width="945" >
 <item name="S2_1"                 label="2. No warranty is provided for " type="label" />
 <item offset="3" type="newcolumn"/>
-<item name="BRD_CMP_2_5"      label="2)" type="input" inputWidth="100" />
+<item name="BRD_CMP_2_5"      label="2)" type="input" inputWidth="100"  />
 <item offset="3" type="newcolumn"/>
 <item name="S2_2"                 label="on any substrate that is subjected to sea spray or installed on property located within"  type="label" />
 <item offset="3" type="newcolumn"/>

@@ -176,12 +176,23 @@ function save(eventName,formDivObj,referenceItem){
 	
 	//CCL BOM NO입력체크
 	var cclBomNo = grid.getCellValue(grid.getRowSelectedId(),0);
+	var cclBomNo5 = cclBomNo.substr(0,5);
+	var hueCdFrn = grid.getCellValue(grid.getRowSelectedId(),7);
+	
 	if(isNull(cclBomNo)){
 		dhtmlx.alert("CCL-BOM NO를 입력하세요.");
 		return;	
 	}
 	else if(cclBomNo.length < 6){
 		dhtmlx.alert("CCL-BOM 번호는 6자리로 저장하시기 바랍니다.");
+		return;
+	}
+	
+	//cclBomNo 5자리로 비교 후 다른경우 5자리로 업데이트!!(2020.12.14 이돈석)
+	if(cclBomNo5 != hueCdFrn){
+		//grid.setCellValue(grid.getRowSelectedId(),7,cclBomNo5);
+		//grid.setUpdated(grid.getRowSelectedId(),true,"updated");
+		dhtmlx.alert("CCL BOM번호 :" + cclBomNo5 + "와 대표색상코드 :" + hueCdFrn + "가 동일하지 않습니다!");
 		return;
 	}
 	

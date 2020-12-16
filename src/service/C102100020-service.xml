@@ -77,7 +77,7 @@
     <property name="param2" value="PRD_NM_CD|PRD_NM_CD" />
     <property name="param3" value="PRD_SHP|PRD_SHP" />
     <property name="param4" value="SPC_AVR|SPC_AVR" />
-    <property name="param-count" value="37" />
+    <property name="param-count" value="39" />
     <property name="param5" value="ORD_USG_CD|ORD_USG_CD" />
     <property name="param6" value="FNL_CUS_CD|FNL_CUS_CD" />
     <property name="param7" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO" />
@@ -90,6 +90,8 @@
     <property name="param34" value="ORD_MIX_WTH8|ORD_MIX_WTH8" />
     <property name="param35" value="ORD_MIX_WTH9|ORD_MIX_WTH9" />
     <property name="param36" value="ORD_MIX_WTH10|ORD_MIX_WTH10" />
+    <property name="param37" value="POC_CGL_YN|POC_CGL_YN" />
+    <property name="param38" value="POC_CCL_YN|POC_CCL_YN" />
     <property name="param10" value="EMBS_CD|EMBS_CD" />
     <property name="param11" value="ORD_EDG_ASG_TP|ORD_EDG_ASG_TP" />
     <property name="param12" value="ORD_ROU_CD|ORD_ROU_CD" />

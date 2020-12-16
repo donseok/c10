@@ -75,7 +75,11 @@
     document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + jsFileDirPath + "dhtmlx_grid_custom.css?v=1.0\"/>");
     
     if(!isDevelopment && window.location.protocol === "http:" && (window.location.port == 80 || window.location.port == 8080 || window.location.port == "")){
-		  window.document.domain="unionsteel.co.kr";
+    	// 도메인변경 (2020.12.14 일괄작업)  
+    	//window.document.domain="unionsteel.co.kr";
+    	 
+    	window.document.domain="dongkuk.com";
+		  
 	  }
 })();
   importXhrJS = function(jsFile, alwaysReload){

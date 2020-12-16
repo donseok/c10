@@ -101,6 +101,15 @@ public class DbSearchQualKeyMatch extends PosActivity implements C10NuiConstants
         String ord_spnl_tp = C10STR_SPACE;
         String gw_asg_cd = C10STR_SPACE;
         String mtl_cd = C10STR_SPACE;
+        
+        //******* 위탁임가공용 주문 FLAG Start ***********
+        String poc_cgl_yn = C10STR_SPACE;
+        String poc_ccl_yn = C10STR_SPACE;
+        //String trst_rshl_yn = C10STR_SPACE;
+        //String trst_cgl_yn = "Y";
+        //String trst_ccl_yn = "Y";
+        //******* 위탁임가공용 주문 FLAG End ***********
+        
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
         double ord_mix_wth2 = 0;
@@ -175,6 +184,12 @@ public class DbSearchQualKeyMatch extends PosActivity implements C10NuiConstants
             ord_mix_wth10 = Double.parseDouble( ctx.get( COL_ORD_MIX_WTH10 ).toString() );
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_KND ) ) )
             ord_knd = ctx.get( COL_ORD_KND ).toString();
+        //******* 위탁임가공용 주문 FLAG START ***********
+        if ( !DbCommonUtil.isNull( ctx.get( COL_POC_CGL_YN ) ) )
+        	poc_cgl_yn = ctx.get( COL_POC_CGL_YN ).toString();
+        if ( !DbCommonUtil.isNull( ctx.get( COL_POC_CCL_YN ) ) )
+        	poc_ccl_yn = ctx.get( COL_POC_CCL_YN ).toString();
+      //******* 위탁임가공용 주문 FLAG END ***********
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_SUR_HND_CD ) ) )
             ord_sur_hnd_cd = ctx.get( COL_ORD_SUR_HND_CD ).toString();
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_THK_TP ) ) )
@@ -460,6 +475,19 @@ public class DbSearchQualKeyMatch extends PosActivity implements C10NuiConstants
                     ctx.put( COL_CRM_MNF_STD_NO2, result.getRuleValueAt( COL_CRM_MNF_STD_NO3 ) );
                     ctx.put( COL_QLT_MSG_NM2, result.getRuleValueAt( COL_QLT_MSG_NM3 ) );
                     ctx.put( COL_CRM_MNF_STD_NO, result.getRuleValueAt( COL_CRM_MNF_STD_NO1 ) );
+                    //************* 임가공 테스트 *******************
+                    /*
+                    if(poc_cgl_yn == "Y" && poc_ccl_yn == "Y"){
+                    	ctx.put( COL_PAS_PROC_NO, "3OA001" );
+                    }
+                    else if(poc_cgl_yn == "Y" && poc_ccl_yn == "N"){
+                    	ctx.put( COL_PAS_PROC_NO, "GOH001" );
+                    }
+                    else{
+                    	ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
+                    }
+                    */
+                    //****** 원본 *****
                     ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
                     ctx.put( COL_QLT_DSN_CFM_TP, result.getRuleValueAt( COL_QLT_DSN_CFM_TP ) );
                     ctx.put( COL_QLT_MSG_NM, result.getRuleValueAt( COL_QLT_MSG_NM1 ) );

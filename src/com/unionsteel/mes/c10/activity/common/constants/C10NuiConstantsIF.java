@@ -2411,6 +2411,10 @@ public interface C10NuiConstantsIF {
     public static final String COL_ATT_ORD_YN = "ATT_ORD_YN";
     /** 광신스틸임가공주문여부 */
     public static final String COL_POC_AUTO_YN = "POC_AUTO_YN";
+    /** CGL임가공주문여부 */
+    public static final String COL_POC_CGL_YN = "POC_CGL_YN";
+    /** CCL임가공주문여부 */
+    public static final String COL_POC_CCL_YN = "POC_CCL_YN";
     /** MD길이범위 상한 */
     public static final String COL_PRD_LTH_RNG_ULV = "PRD_LTH_RNG_ULV";
     /** MD길이범위 하한 */

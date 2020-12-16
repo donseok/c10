@@ -64,7 +64,7 @@ AND   ORD_LN = ?
 	 </query>
 	 <query id="C102100CMN.insert" desc="C102100CMN.insert" fetchSize="10" isNamed="false">
 		 <![CDATA[ 
-INSERT INTO  /*+ C10 품질설계의뢰등록 C102100CMN.insert 박재영*/                           
+INSERT INTO  /* C10 품질설계의뢰등록 C102100CMN.insert 박재영*/                           
 TB_C10_QLT_DSN_CMN (                                                                           
      ORD_NO		                --주문번호
     ,ORD_LN		                --주문행번
@@ -194,6 +194,8 @@ TB_C10_QLT_DSN_CMN (
     ,OT_TC_YN                --OneTime2Cut유무
     ,PRT_INKJT_FILE 		-- 잉크젯 파일명
     ,POC_AUTO_YN            --임가공자동설계구분
+    ,POC_CGL_YN             --CGL임가공구분
+    ,POC_CCL_YN             --CCL임가공구분
     ,CREATED_OBJECT_TYPE       --생성OBJECT유형  
     ,CREATED_OBJECT_ID         --생성OBJECTID    
     ,CREATED_PROGRAM_ID        --생성프로그램ID  
@@ -227,7 +229,7 @@ VALUES(
 ,?,?,?,?,?
 ,?,?,?,?,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
 ,?,?,?,?,?,?
-,?,?,?,?,?,?,?,?,DECODE(?,'X','Y','N'),?,DECODE(?,'X','Y','N')
+,?,?,?,?,?,?,?,?,DECODE(?,'X','Y','N'),?,DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N')
 ,?,?,?,?
 ,?,?,?,?
 )
@@ -870,7 +872,7 @@ SELECT *
      AND NVL(LTH_MNG_YN,'%') LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
      AND NVL(LTH_MNG_FROM,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
      AND NVL(LTH_MNG_TO,0) LIKE DECODE(?,'null','%', NVL(?,'%')) ||'%'
-     AND TRUNC(SYSDATE - QLT_DSN_END_DH) <= 90
+     AND TRUNC(SYSDATE - QLT_DSN_END_DH) <= 180
 		 ]]> 
 	 </query>
 	 <query id="C102100CMN.CCL_modify3" desc="C102100CMN.CCL_modify3" fetchSize="10" isNamed="false">

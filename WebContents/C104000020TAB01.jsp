@@ -113,28 +113,36 @@ function redo(referenceItem){
 function findMessage(referenceItem){
 	var uiFormObj = items['C104000020TAB01_Form_1'];
 	var ORD_SHT_LOD_MTH = uiFormObj.getDhxForm().getItemValue("ORD_SHT_LOD_MTH");
-	var ORD_COILG_MTH = uiFormObj.getDhxForm().getItemValue("ORD_COILG_MTH");	
+	var ORD_COILG_MTH = uiFormObj.getDhxForm().getItemValue("ORD_COILG_MTH");
+	var ORD_SLV_KND_TP = uiFormObj.getDhxForm().getItemValue("ORD_SLV_KND_TP");
 	
 	if(uiFormObj.getItemValue("messageBox") == "0"){	
-	   uiFormObj.clear();
-	   uiCommon.message(ui.messagebox.messageBoxDivId,"0건 조회되었습니다.");
-    } else{    
-	   uiCommon.message(ui.messagebox.messageBoxDivId,uiFormObj.getItemValue("messageBox"));
+		uiFormObj.clear();
+	    uiCommon.message(ui.messagebox.messageBoxDivId,"0건 조회되었습니다.");
+    }else{    
+		uiCommon.message(ui.messagebox.messageBoxDivId,uiFormObj.getItemValue("messageBox"));
 
-	   if(uiFormObj.getItemValue("ORD_COIL_IDIA") == "610"){
-	      uiFormObj.getDhxForm().getInput("ORD_COIL_IDIA").style.color="red";	      
-    }
+	    if(uiFormObj.getItemValue("ORD_COIL_IDIA") == "610"){
+	       uiFormObj.getDhxForm().getInput("ORD_COIL_IDIA").style.color="red";	      
+    	}
 	   
-	   if(!isNull(ORD_SHT_LOD_MTH)){
-	      if(ORD_SHT_LOD_MTH.substring(0,1) != "T"){
-	      uiFormObj.getDhxForm().getInput("ORD_SHT_LOD_MTH").style.color="red"; 
-	      } 
-	   }
-     if(!isNull(ORD_COILG_MTH)){
-        if(ORD_COILG_MTH.substring(0,1) == "U" || ORD_COILG_MTH.substring(0,1) == "S"){
-	      uiFormObj.getDhxForm().getInput("ORD_COILG_MTH").style.color="red";
-	     }
-     }
+	    if(!isNull(ORD_SHT_LOD_MTH)){
+	    	if(ORD_SHT_LOD_MTH.substring(0,1) != "T"){
+	        	uiFormObj.getDhxForm().getInput("ORD_SHT_LOD_MTH").style.color="red"; 
+	        } 
+	    }
+     
+	    if(!isNull(ORD_COILG_MTH)){
+        	if(ORD_COILG_MTH.substring(0,1) == "U" || ORD_COILG_MTH.substring(0,1) == "S"){
+	        	uiFormObj.getDhxForm().getInput("ORD_COILG_MTH").style.color="red";
+	     	}
+     	}
+	    
+	    if(!isNull(ORD_SLV_KND_TP)){
+        	if(ORD_SLV_KND_TP.substring(0,1) == "N"){
+	        	uiFormObj.getDhxForm().getInput("ORD_SLV_KND_TP").style.color="red";
+	     	}
+     	}
 
     }
 	return true;

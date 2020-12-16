@@ -282,19 +282,53 @@ function resend(eventName,formDivObj,referenceItem){
 
 function redesign(eventName,formDivObj,referenceItem){
 	var gridObj = items['C104000050_Grid_1'].getDhxGrid();
-	var grid_cnt = gridObj.getRowsNum();
-	var row_status ="", row_cnt=0;
-	for(var i=0; i< grid_cnt; i++){
-	    row_status = gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status");
-	    if(!isNull(row_status)){
-	       row_cnt++;
-	      }
-	}
+	var selectRowId = gridObj.getSelectedRowId();
+	gridObj.selectRowById(selectRowId);
+	var grid_cnt = gridObj.getRowsNum();	
+	var QLT_DSN_STS_CD = "";  
+	var ORD_BAK_SND_TP = "";  
+	var QLT_HLD_YN = "";
+	var chgCnt = 0;
+	var ord_no = '';					
+	var ord_ln = '';		
+	var param = "";
+	var xmlObj = "";
+	var cells = "";
 	
-	if(row_cnt==0){
-		dhtmlx.alert("재설계할 대상을 선택해주세요.");
-  			return;  
+	for(var i=0; i< grid_cnt; i++){
+		var row_status 			= gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status")
+		var checkVal = items['C104000050_Grid_1'].getCellValue(gridObj.getRowId(i),0);
+		
+		if(row_status != ""){
+			chgCnt++;		
+			if(checkVal == 1){
+				ord_no = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_NO")).getValue();
+				ord_ln  = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_LN")).getValue();
+				param= "ServiceName=C104000050-service&BRY_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=QLT_DSN_STS_CD,ORD_BAK_SND_TP,QLT_HLD_YN";						
+				xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
+				cells = xmlObj.getElementsByTagName("cell");						
+				if(cells.length > 0){
+					QLT_DSN_STS_CD = cells.item(0).firstChild.nodeValue;
+					
+					// 2020.12.08 오류수정
+					if(QLT_DSN_STS_CD == "A"){ 
+						dhtmlx.alert("주문: "+ord_no+"-"+ord_ln+"는 확정상태라 재설계가 불가합니다!");
+						items['C104000050_Grid_1'].setCellValue(gridObj.getRowId(i),0,0);
+			  			items['C104000050_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 			
+						return;	
+					}
+			
+				}	
+
+			} 
+		}
+   }
+
+	if(chgCnt == 0 ){
+	  	dhtmlx.alert("재설계할 대상을 선택해주세요");
+		return;
 	}else{
+		
 		var param= "ServiceName=C104000050-service&job_sts=1&column-info=JOB_STS";
 		var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 		var cells = xmlObj.getElementsByTagName("cell");
@@ -303,37 +337,18 @@ function redesign(eventName,formDivObj,referenceItem){
 			return;					
 		}
 		
-		var grid = items['C104000050_Grid_1'].getDhxGrid();
-		var grid_cnt = grid.getRowsNum();	
-		var row_status1 ="";
-
-			for(var i=0; i< grid_cnt; i++){
-				      row_status1 = gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status");
-				var ord_no = items['C104000050_Grid_1'].getCellValue(grid.getRowId(i),1);
-				var ord_ln = items['C104000050_Grid_1'].getCellValue(grid.getRowId(i),2);
-				if(row_status1 != ""){
-					var param= "ServiceName=C104000050-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
-					var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-					var cells = xmlObj.getElementsByTagName("cell");
-					if(cells.length > 0 ){						
-						dhtmlx.alert("확정된 주문이 있습니다! 다시 조회 후 실행하세요!");
-						return;					
-					}
-		   		}
-			}
-		
 		dhtmlx.confirm({
-				title:"[[ 확인 ]]",
-				ok:"확인", cancel:"취소",
-				text:"재설계 하시겠습니까?",
-				callback:function(val){
-					if(val){
-						items[referenceItem].sendGrid(referenceItem,'redesign');
-					return;
-					}
-				}
-			});
+			title:"재설계",
+			ok:"확인", cancel:"취소",
+			text:"재설계 하시겠습니까?",
+			callback:function(val){
+				 if(val){
+					 items[referenceItem].sendGrid(referenceItem,'redesign');	
+				 }
+			}
+		});	
 	}
+
 }
 
 function reconfirm(eventName,formDivObj,referenceItem){

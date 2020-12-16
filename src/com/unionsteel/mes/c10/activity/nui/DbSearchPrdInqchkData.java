@@ -1227,6 +1227,18 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         colValue[5] = Double.toString( ord_exc_thk );  //정전폭마진기준에서 주문두께 추가(2013.05.29 김태성대리 요청)
         colValue[6] = ccl_bom_no; //정전폭마진기준에서 ccl bom번호 추가(2015.09.03 김태훈사원 요청)
         colValue[7] = ord_spnl_tp; //주문Spangle구분(2020.9.25 전현진과장 요청)
+        
+        logger.logDebug( "2020-12-08");
+        logger.logDebug( "주문에지구분          : " + colValue[0] );
+        logger.logDebug( "품명코드              : " + colValue[1] );
+        logger.logDebug( "제품형태          : " + colValue[2] );
+        logger.logDebug( "코팅방식        : " + colValue[3] );
+        logger.logDebug( "수지구분          : " + colValue[4] );
+        logger.logDebug( "정전폭마진기            : " + colValue[5] );
+        logger.logDebug( "ccl bom          : " + colValue[6] );
+        logger.logDebug( "Spangle구분            : " + colValue[7] );
+        
+        
         checker = EasyAccess.getPosDecisionChecker( C10B1079, null );
         result = null;
         try
@@ -1241,6 +1253,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             ctx.put( COL_ORD_ERR_TXT, ERRMSG_I12 );
             ctx.put( COL_ERR_YN, C10STR_YES );
             logger.logError( e.getMessage() );
+            logger.logError( "여기서 에러남...2020/12/08" );
             return PosBizControlConstants.SUCCESS;
         }
 
