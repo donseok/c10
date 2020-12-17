@@ -1803,7 +1803,7 @@ function C10_linkC106000050pop02() {
 		winObj = new ui.window("popup","칼라부재료업체 정보 수정이력","0","0","718","400","c106000050pop02.do?clr_cd="+g2_clrcd+"&pnt_cmp_cd="+g2_pntcmpcd);
 		winObj.setButtonDisable("park,minmax1");
 	}else {
-		alert("칼라부재료업체정보에 선택된 행이 없습니다.");
+		alert("칼라부재료업체정보에 선택된 행이 없습니다."); 
 		return;				
 	}	
 }
