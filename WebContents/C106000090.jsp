@@ -576,6 +576,8 @@ function C106000090_doLink(val,rowIdx,cellIdx){
 			link_url = "M472020090";
 			param += "&ORD_NO="+ORD_NO;
 			param += "&ORD_LN="+ORD_LN;
+			//KMS 추가
+			param += "&callProgramId="+"C106000090";
 			parent.newRemoveOpenTab(link_url,param);
 	}
 }
