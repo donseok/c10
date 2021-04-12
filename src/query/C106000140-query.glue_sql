@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000140 Page 쿼리파일"> 
+	 <query id="C106000140.select" desc="프린트롤 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT A.DGT_PRT_IMG_NO,
+       A.DGT_PRT_IMG_SEQ_NO,
+       --A.CUS_CD,
+       A.CUS_CD || (SELECT ' : ' || CD_V_MEANING 
+         FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP = 'CUS_CD'
+         AND   CD_V = A.CUS_CD) AS CUS_CD, --최종수요가명(MASTER)
+       A.CCL_BOM_NO,
+       A.DGT_PRT_IMG_TXT,
+       TO_CHAR(A.DGT_PRT_IMG_DH, 'YYYY-MM-DD') DGT_PRT_IMG_DH,
+       A.DGT_PRT_IMG_PRS_ID,
+       (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF	
+         WHERE USER_NO = A.DGT_PRT_IMG_PRS_ID) DGT_PRT_IMG_PRS_NM,
+	   :USER_NO AS USER_NO,
+       NVL(A.DFILE_YN,'N') DFILE_YN,
+       NVL(A.STD_YN,'N') STD_YN
+  FROM C10APUSER.TB_C10_DGT_PRT_IMG_MNG A
+ WHERE A.DGT_PRT_IMG_NO LIKE '%'||:DGT_PRT_IMG_NO||'%'
+   AND EXISTS (
+       SELECT 1 FROM M90APUSER.TB_M90_EMP_INF 
+       WHERE USER_NO = A.DGT_PRT_IMG_PRS_ID 
+         AND USER_NAME LIKE :DGT_PRT_IMG_PRS_ID_NM || '%'
+     )
+		 ]]> 
+	 </query>
+	 <query id="C106000140.update" desc="C106000140 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_DGT_PRT_IMG_MNG A
+      SET A.CCL_BOM_NO = NVL(:CCL_BOM_NO,A.CCL_BOM_NO),
+          A.CUS_CD = NVL(SUBSTR(:CUS_CD,1,6),SUBSTR(A.CUS_CD,1,6)),
+          A.DGT_PRT_IMG_TXT = :DGT_PRT_IMG_TXT
+ WHERE A.DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000140.delete" desc="C106000140 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM C10APUSER.TB_C10_DGT_PRT_IMG_MNG
+ 	WHERE DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO 
+	   AND DGT_PRT_IMG_SEQ_NO = :DGT_PRT_IMG_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000140.insert" desc="C106000140 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_DGT_PRT_IMG_MNG(
+             DGT_PRT_IMG_NO
+            ,DGT_PRT_IMG_SEQ_NO
+            ,DGT_PRT_IMG_DH
+            ,DGT_PRT_IMG_PRS_ID
+            ,DGT_PRT_IMG_MDF_DH
+            ,DGT_PRT_IMG_MDF_PRS_ID
+            ,DGT_PRT_IMG_TXT
+            ,CUS_CD
+            ,CCL_BOM_NO
+            ,DFILE_YN
+            ,STD_YN
+            ,CREATED_OBJECT_TYPE 
+            ,CREATED_OBJECT_ID 
+            ,CREATED_PROGRAM_ID
+            ,CREATION_TIMESTAMP
+            ,LAST_UPDATED_OBJECT_TYPE
+            ,LAST_UPDATED_OBJECT_ID
+            ,LAST_UPDATE_PROGRAM_ID
+            ,LAST_UPDATE_TIMESTAMP)
+VALUES(:DGT_PRT_IMG_NO
+       ,(SELECT NVL(MAX(DGT_PRT_IMG_SEQ_NO)+1,1) 
+        FROM TB_C10_DGT_PRT_IMG_MNG 
+        WHERE DGT_PRT_IMG_NO =  :DGT_PRT_IMG_NO)
+       ,SYSDATE
+       ,:ObjectId
+       ,SYSDATE
+       ,:ObjectId
+       ,:DGT_PRT_IMG_TXT
+       ,:CUS_CD
+       ,:CCL_BOM_NO
+       ,'N'
+       ,'N'
+       ,:ObjectType
+       ,:ObjectId 
+       ,:ProgramId
+       ,:Timestamp
+       ,:ObjectType
+       ,:ObjectId
+       ,:ProgramId
+       ,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000140_IMG.delete" desc="10" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C106000140   이미지관리테이블 삭제  C106000140_IMG.delete  이돈석 */
+FROM TB_C10_DGT_PRT_IMG
+WHERE DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO
+  AND DGT_PRT_IMG_SEQ_NO = :DGT_PRT_IMG_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000140_DUMY.select" desc="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000140   의미없는 쿼리 C106000140_DUMY.select 이돈석 */
+1 DUMY
+FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000140_CCLBOMAJAX.select" desc="10" isNamed="true">
+		 <![CDATA[ 
+SELECT *
+FROM TB_C10_CCL_BOM
+WHERE CCL_BOM_NO LIKE :CCL_BOM_NO||'%'
+		 ]]> 
+	 </query>
+</queryMap>

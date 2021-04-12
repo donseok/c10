@@ -476,19 +476,42 @@ public class DbSearchQualKeyMatch extends PosActivity implements C10NuiConstants
                     ctx.put( COL_QLT_MSG_NM2, result.getRuleValueAt( COL_QLT_MSG_NM3 ) );
                     ctx.put( COL_CRM_MNF_STD_NO, result.getRuleValueAt( COL_CRM_MNF_STD_NO1 ) );
                     //************* 임가공 테스트 *******************
-                    /*
-                    if(poc_cgl_yn == "Y" && poc_ccl_yn == "Y"){
+                    
+                    // 로깅시작
+                    logger.logDebug( "=== 임가공 테스트 ===" );
+                    logger.logDebug( "CGL임가공 : " + poc_cgl_yn );
+                    logger.logDebug( "CCL임가공 : " + poc_ccl_yn );
+                    
+                    if(poc_cgl_yn.equals(C10STR_YES) && poc_ccl_yn.equals(C10STR_YES)){
+                    	logger.logDebug( "CGL, CCL임가공 Y");
                     	ctx.put( COL_PAS_PROC_NO, "3OA001" );
                     }
-                    else if(poc_cgl_yn == "Y" && poc_ccl_yn == "N"){
+                    else if(poc_cgl_yn.equals(C10STR_YES) && poc_ccl_yn.equals(C10STR_NO)){
+                    	logger.logDebug( "CGL임가공 Y");
                     	ctx.put( COL_PAS_PROC_NO, "GOH001" );
                     }
                     else{
+                    	logger.logDebug( "정상통과공정");
+                    	ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
+                    }
+                    
+                    /*
+                    if(poc_cgl_yn == "Y" && poc_ccl_yn == "Y"){
+                    	logger.logDebug( "CGL, CCL임가공 Y");
+                    	ctx.put( COL_PAS_PROC_NO, "3OA001" );
+                    }
+                    else if(poc_cgl_yn == "Y" && poc_ccl_yn == "N"){
+                    	logger.logDebug( "CGL임가공 Y");
+                    	ctx.put( COL_PAS_PROC_NO, "GOH001" );
+                    }
+                    else{
+                    	logger.logDebug( "정상통과공정");
                     	ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
                     }
                     */
+                    
                     //****** 원본 *****
-                    ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
+                    //ctx.put( COL_PAS_PROC_NO, result.getRuleValueAt( COL_PAS_PROC_NO ) );
                     ctx.put( COL_QLT_DSN_CFM_TP, result.getRuleValueAt( COL_QLT_DSN_CFM_TP ) );
                     ctx.put( COL_QLT_MSG_NM, result.getRuleValueAt( COL_QLT_MSG_NM1 ) );
                     ctx.put( COL_QLT_MSG_NM_COR, result.getRuleValueAt( COL_QLT_MSG_NM_COR ) );

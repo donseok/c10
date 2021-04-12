@@ -3201,7 +3201,12 @@ function img_btn(){
 			CCL_BOM_NO = gridObj.cellById(select_row,gridObj.getColIndexById('CCL_BOM_NO')).getValue();
 		 }
 		 var param ="CCL_BOM_NO="+CCL_BOM_NO;
-		 parent.newRemoveOpenTab("C106000100",param);
+		 if(CCL_BOM_NO.substring(0,1)  == "J"){
+			 parent.newRemoveOpenTab("C106000140",param);	 
+		 }else{
+			 parent.newRemoveOpenTab("C106000100",param);
+		 }
+		
 	}else{
 		dhtmlx.alert("먼저 데이터를 등록해주세요");
 		return;

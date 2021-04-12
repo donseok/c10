@@ -161,6 +161,14 @@
              <param-value>/APP/WAS/FILES/C10/04/</param-value> 
          </init-param> 
  </servlet>
+ <servlet>
+ <servlet-name>DigImg</servlet-name> 
+         <servlet-class>com.poscoict.download.image.ImageServlet</servlet-class> 
+         <init-param> 
+             <param-name>dir</param-name> 
+             <param-value>/APP/WAS/FILES/C10/08/</param-value> 
+         </init-param> 
+ </servlet>
  
 <servlet-mapping>
         <servlet-name>CusSpcImg</servlet-name>
@@ -169,5 +177,9 @@
 <servlet-mapping>
         <servlet-name>CoilImg</servlet-name>
         <url-pattern>/coilimgdown</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+        <servlet-name>DigImg</servlet-name>
+        <url-pattern>/digimgdown</url-pattern>
 </servlet-mapping>
 </web-app>

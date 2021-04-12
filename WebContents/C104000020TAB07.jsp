@@ -440,21 +440,21 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 </div>
 <div id="C104000020TAB07_Grid_2" style="position:absolute;height:74px;width:956px;left:1px;top:253px;">
 </div>
-<div id="C104000020TAB07_Grid_3" style="position:absolute;height:180px;width:171px;left:1px;top:329px;">
+<div id="C104000020TAB07_Grid_3" style="position:absolute;height:300px;width:171px;left:1px;top:329px;">
 </div>
-<div id="C104000020TAB07_Grid_4" style="position:absolute;height:180px;width:250px;left:175px;top:329px;">
+<div id="C104000020TAB07_Grid_4" style="position:absolute;height:300px;width:250px;left:175px;top:329px;">
 </div>
-<div id="C104000020TAB07_Grid_5" style="position:absolute;height:180px;width:277px;left:428px;top:329px;">
+<div id="C104000020TAB07_Grid_5" style="position:absolute;height:300px;width:277px;left:428px;top:329px;">
 </div>
-<div id="C104000020TAB07_Grid_6" style="position:absolute;height:180px;width:249px;left:708px;top:329px;">
+<div id="C104000020TAB07_Grid_6" style="position:absolute;height:300px;width:249px;left:708px;top:329px;">
 </div>
-<div id="C104000020TAB07_Grid_7" style="position:absolute;height:44px;width:857px;left:1px;top:512px;">
+<div id="C104000020TAB07_Grid_7" style="position:absolute;height:44px;width:857px;left:1px;top:632px;">
 </div>
-<div id="C104000020TAB07_Grid_8" style="position:absolute;height:50px;width:857px;left:1px;top:563px;">
+<div id="C104000020TAB07_Grid_8" style="position:absolute;height:50px;width:857px;left:1px;top:678px;">
 </div>
-<div id="messagebox" style="position:absolute;height:19px;width:956px;left:1px;top:615px;">
+<div id="messagebox" style="position:absolute;height:19px;width:956px;left:1px;top:730px;">
 </div>
-<div id="C104000020TAB07_Form_1" style="position:absolute;height:80px;width:98px;left:861px;top:531px;">
+<div id="C104000020TAB07_Form_1" style="position:absolute;height:80px;width:98px;left:861px;top:646px;">
 </div>
 </body>
 </html>

@@ -313,6 +313,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         double pnt_flm_thk_bak_tot = 0;
         String IF_GRP_ID_REQ = C10STR_SPACE;
         String ord_coilg_mth = C10STR_SPACE;
+        String impt_roll_no = C10STR_SPACE;  //2021.03.30 추가
         //String PAS_PROC_CD = C10STR_SPACE;
         
         // 생산가부I/F 변경
@@ -321,7 +322,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_IF_GRP_ID ) ) )
         	IF_GRP_ID_REQ = (String) ctx.get( COL_IF_GRP_ID );
         ctx.put( COL_IF_GRP_ID_REQ, IF_GRP_ID_REQ );
-        logger.logDebug( "if_grp_id_req  : " + IF_GRP_ID_REQ );    
+        //logger.logDebug( "if_grp_id_req  : " + IF_GRP_ID_REQ );    
         
         if ( !DbCommonUtil.isNull( ctx.get( COL_XMSGS ) ) )  //주문항목 에러체크시 에러발생하면 빠져버림
         {
@@ -793,6 +794,64 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
               //수지구분전면Total
                 if ( !DbCommonUtil.isNull( row.getAttribute( COL_RSN_TP_FRN ) ) )
                     rsn_tp_frn = DbCommonUtil.valueOf( row.getAttribute( COL_RSN_TP_FRN ) );
+              //IMPT_ROLL_NO (2021.03.30 -- 수정본)
+                //impt_roll_no = DbCommonUtil.valueOf( row.getAttribute( COL_IMPT_ROLL_NO ) );
+                if ( !DbCommonUtil.isNull( row.getAttribute( COL_IMPT_ROLL_NO ) ) )
+                	impt_roll_no = DbCommonUtil.valueOf( row.getAttribute( COL_IMPT_ROLL_NO ) );
+                
+                logger.logError( "embs_cd :" + embs_cd);
+                logger.logError( "impt_roll_no :" + impt_roll_no );
+                
+                if("1P".equals(embs_cd)){  //"N".equals(ord_slv_knd_tp)
+                	logger.logError( "impt_chk0" );
+                	if(impt_roll_no.equals( C10STR_SPACE )){
+                		logger.logError( "impt_chk1" );
+                    	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                        ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                        ctx.put( COL_XMSGS, ERRMSG_I41 );
+                        ctx.put( COL_ORD_ERR_TXT, ERRMSG_I41 );
+                        ctx.put( COL_ERR_YN, C10STR_YES );
+                        logger.logError( ERRMSG_I41 );
+                        return PosBizControlConstants.SUCCESS;
+                	}
+                }else if(embs_cd.equals( C10STR_SPACE )){
+                	logger.logError( "impt_chk2" );
+                	if(!impt_roll_no.equals( C10STR_SPACE )){
+                		logger.logError( "impt_chk3" );
+                    	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                        ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                        ctx.put( COL_XMSGS, ERRMSG_I42 );
+                        ctx.put( COL_ORD_ERR_TXT, ERRMSG_I42 );
+                        ctx.put( COL_ERR_YN, C10STR_YES );
+                        logger.logError( ERRMSG_I42 );
+                        return PosBizControlConstants.SUCCESS;
+                	}
+                }else{
+                	logger.logError( "impt_chk4" );
+                }
+                /*
+                if( (embs_cd == "" || embs_cd == null) && (impt_roll_no != "" || impt_roll_no != null) ){    //null && not null
+                	logger.logError( "impt_chk1" );
+                	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                    ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                    ctx.put( COL_XMSGS, ERRMSG_I42 );
+                    ctx.put( COL_ORD_ERR_TXT, ERRMSG_I42 );
+                    ctx.put( COL_ERR_YN, C10STR_YES );
+                    logger.logError( ERRMSG_I42 );
+                    return PosBizControlConstants.SUCCESS;
+                } else if(embs_cd == "1P" && (impt_roll_no == "" || impt_roll_no == null) ){ //1P && null
+                	logger.logError( "impt_chk2" );
+                	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                    ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                    ctx.put( COL_XMSGS, ERRMSG_I41 );
+                    ctx.put( COL_ORD_ERR_TXT, ERRMSG_I41 );
+                    ctx.put( COL_ERR_YN, C10STR_YES );
+                    logger.logError( ERRMSG_I41 );
+                    return PosBizControlConstants.SUCCESS;
+                }
+                */
+                
+                
             } else if ( rowset.count() > 1 )
             {
                 ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );

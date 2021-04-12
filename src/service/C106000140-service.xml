@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000140-service" initial="분기">
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000140.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="CCLBOM조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000140_CCLBOMAJAX.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+    <transition name="colorFind" value="CCLBOM조회" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C106000140.insert" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C106000140.update" />
+    <property name="isAudit" value="true" />
+    <property name="delete-sql" value="C106000140.delete" />
+  </activity>
+</service>
+

@@ -5,11 +5,13 @@
 		<item label="~" name="QLT_DSN_INST_DH_DUR" type="label"/>
 		<item offset="0" type="newcolumn"/>
 		<item inputWidth="70" name="QLT_DSN_INST_DH_END" type="calendar" dateFormat="%Y-%m-%d" style="background-color:#FFFFC0"/>
-		<item offset="10" type="newcolumn"/>
-		<item inputWidth="75" label="주문번호" name="ORD_NO" maxLength="10" type="input"/>
-		<item offset="40" type="newcolumn"/>
-		<item inputWidth="100" label="품명" labelAlign="right" labelWidth="40" name="PRD_NM_CD" type="combo"/>
-		<item offset="50" type="newcolumn"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="70" label="주문번호" name="ORD_NO" maxLength="10" type="input"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="70" label="품명" labelAlign="right" labelWidth="25" name="PRD_NM_CD" type="combo"/>
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="50" label="칼라공정" labelAlign="right" labelWidth="50" name="PROC_CD" type="combo"/>
+		<item offset="5" type="newcolumn"/>
 		<item command="reconfirm" label="Display Name" name="reconfirm" type="custombutton" value="확정검증" disabled="true"/>
 		<item offset="10" type="newcolumn"/>
 		<item command="save" label="Display Name" name="save" type="custombutton" value="설계확정" disabled="true"/>

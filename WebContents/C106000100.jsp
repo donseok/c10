@@ -278,9 +278,10 @@ function onFormLoadFunction(formDivObj){
 function parentViewImg(rowIdx,imgnm){
 	var winObj2;
 	var md_url = "C106000080pop02.jsp?grid=C106000100_Grid_1&imgnm="+encodeURIComponent(imgnm)+"&img_rgs_flags=04";
-	winObj = new ui.window("viewWinPop","CCL BOM 이미지 조회","0","0","950","550",md_url);
-	winObj.setButtonDisable("park,minmax1");
-	winObj.setModal();
+	//winObj = new ui.window("viewWinPop","CCL BOM 이미지 조회","0","0","950","550",md_url);
+	//winObj.setButtonDisable("park,minmax1");
+	//winObj.setModal();
+	window.open(md_url, '_blank');
 }
 
 //저장 후 조회처리

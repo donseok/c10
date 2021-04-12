@@ -22,7 +22,9 @@
 	String targetCellIndex = request.getParameter("targetCellIndex")	!=null ? request.getParameter("targetCellIndex") : "";
 	String formId = request.getParameter("targetFormID")	!=null ? request.getParameter("targetFormID") : "";	
 	String CD_V = request.getParameter("CD_V") !=null ? request.getParameter("CD_V") : "";	
-	String popUpGubun = request.getParameter("popupGubun") !=null ? request.getParameter("popupGubun") : "";	
+	String popUpGubun = request.getParameter("popupGubun") !=null ? request.getParameter("popupGubun") : "";
+	//신규코드
+	//String CD_V_MEANING = request.getParameter("CD_V_MEANING") !=null ? request.getParameter("CD_V_MEANING") : "";
 
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,6 +65,7 @@ function findMessage(referenceItem){
 function onLoadGrid(){
 	  items['masterGridData_Form_1'].setItemValue("CD_V","<%=CD_V%>"); 
 	  var customparam = {"CD_TP":"<%=CD_TP%>","CATEGORY_GROUP_NM":"<%=CATEGORY_GROUP_NM%>","CD_V":"<%=CD_V%>"};
+	   
 	  var findUrl = uiCommon.parameters("masterGridData_Form_1","masterGridData_Grid_1","find",customparam);
 	  items['masterGridData_Grid_1'].loadData(findUrl);
 	  items['masterGridData_Grid_1'].getDhxGrid().detachEvent(onXleGrid);		

@@ -1688,6 +1688,8 @@ public interface C10NuiConstantsIF {
     public static final String ERRMSG_I38 = "[품질설계][현업담당]설계KEY 적정, 차선 원자재 오류(품질설계원 설계KEY 확인요)";
     public static final String ERRMSG_I39 = "[품질설계][현업담당]지관발주메시지기준 중복";
     public static final String ERRMSG_I40 = "[품질설계][현업담당]PE-FOAM적용메시지기준 중복";
+    public static final String ERRMSG_I41 = "[품질설계][현업담당]엠보스 1P선택 시 Imprint Roll필수선택";
+    public static final String ERRMSG_I42 = "[품질설계][현업담당]엠보스 미선택 시 Imprint Roll선택불가";
 	
     // public static final String ERRMSG_R01 =
     // "테이블에  고객 성분사양 편성정보 데이타가 존재하지 않습니다.";
@@ -1810,6 +1812,8 @@ public interface C10NuiConstantsIF {
 
     /** 코팅방식 */
     public static final String COL_COT_MTH = "COT_MTH";
+    /** imprint roll */
+    public static final String COL_IMPT_ROLL_NO = "IMPT_ROLL_NO";
     /** 색상코드전면 */
     // public static final String COL_HUE_CD_FRN ="HUE_CD_FRN";
     /** 색상코드후면 */
@@ -3372,6 +3376,7 @@ public interface C10NuiConstantsIF {
     public static final String PARSEINFO_A621 = "A621/ORD_SUR_HND_CD/주문표면처리코드";
     public static final String PARSEINFO_A741 = "A741/ORD_SKP_DEG/주문조질도";
     public static final String PARSEINFO_A471 = "A471/ORD_EDG_ASG_TP/주문Edge지정구분";
+    public static final String PARSEINFO_A475 = "A475/RSN_TP_FRN/수지구분전면";
     public static final String PARSEINFO_A481 = "A481/ORD_THK_TP/주문두께구분";
     public static final String PARSEINFO_A421 = "A421/WGT_DCS_MTH_TP/중량결정법구분";
     public static final String PARSEINFO_A761 = "A761/ORD_SLV_KND_TP/주문내경링종류구분";

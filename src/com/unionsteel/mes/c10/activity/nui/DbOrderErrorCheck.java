@@ -487,6 +487,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		String      nat_cd                   = C10STR_SPACE;
 		String      ord_tem_cd               = C10STR_SPACE;
 		String      pak_msg_cd               = C10STR_SPACE;
+		String      rsn_tp_frn               = C10STR_SPACE;
 		
 		
     if(!DbCommonUtil.isNull(ctx.get(COL_GW_ASG_CD))) 
@@ -552,7 +553,9 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
     if(!DbCommonUtil.isNull(ctx.get(COL_ORD_TEM_CD)))	
     	ord_tem_cd                =	ctx.get(COL_ORD_TEM_CD).toString();
     if(!DbCommonUtil.isNull(ctx.get(COL_PAK_MSG_CD)))	
-    	pak_msg_cd                =	ctx.get(COL_PAK_MSG_CD).toString();    
+    	pak_msg_cd                =	ctx.get(COL_PAK_MSG_CD).toString();
+    if(!DbCommonUtil.isNull(ctx.get(COL_RSN_TP_FRN)))	
+    	rsn_tp_frn                =	ctx.get(COL_RSN_TP_FRN).toString();
     
 
 		
@@ -580,6 +583,9 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 //	    }
 	    if(ActivityUtil.isValidData(ord_edg_asg_tp)){
 		    codeChkMap.put(COL_ORD_EDG_ASG_TP            , PARSEINFO_A471); //주문Edge지정구분 미정의 코드
+	    }
+	    if(ActivityUtil.isValidData(rsn_tp_frn)){
+		    codeChkMap.put(COL_RSN_TP_FRN                , PARSEINFO_A475); //수지구분전면 미정의 코드
 	    }
 	    if(ActivityUtil.isValidData(wgt_dcs_mth_tp)){
 		    codeChkMap.put(COL_WGT_DCS_MTH_TP            , PARSEINFO_A421); //중량결정법구분 미정의 코드
@@ -1097,8 +1103,9 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 	    String      ccl_bom_hue_cd_bak_2cot = C10STR_SPACE;  //항목추가 20160620 CCL BOM 칼라코드 체크
 	    String      ccl_bom_hue_cd_bak_3cot = C10STR_SPACE;  //항목추가 20160620 CCL BOM 칼라코드 체크
 	    String      ccl_bom_hue_cd_bak_4cot = C10STR_SPACE;  //항목추가 20160620 CCL BOM 칼라코드 체크    
-	    String      ccl_bom_hue_cd_lmn       = C10STR_SPACE;  //항목추가 20160620 CCL BOM 칼라코드 체크    
-	    int          ccl_bom_clr_use_n_cnt     = 0;  //항목추가 20160620 CCL BOM 칼라코드 체크    
+	    String      ccl_bom_hue_cd_lmn      = C10STR_SPACE;  //항목추가 20160620 CCL BOM 칼라코드 체크    
+	    int         ccl_bom_clr_use_n_cnt   = 0;  //항목추가 20160620 CCL BOM 칼라코드 체크 
+	    String      rsn_tp_frn              = C10STR_SPACE;  //항목추가 20210315 수지타입체크
 
 
 		
@@ -1306,7 +1313,9 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		if (!DbCommonUtil.isNull(ctx.get(COL_TRST_PROC_YN)))              
 		    trst_proc_yn             = ctx.get(COL_TRST_PROC_YN).toString(); 
 		if (!DbCommonUtil.isNull(ctx.get(COL_PAK_MSG_CD)))              
-		    pak_msg_cd               = ctx.get(COL_PAK_MSG_CD).toString(); 	
+		    pak_msg_cd               = ctx.get(COL_PAK_MSG_CD).toString();
+		if (!DbCommonUtil.isNull(ctx.get(COL_RSN_TP_FRN)))              
+		    rsn_tp_frn               = ctx.get(COL_RSN_TP_FRN).toString();
 		   
 
 //각 항모별 판단기준 체크 셋팅
@@ -1331,7 +1340,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key1[15]  = ord_pak_mth;          //주문포장방법
 		key1[16]  = pak_msg_cd;           //포장메세지코드
 		key1[17]  = ord_thk_mng_cd;       //두께관리코드
-		key1[18]  = ord_knd;              //주문종류
+		key1[18]  = embs_cd;           //수지구분전면
 		key1[19]  = fnl_cus_cd;           //최종수요가코드		
 		
 	//주문요청행번  
@@ -1355,7 +1364,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key2[15]  = ord_pak_mth;          //주문포장방법
 		key2[16]  = pak_msg_cd;           //포장메세지코드
 		key2[17]  = ord_thk_mng_cd;       //두께관리코드
-		key2[18]  = ord_knd;              //주문종류
+		key2[18]  = embs_cd;           //수지구분전면
 		key2[19]  = fnl_cus_cd;           //최종수요가코드				
 		
 	//품명  
@@ -1379,7 +1388,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key3[15]  = ord_pak_mth;          //주문포장방법
 		key3[16]  = pak_msg_cd;           //포장메세지코드
 		key3[17]  = ord_thk_mng_cd;       //두께관리코드
-		key3[18]  = ord_knd;              //주문종류
+		key3[18]  = embs_cd;           //수지구분전면
 		key3[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//제품형태  
@@ -1403,7 +1412,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key4[15]  = ord_pak_mth;          //주문포장방법
 		key4[16]  = pak_msg_cd;           //포장메세지코드
 		key4[17]  = ord_thk_mng_cd;       //두께관리코드
-		key4[18]  = ord_knd;              //주문종류
+		key4[18]  = embs_cd;           //수지구분전면
 		key4[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//유통경로  
@@ -1427,13 +1436,13 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key5[15]  = ord_pak_mth;          //주문포장방법
 		key5[16]  = pak_msg_cd;           //포장메세지코드
 		key5[17]  = ord_thk_mng_cd;       //두께관리코드
-		key5[18]  = ord_knd;              //주문종류
+		key5[18]  = embs_cd;           //수지구분전면
 		key5[19]  = fnl_cus_cd;           //최종수요가코드				
 		
 	//주문종류  
 		String[]	key6	= new String[20];
-		key6[0]	= COL_ORD_KND;
-		key6[1] = ord_knd;
+		key6[0]	= COL_RSN_TP_FRN;
+		key6[1] = rsn_tp_frn;
 		key6[2]	= prd_nm_cd;              //품명
 		key6[3]	= prd_shp;                //제품형태
 		key6[4] = ord_slv_knd_tp;         //주문내경링종류구분
@@ -1451,7 +1460,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key6[15]  = ord_pak_mth;          //주문포장방법
 		key6[16]  = pak_msg_cd;           //포장메세지코드
 		key6[17]  = ord_thk_mng_cd;       //두께관리코드
-		key6[18]  = ord_knd;              //주문종류
+		key6[18]  = embs_cd;           //수지구분전면
 		key6[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문용도코드  
@@ -1475,7 +1484,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key7[15]  = ord_pak_mth;          //주문포장방법
 		key7[16]  = pak_msg_cd;           //포장메세지코드
 		key7[17]  = ord_thk_mng_cd;       //두께관리코드
-		key7[18]  = ord_knd;              //주문종류
+		key7[18]  = embs_cd;           //수지구분전면
 		key7[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//고객사코드  
@@ -1499,7 +1508,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key8[15]  = ord_pak_mth;          //주문포장방법
 		key8[16]  = pak_msg_cd;           //포장메세지코드
 		key8[17]  = ord_thk_mng_cd;       //두께관리코드
-		key8[18]  = ord_knd;              //주문종류
+		key8[18]  = embs_cd;           //수지구분전면
 		key8[19]  = fnl_cus_cd;           //최종수요가코드	
 		
 
@@ -1524,7 +1533,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key9[15]  = ord_pak_mth;          //주문포장방법
 		key9[16]  = pak_msg_cd;           //포장메세지코드
 		key9[17]  = ord_thk_mng_cd;       //두께관리코드
-		key9[18]  = ord_knd;              //주문종류
+		key9[18]  = embs_cd;           //수지구분전면
 		key9[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//최종수요가코드  
@@ -1548,7 +1557,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key10[15]  = ord_pak_mth;          //주문포장방법
 		key10[16]  = pak_msg_cd;           //포장메세지코드
 		key10[17]  = ord_thk_mng_cd;       //두께관리코드
-		key10[18]  = ord_knd;              //주문종류
+		key10[18]  = embs_cd;           //수지구분전면
 		key10[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//규격약호  
@@ -1572,7 +1581,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key11[15]  = ord_pak_mth;          //주문포장방법
 		key11[16]  = pak_msg_cd;           //포장메세지코드
 		key11[17]  = ord_thk_mng_cd;       //두께관리코드
-		key11[18]  = ord_knd;              //주문종류
+		key11[18]  = embs_cd;           //수지구분전면
 		key11[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//규격년도  
@@ -1596,7 +1605,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key12[15]  = ord_pak_mth;          //주문포장방법
 		key12[16]  = pak_msg_cd;           //포장메세지코드
 		key12[17]  = ord_thk_mng_cd;       //두께관리코드
-		key12[18]  = ord_knd;              //주문종류
+		key12[18]  = embs_cd;           //수지구분전면
 		key12[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문생칫수 
@@ -1620,7 +1629,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key13[15]  = ord_pak_mth;          //주문포장방법
 		key13[16]  = pak_msg_cd;           //포장메세지코드
 		key13[17]  = ord_thk_mng_cd;       //두께관리코드
-		key13[18]  = ord_knd;              //주문종류
+		key13[18]  = embs_cd;           //수지구분전면
 		key13[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문환산두께 
@@ -1644,7 +1653,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key14[15]  = ord_pak_mth;          //주문포장방법
 		key14[16]  = pak_msg_cd;           //포장메세지코드
 		key14[17]  = ord_thk_mng_cd;       //두께관리코드
-		key14[18]  = ord_knd;              //주문종류
+		key14[18]  = embs_cd;           //수지구분전면
 		key14[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문환산폭 
@@ -1668,7 +1677,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key15[15]  = ord_pak_mth;          //주문포장방법
 		key15[16]  = pak_msg_cd;           //포장메세지코드
 		key15[17]  = ord_thk_mng_cd;       //두께관리코드
-		key15[18]  = ord_knd;              //주문종류
+		key15[18]  = embs_cd;           //수지구분전면
 		key15[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문표면처리코드 
@@ -1692,7 +1701,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key16[15]  = ord_pak_mth;          //주문포장방법
 		key16[16]  = pak_msg_cd;           //포장메세지코드
 		key16[17]  = ord_thk_mng_cd;       //두께관리코드
-		key16[18]  = ord_knd;              //주문종류
+		key16[18]  = embs_cd;           //수지구분전면
 		key16[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문Edge지정구분 
@@ -1716,7 +1725,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key17[15]  = ord_pak_mth;          //주문포장방법
 		key17[16]  = pak_msg_cd;           //포장메세지코드
 		key17[17]  = ord_thk_mng_cd;       //두께관리코드
-		key17[18]  = ord_knd;              //주문종류
+		key17[18]  = embs_cd;           //수지구분전면
 		key17[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문두께구분 
@@ -1740,7 +1749,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key18[15]  = ord_pak_mth;          //주문포장방법
 		key18[16]  = pak_msg_cd;           //포장메세지코드
 		key18[17]  = ord_thk_mng_cd;       //두께관리코드
-		key18[18]  = ord_knd;              //주문종류
+		key18[18]  = embs_cd;           //수지구분전면
 		key18[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//중량결정법구분 
@@ -1764,7 +1773,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key19[15]  = ord_pak_mth;          //주문포장방법
 		key19[16]  = pak_msg_cd;           //포장메세지코드
 		key19[17]  = ord_thk_mng_cd;       //두께관리코드
-		key19[18]  = ord_knd;              //주문종류
+		key19[18]  = embs_cd;           //수지구분전면
 		key19[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문중량단위 
@@ -1788,7 +1797,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key20[15]  = ord_pak_mth;          //주문포장방법
 		key20[16]  = pak_msg_cd;           //포장메세지코드
 		key20[17]  = ord_thk_mng_cd;       //두께관리코드
-		key20[18]  = ord_knd;              //주문종류
+		key20[18]  = embs_cd;           //수지구분전면
 		key20[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문행번중량 
@@ -1812,7 +1821,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key21[15]  = ord_pak_mth;          //주문포장방법
 		key21[16]  = pak_msg_cd;           //포장메세지코드
 		key21[17]  = ord_thk_mng_cd;       //두께관리코드
-		key21[18]  = ord_knd;              //주문종류
+		key21[18]  = embs_cd;           //수지구분전면
 		key21[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문정포장하한값 
@@ -1836,7 +1845,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key22[15]  = ord_pak_mth;          //주문포장방법
 		key22[16]  = pak_msg_cd;           //포장메세지코드
 		key22[17]  = ord_thk_mng_cd;       //두께관리코드
-		key22[18]  = ord_knd;              //주문종류
+		key22[18]  = embs_cd;           //수지구분전면
 		key22[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문정포장상한값 
@@ -1860,7 +1869,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key23[15]  = ord_pak_mth;          //주문포장방법
 		key23[16]  = pak_msg_cd;           //포장메세지코드
 		key23[17]  = ord_thk_mng_cd;       //두께관리코드
-		key23[18]  = ord_knd;              //주문종류
+		key23[18]  = embs_cd;           //수지구분전면
 		key23[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문포장당중량 
@@ -1884,7 +1893,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key24[15]  = ord_pak_mth;          //주문포장방법
 		key24[16]  = pak_msg_cd;           //포장메세지코드
 		key24[17]  = ord_thk_mng_cd;       //두께관리코드
-		key24[18]  = ord_knd;              //주문종류
+		key24[18]  = embs_cd;           //수지구분전면
 		key24[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문소포장중량 
@@ -1908,7 +1917,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key25[15]  = ord_pak_mth;          //주문포장방법
 		key25[16]  = pak_msg_cd;           //포장메세지코드
 		key25[17]  = ord_thk_mng_cd;       //두께관리코드
-		key25[18]  = ord_knd;              //주문종류
+		key25[18]  = embs_cd;           //수지구분전면
 		key25[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문단위중량 
@@ -1932,7 +1941,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key26[15]  = ord_pak_mth;          //주문포장방법
 		key26[16]  = pak_msg_cd;           //포장메세지코드
 		key26[17]  = ord_thk_mng_cd;       //두께관리코드
-		key26[18]  = ord_knd;              //주문종류
+		key26[18]  = embs_cd;           //수지구분전면
 		key26[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//ORD_PAK_MTH 
@@ -1956,7 +1965,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key27[15]  = ord_pak_mth;          //주문포장방법
 		key27[16]  = pak_msg_cd;           //포장메세지코드
 		key27[17]  = ord_thk_mng_cd;       //두께관리코드
-		key27[18]  = ord_knd;              //주문종류
+		key27[18]  = embs_cd;           //수지구분전면
 		key27[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문두께관리코드 
@@ -1980,7 +1989,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key28[15]  = ord_pak_mth;          //주문포장방법
 		key28[16]  = pak_msg_cd;           //포장메세지코드
 		key28[17]  = ord_thk_mng_cd;       //두께관리코드
-		key28[18]  = ord_knd;              //주문종류
+		key28[18]  = embs_cd;           //수지구분전면
 		key28[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문폭관리코드 
@@ -2004,7 +2013,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key29[15]  = ord_pak_mth;          //주문포장방법
 		key29[16]  = pak_msg_cd;           //포장메세지코드
 		key29[17]  = ord_thk_mng_cd;       //두께관리코드
-		key29[18]  = ord_knd;              //주문종류
+		key29[18]  = embs_cd;           //수지구분전면
 		key29[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//국가코드 
@@ -2028,7 +2037,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key30[15]  = ord_pak_mth;          //주문포장방법
 		key30[16]  = pak_msg_cd;           //포장메세지코드
 		key30[17]  = ord_thk_mng_cd;       //두께관리코드
-		key30[18]  = ord_knd;              //주문종류
+		key30[18]  = embs_cd;           //수지구분전면
 		key30[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문등록자 
@@ -2052,7 +2061,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key31[15]  = ord_pak_mth;          //주문포장방법
 		key31[16]  = pak_msg_cd;           //포장메세지코드
 		key31[17]  = ord_thk_mng_cd;       //두께관리코드
-		key31[18]  = ord_knd;              //주문종류
+		key31[18]  = embs_cd;           //수지구분전면
 		key31[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//영업팀코드 
@@ -2076,7 +2085,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key32[15]  = ord_pak_mth;          //주문포장방법
 		key32[16]  = pak_msg_cd;           //포장메세지코드
 		key32[17]  = ord_thk_mng_cd;       //두께관리코드
-		key32[18]  = ord_knd;              //주문종류
+		key32[18]  = embs_cd;           //수지구분전면
 		key32[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문내경링종류구분  
@@ -2100,7 +2109,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key33[15]  = ord_pak_mth;          //주문포장방법
 		key33[16]  = pak_msg_cd;           //포장메세지코드
 		key33[17]  = ord_thk_mng_cd;       //두께관리코드
-		key33[18]  = ord_knd;              //주문종류
+		key33[18]  = embs_cd;           //수지구분전면
 		key33[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문포장길이하한값
@@ -2124,7 +2133,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key34[15]  = ord_pak_mth;          //주문포장방법
 		key34[16]  = pak_msg_cd;           //포장메세지코드
 		key34[17]  = ord_thk_mng_cd;       //두께관리코드
-		key34[18]  = ord_knd;              //주문종류
+		key34[18]  = embs_cd;           //수지구분전면
 		key34[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문포장길이상한값
@@ -2148,7 +2157,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key35[15]  = ord_pak_mth;          //주문포장방법
 		key35[16]  = pak_msg_cd;           //포장메세지코드
 		key35[17]  = ord_thk_mng_cd;       //두께관리코드
-		key35[18]  = ord_knd;              //주문종류
+		key35[18]  = embs_cd;           //수지구분전면
 		key35[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문코일내경
@@ -2172,7 +2181,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key36[15]  = ord_pak_mth;          //주문포장방법
 		key36[16]  = pak_msg_cd;           //포장메세지코드
 		key36[17]  = ord_thk_mng_cd;       //두께관리코드
-		key36[18]  = ord_knd;              //주문종류
+		key36[18]  = embs_cd;           //수지구분전면
 		key36[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문코일외경
@@ -2196,7 +2205,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key37[15]  = ord_pak_mth;          //주문포장방법
 		key37[16]  = pak_msg_cd;           //포장메세지코드
 		key37[17]  = ord_thk_mng_cd;       //두께관리코드
-		key37[18]  = ord_knd;              //주문종류
+		key37[18]  = embs_cd;           //수지구분전면
 		key37[19]  = fnl_cus_cd;           //최종수요가코드		
 
     //주문권취방법  
@@ -2220,7 +2229,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key38[15]  = ord_pak_mth;          //주문포장방법
 		key38[16]  = pak_msg_cd;           //포장메세지코드
 		key38[17]  = ord_thk_mng_cd;       //두께관리코드
-		key38[18]  = ord_knd;              //주문종류
+		key38[18]  = embs_cd;           //수지구분전면
 		key38[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문환산길이
@@ -2244,7 +2253,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key39[15]  = ord_pak_mth;          //주문포장방법
 		key39[16]  = pak_msg_cd;           //포장메세지코드
 		key39[17]  = ord_thk_mng_cd;       //두께관리코드
-		key39[18]  = ord_knd;              //주문종류
+		key39[18]  = embs_cd;           //수지구분전면
 		key39[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문길이관리코드  
@@ -2268,7 +2277,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key40[15]  = ord_pak_mth;          //주문포장방법
 		key40[16]  = pak_msg_cd;           //포장메세지코드
 		key40[17]  = ord_thk_mng_cd;       //두께관리코드
-		key40[18]  = ord_knd;              //주문종류
+		key40[18]  = embs_cd;           //수지구분전면
 		key40[19]  = fnl_cus_cd;           //최종수요가코드		
 	
 	//주문Sheet적재방법  
@@ -2292,7 +2301,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key41[15]  = ord_pak_mth;          //주문포장방법
 		key41[16]  = pak_msg_cd;           //포장메세지코드
 		key41[17]  = ord_thk_mng_cd;       //두께관리코드
-		key41[18]  = ord_knd;              //주문종류
+		key41[18]  = embs_cd;           //수지구분전면
 		key41[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문Sheet매수
@@ -2316,7 +2325,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key42[15]  = ord_pak_mth;          //주문포장방법
 		key42[16]  = pak_msg_cd;           //포장메세지코드
 		key42[17]  = ord_thk_mng_cd;       //두께관리코드
-		key42[18]  = ord_knd;              //주문종류
+		key42[18]  = embs_cd;           //수지구분전면
 		key42[19]  = fnl_cus_cd;           //최종수요가코드		
 
 	//주문포장Sheet매수
@@ -2340,7 +2349,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key43[15]  = ord_pak_mth;          //주문포장방법
 		key43[16]  = pak_msg_cd;           //포장메세지코드
 		key43[17]  = ord_thk_mng_cd;       //두께관리코드
-		key43[18]  = ord_knd;              //주문종류
+		key43[18]  = embs_cd;           //수지구분전면
 		key43[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문정포장매수하한값
@@ -2364,7 +2373,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key44[15]  = ord_pak_mth;          //주문포장방법
 		key44[16]  = pak_msg_cd;           //포장메세지코드
 		key44[17]  = ord_thk_mng_cd;       //두께관리코드
-		key44[18]  = ord_knd;              //주문종류
+		key44[18]  = embs_cd;           //수지구분전면
 		key44[19]  = fnl_cus_cd;           //최종수요가코드			
 		
 	//주문정포장매수상한값
@@ -2388,7 +2397,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key45[15]  = ord_pak_mth;          //주문포장방법
 		key45[16]  = pak_msg_cd;           //포장메세지코드
 		key45[17]  = ord_thk_mng_cd;       //두께관리코드
-		key45[18]  = ord_knd;              //주문종류
+		key45[18]  = embs_cd;           //수지구분전면
 		key45[19]  = fnl_cus_cd;           //최종수요가코드		
 	
 	//도금량지정코드  
@@ -2412,7 +2421,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key46[15]  = ord_pak_mth;          //주문포장방법
 		key46[16]  = pak_msg_cd;           //포장메세지코드
 		key46[17]  = ord_thk_mng_cd;       //두께관리코드
-		key46[18]  = ord_knd;              //주문종류
+		key46[18]  = embs_cd;           //수지구분전면
 		key46[19]  = fnl_cus_cd;           //최종수요가코드			
 		
 	//CCLBOM번호  
@@ -2436,7 +2445,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key47[15]  = ord_pak_mth;          //주문포장방법
 		key47[16]  = pak_msg_cd;           //포장메세지코드
 		key47[17]  = ord_thk_mng_cd;       //두께관리코드
-		key47[18]  = ord_knd;              //주문종류
+		key47[18]  = embs_cd;           //수지구분전면
 		key47[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문원판규격약호  
@@ -2460,7 +2469,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key48[15]  = ord_pak_mth;          //주문포장방법
 		key48[16]  = pak_msg_cd;           //포장메세지코드
 		key48[17]  = ord_thk_mng_cd;       //두께관리코드
-		key48[18]  = ord_knd;              //주문종류
+		key48[18]  = embs_cd;           //수지구분전면
 		key48[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문조도코드  
@@ -2484,7 +2493,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key49[15]  = ord_pak_mth;          //주문포장방법
 		key49[16]  = pak_msg_cd;           //포장메세지코드
 		key49[17]  = ord_thk_mng_cd;       //두께관리코드
-		key49[18]  = ord_knd;              //주문종류
+		key49[18]  = embs_cd;           //수지구분전면
 		key49[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문Spangle구분 
@@ -2508,7 +2517,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key50[15]  = ord_pak_mth;          //주문포장방법
 		key50[16]  = pak_msg_cd;           //포장메세지코드
 		key50[17]  = ord_thk_mng_cd;       //두께관리코드
-		key50[18]  = ord_knd;              //주문종류
+		key50[18]  = embs_cd;           //수지구분전면
 		key50[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문조질도  
@@ -2532,7 +2541,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key51[15]  = ord_pak_mth;          //주문포장방법
 		key51[16]  = pak_msg_cd;           //포장메세지코드
 		key51[17]  = ord_thk_mng_cd;       //두께관리코드
-		key51[18]  = ord_knd;              //주문종류
+		key51[18]  = embs_cd;           //수지구분전면
 		key51[19]  = fnl_cus_cd;           //최종수요가코드				
 
 	//주문두께구분 
@@ -2556,7 +2565,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key52[15]  = ord_pak_mth;          //주문포장방법
 		key52[16]  = pak_msg_cd;           //포장메세지코드
 		key52[17]  = ord_thk_mng_cd;       //두께관리코드
-		key52[18]  = ord_knd;              //주문종류
+		key52[18]  = embs_cd;           //수지구분전면
 		key52[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//EMBOSS무늬
@@ -2580,7 +2589,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key53[15]  = ord_pak_mth;          //주문포장방법
 		key53[16]  = pak_msg_cd;           //포장메세지코드
 		key53[17]  = ord_thk_mng_cd;       //두께관리코드
-		key53[18]  = ord_knd;              //주문종류
+		key53[18]  = embs_cd;           //수지구분전면
 		key53[19]  = fnl_cus_cd;           //최종수요가코드			
 
     //주문보호필름상세코드 
@@ -2604,7 +2613,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key54[15]  = ord_pak_mth;          //주문포장방법
 		key54[16]  = pak_msg_cd;           //포장메세지코드
 		key54[17]  = ord_thk_mng_cd;       //두께관리코드
-		key54[18]  = ord_knd;              //주문종류
+		key54[18]  = embs_cd;           //수지구분전면
 		key54[19]  = fnl_cus_cd;           //최종수요가코드			
 
     //주문보호필름폭
@@ -2628,7 +2637,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key55[15]  = ord_pak_mth;          //주문포장방법
 		key55[16]  = pak_msg_cd;           //포장메세지코드
 		key55[17]  = ord_thk_mng_cd;       //두께관리코드
-		key55[18]  = ord_knd;              //주문종류
+		key55[18]  = embs_cd;           //수지구분전면
 		key55[19]  = fnl_cus_cd;           //최종수요가코드			
 	
 	//주문보호필름부착위치코드
@@ -2652,7 +2661,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key56[15]  = ord_pak_mth;          //주문포장방법
 		key56[16]  = pak_msg_cd;           //포장메세지코드
 		key56[17]  = ord_thk_mng_cd;       //두께관리코드
-		key56[18]  = ord_knd;              //주문종류
+		key56[18]  = embs_cd;           //수지구분전면
 		key56[19]  = fnl_cus_cd;           //최종수요가코드			
 
 		
@@ -2677,7 +2686,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key57[15]  = ord_pak_mth;          //주문포장방법
 		key57[16]  = pak_msg_cd;           //포장메세지코드
 		key57[17]  = ord_thk_mng_cd;       //두께관리코드
-		key57[18]  = ord_knd;              //주문종류
+		key57[18]  = embs_cd;           //수지구분전면
 		key57[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//고객정의색상   
@@ -2701,7 +2710,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key58[15]  = ord_pak_mth;          //주문포장방법
 		key58[16]  = pak_msg_cd;           //포장메세지코드
 		key58[17]  = ord_thk_mng_cd;       //두께관리코드
-		key58[18]  = ord_knd;              //주문종류
+		key58[18]  = embs_cd;           //수지구분전면
 		key58[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//고객요청납기일	  
@@ -2725,7 +2734,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key59[15]  = ord_pak_mth;          //주문포장방법
 		key59[16]  = pak_msg_cd;           //포장메세지코드
 		key59[17]  = ord_thk_mng_cd;       //두께관리코드
-		key59[18]  = ord_knd;              //주문종류
+		key59[18]  = embs_cd;           //수지구분전면
 		key59[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//색상코드후면  
@@ -2749,7 +2758,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key60[15]  = ord_pak_mth;          //주문포장방법
 		key60[16]  = pak_msg_cd;           //포장메세지코드
 		key60[17]  = ord_thk_mng_cd;       //두께관리코드
-		key60[18]  = ord_knd;              //주문종류
+		key60[18]  = embs_cd;           //수지구분전면
 		key60[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//색상코드전면
@@ -2773,7 +2782,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key61[15]  = ord_pak_mth;          //주문포장방법
 		key61[16]  = pak_msg_cd;           //포장메세지코드
 		key61[17]  = ord_thk_mng_cd;       //두께관리코드
-		key61[18]  = ord_knd;              //주문종류
+		key61[18]  = embs_cd;           //수지구분전면
 		key61[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문인도허용차하한값	  
@@ -2797,7 +2806,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key62[15]  = ord_pak_mth;          //주문포장방법
 		key62[16]  = pak_msg_cd;           //포장메세지코드
 		key62[17]  = ord_thk_mng_cd;       //두께관리코드
-		key62[18]  = ord_knd;              //주문종류
+		key62[18]  = embs_cd;           //수지구분전면
 		key62[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문인도허용차상한값	   
@@ -2821,7 +2830,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key63[15]  = ord_pak_mth;          //주문포장방법
 		key63[16]  = pak_msg_cd;           //포장메세지코드
 		key63[17]  = ord_thk_mng_cd;       //두께관리코드
-		key63[18]  = ord_knd;              //주문종류
+		key63[18]  = embs_cd;           //수지구분전면
 		key63[19]  = fnl_cus_cd;           //최종수요가코드			
 		 
 	//주문길이공차하한값
@@ -2845,7 +2854,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key64[15]  = ord_pak_mth;          //주문포장방법
 		key64[16]  = pak_msg_cd;           //포장메세지코드
 		key64[17]  = ord_thk_mng_cd;       //두께관리코드
-		key64[18]  = ord_knd;              //주문종류
+		key64[18]  = embs_cd;           //수지구분전면
 		key64[19]  = fnl_cus_cd;           //최종수요가코드			
 
 	//주문길이공차상한값 
@@ -2869,7 +2878,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key65[15]  = ord_pak_mth;          //주문포장방법
 		key65[16]  = pak_msg_cd;           //포장메세지코드
 		key65[17]  = ord_thk_mng_cd;       //두께관리코드
-		key65[18]  = ord_knd;              //주문종류
+		key65[18]  = embs_cd;           //수지구분전면
 		key65[19]  = fnl_cus_cd;           //최종수요가코드			
 		 
 	//주문조합폭1	 
@@ -2893,7 +2902,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key66[15]  = ord_pak_mth;          //주문포장방법
 		key66[16]  = pak_msg_cd;           //포장메세지코드
 		key66[17]  = ord_thk_mng_cd;       //두께관리코드
-		key66[18]  = ord_knd;              //주문종류
+		key66[18]  = embs_cd;           //수지구분전면
 		key66[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문조합폭2	  
@@ -2917,7 +2926,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key67[15]  = ord_pak_mth;          //주문포장방법
 		key67[16]  = pak_msg_cd;           //포장메세지코드
 		key67[17]  = ord_thk_mng_cd;       //두께관리코드
-		key67[18]  = ord_knd;              //주문종류
+		key67[18]  = embs_cd;           //수지구분전면
 		key67[19]  = fnl_cus_cd;           //최종수요가코드			
 		
 	//주문조합폭3	  
@@ -2941,7 +2950,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key68[15]  = ord_pak_mth;          //주문포장방법
 		key68[16]  = pak_msg_cd;           //포장메세지코드
 		key68[17]  = ord_thk_mng_cd;       //두께관리코드
-		key68[18]  = ord_knd;              //주문종류
+		key68[18]  = embs_cd;           //수지구분전면
 		key68[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문조합폭4	  
@@ -2965,7 +2974,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key69[15]  = ord_pak_mth;          //주문포장방법
 		key69[16]  = pak_msg_cd;           //포장메세지코드
 		key69[17]  = ord_thk_mng_cd;       //두께관리코드
-		key69[18]  = ord_knd;              //주문종류
+		key69[18]  = embs_cd;           //수지구분전면
 		key69[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문조합폭5	  
@@ -2989,7 +2998,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key70[15]  = ord_pak_mth;          //주문포장방법
 		key70[16]  = pak_msg_cd;           //포장메세지코드
 		key70[17]  = ord_thk_mng_cd;       //두께관리코드
-		key70[18]  = ord_knd;              //주문종류
+		key70[18]  = embs_cd;           //수지구분전면
 		key70[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문조합폭6	  
@@ -3013,7 +3022,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key71[15]  = ord_pak_mth;          //주문포장방법
 		key71[16]  = pak_msg_cd;           //포장메세지코드
 		key71[17]  = ord_thk_mng_cd;       //두께관리코드
-		key71[18]  = ord_knd;              //주문종류
+		key71[18]  = embs_cd;           //수지구분전면
 		key71[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문조합폭7	  
@@ -3037,7 +3046,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key72[15]  = ord_pak_mth;          //주문포장방법
 		key72[16]  = pak_msg_cd;           //포장메세지코드
 		key72[17]  = ord_thk_mng_cd;       //두께관리코드
-		key72[18]  = ord_knd;              //주문종류
+		key72[18]  = embs_cd;           //수지구분전면
 		key72[19]  = fnl_cus_cd;           //최종수요가코드				
 		  
 	//주문조합폭8	  
@@ -3061,7 +3070,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key73[15]  = ord_pak_mth;          //주문포장방법
 		key73[16]  = pak_msg_cd;           //포장메세지코드
 		key73[17]  = ord_thk_mng_cd;       //두께관리코드
-		key73[18]  = ord_knd;              //주문종류
+		key73[18]  = embs_cd;           //수지구분전면
 		key73[19]  = fnl_cus_cd;           //최종수요가코드				
 		 
 	//주문포장단중하한값	 
@@ -3085,7 +3094,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key74[15]  = ord_pak_mth;          //주문포장방법
 		key74[16]  = pak_msg_cd;           //포장메세지코드
 		key74[17]  = ord_thk_mng_cd;       //두께관리코드
-		key74[18]  = ord_knd;              //주문종류
+		key74[18]  = embs_cd;           //수지구분전면
 		key74[19]  = fnl_cus_cd;           //최종수요가코드				
 		  
 	//주문포장단중상한값	  
@@ -3109,7 +3118,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key75[15]  = ord_pak_mth;          //주문포장방법
 		key75[16]  = pak_msg_cd;           //포장메세지코드
 		key75[17]  = ord_thk_mng_cd;       //두께관리코드
-		key75[18]  = ord_knd;              //주문종류
+		key75[18]  = embs_cd;           //수지구분전면
 		key75[19]  = fnl_cus_cd;           //최종수요가코드				
 		  
 	//주문접수일	  
@@ -3133,7 +3142,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key76[15]  = ord_pak_mth;          //주문포장방법
 		key76[16]  = pak_msg_cd;           //포장메세지코드
 		key76[17]  = ord_thk_mng_cd;       //두께관리코드
-		key76[18]  = ord_knd;              //주문종류
+		key76[18]  = embs_cd;           //수지구분전면
 		key76[19]  = fnl_cus_cd;           //최종수요가코드			
 		  
 	//주문Slit조수	  
@@ -3157,7 +3166,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key77[15]  = ord_pak_mth;          //주문포장방법
 		key77[16]  = pak_msg_cd;           //포장메세지코드
 		key77[17]  = ord_thk_mng_cd;       //두께관리코드
-		key77[18]  = ord_knd;              //주문종류
+		key77[18]  = embs_cd;           //수지구분전면
 		key77[19]  = fnl_cus_cd;           //최종수요가코드				
 		 
 	//주문소포장혼입율	 
@@ -3181,7 +3190,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key78[15]  = ord_pak_mth;          //주문포장방법
 		key78[16]  = pak_msg_cd;           //포장메세지코드
 		key78[17]  = ord_thk_mng_cd;       //두께관리코드
-		key78[18]  = ord_knd;              //주문종류
+		key78[18]  = embs_cd;           //수지구분전면
 		key78[19]  = fnl_cus_cd;           //최종수요가코드				
 		   
 	//주문두께공차하한값	   
@@ -3205,7 +3214,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key79[15]  = ord_pak_mth;          //주문포장방법
 		key79[16]  = pak_msg_cd;           //포장메세지코드
 		key79[17]  = ord_thk_mng_cd;       //두께관리코드
-		key79[18]  = ord_knd;              //주문종류
+		key79[18]  = embs_cd;           //수지구분전면
 		key79[19]  = fnl_cus_cd;           //최종수요가코드				
 		  
 	//주문두께공차상한값	  
@@ -3229,7 +3238,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key80[15]  = ord_pak_mth;          //주문포장방법
 		key80[16]  = pak_msg_cd;           //포장메세지코드
 		key80[17]  = ord_thk_mng_cd;       //두께관리코드
-		key80[18]  = ord_knd;              //주문종류
+		key80[18]  = embs_cd;           //수지구분전면
 		key80[19]  = fnl_cus_cd;           //최종수요가코드	
 		  
 	//주문폭공차하한값	  
@@ -3253,7 +3262,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key81[15]  = ord_pak_mth;          //주문포장방법
 		key81[16]  = pak_msg_cd;           //포장메세지코드
 		key81[17]  = ord_thk_mng_cd;       //두께관리코드
-		key81[18]  = ord_knd;              //주문종류
+		key81[18]  = embs_cd;           //수지구분전면
 		key81[19]  = fnl_cus_cd;           //최종수요가코드				
 		 
 	//주문폭공차상한값	 
@@ -3277,7 +3286,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key82[15]  = ord_pak_mth;          //주문포장방법
 		key82[16]  = pak_msg_cd;           //포장메세지코드
 		key82[17]  = ord_thk_mng_cd;       //두께관리코드
-		key82[18]  = ord_knd;              //주문종류
+		key82[18]  = embs_cd;           //수지구분전면
 		key82[19]  = fnl_cus_cd;           //최종수요가코드									
 		  
 	//플랜트구분	  
@@ -3301,7 +3310,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key83[15]  = ord_pak_mth;          //주문포장방법
 		key83[16]  = pak_msg_cd;           //포장메세지코드
 		key83[17]  = ord_thk_mng_cd;       //두께관리코드
-		key83[18]  = ord_knd;              //주문종류
+		key83[18]  = embs_cd;           //수지구분전면
 		key83[19]  = fnl_cus_cd;           //최종수요가코드				
 		 
 	//조당최대중량	 
@@ -3325,7 +3334,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key84[15]  = ord_pak_mth;          //주문포장방법
 		key84[16]  = pak_msg_cd;           //포장메세지코드
 		key84[17]  = ord_thk_mng_cd;       //두께관리코드
-		key84[18]  = ord_knd;              //주문종류
+		key84[18]  = embs_cd;           //수지구분전면
 		key84[19]  = fnl_cus_cd;           //최종수요가코드			
 		
 	//Tag유형	
@@ -3349,7 +3358,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key85[15]  = ord_pak_mth;          //주문포장방법
 		key85[16]  = pak_msg_cd;           //포장메세지코드
 		key85[17]  = ord_thk_mng_cd;       //두께관리코드
-		key85[18]  = ord_knd;              //주문종류
+		key85[18]  = embs_cd;           //수지구분전면
 		key85[19]  = fnl_cus_cd;           //최종수요가코드				
 		
 	//위탁임가공여부	
@@ -3373,7 +3382,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key86[15]  = ord_pak_mth;          //주문포장방법
 		key86[16]  = pak_msg_cd;           //포장메세지코드
 		key86[17]  = ord_thk_mng_cd;       //두께관리코드
-		key86[18]  = ord_knd;              //주문종류
+		key86[18]  = embs_cd;           //수지구분전면
 		key86[19]  = fnl_cus_cd;           //최종수요가코드				
 		
 	//주문조합폭9	  
@@ -3397,7 +3406,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key87[15]  = ord_pak_mth;          //주문포장방법
 		key87[16]  = pak_msg_cd;           //포장메세지코드
 		key87[17]  = ord_thk_mng_cd;       //두께관리코드
-		key87[18]  = ord_knd;              //주문종류
+		key87[18]  = embs_cd;           //수지구분전면
 		key87[19]  = fnl_cus_cd;           //최종수요가코드			
 		
 	//주문조합폭10	  
@@ -3421,7 +3430,7 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 		key88[15]  = ord_pak_mth;          //주문포장방법
 		key88[16]  = pak_msg_cd;           //포장메세지코드
 		key88[17]  = ord_thk_mng_cd;       //두께관리코드
-		key88[18]  = ord_knd;              //주문종류
+		key88[18]  = embs_cd;           //수지구분전면
 		key88[19]  = fnl_cus_cd;           //최종수요가코드
 		
 		
@@ -3433,7 +3442,8 @@ public class DbOrderErrorCheck extends PosActivity implements C10NuiConstantsIF{
 	      masterChkList.put (COL_PRD_NM_CD                , key3);
 	      masterChkList.put (COL_PRD_SHP                  , key4);
 	      masterChkList.put (COL_FLOW_CHL                 , key5);
-	      masterChkList.put (COL_ORD_KND                  , key6);
+	      //masterChkList.put (COL_ORD_KND                  , key6);
+	      masterChkList.put (COL_RSN_TP_FRN               , key6);
 	      masterChkList.put (COL_ORD_USG_CD               , key7);
 	      masterChkList.put (COL_CUS_CD                   , key8);
 	      masterChkList.put (COL_ACT_CUS_CD               , key9);

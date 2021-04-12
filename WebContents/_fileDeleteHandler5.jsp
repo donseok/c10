@@ -49,8 +49,6 @@ else if("05".equals(IMG_RGS_FLAG))
 	FILE_ADDR = "/APP/WAS/FILES/C10/05" ;
 else if("07".equals(IMG_RGS_FLAG))  
 	FILE_ADDR = "/APP/WAS/FILES/C10/07" ;
-else if("08".equals(IMG_RGS_FLAG))  
-	FILE_ADDR = "/APP/WAS/FILES/C10/08" ;
 
 try{
 	File file = new File(FILE_ADDR , FILE_NAME);

@@ -44,6 +44,7 @@ String imgnm				= request.getParameter("imgnm");
 		else if("<%=img_rgs_flags%>" == "03")  link_name = "cusspcimgdown";
 		else if("<%=img_rgs_flags%>" == "04")  link_name = "coilimgdown";
 		else if("<%=img_rgs_flags%>" == "05")  link_name = "cusvisitimgdown";
+		else if("<%=img_rgs_flags%>" == "08")  link_name = "digimgdown";
 		
 		imgnm = "<%=imgnm%>";
 		
