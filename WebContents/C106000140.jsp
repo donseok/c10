@@ -82,11 +82,11 @@ function save(eventName,formDivObj,referenceItem){
 					dhtmlx.alert("고객사를 입력하세요.");
 					break;
 				}
-				if(CCL_BOM_NO == "" ){
-					err_cnt++;
-					dhtmlx.alert("디지털 프린팅 번호를 입력하세요.");
-					break;
-				}
+//				if(CCL_BOM_NO == "" ){
+//					err_cnt++;
+//					dhtmlx.alert("디지털 프린팅 번호를 입력하세요.");
+//					break;
+//				}
 				
 			}
 			else if(row_status == "updated"){			
