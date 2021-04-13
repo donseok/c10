@@ -18,16 +18,16 @@
 <column id="DGT_PRT_IMG_NO" index="1" sort="str" align="center" width="13" table="TB_C10_DGT_PRT_IMG" type="ed" color="FFFFC0">프린팅 이미지코드</column>
 <column id="DGT_PRT_IMG_TXT" index="2" sort="str" align="left" width="40" table="TB_C10_DGT_PRT_IMG" type="ed">설명</column>
 <column id="CUS_CD" index="3" sort="str" align="left" width="18" table="TB_C10_DGT_PRT_IMG" type="ed">고객사</column>
-<column id="DGT_PRT_IMG_PRS_ID" hidden="true" index="5" sort="str" align="center" width="8" table="TB_C10_DGT_PRT_IMG" type="ro">등록자</column>
-<column id="DGT_PRT_IMG_PRS_NM" index="6" sort="str" align="center" width="6" table="TB_C10_DGT_PRT_IMG" type="ro">등록자</column>
-<column id="DGT_PRT_IMG_DH" index="7" sort="str" align="center" width="12" table="TB_C10_DGT_PRT_IMG" type="ro">등록일</column>
-<column id="USER_NO" index="8" sort="str" align="center" width="9" table="TB_C10_DGT_PRT_IMG" type="ro" hidden="true">사번</column>
-<column align="center" clabel="IMAGE여부" dbname="파일이미지여부" id="DFILE_YN" index="9" sort="str" table="TB_C10_DGT_PRT_IMG" type="ro" width="*" color="FFFFC0">파일</column>
-<column align="center" clabel="규격IMAGE여부" dbname="규격IMAGE여부" id="STD_YN" index="10" sort="str" table="TB_C10_DGT_PRT_IMG" type="ro" width="*" color="FFFFC0">규격</column>
-<column id="DGT_PRT_IMG_SEQ_NO"  hidden="true" index="11" sort="str" align="center" width="15" table="TB_C10_DGT_PRT_IMG" type="ro">순서</column>
-<column align="center" hidden="true" id="IMG_ADR" index="12" sort="str" type="ro"/>
-<column align="center" hidden="true" id="IMG_NM" index="13" sort="str" type="ro"/>
-<column align="center" hidden="true" id="CNT" index="14" sort="str" type="ro"/>
+<column id="DGT_PRT_IMG_PRS_ID" hidden="true" index="4" sort="str" align="center" width="8" table="TB_C10_DGT_PRT_IMG" type="ro">등록자</column>
+<column id="DGT_PRT_IMG_PRS_NM" index="5" sort="str" align="center" width="6" table="TB_C10_DGT_PRT_IMG" type="ro">등록자</column>
+<column id="DGT_PRT_IMG_DH" index="6" sort="str" align="center" width="12" table="TB_C10_DGT_PRT_IMG" type="ro">등록일</column>
+<column id="USER_NO" index="7" sort="str" align="center" width="9" table="TB_C10_DGT_PRT_IMG" type="ro" hidden="true">사번</column>
+<column align="center" clabel="IMAGE여부" dbname="파일이미지여부" id="DFILE_YN" index="8" sort="str" table="TB_C10_DGT_PRT_IMG" type="ro" width="*" color="FFFFC0">파일</column>
+<column align="center" clabel="규격IMAGE여부" dbname="규격IMAGE여부" id="STD_YN" index="9" sort="str" table="TB_C10_DGT_PRT_IMG" type="ro" width="*" color="FFFFC0">규격</column>
+<column id="DGT_PRT_IMG_SEQ_NO"  hidden="true" index="10" sort="str" align="center" width="15" table="TB_C10_DGT_PRT_IMG" type="ro">순서</column>
+<column align="center" hidden="true" id="IMG_ADR" index="11" sort="str" type="ro"/>
+<column align="center" hidden="true" id="IMG_NM" index="12" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CNT" index="13" sort="str" type="ro"/>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.5 //@wire.6"/>
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.5 //@wire.6 //@wire.7"/>
   <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="521,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.4" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
@@ -12,7 +12,7 @@
     <property key="sqlkey" value="C106000140.select"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="16" location="325,179" size="151,-1" input="//@wire.3" output="//@wire.6" name="저장">
+  <child xsi:type="Glue:DinaActivity" id="16" location="325,179" size="151,-1" input="//@wire.3" output="//@wire.6 //@wire.8" name="저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="delete-sql" value="C106000140.delete"/>
@@ -25,6 +25,12 @@
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C106000140_CCLBOMAJAX.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="296002" location="275,298" size="96,-1" input="//@wire.8" output="//@wire.7" name="에러 메세지">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.SetUIMessage"/>
+    <property key="MSG" value="저장 오류가 발생했습니다."/>
+    <property key="MSG_KEY" value="errMsg"/>
     <property key="description" value=""/>
   </child>
   <property key="tx1" value="true"/>
@@ -44,4 +50,6 @@
   <wire id="8440" guardcondition="success" firstRelativePoint="403,209" lastRelativePoint="312,436">
     <bendpoint weight="0.5" firstDimension="3,179" secondDimension="98,-70"/>
   </wire>
+  <wire id="13419" guardcondition="success" firstRelativePoint="305,328" lastRelativePoint="305,432"/>
+  <wire id="13420" guardcondition="failure" firstRelativePoint="340,209" lastRelativePoint="340,298"/>
 </Glue:GlueDiagram>
