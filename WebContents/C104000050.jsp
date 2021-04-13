@@ -477,6 +477,12 @@ function onFormLoadEvent(){
 				}
 			}
 	}
+	
+	comboList['PROC_CD'].readonly(true,false);
+	ui.combo.master(comboList['PROC_CD'],'SZ0061','PROC_CD','totalValue=,orderBy=value',function(){
+	  comboList['PROC_CD'].selectOption(0,true,true);
+	  comboList['PROC_CD'].setOptionHeight(240);
+	});
 
 	var inputORD_USG_CD = items["C104000050_Form_1"].getDhxForm().getInput("ORD_USG_CD");
 	inputORD_USG_CD.onkeyup = function(){
