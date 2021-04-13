@@ -50,7 +50,8 @@ var pageConfiguration = '[' +
       '{"itemType":"grid","renderTo":"C106000140_Grid_1","xml":".\/header\/kr\/C106000140\/C106000140_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000140_Grid_1","service":"C106000140-service","actionType":"save"},' +
       '{"itemType":"messagebox","renderTo":"C106000140_messagebox","xml":".\/header\/kr\/C106000140\/C106000140_messagebox.xml","service":"C106000140-service"}' +
    ']';
-var initConfig = JSON.parse(pageConfiguration);	     
+var initConfig = JSON.parse(pageConfiguration);
+var btnChk = false;
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
@@ -66,6 +67,9 @@ function save(eventName,formDivObj,referenceItem){
 	var CCL_BOM_NO = ""
 	var CUS_CD = ""
 	var DGT_PRT_IMG_TXT = ""
+	
+	//팝업 설정 해제
+	btnChk = true;
 
 	var rowId = items['C106000140_Grid_1'].getRowSelectedId();
   	gridObj.selectRow(gridObj.getRowIndex(rowId));
@@ -197,6 +201,8 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 	var cellVal = grid.getCellValue(rId,cInd);
 	
 	if(stage==1) {
+		//팝업 설정
+	    btnChk = false;
 		if(cInd==3){
 			 var gridObj = items["C106000140_Grid_1"].getDhxGrid();
 			 gridObj.editor.obj.onkeyup = function(){
@@ -213,40 +219,42 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			return true;
 		}
 	}else if(stage ==2){
-		if(cInd == 2){
-			var val = cellVal.indexOf(":");
-			if(val > -1){
-				cellVal	= cellVal.substring(0,val);			
-			}
-			winObj = new ui.window("popup2","고객사","0","0","469","532","masterGridData.do?CD_TP=CUS_CD&CATEGORY_GROUP_NM=SZ0000&targetName="+cInd+"&targetFormID=C106000140_Grid_1&CD_V="+cellVal);
-			
-			/*
-			if (cellVal.substring(0,1) == "1" || cellVal.substring(0,1) == "2" || cellVal.substring(0,1) == "3" || cellVal.substring(0,1) == "4" || cellVal.substring(0,1) == "5" || cellVal.substring(0,1) == "6"){
+		if(btnChk == false ) {
+			if(cInd == 2){
+				var val = cellVal.indexOf(":");
+				if(val > -1){
+					cellVal	= cellVal.substring(0,val);			
+				}
 				winObj = new ui.window("popup2","고객사","0","0","469","532","masterGridData.do?CD_TP=CUS_CD&CATEGORY_GROUP_NM=SZ0000&targetName="+cInd+"&targetFormID=C106000140_Grid_1&CD_V="+cellVal);
-			}else
-			{
-				winObj = new ui.window("popup2","고객사","0","0","469","532","masterGridData.do?CD_TP=CUS_CD&CATEGORY_GROUP_NM=SZ0000&targetName="+cInd+"&targetFormID=C106000140_Grid_1&CD_V_MEANING="+cellVal);
+				
+				/*
+				if (cellVal.substring(0,1) == "1" || cellVal.substring(0,1) == "2" || cellVal.substring(0,1) == "3" || cellVal.substring(0,1) == "4" || cellVal.substring(0,1) == "5" || cellVal.substring(0,1) == "6"){
+					winObj = new ui.window("popup2","고객사","0","0","469","532","masterGridData.do?CD_TP=CUS_CD&CATEGORY_GROUP_NM=SZ0000&targetName="+cInd+"&targetFormID=C106000140_Grid_1&CD_V="+cellVal);
+				}else
+				{
+					winObj = new ui.window("popup2","고객사","0","0","469","532","masterGridData.do?CD_TP=CUS_CD&CATEGORY_GROUP_NM=SZ0000&targetName="+cInd+"&targetFormID=C106000140_Grid_1&CD_V_MEANING="+cellVal);
+				}
+				*/
+				winObj.setButtonDisable("park,minmax1");
+				winObj.setModal();
 			}
-			*/
-			winObj.setButtonDisable("park,minmax1");
-			winObj.setModal();
-		}
-		if(cInd==3 && !isNull(nValue)){
+			if(cInd==3 && !isNull(nValue)){
+				
+				/*
+				if(nValue.length > 5){
+					alert("6자리를 입력할 수 없습니다.");				
+					return;	
+				}
+				*/
+				
+				var param= "ServiceName=C106000140-service&colorFind=1&CCL_BOM_NO="+nValue+"&column-info=CCL_BOM_NO";
+				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+				var cells = xmlObj.getElementsByTagName("cell");
 			
-			/*
-			if(nValue.length > 5){
-				alert("6자리를 입력할 수 없습니다.");				
-				return;	
-			}
-			*/
-			
-			var param= "ServiceName=C106000140-service&colorFind=1&CCL_BOM_NO="+nValue+"&column-info=CCL_BOM_NO";
-			var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-			var cells = xmlObj.getElementsByTagName("cell");
-		
-			if(cells.length < 1){	
-				alert("등록된 CCL BOM NO가 없습니다.");				
-				return;					
+				if(cells.length < 1){	
+					alert("등록된 CCL BOM NO가 없습니다.");				
+					return;					
+				}
 			}
 		}
 	}
@@ -268,6 +276,8 @@ function refresh(referenceItem){ //grid selection clear event
 }
 //menu new row event function
 function add(referenceItem){
+   //팝업 설정 해제
+   btnChk = true;
    items[referenceItem].addRow();
    //행 추가 했을 때 기본적인 정보들이 자동으로 grid에 입력된다.
    setAutoData(items[referenceItem].getDhxGrid().getRowId(0),0);
@@ -289,6 +299,9 @@ function setAutoData(id,cInd){
 
 //menu remove event function
 function remove(referenceItem){
+	//팝업 설정 해제
+    btnChk = true;
+
 	if(items['C106000140_Grid_1'].getSelectedRowId()==null){
 		dhtmlx.alert("삭제 대상이 없습니다.");
 	}else{
@@ -357,7 +370,8 @@ function onAfterUpdateFinishEvent(){
 	//var msg = getMessage('C106000140_messagebox');
 	//if (msg != "") {
 	  //items['C106000140_Form_1'].setItemValue('saveMessage',msg);
-	  find('find','C106000140_Form_1','C106000140_Grid_1');	
+	  //find('find','C106000140_Form_1','C106000140_Grid_1');
+	  refresh('C106000140_Grid_1');
 	//}
 }
 
@@ -413,7 +427,7 @@ function doOnRowDblClicked(rowId) {
 	//items['C106000140_Grid_1'].getDhxGrid().attachEvent("onEditCell",gridChangedEvent); //grid cell Edit event
 	// 행삭제시 삭제데이타 붉은색 실선으로 표시
 	var dataProcessor = items["C106000140_Grid_1"].getDhxDataProcess();
-	items["C106000140_Grid_1"].rowDblClicked(doOnRowDblClicked);
+	//items["C106000140_Grid_1"].rowDblClicked(doOnRowDblClicked);
 	dataProcessor.styles ={inserted: "font-weight:bold; color:black;",updated: "font-weight:bold; color:black;",deleted:"font-weight:bold; color:red;text-decoration: line-through;"}	
 //]]>
 -->

@@ -34,7 +34,12 @@ UPDATE C10APUSER.TB_C10_DGT_PRT_IMG_MNG A
       SET A.CCL_BOM_NO = NVL(:CCL_BOM_NO,A.CCL_BOM_NO),
           A.CUS_CD = NVL(SUBSTR(:CUS_CD,1,6),SUBSTR(A.CUS_CD,1,6)),
           A.DGT_PRT_IMG_TXT = :DGT_PRT_IMG_TXT
- WHERE A.DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO
+WHERE A.DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO
+AND EXISTS (
+        SELECT 'X'
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'CUS_CD'
+        AND   CD_V = SUBSTR(:CUS_CD,1,6) )
 		 ]]> 
 	 </query>
 	 <query id="C106000140.delete" desc="C106000140 정보 삭제" isNamed="true">
@@ -66,9 +71,9 @@ INSERT INTO C10APUSER.TB_C10_DGT_PRT_IMG_MNG(
             ,LAST_UPDATED_OBJECT_ID
             ,LAST_UPDATE_PROGRAM_ID
             ,LAST_UPDATE_TIMESTAMP)
-VALUES(:DGT_PRT_IMG_NO
+ SELECT :DGT_PRT_IMG_NO
        ,(SELECT NVL(MAX(DGT_PRT_IMG_SEQ_NO)+1,1) 
-        FROM TB_C10_DGT_PRT_IMG_MNG 
+        FROM C10APUSER.TB_C10_DGT_PRT_IMG_MNG 
         WHERE DGT_PRT_IMG_NO =  :DGT_PRT_IMG_NO)
        ,SYSDATE
        ,:ObjectId
@@ -86,7 +91,13 @@ VALUES(:DGT_PRT_IMG_NO
        ,:ObjectType
        ,:ObjectId
        ,:ProgramId
-       ,:Timestamp)
+       ,:Timestamp
+FROM DUAL
+WHERE EXISTS (
+        SELECT 'X'
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'CUS_CD'
+        AND   CD_V = SUBSTR(:CUS_CD,1,6) )
 		 ]]> 
 	 </query>
 	 <query id="C106000140_IMG.delete" desc="10" isNamed="true">
