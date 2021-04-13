@@ -178,6 +178,34 @@
         </ftp>
         <echo>Success FTP Sending</echo>
     </target>
-    -->
- 
+    -->	
+	<target name="ftp_tst" description="Dev FTP Server Send" depends="war">
+	         
+        <echo>Dev FTP Server Send</echo>
+        <ftp action="delete" userid="${devServer.user}" password="${devServer.password}" server="${devServer.serverIp}"  remotedir="${devServer.scmdir}" passive="yes" >
+	        <fileset dir="${devServer.scmdir}">
+				<include name="${WEB_NAME}.war"/>
+	        </fileset>            
+        </ftp>
+        
+        <ftp action="put" userid="${devServer.user}" password="${devServer.password}" server="${devServer.serverIp}"  remotedir="${devServer.scmdir}" passive="yes" >
+        <fileset dir="${build.dir}">
+            <include name="${WEB_NAME}.war"/>
+        </fileset>
+        </ftp>
+        <echo>Success FTP Sending</echo>
+        
+		<telnet server="${tstTelnet.addr}" timeout="500">
+            <read>login:</read>
+            <write>${tstTelnet.user}</write>
+            <read>Password:</read>
+            <write>${tstTelnet.password}</write>
+            <read>/APP/WAS/${tstTelnet.sid}]</read>
+            <write>cd .Admin/sh</write>
+            <read>/APP/WAS/${tstTelnet.sid}/.Admin/sh]</read>
+            <write>./deploy.sh ${WEB_NAME}</write>
+            <read>/APP/WAS/${tstTelnet.sid}/.Admin/sh]</read>
+            <write>logout</write>
+        </telnet>
+    </target>
 </project>
