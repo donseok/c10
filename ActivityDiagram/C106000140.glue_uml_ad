@@ -29,7 +29,7 @@
   </child>
   <child xsi:type="Glue:Activity" id="296002" location="275,298" size="96,-1" input="//@wire.8" output="//@wire.7" name="에러 메세지">
     <property key="class" value="com.unionsteel.mes.c10.activity.common.SetUIMessage"/>
-    <property key="MSG" value="저장 오류가 발생했습니다."/>
+    <property key="MSG" value="동일 이미지코드 입력됨."/>
     <property key="MSG_KEY" value="errMsg"/>
     <property key="description" value=""/>
   </child>
