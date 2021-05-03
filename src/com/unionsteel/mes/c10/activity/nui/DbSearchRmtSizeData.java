@@ -608,13 +608,18 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                 ctx.put( COL_RMTL_TAR_THK_LVL, sem_rmtl_tar_thk_lvl );
                 ctx.put( COL_RMTL_TAR_THK_UVL, sem_rmtl_tar_thk_uvl );
                 ctx.put( COL_RMTL_TAR_THK, tm_thk_trv );
-
-                sem_rmtl_tar_wth = Double.parseDouble( tm_wth_trv ) - 3;
-                sem_rmtl_tar_wth = sem_rmtl_tar_wth*10;
-                sem_rmtl_tar_wth = Math.round(sem_rmtl_tar_wth);
-                sem_rmtl_tar_wth = sem_rmtl_tar_wth/10;
+                
+                //김재용 : 구매CR만 목표폭을 +10로 요청을 드립니다. 반올림 처리(조건 : EGI / SLIT NO-ST / 구매CR) --2021.04.29 JKJ
+                if( prd_nm_cd.equals("E")) {
+                	sem_rmtl_tar_wth = Math.round(Double.parseDouble( tm_wth_trv ) - 3);
+                }else{
+                  sem_rmtl_tar_wth = Double.parseDouble( tm_wth_trv ) - 3;
+                  sem_rmtl_tar_wth = sem_rmtl_tar_wth*10;
+                  sem_rmtl_tar_wth = Math.round(sem_rmtl_tar_wth);
+                  sem_rmtl_tar_wth = sem_rmtl_tar_wth/10;
+                }
                 ctx.put( COL_RMTL_TAR_WTH, sem_rmtl_tar_wth );
-
+                
             }else if( sem_prd_nm_cd.equals( PRD_NM_CD_G ) || sem_prd_nm_cd.equals( PRD_NM_CD_L ) ||
             	      sem_prd_nm_cd.equals( PRD_NM_CD_V ) || sem_prd_nm_cd.equals( PRD_NM_CD_W ) ){
             	sem_rmtl_tar_thk_lvl = Double.parseDouble(cgl_thk_trv)*0.95;
