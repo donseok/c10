@@ -30,7 +30,7 @@ import com.posdata.glue.dao.vo.PosParameter;
  * 
  * @see com.poscoict.glue.biz.dhtmlx.grid.GridSave
  */
-public class C10FileUpload4 extends PosActivity {
+public class C10FileUpload5 extends PosActivity {
 	/**
 	 * 업로드 된 이미지정보를 등록 및 삭제하는 메소드.
 	 * 
@@ -59,7 +59,7 @@ public class C10FileUpload4 extends PosActivity {
 			param.setNamedParamter("IMG_RGS_FLAG_ID4",ctx.get("IMG_RGS_FLAG_ID4"));
 			param.setNamedParamter("FILE_NAME"       ,ctx.get("FILE_NAME"));
 			param.setNamedParamter("FILE_ADDR"       ,ctx.get("FILE_ADDR"));
-			param.setNamedParamter("PRD_SPC_TP"      ,prdSpcTp);
+			//param.setNamedParamter("PRD_SPC_TP"      ,prdSpcTp);
 			param.setNamedParamter("SEQ"             ,ctx.get("SEQ"));
 
 			if ("03".equals(img_rgs_flag)) {

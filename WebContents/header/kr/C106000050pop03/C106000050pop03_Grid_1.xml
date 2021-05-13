@@ -25,12 +25,12 @@
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
 <column align="center" id="CLR_SUB_MTL_CD" index="1" sort="str" type="ro" width="19">컬러코드</column>
-<column align="center" id="PNT_CMP_CD" index="1" sort="str" type="ro" width="19">업체코드</column>
-<column align="left" id="IMG_NM" index="4" type="ahref_idx" width="*">파일</column>
-<column align="center" id="RGS_DH" index="5" type="ro" width="20">등록일자</column>
-<column align="center" id="RGS_PRS_ID" index="6" type="ro" width="16">등록자</column>
-<column align="center" id="DEL_IMG" index="7" type="ro" width="8">삭제</column>
-<column align="right" id="SEQ" hidden="true" index="2" sort="str" type="ro"></column>
+<column align="center" id="PNT_CMP_CD" index="2" sort="str" type="ro" width="19">업체코드</column>
+<column align="left" id="IMG_NM" index="3" type="ahref_idx" width="*">파일</column>
+<column align="center" id="RGS_DH" index="4" type="ro" width="20">등록일자</column>
+<column align="center" id="RGS_PRS_ID" index="5" type="ro" width="16">등록자</column>
+<column align="center" id="DEL_IMG" index="6" type="ro" width="8">삭제</column>
+<column align="right" id="SEQ" hidden="true" index="7" sort="str" type="ro"></column>
 <column align="center" hidden="true" id="IMG_ADR" index="8" sort="str" type="ro"/>
 <column align="center" hidden="true" id="CHK_IMG_NM" index="8" sort="str" type="ro"/>
 <column align="center" hidden="true" id="CHK_IMG_ADR" index="8" sort="str" type="ro"/>

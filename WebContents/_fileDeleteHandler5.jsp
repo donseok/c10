@@ -47,6 +47,8 @@ else if("04".equals(IMG_RGS_FLAG))
 	FILE_ADDR = "/APP/WAS/FILES/C10/04" ;
 else if("05".equals(IMG_RGS_FLAG))  
 	FILE_ADDR = "/APP/WAS/FILES/C10/05" ;
+else if("06".equals(IMG_RGS_FLAG))  
+	FILE_ADDR = "/APP/WAS/FILES/C10/06" ;
 else if("07".equals(IMG_RGS_FLAG))  
 	FILE_ADDR = "/APP/WAS/FILES/C10/07" ;
 
@@ -56,11 +58,14 @@ try{
 	if(file.exists()){
 		file.delete();
 	}
+	
+
+	
 	PosContext ctx = new PosContext();
-	ctx.put("IMG_RGS_FLAG"		, IMG_RGS_FLAG);
-	ctx.put("IMG_RGS_FLAG_ID"	, IMG_RGS_FLAG_ID);
+	ctx.put("IMG_RGS_FLAG"		, IMG_RGS_FLAG);  //06
+	ctx.put("IMG_RGS_FLAG_ID"	, IMG_RGS_FLAG_ID);  //W4720
 	ctx.put("IMG_RGS_FLAG_ID1"	, IMG_RGS_FLAG_ID1);
-	ctx.put("IMG_RGS_FLAG_ID2"	, IMG_RGS_FLAG_ID2);
+	ctx.put("IMG_RGS_FLAG_ID2"	, IMG_RGS_FLAG_ID2); //101257
 	ctx.put("IMG_RGS_FLAG_ID4"	, IMG_RGS_FLAG_ID4);
 	ctx.put("FILE_ADDR"			, FILE_ADDR);	
 	ctx.put("FILE_NAME"			, FILE_NAME);	

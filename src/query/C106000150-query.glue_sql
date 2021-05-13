@@ -5,11 +5,11 @@
 /* C106000150   칼라코드조회  C106000150.CLRselect  이돈석 */
 SELECT CLR_SUB_MTL_CD,
        CLR_NM,
-       USE_YN,
+       DECODE(USE_YN,'1','Y','N') AS USE_YN,
        PNT_CMP_CD,
        PNT_CMP_NM,
-       MSDS_YN,
-       CUR_QTY
+       DECODE( DOC_YN,'1','Y','N') AS DOC_YN,
+       NVL(CUR_QTY,0) AS CUR_QTY
   FROM (
 SELECT /*+ parallel(A, 8) */
        A.CLR_SUB_MTL_CD, --칼라부재료코드
@@ -25,7 +25,7 @@ SELECT /*+ parallel(A, 8) */
                      ELSE '0' END)
           FROM C10APUSER.TB_C10_CLR_CMP_MNG_FILE
          WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD
-           AND PNT_CMP_CD = B.PNT_CMP_CD) MSDS_YN,
+           AND PNT_CMP_CD = B.PNT_CMP_CD) DOC_YN,
        (SELECT NVL(SUM(CUR_QTY),0)
           FROM  MESAPUSER.VI_M30_SMTL_MASTER
          WHERE SMTL_PRG_CD = 'C'
@@ -36,9 +36,9 @@ SELECT /*+ parallel(A, 8) */
  WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD 
    AND B.CLR_SUB_MTL_CD LIKE NVL(:FIND_CD||'%','%')
 )
- WHERE NVL(MSDS_YN,'@') LIKE DECODE(:MSDS_YN,'1','1','')||'%'
-   AND NVL(USE_YN,'@') LIKE DECODE(:USE_YN,'1','1','')||'%'
-   AND (:CUR_TP = '1' AND NVL(CUR_QTY,0) > 0  OR :CUR_TP = '0')
+ WHERE NVL(DOC_YN,'@') LIKE DECODE(:DOC_YN,'1','1','')||'%'
+    AND NVL(USE_YN,'@') LIKE DECODE(:USE_YN,'1','1','')||'%'
+    AND ((:CUR_TP = '1' AND NVL(CUR_QTY,0) > 0) OR (:CUR_TP = '0' AND NVL(CUR_QTY,0) >= 0))
 		 ]]> 
 	 </query>
 	 <query id="C106000150_IMG.delete" desc="10" isNamed="true">
@@ -68,11 +68,11 @@ WHERE CCL_BOM_NO LIKE :CCL_BOM_NO||'%'
 /* C106000150   CCLBOM조회  C106000150.BOMselect  이돈석 */
 SELECT CLR_SUB_MTL_CD,
        CLR_NM,
-       USE_YN,
+       DECODE(USE_YN,'1','Y','N') AS USE_YN,
        PNT_CMP_CD,
        PNT_CMP_NM,
-       MSDS_YN,
-       CUR_QTY
+       DECODE( DOC_YN,'1','Y','N') AS DOC_YN,
+       NVL(CUR_QTY,0) AS CUR_QTY
   FROM (
 SELECT /*+ parallel(A, 8) */
        A.CLR_SUB_MTL_CD, --칼라부재료코드
@@ -88,7 +88,7 @@ SELECT /*+ parallel(A, 8) */
                      ELSE '0' END)
           FROM C10APUSER.TB_C10_CLR_CMP_MNG_FILE
          WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD
-           AND PNT_CMP_CD = B.PNT_CMP_CD) MSDS_YN,
+           AND PNT_CMP_CD = B.PNT_CMP_CD) DOC_YN,
        (SELECT NVL(SUM(CUR_QTY),0)
           FROM  MESAPUSER.VI_M30_SMTL_MASTER
          WHERE SMTL_PRG_CD = 'C'
@@ -225,9 +225,49 @@ SELECT /*+ parallel(A, 8) */
            AND HUE_CD_CHM IS NOT NULL
    )
 )
- WHERE NVL(MSDS_YN,'@') LIKE DECODE(:MSDS_YN,'1','1','')||'%'
+ WHERE NVL(DOC_YN,'@') LIKE DECODE(:DOC_YN,'1','1','')||'%'
    AND NVL(USE_YN,'@') LIKE DECODE(:USE_YN,'1','1','')||'%'
-   AND (:CUR_TP = '1' AND NVL(CUR_QTY,0) > 0  OR :CUR_TP = '0')
+   AND ((:CUR_TP = '1' AND NVL(CUR_QTY,0) > 0) OR (:CUR_TP = '0' AND NVL(CUR_QTY,0) >= 0))
+		 ]]> 
+	 </query>
+	 <query id="C106000150.ExcelDown" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+/* C106000150   칼라코드조회  C106000150.ExcelDown  이돈석 */
+SELECT CLR_SUB_MTL_CD,
+       CLR_NM,
+       USE_YN,
+       PNT_CMP_CD,
+       PNT_CMP_NM,
+       DECODE(DOC_YN,'1','Y','N') AS DOC_YN,
+       NVL(CUR_QTY,0) AS CUR_QTY
+  FROM (
+SELECT /*+ parallel(A, 8) */
+       A.CLR_SUB_MTL_CD, --칼라부재료코드
+       A.CLR_NM, --색상명
+       B.USE_YN AS USE_YN,--사용여부
+       PNT_CMP_CD,--도료업체코드
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PNT_CMP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PNT_CMP_CD) PNT_CMP_NM,--도료업체코드(마스터)
+       (SELECT (CASE WHEN COUNT(1) > 0 THEN '1'
+                     ELSE '0' END)
+          FROM C10APUSER.TB_C10_CLR_CMP_MNG_FILE
+         WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD
+           AND PNT_CMP_CD = B.PNT_CMP_CD) DOC_YN,
+       (SELECT NVL(SUM(CUR_QTY),0)
+          FROM  MESAPUSER.VI_M30_SMTL_MASTER
+         WHERE SMTL_PRG_CD = 'C'
+           AND SMTL_CLR_CD  = B.CLR_SUB_MTL_CD
+           AND SMTL_SLP_CD = B.PNT_CMP_CD ) AS CUR_QTY
+ FROM TB_C10_CLR_CD_MNG  A,
+      TB_C10_CLR_CMP_MNG B
+ WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD
+)
+ WHERE NVL(DOC_YN,'0') = '0'
+   AND NVL(USE_YN,'N') = 'Y'
+   AND NVL(CUR_QTY,0) > 0
 		 ]]> 
 	 </query>
 </queryMap>

@@ -28,7 +28,7 @@
     
     //String DGT_PRT_IMG_NO_TMP 		= request.getParameter("CCL_BOM_NO") 	!= null ? request.getParameter("DGT_PRT_IMG_NO") 	: "";
     //String DGT_PRT_IMG_NO 		= request.getParameter("CCL_BOM_NO") 	!= null ? request.getParameter("CCL_BOM_NO") 	: "";
-    //String CCL_BOM_NO 		= request.getParameter("CCL_BOM_NO") 	!= null ? request.getParameter("CCL_BOM_NO") 	: "";
+    String FIND_CD 		= request.getParameter("CCL_BOM_NO") 	!= null ? request.getParameter("CCL_BOM_NO") 	: "";
 %>    
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,14 +53,33 @@ var pageConfiguration = '[' +
 var initConfig = JSON.parse(pageConfiguration);
 var btnChk = false;
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
+var columnList = "CLR_SUB_MTL_CD,CLR_NM,USE_YN,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,CUR_QTY";
+
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
- 
+ 	//코드 작성여부 체크
+ 	
+ 	var f_chk = items['C106000150_Form_1'].getItemValue("FIND_CD")
+ 	if(f_chk == ''){
+ 		dhtmlx.alert({
+            ok:"확인",
+            text:"코드를 입력하지 않았습니다!",
+            callback:function(val){
+              if(val){
+                items['C106000150_Form_1'].setItemFocus('FIND_CD');
+              }
+           }
+      	});
+	  return ;
+	}
+ 		
 	var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
     items[referenceItem].loadData(findUrl);
-	/*
+	
+    /*
 	var formObj = items['C106000150_Form_1'].getDhxForm();
 	var radioValue = formObj.getItemValue("SEARCH_CD_SEL");
+		
 	items['C106000150_Grid_1'].getDhxGrid().clearAll();	
 	if( radioValue == "1" ){	
 		var useFindUrl = 
@@ -68,9 +87,11 @@ function find(eventName,formDivObj,referenceItem){
 	}else if(radioValue == "2"){	
 		var useFindUrl = 
 		items['C106000150_Form_1'].getServiceUrl()+"?ServiceName="+items['C106000150_Form_1'].getServiceName()+"&Findcclbom=1&column-info="+items['C106000150_Grid_1'].getColumnInfo()+"&blank-row-count="+items['C106000150_Grid_1'].getBlankRowCntInfo();	
-	
+	}
+	//items["C106000150_Grid_1"].loadData(useFindUrl,"");
 	items["C106000150_Grid_1"].loadData(useFindUrl,"");
 	*/
+	
 }
 
 function save(eventName,formDivObj,referenceItem){
@@ -135,20 +156,20 @@ function save(eventName,formDivObj,referenceItem){
 }
 
 // 이미지(파일) 등록을 위한 POP-UP
-function doImgPopUp6(rowIdx){	
+function doImgPopUp2(rowIdx){	
 	var gridObj = items['C106000150_Grid_1'].getDhxGrid();
 	var rowId = gridObj.getRowIndex(rowIdx);
 	
-	var md_url = "C106000150pop01.jsp?rowId="+rowId;
-		md_url += "&DGT_PRT_IMG_NO="+items['C106000150_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('DGT_PRT_IMG_NO'));
-		md_url += "&DGT_PRT_IMG_SEQ_NO="+items['C106000150_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('DGT_PRT_IMG_SEQ_NO'));
+	var md_url = "C106000050pop03.jsp?rowId="+rowId;
+		md_url += "&CLR_SUB_MTL_CD="+items['C106000150_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('CLR_SUB_MTL_CD'));
+		md_url += "&PNT_CMP_CD="+items['C106000150_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('PNT_CMP_CD'));
+		md_url += "&SEQ=1";  // 1로 고정
 		md_url += "&parent_item=C106000150_Grid_1";
-		md_url += "&IMG_RGS_TP=1";  // 1로 고정(PC)
-		md_url += "&PRD_SPC_TP=5";  // 1로 고정(파일이미지)
-		
-	var cusWinObj = new ui.window("C106000150PopWin","디지털프린팅 파일 이미지 등록","0","0","465","405",md_url);
-	cusWinObj.setButtonDisable("park,minmax1");
-	cusWinObj.setModal();
+
+	var cusWinObj = new ui.window("C106000050PopWin","MSDS 파일 다운로드","0","0","465","405",md_url);
+		cusWinObj.setButtonDisable("park,minmax1");
+		cusWinObj.setModal();
+	
 }
 
 
@@ -384,7 +405,7 @@ function onAfterUpdateFinishEvent(){
 	//if (msg != "") {
 	  //items['C106000150_Form_1'].setItemValue('saveMessage',msg);
 	  //find('find','C106000150_Form_1','C106000150_Grid_1');
-	  refresh('C106000150_Grid_1');
+	  //refresh('C106000150_Grid_1');
 	//}
 }
 
@@ -397,6 +418,40 @@ function setReadonly(){
 }
 
 function firstFind(){
+	items['C106000150_Form_1'].setItemValue("FIND_CD","<%=FIND_CD%>");			
+	var parentFindUrl = uiCommon.parameters('C106000150_Form_1','C106000150_Grid_1','find');
+	items["C106000150_Grid_1"].loadData(parentFindUrl);
+	uiCommon.progressOff(parent);
+	items['C106000150_Grid_1'].getDhxGrid().detachEvent(grdXle);
+}
+
+function excelExport(eventName,formDivObj,referenceItem){
+	var findUrl = parameters13(formDivObj,eventName, 'excelExportC106000150.do',columnList);
+	win = window.open(findUrl, "GGGG", "width=310,height=300,scrollbars=yes"); 
+}
+
+function parameters13(){
+    if(arguments.length < 1 || arguments.length < 2 || arguments.length <3){
+      dhtmlx.alert("function arguments setting not found<br>"+
+            "arguments[0] : form div object id<br>"+
+            "arguments[1] : event name<br>"+
+            "arguments[2] : ServiceUrl<br>"+
+            "arguments[3] : columnInfol\n");
+      return true;
+    }  
+   
+     var _data = [];
+     /** activity serviceName push */
+     _data.push(arguments[2]+"?ServiceName="+items[arguments[0]].getServiceName());
+     /** activity event push */
+     _data.push(arguments[1]+"=1");
+     /** dhtmlx item type 에 대한 key,value 추출 calendar는 data를 추출하는 방법이 다름 */
+     uiCommon.formParameter(_data,items[arguments[0]].getDhxForm()); 
+     /** item 에 대한 rendering 을 하기위한 정보 */
+     
+     _data.push("column-info="+arguments[3]);
+             
+     return _data.join("&");
 }
 
 
@@ -426,7 +481,7 @@ function doOnRowDblClicked(rowId) {
 	ui.initializeDHTMLX();
 	items['C106000150_Grid_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
 	items['C106000150_Grid_1'].onXLEEvent(setReadonly);
-	//var grdXle = items['C106000150_Grid_1'].onXLEEvent(firstFind);
+	var grdXle = items['C106000150_Grid_1'].onXLEEvent(firstFind);
 	items["C106000150_Grid_1"].onEditCellEvent(onEditCellEvent);
 	items["C106000150_Grid_1"].rowDblClicked(doOnRowClicked);
 	//items["C106000150_Grid_1"].onEditCellEvent(gridChangedEvent);

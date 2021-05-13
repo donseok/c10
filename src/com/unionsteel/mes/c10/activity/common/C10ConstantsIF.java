@@ -61,6 +61,10 @@ public class C10ConstantsIF
     public static final String C106000100POP04_DELETE 	= "C106000100pop04.delete";
     public static final String C106000100POP04_UPDATE   = "C106000100pop04.update";
     
+    public static final String C106000050POP03_INSERT 	= "C106000050pop03.insert";
+    public static final String C106000050POP03_DELETE 	= "C106000050pop03.delete";
+    public static final String C106000050POP03_UPDATE   = "C106000050pop03.update";
+    
     public static final String C108000010POP02_INSERT 	= "C108000010pop02.insert";
     public static final String C108000010POP02_DELETE 	= "C108000010pop02.delete";
     public static final String C108000010POP02_UPDATE   = "C108000010pop02.update";

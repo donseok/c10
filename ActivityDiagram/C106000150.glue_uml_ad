@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.5 //@wire.6 //@wire.7 //@wire.11"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="656,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.4" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.7 //@wire.9"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="656,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.8" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="5" location="100,215" size="92,-1" input="//@wire.9" output="//@wire.1" name="칼라코드검색">
+  <child xsi:type="Glue:DinaActivity" id="5" location="100,215" size="92,-1" input="//@wire.5" output="//@wire.1" name="칼라코드검색">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
-    <property key="sqlkey" value="C106000140.select"/>
+    <property key="sqlkey" value="C106000150.CLRselect"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="16" location="414,147" size="151,-1" input="//@wire.3" output="//@wire.6 //@wire.8" name="저장">
+  <child xsi:type="Glue:DinaActivity" id="16" location="414,147" size="151,-1" input="//@wire.3" output="//@wire.4" name="저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="delete-sql" value="C106000140.delete"/>
@@ -21,30 +21,24 @@
     <property key="update-sql" value="C106000140.update"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="131355" location="609,148" size="107,-1" input="//@wire.4" output="//@wire.5" name="CCLBOM조회">
-    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
-    <property key="dao" value="mesdao"/>
-    <property key="sqlkey" value="C106000140_CCLBOMAJAX.select"/>
-    <property key="description" value=""/>
-  </child>
-  <child xsi:type="Glue:Activity" id="296002" location="275,298" size="96,-1" input="//@wire.8" output="//@wire.7" name="에러 메세지">
-    <property key="class" value="com.unionsteel.mes.c10.activity.common.SetUIMessage"/>
-    <property key="MSG" value="동일 이미지코드 입력됨."/>
-    <property key="MSG_KEY" value="errMsg"/>
-    <property key="description" value=""/>
-  </child>
-  <child xsi:type="Glue:RouterActivity" id="296023" location="109,148" size="178,-1" input="//@wire.2" output="//@wire.9 //@wire.10" name="findRouter">
+  <child xsi:type="Glue:RouterActivity" id="296023" location="109,148" size="178,-1" input="//@wire.2" output="//@wire.6 //@wire.5" name="findRouter">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
     <property key="param-count" value="2"/>
     <property key="param0" value="SEARCH_CD_SEL|1|Findcolor"/>
     <property key="param1" value="SEARCH_CD_SEL|2|Findcclbom"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="296024" location="209,215" size="92,-1" input="//@wire.10" output="//@wire.11" name="CCL BOM검색">
+  <child xsi:type="Glue:DinaActivity" id="296024" location="209,215" size="92,-1" input="//@wire.6" output="//@wire.7" name="CCL BOM검색">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
-    <property key="sqlkey" value="C106000140.select"/>
+    <property key="sqlkey" value="C106000150.BOMselect"/>
     <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="296049" location="591,149" size="136,-1" input="//@wire.8" output="//@wire.9" name="엑셀다운">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000150.ExcelDown"/>
+    <property key="description" value="1. Activity Definition &#xD;&#xA;- 이 Activity는 상차Lot편성 확정된 결과를 엑셀파일로 변환한다.&#xD;&#xA;  변환 시 Head 및 Detail정보를 통합하여 코일 아이디 기준으로 표현한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description &#xD;&#xA;- 필수 입력값 : 기준일&#xD;&#xA;- 선택 입력값 : 실물정보구분&#xD;&#xA;- 반납의 경우 반품이력구분은 출고실적테이블에 반품이력이 있는경우와 없는경우로 구분한다. "/>
   </child>
   <property key="tx1" value="true"/>
   <property key="description" value=""/>
@@ -54,21 +48,16 @@
   </wire>
   <wire id="6" guardcondition="find" firstRelativePoint="193,112" lastRelativePoint="193,148"/>
   <wire id="14" guardcondition="save" firstRelativePoint="403,112" lastRelativePoint="403,179"/>
-  <wire id="8438" guardcondition="colorFind" firstRelativePoint="657,112" lastRelativePoint="647,186">
-    <bendpoint weight="0.5" firstDimension="209,50" secondDimension="5,-52"/>
-  </wire>
-  <wire id="8439" guardcondition="success" firstRelativePoint="649,178" lastRelativePoint="315,442">
-    <bendpoint weight="0.5" firstDimension="-9,220" secondDimension="338,-22"/>
-    <bendpoint weight="0.5" firstDimension="-14,279" secondDimension="343,-1"/>
-  </wire>
   <wire id="8440" guardcondition="success" firstRelativePoint="495,177" lastRelativePoint="314,442">
     <bendpoint weight="0.5" firstDimension="6,279" secondDimension="190,-2"/>
   </wire>
-  <wire id="13419" guardcondition="success" firstRelativePoint="305,328" lastRelativePoint="305,432"/>
-  <wire id="13420" guardcondition="failure" firstRelativePoint="340,209" lastRelativePoint="340,298"/>
-  <wire id="13421" guardcondition="Findcolor" firstRelativePoint="254,178" lastRelativePoint="254,215"/>
-  <wire id="13422" guardcondition="Findcclbom" firstRelativePoint="148,178" lastRelativePoint="148,215"/>
+  <wire id="13421" guardcondition="Findcolor" firstRelativePoint="155,178" lastRelativePoint="155,215"/>
+  <wire id="13422" guardcondition="Findcclbom" firstRelativePoint="252,178" lastRelativePoint="252,215"/>
   <wire id="13423" guardcondition="success" firstRelativePoint="245,245" lastRelativePoint="294,442">
     <bendpoint weight="0.5" firstDimension="-10,212" secondDimension="-60,-1"/>
+  </wire>
+  <wire id="13424" guardcondition="excelExport" firstRelativePoint="665,112" lastRelativePoint="665,149"/>
+  <wire id="13425" guardcondition="success" firstRelativePoint="661,179" lastRelativePoint="314,442">
+    <bendpoint weight="0.5" firstDimension="2,277" secondDimension="356,-2"/>
   </wire>
 </Glue:GlueDiagram>

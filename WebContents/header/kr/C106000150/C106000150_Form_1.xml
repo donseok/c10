@@ -4,17 +4,17 @@
 <item foreground-color="255,140,50" offset="1" type="newcolumn"/>
 <item label="CCLBOM코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="2" checked="true"/>
 <item foreground-color="255,140,50" offset="2" type="newcolumn"/>
-<item label="MSDS보유" labelAlign="right" labelWidth="75" name="MSDS_YN" type="checkbox" checked="true"/>
+<item label="MSDS보유" labelAlign="right" labelWidth="75" name="DOC_YN" type="checkbox"/>
 <item foreground-color="255,140,50" offset="2" type="newcolumn"/>
-<item label="재고보유" labelAlign="right" labelWidth="50" name="CUR_TP" type="checkbox" checked="true"/>
+<item label="재고보유" labelAlign="right" labelWidth="50" name="CUR_TP" type="checkbox"/>
 <item foreground-color="255,140,50" offset="2" type="newcolumn"/>
 <item label="미사용제외" labelAlign="right" labelWidth="75" name="USE_YN" type="checkbox" checked="true"/>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item inputWidth="90" label="코드" name="FIND_CD" type="input" maxLength="18"/>
+<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+<item inputWidth="80" label="코드" name="FIND_CD" type="input" maxLength="18"/>
+<item foreground-color="255,140,50" offset="25" type="newcolumn"/>
+<item command="excelExport" name="excelExport" type="button" value="엑셀"/>
 <item foreground-color="255,140,50" offset="25" type="newcolumn"/>
 <item command="find" name="find" type="button" value="조회"/>
-<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
-<item command="save" name="save" type="button" value="저장"/>
 <item foreground-color="255,140,50" offset="5" type="newcolumn"/>
 <item command="winClose" name="winClose" type="button" value="닫기"/>
 </item>

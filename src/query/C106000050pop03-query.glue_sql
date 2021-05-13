@@ -19,4 +19,52 @@ AND PNT_CMP_CD = :PNT_CMP_CD
 ORDER BY CLR_SUB_MTL_CD, PNT_CMP_CD, SEQ
 		 ]]> 
 	 </query>
+	 <query id="C106000050pop03.insert" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000050pop03   물질안전보건 업로드  C106000050pop03.insert  이돈석  */
+INTO C10APUSER.TB_C10_CLR_CMP_MNG_FILE (
+    CLR_SUB_MTL_CD,
+	PNT_CMP_CD,
+	SEQ,
+	IMG_RGS_TP,
+	IMG_ADR,
+	IMG_NM,
+	RGS_DH,
+	RGS_PRS_ID,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP)
+VALUES (
+    :IMG_RGS_FLAG_ID, 
+    :IMG_RGS_FLAG_ID2,
+    (SELECT NVL(MAX(SEQ),0)+1 FROM C10APUSER.TB_C10_CLR_CMP_MNG_FILE), 
+    '1', 
+    :FILE_ADDR,
+    :FILE_NAME,  
+    SYSDATE, 
+    :ObjectId,
+    'C',
+    :ObjectId,
+    'C106000050pop03',
+    SYSTIMESTAMP,
+    'C',
+    :ObjectId,
+    'C106000050pop03',
+    SYSTIMESTAMP)
+		 ]]> 
+	 </query>
+	 <query id="C106000050pop03.delete" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE  /* C106000050pop03   물질안전보건   C106000050pop03.delete  이돈석  */
+TB_C10_CLR_CMP_MNG_FILE 
+WHERE CLR_SUB_MTL_CD = :IMG_RGS_FLAG_ID
+AND PNT_CMP_CD = :IMG_RGS_FLAG_ID2
+AND SEQ = :SEQ
+		 ]]> 
+	 </query>
 </queryMap>

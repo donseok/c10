@@ -27,7 +27,7 @@ String IMG_RGS_TP		    = "1";  //1로 값 고정
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 </meta>
 <title>
-CCLBOM이미지등록
+MSDS문서등록
 </title>
 <link rel="stylesheet" type="text/css" href="./dhtmlx/codebase/dhtmlxvault.css" />
 <script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript"></script>
@@ -110,7 +110,7 @@ function onVaultLoad() {
 	var gridObj = parent.items['<%=parent_item%>'].getDhxGrid();
 	vault = new dhtmlXVaultObject();
 	vault.setImagePath("/dhtmlx/codebase/imgs/");
-	vault.setServerHandlers("_uploadHandler3.jsp", "_getInfoHandler.jsp", "_getIdHandler.jsp");	
+	vault.setServerHandlers("_uploadHandler6.jsp", "_getInfoHandler.jsp", "_getIdHandler.jsp");	
 	
 	vault.create("vault1");
 	
@@ -164,7 +164,7 @@ function doImgDel(rowIdx){
 	var FILE_NAME 		= gridObj.cellById(gridObj.getRowId(rowIdx),gridObj.getColIndexById("CHK_IMG_NM")).getValue();
 	
 	var del_url = "";
-	del_url += "_fileDeleteHandler3.jsp";
+	del_url += "_fileDeleteHandler5.jsp";
 	del_url += "?IMG_RGS_FLAG=06";
 	del_url += "&IMG_RGS_FLAG_ID="+CLR_SUB_MTL_CD;
 	del_url += "&IMG_RGS_FLAG_ID2="+PNT_CMP_CD;

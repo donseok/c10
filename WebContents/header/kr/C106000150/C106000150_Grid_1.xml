@@ -17,16 +17,16 @@
 </afterInit>
 <column id="CLR_SUB_MTL_CD" index="1" sort="str" align="center" width="13" table="TB_C10_CLR_CMP_MNG" type="ro" color="FFFFC0">칼라코드</column>
 <column id="CLR_NM" index="2" sort="str" align="left" width="25" table="TB_C10_CLR_CMP_MNG" type="ro">색상명</column>
-<column id="USE_YN" index="3" sort="str" align="left" width="10" table="TB_C10_CLR_CMP_MNG" type="ro">사용여부</column>
+<column id="USE_YN" index="3" sort="str" align="center" width="10" table="TB_C10_CLR_CMP_MNG" type="ro">사용여부</column>
 <column id="PNT_CMP_CD" index="4" sort="str" align="center" width="11" table="TB_C10_CLR_CMP_MNG" type="ro">업체코드</column>
 <column id="PNT_CMP_NM" index="5" sort="str" align="center" width="20" table="TB_C10_CLR_CMP_MNG" type="ro">업체코드명</column>
 <column id="DOC_YN" index="6" sort="str" align="center" width="12" table="TB_C10_CLR_CMP_MNG" type="ro"><![CDATA[<img src="dhtmlx/codebase/imgs/msds.jpg">MSDS</img>]]> </column>
-<column id="CUR_STK" index="7" sort="str" align="center" width="*" table="TB_C10_CLR_CMP_MNG" type="ro">현재고</column>
+<column id="CUR_QTY" index="7" sort="str" align="center" width="*" table="TB_C10_CLR_CMP_MNG" type="ro">현재고</column>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
-<userdata name="column-info">CLR_SUB_MTL_CD,CLR_NM,USE_YN,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,CUR_STK</userdata>
+<userdata name="column-info">CLR_SUB_MTL_CD,CLR_NM,USE_YN,PNT_CMP_CD,PNT_CMP_NM,DOC_YN,CUR_QTY</userdata>
 <row id="0">
 <cell/>
 <cell/>

@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="C106000150-service" initial="분기">
   <activity name="findRouter" class="com.poscoict.glue.biz.dhtmlx.PosValueRouter">
-    <transition name="Findcolor" value="칼라코드검색" />
     <transition name="Findcclbom" value="CCL BOM검색" />
+    <transition name="Findcolor" value="칼라코드검색" />
+    <property name="param0" value="SEARCH_CD_SEL|1|Findcolor" />
     <property name="param1" value="SEARCH_CD_SEL|2|Findcclbom" />
     <property name="param-count" value="2" />
-    <property name="param0" value="SEARCH_CD_SEL|1|Findcolor" />
   </activity>
-  <activity name="CCLBOM조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+  <activity name="엑셀다운" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000140_CCLBOMAJAX.select" />
     <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000150.ExcelDown" />
   </activity>
   <activity name="칼라코드검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000150.CLRselect" />
     <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C106000140.select" />
-  </activity>
-  <activity name="에러 메세지" class="com.unionsteel.mes.c10.activity.common.SetUIMessage">
-    <transition name="success" value="end" />
-    <property name="MSG_KEY" value="errMsg" />
-    <property name="MSG" value="동일 이미지코드 입력됨." />
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="find" value="findRouter" />
     <transition name="save" value="저장" />
-    <transition name="colorFind" value="CCLBOM조회" />
+    <transition name="excelExport" value="엑셀다운" />
   </activity>
   <activity name="CCL BOM검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000150.BOMselect" />
     <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C106000140.select" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="end" />
-    <transition name="failure" value="에러 메세지" />
     <property name="insert-sql" value="C106000140.insert" />
     <property name="dao" value="mesdao" />
     <property name="update-sql" value="C106000140.update" />
