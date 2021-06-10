@@ -24,7 +24,7 @@
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
-<!--
+
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
@@ -115,6 +115,8 @@ function findMessage(referenceItem){
 	var ORD_SHT_LOD_MTH = uiFormObj.getDhxForm().getItemValue("ORD_SHT_LOD_MTH");
 	var ORD_COILG_MTH = uiFormObj.getDhxForm().getItemValue("ORD_COILG_MTH");
 	var ORD_SLV_KND_TP = uiFormObj.getDhxForm().getItemValue("ORD_SLV_KND_TP");
+	var ORD_PAK_UNT_WGT_ULV = uiFormObj.getDhxForm().getItemValue("ORD_PAK_UNT_WGT_ULV");
+
 	
 	if(uiFormObj.getItemValue("messageBox") == "0"){	
 		uiFormObj.clear();
@@ -143,6 +145,12 @@ function findMessage(referenceItem){
 	        	uiFormObj.getDhxForm().getInput("ORD_SLV_KND_TP").style.color="red";
 	     	}
      	}
+
+       	if(!isNull(ORD_PAK_UNT_WGT_ULV) && parseInt(ORD_PAK_UNT_WGT_ULV) <= 2900){
+	        uiFormObj.getDhxForm().getInput("ORD_PAK_UNT_WGT_ULV").style.color="red";
+	    } else {
+			uiFormObj.getDhxForm().getInput("ORD_PAK_UNT_WGT_ULV").style.color="black";
+		}
 
     }
 	return true;
@@ -185,7 +193,7 @@ function backSpaceNotEvent(e){
 	}	
 }
 //]]>
--->
+
 </script>
 </head>
 <body>
@@ -196,12 +204,10 @@ function backSpaceNotEvent(e){
 </body>
 </html>
 <script>
-<!--
 //<![CDATA[
        ui.initializeDHTMLX();   
        items['C104000020TAB01_Form_1'].setBackgroundColor("#FFFFFF");
        var _onXLE = items["C104000020TAB01_Form_1"].getDhxForm().attachEvent("onXLE", onFormLoad);
        parent.items['C104000020_Tabbar_1'].getDhxTabbar().attachEvent("onSelect",onSelectTab);
 //]]>
--->
 </script>
