@@ -1,8 +1,28 @@
 <items>
-<item type="block" width="200">
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item label="* 공정별 Print Roll 집계 현황" type="label"/>
-<item offset="5" type="newcolumn"/>
+<item type="block" width="1000">
+    <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+    <item label="1. 치장사양: 고정값" type="label"/>
+    <item foreground-color="255,140,50" offset="283" type="newcolumn"/>
+    <item label="2. 현재수량: 폐기일자가 없는 롤 수" type="label"/>
+</item>
+<item type="block" width="1000">
+    <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+    <item label="3. 310이하: 폐기일자가 없고 310이하 롤 수" type="label"/>
+    <item foreground-color="255,140,50" offset="136" type="newcolumn"/>
+    <item label="4. 301초과: 폐기일자가 없고 310초과 롤 수" type="label"/>
+</item>
+<item type="block" width="1000">
+    <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+    <item label="5. 보관여유: 반올림(치장사양 - 310이하 - (301초과*1.5))" type="label"/>
+    <item foreground-color="255,140,50" offset="47" type="newcolumn"/>
+    <item label="6. 사용불가: 폐기일자가 없고 사용가능이 N인 롤 수" type="label"/>
+</item>
+<item type="block" width="1000">
+    <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+    <item label="7. 폐기대상: 사용불가 + (폐기일자가 없고 사용가능이 Y 이며 현시점에서 과거 1년동안 사용안한 롤)" type="label"/>
+</item>
+<item type="block" width="1000">
+    <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+    <item label="8. 폐기누적: 폐기일자가 있는 롤 수 " type="label"/>
 </item>
 </items>
-
