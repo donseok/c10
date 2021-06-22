@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.5 //@wire.7 //@wire.9"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="766,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.6 //@wire.8" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.8 //@wire.11"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="739,-1" input="//@wire.0" output="//@wire.2 //@wire.5 //@wire.7 //@wire.9 //@wire.10" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="112,-1" input="//@wire.2" output="//@wire.1" name="조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C106000080.select"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="16" location="481,174" size="151,-1" input="//@wire.3" output="//@wire.4" name="저장">
+  <child xsi:type="Glue:DinaActivity" id="16" location="481,174" size="99,-1" input="//@wire.9" output="//@wire.3" name="사무실 저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="delete-sql" value="C106000080.delete"/>
     <property key="insert-sql" value="C106000080.insert"/>
-    <property key="update-sql" value="C106000080.update"/>
     <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000080.updateOf"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="131302" location="485,317" size="145,-1" input="//@wire.4" output="//@wire.5" name="프린트롤이미지처리">
+  <child xsi:type="Glue:DinaActivity" id="131302" location="434,305" size="145,-1" input="//@wire.3" output="//@wire.4" name="프린트롤이미지처리">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="delete-sql" value="C106000080_IMG.delete"/>
@@ -30,16 +30,25 @@
     <property key="update-sql" value="C106000080_DUMY.update"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="131356" location="668,173" size="106,-1" input="//@wire.6" output="//@wire.7" name="프린트롤조회">
+  <child xsi:type="Glue:DinaActivity" id="131356" location="706,173" size="106,-1" input="//@wire.5" output="//@wire.6" name="프린트롤조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C106000080_PRTROLLAJAX.select"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="229192" location="290,178" size="162,-1" input="//@wire.8" output="//@wire.9" name="Suammary조회">
+  <child xsi:type="Glue:DinaActivity" id="229192" location="273,178" size="129,-1" input="//@wire.7" output="//@wire.8" name="Suammary조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C106000080.select_summary"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="294834" location="603,174" size="92,-1" input="//@wire.10" output="//@wire.11" name="현장 저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000080_DUMY.select"/>
+    <property key="insert-sql" value="C106000080_DUMY.select"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000080.updateOp"/>
     <property key="description" value=""/>
   </child>
   <property key="tx1" value="true"/>
@@ -49,19 +58,21 @@
     <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
   </wire>
   <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
-  <wire id="14" guardcondition="save" firstRelativePoint="406,112" lastRelativePoint="406,179">
-    <bendpoint weight="0.5" firstDimension="56,47" secondDimension="6,-50"/>
+  <wire id="15" guardcondition="success" firstRelativePoint="528,204" lastRelativePoint="528,305">
+    <bendpoint weight="0.5" firstDimension="-2,68" secondDimension="22,-63"/>
   </wire>
-  <wire id="15" guardcondition="success" firstRelativePoint="578,204" lastRelativePoint="578,317"/>
-  <wire id="8437" guardcondition="success" firstRelativePoint="560,347" lastRelativePoint="314,441">
-    <bendpoint weight="0.5" firstDimension="3,64" secondDimension="255,-47"/>
+  <wire id="8437" guardcondition="success" firstRelativePoint="517,335" lastRelativePoint="314,440">
+    <bendpoint weight="0.5" firstDimension="11,64" secondDimension="212,-59"/>
   </wire>
-  <wire id="8440" guardcondition="prtrollajax" firstRelativePoint="555,112" lastRelativePoint="555,178">
-    <bendpoint weight="0.5" firstDimension="205,39" secondDimension="-10,-57"/>
-  </wire>
-  <wire id="8441" guardcondition="success" firstRelativePoint="747,203" lastRelativePoint="314,442">
-    <bendpoint weight="0.5" firstDimension="25,214" secondDimension="441,-41"/>
+  <wire id="8440" guardcondition="prtrollajax" firstRelativePoint="791,112" lastRelativePoint="791,173"/>
+  <wire id="8441" guardcondition="success" firstRelativePoint="743,203" lastRelativePoint="314,441">
+    <bendpoint weight="0.5" firstDimension="-16,208" secondDimension="438,-47"/>
   </wire>
   <wire id="11065" guardcondition="find_sum" firstRelativePoint="305,208" lastRelativePoint="305,432"/>
   <wire id="11066" guardcondition="success" firstRelativePoint="305,208" lastRelativePoint="305,432"/>
+  <wire id="13459" guardcondition="saveof" firstRelativePoint="536,112" lastRelativePoint="536,174"/>
+  <wire id="13460" guardcondition="saveop" firstRelativePoint="643,112" lastRelativePoint="643,174"/>
+  <wire id="13461" guardcondition="success" firstRelativePoint="650,204" lastRelativePoint="314,441">
+    <bendpoint weight="0.5" firstDimension="1,195" secondDimension="345,-59"/>
+  </wire>
 </Glue:GlueDiagram>

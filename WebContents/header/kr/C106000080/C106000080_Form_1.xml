@@ -1,32 +1,38 @@
 <items>
-<item type="block" width="971">
-<item inputWidth="75" label="롤코드" name="ROLL_CD" type="input"/>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item inputWidth="75" label="등록사번" name="ROLL_RGS_PRS_ID" type="input"/>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item inputWidth="75" label="대표색상" name="RPV_CLR_NM" type="input"/>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item inputWidth="80" label="구분" name="ROLL_TP" type="combo">
-	        <option value="" text="전체" selected="true" >전체</option>
-          	<option value="PRINT" text="PRINT">PRINT</option>
-         	<option value="IMPRINT" text="IMPRINT">IMPRINT</option>   
-	        <option value="UNITEX" text="UNITEX">UNITEX</option>
- </item>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item inputWidth="80" label="보유라인" name="PROC_CD" type="combo">
-	        <option value="" text="전체" selected="true" >전체</option>
-          	<option value="A4" text="A4">A4</option>
-         	<option value="A5" text="A5">A5</option>
-         	<option value="A6" text="A6">A6</option>
-         	<option value="A7" text="A7">A7</option>
-         	<option value="A8" text="A8">A8</option>
-         	<option value="A9" text="A9">A9</option>
- </item>
-<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
-<item command="find" name="find" type="button" value="조회"/>
-<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
-<item command="save" name="save" type="button" value="저장"/>
-<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
-<item command="winClose" name="winClose" type="button" value="닫기"/>
-</item>
+	<item type="block" width="1200">
+		<item inputWidth="75" label="롤코드" name="ROLL_CD" type="input"/>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item inputWidth="75" label="등록사번" name="ROLL_RGS_PRS_ID" type="input"/>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item inputWidth="75" label="대표색상" name="RPV_CLR_NM" type="input"/>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item inputWidth="80" label="구분" name="ROLL_TP" type="combo">
+			<option value="" text="전체" selected="true" >전체</option>
+			<option value="PRINT" text="PRINT">PRINT</option>
+			<option value="IMPRINT" text="IMPRINT">IMPRINT</option>   
+			<option value="UNITEX" text="UNITEX">UNITEX</option>
+		</item>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item inputWidth="80" label="보유라인" name="PROC_CD" type="combo">
+			<option value="" text="전체" selected="true" >전체</option>
+			<option value="A4" text="A4">A4</option>
+			<option value="A5" text="A5">A5</option>
+			<option value="A6" text="A6">A6</option>
+			<option value="A7" text="A7">A7</option>
+			<option value="A8" text="A8">A8</option>
+			<option value="A9" text="A9">A9</option>
+		</item>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item command="find" name="find" type="button" value="조회"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item command="saveof" name="saveof" type="button" value="사무실 저장" disabled="true"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item command="saveop" name="saveop" type="button" value="현장 저장" disabled="true"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item command="winClose" name="winClose" type="button" value="닫기"/>
+	</item>
+	<item type="block" width="900">
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item type="label" name= "label" label="(사무실: 최초등록, 입고일자, 사용가능, 폐기일자, 비고) (현장: 세부위치, 사용시작일자, 사용종료일자, 비고)" labelWidth="1000"/>
+	</item>
 </items>

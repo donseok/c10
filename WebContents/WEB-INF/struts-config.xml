@@ -90,6 +90,9 @@
 	<action path="/excelExportC106000150" type="com.posdata.glue.web.control.PosStrutsAction">
 		<forward name="success" path="/_excelExportC106000150.jsp" /> 
 	</action>
+	<action path="/excelExportC106000080" type="com.posdata.glue.web.control.PosStrutsAction">
+		<forward name="success" path="/_excelExportC106000080.jsp" /> 
+	</action>
     <action path="/c105000010pop02" type="com.posdata.glue.web.control.PosStrutsAction">
 	  <forward name="success" path="/C105000010pop02.jsp"/>
 	</action>

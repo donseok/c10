@@ -6,7 +6,7 @@ SELECT A.ROLL_CD,
        A.ROLL_CD_SEQ_NO,
        B.ROLL_TP,
        A.PROC_CD, --보유라인
-	A.DET_LOC,
+	   A.DET_LOC,
        B.PTN_NM, --PATTERN 명
        A.USE_YN, --사용가능(여부)
        A.ROLL_DIA, 
@@ -23,7 +23,7 @@ SELECT A.ROLL_CD,
             where  roll_cd = a.roll_cd
             and    proc_cd = a.proc_cd
             and    PDN_PST_DD between nvl(a.ROLL_USE_STR_DD,'99999999') 
-                              and     nvl(a.ROLL_USE_END_DD, '99999999')), 0) ROLL_USE_LTH,
+                              and     nvl(a.ROLL_USE_END_DD, '99999999')), 0) AS ROLL_USE_LTH,
        (select CCL_BOM_NO 
         from   C10APUSER.TB_C10_PTN_ROLL_USE_INF  
         where ( ROLL_CD, PROC_CD, PDN_PST_DD )
@@ -40,28 +40,28 @@ SELECT A.ROLL_CD,
         where  roll_cd = a.roll_cd
         and    proc_cd = a.proc_cd
         and    PDN_PST_DD between nvl(a.ROLL_USE_STR_DD,'99999999') 
-                          and     nvl(a.ROLL_USE_END_DD, '99999999')) ROLL_USE_LST_DT, 
+                          and     nvl(a.ROLL_USE_END_DD, '99999999')) AS ROLL_USE_LST_DT, 
        (select trunc(sysdate - to_date(max(PDN_PST_DD),'YYYYMMDD'))
         from   C10APUSER.TB_C10_PTN_ROLL_USE_INF
         where  roll_cd = a.roll_cd
         and    proc_cd = a.proc_cd
         and    PDN_PST_DD between nvl(a.ROLL_USE_STR_DD,'99999999') 
-                          and     nvl(a.ROLL_USE_END_DD, '99999999')) ROLL_UNUSE_DAY,                          
-       to_char(to_date(A.ROLL_WHS_DD,'YYYYMMDD'),'YYYY-MM-DD') ROLL_WHS_DD,
-       to_char(to_date(A.ROLL_USE_STR_DD,'YYYYMMDD'),'YYYY-MM-DD') ROLL_USE_STR_DD, 
-       to_char(to_date(A.ROLL_USE_END_DD,'YYYYMMDD'),'YYYY-MM-DD') ROLL_USE_END_DD, 
-       to_char(to_date(A.ROLL_DIS_DD,'YYYYMMDD'),'YYYY-MM-DD') ROLL_DIS_DD, 
+                          and     nvl(a.ROLL_USE_END_DD, '99999999')) AS ROLL_UNUSE_DAY,                          
+       to_char(to_date(A.ROLL_WHS_DD,'YYYYMMDD'),'YYYY-MM-DD') AS ROLL_WHS_DD,
+       to_char(to_date(A.ROLL_USE_STR_DD,'YYYYMMDD'),'YYYY-MM-DD') AS ROLL_USE_STR_DD,
+       to_char(to_date(A.ROLL_USE_END_DD,'YYYYMMDD'),'YYYY-MM-DD') AS ROLL_USE_END_DD,
+       to_char(to_date(A.ROLL_DIS_DD,'YYYYMMDD'),'YYYY-MM-DD') AS ROLL_DIS_DD, 
        A.RMK_MSG, 
        A.ROLL_RGS_PRS_ID, 
        (SELECT USER_NAME
           FROM M90APUSER.TB_M90_EMP_INF	
          WHERE USER_NO = A.ROLL_RGS_PRS_ID) ROLL_RGS_PRS_NM,
-	   A.ROLL_RGS_DH, 
+	   to_char(A.ROLL_RGS_DH,'YYYY-MM-DD HH24:MI:SS') AS ROLL_RGS_DH, 
        A.ROLL_MDF_PRS_ID, 
        (SELECT USER_NAME
           FROM M90APUSER.TB_M90_EMP_INF	
          WHERE USER_NO = A.ROLL_MDF_PRS_ID) ROLL_MDF_PRS_NM,
-	   A.ROLL_MDF_DH
+	   to_char(A.ROLL_MDF_DH,'YYYY-MM-DD HH24:MI:SS') AS ROLL_MDF_DH
   FROM C10APUSER.TB_C10_PTN_ROLL_MNG A,
        C10APUSER.VI_C10_PTN_ROLL_INF B
  WHERE NVL(A.ROLL_CD,' ') LIKE :ROLL_CD||'%'
@@ -160,21 +160,34 @@ from   rst
 order by 1
 		 ]]> 
 	 </query>
-	 <query id="C106000080.update" desc="C106000080 정보 수정" isNamed="true">
+	 <query id="C106000080.updateOf" desc="C106000080 사무실 정보 수정" isNamed="true">
 		 <![CDATA[ 
 UPDATE C10APUSER.TB_C10_PTN_ROLL_MNG
-   SET PROC_CD              = :PROC_CD,
-	DET_LOC			 = :DET_LOC,
-       USE_YN                   = :USE_YN,
+   SET USE_YN                   = :USE_YN,
        ROLL_DIA                 = :ROLL_DIA,
        ROLL_CIR                 = :ROLL_CIR,
        ROLL_WTH                 = :ROLL_WTH,
        ROLL_POINT               = :ROLL_POINT,
        ROLL_PRD_CMP             = :ROLL_PRD_CMP,
        ROLL_WHS_DD              = replace(:ROLL_WHS_DD,'-',''),
-       ROLL_USE_STR_DD          = replace(:ROLL_USE_STR_DD,'-',''),
-       ROLL_USE_END_DD          = replace(:ROLL_USE_END_DD,'-',''),
        ROLL_DIS_DD              = replace(:ROLL_DIS_DD,'-',''),
+       RMK_MSG                  = :RMK_MSG,
+       ROLL_MDF_PRS_ID          = :ObjectId,
+       ROLL_MDF_DH              = sysdate,
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID   = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID   = :ProgramId,
+       LAST_UPDATE_TIMESTAMP    = :Timestamp
+ WHERE ROLL_CD        = :ROLL_CD
+   AND ROLL_CD_SEQ_NO = :ROLL_CD_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000080.updateOp" desc="C106000080 현장 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_PTN_ROLL_MNG
+   SET DET_LOC			 		= :DET_LOC,   
+       ROLL_USE_STR_DD          = replace(:ROLL_USE_STR_DD,'-',''),
+       ROLL_USE_END_DD          = replace(:ROLL_USE_END_DD,'-',''),      
        RMK_MSG                  = :RMK_MSG,
        ROLL_MDF_PRS_ID          = :ObjectId,
        ROLL_MDF_DH              = sysdate,
@@ -199,7 +212,6 @@ INSERT INTO C10APUSER.TB_C10_PTN_ROLL_MNG(
        ROLL_CD,
        ROLL_CD_SEQ_NO,
        PROC_CD,
-	DET_LOC,
        USE_YN,             
        ROLL_DIA,
        ROLL_CIR,
@@ -207,9 +219,7 @@ INSERT INTO C10APUSER.TB_C10_PTN_ROLL_MNG(
        ROLL_POINT,           
        ROLL_PRD_CMP,
        IMG_YN,          
-       ROLL_WHS_DD,       
-       ROLL_USE_STR_DD,       
-       ROLL_USE_END_DD,
+       ROLL_WHS_DD,
        ROLL_DIS_DD,
        RMK_MSG,        
        ROLL_RGS_PRS_ID,
@@ -229,7 +239,6 @@ VALUES( :ROLL_CD,
          FROM   C10APUSER.TB_C10_PTN_ROLL_MNG 
          WHERE  ROLL_CD = :ROLL_CD),
         :PROC_CD,
-	 :DET_LOC,
         :USE_YN,
         :ROLL_DIA,
         :ROLL_CIR,
@@ -238,8 +247,6 @@ VALUES( :ROLL_CD,
         :ROLL_PRD_CMP,
         'N',
         replace(:ROLL_WHS_DD,'-',''),
-        replace(:ROLL_USE_STR_DD,'-',''),
-        replace(:ROLL_USE_END_DD,'-',''),
         replace(:ROLL_DIS_DD,'-',''),
         :RMK_MSG,
         :ObjectId,
