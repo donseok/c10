@@ -35,4 +35,5 @@
 		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
 		<item type="label" name= "label" label="(사무실: 최초등록, 입고일자, 사용가능, 폐기일자, 비고) (현장: 세부위치, 사용시작일자, 사용종료일자, 비고)" labelWidth="1000"/>
 	</item>
+	<item name="saveMessage" type="hidden"/>
 </items>

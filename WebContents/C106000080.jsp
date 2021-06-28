@@ -373,7 +373,8 @@ function onGridContextMenuClick(id,gridObj,menuObj){
 
 function findMessage(referenceItem){
 	//저장 후 조회라면 저장 메세지를 출력 적용
-	if("" == items["C106000080_Form_1"].getItemValue('saveMessage')) {
+	if(items["C106000080_Form_1"].getItemValue('saveMessage') == "" 
+		|| items["C106000080_Form_1"].getItemValue('saveMessage') == null) {
 		uiCommon.message("messagebox",referenceItem.getUserData("","appMsg"));
 	} else {
 		uiCommon.message("messagebox",items["C106000080_Form_1"].getItemValue('saveMessage'));
