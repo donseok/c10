@@ -110,11 +110,11 @@ var vault = null;
 		vault.onAddFile = function(fileName) {
 			var ext = this.getFileExtension(fileName);
 			if (ext != "xls" && ext != "xlsx") {
-				alert("파일첨부는 (xls,xlsx) 확장자만 등록하실수 있습니다.");
+				dhtmlx.alert("파일첨부는 (xls,xlsx) 확장자만 등록하실수 있습니다.");
 				return;
 			}
 			/*else if(fileName.match("tb_c10_qlt_dsn_sml") == null){
-				alert("파일첨부는 tb_c10_qlt_dsn_sml.xlsx 만 가능합니다.");
+				dhtmlx.alert("파일첨부는 tb_c10_qlt_dsn_sml.xlsx 만 가능합니다.");
 				return false;
 			} else return true;*/
 			return true;
@@ -127,7 +127,7 @@ var vault = null;
                 uploadFlag = file.error;
             }
 			if(uploadFlag){
-                alert("파일업로드에 실패하였습니다.");
+                dhtmlx.alert("파일업로드에 실패하였습니다.");
 			}else{
 				onLoadGrid();
 			}

@@ -49,7 +49,7 @@
 //<![CDATA[
 		var uiLayoutInner1,uiLayout,uiTreeToolbar,uiTreeMenu,uiTree,uiFavoritesToolbar,favoritesMenu,favoritesTree,uiTabbar, lastUitabbarId;
 		function help(){			
-			alert("도움말 이벤트");
+			dhtmlx.alert("도움말 이벤트");
 		}
 
 		function logout(){		
@@ -150,12 +150,12 @@
 		function onTabClose(id){
 			if(uiTabbar.getNumberOfTabs() > 1){
 				if(id == "notice"){
-					alert("공지사항은 닫을 수 없습니다.");
+					dhtmlx.alert("공지사항은 닫을 수 없습니다.");
 					return;
 				}
 			}else{
 				if(uiTabbar.getActiveTab() == "notice"){
-					alert("공지사항은 닫을 수 없습니다.");
+					dhtmlx.alert("공지사항은 닫을 수 없습니다.");
 					return;
 				}else{			
 					uiTabbar.goToPrevTab();
@@ -171,7 +171,7 @@
 		//tab close
 		function tabClose(){
 			if(uiTabbar.getActiveTab() == "notice"){
-				alert("공지사항은 닫을 수 없습니다.");
+				dhtmlx.alert("공지사항은 닫을 수 없습니다.");
 				return;
 			}else{							
 				uiTabbar.removeTab(uiTabbar.getActiveTab(),true);
@@ -186,10 +186,10 @@
 		function onContextMianMenuClick(menuitemId, type) {
 			if(menuitemId == "moveTtem"){
 				if(!uiTree.getSelectedItemId()){
-					alert("이동할 메뉴를 선택해주세요.");
+					dhtmlx.alert("이동할 메뉴를 선택해주세요.");
 					return;
 				}else{
-					alert("이동 후 저장버튼을 클릭해야 반영됩니다.");
+					dhtmlx.alert("이동 후 저장버튼을 클릭해야 반영됩니다.");
 					uiTree.moveItem(uiTree.getSelectedItemId(),"item_child","0",favoritesTree);
 					favoritesTree.setUserData(uiTree.getSelectedItemId(),"url",uiTree.getUserData(uiTree.getSelectedItemId(),"url"));
 
@@ -201,7 +201,7 @@
 		function onContextFavoritesMenuClick(menuitemId, type) {
 			if(menuitemId == "deleteItem"){
 				if(!favoritesTree.getSelectedItemId()){
-					alert("삭제할 메뉴를 선택해주세요.");
+					dhtmlx.alert("삭제할 메뉴를 선택해주세요.");
 					return;
 				}else{
 					var prgName = favoritesTree.getItemText(favoritesTree.getSelectedItemId());
@@ -222,7 +222,7 @@
 					addTab(id,param);
 				}
 			}else{
-				alert("해당페이지에 권한이 없습니다.");
+				dhtmlx.alert("해당페이지에 권한이 없습니다.");
 				return;
 			}	
 			return true;
@@ -235,7 +235,7 @@
 				uiTabbar.removeTab(id,true);
 				addTab(id,param);
 			}else{
-				alert("해당페이지에 권한이 없습니다.");
+				dhtmlx.alert("해당페이지에 권한이 없습니다.");
 				return;
 			}								
 			return true;
@@ -281,7 +281,7 @@
 
 		function doBeforeDrag(sId,sobj){
 			if(uiTree.hasChildren(sId) > 0){
-				alert("상위폴더는 이동하실수 없습니다.");		
+				dhtmlx.alert("상위폴더는 이동하실수 없습니다.");		
 				return;
 			}
 			return true;
@@ -316,7 +316,7 @@
 
 		function doFavoritesDrop(sId,tId,id,sObject,tObject){
 			if(sObject.hasChildren(sId) > 0){
-				alert("상위폴더는 이동하실수 없습니다.");						
+				dhtmlx.alert("상위폴더는 이동하실수 없습니다.");						
 				return false;
 			}else{			
 				var ids=tObject.getAllSubItems(0).split(",");
@@ -478,13 +478,13 @@ String currentDate = dateFormat.format(calendar.getTime());
 		favoritesProcessor.init(favoritesTree);
 		favoritesProcessor.defineAction("appMsg", function(node){
 			if(node != null){
-				alert("정상적으로 저장되었습니다.");//alert(node.firstChild.data);
+				dhtmlx.alert("정상적으로 저장되었습니다.");//alert(node.firstChild.data);
 			}
         });
         
         favoritesProcessor.defineAction("errMsg", function(node){
 			if(node != null){
-				alert(node.firstChild.data);
+				dhtmlx.alert(node.firstChild.data);
 			}
         });
 

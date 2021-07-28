@@ -64,11 +64,11 @@ function find(eventName){
 	var parentForm = parent.items['C104000020_Form_1'];
 	var comboList = parentForm.getDhxForm().getCombo("ORD_LN");
 	if(isNull(parentForm.getItemValue("ORD_NO"))){
-		alert("주문번호를 입력해주세요.");
+		dhtmlx.alert("주문번호를 입력해주세요.");
 		parentForm.setItemFocus("ORD_NO");
 		return;	
 	}else if(isNull(comboList.getSelectedValue())){
-		alert("주문행번를 선택해주세요.");
+		dhtmlx.alert("주문행번를 선택해주세요.");
 		comboList.DOMelem_input.focus();
 		return;	
 	}else{

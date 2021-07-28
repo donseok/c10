@@ -196,11 +196,11 @@ function checkCode(){
 	var comboList = form.getDhxForm().getCombo("NAT_CD");
 	
 	if(isNull(form.getItemValue("CCL_BOM_NO"))){
-		alert("컬러코드를 입력해주세요.");
+		dhtmlx.alert("컬러코드를 입력해주세요.");
 		form.setItemFocus("CCL_BOM_NO");
 		return false;	
 	}else if(isNull(comboList.getSelectedValue())){
-		alert("국가를 선택해주세요.");
+		dhtmlx.alert("국가를 선택해주세요.");
 		comboList.DOMelem_input.focus();
 		return false;	
 	}

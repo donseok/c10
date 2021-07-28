@@ -233,7 +233,7 @@ function calculate(eventName,formDivObj,referenceItem){
 	
 	if(form.getItemValue("PLTCM_SET_THK_TRV1")=="" ||form.getItemValue("PLTCM_SET_THK_TRV1")==null)  //Validation Check!
 	{
-		alert("값을 입력해 주세요!");
+		dhtmlx.alert("값을 입력해 주세요!");
 	}
 	else
 	{

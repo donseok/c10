@@ -111,7 +111,7 @@ function save(eventName,formDivObj,referenceItem){
 			dhtmlx.alert("변경된 데이터가 없습니다.");
 			return false;
 		}else{
-		    // alert(row_status);
+		    // dhtmlx.alert(row_status);
 		 	 dhtmlx.confirm({
 				ok:"확인", cancel:"취소",
 				text:" 입력된 정보를 저장하시겠습니까? ",
@@ -152,7 +152,7 @@ function add(referenceItem){
 //menu remove event function
 function remove(referenceItem){
 		if(items['C106000030_Grid_1'].getSelectedRowId()==null){
-			alert("삭제 대상이 없습니다.");
+			dhtmlx.alert("삭제 대상이 없습니다.");
 		}else{
 			items[referenceItem].removeRow();
 		}
@@ -339,7 +339,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			gridObj.editor.obj.onkeyup = function() {
 				var valueLength = gridObj.editor.obj.value+'';
 				if(!hanCheck(valueLength,'10')){
-					alert("10자리만 입력 가능합니다.");
+					dhtmlx.alert("10자리만 입력 가능합니다.");
 					gridObj.editor.obj.value = "";
 					return false;
 				}				
@@ -348,7 +348,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			gridObj.editor.obj.onkeyup = function() {
 				var valueLength = gridObj.editor.obj.value+'';
 				if(!hanCheck(valueLength,'200')){
-					alert("200자리만 입력 가능합니다.");
+					dhtmlx.alert("200자리만 입력 가능합니다.");
 					gridObj.editor.obj.value = "";
 					return false;
 				}				
@@ -357,7 +357,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			gridObj.editor.obj.onkeyup = function() {
 				var valueLength = gridObj.editor.obj.value+'';
 				if(!hanCheck(valueLength,'400')){
-					alert("400자리만 입력 가능합니다.");
+					dhtmlx.alert("400자리만 입력 가능합니다.");
 					gridObj.editor.obj.value = "";
 					return false;
 				}				
@@ -366,7 +366,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			gridObj.editor.obj.onkeyup = function() {
 				var valueLength = gridObj.editor.obj.value+'';
 				if(!hanCheck(valueLength,'400')){
-					alert("400자리만 입력 가능합니다.");
+					dhtmlx.alert("400자리만 입력 가능합니다.");
 					gridObj.editor.obj.value = "";
 					return false;
 				}				
@@ -375,7 +375,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			gridObj.editor.obj.onkeyup = function() {
 				var valueLength = gridObj.editor.obj.value+'';
 				if(!hanCheck(valueLength,'400')){
-					alert("400자리만 입력 가능합니다.");
+					dhtmlx.alert("400자리만 입력 가능합니다.");
 					gridObj.editor.obj.value = "";
 					return false;
 				}				

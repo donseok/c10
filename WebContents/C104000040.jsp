@@ -42,15 +42,15 @@ function find(eventName,formDivObj,referenceItem){
 	var endDt = form.getItemValue("QLT_DSN_INST_DH_END");
 	var ordNo = formObj.getInput("ORD_NO").value;
 	if(isNull(startDt) && !isNull(endDt)){
-		alert("설계의뢰 시작일을 입력해주세요.");
+		dhtmlx.alert("설계의뢰 시작일을 입력해주세요.");
 		form.setItemFocus("QLT_DSN_INST_DH_START");
 		return;
 	}else if(!isNull(startDt) && isNull(endDt)){
-		alert("설계의뢰 종료일을 입력해주세요.");
+		dhtmlx.alert("설계의뢰 종료일을 입력해주세요.");
 		form.setItemFocus("QLT_DSN_INST_DH_END");
 		return;
 	}else if(isNull(startDt) && isNull(endDt) && isNull(ordNo)){
-		alert("주문번호를 입력해주세요.");
+		dhtmlx.alert("주문번호를 입력해주세요.");
 		form.setItemFocus("ORD_NO");
 		return;
 	}else if(!isNull(startDt) && !isNull(endDt)){
@@ -73,7 +73,7 @@ function save(eventName,formDivObj,referenceItem){
 //	for(var i=0; i<checkRowIdArray.length; i++){
 //		value = gridObj.getCellValue(checkRowIdArray[0],1);
 //		if(isNull(value)){
-//			alert("재설계할 주문번호가 없습니다.");
+//			dhtmlx.alert("재설계할 주문번호가 없습니다.");
 //			return;
 //		}								
 //	}
@@ -89,14 +89,14 @@ function save(eventName,formDivObj,referenceItem){
 	}
 	
 	if(row_cnt==0){
-	  alert("재설계할 대상을 선택해주세요.");
+	  dhtmlx.alert("재설계할 대상을 선택해주세요.");
   			return;  
 	}else{
 		var param= "ServiceName=C104000040-service&job_sts=1&column-info=JOB_STS";
 		var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 		var cells = xmlObj.getElementsByTagName("cell");
 		if(cells.length > 0){						
-			alert("품질설계JOB이 진행중입니다. 잠시후 진행하세요!");
+			dhtmlx.alert("품질설계JOB이 진행중입니다. 잠시후 진행하세요!");
 			return;					
 		}
 		
@@ -110,7 +110,7 @@ function save(eventName,formDivObj,referenceItem){
 			var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 			var cells = xmlObj.getElementsByTagName("cell");
 			if(cells.length > 0){						
-				alert("확정된 주문이 있습니다! 다시 조회후 실행하세요!");
+				dhtmlx.alert("확정된 주문이 있습니다! 다시 조회후 실행하세요!");
 				return;					
 			}
 	   	}

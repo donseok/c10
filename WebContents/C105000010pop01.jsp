@@ -54,7 +54,7 @@ function save(eventName,formDivObj,referenceItem){
 	var inqStsCd = inqStsCdNm.split(" : ");
 		if(inqStsCd.length > 0){
 			if(inqStsCd[0] == "9"){
-				alert("상태가 \"종료\" 인경우 저장하실 수 없습니다.");
+				dhtmlx.alert("상태가 \"종료\" 인경우 저장하실 수 없습니다.");
 				return;
 			}
 		}

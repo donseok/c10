@@ -86,13 +86,13 @@ function save(eventName,formDivObj,referenceItem){
 		var cellVal = items['C105000010_Grid_1'].getCellValue(gridObj.getRowId(i),26);
 		if( rowStatus == "deleted"){			
 			if(cellVal  != "1"){
-				alert("삭제는 1:검토의뢰 상태 또는 행추가/삭제 상태만 가능합니다.");			
+				dhtmlx.alert("삭제는 1:검토의뢰 상태 또는 행추가/삭제 상태만 가능합니다.");			
 		        items['C105000010_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 	
 				return;
 			}			
 		}else if(rowStatus == "updated"){			
 			if(cellVal  == "9"){
-				alert("상태가 \"종료\" 인경우 저장하실 수 없습니다.");
+				dhtmlx.alert("상태가 \"종료\" 인경우 저장하실 수 없습니다.");
 				return;
 			}				
 		}

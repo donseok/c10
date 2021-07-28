@@ -76,11 +76,11 @@ function find(eventName){
 	var parentForm = parent.items['C104000020_Form_1'];
 	var comboList = parentForm.getDhxForm().getCombo("ORD_LN");
 	if(isNull(parentForm.getItemValue("ORD_NO"))){
-		alert("주문번호를 입력해주세요.");
+		dhtmlx.alert("주문번호를 입력해주세요.");
 		parentForm.setItemFocus("ORD_NO");
 		return;	
 	}else if(isNull(comboList.getSelectedValue())){
-		alert("주문행번를 선택해주세요.");
+		dhtmlx.alert("주문행번를 선택해주세요.");
 		comboList.DOMelem_input.focus();
 		return;	
 	}else{
@@ -123,7 +123,7 @@ function save(eventName,formDivObj,referenceItem){
     	var cells1 = xmlObj1.getElementsByTagName("cell");
     	
     	if(cells1.length > 0){						
-    		alert("확정된 주문입니다!");
+    		dhtmlx.alert("확정된 주문입니다!");
     		return;					
     	} 
     }
@@ -134,7 +134,7 @@ function save(eventName,formDivObj,referenceItem){
     	var cells1 = xmlObj1.getElementsByTagName("cell");
     	
     	if(cells1.length > 0){						
-    		alert("확정된 주문입니다!");
+    		dhtmlx.alert("확정된 주문입니다!");
     		return;					
     	} 
     }
@@ -146,7 +146,7 @@ function save(eventName,formDivObj,referenceItem){
 
 		row_status17 = gridObj17.getUserData(gridObj17.getRowId(0),"!nativeeditor_status");
 		if( row_status17 == "" ){
-			alert("변경된 데이터가 없습니다.");
+			dhtmlx.alert("변경된 데이터가 없습니다.");
 			return;
 		}
     }
@@ -169,7 +169,7 @@ function save(eventName,formDivObj,referenceItem){
 	if(!isNull(proc_st0)){
 		if((ord_slit_grp_cnt == 0) && (parseFloat(ord_exc_wth) > parseFloat(proc_st0)))
 		{
-			alert("주공정S/T값이 주문폭보다 작습니다");
+			dhtmlx.alert("주공정S/T값이 주문폭보다 작습니다");
 			return;
 		}
 	}
@@ -178,7 +178,7 @@ function save(eventName,formDivObj,referenceItem){
 	if(!isNull(proc_st1)){
 		if((ord_slit_grp_cnt == 0) && (parseFloat(ord_exc_wth) > parseFloat(proc_st1)))
 		{
-			alert("대체공정1의 S/T값이 주문폭보다 작습니다");
+			dhtmlx.alert("대체공정1의 S/T값이 주문폭보다 작습니다");
 			return;
 		}
 	}
@@ -187,7 +187,7 @@ function save(eventName,formDivObj,referenceItem){
 	if(!isNull(proc_st2)){
 		if((ord_slit_grp_cnt == 0) && (parseFloat(ord_exc_wth) > parseFloat(proc_st2)))
 		{
-			alert("대체공정2의 S/T값이 주문폭보다 작습니다");
+			dhtmlx.alert("대체공정2의 S/T값이 주문폭보다 작습니다");
 			return;
 		}
 	}
@@ -213,14 +213,14 @@ function save(eventName,formDivObj,referenceItem){
 			if(isNull(proc_st1)){
 				if(!isNull(cells2.item(0).firstChild.nodeValue)) //cells2.item(0) -> 컬럼info의 정보를 말한다
 				{
-					alert("대체공정1의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("대체공정1의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
 			if(isNull(proc_st2)){
 				if(!isNull(cells2.item(1).firstChild.nodeValue))
 				{
-					alert("대체공정2의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("대체공정2의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
@@ -237,28 +237,28 @@ function save(eventName,formDivObj,referenceItem){
 			if(isNull(cgl_proc_st2)){
 				if(cells3.item(0).firstChild.nodeValue == "82" || cells3.item(1).firstChild.nodeValue == "82") //cells3.item(0) -> 컬럼info의 정보를 말한다
 				{
-					alert("2CGL의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("2CGL의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
 			if(isNull(cgl_proc_st3)){
 				if(cells3.item(0).firstChild.nodeValue == "83" || cells3.item(1).firstChild.nodeValue == "83") //cells3.item(0) -> 컬럼info의 정보를 말한다
 				{
-					alert("3CGL의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("3CGL의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
 			if(isNull(cgl_proc_st4)){
 				if(cells3.item(0).firstChild.nodeValue == "84" || cells3.item(1).firstChild.nodeValue == "84") //cells3.item(0) -> 컬럼info의 정보를 말한다
 				{
-					alert("4CGL의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("4CGL의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
 			if(isNull(cgl_proc_st5)){
 				if(cells3.item(0).firstChild.nodeValue == "85" || cells3.item(1).firstChild.nodeValue == "85") //cells3.item(0) -> 컬럼info의 정보를 말한다
 				{
-					alert("5CGL의 통과공정을 먼저 삭제해 주세요!");
+					dhtmlx.alert("5CGL의 통과공정을 먼저 삭제해 주세요!");
 					return;
 				}
 			}
@@ -610,7 +610,7 @@ function deteilFind(rowId,cellIndex){
 	var cellVal = gridObj.getCellValue(rowId,0);
 	var qltDsnMnfTp = gridObj.getCellValue(rowId,6);
 	//if(isNull(cellVal)){
-	//	alert("적차선을 선택해 주세요.");
+	//	dhtmlx.alert("적차선을 선택해 주세요.");
 	//	return;
 	//}
 	var customparam = {"QLT_DSN_MNF_TP":qltDsnMnfTp};	
@@ -792,7 +792,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 		if(cInd == 5 || cInd == 6 || cInd == 13 || cInd == 14){
 			if(cells1.length > 0){	
 			    if( oValue != "" && oValue != 0){
-					alert("확정된 주문을 삭제/수정 할 수 없습니다! 대체공정 추가에 따른 수정은 가능.");
+					dhtmlx.alert("확정된 주문을 삭제/수정 할 수 없습니다! 대체공정 추가에 따른 수정은 가능.");
 				    grid.setUpdated(rId, false, "")
 				    return false;
 			    }else{
@@ -802,21 +802,21 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					if(cells2.length > 0){	
 						if(cInd == 5 || cInd == 13){
 							if(isNull(cells2.item(0).firstChild.nodeValue)){ //cells2.item(0) -> 컬럼info의 정보를 말한다
-								alert("도금 대체공정1이 없습니다.!");
+								dhtmlx.alert("도금 대체공정1이 없습니다.!");
 							    grid.setUpdated(rId, false, "")
 							    return false;
 							}
 							fg_grid2_update	= "Y";
 						}else{
 							if(isNull(cells2.item(1).firstChild.nodeValue)){
-								alert("도금 대체공정2가 없습니다.!");
+								dhtmlx.alert("도금 대체공정2가 없습니다.!");
 							    grid.setUpdated(rId, false, "")
 							    return false;
 							}
 							fg_grid2_update	= "Y";
 						}
 					}else{
-						alert("통과공정에 도금공정이 없습니다.!");
+						dhtmlx.alert("통과공정에 도금공정이 없습니다.!");
 					    grid.setUpdated(rId, false, "")
 					    return false;
 					}			    	
@@ -824,7 +824,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 			}
 		}else{
 			if(cells1.length > 0){	
-			    alert("확정된 주문을 수정할 수 없습니다! 대체공정 추가에 따른 수정은 가능.");
+			    dhtmlx.alert("확정된 주문을 수정할 수 없습니다! 대체공정 추가에 따른 수정은 가능.");
 				grid.setUpdated(rId, false, "")
 			    return false;
 			}
@@ -836,7 +836,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 		if(cInd == 9 && !isNull(nValue)) {
 			if(nValue > max || nValue < min)
 			{
-				alert("두께 범위를 벗어났습니다!");
+				dhtmlx.alert("두께 범위를 벗어났습니다!");
 				grid.setCellValue(rId,9,oValue);		
 			}
 			else
@@ -865,16 +865,16 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 				else grid.setCellValue(rId,3,nValue);				
 			}		
 		}else if(cInd == 9 && isNull(nValue)) {
-			alert("두께 범위를 벗어났습니다!");
+			dhtmlx.alert("두께 범위를 벗어났습니다!");
 			grid.setCellValue(rId,9,oValue);		
 		}else if( (cInd == 10 || cInd == 11) && !isNull(nValue)) {
 			if(thk > max || thk < min)
 			{
-				alert("두께 범위를 벗어났습니다!");
+				dhtmlx.alert("두께 범위를 벗어났습니다!");
 				grid.setCellValue(rId,cInd,oValue);		
 			}
 		}else if( (cInd == 10 || cInd == 11) && isNull(nValue)) {
-			alert("두께 범위를 벗어났습니다!");
+			dhtmlx.alert("두께 범위를 벗어났습니다!");
 			grid.setCellValue(rId,cInd,oValue);		
 		}else{
 			return true;
@@ -942,7 +942,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		if(cells1.length > 0){	
-		    alert("확정된 주문은 수정할 수 없습니다!");
+		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
@@ -1050,7 +1050,7 @@ function onEditCellEvent4(stage,rId,cInd,nValue,oValue){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		if(cells1.length > 0){	
-		    alert("확정된 주문은 수정할 수 없습니다!");
+		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
@@ -1203,7 +1203,7 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		if(cells1.length > 0){	
-		    alert("확정된 주문은 수정할 수 없습니다!");
+		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
@@ -1269,7 +1269,7 @@ function simul(){
 	}
 	
 	if(isNull(vrmtlKnd)){
-		alert("적차선을 선택한 후에 조회 하시기 바랍니다.");
+		dhtmlx.alert("적차선을 선택한 후에 조회 하시기 바랍니다.");
 	}
 	else{
 		var vstWth    = items["C104000020TAB05_Grid_2"].getCellValue(items["C104000020TAB05_Grid_2"].getDhxGrid().getRowId(0),4);

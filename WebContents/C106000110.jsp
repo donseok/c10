@@ -123,12 +123,12 @@ function chkCclBomWrYn(){
 	items[formId1].getDhxForm().disableItem('prtRpt');
 	
 	if(cclBomWrYn=="X"){
-		alert("존재하지 않는 CCLBOM입니다.");
+		dhtmlx.alert("존재하지 않는 CCLBOM입니다.");
 		uiFormOb2.clear();
 		rtnVal = false;
 		
 	}else if(cclBomWrYn=="N"){
-		alert("보증서 발행불가 CCLBOM입니다.");
+		dhtmlx.alert("보증서 발행불가 CCLBOM입니다.");
 		uiFormOb2.clear();
 		rtnVal = false;
 	}
@@ -289,12 +289,12 @@ function mapValues(chkIF){
  	
  	
  	if(sPER_FOR_19 != sPER_FOR_19_1){
- 			alert("입력값19) 값이 다릅니다. ");
+ 			dhtmlx.alert("입력값19) 값이 다릅니다. ");
  			return returnVal;
  		}
  	
  	else if(sNAT_ENM != sNAT_ENM_1){
- 			alert("입력값4) 값이 다릅니다. ");
+ 			dhtmlx.alert("입력값4) 값이 다릅니다. ");
  			return returnVal;
  		}
  	else{
@@ -304,7 +304,7 @@ function mapValues(chkIF){
  	 		if( (sDivCd == "PREMIUM" && i==4) || (sDivCd == "PREMIUM" && j==4) )
  	 			continue;
  		 		if(arryList[i] != arryList[j]){
- 		 			alert("입력값2) 값이 다릅니다. ");
+ 		 			dhtmlx.alert("입력값2) 값이 다릅니다. ");
  		 			return returnVal;
  	 			}
  	 		}
@@ -399,23 +399,23 @@ function checkCode(){
 	var sCusCd      = form.getItemValue("CUS_CD");
 	
 	if(isNull(sCclBomNo)){
-		alert("컬러코드를 입력해주세요.");
+		dhtmlx.alert("컬러코드를 입력해주세요.");
 		form.setItemFocus("CCL_BOM_NO");
 		return false;	
 	}else if(isNull(comboNatcd.getSelectedValue())){
-		alert("국가를 선택해주세요.");
+		dhtmlx.alert("국가를 선택해주세요.");
 		comboNatcd.DOMelem_input.focus();
 		return false;
 	}else if(isNull(comboClscd.getSelectedValue())){
-		alert("CLASS를 선택해주세요.");
+		dhtmlx.alert("CLASS를 선택해주세요.");
 		comboClscd.DOMelem_input.focus();
 		return false;	
 	}else if(isNull(comboPrtRsn)){
-		alert("발행사유를 선택해주세요.");
+		dhtmlx.alert("발행사유를 선택해주세요.");
 		comboPrtRsn.DOMelem_input.focus();
 		return false;	
 	}else if(isNull(sCusCd)){
-		alert("최종수요가를 입력해주세요.");
+		dhtmlx.alert("최종수요가를 입력해주세요.");
 		form.setItemFocus("CUS_CD");
 		return false;	
 	}

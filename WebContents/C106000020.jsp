@@ -51,17 +51,17 @@ function find(eventName,formDivObj,referenceItem){
 	var startDt = items["C106000020_Form_1"].getDhxForm().getInput("PDN_DH_START").value;
 	var endDt = items["C106000020_Form_1"].getDhxForm().getInput("PDN_DH_END").value;
 		if(isNull(comboList['PRD_NM_CD'].getSelectedValue())){
-			alert("품명을 선택해주세요.");
+			dhtmlx.alert("품명을 선택해주세요.");
 			return;
 		}else if(checkValid(startDt, "YYYYMMDD") && checkValid(endDt, "YYYYMMDD")){
 			if(isCompareDate(startDt,endDt)){	
 					if(!isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MIN")) || !isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MAX"))){			
 						if(!isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MIN")) && isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MAX"))){
-							alert("범위기준 YP의 Max값을 입력해주세요");
+							dhtmlx.alert("범위기준 YP의 Max값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_YP_MPA_MAX");
 							return;
 						}else if(!isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MAX")) && isNull(formObj2.getItemValue("MQL_ACT_YP_MPA_MIN"))){
-							alert("범위기준 YP의 Min값을 입력해주세요");
+							dhtmlx.alert("범위기준 YP의 Min값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_YP_MPA_MIN");
 							return;
 						}else if(!js_field_qnty_check("MQL_ACT_YP_MPA_MIN는","MQL_ACT_YP_MPA_MIN","C106000020_Form_2", "3", "0", false )){
@@ -72,11 +72,11 @@ function find(eventName,formDivObj,referenceItem){
 					}
 					if(!isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MIN")) || !isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MAX"))){
 						if(!isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MIN")) && isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MAX"))){
-							alert("범위기준 TS의 Max값을 입력해주세요");
+							dhtmlx.alert("범위기준 TS의 Max값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_TS_MPA_MAX");
 							return;
 						}else if(!isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MAX")) && isNull(formObj2.getItemValue("MQL_ACT_TS_MPA_MIN"))){
-							alert("범위기준 TS의 Min값을 입력해주세요");
+							dhtmlx.alert("범위기준 TS의 Min값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_TS_MPA_MIN");
 							return;
 						}else if(!js_field_qnty_check("MQL_ACT_TS_MPA_MIN는","MQL_ACT_TS_MPA_MIN","C106000020_Form_2", "3", "0", false )){
@@ -87,11 +87,11 @@ function find(eventName,formDivObj,referenceItem){
 					}
 					if(!isNull(formObj2.getItemValue("MQL_ACT_EL_MIN")) || !isNull(formObj2.getItemValue("MQL_ACT_EL_MAX"))){
 						if(!isNull(formObj2.getItemValue("MQL_ACT_EL_MIN")) && isNull(formObj2.getItemValue("MQL_ACT_EL_MAX"))){
-							alert("범위기준 EL의 Max값을 입력해주세요");
+							dhtmlx.alert("범위기준 EL의 Max값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_EL_MAX");
 							return;
 						}else if(!isNull(formObj2.getItemValue("MQL_ACT_EL_MAX")) && isNull(formObj2.getItemValue("MQL_ACT_EL_MIN"))){
-							alert("범위기준 EL의 Min값을 입력해주세요");
+							dhtmlx.alert("범위기준 EL의 Min값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_EL_MIN");
 							return;
 						}else if(!js_field_qnty_check("MQL_ACT_EL_MIN는","MQL_ACT_EL_MIN","C106000020_Form_2", "3", "1", true )){
@@ -103,11 +103,11 @@ function find(eventName,formDivObj,referenceItem){
 					
 					if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN")) || !isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX"))){
 						if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN")) && isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX"))){
-							alert("범위기준 HRB의 Max값을 입력해주세요");
+							dhtmlx.alert("범위기준 HRB의 Max값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_HRB_AVG_MAX");
 							return;
 						}else if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX")) && isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN"))){
-							alert("범위기준 HRB의 Min값을 입력해주세요");
+							dhtmlx.alert("범위기준 HRB의 Min값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_HRB_AVG_MIN");
 							return;
 						}else if(!js_field_qnty_check("MQL_ACT_HRB_AVG_MIN는","MQL_ACT_HRB_AVG_MIN","C106000020_Form_2", "3", "1", true )){
@@ -119,11 +119,11 @@ function find(eventName,formDivObj,referenceItem){
 					
 					if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN")) || !isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX"))){
 						if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN")) && isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX"))){
-							alert("범위기준 ERI의 Max값을 입력해주세요");
+							dhtmlx.alert("범위기준 ERI의 Max값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_HRB_AVG_MAX");
 							return;
 						}else if(!isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MAX")) && isNull(formObj2.getItemValue("MQL_ACT_HRB_AVG_MIN"))){
-							alert("범위기준 ERI의 Min값을 입력해주세요");
+							dhtmlx.alert("범위기준 ERI의 Min값을 입력해주세요");
 							items['C106000020_Form_2'].setItemFocus("MQL_ACT_HRB_AVG_MIN");
 							return;
 						}else if(!js_field_qnty_check("MQL_ACT_HRB_AVG_MIN는","MQL_ACT_HRB_AVG_MIN","C106000020_Form_2", "3", "1", true )){
@@ -159,7 +159,7 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		});		  
 	}else{
-		alert("Import한 경우에만 저장하실 수 있습니다.");
+		dhtmlx.alert("Import한 경우에만 저장하실 수 있습니다.");
 		return;
 	}
 }

@@ -375,7 +375,7 @@ function reconfirm(eventName,formDivObj,referenceItem){
 
 		if(stat.substring(0,1) = "B" && stat.substring(0,1) = "E")				
 		{
-			alert("확정대상이나 설계에러는 재확정 할 수 없습니다.");
+			dhtmlx.alert("확정대상이나 설계에러는 재확정 할 수 없습니다.");
 	  		return;
 		}
 	}

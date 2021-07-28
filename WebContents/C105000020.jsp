@@ -55,7 +55,7 @@ var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":wi
 function find(eventName,formDivObj,referenceItem){
 	var inqNo = items['C105000020_Form_1'].getItemValue("INQ_NO").trim(); 
 	if(isNull(inqNo)){			
-		alert("INQUIRY 번호를 입력하세요.");
+		dhtmlx.alert("INQUIRY 번호를 입력하세요.");
 		items['C105000020_Form_1'].setItemFocus("INQ_NO");
 		return;
 	}else{		
@@ -73,10 +73,10 @@ function save(eventName,formDivObj,referenceItem){
 	
 
 	if(isNull(inqNo)){		
-		alert("저장할 INQUIRY번호가 없습니다.");
+		dhtmlx.alert("저장할 INQUIRY번호가 없습니다.");
 		return;
 	}else if(inqStsCd == "9"){
-		alert("INQUIRY번호가 완료된 상태입니다.");
+		dhtmlx.alert("INQUIRY번호가 완료된 상태입니다.");
 		return;
 	}
 	if(!isNull(form.getItemValue("INQ_STS_CD"))){	
@@ -149,10 +149,10 @@ function inquiryEnd(eventName,formDivObj,referenceItem){
 
 	var form =  items['C105000020_Form_2'];
 	if(inqNo == ""){		
-		alert("완료처리를 위한 INQUIRY번호가 없습니다.");
+		dhtmlx.alert("완료처리를 위한 INQUIRY번호가 없습니다.");
 		return;
 	}else if(inqStsCd == ""){
-		alert("INQUIRY번호로 조회된 데이타가 없습니다.");
+		dhtmlx.alert("INQUIRY번호로 조회된 데이타가 없습니다.");
 		return;	
 	}
 

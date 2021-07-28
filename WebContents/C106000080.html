@@ -25,7 +25,7 @@ var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":wi
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
     var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
-    alert(findUrl);
+    dhtmlx.alert(findUrl);
     items[referenceItem].loadData(findUrl);
 }
 function save(eventName,formDivObj,referenceItem){

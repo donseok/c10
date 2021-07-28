@@ -44,7 +44,7 @@ function find(eventName,formDivObj,referenceItem){
 	var mtlCd = formObj.getItemValue("MTL_CD"); 
 	var temMtlCd = mtlCd;
 		if( isNull(mtlCd) && (isNull(comboList['PRD_SHP'].getSelectedValue()) && isNull(comboList['PRD_NM_CD'].getSelectedValue()))){
-			alert("Material code 입력 또는 품명,제품형태를 선택해주세요.");
+			dhtmlx.alert("Material code 입력 또는 품명,제품형태를 선택해주세요.");
 			return;
 		}else if(!isNull(mtlCd)){
 			formObj.clear();

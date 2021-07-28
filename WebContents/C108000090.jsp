@@ -148,7 +148,7 @@ function save(eventName,formDivObj,referenceItem){
 function findReqBomGrid(){
 	var prdDevNo = items['C108000090_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호는 필수 입력입니다.");
+		dhtmlx.alert("개발 번호는 필수 입력입니다.");
 		items['C108000090_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;		
 	}
@@ -168,7 +168,7 @@ function bindingFormToGrid(value, text) {
 			}
 		}
 	} else {
-		alert("선택된 Row가 없습니다.");
+		dhtmlx.alert("선택된 Row가 없습니다.");
 	}
 }
 //menu refresh event function

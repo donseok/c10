@@ -35,7 +35,7 @@ function save(eventName,formDivObj,referenceItem){
 	//주문번호 null체크
 	
 	if ((ord_no == null) || (ord_ln == null)){
-		alert("주문번호없이 설계 할 수 없습니다."); 
+		dhtmlx.alert("주문번호없이 설계 할 수 없습니다."); 
 		return ;
 	}
 	
@@ -46,7 +46,7 @@ function save(eventName,formDivObj,referenceItem){
 	var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 	var cells = xmlObj.getElementsByTagName("cell");
 	if(cells.length > 0){						
-		alert("품질설계JOB이 진행중입니다. 잠시후 진행하세요!");
+		dhtmlx.alert("품질설계JOB이 진행중입니다. 잠시후 진행하세요!");
 		return;					
 	}
 		dhtmlx.confirm({

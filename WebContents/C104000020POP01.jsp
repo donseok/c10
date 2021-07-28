@@ -32,11 +32,11 @@ function find(eventName,formDivObj,referenceItem){
   var ord_ln = formObj.getItemValue("ORD_LN");
   var ord_no = formObj.getItemValue("ORD_NO");
   if(ord_no==""){
-		alert("주문번호를 입력하세요");
+		dhtmlx.alert("주문번호를 입력하세요");
 		return;
    }
    if(ord_ln == ""){
-		alert("주문행번을 입력하세요");
+		dhtmlx.alert("주문행번을 입력하세요");
 		return;
    }
 	var findUrl = uiCommon.parameters6("C104000020POP01_Form_1","C104000020POP01_Form_2","find","");

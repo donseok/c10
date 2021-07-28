@@ -243,7 +243,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 			  //var valueLength = gridObj.editor.obj.value+'';
 			  var valueLength = gridObj.editor.getValue();					  
 			   if(!hanCheck(valueLength,'6')){
-				   alert("5자리만 입력 가능합니다.");
+				   dhtmlx.alert("5자리만 입력 가능합니다.");
 				   gridObj.editor.obj.value = "";
 				   return false;
 			    }				
@@ -276,7 +276,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 				
 				/*
 				if(nValue.length > 5){
-					alert("6자리를 입력할 수 없습니다.");				
+					dhtmlx.alert("6자리를 입력할 수 없습니다.");				
 					return;	
 				}
 				*/
@@ -286,7 +286,7 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 				var cells = xmlObj.getElementsByTagName("cell");
 			
 				if(cells.length < 1){	
-					alert("등록된 CCL BOM NO가 없습니다.");				
+					dhtmlx.alert("등록된 CCL BOM NO가 없습니다.");				
 					return;					
 				}
 			}

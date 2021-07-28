@@ -164,13 +164,13 @@ function save(eventName,formDivObj,referenceItem){
 function findCmpBomGrid(){
 	var prdDevNo = items['C108000110_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호는 필수 입력입니다.");
+		dhtmlx.alert("개발 번호는 필수 입력입니다.");
 		items['C108000110_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;		
 	}
 /* 	var pntCmpCd = items['C108000110_Form_1'].getItemValue("PNT_CMP_CD");
 	if(isNull(pntCmpCd)){
-		alert("개발 업체는 필수 입력입니다.");
+		dhtmlx.alert("개발 업체는 필수 입력입니다.");
 		items['C108000110_Form_1'].setItemFocus("PNT_CMP_CD");
 		return;		
 	} */
@@ -190,7 +190,7 @@ function bindingFormToGrid(value, text) {
 			}
 		}
 	} else {
-		alert("선택된 Row가 없습니다.");
+		dhtmlx.alert("선택된 Row가 없습니다.");
 	}
 }
 //menu refresh event function

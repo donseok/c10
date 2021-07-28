@@ -40,7 +40,7 @@ function find(eventName,formDivObj,referenceItem){
 	var formObj = items['C106000070_Form_1'].getDhxForm();
 	var comboList = items['C106000070_Form_1'].getMasterCombos();	
 	if(isNull(comboList['TABLE_NAME'].getSelectedValue())){
-		alert("TABLE NAME을 선택해주세요.");
+		dhtmlx.alert("TABLE NAME을 선택해주세요.");
 		comboList['TABLE_NAME'].DOMelem_input.focus();
 		return;
 	}else{
@@ -67,7 +67,7 @@ function Send(eventName,formDivObj,referenceItem){
     var event = "Send";
   //alert(comboValue);
 	if(isNull(comboValue)){
-		alert("TABLE NAME을 선택해주세요.");
+		dhtmlx.alert("TABLE NAME을 선택해주세요.");
 		comboList['TABLE_NAME'].DOMelem_input.focus();
 		return;
 	}			
@@ -82,7 +82,7 @@ function Send(eventName,formDivObj,referenceItem){
   }else if(comboValue == "TB_C10_B10S0050"){
     event = "Send4";   //고객사양공통송신
   }else{
-    alert("C10품질파트의 B10S0010~B10S0050만 전송가능합니다.");
+    dhtmlx.alert("C10품질파트의 B10S0010~B10S0050만 전송가능합니다.");
     return;
    } 
 	dhtmlx.confirm({
@@ -105,12 +105,12 @@ function reSend(eventName,formDivObj,referenceItem){
 	var comboList = items['C106000070_Form_1'].getMasterCombos();
 	var comboValue = comboList['TABLE_NAME'].getSelectedValue();
 	if(isNull(selectRowId)){
-		alert("재전송할 인터페이스 그룹아이디가 없습니다.");
+		dhtmlx.alert("재전송할 인터페이스 그룹아이디가 없습니다.");
 		return;	
 	}else{	
 		var cellValue = gridObj.getCellValue(selectRowId,0);
 		if(isNull(comboValue)){
-			alert("TABLE NAME을 선택해주세요.");
+			dhtmlx.alert("TABLE NAME을 선택해주세요.");
 			comboList['TABLE_NAME'].DOMelem_input.focus();
 			return;
 		}			
@@ -124,7 +124,7 @@ function reSend(eventName,formDivObj,referenceItem){
 		var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 		var cells = xmlObj.getElementsByTagName("cell");
 		if(cells.length > 0){						
-			alert("이미 품질설계 요청된 주문입니다!");
+			dhtmlx.alert("이미 품질설계 요청된 주문입니다!");
 			return;					
 		}
 		
@@ -132,7 +132,7 @@ function reSend(eventName,formDivObj,referenceItem){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		if(cells1.length > 0){						
-			alert("최신 요청한 Data가 있습니다!");
+			dhtmlx.alert("최신 요청한 Data가 있습니다!");
 			return;					
 		}
 		
@@ -306,8 +306,8 @@ function onFormLoadFunction(){
 				headerNameInfo.push(cells.item(j+1).firstChild.nodeValue);
 			}
 			j++;
-//			alert(cells.item(1).firstChild.nodeValue);
-//			alert(cells.item(2).firstChild.nodeValue);
+//			dhtmlx.alert(cells.item(1).firstChild.nodeValue);
+//			dhtmlx.alert(cells.item(2).firstChild.nodeValue);
 			/*if(row.length > 0){
 				for(var k = 0; k < row.length; k++){
 					if(typeof(row[k].getAttribute("id")) != 'undefined'){

@@ -264,7 +264,7 @@ function checkLength (str, name, nMax) {
 	var nStrSize = getSize(str);
 		
 	if (nStrSize != nMax)  {
-		alert( name + " 는 " + nMax + "자로 입력해 주십시요.\n현재 입력된 길이 : " + nStrSize + "자 입니다.");
+		dhtmlx.alert( name + " 는 " + nMax + "자로 입력해 주십시요.\n현재 입력된 길이 : " + nStrSize + "자 입니다.");
 		return false;
 	}
 	return true;
@@ -299,7 +299,7 @@ function getSize (str) {
 function checkValidNumber(str)  {
     var txtNumber = '' + str;
     if (isNaN(txtNumber)) { 
-         alert("숫자만 입력 하세요.");
+         dhtmlx.alert("숫자만 입력 하세요.");
 		 return false;
     }
 	return true;
@@ -339,7 +339,7 @@ function isCompareDate(startDt,endDt) {
 	var end_date = deleteFormat(endDt);
 	
 	if (eval(start_date) > eval(end_date) ){
-		alert("종료일이 시작일보다 이전날짜 입니다.");
+		dhtmlx.alert("종료일이 시작일보다 이전날짜 입니다.");
 		DtFlag = false;
 	}
 
@@ -352,7 +352,7 @@ function checkValid(lsDate, format) {
 	if(format == null || format == undefined) format = 'YYYYMMDD';
 	var t_date = getDateArray(lsDate, format);
 	if(t_date == null){
-		alert('날자형식이 맞는지 확인하세요.');
+		dhtmlx.alert('날자형식이 맞는지 확인하세요.');
 		return false;
 	}
 
@@ -360,27 +360,27 @@ function checkValid(lsDate, format) {
 	var t_month = t_date[1];
 	var t_day   = t_date[2];
 	if(isNull(lsDate)) {
-		alert('날짜를 입력해주세요!');
+		dhtmlx.alert('날짜를 입력해주세요!');
 		return false;
 	}
 
 	if(!checkDigit(t_year) || !checkDigit(t_month) || !checkDigit(t_day)) {
-		alert('날짜는 숫자만 가능합니다.');
+		dhtmlx.alert('날짜는 숫자만 가능합니다.');
 		return false;
 	}
 	
 	if (t_year < 1900 || t_year > 2100) {
-		alert('날짜가 틀렸습니다. 년도는 1900년에서 2100년까지 입니다.');
+		dhtmlx.alert('날짜가 틀렸습니다. 년도는 1900년에서 2100년까지 입니다.');
 		return false;
 	}
 	
 	if (t_month < 1 || t_month > 12) {
-		alert('날짜가 틀렸습니다. 달은 1월에서 12월까지 입니다.');
+		dhtmlx.alert('날짜가 틀렸습니다. 달은 1월에서 12월까지 입니다.');
 		return false;
 	}
 	
 	if (t_day < 1 || t_day > getLastday(t_year, t_month)) {
-		alert('날짜가 틀렸습니다.'+t_month+'월에는 '+t_day+'일이 없습니다.');
+		dhtmlx.alert('날짜가 틀렸습니다.'+t_month+'월에는 '+t_day+'일이 없습니다.');
 		return false;
 	}
 	
@@ -480,7 +480,7 @@ function js_field_qnty_check( headName,fieldName,formDivObj, fieldLen, pridLen, 
 	if(pridMode == true){
 	    if( (len-idx-1) > pridLen && idx != -1 ) {
 	        sMsg = headName+' 소수점'+pridLen+'자리까지 입력하세요.';	      
-	        alert(sMsg);
+	        dhtmlx.alert(sMsg);
 			items[formDivObj].setItemValue(fieldName,'');
 			items[formDivObj].setItemFocus(fieldName);
 	        return false;
@@ -488,7 +488,7 @@ function js_field_qnty_check( headName,fieldName,formDivObj, fieldLen, pridLen, 
     }else{
     	if(origIdx != -1){ 
 	        sMsg = headName+' 숫자로 입력하세요.';
-	        alert(sMsg);
+	        dhtmlx.alert(sMsg);
 			items[formDivObj].setItemValue(fieldName,'');
 			items[formDivObj].setItemFocus(fieldName);
 	        return false;
@@ -499,7 +499,7 @@ function js_field_qnty_check( headName,fieldName,formDivObj, fieldLen, pridLen, 
     qntyValue = js_Rtrim(qntyValue);
     if( qntyValue == '' ){
         sMsg = headName+' 입력하세요.';        
-        alert(sMsg);
+        dhtmlx.alert(sMsg);
 		items[formDivObj].setItemValue(fieldName,'');
 		items[formDivObj].setItemFocus(fieldName);
         return false;
@@ -508,7 +508,7 @@ function js_field_qnty_check( headName,fieldName,formDivObj, fieldLen, pridLen, 
     // 문자가 있는지 체크
     if( !js_valiDigit( qntyValue, false ) ){
         sMsg = headName+' 숫자로 입력하세요.';        
-        alert(sMsg);
+        dhtmlx.alert(sMsg);
         items[formDivObj].setItemValue(fieldName,'');
         items[formDivObj].setItemFocus(fieldName);
         return false;
@@ -517,7 +517,7 @@ function js_field_qnty_check( headName,fieldName,formDivObj, fieldLen, pridLen, 
     sValue = ( origIdx == -1 ) ? qntyValue : qntyValue.substring(0,origIdx);
     if( sValue.length > fieldLen ){
         sMsg = headName+' 길이' +fieldLen+' 넘지 못합니다.';
-        alert(sMsg);
+        dhtmlx.alert(sMsg);
         items[formDivObj].setItemValue(fieldName,'');
         items[formDivObj].setItemFocus(fieldName);
         return false;
@@ -788,13 +788,13 @@ function grid_qnty_check(headName,fieldLen, pridLen, pridMode,value)
 	if(pridMode == true){
 	    if( (len-idx-1) > pridLen && idx != -1 ) {
 	        sMsg = headName+' 소수점'+pridLen+'자리까지 입력하세요.';	      
-	        alert(sMsg);
+	        dhtmlx.alert(sMsg);
 	        return false;
 	    }
     }else{
     	if(origIdx != -1){ 
 	        sMsg = headName+' 숫자로 입력하세요.';
-	        alert(sMsg);
+	        dhtmlx.alert(sMsg);
 	        return false;
     	}
     }    
@@ -802,14 +802,14 @@ function grid_qnty_check(headName,fieldLen, pridLen, pridMode,value)
     // 문자가 있는지 체크
     if( !js_valiDigit( qntyValue, false ) ){
         sMsg = headName+' 숫자로 입력하세요.';        
-        alert(sMsg);
+        dhtmlx.alert(sMsg);
         return false;
     }
     // 길이 체크
     sValue = ( origIdx == -1 ) ? qntyValue : qntyValue.substring(0,origIdx);
     if( sValue.length > fieldLen ){
         sMsg = headName+' 길이' +fieldLen+'을 넘지 못합니다.';
-        alert(sMsg);
+        dhtmlx.alert(sMsg);
         return false;
     }
     return true;
@@ -1037,7 +1037,7 @@ function backSpaceBlockEvent(inputObj){
 }
 parametersC10 = function(){ 
 	if(arguments.length < 1 || arguments.length < 2 || arguments.length < 3){
-     	alert("function arguments setting not found<br>"+
+     	dhtmlx.alert("function arguments setting not found<br>"+
            "arguments[0] : grid div object id<br>"+
            "arguments[1] : event name<br>"+
            "arguments[2] : option custom parameter add");

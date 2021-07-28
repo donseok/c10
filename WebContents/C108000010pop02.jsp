@@ -117,7 +117,7 @@ function onVaultLoad() {
             uploadFlag = file.error;
         }
 		if(uploadFlag){
-            alert("파일업로드에 실패하였습니다.");
+            dhtmlx.alert("파일업로드에 실패하였습니다.");
 		}else{
 			onLoadGrid();
 		}			

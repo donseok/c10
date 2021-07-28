@@ -89,7 +89,7 @@ function find(eventName,formDivObj,referenceItem){
 function findForm1(){
 	var prdDevNo = items['C108000050_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호를 입력하세요.");
+		dhtmlx.alert("개발 번호를 입력하세요.");
 		items['C108000050_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;
 	}
@@ -101,7 +101,7 @@ function findForm1(){
 function findGrid1(){
 	var prdDevNo = items['C108000050_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호를 입력하세요.");
+		dhtmlx.alert("개발 번호를 입력하세요.");
 		items['C108000050_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;
 	}
@@ -123,7 +123,7 @@ function findGrid3(){
 function findForm5(){
 	var prdDevNo = items['C108000050_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호를 입력하세요.");
+		dhtmlx.alert("개발 번호를 입력하세요.");
 		items['C108000050_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;		
 	}

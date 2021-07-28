@@ -46,7 +46,7 @@ function simulrate(eventName,formDivObj,referenceItem){
 	
 	
 	  if (v_1 == null || v_2 == null || v_3 == null || v_4 == null || v_5 == null || v_6 == null || v_7 == null || v_8 == null || v_9 == null || v_10 == null || v_11 == null || v_12 == null){
-	    	alert("모든 항목은 필수 항목입니다. ");
+	    	dhtmlx.alert("모든 항목은 필수 항목입니다. ");
 	  }
 	  else{
     		var findUrl2 = uiCommon.parameters(formDivObj,referenceItem,eventName);

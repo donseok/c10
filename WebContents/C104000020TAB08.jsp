@@ -55,7 +55,7 @@ function save(eventName,formDivObj,referenceItem){
 	var cells1 = xmlObj1.getElementsByTagName("cell");
 	/*
 	if(cells1.length > 0){						
-		alert("확정된 주문입니다!");
+		dhtmlx.alert("확정된 주문입니다!");
 		return;					
 	}
 	*/
@@ -96,7 +96,7 @@ function save(eventName,formDivObj,referenceItem){
 			//alert("ord_seq:" + ord_seq);
 			if(i != k){
 				if(ord_seq == proc_seq){
-					alert("순번 중복이 있습니다!");
+					dhtmlx.alert("순번 중복이 있습니다!");
 					return;
 				}
 			}
@@ -112,7 +112,7 @@ function save(eventName,formDivObj,referenceItem){
 			proc_seq_diff = proc_seq - proc_seq_pre;
 			if(proc_seq_diff != 1)
 			{
-				alert("공정순서가 맞지 않습니다. 순서 조정하시기 바랍니다.!");
+				dhtmlx.alert("공정순서가 맞지 않습니다. 순서 조정하시기 바랍니다.!");
 				return;
 			}
 			else
@@ -139,22 +139,22 @@ function save(eventName,formDivObj,referenceItem){
 			    
 			    //2013.04.05 주공정 대비 대체공정에 대한 Validation Check 추가(강정한 대리요청)
 			    if(sub_proc1 != "" && (main_proc.substring(0,1) != sub_proc1.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드1은 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드1은 추가 할 수 없습니다!");
 					return;
 			    }else if(sub_proc2 != "" && (main_proc.substring(0,1) != sub_proc2.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드2는 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드2는 추가 할 수 없습니다!");
 					return;
 			    }else if(sub_proc3 != "" && (main_proc.substring(0,1) != sub_proc3.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드3은 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드3은 추가 할 수 없습니다!");
 					return;
 			    }else if(sub_proc4 != "" && (main_proc.substring(0,1) != sub_proc4.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드4는 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드4는 추가 할 수 없습니다!");
 					return;
 			    }else if(sub_proc5 != "" && (main_proc.substring(0,1) != sub_proc5.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드5는 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드5는 추가 할 수 없습니다!");
 					return;
 			    }else if(sub_proc6 != "" && (main_proc.substring(0,1) != sub_proc6.substring(0,1))){
-			    	alert("주공정과 특성이 다른 대체공정코드6은 추가 할 수 없습니다!");
+			    	dhtmlx.alert("주공정과 특성이 다른 대체공정코드6은 추가 할 수 없습니다!");
 					return;
 			    }
 
@@ -406,7 +406,7 @@ function add(referenceItem){
 	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 	var cells1 = xmlObj1.getElementsByTagName("cell");
 	if(cells1.length > 0){						
-		alert("확정된 주문입니다!");
+		dhtmlx.alert("확정된 주문입니다!");
 		return;					
 	}else{
     	items[referenceItem].addRow();
@@ -426,7 +426,7 @@ function remove(referenceItem){
 	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 	var cells1 = xmlObj1.getElementsByTagName("cell");
 	if(cells1.length > 0){						
-		alert("확정된 주문입니다!");
+		dhtmlx.alert("확정된 주문입니다!");
 		return;					
 	}else{
     	items[referenceItem].removeRow();
@@ -520,7 +520,7 @@ function onGridAfterUpdateFinishEvent(){
 	/*
 	if(proc_seq_max_temp != row_num)
 	{
-		 alert("통과공정의 순서가 맞지 않습니다.조회 완료 후 공정순서를 변경하시기 바랍니다.")
+		 dhtmlx.alert("통과공정의 순서가 맞지 않습니다.조회 완료 후 공정순서를 변경하시기 바랍니다.")
 	}
 	*/
 }
@@ -611,19 +611,19 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		if(cells1.length > 0 && oValue != "" ){	//대체공정 추가는 가능..				
-			alert("확정된 통과공정을 삭제/수정 할 수 없습니다! 대체공정 추가는 가능.");
+			dhtmlx.alert("확정된 통과공정을 삭제/수정 할 수 없습니다! 대체공정 추가는 가능.");
 		    grid.setUpdated(rId, false, "")
 		    return false;
 		}
 		
 		if(cInd == 0){
 			if(isNull(nValue)){
-				alert("순번은 필수 입니다!!");
+				dhtmlx.alert("순번은 필수 입니다!!");
 				grid.setCellValue(rId,cInd,oValue);				
 		    } 	
         }else if(cInd == 4 || cInd == 5 || cInd == 6 || cInd == 7){
         	if(nValue.substring(0,1) == '8' || nValue.substring(0,1) == '9'){
-                alert("도금공정은 대체공정2까지 지정 가능합니다.!!");
+                dhtmlx.alert("도금공정은 대체공정2까지 지정 가능합니다.!!");
                 grid.setUpdated(rId, false, "")
                 return false;
         	}
@@ -642,7 +642,7 @@ function chrProbtn(){
 
     if (strPasProcNo == null)
     {
-    	alert("통과공정 번호가 없습니다. ");
+    	dhtmlx.alert("통과공정 번호가 없습니다. ");
     }
     else
     {
@@ -658,7 +658,7 @@ function chrProhstbtn(){
 
     if (strOrdNo == null || strOrdLn == null )
     {
-    	alert("주문번호가 없습니다. ");
+    	dhtmlx.alert("주문번호가 없습니다. ");
     }
     else
     {

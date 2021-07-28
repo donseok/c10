@@ -49,15 +49,15 @@ function find(eventName,formDivObj,referenceItem){
 	var salChrPrsId = formObj.getInput("SAL_CHR_PRS_ID").value;//영업담당자
 
 	if(isNull(startDt) && !isNull(endDt)){
-		alert("의뢰 시작일을 입력해주세요.");
+		dhtmlx.alert("의뢰 시작일을 입력해주세요.");
 		form.setItemFocus("CLR_SMP_DEV_RCP_DH_START");
 		return;
 	}else if(!isNull(startDt) && isNull(endDt)){
-		alert("의뢰 종료일을 입력해주세요.");
+		dhtmlx.alert("의뢰 종료일을 입력해주세요.");
 		form.setItemFocus("CLR_SMP_DEV_RCP_DH_END");
 		return;
 	}else if(isNull(startDt) && isNull(endDt) && isNull(clrSmpReqNo) && isNull(clrSmpRcpNo) && isNull(salChrPrsId)){
-		alert("하나 이상의 검색조건을 입력해야 합니다.");
+		dhtmlx.alert("하나 이상의 검색조건을 입력해야 합니다.");
 		form.setItemFocus("CLR_SMP_RCP_NO");
 		return;
 	}else{
@@ -81,7 +81,7 @@ function save(eventName,formDivObj,referenceItem){
 			var cellVal7 = items['C106000010_Grid_1'].getCellValue(gridObj.getRowId(i),7);
 			var cellVal8 = items['C106000010_Grid_1'].getCellValue(gridObj.getRowId(i),8);
 			if(isNull(cellVal2) && isNull(cellVal3) && isNull(cellVal4) && isNull(cellVal5) && isNull(cellVal6) && isNull(cellVal7) && isNull(cellVal8)){
-				alert("색상정보 또는 사양 정보를 입력해주세요.");
+				dhtmlx.alert("색상정보 또는 사양 정보를 입력해주세요.");
 				return;
 			}
 		}
@@ -92,7 +92,7 @@ function save(eventName,formDivObj,referenceItem){
 	}
 
 	if(statusCnt <= 0){
-		alert("저장할 데이타가 없습니다.");
+		dhtmlx.alert("저장할 데이타가 없습니다.");
 		return;
 	}
 	

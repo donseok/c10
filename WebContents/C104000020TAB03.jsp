@@ -51,7 +51,7 @@ function save(eventName,formDivObj,referenceItem){
 	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 	var cells1 = xmlObj1.getElementsByTagName("cell");
 	if(cells1.length > 0){						
-		alert("확정된 주문입니다!");
+		dhtmlx.alert("확정된 주문입니다!");
 		return;					
 	}				
 	

@@ -51,11 +51,11 @@ function find(eventName){
  var form = items['C104000020_Form_1'];
  var comboList = form.getDhxForm().getCombo("ORD_LN");
  if(isNull(form.getItemValue("ORD_NO"))){
-  alert("주문번호를 입력해주세요.");
+  dhtmlx.alert("주문번호를 입력해주세요.");
   form.setItemFocus("ORD_NO");
   return; 
  }else if(isNull(comboList.getSelectedValue())){
-  alert("주문행번를 선택해주세요.");
+  dhtmlx.alert("주문행번를 선택해주세요.");
   comboList.DOMelem_input.focus();
   return; 
  }else{
@@ -74,11 +74,11 @@ function tag_popup(){
  var form = items['C104000020_Form_1'];
  var comboList = form.getDhxForm().getCombo("ORD_LN");
  if(isNull(form.getItemValue("ORD_NO"))){
-  alert("주문번호를 입력해주세요.");
+  dhtmlx.alert("주문번호를 입력해주세요.");
   form.setItemFocus("ORD_NO");
   return; 
  }else if(isNull(comboList.getSelectedValue())){
-  alert("주문행번를 선택해주세요.");
+  dhtmlx.alert("주문행번를 선택해주세요.");
   comboList.DOMelem_input.focus();
   return; 
  }
@@ -103,11 +103,11 @@ function save(eventName,formDivObj,referenceItem){
     var ccl_bom_tmp = ccl_bom.substring(0,2);
     
  if(isNull(ord_no)){
-  alert("주문번호를 입력해주세요.");
+  dhtmlx.alert("주문번호를 입력해주세요.");
   form.setItemFocus("ORD_NO");
   return; 
  }else if(isNull(ord_ln)){
-  alert("주문행번를 선택해주세요.");
+  dhtmlx.alert("주문행번를 선택해주세요.");
   comboList.DOMelem_input.focus();
   return; 
  }
@@ -141,7 +141,7 @@ function save(eventName,formDivObj,referenceItem){
   xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
   cells = xmlObj.getElementsByTagName("cell");
   if(cells.length > 0){      
-   alert("반송된 주문이거나 보류 혹은 설계상태가 확정대기가 아닙니다!");
+   dhtmlx.alert("반송된 주문이거나 보류 혹은 설계상태가 확정대기가 아닙니다!");
    return;     
   }
   
@@ -153,7 +153,7 @@ function save(eventName,formDivObj,referenceItem){
    xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
    cells = xmlObj.getElementsByTagName("cell");
    if(cells.length < 1){      
-    alert("해당주문은 CP(RH)공정이 반드시 추가되어야 하는 주문입니다(US****로 시작하는 BOM때문)!");
+    dhtmlx.alert("해당주문은 CP(RH)공정이 반드시 추가되어야 하는 주문입니다(US****로 시작하는 BOM때문)!");
     return;     
    }
   }
@@ -161,7 +161,7 @@ function save(eventName,formDivObj,referenceItem){
   //위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2015.3.12 박성용기사요청)
   var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
   if(trst_proc_yn == "Y"){
-   alert("위탁임가공 주문입니다. 통과공정정보를 반드시 확인하시고 확정하시기 바랍니다."); 
+   dhtmlx.alert("위탁임가공 주문입니다. 통과공정정보를 반드시 확인하시고 확정하시기 바랍니다."); 
   }   
 
   dhtmlx.confirm({
@@ -188,11 +188,11 @@ function holdy(eventName,formDivObj,referenceItem){
  var ord_ln = comboList.getSelectedValue();        
  
  if(isNull(ord_no)){       
-  alert("주문번호를 입력해주세요.");      
+  dhtmlx.alert("주문번호를 입력해주세요.");      
   form.setItemFocus("ORD_NO");      
   return;      
  }else if(isNull(ord_ln)){       
-  alert("주문행번를 선택해주세요.");      
+  dhtmlx.alert("주문행번를 선택해주세요.");      
   comboList.DOMelem_input.focus();      
   return;      
  }
@@ -230,11 +230,11 @@ function holdn(eventName,formDivObj,referenceItem){
     var ord_ln = comboList.getSelectedValue();
 
  if(isNull(ord_no)){       
-  alert("주문번호를 입력해주세요.");      
+  dhtmlx.alert("주문번호를 입력해주세요.");      
   form.setItemFocus("ORD_NO");      
   return;      
  }else if(isNull(ord_ln)){       
-  alert("주문행번를 선택해주세요.");      
+  dhtmlx.alert("주문행번를 선택해주세요.");      
   comboList.DOMelem_input.focus();      
   return;      
  }
@@ -263,17 +263,17 @@ function atty(eventName,formDivObj,referenceItem){
  var att_ord_yn = form.getItemValue("ATT_ORD_YN");
  
  if(isNull(ord_no)){       
-  alert("주문번호를 입력해주세요.");      
+  dhtmlx.alert("주문번호를 입력해주세요.");      
   form.setItemFocus("ORD_NO");      
   return;      
  }else if(isNull(ord_ln)){       
-  alert("주문행번를 선택해주세요.");      
+  dhtmlx.alert("주문행번를 선택해주세요.");      
   comboList.DOMelem_input.focus();      
   return;      
  }
  
  if(att_ord_yn == "Y"){
-  alert("현재 관심주문 상태입니다.");            
+  dhtmlx.alert("현재 관심주문 상태입니다.");            
   return;
  }
  /*
@@ -312,16 +312,16 @@ function attn(eventName,formDivObj,referenceItem){
     var att_ord_yn = form.getItemValue("ATT_ORD_YN");
 
  if(isNull(ord_no)){       
-  alert("주문번호를 입력해주세요.");      
+  dhtmlx.alert("주문번호를 입력해주세요.");      
   form.setItemFocus("ORD_NO");      
   return;      
  }else if(isNull(ord_ln)){       
-  alert("주문행번를 선택해주세요.");      
+  dhtmlx.alert("주문행번를 선택해주세요.");      
   comboList.DOMelem_input.focus();      
   return;      
  }
  if(att_ord_yn == "N" || isNull(att_ord_yn)){
-  alert("현재 관심주문 해제상태 입니다.");            
+  dhtmlx.alert("현재 관심주문 해제상태 입니다.");            
   return;
  }
  
@@ -472,7 +472,7 @@ function openBom(){
  var cclbom = cclbom_tmp.substring(0,5);
  
  if(isNull(cclbom)){
-  alert("BOM정보가 없습니다!");
+  dhtmlx.alert("BOM정보가 없습니다!");
  }
  else{
   vUrl += "CCL_BOM_NO="+encodeURIComponent(cclbom);
@@ -487,7 +487,7 @@ function openColImg(){
  var cclbom_1 = cclbom_tmp.substring(0,1);
  
  if(isNull(cclbom)){
- 	alert("BOM정보가 없습니다!");
+ 	dhtmlx.alert("BOM정보가 없습니다!");
  }
  else{ 
  		if(cclbom_1 == "J")
@@ -509,7 +509,7 @@ function openCdUsg(){
  var cclbom = cclbom_tmp.substring(0,5);
  
  if(isNull(cclbom)){
-  alert("BOM정보가 없습니다!");
+  dhtmlx.alert("BOM정보가 없습니다!");
  }
  else{
   vUrl += "CCL_BOM_NO="+encodeURIComponent(cclbom);
@@ -586,7 +586,7 @@ function initializeTabEvent(){
  DhxTabObj.attachEvent("onSelect",function(id){
   if(id != 'C104000020TAB01'){
    if("<%=QLT_DSN_YN%>" == "N"){
-    alert("품질설계대상 주문이 아닙니다.");
+    dhtmlx.alert("품질설계대상 주문이 아닙니다.");
     return;
    }else{ 
     DhxTabObj.setContentHref(id, id+".jsp?pageID=C104000020");

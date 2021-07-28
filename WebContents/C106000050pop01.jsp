@@ -40,7 +40,7 @@ function ok() {
 	var cfmRea		= items[ aForm1[0] ].getItemValue("CFM_REA");		// 확인사유
 		
 	if( cfmRea==null || cfmRea.length == 0 ||  C10_trim(cfmRea)=="" ){
-		alert("사유를 입력하세요.");
+		dhtmlx.alert("사유를 입력하세요.");
 		return false;
 	}
 	parent.popCfmRea	= cfmRea;	    // 확인사유	

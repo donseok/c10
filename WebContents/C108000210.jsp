@@ -96,7 +96,7 @@ function save(eventName,formDivObj,referenceItem){
 function findInkDevGrid(){
 	var prdDevNo = items['C108000210_Form_1'].getItemValue("PRD_DEV_NO");
 	if(isNull(prdDevNo)){
-		alert("개발 번호는 필수 입력입니다.");
+		dhtmlx.alert("개발 번호는 필수 입력입니다.");
 		items['C108000210_Form_1'].setItemFocus("PRD_DEV_NO");
 		return;
 	}

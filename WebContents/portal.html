@@ -129,7 +129,7 @@
 		
 		uiTree.attachEvent("onBeforeDrag", function(sId,sobj){
 			if(uiTree.hasChildren(sId) > 0){
-				alert("상위폴더는 이동하실수 없습니다.");		
+				dhtmlx.alert("상위폴더는 이동하실수 없습니다.");		
 				return;
 			}
 			return true;
@@ -190,7 +190,7 @@
 		
 		favoritesTree.attachEvent("onDrop", function(sId,tId,id,sObject,tObject){
 			if(sObject.hasChildren(sId) > 0){
-				alert("상위폴더는 이동하실수 없습니다.");						
+				dhtmlx.alert("상위폴더는 이동하실수 없습니다.");						
 				return false;
 			}else{			
 				var ids=tObject.getAllSubItems(0).split(",");
@@ -223,13 +223,13 @@
 
 		favoritesProcessor.defineAction("appMsg", function(node){
 			if(node != null){
-				alert("정상적으로 저장되었습니다.");//alert(node.firstChild.data);
+				dhtmlx.alert("정상적으로 저장되었습니다.");//alert(node.firstChild.data);
 			}
         });
         
         favoritesProcessor.defineAction("errMsg", function(node){
 			if(node != null){
-				alert(node.firstChild.data);
+				dhtmlx.alert(node.firstChild.data);
 			}
         });
 
@@ -253,11 +253,11 @@
 		uiLayoutInner1.cells("a").attachURL("notice.do");
 		function help(){
 		
-			alert("도움말 이벤트");
+			dhtmlx.alert("도움말 이벤트");
 		}
 		function logout(){
 		
-			alert("Logout 이벤트");
+			dhtmlx.alert("Logout 이벤트");
 		}
 		
 		//tab open
@@ -274,7 +274,7 @@
 		//tab close
 		function onTabClose(id){
 			if(id == "notice"){
-				alert("공지사항은 닫을 수 없습니다.");
+				dhtmlx.alert("공지사항은 닫을 수 없습니다.");
 				return;
 			}
 			return true;
