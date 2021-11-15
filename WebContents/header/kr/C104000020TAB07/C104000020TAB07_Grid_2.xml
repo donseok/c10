@@ -99,11 +99,19 @@
 <column align="center" index="60" clabel="FNL_CUS_CD" dbname="최종수요가코드" id="FNL_CUS_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10" hidden="true">고객사코드</column>
 <column align="center" index="61" clabel="ORD_USG_CD" dbname="주문용도코드" id="ORD_USG_CD" sort="na" table="TB_C10_QLT_DSN_CMN" type="ro" width="10" hidden="true">주문용도코드</column>
 <column align="center" index="62" clabel="PTT_FLM_MNG_ADH_TXT" dbname="보호필름관리점착력" id="PTT_FLM_MNG_ADH_TXT" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="0" hidden="true">보호필름관리점착력</column>
+<column id="KEY_WRD1" index="63" sort="str" align="left" width="25" table="TB_C10_QLT_DSN_CCL_BOM" type="ed" hidden="true">참고항목1</column>
+<column id="KEY_WRD2" index="64" sort="str" align="left" width="25" table="TB_C10_QLT_DSN_CCL_BOM" type="ed" hidden="true">참고항목2</column>
+<column id="KEY_WRD3" index="65" sort="str" align="left" width="25" table="TB_C10_QLT_DSN_CCL_BOM" type="ed" hidden="true">참고항목3</column>
+<column id="KEY_WRD4" index="66" sort="str" align="left" width="25" table="TB_C10_QLT_DSN_CCL_BOM" type="ed" hidden="true">참고항목4</column>
+<column id="KEY_WRD1_LNK" index="67" sort="str" align="center" width="13" table="TB_C10_QLT_DSN_CCL_BOM" hidden="true" type="ro">참고항목링크1</column>
+<column id="KEY_WRD2_LNK" index="68" sort="str" align="left" width="13" table="TB_C10_QLT_DSN_CCL_BOM" hidden="true" type="ro">참고항목링크2</column>
+<column id="KEY_WRD3_LNK" index="69" sort="str" align="left" width="13" table="TB_C10_QLT_DSN_CCL_BOM" hidden="true" type="ro">참고항목링크3</column>
+<column id="KEY_WRD4_LNK" index="70" sort="str" align="center" width="13" table="TB_C10_QLT_DSN_CCL_BOM" hidden="true" type="ro">참고항목링크4</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">COT_MTH,HUE_CD_FRN,HUE_CD_BAK,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,LUS_RT_CD_FRN,LUS_RT_CD_BAK,RSN_TP_FRN,RSN_TP_BAK,CCL_THK_TRV,CCL_WTH_TRV,HUE_CD_CHM,CUT_LN_YN,DTL_CLR_NM,CCL_QLT_MSG_TXT,ORD_NO,ORD_LN,CLR_DIF_FRN_ULV,CLR_DIF_BAK_ULV,MPR_BAS_PNCL_HRDN_FRN,MPR_BAS_PNCL_HRDN_BAK,MPR_BAS_MEK_FRN,MPR_BAS_MEK_BAK,CLR_BND_TST_FRN_STD_CD,CLR_BND_TST_FRN_GRD_PNT,CLR_BND_TST_BAK_STD_CD,CLR_BND_TST_BAK_GRD_PNT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_PTN_CD1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_PTN_CD3,PRT_ROLL_NO4,PRT_INK_CD4,PRT_ROLL_PTN_CD4,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_FLM_THK_CD,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,UNI_TEX_ROLL_NO,PICK_UP_ROLL_NO,TLP_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,LMN_BND_CD1,LMN_BND_THR_CD1,PTT_FLM_MNG_ADH_TXT</userdata>
+<userdata name="column-info">COT_MTH,HUE_CD_FRN,HUE_CD_BAK,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,LUS_RT_CD_FRN,LUS_RT_CD_BAK,RSN_TP_FRN,RSN_TP_BAK,CCL_THK_TRV,CCL_WTH_TRV,HUE_CD_CHM,CUT_LN_YN,DTL_CLR_NM,CCL_QLT_MSG_TXT,ORD_NO,ORD_LN,CLR_DIF_FRN_ULV,CLR_DIF_BAK_ULV,MPR_BAS_PNCL_HRDN_FRN,MPR_BAS_PNCL_HRDN_BAK,MPR_BAS_MEK_FRN,MPR_BAS_MEK_BAK,CLR_BND_TST_FRN_STD_CD,CLR_BND_TST_FRN_GRD_PNT,CLR_BND_TST_BAK_STD_CD,CLR_BND_TST_BAK_GRD_PNT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_PTN_CD1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_PTN_CD3,PRT_ROLL_NO4,PRT_INK_CD4,PRT_ROLL_PTN_CD4,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_FLM_THK_CD,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,UNI_TEX_ROLL_NO,PICK_UP_ROLL_NO,TLP_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,LMN_BND_CD1,LMN_BND_THR_CD1,PTT_FLM_MNG_ADH_TXT,KEY_WRD1,KEY_WRD2,KEY_WRD3,KEY_WRD4,KEY_WRD1_LNK,KEY_WRD2_LNK,KEY_WRD3_LNK,KEY_WRD4_LNK</userdata>
 <row id="0">
 <cell id="COT_MTH"/>
 <cell id="HUE_CD_FRN"/>

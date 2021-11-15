@@ -99,7 +99,7 @@ ORDER BY a.CCL_BOM_NO, decode(b.CUS_CD,'******','0',b.CUS_CD), decode(b.ORD_USG_
 	 </query>
 	 <query id="C106000090_Grid2_CCLBOM.select" desc="10" fetchSize="100" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
+SELECT /* C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종화  */
       A.ORD_NO ||'-'||A.ORD_LN AS ORD_NO
       ,A.SPC_AVR
       ,(SELECT CD_V_MEANING 
@@ -121,6 +121,18 @@ SELECT /*+ C106000090   CCLBOM사용   C106000090_Grid2_CCLBOM.select   김종�
                  FROM MESAPUSER.TB_M60_WHS_RET WH
                 WHERE WH.ORD_NO = A.ORD_NO
                   AND WH.ORD_LN = A.ORD_LN),0,'X','O') AS PRD_WHS_OX
+      ,MTL_PRD_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MTL_PRD_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MTL_PRD_ORD_YN) MTL_PRD_ORD_YN --소재생산주문여부
+      ,MO_CVT_ORD_YN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'MO_CVT_ORD_YN' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = MO_CVT_ORD_YN) MO_CVT_ORD_YN --MO전환주문여부
  FROM   C10APUSER.TB_C10_QLT_DSN_CMN A
  WHERE A.CCL_BOM_NO = :CCL_BOM_NO
  ORDER BY A.QLT_DSN_END_DH DESC

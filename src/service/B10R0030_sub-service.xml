@@ -1,175 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="B10R0030_sub-service" initial="INIT_QLT_ERR">
-  <activity name="ORD_TXT_CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="T" value="COLOR PRD CHK" />
-    <transition name="F" value="INSERT_CMN" />
+  <activity name="CCL_BOM_CHK_RE" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="Y" value="INSERT_CCL_BOM" />
+    <transition name="N" value="STAT_SET_S" />
     <property name="param1" value="sp_null" />
-    <property name="param2" value="T" />
-    <property name="param3" value="F" />
+    <property name="param2" value="N" />
+    <property name="param3" value="Y" />
     <property name="param-count" value="4" />
-    <property name="param0" value="ORD_SPC_TXT" />
+    <property name="param0" value="CCL_BOM_NO" />
   </activity>
-  <activity name="ROUTER_DSN" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="A" value="INSERT_CMN_A" />
-    <transition name="J" value="ROUTER_REP_ORD" />
-    <property name="param1" value="Y" />
-    <property name="param2" value="J" />
-    <property name="param3" value="A" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="QLT_DSN_YN" />
-  </activity>
-  <activity name="INSERT_CMN" class="com.posdata.glue.biz.activity.PosInsert">
-    <transition name="failure" value="PROC_LOOP" />
-    <transition name="success" value="CCL_BOM_CHK" />
-    <property name="param20" value="GW_ASG_CD" />
-    <property name="param21" value="CCL_BOM_NO" />
-    <property name="param22" value="HUE_CD_FRN" />
-    <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
-    <property name="param23" value="HUE_CD_BAK" />
-    <property name="param111" value="TAG_PART_NO" />
-    <property name="param24" value="ORD_ORG_PLT_SPC_AVR" />
-    <property name="param112" value="MO_CVT_ORD_YN" />
-    <property name="param25" value="ORD_ROU_CD" />
-    <property name="param113" value="MTL_PRD_ORD_YN" />
-    <property name="param26" value="ORD_SPNL_TP" />
-    <property name="param114" value="ORD_DSN_CFM_TP" />
-    <property name="param27" value="ORD_COILG_MTH" />
-    <property name="param115" value="LTH_MNG_YN" />
-    <property name="sqlkey" value="C102100CMN.insert" />
-    <property name="param28" value="ORD_SUR_HND_CD" />
-    <property name="param116" value="LTH_MNG_FROM" />
-    <property name="param29" value="ORD_SKP_DEG" />
-    <property name="param117" value="LTH_MNG_TO" />
-    <property name="param118" value="BORON_ADD_YN" />
-    <property name="param119" value="ORD_REP_YN" />
-    <property name="dao" value="mesdao" />
-    <property name="param30" value="ORD_EDG_ASG_TP" />
-    <property name="param31" value="ORD_THK_TP" />
-    <property name="param32" value="WGT_DCS_MTH_TP" />
-    <property name="param120" value="ORD_REP_NO" />
-    <property name="param33" value="ORD_SLV_KND_TP" />
-    <property name="param121" value="ORD_REP_LN" />
-    <property name="param34" value="EMBS_CD" />
-    <property name="param122" value="WIP_PAK_MTH" />
-    <property name="param35" value="ORD_PTT_FLM_CD" />
-    <property name="param123" value="OT_TC_YN" />
-    <property name="param36" value="ORD_PTT_FLM_WTH" />
-    <property name="param124" value="PRT_INKJT_FILE" />
-    <property name="param37" value="ORD_PTT_FLM_ADH_LOC_CD" />
-    <property name="param125" value="POC_AUTO_YN" />
-    <property name="param38" value="ORD_WGT_UNT" />
-    <property name="param126" value="POC_CGL_YN" />
-    <property name="param39" value="ORD_LN_WGT" />
-    <property name="param127" value="POC_CCL_YN" />
-    <property name="param-count" value="128" />
-    <property name="param40" value="ORD_SHT_CNT" />
-    <property name="param41" value="ORD_PAK_SHT_CNT" />
-    <property name="param42" value="ORD_PAK_UNT_WGT_LLV" />
-    <property name="param43" value="ORD_PAK_UNT_WGT_ULV" />
-    <property name="param44" value="ORD_DLV_ALW_DIF_LLV" />
-    <property name="param45" value="ORD_DLV_ALW_DIF_ULV" />
-    <property name="param46" value="ORD_PAK_LTH_LLV" />
-    <property name="param47" value="ORD_PAK_LTH_ULV" />
-    <property name="param48" value="ORD_STDP_LLV" />
-    <property name="param49" value="ORD_STDP_ULV" />
-    <property name="isAudit" value="true" />
-    <property name="param50" value="ORD_STDP_CNT_LLV" />
-    <property name="param51" value="ORD_STDP_CNT_ULV" />
-    <property name="param52" value="ORD_PAK_UNT_WGT" />
-    <property name="param53" value="ORD_SML_PAK_WGT" />
-    <property name="param54" value="ORD_SML_PAK_MIR" />
-    <property name="param55" value="ORD_UNT_WGT" />
-    <property name="param56" value="ORD_PAK_MTH" />
-    <property name="param57" value="ORD_COIL_IDIA" />
-    <property name="param58" value="ORD_COIL_ODIA" />
-    <property name="param59" value="ORD_THK_TLN_LLV" />
+  <activity name="INSERT_CCL_BOM" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="STAT_SET_S" />
     <property name="resultkey" value="RK_RESULT" />
-    <property name="param60" value="ORD_THK_TLN_ULV" />
-    <property name="param61" value="ORD_WTH_TLN_LLV" />
-    <property name="param62" value="ORD_WTH_TLN_ULV" />
-    <property name="param63" value="ORD_LTH_TLN_LLV" />
-    <property name="param64" value="ORD_LTH_TLN_ULV" />
-    <property name="param65" value="ORD_THK_MNG_CD" />
-    <property name="param66" value="ORD_WTH_MNG_CD" />
-    <property name="param67" value="ORD_LTH_MNG_CD" />
-    <property name="param68" value="CUS_REQ_CLR_NM" />
-    <property name="param69" value="URG_MTL_TP" />
-    <property name="param70" value="ORD_RCP_DD" />
-    <property name="param71" value="ORD_SHT_LOD_MTH" />
-    <property name="param72" value="ORD_SLIT_GRP_CNT" />
-    <property name="param73" value="ORD_MIX_WTH1" />
-    <property name="param74" value="ORD_MIX_WTH2" />
-    <property name="param75" value="ORD_MIX_WTH3" />
-    <property name="param76" value="ORD_MIX_WTH4" />
-    <property name="param77" value="ORD_MIX_WTH5" />
-    <property name="param78" value="ORD_MIX_WTH6" />
-    <property name="param79" value="ORD_MIX_WTH7" />
-    <property name="param80" value="ORD_MIX_WTH8" />
-    <property name="param81" value="ORD_MIX_WTH9" />
-    <property name="param82" value="ORD_MIX_WTH10" />
-    <property name="param0" value="ORD_NO" />
-    <property name="param83" value="SLIT_MAX_WGT" />
-    <property name="param1" value="ORD_LN" />
-    <property name="param84" value="TRST_PROC_YN" />
-    <property name="param2" value="PLNT_TP" />
-    <property name="param85" value="TAG_TP" />
-    <property name="param3" value="PRD_NM_CD" />
-    <property name="param86" value="NAT_CD" />
-    <property name="param4" value="PRD_SHP" />
-    <property name="param87" value="ORD_SPC_TXT" />
-    <property name="param5" value="FLOW_CHL" />
-    <property name="param88" value="BAK_MRK" />
-    <property name="param6" value="ORD_KND" />
-    <property name="param89" value="ORD_CFM_DD" />
-    <property name="param7" value="ORD_USG_CD" />
-    <property name="param8" value="CUS_CD" />
-    <property name="param9" value="ACT_CUS_CD" />
-    <property name="param90" value="ORD_RGS_PRS_ID" />
-    <property name="param91" value="ORD_TEM_CD" />
-    <property name="param92" value="MTL_CD" />
-    <property name="param93" value="TAG_PRD_NM" />
-    <property name="param94" value="TAG_PO_NO" />
-    <property name="param95" value="TAG_DST" />
-    <property name="param96" value="TAG_SIZ" />
-    <property name="param97" value="TAG_SPC_NM" />
-    <property name="param98" value="TAG_GAA" />
-    <property name="param99" value="TAG_HUE_FRN" />
-    <property name="param10" value="FNL_CUS_CD" />
-    <property name="param11" value="CUS_BTH_PAP_NO" />
-    <property name="param12" value="SPC_AVR" />
-    <property name="param100" value="TAG_HUE_BAK" />
-    <property name="param13" value="SPC_YR" />
-    <property name="param101" value="TAG_SPC_MRK" />
-    <property name="param14" value="ORD_SZ" />
-    <property name="param102" value="RMTL_PRFR_CD" />
-    <property name="param15" value="ORD_EXC_THK" />
-    <property name="param103" value="QLT_DSN_YN" />
-    <property name="param16" value="ORD_EXC_WTH" />
-    <property name="param104" value="TAG_PO_NO2" />
-    <property name="param17" value="ORD_EXC_LTH" />
-    <property name="param105" value="CTR_SHPM_MN" />
-    <property name="param18" value="CUS_REQ_DLV_DD" />
-    <property name="param106" value="SVC_CRD_PUB_YN" />
-    <property name="param19" value="ORD_SCH_DLV_DD" />
-    <property name="param107" value="PAK_MSG_CD" />
-    <property name="param108" value="ORD_TEM_GRP_CD" />
-    <property name="param109" value="PTT_FLM_NOT_ADH_WS" />
-  </activity>
-  <activity name="INSERT_MSG" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="INSERT_MSG1" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.MSGinsert" />
+    <property name="sqlkey" value="C102100CCL_BOM.REinsert" />
     <property name="dao" value="mesdao" />
   </activity>
-  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="CHK IF_GRP_ID" />
-    <property name="param-count" value="1" />
-    <property name="param0" value="P_PROC_FLAG|C" />
-  </activity>
-  <activity name="INSERT_CHM" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="INSERT_DEV" />
+  <activity name="INSERT_MSG1" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="INSERT_CMN_RE" />
     <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.CHMinsert" />
+    <property name="sqlkey" value="C102100170.MSG1insert" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="INSERT_MQL" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="INSERT_PROC" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="sqlkey" value="C102100170.MQLinsert" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="MODIFY_IF" class="com.posdata.glue.biz.activity.PosModify">
@@ -184,31 +39,6 @@
     <property name="sqlkey" value="B10R0030.modify" />
     <property name="param3" value="IF_GRP_ID" />
     <property name="param4" value="SEQ_NO" />
-  </activity>
-  <activity name="COMMIT_IF" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
-    <transition name="success" value="CHK JOB STATUS" />
-    <property name="checkId" value="P_ERR_KEY" />
-    <property name="txname" value="tx2" />
-    <property name="exitFlag" value="N" />
-  </activity>
-  <activity name="CALL_JOB" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
-    <transition name="success" value="end" />
-    <property name="new-transaction" value="false" />
-    <property name="ServiceName" value="C102100000-service" />
-  </activity>
-  <activity name="SET_SMS" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="CALL_JOB" />
-    <property name="param-count" value="1" />
-    <property name="param0" value="RE_QLT_DSN_TP|N" />
-  </activity>
-  <activity name="CCL_BOM_CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="N" value="STAT_SET_S" />
-    <transition name="Y" value="UPDATE_CMN" />
-    <property name="param1" value="sp_null" />
-    <property name="param2" value="N" />
-    <property name="param3" value="Y" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="CCL_BOM_NO" />
   </activity>
   <activity name="INSERT_CMN_A" class="com.posdata.glue.biz.activity.PosInsert">
     <transition name="failure" value="PROC_LOOP" />
@@ -333,181 +163,14 @@
     <property name="param58" value="ORD_COIL_ODIA" />
     <property name="param59" value="ORD_THK_TLN_LLV" />
   </activity>
-  <activity name="STAT_SET_E" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="MODIFY_IF" />
-    <property name="param0" value="XSTAT|E" />
-    <property name="param1" value="XMSGS|품질설계DB에 해당주문번호가 등록되어 있습니다!" />
-    <property name="param2" value="XSTAT_CALLBACK|R" />
-    <property name="param-count" value="3" />
-  </activity>
-  <activity name="INSERT_CMN_RE" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="CCL_BOM_CHK_RE" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.CMNinsert" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="CHK IF_GRP_ID" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="true" value="SEARCH_DALL" />
-    <transition name="false" value="SEARCH" />
+  <activity name="ORD_TXT_CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="T" value="COLOR PRD CHK" />
+    <transition name="F" value="INSERT_CMN" />
     <property name="param1" value="sp_null" />
-    <property name="param2" value="true" />
-    <property name="param3" value="false" />
+    <property name="param2" value="T" />
+    <property name="param3" value="F" />
     <property name="param-count" value="4" />
-    <property name="param0" value="IF_GRP_ID" />
-  </activity>
-  <activity name="INSERT_MSG1" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="INSERT_CMN_RE" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.MSG1insert" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <transaction-manager id="tx1" commit="true" />
-  <transaction-manager id="tx2" commit="true" />
-  <activity name="ROUTER_REP_ORD" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="R" value="ORD_TXT_CHK" />
-    <transition name="J" value="INSERT_CMN" />
-    <property name="param1" value="X" />
-    <property name="param2" value="R" />
-    <property name="param3" value="J" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="ORD_REP_YN" />
-  </activity>
-  <activity name="CHK_CNT_REP_CMN" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
-    <transition name="true" value="INSERT_RMT" />
-    <transition name="false" value="INSERT_CMN_RE2" />
-    <property name="param43" value="ORD_PTT_FLM_WTH" />
-    <property name="param44" value="ORD_PTT_FLM_WTH" />
-    <property name="param45" value="ORD_PTT_FLM_ADH_LOC_CD" />
-    <property name="param46" value="ORD_PTT_FLM_ADH_LOC_CD" />
-    <property name="param47" value="ORD_WGT_UNT" />
-    <property name="param48" value="ORD_PAK_SHT_CNT" />
-    <property name="param49" value="ORD_PAK_SHT_CNT" />
-    <property name="dao" value="mesdao" />
-    <property name="param100" value="TAG_TP" />
-    <property name="param101" value="TAG_TP" />
-    <property name="param102" value="NAT_CD" />
-    <property name="param103" value="MTL_PRD_ORD_YN" />
-    <property name="param104" value="MTL_PRD_ORD_YN" />
-    <property name="param105" value="CUS_REQ_CLR_NM" />
-    <property name="param106" value="CUS_REQ_CLR_NM" />
-    <property name="param107" value="PAK_MSG_CD" />
-    <property name="param108" value="PAK_MSG_CD" />
-    <property name="param109" value="ORD_MIX_WTH9" />
-    <property name="param50" value="ORD_PAK_UNT_WGT_LLV" />
-    <property name="param51" value="ORD_PAK_UNT_WGT_LLV" />
-    <property name="param52" value="ORD_PAK_UNT_WGT_ULV" />
-    <property name="param53" value="ORD_PAK_UNT_WGT_ULV" />
-    <property name="param54" value="ORD_PAK_LTH_LLV" />
-    <property name="param55" value="ORD_PAK_LTH_LLV" />
-    <property name="param56" value="ORD_PAK_LTH_ULV" />
-    <property name="param57" value="ORD_PAK_LTH_ULV" />
-    <property name="param58" value="ORD_STDP_CNT_LLV" />
-    <property name="param59" value="ORD_STDP_CNT_LLV" />
-    <property name="param110" value="ORD_MIX_WTH9" />
-    <property name="param111" value="ORD_MIX_WTH10" />
-    <property name="param112" value="ORD_MIX_WTH10" />
-    <property name="param113" value="PTT_FLM_NOT_ADH_WS" />
-    <property name="param114" value="PTT_FLM_NOT_ADH_WS" />
-    <property name="param115" value="PTT_FLM_NOT_ADH_DS" />
-    <property name="param116" value="PTT_FLM_NOT_ADH_DS" />
-    <property name="param117" value="LTH_MNG_YN" />
-    <property name="param118" value="LTH_MNG_YN" />
-    <property name="param119" value="LTH_MNG_FROM" />
-    <property name="param60" value="ORD_STDP_CNT_ULV" />
-    <property name="param61" value="ORD_STDP_CNT_ULV" />
-    <property name="param62" value="ORD_PAK_UNT_WGT" />
-    <property name="param63" value="ORD_PAK_UNT_WGT" />
-    <property name="param64" value="ORD_PAK_MTH" />
-    <property name="param65" value="ORD_COIL_IDIA" />
-    <property name="param66" value="ORD_COIL_IDIA" />
-    <property name="param67" value="ORD_COIL_ODIA" />
-    <property name="param68" value="ORD_COIL_ODIA" />
-    <property name="param69" value="ORD_THK_MNG_CD" />
-    <property name="param120" value="LTH_MNG_FROM" />
-    <property name="param121" value="LTH_MNG_TO" />
-    <property name="param122" value="LTH_MNG_TO" />
-    <property name="param70" value="ORD_WTH_MNG_CD" />
-    <property name="param71" value="ORD_LTH_MNG_CD" />
-    <property name="param72" value="ORD_LTH_MNG_CD" />
-    <property name="param73" value="ORD_SHT_LOD_MTH" />
-    <property name="param74" value="ORD_SHT_LOD_MTH" />
-    <property name="param75" value="ORD_SLIT_GRP_CNT" />
-    <property name="param76" value="ORD_SLIT_GRP_CNT" />
-    <property name="param77" value="ORD_MIX_WTH1" />
-    <property name="param78" value="ORD_MIX_WTH1" />
-    <property name="param79" value="ORD_MIX_WTH2" />
-    <property name="param-count" value="123" />
-    <property name="param80" value="ORD_MIX_WTH2" />
-    <property name="param81" value="ORD_MIX_WTH3" />
-    <property name="param82" value="ORD_MIX_WTH3" />
-    <property name="param83" value="ORD_MIX_WTH4" />
-    <property name="param84" value="ORD_MIX_WTH4" />
-    <property name="param85" value="ORD_MIX_WTH5" />
-    <property name="param86" value="ORD_MIX_WTH5" />
-    <property name="param87" value="ORD_MIX_WTH6" />
-    <property name="param88" value="ORD_MIX_WTH6" />
-    <property name="param89" value="ORD_MIX_WTH7" />
-    <property name="param90" value="ORD_MIX_WTH7" />
-    <property name="param91" value="ORD_MIX_WTH8" />
-    <property name="param92" value="ORD_MIX_WTH8" />
-    <property name="param93" value="SLIT_MAX_WGT" />
-    <property name="param94" value="SLIT_MAX_WGT" />
-    <property name="param95" value="TRST_PROC_YN" />
-    <property name="param96" value="TRST_PROC_YN" />
-    <property name="param97" value="ORD_SPC_TXT" />
-    <property name="param98" value="ORD_SPC_TXT" />
-    <property name="param10" value="FNL_CUS_CD" />
-    <property name="param99" value="MTL_CD" />
-    <property name="param11" value="CUS_BTH_PAP_NO" />
-    <property name="param12" value="CUS_BTH_PAP_NO" />
-    <property name="param13" value="SPC_AVR" />
-    <property name="param14" value="SPC_YR" />
-    <property name="param15" value="ORD_SZ" />
-    <property name="param16" value="ORD_EXC_THK" />
-    <property name="param17" value="ORD_EXC_WTH" />
-    <property name="param18" value="ORD_EXC_LTH" />
-    <property name="param19" value="ORD_EXC_LTH" />
-    <property name="param0" value="ORD_REP_NO" />
-    <property name="param1" value="ORD_REP_LN" />
-    <property name="param2" value="PRD_NM_CD" />
-    <property name="param3" value="PLNT_TP" />
-    <property name="param4" value="PRD_SHP" />
-    <property name="param5" value="FLOW_CHL" />
-    <property name="param6" value="ORD_KND" />
-    <property name="param7" value="ORD_USG_CD" />
-    <property name="param8" value="CUS_CD" />
-    <property name="param9" value="ACT_CUS_CD" />
-    <property name="param20" value="GW_ASG_CD" />
-    <property name="param21" value="GW_ASG_CD" />
-    <property name="param22" value="ORD_ORG_PLT_SPC_AVR" />
-    <property name="param23" value="ORD_ORG_PLT_SPC_AVR" />
-    <property name="param24" value="ORD_ROU_CD" />
-    <property name="param25" value="ORD_ROU_CD" />
-    <property name="param26" value="ORD_SPNL_TP" />
-    <property name="param27" value="ORD_SPNL_TP" />
-    <property name="param28" value="ORD_COILG_MTH" />
-    <property name="param29" value="ORD_COILG_MTH" />
-    <property name="sqlkey" value="C102100CMN.Dselect" />
-    <property name="param30" value="ORD_SUR_HND_CD" />
-    <property name="param31" value="ORD_SUR_HND_CD" />
-    <property name="param32" value="ORD_SKP_DEG" />
-    <property name="param33" value="ORD_SKP_DEG" />
-    <property name="param34" value="ORD_EDG_ASG_TP" />
-    <property name="param35" value="ORD_THK_TP" />
-    <property name="param36" value="WGT_DCS_MTH_TP" />
-    <property name="param37" value="ORD_SLV_KND_TP" />
-    <property name="param38" value="ORD_SLV_KND_TP" />
-    <property name="param39" value="EMBS_CD" />
-    <property name="param40" value="EMBS_CD" />
-    <property name="param41" value="ORD_PTT_FLM_DTL_CD" />
-    <property name="param42" value="ORD_PTT_FLM_DTL_CD" />
-  </activity>
-  <activity name="SEARCH_DALL" class="com.posdata.glue.biz.activity.PosSearch">
-    <transition name="success" value="PROC_LOOP" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="B10R0030.BAKselect" />
-    <property name="param-count" value="0" />
-    <property name="resultkey" value="RK_SEARCH" />
+    <property name="param0" value="ORD_SPC_TXT" />
   </activity>
   <activity name="STAT_SET_S" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
     <transition name="success" value="MODIFY_IF" />
@@ -516,44 +179,12 @@
     <property name="param2" value="XSTAT_CALLBACK|sp_null" />
     <property name="param-count" value="3" />
   </activity>
-  <activity name="COLOR PRD CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="Y" value="CHK_CNT_REP_CMN_CLR" />
-    <transition name="N" value="CHK_CNT_REP_CMN" />
-    <property name="param1" value="sp_null" />
-    <property name="param2" value="N" />
-    <property name="param3" value="Y" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="CCL_BOM_NO" />
-  </activity>
-  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
-    <transition name="failure" value="end" />
+  <activity name="SEARCH_DALL" class="com.posdata.glue.biz.activity.PosSearch">
     <transition name="success" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0030.BAKselect" />
+    <property name="param-count" value="0" />
     <property name="resultkey" value="RK_SEARCH" />
-    <property name="dao" value="mesdao" />
-    <property name="param-count" value="1" />
-    <property name="sqlkey" value="B10R0030.select" />
-    <property name="param0" value="IF_GRP_ID" />
-  </activity>
-  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
-    <transition name="success" value="COMMIT_IF" />
-    <property name="checkId" value="P_ERR_KEY" />
-    <property name="txname" value="tx1" />
-    <property name="exitFlag" value="N" />
-  </activity>
-  <activity name="INSERT_CCL_BOM" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="STAT_SET_S" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100CCL_BOM.REinsert" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="CCL_BOM_CHK_RE" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="Y" value="INSERT_CCL_BOM" />
-    <transition name="N" value="STAT_SET_S" />
-    <property name="param1" value="sp_null" />
-    <property name="param2" value="N" />
-    <property name="param3" value="Y" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="CCL_BOM_NO" />
   </activity>
   <activity name="INSERT_RMT" class="com.posdata.glue.biz.activity.PosInsertByName">
     <transition name="success" value="INSERT_CHM" />
@@ -561,11 +192,36 @@
     <property name="sqlkey" value="C102100170.RMTinsert" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="ROUTER_DSN" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="A" value="INSERT_CMN_A" />
+    <transition name="J" value="ROUTER_REP_ORD" />
+    <property name="param1" value="Y" />
+    <property name="param2" value="J" />
+    <property name="param3" value="A" />
+    <property name="param-count" value="4" />
+    <property name="param0" value="QLT_DSN_YN" />
+  </activity>
   <activity name="INSERT_MNF" class="com.posdata.glue.biz.activity.PosInsertByName">
     <transition name="success" value="INSERT_MQL" />
     <property name="resultkey" value="RK_RESULT" />
     <property name="sqlkey" value="C102100170.MNFinsert" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="STAT_SET_E_1" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|E" />
+    <property name="param1" value="XMSGS|주문번호가 없습니다." />
+    <property name="param2" value="XSTAT_CALLBACK|R" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="ROUTER_REP_ORD" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="R" value="ORD_TXT_CHK" />
+    <transition name="J" value="INSERT_CMN" />
+    <property name="param1" value="X" />
+    <property name="param2" value="R" />
+    <property name="param3" value="J" />
+    <property name="param-count" value="4" />
+    <property name="param0" value="ORD_REP_YN" />
   </activity>
   <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
     <transition name="success" value="CHECK_CNT_CMN" />
@@ -713,14 +369,218 @@
     <property name="param106" value="TAG_DST|TAG_DST" />
     <property name="param107" value="TAG_SIZ|TAG_SIZ" />
   </activity>
-  <activity name="ROUTER_ORD_LN" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="success" value="ROUTER_DSN" />
-    <transition name="error" value="STAT_SET_E2" />
+  <activity name="UPDATE_CMN" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="STAT_SET_S" />
+    <property name="dao" value="mesdao" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="isAudit" value="true" />
+    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C102100CMN.CCL_modify5" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="INSERT_CMN_RE2" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="success" value="STAT_SET_S" />
+    <property name="param20" value="GW_ASG_CD" />
+    <property name="param21" value="CCL_BOM_NO" />
+    <property name="param22" value="HUE_CD_FRN" />
+    <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
+    <property name="param23" value="HUE_CD_BAK" />
+    <property name="param111" value="TAG_PART_NO" />
+    <property name="param24" value="ORD_ORG_PLT_SPC_AVR" />
+    <property name="param112" value="MO_CVT_ORD_YN" />
+    <property name="param25" value="ORD_ROU_CD" />
+    <property name="param113" value="MTL_PRD_ORD_YN" />
+    <property name="param26" value="ORD_SPNL_TP" />
+    <property name="param114" value="ORD_DSN_CFM_TP" />
+    <property name="param27" value="ORD_COILG_MTH" />
+    <property name="param115" value="LTH_MNG_YN" />
+    <property name="sqlkey" value="C102100CMN.insert" />
+    <property name="param28" value="ORD_SUR_HND_CD" />
+    <property name="param116" value="LTH_MNG_FROM" />
+    <property name="param29" value="ORD_SKP_DEG" />
+    <property name="param117" value="LTH_MNG_TO" />
+    <property name="param118" value="BORON_ADD_YN" />
+    <property name="param119" value="ORD_REP_YN" />
+    <property name="dao" value="mesdao" />
+    <property name="param30" value="ORD_EDG_ASG_TP" />
+    <property name="param31" value="ORD_THK_TP" />
+    <property name="param32" value="WGT_DCS_MTH_TP" />
+    <property name="param120" value="ORD_REP_NO" />
+    <property name="param33" value="ORD_SLV_KND_TP" />
+    <property name="param121" value="ORD_REP_LN" />
+    <property name="param34" value="EMBS_CD" />
+    <property name="param122" value="WIP_PAK_MTH" />
+    <property name="param35" value="ORD_PTT_FLM_CD" />
+    <property name="param123" value="OT_TC_YN" />
+    <property name="param36" value="ORD_PTT_FLM_WTH" />
+    <property name="param124" value="PRT_INKJT_FILE" />
+    <property name="param37" value="ORD_PTT_FLM_ADH_LOC_CD" />
+    <property name="param125" value="POC_AUTO_YN" />
+    <property name="param38" value="ORD_WGT_UNT" />
+    <property name="param126" value="POC_CGL_YN" />
+    <property name="param39" value="ORD_LN_WGT" />
+    <property name="param127" value="POC_CCL_YN" />
+    <property name="param-count" value="128" />
+    <property name="param40" value="ORD_SHT_CNT" />
+    <property name="param41" value="ORD_PAK_SHT_CNT" />
+    <property name="param42" value="ORD_PAK_UNT_WGT_LLV" />
+    <property name="param43" value="ORD_PAK_UNT_WGT_ULV" />
+    <property name="param44" value="ORD_DLV_ALW_DIF_LLV" />
+    <property name="param45" value="ORD_DLV_ALW_DIF_ULV" />
+    <property name="param46" value="ORD_PAK_LTH_LLV" />
+    <property name="param47" value="ORD_PAK_LTH_ULV" />
+    <property name="param48" value="ORD_STDP_LLV" />
+    <property name="param49" value="ORD_STDP_ULV" />
+    <property name="isAudit" value="true" />
+    <property name="param50" value="ORD_STDP_CNT_LLV" />
+    <property name="param51" value="ORD_STDP_CNT_ULV" />
+    <property name="param52" value="ORD_PAK_UNT_WGT" />
+    <property name="param53" value="ORD_SML_PAK_WGT" />
+    <property name="param54" value="ORD_SML_PAK_MIR" />
+    <property name="param55" value="ORD_UNT_WGT" />
+    <property name="param56" value="ORD_PAK_MTH" />
+    <property name="param57" value="ORD_COIL_IDIA" />
+    <property name="param58" value="ORD_COIL_ODIA" />
+    <property name="param59" value="ORD_THK_TLN_LLV" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param60" value="ORD_THK_TLN_ULV" />
+    <property name="param61" value="ORD_WTH_TLN_LLV" />
+    <property name="param62" value="ORD_WTH_TLN_ULV" />
+    <property name="param63" value="ORD_LTH_TLN_LLV" />
+    <property name="param64" value="ORD_LTH_TLN_ULV" />
+    <property name="param65" value="ORD_THK_MNG_CD" />
+    <property name="param66" value="ORD_WTH_MNG_CD" />
+    <property name="param67" value="ORD_LTH_MNG_CD" />
+    <property name="param68" value="CUS_REQ_CLR_NM" />
+    <property name="param69" value="URG_MTL_TP" />
+    <property name="param70" value="ORD_RCP_DD" />
+    <property name="param71" value="ORD_SHT_LOD_MTH" />
+    <property name="param72" value="ORD_SLIT_GRP_CNT" />
+    <property name="param73" value="ORD_MIX_WTH1" />
+    <property name="param74" value="ORD_MIX_WTH2" />
+    <property name="param75" value="ORD_MIX_WTH3" />
+    <property name="param76" value="ORD_MIX_WTH4" />
+    <property name="param77" value="ORD_MIX_WTH5" />
+    <property name="param78" value="ORD_MIX_WTH6" />
+    <property name="param79" value="ORD_MIX_WTH7" />
+    <property name="param80" value="ORD_MIX_WTH8" />
+    <property name="param81" value="ORD_MIX_WTH9" />
+    <property name="param82" value="ORD_MIX_WTH10" />
+    <property name="param0" value="ORD_NO" />
+    <property name="param83" value="SLIT_MAX_WGT" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param84" value="TRST_PROC_YN" />
+    <property name="param2" value="PLNT_TP" />
+    <property name="param85" value="TAG_TP" />
+    <property name="param3" value="PRD_NM_CD" />
+    <property name="param86" value="NAT_CD" />
+    <property name="param4" value="PRD_SHP" />
+    <property name="param87" value="ORD_SPC_TXT" />
+    <property name="param5" value="FLOW_CHL" />
+    <property name="param88" value="BAK_MRK" />
+    <property name="param6" value="ORD_KND" />
+    <property name="param89" value="ORD_CFM_DD" />
+    <property name="param7" value="ORD_USG_CD" />
+    <property name="param8" value="CUS_CD" />
+    <property name="param9" value="ACT_CUS_CD" />
+    <property name="param90" value="ORD_RGS_PRS_ID" />
+    <property name="param91" value="ORD_TEM_CD" />
+    <property name="param92" value="MTL_CD" />
+    <property name="param93" value="TAG_PRD_NM" />
+    <property name="param94" value="TAG_PO_NO" />
+    <property name="param95" value="TAG_DST" />
+    <property name="param96" value="TAG_SIZ" />
+    <property name="param97" value="TAG_SPC_NM" />
+    <property name="param98" value="TAG_GAA" />
+    <property name="param99" value="TAG_HUE_FRN" />
+    <property name="param10" value="FNL_CUS_CD" />
+    <property name="param11" value="CUS_BTH_PAP_NO" />
+    <property name="param12" value="SPC_AVR" />
+    <property name="param100" value="TAG_HUE_BAK" />
+    <property name="param13" value="SPC_YR" />
+    <property name="param101" value="TAG_SPC_MRK" />
+    <property name="param14" value="ORD_SZ" />
+    <property name="param102" value="RMTL_PRFR_CD" />
+    <property name="param15" value="ORD_EXC_THK" />
+    <property name="param103" value="QLT_DSN_YN" />
+    <property name="param16" value="ORD_EXC_WTH" />
+    <property name="param104" value="TAG_PO_NO2" />
+    <property name="param17" value="ORD_EXC_LTH" />
+    <property name="param105" value="CTR_SHPM_MN" />
+    <property name="param18" value="CUS_REQ_DLV_DD" />
+    <property name="param106" value="SVC_CRD_PUB_YN" />
+    <property name="param19" value="ORD_SCH_DLV_DD" />
+    <property name="param107" value="PAK_MSG_CD" />
+    <property name="param108" value="ORD_TEM_GRP_CD" />
+    <property name="param109" value="PTT_FLM_NOT_ADH_WS" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="COMMIT_IF" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="CHK JOB STATUS" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="CHK IF_GRP_ID" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="true" value="SEARCH_DALL" />
+    <transition name="false" value="SEARCH" />
     <property name="param1" value="sp_null" />
-    <property name="param2" value="error" />
-    <property name="param3" value="success" />
+    <property name="param2" value="true" />
+    <property name="param3" value="false" />
     <property name="param-count" value="4" />
-    <property name="param0" value="ORD_LN" />
+    <property name="param0" value="IF_GRP_ID" />
+  </activity>
+  <activity name="INSERT_DEV" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="INSERT_MNF" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="sqlkey" value="C102100170.DLVinsert" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="COMMIT_IF" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx1" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="INSERT_CHM" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="INSERT_DEV" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="sqlkey" value="C102100170.CHMinsert" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="COLOR PRD CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="Y" value="CHK_CNT_REP_CMN_CLR" />
+    <transition name="N" value="CHK_CNT_REP_CMN" />
+    <property name="param1" value="sp_null" />
+    <property name="param2" value="N" />
+    <property name="param3" value="Y" />
+    <property name="param-count" value="4" />
+    <property name="param0" value="CCL_BOM_NO" />
+  </activity>
+  <activity name="STAT_SET_E2" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|E" />
+    <property name="param1" value="XMSGS|주문행번이 없습니다." />
+    <property name="param2" value="XSTAT_CALLBACK|R" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="CCL_BOM_CHK" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="N" value="STAT_SET_S" />
+    <transition name="Y" value="UPDATE_CMN" />
+    <property name="param1" value="sp_null" />
+    <property name="param2" value="N" />
+    <property name="param3" value="Y" />
+    <property name="param-count" value="4" />
+    <property name="param0" value="CCL_BOM_NO" />
+  </activity>
+  <activity name="STAT_SET_E" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|E" />
+    <property name="param1" value="XMSGS|품질설계DB에 해당주문번호가 등록되어 있습니다!" />
+    <property name="param2" value="XSTAT_CALLBACK|R" />
+    <property name="param-count" value="3" />
   </activity>
   <activity name="CHK_CNT_REP_CMN_CLR" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
     <transition name="true" value="INSERT_RMT" />
@@ -858,150 +718,10 @@
     <property name="param29" value="ORD_ORG_PLT_SPC_AVR" />
     <property name="param119" value="PTT_FLM_NOT_ADH_WS" />
   </activity>
-  <activity name="INSERT_CMN_RE2" class="com.posdata.glue.biz.activity.PosInsert">
-    <transition name="success" value="STAT_SET_S" />
-    <property name="param21" value="CCL_BOM_NO" />
-    <property name="param72" value="ORD_SLIT_GRP_CNT" />
-    <property name="param22" value="HUE_CD_FRN" />
-    <property name="param73" value="ORD_MIX_WTH1" />
-    <property name="param23" value="HUE_CD_BAK" />
-    <property name="dao" value="mesdao" />
-    <property name="param74" value="ORD_MIX_WTH2" />
-    <property name="param24" value="ORD_ORG_PLT_SPC_AVR" />
-    <property name="param75" value="ORD_MIX_WTH3" />
-    <property name="param25" value="ORD_ROU_CD" />
-    <property name="param76" value="ORD_MIX_WTH4" />
-    <property name="param26" value="ORD_SPNL_TP" />
-    <property name="param77" value="ORD_MIX_WTH5" />
-    <property name="param27" value="ORD_COILG_MTH" />
-    <property name="param78" value="ORD_MIX_WTH6" />
-    <property name="param28" value="ORD_SUR_HND_CD" />
-    <property name="param79" value="ORD_MIX_WTH7" />
-    <property name="param29" value="ORD_SKP_DEG" />
-    <property name="param80" value="ORD_MIX_WTH8" />
-    <property name="param30" value="ORD_EDG_ASG_TP" />
-    <property name="param81" value="ORD_MIX_WTH9" />
-    <property name="param31" value="ORD_THK_TP" />
-    <property name="param82" value="ORD_MIX_WTH10" />
-    <property name="param32" value="WGT_DCS_MTH_TP" />
-    <property name="param83" value="SLIT_MAX_WGT" />
-    <property name="param33" value="ORD_SLV_KND_TP" />
-    <property name="param84" value="TRST_PROC_YN" />
-    <property name="param34" value="EMBS_CD" />
-    <property name="param85" value="TAG_TP" />
-    <property name="param35" value="ORD_PTT_FLM_CD" />
-    <property name="param86" value="NAT_CD" />
-    <property name="param36" value="ORD_PTT_FLM_WTH" />
-    <property name="param87" value="ORD_SPC_TXT" />
-    <property name="param37" value="ORD_PTT_FLM_ADH_LOC_CD" />
-    <property name="param88" value="BAK_MRK" />
-    <property name="param38" value="ORD_WGT_UNT" />
-    <property name="param89" value="ORD_CFM_DD" />
-    <property name="param39" value="ORD_LN_WGT" />
-    <property name="sqlkey" value="C102100CMN.insert" />
-    <property name="param100" value="TAG_HUE_BAK" />
-    <property name="param101" value="TAG_SPC_MRK" />
-    <property name="param102" value="RMTL_PRFR_CD" />
-    <property name="param103" value="QLT_DSN_YN" />
-    <property name="param90" value="ORD_RGS_PRS_ID" />
-    <property name="param104" value="TAG_PO_NO2" />
-    <property name="param40" value="ORD_SHT_CNT" />
-    <property name="param91" value="ORD_TEM_CD" />
-    <property name="param105" value="CTR_SHPM_MN" />
-    <property name="param41" value="ORD_PAK_SHT_CNT" />
-    <property name="param92" value="MTL_CD" />
-    <property name="param106" value="SVC_CRD_PUB_YN" />
-    <property name="param42" value="ORD_PAK_UNT_WGT_LLV" />
-    <property name="param93" value="TAG_PRD_NM" />
-    <property name="param107" value="PAK_MSG_CD" />
-    <property name="param43" value="ORD_PAK_UNT_WGT_ULV" />
-    <property name="param94" value="TAG_PO_NO" />
-    <property name="param108" value="ORD_TEM_GRP_CD" />
-    <property name="param44" value="ORD_DLV_ALW_DIF_LLV" />
-    <property name="param95" value="TAG_DST" />
-    <property name="param109" value="PTT_FLM_NOT_ADH_WS" />
-    <property name="param45" value="ORD_DLV_ALW_DIF_ULV" />
-    <property name="param96" value="TAG_SIZ" />
-    <property name="param46" value="ORD_PAK_LTH_LLV" />
-    <property name="param97" value="TAG_SPC_NM" />
-    <property name="param47" value="ORD_PAK_LTH_ULV" />
-    <property name="param98" value="TAG_GAA" />
-    <property name="param48" value="ORD_STDP_LLV" />
-    <property name="param99" value="TAG_HUE_FRN" />
-    <property name="param49" value="ORD_STDP_ULV" />
-    <property name="param-count" value="128" />
-    <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
-    <property name="param111" value="TAG_PART_NO" />
-    <property name="param112" value="MO_CVT_ORD_YN" />
-    <property name="param113" value="MTL_PRD_ORD_YN" />
-    <property name="param114" value="ORD_DSN_CFM_TP" />
-    <property name="param50" value="ORD_STDP_CNT_LLV" />
-    <property name="param115" value="LTH_MNG_YN" />
-    <property name="param51" value="ORD_STDP_CNT_ULV" />
-    <property name="param116" value="LTH_MNG_FROM" />
-    <property name="param52" value="ORD_PAK_UNT_WGT" />
-    <property name="param117" value="LTH_MNG_TO" />
-    <property name="param53" value="ORD_SML_PAK_WGT" />
-    <property name="param118" value="BORON_ADD_YN" />
-    <property name="param54" value="ORD_SML_PAK_MIR" />
-    <property name="param119" value="ORD_REP_YN" />
-    <property name="param55" value="ORD_UNT_WGT" />
-    <property name="param56" value="ORD_PAK_MTH" />
-    <property name="param57" value="ORD_COIL_IDIA" />
-    <property name="param58" value="ORD_COIL_ODIA" />
-    <property name="param59" value="ORD_THK_TLN_LLV" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="param120" value="ORD_REP_NO" />
-    <property name="param121" value="ORD_REP_LN" />
-    <property name="param122" value="WIP_PAK_MTH" />
-    <property name="param123" value="OT_TC_YN" />
-    <property name="param124" value="PRT_INKJT_FILE" />
-    <property name="param60" value="ORD_THK_TLN_ULV" />
-    <property name="param125" value="POC_AUTO_YN" />
-    <property name="param61" value="ORD_WTH_TLN_LLV" />
-    <property name="param10" value="FNL_CUS_CD" />
-    <property name="param126" value="POC_CGL_YN" />
-    <property name="param62" value="ORD_WTH_TLN_ULV" />
-    <property name="param11" value="CUS_BTH_PAP_NO" />
-    <property name="param127" value="POC_CCL_YN" />
-    <property name="param63" value="ORD_LTH_TLN_LLV" />
-    <property name="param12" value="SPC_AVR" />
-    <property name="param64" value="ORD_LTH_TLN_ULV" />
-    <property name="param13" value="SPC_YR" />
-    <property name="param14" value="ORD_SZ" />
-    <property name="param65" value="ORD_THK_MNG_CD" />
-    <property name="param15" value="ORD_EXC_THK" />
-    <property name="param66" value="ORD_WTH_MNG_CD" />
-    <property name="param16" value="ORD_EXC_WTH" />
-    <property name="param67" value="ORD_LTH_MNG_CD" />
-    <property name="param17" value="ORD_EXC_LTH" />
-    <property name="param68" value="CUS_REQ_CLR_NM" />
-    <property name="param18" value="CUS_REQ_DLV_DD" />
-    <property name="param69" value="URG_MTL_TP" />
-    <property name="param19" value="ORD_SCH_DLV_DD" />
-    <property name="isAudit" value="true" />
-    <property name="param0" value="ORD_NO" />
-    <property name="param1" value="ORD_LN" />
-    <property name="param2" value="PLNT_TP" />
-    <property name="param3" value="PRD_NM_CD" />
-    <property name="param4" value="PRD_SHP" />
-    <property name="param5" value="FLOW_CHL" />
-    <property name="param6" value="ORD_KND" />
-    <property name="param7" value="ORD_USG_CD" />
-    <property name="param8" value="CUS_CD" />
-    <property name="param9" value="ACT_CUS_CD" />
-    <property name="param70" value="ORD_RCP_DD" />
-    <property name="param20" value="GW_ASG_CD" />
-    <property name="param71" value="ORD_SHT_LOD_MTH" />
-  </activity>
-  <activity name="ROUTER_ORD_NO" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
-    <transition name="success" value="ROUTER_ORD_LN" />
-    <transition name="error" value="STAT_SET_E_1" />
-    <property name="param1" value="sp_null" />
-    <property name="param2" value="error" />
-    <property name="param3" value="success" />
-    <property name="param-count" value="4" />
-    <property name="param0" value="ORD_NO" />
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="CHK IF_GRP_ID" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
   </activity>
   <activity name="INSERT_PROC" class="com.posdata.glue.biz.activity.PosInsertByName">
     <transition name="success" value="INSERT_MSG" />
@@ -1009,12 +729,174 @@
     <property name="sqlkey" value="C102100170.PROCinsert" />
     <property name="dao" value="mesdao" />
   </activity>
-  <activity name="STAT_SET_E_1" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="MODIFY_IF" />
-    <property name="param0" value="XSTAT|E" />
-    <property name="param1" value="XMSGS|주문번호가 없습니다." />
-    <property name="param2" value="XSTAT_CALLBACK|R" />
-    <property name="param-count" value="3" />
+  <activity name="CALL_JOB" class="com.posdata.glue.biz.activity.PosSubBizControlActivity">
+    <transition name="success" value="end" />
+    <property name="new-transaction" value="false" />
+    <property name="ServiceName" value="C102100000-service" />
+  </activity>
+  <activity name="SET_SMS" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="CALL_JOB" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="RE_QLT_DSN_TP|N" />
+  </activity>
+  <activity name="INSERT_CMN" class="com.posdata.glue.biz.activity.PosInsert">
+    <transition name="failure" value="PROC_LOOP" />
+    <transition name="success" value="CCL_BOM_CHK" />
+    <property name="param20" value="GW_ASG_CD" />
+    <property name="param21" value="CCL_BOM_NO" />
+    <property name="param22" value="HUE_CD_FRN" />
+    <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
+    <property name="param23" value="HUE_CD_BAK" />
+    <property name="param111" value="TAG_PART_NO" />
+    <property name="param24" value="ORD_ORG_PLT_SPC_AVR" />
+    <property name="param112" value="MO_CVT_ORD_YN" />
+    <property name="param25" value="ORD_ROU_CD" />
+    <property name="param113" value="MTL_PRD_ORD_YN" />
+    <property name="param26" value="ORD_SPNL_TP" />
+    <property name="param114" value="ORD_DSN_CFM_TP" />
+    <property name="param27" value="ORD_COILG_MTH" />
+    <property name="param115" value="LTH_MNG_YN" />
+    <property name="sqlkey" value="C102100CMN.insert" />
+    <property name="param28" value="ORD_SUR_HND_CD" />
+    <property name="param116" value="LTH_MNG_FROM" />
+    <property name="param29" value="ORD_SKP_DEG" />
+    <property name="param117" value="LTH_MNG_TO" />
+    <property name="param118" value="BORON_ADD_YN" />
+    <property name="param119" value="ORD_REP_YN" />
+    <property name="dao" value="mesdao" />
+    <property name="param30" value="ORD_EDG_ASG_TP" />
+    <property name="param31" value="ORD_THK_TP" />
+    <property name="param32" value="WGT_DCS_MTH_TP" />
+    <property name="param120" value="ORD_REP_NO" />
+    <property name="param33" value="ORD_SLV_KND_TP" />
+    <property name="param121" value="ORD_REP_LN" />
+    <property name="param34" value="EMBS_CD" />
+    <property name="param122" value="WIP_PAK_MTH" />
+    <property name="param35" value="ORD_PTT_FLM_CD" />
+    <property name="param123" value="OT_TC_YN" />
+    <property name="param36" value="ORD_PTT_FLM_WTH" />
+    <property name="param124" value="PRT_INKJT_FILE" />
+    <property name="param37" value="ORD_PTT_FLM_ADH_LOC_CD" />
+    <property name="param125" value="POC_AUTO_YN" />
+    <property name="param38" value="ORD_WGT_UNT" />
+    <property name="param126" value="POC_CGL_YN" />
+    <property name="param39" value="ORD_LN_WGT" />
+    <property name="param127" value="POC_CCL_YN" />
+    <property name="param-count" value="128" />
+    <property name="param40" value="ORD_SHT_CNT" />
+    <property name="param41" value="ORD_PAK_SHT_CNT" />
+    <property name="param42" value="ORD_PAK_UNT_WGT_LLV" />
+    <property name="param43" value="ORD_PAK_UNT_WGT_ULV" />
+    <property name="param44" value="ORD_DLV_ALW_DIF_LLV" />
+    <property name="param45" value="ORD_DLV_ALW_DIF_ULV" />
+    <property name="param46" value="ORD_PAK_LTH_LLV" />
+    <property name="param47" value="ORD_PAK_LTH_ULV" />
+    <property name="param48" value="ORD_STDP_LLV" />
+    <property name="param49" value="ORD_STDP_ULV" />
+    <property name="isAudit" value="true" />
+    <property name="param50" value="ORD_STDP_CNT_LLV" />
+    <property name="param51" value="ORD_STDP_CNT_ULV" />
+    <property name="param52" value="ORD_PAK_UNT_WGT" />
+    <property name="param53" value="ORD_SML_PAK_WGT" />
+    <property name="param54" value="ORD_SML_PAK_MIR" />
+    <property name="param55" value="ORD_UNT_WGT" />
+    <property name="param56" value="ORD_PAK_MTH" />
+    <property name="param57" value="ORD_COIL_IDIA" />
+    <property name="param58" value="ORD_COIL_ODIA" />
+    <property name="param59" value="ORD_THK_TLN_LLV" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="param60" value="ORD_THK_TLN_ULV" />
+    <property name="param61" value="ORD_WTH_TLN_LLV" />
+    <property name="param62" value="ORD_WTH_TLN_ULV" />
+    <property name="param63" value="ORD_LTH_TLN_LLV" />
+    <property name="param64" value="ORD_LTH_TLN_ULV" />
+    <property name="param65" value="ORD_THK_MNG_CD" />
+    <property name="param66" value="ORD_WTH_MNG_CD" />
+    <property name="param67" value="ORD_LTH_MNG_CD" />
+    <property name="param68" value="CUS_REQ_CLR_NM" />
+    <property name="param69" value="URG_MTL_TP" />
+    <property name="param70" value="ORD_RCP_DD" />
+    <property name="param71" value="ORD_SHT_LOD_MTH" />
+    <property name="param72" value="ORD_SLIT_GRP_CNT" />
+    <property name="param73" value="ORD_MIX_WTH1" />
+    <property name="param74" value="ORD_MIX_WTH2" />
+    <property name="param75" value="ORD_MIX_WTH3" />
+    <property name="param76" value="ORD_MIX_WTH4" />
+    <property name="param77" value="ORD_MIX_WTH5" />
+    <property name="param78" value="ORD_MIX_WTH6" />
+    <property name="param79" value="ORD_MIX_WTH7" />
+    <property name="param80" value="ORD_MIX_WTH8" />
+    <property name="param81" value="ORD_MIX_WTH9" />
+    <property name="param82" value="ORD_MIX_WTH10" />
+    <property name="param0" value="ORD_NO" />
+    <property name="param83" value="SLIT_MAX_WGT" />
+    <property name="param1" value="ORD_LN" />
+    <property name="param84" value="TRST_PROC_YN" />
+    <property name="param2" value="PLNT_TP" />
+    <property name="param85" value="TAG_TP" />
+    <property name="param3" value="PRD_NM_CD" />
+    <property name="param86" value="NAT_CD" />
+    <property name="param4" value="PRD_SHP" />
+    <property name="param87" value="ORD_SPC_TXT" />
+    <property name="param5" value="FLOW_CHL" />
+    <property name="param88" value="BAK_MRK" />
+    <property name="param6" value="ORD_KND" />
+    <property name="param89" value="ORD_CFM_DD" />
+    <property name="param7" value="ORD_USG_CD" />
+    <property name="param8" value="CUS_CD" />
+    <property name="param9" value="ACT_CUS_CD" />
+    <property name="param90" value="ORD_RGS_PRS_ID" />
+    <property name="param91" value="ORD_TEM_CD" />
+    <property name="param92" value="MTL_CD" />
+    <property name="param93" value="TAG_PRD_NM" />
+    <property name="param94" value="TAG_PO_NO" />
+    <property name="param95" value="TAG_DST" />
+    <property name="param96" value="TAG_SIZ" />
+    <property name="param97" value="TAG_SPC_NM" />
+    <property name="param98" value="TAG_GAA" />
+    <property name="param99" value="TAG_HUE_FRN" />
+    <property name="param10" value="FNL_CUS_CD" />
+    <property name="param11" value="CUS_BTH_PAP_NO" />
+    <property name="param12" value="SPC_AVR" />
+    <property name="param100" value="TAG_HUE_BAK" />
+    <property name="param13" value="SPC_YR" />
+    <property name="param101" value="TAG_SPC_MRK" />
+    <property name="param14" value="ORD_SZ" />
+    <property name="param102" value="RMTL_PRFR_CD" />
+    <property name="param15" value="ORD_EXC_THK" />
+    <property name="param103" value="QLT_DSN_YN" />
+    <property name="param16" value="ORD_EXC_WTH" />
+    <property name="param104" value="TAG_PO_NO2" />
+    <property name="param17" value="ORD_EXC_LTH" />
+    <property name="param105" value="CTR_SHPM_MN" />
+    <property name="param18" value="CUS_REQ_DLV_DD" />
+    <property name="param106" value="SVC_CRD_PUB_YN" />
+    <property name="param19" value="ORD_SCH_DLV_DD" />
+    <property name="param107" value="PAK_MSG_CD" />
+    <property name="param108" value="ORD_TEM_GRP_CD" />
+    <property name="param109" value="PTT_FLM_NOT_ADH_WS" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="failure" value="end" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="resultkey" value="RK_SEARCH" />
+    <property name="dao" value="mesdao" />
+    <property name="param-count" value="1" />
+    <property name="sqlkey" value="B10R0030.select" />
+    <property name="param0" value="IF_GRP_ID" />
+  </activity>
+  <activity name="CHK JOB STATUS" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="false" value="SET_SMS" />
+    <transition name="true" value="end" />
+    <property name="sqlkey" value="C10_QLT_JOB.select" />
+    <property name="dao" value="mesdao" />
+    <property name="param-count" value="0" />
+  </activity>
+  <activity name="INSERT_CMN_RE" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="CCL_BOM_CHK_RE" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="sqlkey" value="C102100170.CMNinsert" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="CHECK_CNT_CMN" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
     <transition name="false" value="ROUTER_ORD_NO" />
@@ -1025,41 +907,159 @@
     <property name="sqlkey" value="C102100CMN.select" />
     <property name="param0" value="ORD_NO" />
   </activity>
-  <activity name="INSERT_MQL" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="INSERT_PROC" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.MQLinsert" />
-    <property name="dao" value="mesdao" />
+  <activity name="ROUTER_ORD_LN" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="success" value="ROUTER_DSN" />
+    <transition name="error" value="STAT_SET_E2" />
+    <property name="param1" value="sp_null" />
+    <property name="param2" value="error" />
+    <property name="param3" value="success" />
+    <property name="param-count" value="4" />
+    <property name="param0" value="ORD_LN" />
   </activity>
-  <activity name="UPDATE_CMN" class="com.posdata.glue.biz.activity.PosModify">
-    <transition name="success" value="STAT_SET_S" />
-    <property name="dao" value="mesdao" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="isAudit" value="true" />
+  <activity name="ROUTER_ORD_NO" class="com.unionsteel.mes.c10.activity.common.DbConditionRouter">
+    <transition name="success" value="ROUTER_ORD_LN" />
+    <transition name="error" value="STAT_SET_E_1" />
+    <property name="param1" value="sp_null" />
+    <property name="param2" value="error" />
+    <property name="param3" value="success" />
+    <property name="param-count" value="4" />
     <property name="param0" value="ORD_NO" />
-    <property name="sqlkey" value="C102100CMN.CCL_modify5" />
-    <property name="param1" value="ORD_LN" />
-    <property name="param-count" value="2" />
   </activity>
-  <activity name="CHK JOB STATUS" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
-    <transition name="false" value="SET_SMS" />
-    <transition name="true" value="end" />
-    <property name="sqlkey" value="C10_QLT_JOB.select" />
+  <activity name="CHK_CNT_REP_CMN" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="true" value="INSERT_RMT" />
+    <transition name="false" value="INSERT_CMN_RE2" />
+    <property name="param43" value="ORD_PTT_FLM_WTH" />
+    <property name="param44" value="ORD_PTT_FLM_WTH" />
+    <property name="param45" value="ORD_PTT_FLM_ADH_LOC_CD" />
+    <property name="param46" value="ORD_PTT_FLM_ADH_LOC_CD" />
+    <property name="param47" value="ORD_WGT_UNT" />
+    <property name="param48" value="ORD_PAK_SHT_CNT" />
+    <property name="param49" value="ORD_PAK_SHT_CNT" />
     <property name="dao" value="mesdao" />
-    <property name="param-count" value="0" />
+    <property name="param100" value="TAG_TP" />
+    <property name="param101" value="TAG_TP" />
+    <property name="param102" value="NAT_CD" />
+    <property name="param103" value="MTL_PRD_ORD_YN" />
+    <property name="param104" value="MTL_PRD_ORD_YN" />
+    <property name="param105" value="CUS_REQ_CLR_NM" />
+    <property name="param106" value="CUS_REQ_CLR_NM" />
+    <property name="param107" value="PAK_MSG_CD" />
+    <property name="param108" value="PAK_MSG_CD" />
+    <property name="param109" value="ORD_MIX_WTH9" />
+    <property name="param50" value="ORD_PAK_UNT_WGT_LLV" />
+    <property name="param51" value="ORD_PAK_UNT_WGT_LLV" />
+    <property name="param52" value="ORD_PAK_UNT_WGT_ULV" />
+    <property name="param53" value="ORD_PAK_UNT_WGT_ULV" />
+    <property name="param54" value="ORD_PAK_LTH_LLV" />
+    <property name="param55" value="ORD_PAK_LTH_LLV" />
+    <property name="param56" value="ORD_PAK_LTH_ULV" />
+    <property name="param57" value="ORD_PAK_LTH_ULV" />
+    <property name="param58" value="ORD_STDP_CNT_LLV" />
+    <property name="param59" value="ORD_STDP_CNT_LLV" />
+    <property name="param110" value="ORD_MIX_WTH9" />
+    <property name="param111" value="ORD_MIX_WTH10" />
+    <property name="param112" value="ORD_MIX_WTH10" />
+    <property name="param113" value="PTT_FLM_NOT_ADH_WS" />
+    <property name="param114" value="PTT_FLM_NOT_ADH_WS" />
+    <property name="param115" value="PTT_FLM_NOT_ADH_DS" />
+    <property name="param116" value="PTT_FLM_NOT_ADH_DS" />
+    <property name="param117" value="LTH_MNG_YN" />
+    <property name="param118" value="LTH_MNG_YN" />
+    <property name="param119" value="LTH_MNG_FROM" />
+    <property name="param60" value="ORD_STDP_CNT_ULV" />
+    <property name="param61" value="ORD_STDP_CNT_ULV" />
+    <property name="param62" value="ORD_PAK_UNT_WGT" />
+    <property name="param63" value="ORD_PAK_UNT_WGT" />
+    <property name="param64" value="ORD_PAK_MTH" />
+    <property name="param65" value="ORD_COIL_IDIA" />
+    <property name="param66" value="ORD_COIL_IDIA" />
+    <property name="param67" value="ORD_COIL_ODIA" />
+    <property name="param68" value="ORD_COIL_ODIA" />
+    <property name="param69" value="ORD_THK_MNG_CD" />
+    <property name="param120" value="LTH_MNG_FROM" />
+    <property name="param121" value="LTH_MNG_TO" />
+    <property name="param122" value="LTH_MNG_TO" />
+    <property name="param70" value="ORD_WTH_MNG_CD" />
+    <property name="param71" value="ORD_LTH_MNG_CD" />
+    <property name="param72" value="ORD_LTH_MNG_CD" />
+    <property name="param73" value="ORD_SHT_LOD_MTH" />
+    <property name="param74" value="ORD_SHT_LOD_MTH" />
+    <property name="param75" value="ORD_SLIT_GRP_CNT" />
+    <property name="param76" value="ORD_SLIT_GRP_CNT" />
+    <property name="param77" value="ORD_MIX_WTH1" />
+    <property name="param78" value="ORD_MIX_WTH1" />
+    <property name="param79" value="ORD_MIX_WTH2" />
+    <property name="param-count" value="123" />
+    <property name="param80" value="ORD_MIX_WTH2" />
+    <property name="param81" value="ORD_MIX_WTH3" />
+    <property name="param82" value="ORD_MIX_WTH3" />
+    <property name="param83" value="ORD_MIX_WTH4" />
+    <property name="param84" value="ORD_MIX_WTH4" />
+    <property name="param85" value="ORD_MIX_WTH5" />
+    <property name="param86" value="ORD_MIX_WTH5" />
+    <property name="param87" value="ORD_MIX_WTH6" />
+    <property name="param88" value="ORD_MIX_WTH6" />
+    <property name="param89" value="ORD_MIX_WTH7" />
+    <property name="param90" value="ORD_MIX_WTH7" />
+    <property name="param91" value="ORD_MIX_WTH8" />
+    <property name="param92" value="ORD_MIX_WTH8" />
+    <property name="param93" value="SLIT_MAX_WGT" />
+    <property name="param94" value="SLIT_MAX_WGT" />
+    <property name="param95" value="TRST_PROC_YN" />
+    <property name="param96" value="TRST_PROC_YN" />
+    <property name="param97" value="ORD_SPC_TXT" />
+    <property name="param98" value="ORD_SPC_TXT" />
+    <property name="param10" value="FNL_CUS_CD" />
+    <property name="param99" value="MTL_CD" />
+    <property name="param11" value="CUS_BTH_PAP_NO" />
+    <property name="param12" value="CUS_BTH_PAP_NO" />
+    <property name="param13" value="SPC_AVR" />
+    <property name="param14" value="SPC_YR" />
+    <property name="param15" value="ORD_SZ" />
+    <property name="param16" value="ORD_EXC_THK" />
+    <property name="param17" value="ORD_EXC_WTH" />
+    <property name="param18" value="ORD_EXC_LTH" />
+    <property name="param19" value="ORD_EXC_LTH" />
+    <property name="param0" value="ORD_REP_NO" />
+    <property name="param1" value="ORD_REP_LN" />
+    <property name="param2" value="PRD_NM_CD" />
+    <property name="param3" value="PLNT_TP" />
+    <property name="param4" value="PRD_SHP" />
+    <property name="param5" value="FLOW_CHL" />
+    <property name="param6" value="ORD_KND" />
+    <property name="param7" value="ORD_USG_CD" />
+    <property name="param8" value="CUS_CD" />
+    <property name="param9" value="ACT_CUS_CD" />
+    <property name="param20" value="GW_ASG_CD" />
+    <property name="param21" value="GW_ASG_CD" />
+    <property name="param22" value="ORD_ORG_PLT_SPC_AVR" />
+    <property name="param23" value="ORD_ORG_PLT_SPC_AVR" />
+    <property name="param24" value="ORD_ROU_CD" />
+    <property name="param25" value="ORD_ROU_CD" />
+    <property name="param26" value="ORD_SPNL_TP" />
+    <property name="param27" value="ORD_SPNL_TP" />
+    <property name="param28" value="ORD_COILG_MTH" />
+    <property name="param29" value="ORD_COILG_MTH" />
+    <property name="sqlkey" value="C102100CMN.Dselect" />
+    <property name="param30" value="ORD_SUR_HND_CD" />
+    <property name="param31" value="ORD_SUR_HND_CD" />
+    <property name="param32" value="ORD_SKP_DEG" />
+    <property name="param33" value="ORD_SKP_DEG" />
+    <property name="param34" value="ORD_EDG_ASG_TP" />
+    <property name="param35" value="ORD_THK_TP" />
+    <property name="param36" value="WGT_DCS_MTH_TP" />
+    <property name="param37" value="ORD_SLV_KND_TP" />
+    <property name="param38" value="ORD_SLV_KND_TP" />
+    <property name="param39" value="EMBS_CD" />
+    <property name="param40" value="EMBS_CD" />
+    <property name="param41" value="ORD_PTT_FLM_DTL_CD" />
+    <property name="param42" value="ORD_PTT_FLM_DTL_CD" />
   </activity>
-  <activity name="INSERT_DEV" class="com.posdata.glue.biz.activity.PosInsertByName">
-    <transition name="success" value="INSERT_MNF" />
+  <activity name="INSERT_MSG" class="com.posdata.glue.biz.activity.PosInsertByName">
+    <transition name="success" value="INSERT_MSG1" />
     <property name="resultkey" value="RK_RESULT" />
-    <property name="sqlkey" value="C102100170.DLVinsert" />
+    <property name="sqlkey" value="C102100170.MSGinsert" />
     <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="STAT_SET_E2" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
-    <transition name="success" value="MODIFY_IF" />
-    <property name="param0" value="XSTAT|E" />
-    <property name="param1" value="XMSGS|주문행번이 없습니다." />
-    <property name="param2" value="XSTAT_CALLBACK|R" />
-    <property name="param-count" value="3" />
   </activity>
 </service>
 

@@ -1,0 +1,47 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableMultiline"><param>true</param></call>
+<call command="enableResizing"><param>false,false,false,false</param></call>
+<call command="enableSmartRendering"><param>true</param></call>
+<call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param>%Y-%m-%d 00:00:00</param></call>
+<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="KEY_WRD1_TXT" index="1" sort="na" align="center" dbname="참고항목1" width="7" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="참고항목1" >참고항목1</column>
+<column id="KEY_WRD1" index="2" sort="na" align="left" dbname="참고항목1" width="18" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" clabel="참고항목1" >참고항목1</column>
+<column id="KEY_WRD2_TXT" index="3" sort="na" align="center" dbname="참고항목2" width="7" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="참고항목2" >참고항목2</column>
+<column id="KEY_WRD2" index="4" sort="na" align="left" dbname="참고항목2" width="18" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" clabel="참고항목2" >참고항목2</column>
+<column id="KEY_WRD3_TXT" index="5" sort="na" align="center" dbname="참고항목3" width="7" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="참고항목3" >참고항목3</column>
+<column id="KEY_WRD3" index="6" sort="na" align="left" dbname="참고항목3" width="18" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" clabel="참고항목3" >참고항목3</column>
+<column id="KEY_WRD4_TXT" index="7" sort="na" align="center" dbname="참고항목4" width="7" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="참고항목4" >참고항목4</column>
+<column id="KEY_WRD4" index="8" sort="na" align="left" dbname="참고항목4" width="18" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" clabel="참고항목4" >참고항목4</column>
+<column align="center" index="9" clabel="ORD_NO" dbname="주문번호" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문번호</column>
+<column align="center" index="10" clabel="ORD_LN" dbname="주문행번" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문행번</column>
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">KEY_WRD1_TXT,KEY_WRD1,KEY_WRD2_TXT,KEY_WRD2,KEY_WRD3_TXT,KEY_WRD3,KEY_WRD4_TXT,KEY_WRD4,ORD_NO,ORD_LN</userdata>
+<row id="0">
+<cell align="center" class="form_cell">링크1</cell>
+<cell id="KEY_WRD1" />
+<cell align="center" class="form_cell">링크2</cell>
+<cell id="KEY_WRD2" />
+<cell align="center" class="form_cell">링크3</cell>
+<cell id="KEY_WRD3" />
+<cell align="center" class="form_cell">링크4</cell>
+<cell id="KEY_WRD4" />
+<cell id="ORD_NO" hidden="true"/>
+<cell id="ORD_LN" hidden="true"/>
+</row>
+</rows>

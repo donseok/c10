@@ -143,7 +143,8 @@ function save(eventName,formDivObj,referenceItem){
 			var cellValue17 = grid.getCellValue(rowID,22);//용재비중
 			var cellValue20 = grid.getCellValue(rowID,25);//도료원단위
 			var cellValue21 = grid.getCellValue(rowID,26);//PMT
-			var cellValue26 = grid.getCellValue(rowID,31);//Lamina유형
+			//var cellValue26 = grid.getCellValue(rowID,31);//Lamina유형
+			var cellValue26 = grid.getCellValue(rowID,37);//Lamina유형
             var msg = "";		
 		    var colidx = 0;			
 			
@@ -429,7 +430,7 @@ function save(eventName,formDivObj,referenceItem){
 	                  		msg = msg + ",Lamina유형";
 	                  	}
 	                }                                                                                                                
-	                dhtmlx.alert("Lamina의 필수 항목이 누락되었습니다.\n(" + msg + ")");
+	                dhtmlx.alert("Lamina의 필수 항목이 누락되었습니다.\n(" + msg + ")");  //이부분수정
 	                gridObj.selectCell(i, colidx , true, true);
 	                return;
                 }
@@ -827,6 +828,7 @@ function onFormLoadFunction(){
 				formObj.enableItem("PRT_INK_TP_SH");						
 			}
 			
+			/* 2021.10.22 원본 (6개 항목 추가전)
 			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,20,21,22,23,25,26,27,28,29,30,48,49,50,51,52,53,54",false);
 				grid.setColumnHiddenFlag("18,31,33,34,35,36,37,38,40,42,44,46",true); //완료!!
@@ -851,6 +853,33 @@ function onFormLoadFunction(){
 			}else{
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,33,34,35,36,37,38,40,42,44,46,48,49,50,51,52,53,54",false);
 			}
+			*/
+			
+			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("18,37,39,40,41,42,43,44,46,48,50,52",true); //완료!!
+			}else if(!isNull(comboValue) && (comboValue == "S33")){	 //Thinner 완료!!
+				grid.setColumnHiddenFlag("1,2,3,6,25,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S37")){	//도장기타 완료!!
+				grid.setColumnHiddenFlag("1,2,3,25,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("6,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S34")){	//Ink 완료!!
+				grid.setColumnHiddenFlag("1,2,3,6,8,18,25,30,31,32,33,34,35,36,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!
+				grid.setColumnHiddenFlag("1,2,3,25,38,40,44,46,48,49,52,53,54",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43",true);  
+			}else if(!isNull(comboValue) && (comboValue == "S39")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!
+				grid.setColumnHiddenFlag("1,2,3,40,42,48,49",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,42,43,44,50,52,56,57,58,59,60",true);	
+			}else if(!isNull(comboValue) && (comboValue == "S38")){	//Lamina  완료!!   ---
+				grid.setColumnHiddenFlag("1,2,3,8,17,25,26,37,39,40,41,42,43,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("5,6,10,11,12,13,14,15,16,18,20,21,23,27,28,29,30,31,32,33,34,35,36,44,46,48,50,52",true);  
+			}else{
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60",false);
+			}
+			
 		});  
 			
 	    comboList['RSN_TP_SH'].readonly(true,true);//수지타입
@@ -1060,6 +1089,44 @@ function onGrid1LoadFunction(){
 		tp_cd_Combo.readonly(true,true);
 		tp_cd_Combo.setOptionHeight(220);
 		
+		
+		//2021.10.22 6개 항목추가
+	var rsn_tp_qt_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('RSN_TP_QT')); //type유형
+		rsn_tp_qt_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=RSN_TP_QT&totalValue=&orderBy=value&displayType=all-code");     
+		rsn_tp_qt_Combo.enableOptionAutoPositioning(true);
+		rsn_tp_qt_Combo.readonly(true,true);
+		rsn_tp_qt_Combo.setOptionHeight(220);
+		
+	var pat_cd_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('PAT_CD')); //type유형
+		pat_cd_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=PAT_CD&totalValue=&orderBy=value&displayType=all-code");     
+		pat_cd_Combo.enableOptionAutoPositioning(true);
+		pat_cd_Combo.readonly(true,true);
+		pat_cd_Combo.setOptionHeight(220);
+		
+	var func_cd_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('FUNC_CD')); //type유형
+		func_cd_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=FUNC_CD&totalValue=&orderBy=value&displayType=all-code");     
+		func_cd_Combo.enableOptionAutoPositioning(true);
+		func_cd_Combo.readonly(true,true);
+		func_cd_Combo.setOptionHeight(220);
+		
+	var tte_cd_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('TTE_CD')); //type유형
+		tte_cd_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=TTE_CD&totalValue=&orderBy=value&displayType=all-code");     
+		tte_cd_Combo.enableOptionAutoPositioning(true);
+		tte_cd_Combo.readonly(true,true);
+		tte_cd_Combo.setOptionHeight(220);
+		
+	var use_pos_cd_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('USE_POS_CD')); //type유형
+		use_pos_cd_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=USE_POS_CD&totalValue=&orderBy=value&displayType=all-code");     
+		use_pos_cd_Combo.enableOptionAutoPositioning(true);
+		use_pos_cd_Combo.readonly(true,true);
+		use_pos_cd_Combo.setOptionHeight(220);
+		
+	var wty_yn_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('WTY_YN')); //type유형
+		wty_yn_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=WTY_YN&totalValue=&orderBy=value&displayType=all-code");     
+		wty_yn_Combo.enableOptionAutoPositioning(true);
+		wty_yn_Combo.readonly(true,true);
+		wty_yn_Combo.setOptionHeight(220);
+		
 		/*
 		//부재료구분
 		tp_cd_Combo.attachEvent("onSelectionChange", function(){
@@ -1157,7 +1224,7 @@ function findAfterEvent(){
 	var grid_cnt = gridObj.getRowsNum();	
 
 	for(var i=0; i< grid_cnt; i++){  //ERP전송일시 59번 index
-		var sndLst = gridObj.cellById(gridObj.getRowId(i),61).getValue();
+		var sndLst = gridObj.cellById(gridObj.getRowId(i),69).getValue();  //67번인지 확인필요
     
 	 	if(sndLst == "Y"){
         gridObj.setRowTextStyle(gridObj.getRowId(i), "color: red;");		
@@ -1382,7 +1449,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}						 			 			
-    	}else if(cInd == 30){//표준색상명 
+    	}else if(cInd == 36){//표준색상명 
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
   				if(!hanCheck(valueLength,'20')){
@@ -1391,13 +1458,22 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}	
+    	/*
     	}else if(cInd == 33 || cInd == 34 || cInd == 35 || cInd == 36){//라미나접착제 -> 대문자입력
 			gridObj.editor.obj.onkeydown = function(e){
 			    var cellValue = gridObj.editor.obj.value;
 		  	    if(cellValue.charAt(cellValue - 1) <= 'z' && cellValue.charAt(cellValue.length - 1) >= 'a'){
 		  		   gridObj.editor.obj.value = cellValue.toUpperCase();
 		  		}
-		    }	
+		    }*/
+    	}else if(cInd == 39 || cInd == 40 || cInd == 41 || cInd == 42){//라미나접착제 -> 대문자입력
+			gridObj.editor.obj.onkeydown = function(e){
+			    var cellValue = gridObj.editor.obj.value;
+		  	    if(cellValue.charAt(cellValue - 1) <= 'z' && cellValue.charAt(cellValue.length - 1) >= 'a'){
+		  		   gridObj.editor.obj.value = cellValue.toUpperCase();
+		  		}
+		    }	    
+    	/*
     	}else if(cInd == 48){//비고
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
@@ -1424,7 +1500,35 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					gridObj.editor.obj.value = "";
   					return false;
   				}				
-  			}  			
+  			}
+    	*/
+    	}else if(cInd == 54){//비고
+  			gridObj.editor.obj.onkeyup = function() {
+  				var valueLength = gridObj.editor.obj.value+'';
+  				if(!hanCheck(valueLength,'100')){
+  					dhtmlx.alert("100자리만 입력 가능합니다.");
+  					gridObj.editor.obj.value = "";
+  					return false;
+  				}				
+  			}
+    	}else if(cInd == 55){//등록자
+  			gridObj.editor.obj.onkeyup = function() {
+  				var valueLength = gridObj.editor.obj.value+'';
+  				if(!hanCheck(valueLength,'10')){
+  					dhtmlx.alert("10자리만 입력 가능합니다.");
+  					gridObj.editor.obj.value = "";
+  					return false;
+  				}				
+  			}
+    	}else if(cInd == 57){//수정자
+  			gridObj.editor.obj.onkeyup = function() {
+  				var valueLength = gridObj.editor.obj.value+'';
+  				if(!hanCheck(valueLength,'10')){
+  					dhtmlx.alert("10자리만 입력 가능합니다.");
+  					gridObj.editor.obj.value = "";
+  					return false;
+  				}				
+  			}
   		}else{
   			return true;
   		}

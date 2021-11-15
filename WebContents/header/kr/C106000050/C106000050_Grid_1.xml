@@ -79,46 +79,52 @@
 <column align="center" clabel="L" dbname="L" id="QT_L" index="28" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="50" color="FFFFC0">L</column>
 <column align="center" clabel="A" dbname="A" id="QT_A" index="29" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="50" color="FFFFC0">A</column>
 <column align="center" clabel="B" dbname="B" id="QT_B" index="30" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="50" color="FFFFC0">B</column>
-<column align="center" clabel="표준색상명" dbname="표준색상명" id="STD_CLR_NM" index="31" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">표준색상명</column>
-<column align="center" clabel="Lamina유형" dbname="Lamina유형" id="LMN_KND_TP" index="32" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="160" color="FFFFC0">Lamina유형</column>
-<column align="left" id="LMN_KND_TP_NM" index="33" sort="sort_str_custom" type="ro" width="200" hidden="true">Lamina유형명</column>
-<column align="center" clabel="Lamina접착제코드" dbname="Lamina접착제코드" id="LMN_BND_CD" index="34" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제코드(1C)</column>
-<column align="center" clabel="Lamina접착제신나코드" dbname="Lamina접착제시너코드" id="LMN_BND_THR_CD" index="35" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제시너코드(1C)</column>
-<column align="center" clabel="Lamina접착제코드" dbname="Lamina접착제코드" id="LMN_BND_CD1" index="36" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제코드(2C)</column>
-<column align="center" clabel="Lamina접착제신나코드" dbname="Lamina접착제시너코드" id="LMN_BND_THR_CD1" index="37" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제시너코드(2C)</column>
-<column align="center" clabel="Lamina필름두께코드" dbname="Lamina필름두께코드" id="LMN_FLM_THK_CD" index="38" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="120" color="FFFFC0">Lamina&lt;br&gt;필름두께코드</column>
-<column align="center" clabel="보호필름광택코드" dbname="보호필름광택코드" id="PTT_FLM_LUS_RT_CD" index="39" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="150" color="FFFFC0">보호필름&lt;br&gt;광택코드</column>
-<column align="left" id="PTT_FLM_LUS_RT_NM" index="40" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;광택도코드명</column>
-<column align="center" clabel="보호필름두께코드" dbname="보호필름두께코드" id="PTT_FLM_THK_CD" index="41" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="80" color="FFFFC0">보호필름&lt;br&gt;두께코드</column>
-<column align="center" id="PTT_FLM_THK_NM" index="42" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;두께코드명</column>
-<column align="center" clabel="보호필름재질코드" dbname="보호필름재질코드" id="PTT_FLM_MQL_CD" index="43" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="150" color="FFFFC0">보호필름&lt;br&gt;재질코드</column>
-<column align="center" id="PTT_FLM_MQL_NM" index="44" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;재질코드명</column>
-<column align="center" clabel="보호필름SUS점착력코드" dbname="보호필름SUS점착력코드" id="PTT_FLM_SUS_ADH_CD" index="45" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="120" color="FFFFC0">보호필름&lt;br&gt;SUS점착력코드</column>
-<column align="center" id="PTT_FLM_SUS_ADH_NM" index="46" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;SUS점착력코드명</column>
-<column align="center" clabel="보호필름제품점착력코드" dbname="보호필름제품점착력코드" id="PTT_FLM_PRD_ADH_CD" index="47" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="180" color="FFFFC0">보호필름&lt;br&gt;제품점착력코드</column>
-<column align="center" id="PTT_FLM_PRD_ADH_NM" index="48" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;제품점착력코드명</column>
-<column align="left" clabel="비고" dbname="비고" id="RMRK" index="49" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="160" color="FFFFC0">비고</column>
-<column align="center" clabel="등록자" dbname="등록자" id="RGS_PRS_ID" index="50" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">등록자</column>
-<column align="center" clabel="등록일" dbname="등록일" id="RGS_DH" index="51" sort="na" table="TB_C10_CLR_CD_MNG" type="ro" width="120">등록일</column>
-<column align="center" clabel="수정자" dbname="수정자" id="MDF_PRS_ID" index="52" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">수정자</column>
-<column align="center" clabel="수정일" dbname="수정일" id="CLR_MDF_DH" index="53" sort="na" table="TB_C10_CLR_CD_MNG" type="ro" width="120">수정일</column>
-<column align="center" id="MGR_CLR_SUB_MTL_CD" index="54" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">통합&lt;br&gt;컬러코드</column>
-<column align="center" id="CLR_SUB_MTL_CD_OLD" index="55" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;컬러코드</column>
-<column align="center" id="RSN_TP_OLD" index="56" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;수지타입</column>
-<column align="center" id="LUS_RT_CD_OLD" index="57" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="80" color="FFFFC0">(구)&lt;br&gt;광택도코드</column>
-<column align="center" id="PNT_FLM_THK_OLD" index="58" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;도막두께</column>
-<column align="center" clabel="ERP전송일시" dbname="ERP전송일시" id="ERP_SND_DH" index="59" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="120">ERP전송일시</column>
-<column align="center" clabel="수정여부" dbname="수정여부" id="MOD_YN" index="60" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">수정여부</column>
-<column align="center" clabel="RALCD" dbname="RAL_CD" id="RAL_CD" index="61" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="90" color="FFFFC0">RAL CODE</column>
-<column align="center" clabel="부재료구분" dbname="부재료구분" id="SUB_MTL_TP_HIDDEN" index="62" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="100" hidden="true"></column>
-<column align="left" id="LMN_FLM_THK_CD_NM" index="63" sort="sort_str_custom" type="ro" width="150" hidden="true">Lamina필름두께코드명</column>
-<column align="center" id="SND_LST" index="64" sort="sort_str_custom" type="ro" width="150" hidden="true">전송대상</column>
-<column align="center" clabel="사용자사번" dbname="사용자사번" id="USERNO" index="65" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="00" hidden="true">사용자사번</column>
+<column align="center" clabel="품질수지" dbname="품질수지" id="RSN_TP_QT" index="31" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >품질수지</column>
+<column align="center" clabel="안료" dbname="안료" id="PAT_CD" index="32" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >안료</column>
+<column align="center" clabel="기능" dbname="기능" id="FUNC_CD" index="33" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >기능</column>
+<column align="center" clabel="질감" dbname="질감" id="TTE_CD" index="34" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >질감</column>
+<column align="center" clabel="사용위치" dbname="사용위치" id="USE_POS_CD" index="35" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >사용위치</column>
+<column align="center" clabel="보증유무" dbname="보증유무" id="WTY_YN" index="36" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="130" color="FFFFC0" >보증여부</column>
+<column align="center" clabel="표준색상명" dbname="표준색상명" id="STD_CLR_NM" index="37" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">표준색상명</column>
+<column align="center" clabel="Lamina유형" dbname="Lamina유형" id="LMN_KND_TP" index="38" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="160" color="FFFFC0">Lamina유형</column>
+<column align="left" id="LMN_KND_TP_NM" index="39" sort="sort_str_custom" type="ro" width="200" hidden="true">Lamina유형명</column>
+<column align="center" clabel="Lamina접착제코드" dbname="Lamina접착제코드" id="LMN_BND_CD" index="40" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제코드(1C)</column>
+<column align="center" clabel="Lamina접착제신나코드" dbname="Lamina접착제시너코드" id="LMN_BND_THR_CD" index="41" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제시너코드(1C)</column>
+<column align="center" clabel="Lamina접착제코드" dbname="Lamina접착제코드" id="LMN_BND_CD1" index="42" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제코드(2C)</column>
+<column align="center" clabel="Lamina접착제신나코드" dbname="Lamina접착제시너코드" id="LMN_BND_THR_CD1" index="43" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="100" color="FFFFC0">Lamina&lt;br&gt;접착제시너코드(2C)</column>
+<column align="center" clabel="Lamina필름두께코드" dbname="Lamina필름두께코드" id="LMN_FLM_THK_CD" index="44" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="120" color="FFFFC0">Lamina&lt;br&gt;필름두께코드</column>
+<column align="center" clabel="보호필름광택코드" dbname="보호필름광택코드" id="PTT_FLM_LUS_RT_CD" index="45" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="150" color="FFFFC0">보호필름&lt;br&gt;광택코드</column>
+<column align="left" id="PTT_FLM_LUS_RT_NM" index="46" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;광택도코드명</column>
+<column align="center" clabel="보호필름두께코드" dbname="보호필름두께코드" id="PTT_FLM_THK_CD" index="47" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="80" color="FFFFC0">보호필름&lt;br&gt;두께코드</column>
+<column align="center" id="PTT_FLM_THK_NM" index="48" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;두께코드명</column>
+<column align="center" clabel="보호필름재질코드" dbname="보호필름재질코드" id="PTT_FLM_MQL_CD" index="49" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="150" color="FFFFC0">보호필름&lt;br&gt;재질코드</column>
+<column align="center" id="PTT_FLM_MQL_NM" index="50" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;재질코드명</column>
+<column align="center" clabel="보호필름SUS점착력코드" dbname="보호필름SUS점착력코드" id="PTT_FLM_SUS_ADH_CD" index="51" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="120" color="FFFFC0">보호필름&lt;br&gt;SUS점착력코드</column>
+<column align="center" id="PTT_FLM_SUS_ADH_NM" index="52" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;SUS점착력코드명</column>
+<column align="center" clabel="보호필름제품점착력코드" dbname="보호필름제품점착력코드" id="PTT_FLM_PRD_ADH_CD" index="53" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="combo_v" width="180" color="FFFFC0">보호필름&lt;br&gt;제품점착력코드</column>
+<column align="center" id="PTT_FLM_PRD_ADH_NM" index="54" sort="sort_str_custom" type="ro" width="200" hidden="true">보호필름&lt;br&gt;제품점착력코드명</column>
+<column align="left" clabel="비고" dbname="비고" id="RMRK" index="55" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="160" color="FFFFC0">비고</column>
+<column align="center" clabel="등록자" dbname="등록자" id="RGS_PRS_ID" index="56" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">등록자</column>
+<column align="center" clabel="등록일" dbname="등록일" id="RGS_DH" index="57" sort="na" table="TB_C10_CLR_CD_MNG" type="ro" width="120">등록일</column>
+<column align="center" clabel="수정자" dbname="수정자" id="MDF_PRS_ID" index="58" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">수정자</column>
+<column align="center" clabel="수정일" dbname="수정일" id="CLR_MDF_DH" index="59" sort="na" table="TB_C10_CLR_CD_MNG" type="ro" width="120">수정일</column>
+<column align="center" id="MGR_CLR_SUB_MTL_CD" index="60" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">통합&lt;br&gt;컬러코드</column>
+<column align="center" id="CLR_SUB_MTL_CD_OLD" index="61" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;컬러코드</column>
+<column align="center" id="RSN_TP_OLD" index="62" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;수지타입</column>
+<column align="center" id="LUS_RT_CD_OLD" index="63" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="80" color="FFFFC0">(구)&lt;br&gt;광택도코드</column>
+<column align="center" id="PNT_FLM_THK_OLD" index="64" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;도막두께</column>
+<column align="center" clabel="ERP전송일시" dbname="ERP전송일시" id="ERP_SND_DH" index="65" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="120">ERP전송일시</column>
+<column align="center" clabel="수정여부" dbname="수정여부" id="MOD_YN" index="66" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">수정여부</column>
+<column align="center" clabel="RALCD" dbname="RAL_CD" id="RAL_CD" index="67" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="90" color="FFFFC0">RAL CODE</column>
+<column align="center" clabel="부재료구분" dbname="부재료구분" id="SUB_MTL_TP_HIDDEN" index="68" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="100" hidden="true"></column>
+<column align="left" id="LMN_FLM_THK_CD_NM" index="69" sort="sort_str_custom" type="ro" width="150" hidden="true">Lamina필름두께코드명</column>
+<column align="center" id="SND_LST" index="70" sort="sort_str_custom" type="ro" width="150" hidden="true">전송대상</column>
+<column align="center" clabel="사용자사번" dbname="사용자사번" id="USERNO" index="71" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="00" hidden="true">사용자사번</column>
 <settings>
 <colwidth>px</colwidth>
 </settings>
 </head>
-<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,THR_NM,PNT_UNT,PMT,QT_L,QT_A,QT_B,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,SUB_MTL_TP_HIDDEN,LMN_FLM_THK_CD_NM,SND_LST,USERNO</userdata>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,THR_NM,PNT_UNT,PMT,QT_L,QT_A,QT_B,RSN_TP_QT,PAT_CD,FUNC_CD,TTE_CD,USE_POS_CD,WTY_YN,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,SUB_MTL_TP_HIDDEN,LMN_FLM_THK_CD_NM,SND_LST,USERNO</userdata>
 <row id="0">
 <cell/>
 <cell/>

@@ -24,6 +24,7 @@
 </script>
 <script src="./js/c10.ui.js" type="text/javascript">
 </script>
+
 <style media="screen" type="text/css">
 .form_cell{
   background-image:url(./dhtmlx/codebase/imgs/clouds_grid.gif);
@@ -54,7 +55,10 @@ var pageConfiguration = '[' +
 '{"itemType":"grid","renderTo":"C104000020TAB07_Grid_7","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Grid_7.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000020TAB07_Grid_8","service":"C104000020TAB07-service","actionType":"find"},' +
 '{"itemType":"grid","renderTo":"C104000020TAB07_Grid_8","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Grid_8.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000020TAB07_Grid_8","service":"C104000020TAB07-service","actionType":"save"},' +
 '{"itemType":"messagebox","renderTo":"messagebox","xml":".\/header\/kr\/C104000020TAB07\/messagebox.xml","service":"C104000020TAB07-service"},' +
-'{"itemType":"form","renderTo":"C104000020TAB07_Form_1","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000020TAB07_Form_1","service":"C104000020TAB07-service","security":"true","actionType":"save"}' +
+'{"itemType":"form","renderTo":"C104000020TAB07_Form_1","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000020TAB07_Form_1","service":"C104000020TAB07-service","security":"true","actionType":"save"},' +
+'{"itemType":"grid","renderTo":"C104000020TAB07_Grid_9","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Grid_9.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000020TAB07_Grid_8","service":"C104000020TAB07-service","actionType":"save"},' +
+'{"itemType":"grid","renderTo":"C104000020TAB07_Grid_10","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Grid_10.xml","rowCnt":"0","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000020TAB07_Grid_8","service":"C104000020TAB07-service","actionType":"save"},' +
+'{"itemType":"form","renderTo":"C104000020TAB07_Form_2","xml":".\/header\/kr\/C104000020TAB07\/C104000020TAB07_Form_2.xml","url":"basicGridData.do","referenceItem":"C104000020TAB07_Form_2","service":"C104000020TAB07-service","security":"true","actionType":"find"}' +
 ']';
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
@@ -72,6 +76,8 @@ function find(eventName,formDivObj,referenceItem){
 		uiCommon.renderToGrid('C104000020TAB07_Grid_5',xmlObj);
 		uiCommon.renderToGrid('C104000020TAB07_Grid_6',xmlObj);
 		uiCommon.renderToGrid('C104000020TAB07_Grid_8',xmlObj);
+		uiCommon.renderToGrid('C104000020TAB07_Grid_9',xmlObj);
+		uiCommon.renderToGrid('C104000020TAB07_Grid_10',xmlObj);
 	param = parameters12('C104000020_Form_1','C104000020TAB07_Grid_7','C104000020TAB07-service','CMN_find');
 	xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
 	    uiCommon.renderToGrid('C104000020TAB07_Grid_7',xmlObj);
@@ -79,6 +85,7 @@ function find(eventName,formDivObj,referenceItem){
 function save(eventName,formDivObj,referenceItem){
 	var gridObj2 = items['C104000020TAB07_Grid_2'].getDhxGrid();
 	var gridObj8 = items['C104000020TAB07_Grid_8'].getDhxGrid();
+	var gridObj9 = items['C104000020TAB07_Grid_9'].getDhxGrid();
 	var chgCnt = 0;
 	var cclqltmsgtxt = "";
 	
@@ -86,12 +93,15 @@ function save(eventName,formDivObj,referenceItem){
 	var rowId2 = items['C104000020TAB07_Grid_2'].getRowSelectedId();
   	gridObj2.selectRow(gridObj2.getRowIndex(rowId2));
 	var rowId8 = items['C104000020TAB07_Grid_8'].getRowSelectedId();
-  	gridObj8.selectRow(gridObj8.getRowIndex(rowId8));  	
+  	gridObj8.selectRow(gridObj8.getRowIndex(rowId8));
+  	var rowId9 = items['C104000020TAB07_Grid_9'].getRowSelectedId();
+  	gridObj9.selectRow(gridObj9.getRowIndex(rowId9));
   	
-	var row_status2 = "", row_status8 = "";
+	var row_status2 = "", row_status8 = "", row_status9 = "";
 	row_status2 = gridObj2.getUserData(gridObj2.getRowId(0),"!nativeeditor_status");
 	row_status8 = gridObj8.getUserData(gridObj8.getRowId(0),"!nativeeditor_status");
-	if( row_status2 == "updated" || row_status8 == "updated"){	
+	row_status9 = gridObj9.getUserData(gridObj9.getRowId(0),"!nativeeditor_status");
+	if( row_status2 == "updated" || row_status8 == "updated" || row_status9 == "updated"){	
     	chgCnt++;
     	/* 확정된 주문이라도 수정할수 있도록 수정 : 박성용요청 20140611
 		var parentForm = parent.items['C104000020_Form_1'];
@@ -139,6 +149,42 @@ function save(eventName,formDivObj,referenceItem){
 						}
 					    items['C104000020TAB07_Grid_8'].sendGrid('C104000020TAB07_Grid_8',"MSG_save");					
 				    }
+					
+					//keyword 수정
+					var gridObj2 = items['C104000020TAB07_Grid_9'].getDhxGrid();
+					var row_status2 = "";
+					row_status2 = gridObj2.getUserData(gridObj2.getRowId(0),"!nativeeditor_status");
+					if(row_status2 != "" && row_status2 == "updated" ){
+						keyword1 = items['C104000020TAB07_Grid_9'].getCellValue(0,1);
+						if(keyword1.indexOf('=""')>0){
+							alert("품질메시지에 이상한 문자가 있습니다(indexOf). 수정해주세요.");
+							popCompleteYN = "N";
+							return;
+						}
+						
+						keyword2 = items['C104000020TAB07_Grid_9'].getCellValue(0,2);
+						if(keyword2.indexOf('=""')>0){
+							alert("품질메시지에 이상한 문자가 있습니다(indexOf). 수정해주세요.");
+							popCompleteYN = "N";
+							return;
+						}
+						
+						keyword3 = items['C104000020TAB07_Grid_9'].getCellValue(0,3);
+						if(keyword3.indexOf('=""')>0){
+							alert("품질메시지에 이상한 문자가 있습니다(indexOf). 수정해주세요.");
+							popCompleteYN = "N";
+							return;
+						}
+						
+						keyword4 = items['C104000020TAB07_Grid_9'].getCellValue(0,4);
+						if(keyword4.indexOf('=""')>0){
+							alert("품질메시지에 이상한 문자가 있습니다(indexOf). 수정해주세요.");
+							popCompleteYN = "N";
+							return;
+						}
+					    items['C104000020TAB07_Grid_9'].sendGrid('C104000020TAB07_Grid_9',"KWD_save");					
+				    }
+					
 					return;
 				}
 			}
@@ -247,7 +293,9 @@ function onRowSelect_Grid1(id,ind){
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();	
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid2(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -256,7 +304,9 @@ function onRowSelect_Grid2(id,ind){
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();       
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid3(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -265,7 +315,9 @@ function onRowSelect_Grid3(id,ind){
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();       
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid4(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -274,7 +326,9 @@ function onRowSelect_Grid4(id,ind){
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();       
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid5(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -283,7 +337,9 @@ function onRowSelect_Grid5(id,ind){
        items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();       
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid6(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -292,7 +348,9 @@ function onRowSelect_Grid6(id,ind){
        items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();       
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid7(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -301,7 +359,9 @@ function onRowSelect_Grid7(id,ind){
        items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();  
-       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();	
+       items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
 }
 function onRowSelect_Grid8(id,ind){ 
        items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
@@ -310,9 +370,36 @@ function onRowSelect_Grid8(id,ind){
        items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
        items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
-       items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();          
+       items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+       items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
       
 }
+function onRowSelect_Grid9(id,ind){ 
+    items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_2'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_3'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_10'].getDhxGrid().clearSelection();
+   
+}
+function onRowSelect_Grid10(id,ind){ 
+    items['C104000020TAB07_Grid_1'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_2'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_3'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_4'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_5'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_6'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_7'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_8'].getDhxGrid().clearSelection();
+    items['C104000020TAB07_Grid_9'].getDhxGrid().clearSelection();
+   
+}
+
 function onGridLoadEvent1(){ 
     var param = parameters13('C104000020_Form_1','C104000020TAB07_Grid_1','C104000020TAB07-service','find');
 	var xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
@@ -325,6 +412,7 @@ function onGridLoadEvent2(){
 	var xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
 		uiCommon.renderToGrid('C104000020TAB07_Grid_2',xmlObj);
 		uiCommon.renderToGrid('C104000020TAB07_Grid_8',xmlObj);
+		uiCommon.renderToGrid('C104000020TAB07_Grid_9',xmlObj);
 	items['C104000020TAB07_Grid_2'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent2);
 	items['C104000020TAB07_Grid_2'].getDhxGrid().detachEvent(_onXLE2);
 	return false;
@@ -381,6 +469,62 @@ function onGridLoadEvent8(){
 	document.getElementById("C104000020TAB07_Grid_8").onmousemove = function(event) { event.target.title = event.target.innerText; }
 	return false;
 }
+function onGridLoadEvent9(){
+	var param = parameters12('C104000020_Form_1','C104000020TAB07_Grid_9','C104000020TAB07-service','find');
+	var xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
+		//uiCommon.renderToGrid('C104000020TAB07_Grid_2',xmlObj);
+		uiCommon.renderToGrid('C104000020TAB07_Grid_9',xmlObj);
+    //items['C104000020TAB07_Grid_9'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent2);		
+	items['C104000020TAB07_Grid_9'].getDhxGrid().detachEvent(_onXLE9);
+	return false;
+}
+function onGridLoadEvent10(){
+    var param = parameters12('C104000020_Form_1','C104000020TAB07_Grid_10','C104000020TAB07-service','find');
+	var xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
+		uiCommon.renderToGrid('C104000020TAB07_Grid_10',xmlObj);  
+	items['C104000020TAB07_Grid_10'].getDhxGrid().detachEvent(_onXLE10);
+	return false;
+}
+
+//그리드안의 키워드 클릭 시 링크 연결 
+function Grid_doLink(val,rowIdx,cellIdx){
+	
+	var gridObj 	= items['C104000020TAB07_Grid_10'].getDhxGrid();
+	var link_url 	= "", param = "";
+	//링크1
+	if(cellIdx == gridObj.getColIndexById('KEY_WRD1')) {	
+		var KEY_WRD1 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD1")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD1;
+		
+		parent.parent.newRemoveOpenTab(link_url,param);
+	}
+	else if(cellIdx == gridObj.getColIndexById('KEY_WRD2')) {	
+		var KEY_WRD2 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD2")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD2;
+		
+		parent.parent.newRemoveOpenTab(link_url,param);
+	}
+	else if(cellIdx == gridObj.getColIndexById('KEY_WRD3')) {	
+		var KEY_WRD3 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD3")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD3;
+		
+		parent.parent.newRemoveOpenTab(link_url,param);
+	}else if(cellIdx == gridObj.getColIndexById('KEY_WRD4')) {	
+		var KEY_WRD4 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD4")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD4;
+		
+		parent.parent.newRemoveOpenTab(link_url,param);
+	}
+}
+
 function upt_clear(){
 	var grid = items['C104000020TAB07_Grid_2'];
 	grid.setUpdated(grid.getDhxGrid().getRowId(0),false,""); 
@@ -450,11 +594,17 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 </div>
 <div id="C104000020TAB07_Grid_7" style="position:absolute;height:44px;width:857px;left:1px;top:632px;">
 </div>
-<div id="C104000020TAB07_Grid_8" style="position:absolute;height:50px;width:857px;left:1px;top:678px;">
+<div id="C104000020TAB07_Grid_8" style="position:absolute;height:100px;width:857px;left:1px;top:678px;">
 </div>
-<div id="messagebox" style="position:absolute;height:19px;width:956px;left:1px;top:730px;">
+<div id="C104000020TAB07_Form_1" style="position:absolute;height:130px;width:98px;left:861px;top:646px;">
 </div>
-<div id="C104000020TAB07_Form_1" style="position:absolute;height:80px;width:98px;left:861px;top:646px;">
+<div id="C104000020TAB07_Grid_9" style="position:absolute;height:50px;width:857px;left:1px;top:780px;">
+</div>
+<div id="C104000020TAB07_Grid_10" style="position:absolute;height:50px;width:857px;left:1px;top:831px;">
+</div>
+<div id="C104000020TAB07_Form_2" style="position:absolute;height:23px;width:857px;left:1px;top:882px;">
+</div>
+<div id="messagebox" style="position:absolute;height:19px;width:956px;left:1px;top:909px;">
 </div>
 </body>
 </html>
@@ -471,6 +621,8 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
        items['C104000020TAB07_Grid_6'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid6); 
        items['C104000020TAB07_Grid_7'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid7);        
        items['C104000020TAB07_Grid_8'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid8); 
+       items['C104000020TAB07_Grid_9'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid9);
+       items['C104000020TAB07_Grid_10'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid10);
 	   
        var _onXLE1 = items['C104000020TAB07_Grid_1'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent1);
        var _onXLE2 = items['C104000020TAB07_Grid_2'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent2);
@@ -480,6 +632,8 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 	   var onXleGrid6 = items['C104000020TAB07_Grid_6'].onXLEEvent(onGridLoadFunction6); 
        var _onXLE7 = items['C104000020TAB07_Grid_7'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent7);
        var _onXLE8 = items['C104000020TAB07_Grid_8'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent8);
+       var _onXLE9 = items['C104000020TAB07_Grid_9'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent9);
+       var _onXLE10 = items['C104000020TAB07_Grid_10'].getDhxGrid().attachEvent("onXLE", onGridLoadEvent10);
 	   items["C104000020TAB07_Grid_2"].onEditCellEvent(onEditCellEvent2);
 //]]>
 -->

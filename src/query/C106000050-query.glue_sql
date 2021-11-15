@@ -2,7 +2,7 @@
 <queryMap desc="C106000050 Page 쿼리파일"> 
 	 <query id="C106000050.colorselect" desc="칼라부자재코드조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT  /*+ C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김종범 */ 
+SELECT  /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김종범 */ 
        DECODE(USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
        CLR_SUB_MTL_CD,
        CLR_NM,
@@ -117,7 +117,13 @@ SELECT  /*+ C10 칼라코드관리- 칼라코드조회 C106000050.colorselect �
         WHEN TO_CHAR(LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') > NVL(TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS'),'1900-01-01 00:00:00')THEN 'Y'
         ELSE 'N'
         END SND_LST,
-        '' as USERNO
+        '' as USERNO,
+        RSN_TP_QT, 
+        PAT_CD, 
+        FUNC_CD, 
+        TTE_CD, 
+        USE_POS_CD, 
+        WTY_YN 
   FROM C10APUSER.TB_C10_CLR_CD_MNG 
  WHERE NVL(CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
    AND NVL(SUB_MTL_TP,'%') LIKE '%' || DECODE(:SUB_MTL_TP_SH,'all','%',:SUB_MTL_TP_SH) ||'%'
@@ -125,16 +131,28 @@ SELECT  /*+ C10 칼라코드관리- 칼라코드조회 C106000050.colorselect �
    AND NVL(RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
    AND NVL(LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
    AND NVL(PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
-   AND (NVL(RAL_CD,'%') LIKE '%' || :RAL_CD ||'%' OR
-        NVL(CLR_NM,'%') LIKE '%' || :RAL_CD ||'%' OR
-        NVL(STD_CLR_NM,'%') LIKE '%' || :RAL_CD ||'%' OR
-        NVL(RMRK,'%') LIKE '%' || :RAL_CD ||'%' OR
-        NVL(CLR_SUB_MTL_CD_OLD,'%') LIKE '%' || :RAL_CD ||'%' )
+   AND (NVL(RAL_CD,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(RAL_CD,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(RAL_CD,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(RAL_CD,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD||'%') OR
+        NVL(CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD||'%') OR
+        NVL(CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(RMRK,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(RMRK,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(RMRK,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(RMRK,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(STD_CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(STD_CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(STD_CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(STD_CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(CLR_SUB_MTL_CD_OLD,'%') LIKE '%' || :RAL_CD ||'%')
 		 ]]> 
 	 </query>
 	 <query id="C106000050.colorupdate" desc="칼라코드정보 수정" isNamed="true">
 		 <![CDATA[ 
-UPDATE /*+ C10 품질설계 칼라코드관리 C106000050.colorupdate 김종범 */ 
+UPDATE /* C10 품질설계 칼라코드관리 C106000050.colorupdate 김종범 */ 
 TB_C10_CLR_CD_MNG SET 
 CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD,--칼라부자재코드
 CLR_NM = :CLR_NM,--색상명
@@ -173,6 +191,12 @@ EX_YN = DECODE(:EX_YN,'1','Y','N'),
 COL_DIF_STD = :COL_DIF_STD,
 EX_YN1 = DECODE(:EX_YN1,'1','Y','N'),
 TP_CD = :TP_CD,
+RSN_TP_QT = :RSN_TP_QT,
+PAT_CD = :PAT_CD,
+FUNC_CD = :FUNC_CD,
+TTE_CD = :TTE_CD,
+USE_POS_CD = :USE_POS_CD,
+WTY_YN = :WTY_YN,
 MDF_PRS_ID = :ObjectId, 
 CLR_MDF_DH = SYSDATE,
 USE_YN = DECODE(:USE_YN,'1','Y','Y','Y','N'),--사용여부
@@ -199,7 +223,7 @@ WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 	 </query>
 	 <query id="C106000050.colorinsert" desc="칼라코드정보 추가" isNamed="true">
 		 <![CDATA[ 
-INSERT INTO TB_C10_CLR_CD_MNG/*+ C10 품질설계 칼라코드관리 C106000050.colorinsert 김종범 */ (
+INSERT INTO TB_C10_CLR_CD_MNG/* C10 품질설계 칼라코드관리 C106000050.colorinsert 김종범 */ (
     CLR_SUB_MTL_CD,--칼라부자재코드
     CLR_NM,--색상명
     SUB_MTL_TP,--부자재구분
@@ -248,6 +272,12 @@ INSERT INTO TB_C10_CLR_CD_MNG/*+ C10 품질설계 칼라코드관리 C106000050.
     COL_DIF_STD,
     EX_YN1,
     TP_CD,
+    RSN_TP_QT,
+    PAT_CD,
+    FUNC_CD,
+    TTE_CD,
+    USE_POS_CD,
+    WTY_YN,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -305,6 +335,12 @@ INSERT INTO TB_C10_CLR_CD_MNG/*+ C10 품질설계 칼라코드관리 C106000050.
     :COL_DIF_STD,
     DECODE(:EX_YN1,'1','Y','N'),
     :TP_CD,
+    :RSN_TP_QT,
+    :PAT_CD,
+    :FUNC_CD,
+    :TTE_CD,
+    :USE_POS_CD,
+    :WTY_YN,
     :ObjectType,
     :ObjectId,
     :ProgramId,

@@ -2082,6 +2082,14 @@ public interface C10NuiConstantsIF {
     public static final String COL_PRT_INK_TP4 = "PRT_INK_TP4";
     /** CCL공정품질메시지 */
     public static final String COL_CCL_QLT_MSG_TXT = "CCL_QLT_MSG_TXT";
+    /** KEY WRD1 */
+    public static final String COL_KEY_WRD1 = "KEY_WRD1";
+    /** KEY WRD2 */
+    public static final String COL_KEY_WRD2 = "KEY_WRD2";
+    /** KEY WRD3 */
+    public static final String COL_KEY_WRD3 = "KEY_WRD3";
+    /** KEY WRD4 */
+    public static final String COL_KEY_WRD4 = "KEY_WRD4";
     /** 재단선유무 */
     public static final String COL_CUT_LN_YN = "CUT_LN_YN";
 

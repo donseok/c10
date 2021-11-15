@@ -97,6 +97,16 @@ public class C10FileUpload4 extends PosActivity {
 					queryStr = C10ConstantsIF.C106000140POP02_INSERT;
 					delQueryStr = C10ConstantsIF.C106000140POP02_DELETE;
 					upQueryStr = C10ConstantsIF.C106000140POP02_UPDATE;
+				} else if ("7".equals(prdSpcTp)) { 
+					//제품이미지인 경우 (prdSpcTp 값 : 7)
+					queryStr = C10ConstantsIF.C106000160POP01_INSERT;
+					delQueryStr = C10ConstantsIF.C106000160POP01_DELETE;
+					upQueryStr = C10ConstantsIF.C106000160POP01_UPDATE;
+				} else if ("8".equals(prdSpcTp)) {
+					//규격이미지인 경우 (prdSpcTp 값 : 8)	
+					queryStr = C10ConstantsIF.C106000160POP02_INSERT;
+					delQueryStr = C10ConstantsIF.C106000160POP02_DELETE;
+					upQueryStr = C10ConstantsIF.C106000160POP02_UPDATE;
 				}
 			}  else if ("05".equals(img_rgs_flag)) {
 				queryStr    = C10ConstantsIF.C108000010POP02_INSERT;

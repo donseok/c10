@@ -491,6 +491,11 @@ public class DbSearchCclBomData extends PosActivity implements C10NuiConstantsIF
                 	ctx.put( COL_PTT_FLM_MNG_ADH_TXT, row.getAttribute( COL_PTT_FLM_MNG_ADH_TXT ) );
                 else ctx.put( COL_PTT_FLM_MNG_ADH_TXT, C10STR_SPACE );
                 
+                ctx.put( COL_KEY_WRD1, row.getAttribute( COL_KEY_WRD1 ) );
+                ctx.put( COL_KEY_WRD2, row.getAttribute( COL_KEY_WRD2 ) );
+                ctx.put( COL_KEY_WRD3, row.getAttribute( COL_KEY_WRD3 ) );
+                ctx.put( COL_KEY_WRD4, row.getAttribute( COL_KEY_WRD4 ) );
+                
                 break;
 
             }else if ( rowset.count() > 1 ){

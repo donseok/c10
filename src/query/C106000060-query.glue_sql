@@ -887,7 +887,7 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이�
 	 </query>
 	 <query id="C106000060.detailSelect" desc="상세조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT  /*+ C10 CCL-BOM관리-고객사 주문용도조회 C106000060.detailSelect 이민균 */ 
+SELECT  /* C10 CCL-BOM관리-고객사 주문용도조회 C106000060.detailSelect 이민균 */ 
     CCL_BOM_NO,--CCLBOM번호
     CUS_CD,--고객사코드
     (SELECT CD_V_MEANING 
@@ -935,7 +935,15 @@ SELECT  /*+ C10 CCL-BOM관리-고객사 주문용도조회 C106000060.detailSele
       WHERE CD_TP = 'PTT_FLM_MQL_CD'         
       AND   CATEGORY_GROUP_NM = 'SZ0000'
       AND   CD_V = SUBSTR(PTT_FLM_DTL_CD,3,1)) AS PTT_FLM_MQL_CD_NM_MASTER,--보호필름재질코드_MASTER
-      TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH   --ERP전송일시 추가
+      TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH,   --ERP전송일시 추가
+    KEY_WRD1,
+    KEY_WRD2,
+    KEY_WRD3,
+    KEY_WRD4,
+    KEY_WRD1 AS KEY_WRD11,
+    KEY_WRD2 AS KEY_WRD22,
+    KEY_WRD3 AS KEY_WRD33,
+    KEY_WRD4 AS KEY_WRD44
 FROM C10APUSER.TB_C10_CLR_MPR
 WHERE CCL_BOM_NO = :CCL_BOM_NO
 ORDER BY decode(CUS_CD,'******','0', CUS_CD), decode(ORD_USG_CD, '******','0', ORD_USG_CD)
@@ -1290,7 +1298,7 @@ AND CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 	 </query>
 	 <query id="C106000060.colorInfoInsert" desc="C106000060.colorInfoInsert" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민균*/TB_C10_CLR_MPR(
+INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민균*/TB_C10_CLR_MPR(
     CCL_BOM_NO,--CCLBOM번호
     CUS_CD,--고객사코드
     ORD_USG_CD,--주문용도코드
@@ -1313,6 +1321,10 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민
     PTT_FLM_ADH_LLV,--보호필름점착력하한
     PTT_FLM_ADH_ULV,--보호필름점착력상한
     CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    KEY_WRD1,--키워드1
+    KEY_WRD2,--키워드2
+    KEY_WRD3,--키워드3
+    KEY_WRD4,--키워드4
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -1344,6 +1356,10 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민
     :PTT_FLM_ADH_LLV,--보호필름점착력하한
     :PTT_FLM_ADH_ULV,--보호필름점착력상한
     :CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    :KEY_WRD1,--키워드1
+    :KEY_WRD2,--키워드2
+    :KEY_WRD3,--키워드3
+    :KEY_WRD4,--키워드4
     :ObjectType,
     :ObjectId,
     :ProgramId,
@@ -1357,7 +1373,7 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민
 	 </query>
 	 <query id="C106000060.colorInfoUpdate" desc="C106000060.colorInfoUpdate " fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-UPDATE /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfoUpdate 이민균 */ 
+UPDATE /* C10 품질설계 CCL-BOM관리 C106000060.colorInfoUpdate 이민균 */ 
 TB_C10_CLR_MPR SET
 CUS_CD = :CUS_CD,--고객사코드
 ORD_USG_CD = :ORD_USG_CD,--주문용도코드
@@ -1380,6 +1396,10 @@ CLR_BND_TST_BAK_GRD_PNT = :CLR_BND_TST_BAK_GRD_PNT,--칼라Bending시험후면�
 PTT_FLM_ADH_LLV = :PTT_FLM_ADH_LLV,--보호필름점착력하한
 PTT_FLM_ADH_ULV = :PTT_FLM_ADH_ULV,--보호필름점착력상한
 CCL_QLT_MSG_TXT = :CCL_QLT_MSG_TXT,--CCL공정품질메시지
+KEY_WRD1 = :KEY_WRD1,--키워드1
+KEY_WRD2 = :KEY_WRD2,--키워드2
+KEY_WRD3 = :KEY_WRD3,--키워드3
+KEY_WRD4 = :KEY_WRD4,--키워드4
 LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
 LAST_UPDATED_OBJECT_ID=:ObjectId,      
 LAST_UPDATE_PROGRAM_ID=:ProgramId,     

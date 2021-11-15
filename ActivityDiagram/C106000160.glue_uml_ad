@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.5"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="521,-1" input="//@wire.0" output="//@wire.2 //@wire.3" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000160.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="16" location="325,179" size="151,-1" input="//@wire.3" output="//@wire.4 //@wire.6" name="저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000160.delete"/>
+    <property key="insert-sql" value="C106000160.insert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000160.update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="296002" location="275,298" size="96,-1" input="//@wire.6" output="//@wire.5" name="에러 메세지">
+    <property key="class" value="com.unionsteel.mes.c10.activity.common.SetUIMessage"/>
+    <property key="MSG" value="동일 이미지코드 입력됨."/>
+    <property key="MSG_KEY" value="errMsg"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="find" firstRelativePoint="194,112" lastRelativePoint="194,179"/>
+  <wire id="14" guardcondition="save" firstRelativePoint="403,112" lastRelativePoint="403,179"/>
+  <wire id="8440" guardcondition="success" firstRelativePoint="403,209" lastRelativePoint="312,436">
+    <bendpoint weight="0.5" firstDimension="3,179" secondDimension="98,-70"/>
+  </wire>
+  <wire id="13419" guardcondition="success" firstRelativePoint="305,328" lastRelativePoint="305,432"/>
+  <wire id="13420" guardcondition="failure" firstRelativePoint="340,209" lastRelativePoint="340,298"/>
+</Glue:GlueDiagram>

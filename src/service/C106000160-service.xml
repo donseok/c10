@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000160-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000160.select" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="save" value="저장" />
+  </activity>
+  <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <transition name="failure" value="에러 메세지" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C106000160.insert" />
+    <property name="update-sql" value="C106000160.update" />
+    <property name="delete-sql" value="C106000160.delete" />
+  </activity>
+  <activity name="에러 메세지" class="com.unionsteel.mes.c10.activity.common.SetUIMessage">
+    <transition name="success" value="end" />
+    <property name="MSG_KEY" value="errMsg" />
+    <property name="MSG" value="동일 이미지코드 입력됨." />
+  </activity>
+</service>
+

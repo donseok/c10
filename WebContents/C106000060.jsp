@@ -189,12 +189,14 @@ function save(eventName,formDivObj,referenceItem){
 	}
 	
 	//cclBomNo 5자리로 비교 후 다른경우 5자리로 업데이트!!(2020.12.14 이돈석)
+	/*
 	if(cclBomNo5 != hueCdFrn){
 		//grid.setCellValue(grid.getRowSelectedId(),7,cclBomNo5);
 		//grid.setUpdated(grid.getRowSelectedId(),true,"updated");
 		dhtmlx.alert("CCL BOM번호 :" + cclBomNo5 + "와 대표색상코드 :" + hueCdFrn + "가 동일하지 않습니다!");
 		return;
 	}
+	*/
 	
     //칼라물성 입력체크
 	var gridObj2 = items['C106000060_Grid_2'].getDhxGrid();
@@ -318,6 +320,9 @@ function save1(eventName,formDivObj,referenceItem){
 				erpsnddh = gridObj2.getCellValue(rowID,items['C106000060_Grid_2'].getDhxGrid().getColIndexById("ERP_SND_DH"));	//12-07-10
 				ordusgcd = gridObj2.getCellValue(rowID,items['C106000060_Grid_2'].getDhxGrid().getColIndexById("ORD_USG_CD"));
 				cclqltmsgtxt = gridObj2.getCellValue(rowID,items['C106000060_Grid_2'].getDhxGrid().getColIndexById("CCL_QLT_MSG_TXT"));
+				keywrd1 = gridObj2.getCellValue(rowID,items['C106000060_Grid_2'].getDhxGrid().getColIndexById("KEY_WRD1"));
+				
+				//alert(keywrd1);
 				
 			    if(!isNull(cclBomNo)&&!isNull(cuscd)&&!isNull(ordusgcd)){
 					if(rowStatus == "inserted"){
@@ -326,7 +331,7 @@ function save1(eventName,formDivObj,referenceItem){
 							popCompleteYN = "N";
 							return;
 						}
-						gridObj2.setCellValue(rowID,22, popCfmRea);
+						gridObj2.setCellValue(rowID,30, popCfmRea);
 						gridObj2.setUpdated(rowID,true,"inserted"); 		
 					}
 					else if(rowStatus == "updated"){
@@ -335,17 +340,17 @@ function save1(eventName,formDivObj,referenceItem){
 							popCompleteYN = "N";
 							return;
 						}
-						gridObj2.setCellValue(rowID,22, popCfmRea);
+						gridObj2.setCellValue(rowID,30, popCfmRea);
 						gridObj2.setUpdated(rowID,true,"updated"); 		
 					}
 					//삭제시 ERP전송여부에 따라 Send Delete OR Delete
 					else if(rowStatus == "deleted"){
 						if(!isNull(erpsnddh)){
-							gridObj2.setCellValue(rowID,22, popCfmRea);
+							gridObj2.setCellValue(rowID,30, popCfmRea);
 							gridObj2.setUpdated(rowID,true,"senddeleted");             	       
 						}
 						else{
-							gridObj2.setCellValue(rowID,22, popCfmRea);
+							gridObj2.setCellValue(rowID,30, popCfmRea);
 							gridObj2.setUpdated(rowID,true,"deleted"); 
 						}		
 					}
@@ -616,7 +621,7 @@ function add1(referenceItem){
 		if(!isNull(cclBomNo)){
 			items['C106000060_Grid_2'].addRow();
 			gridObj1.selectRow(0);
-			for (var i=0; i<18 ; i++){
+			for (var i=0; i<26 ; i++){
 				if( i != 1 || i != 3 ){
 					gridObj1.setCellExcellType(gridObj1.getRowId(0), i, "ed");
 				}
@@ -3261,7 +3266,7 @@ function C10_linkC106000060pop06() {
 function C10_linkC106000060pop07() {
 	if(items['C106000060_Grid_2'].getRowSelectedId()){
 		var g2_selectedId = items['C106000060_Grid_2'].getSelectedRowId();
-  	    var g2_cclbomno = items['C106000060_Grid_2'].getCellValue(g2_selectedId,18);
+  	    var g2_cclbomno = items['C106000060_Grid_2'].getCellValue(g2_selectedId,26);
 		var g2_cuscd      = items['C106000060_Grid_2'].getCellValue(g2_selectedId,0);
 		var g2_ordusgcd = items['C106000060_Grid_2'].getCellValue(g2_selectedId,2);
 
@@ -3272,6 +3277,47 @@ function C10_linkC106000060pop07() {
 		return;				
 	}	
 }
+
+//그리드안의 키워드 클릭 시 링크 연결 
+function Grid_doLink(val,rowIdx,cellIdx){
+	
+	var gridObj 	= items['C106000060_Grid_2'].getDhxGrid();
+	var link_url 	= "", param = "";
+	//링크1
+	if(cellIdx == gridObj.getColIndexById('KEY_WRD11')) {	
+		var KEY_WRD11 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD11")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD11;
+		
+		parent.newRemoveOpenTab(link_url,param);
+	}
+	else if(cellIdx == gridObj.getColIndexById('KEY_WRD22')) {	
+		var KEY_WRD22 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD22")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD22;
+		
+		parent.newRemoveOpenTab(link_url,param);
+	}
+	else if(cellIdx == gridObj.getColIndexById('KEY_WRD33')) {	
+		var KEY_WRD33 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD33")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD33;
+		
+		parent.newRemoveOpenTab(link_url,param);
+	}
+	else if(cellIdx == gridObj.getColIndexById('KEY_WRD44')) {	
+		var KEY_WRD44 = gridObj.cells(rowIdx,gridObj.getColIndexById("KEY_WRD44")).getValue();
+		
+		link_url = "C106000160";
+		param += "&KEY_WRD="+KEY_WRD44;
+		
+		parent.parent.newRemoveOpenTab(link_url,param);
+	}
+}
+
 //]]>
 -->
 </script>

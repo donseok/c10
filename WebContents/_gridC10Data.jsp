@@ -103,6 +103,10 @@ try {
 								out.print("<a><img src='./dhtmlx/codebase/imgs/save.gif' onClick=\"doImgPopUp6('"+str_row_id+"')\" border=0></a>");
 							}else if(colOrder[j].equals("STD_YN") && "Y".equals(rowMap.get("STD_YN").toString())){
 								out.print("<a><img src='./dhtmlx/codebase/imgs/save.gif' onClick=\"doImgPopUp7('"+str_row_id+"')\" border=0></a>");
+							}else if(colOrder[j].equals("KIMG_YN") && "Y".equals(rowMap.get("KIMG_YN").toString())){
+								out.print("<a><img src='./dhtmlx/codebase/imgs/save.gif' onClick=\"doImgPopUp8('"+str_row_id+"')\" border=0></a>");
+							}else if(colOrder[j].equals("KFILE_YN") && "Y".equals(rowMap.get("KFILE_YN").toString())){
+								out.print("<a><img src='./dhtmlx/codebase/imgs/save.gif' onClick=\"doImgPopUp9('"+str_row_id+"')\" border=0></a>");	
 							}else if(colOrder[j].equals("IMAGE_YN") && rowMap.get("IMAGE_YN") != null && !"Y".equals(rowMap.get("IMAGE_YN").toString())){
 								out.print("<a><img src='./dhtmlx/codebase/imgs/save_dis.gif' onClick=\"doImgPopUp('"+str_row_id+"')\" border=0></a>");
 							}else if(colOrder[j].equals("FILE_YN") && rowMap.get("FILE_YN") != null && !"Y".equals(rowMap.get("FILE_YN").toString())){
@@ -119,6 +123,10 @@ try {
 								out.print("<a><img src='./dhtmlx/codebase/imgs/save_dis.gif' onClick=\"doImgPopUp6('"+str_row_id+"')\" border=0></a>");
 							}else if(colOrder[j].equals("STD_YN") && rowMap.get("STD_YN") != null && !"Y".equals(rowMap.get("STD_YN").toString())){
 								out.print("<a><img src='./dhtmlx/codebase/imgs/save_dis.gif' onClick=\"doImgPopUp7('"+str_row_id+"')\" border=0></a>");
+							}else if(colOrder[j].equals("KIMG_YN") && rowMap.get("KIMG_YN") != null && !"Y".equals(rowMap.get("KIMG_YN").toString())){
+								out.print("<a><img src='./dhtmlx/codebase/imgs/save_dis.gif' onClick=\"doImgPopUp8('"+str_row_id+"')\" border=0></a>"); //
+							}else if(colOrder[j].equals("KFILE_YN") && rowMap.get("KFILE_YN") != null && !"Y".equals(rowMap.get("KFILE_YN").toString())){
+								out.print("<a><img src='./dhtmlx/codebase/imgs/save_dis.gif' onClick=\"doImgPopUp9('"+str_row_id+"')\" border=0></a>"); ///	
 							}else if(colOrder[j].equals("RMTL_IMG_NM") && rowMap.get("RMTL_IMG_NM") != null && !"Y".equals(rowMap.get("RMTL_IMG_NM").toString())) {
 								out.print(""); 
 						    }else if(colOrder[j].equals("DEL_IMG")){

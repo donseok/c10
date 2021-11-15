@@ -10,7 +10,7 @@ SELECT /*+ C10 CCL-BOM기준 조회 C102100CCL_BOM.select 박재영*/
 	 </query>
 	 <query id="C102100CCL_BOM.insert" desc="C102100CCL_BOM.insert" fetchSize="10" isNamed="false">
 		 <![CDATA[ 
-INSERT INTO  /*+ C10 품질설계결과제조사양등록 C102100CCL_BOM.insert 박재영*/                           
+INSERT INTO  /* C10 품질설계결과제조사양등록 C102100CCL_BOM.insert 박재영*/                           
 TB_C10_QLT_DSN_CCL_BOM ( 	
      ORD_NO			            --주문번호
     ,ORD_LN			            --주문행번
@@ -173,6 +173,10 @@ TB_C10_QLT_DSN_CCL_BOM (
     ,LMN_BND_CD1			        --Lamina접착제코드1
     ,LMN_BND_THR_CD1			    --Lamina접착제신나코드1
     ,PTT_FLM_MNG_ADH_TXT
+    ,KEY_WRD1
+    ,KEY_WRD2
+    ,KEY_WRD3
+    ,KEY_WRD4
     ,CREATED_OBJECT_TYPE        --생성OBJECT유형                                                                 
     ,CREATED_OBJECT_ID          --생성OBJECTID                                                                   
     ,CREATED_PROGRAM_ID         --생성프로그램ID                                                                 
@@ -226,6 +230,7 @@ VALUES
 ?,?,?,?,
 ?,
 ?,?,?,?,
+?,?,?,?,
 ?,?,?,?
 )
 		 ]]> 
@@ -261,7 +266,7 @@ and    CLR_SUB_MTL_CD in (?,?,?,?,?,?,?,?,?,?,?,?)
 	 </query>
 	 <query id="C102100CCL_BOM.REinsert" desc="C10 반복주문 품질설계 CCL_BOM C102100.CCLinsert" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-INSERT INTO /*+ C10 반복주문 품질설계 CCL_BOM C102100CCL_BOM.REinsert 이돈석*/
+INSERT INTO /* C10 반복주문 품질설계 CCL_BOM C102100CCL_BOM.REinsert 이돈석*/
 TB_C10_QLT_DSN_CCL_BOM(ORD_NO, 
                        ORD_LN, 
                        COT_MTH, 
@@ -422,7 +427,11 @@ TB_C10_QLT_DSN_CCL_BOM(ORD_NO,
                        IMPT_ROLL_BAK_NO, 
                        LMN_BND_CD1, 
                        LMN_BND_THR_CD1, 
-                       PTT_FLM_MNG_ADH_TXT,  
+                       PTT_FLM_MNG_ADH_TXT,
+                       KEY_WRD1,
+                       KEY_WRD2,
+                       KEY_WRD3,
+                       KEY_WRD4,
                        CREATED_OBJECT_TYPE, 
                        CREATED_OBJECT_ID, 
                        CREATED_PROGRAM_ID, 
@@ -591,7 +600,11 @@ SELECT                 :ORD_NO,
                        IMPT_ROLL_BAK_NO, 
                        LMN_BND_CD1, 
                        LMN_BND_THR_CD1, 
-                       PTT_FLM_MNG_ADH_TXT, 
+                       PTT_FLM_MNG_ADH_TXT,
+                       KEY_WRD1,
+                       KEY_WRD2,
+                       KEY_WRD3,
+                       KEY_WRD4,
                        'C',
                        'unknown',
                        'B10R0030_sub-service',

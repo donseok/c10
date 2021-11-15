@@ -71,7 +71,7 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="161"/>
+    <property key="param-count" value="165"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="C102100CCL_BOM.insert"/>
     <property key="param0" value="ORD_NO"/>
@@ -235,6 +235,10 @@
     <property key="param158" value="LMN_BND_CD1"/>
     <property key="param159" value="LMN_BND_THR_CD1"/>
     <property key="param160" value="PTT_FLM_MNG_ADH_TXT"/>
+    <property key="param161" value="KEY_WRD1"/>
+    <property key="param162" value="KEY_WRD2"/>
+    <property key="param163" value="KEY_WRD3"/>
+    <property key="param164" value="KEY_WRD4"/>
     <property key="description" value="이 Activity는 CCL-BOM기준을 품질설계결과-칼라제조사양테이블에 &#xD;&#xA;등록하는 Activity이다. "/>
   </child>
   <child xsi:type="Glue:Activity" id="50978" location="421,392" size="130,-1" input="//@wire.12 //@wire.20" output="//@wire.8" name="ERROR_LOG">

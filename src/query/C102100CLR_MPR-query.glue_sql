@@ -2,7 +2,7 @@
 <queryMap desc="C102100CLR_MPR"> 
 	 <query id="C102100CLR_MPR.select" desc="C102100CLR_MPR.select" fetchSize="10" isNamed="false">
 		 <![CDATA[ 
-SELECT /*+ C10 칼라물성기준 조회 C102100CLR_MPR.select 박재영*/    
+SELECT /* C10 칼라물성기준 조회 C102100CLR_MPR.select 박재영*/    
           PTT_FLM_DTL_CD, 
           CLR_DIF_FRN_LLV, CLR_DIF_FRN_ULV, CLR_DIF_BAK_LLV,
           CLR_DIF_BAK_ULV, MPR_BAS_PNCL_HRDN_FRN,
@@ -10,7 +10,8 @@ SELECT /*+ C10 칼라물성기준 조회 C102100CLR_MPR.select 박재영*/
           CLR_BND_TST_FRN_STD_CD, CLR_BND_TST_FRN_GRD_PNT,
           CLR_BND_TST_BAK_STD_CD, CLR_BND_TST_BAK_GRD_PNT,
           PTT_FLM_ADH_LLV, PTT_FLM_ADH_ULV, CCL_QLT_MSG_TXT,
-          UNI_GLS_FLM_CD, PTT_FLM_DTL_CD_N, PTT_FLM_MNG_ADH_TXT
+          UNI_GLS_FLM_CD, PTT_FLM_DTL_CD_N, PTT_FLM_MNG_ADH_TXT,
+          KEY_WRD1, KEY_WRD2, KEY_WRD3, KEY_WRD4
  FROM TB_C10_CLR_MPR
  WHERE CCL_BOM_NO = ?
  AND    CUS_CD = ?

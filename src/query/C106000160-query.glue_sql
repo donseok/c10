@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000160 Page 쿼리파일"> 
+	 <query id="C106000160.select" desc="프린트롤 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT A.KEY_WRD_NO,
+       A.KEY_WRD_SEQ_NO,
+       A.KEY_WRD_TXT,
+       A.KEY_WRD,
+       TO_CHAR(A.KEY_WRD_DH, 'YYYY-MM-DD') KEY_WRD_DH,
+       A.KEY_WRD_PRS_ID,
+       (SELECT USER_NAME
+          FROM M90APUSER.TB_M90_EMP_INF	
+         WHERE USER_NO = A.KEY_WRD_PRS_ID) KEY_WRD_PRS_ID_NM,
+	   :USER_NO AS USER_NO,
+       NVL(A.KIMG_YN,'N') KIMG_YN,
+       NVL(A.KFILE_YN,'N') KFILE_YN
+  FROM C10APUSER.TB_C10_KEY_WRD_MNG A
+ WHERE A.KEY_WRD LIKE '%'||:KEY_WRD||'%'
+   AND EXISTS (
+       SELECT 1 FROM M90APUSER.TB_M90_EMP_INF 
+       WHERE USER_NO = A.KEY_WRD_PRS_ID 
+         AND USER_NAME LIKE :KEY_WRD_PRS_ID_NM || '%'
+     )
+ORDER BY TO_NUMBER(KEY_WRD_NO)
+		 ]]> 
+	 </query>
+	 <query id="C106000160.update" desc="C106000160 정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_KEY_WRD_MNG
+      SET KEY_WRD_TXT = :KEY_WRD_TXT
+WHERE KEY_WRD_NO = :KEY_WRD_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000160.delete" desc="C106000160 정보 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM C10APUSER.TB_C10_KEY_WRD_MNG
+ 	WHERE KEY_WRD_NO = :KEY_WRD_NO 
+	   AND KEY_WRD_SEQ_NO = :KEY_WRD_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000160.insert" desc="C106000160 정보 추가" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_KEY_WRD_MNG(
+             KEY_WRD_NO
+            ,KEY_WRD_SEQ_NO
+            ,KEY_WRD
+            ,KEY_WRD_DH
+            ,KEY_WRD_PRS_ID
+            ,KEY_WRD_TXT
+            ,KIMG_YN
+            ,KFILE_YN
+            ,CREATED_OBJECT_TYPE 
+            ,CREATED_OBJECT_ID 
+            ,CREATED_PROGRAM_ID
+            ,CREATION_TIMESTAMP
+            ,LAST_UPDATED_OBJECT_TYPE
+            ,LAST_UPDATED_OBJECT_ID
+            ,LAST_UPDATE_PROGRAM_ID
+            ,LAST_UPDATE_TIMESTAMP)
+ SELECT NVL(MAX(TO_NUMBER(KEY_WRD_NO)),0)+1
+       ,1
+       ,:KEY_WRD
+       ,SYSDATE
+       ,:ObjectId
+       ,:KEY_WRD_TXT
+       ,'N'
+       ,'N'
+       ,:ObjectType
+       ,:ObjectId 
+       ,:ProgramId
+       ,:Timestamp
+       ,:ObjectType
+       ,:ObjectId
+       ,:ProgramId
+       ,:Timestamp
+FROM C10APUSER.TB_C10_KEY_WRD_MNG
+		 ]]> 
+	 </query>
+	 <query id="C106000160_IMG.delete" desc="10" isNamed="true">
+		 <![CDATA[ 
+DELETE /*+ C106000160   이미지관리테이블 삭제  C106000160_IMG.delete  이돈석 */
+FROM TB_C10_DGT_PRT_IMG
+WHERE DGT_PRT_IMG_NO = :DGT_PRT_IMG_NO
+  AND DGT_PRT_IMG_SEQ_NO = :DGT_PRT_IMG_SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000160_DUMY.select" desc="10" isNamed="true">
+		 <![CDATA[ 
+SELECT  /*+ C106000160   의미없는 쿼리 C106000160_DUMY.select 이돈석 */
+1 DUMY
+FROM DUAL
+		 ]]> 
+	 </query>
+</queryMap>

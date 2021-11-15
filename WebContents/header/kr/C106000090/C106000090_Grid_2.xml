@@ -35,7 +35,7 @@
 <column align="left"   clabel="규격약호" dbname="규격약호" id="SPC_AVR" index="15" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="11" >규격약호</column>
 <column align="left"   clabel="주문용도코드" dbname="주문용도코드" id="ORD_USG_CD" index="16" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="24" >주문용도</column>
 <column align="center" clabel="품명코드" dbname="품명코드" id="PRD_NM_CD" index="17" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">품명</column>
-<column align="left"   clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" index="18" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="*">최종수요가</column>
+<column align="left"   clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" index="18" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="20">최종수요가</column>
 <column align="right"  clabel="주문환산두께" dbname="주문환산두께" id="ORD_EXC_THK" index="19" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">두께</column>
 <column align="right"  clabel="주문환산폭" dbname="주문환산폭" id="ORD_EXC_WTH" index="20" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">폭</column>
 <column align="center" clabel="QLT_DSN_CFM_DH" dbname="QLT_DSN_CFM_DH" id="QLT_DSN_END_DH" index="21" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="12">설계완료</column>
@@ -91,12 +91,13 @@
 <column align="left"   clabel="업체코드명" dbname="업체코드명" id="PNT_CMP_NM" index="64" sort="str" table="TB_C10_CLR_CMP_MNG" type="ro" width="30" >업체코드명</column>
 
 <column align="center" clabel="생산이력" dbname="생산이력" id="PRD_WHS_OX" index="65" sort="str" table="TB_M60_WHS_RET" type="ahref_C106000090" width="9">생산이력</column>
-
+<column align="left"   clabel="소재생산주문여부" dbname="소재생산주문여부" id="MTL_PRD_ORD_YN" index="66" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="17" >소재생산주문여부</column>
+<column align="left"   clabel="MO전환주문여부" dbname="MO전환주문여부" id="MO_CVT_ORD_YN" index="67" sort="str" table="TB_C10_QLT_DSN_CMN" type="ro" width="17" >MO전환주문여부</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">CCL_BOM_NO,CCL_BOM_USE_YN,HUE_CD_FRN,HUE_CD_BAK,HUE_CD_FRN_4COT,HUE_CD_FRN_3COT,HUE_CD_FRN_2COT,HUE_CD_FRN_1COT,HUE_CD_BAK_1COT,HUE_CD_BAK_2COT,HUE_CD_BAK_3COT,HUE_CD_BAK_4COT,HUE_CD_LMN,ORD_NO,SPC_AVR,ORD_USG_CD,PRD_NM_CD,FNL_CUS_CD,ORD_EXC_THK,ORD_EXC_WTH,QLT_DSN_END_DH,CLR_SUB_MTL_CD,USE_YN,CLR_NM,SUB_MTL_TP,LUS_RT_NM,MDF_PRS_ID,CLR_MDF_DH,CCL_BOM_NO1,CCL_BOM_USE_YN1,PRT_ROLL_NO1,PRT_ROLL_NO2,PRT_ROLL_NO3,PRT_ROLL_NO4,PRT_ROLL_BAK_NO1,PRT_ROLL_BAK_NO2,PRT_ROLL_BAK_NO3,PRT_ROLL_BAK_NO4,CCL_BOM_NO2,PRT_ROLL_NO1U,PRT_ROLL_NO2U,PRT_ROLL_NO3U,PRT_ROLL_NO4U,PRT_ROLL_BAK_NO1U,PRT_ROLL_BAK_NO2U,PRT_ROLL_BAK_NO3U,PRT_ROLL_BAK_NO4U,CCL_BOM_NO_INK,CCL_BOM_USE_YN_INK,PRT_INK_CD1,PRT_INK_CD2,PRT_INK_CD3,PRT_INK_CD4,PRT_INK_BAK_CD1,PRT_INK_BAK_CD2,PRT_INK_BAK_CD3,PRT_INK_BAK_CD4,CCL_BOM_NO3,FNL_CUS_CD,FNL_CUS_CD_NM,ORD_USG_CD,ORD_USG_CD_NM,PTT_FLM_DTL_CD,PNT_CMP_NM,PRD_WHS_OX</userdata>
+<userdata name="column-info">CCL_BOM_NO,CCL_BOM_USE_YN,HUE_CD_FRN,HUE_CD_BAK,HUE_CD_FRN_4COT,HUE_CD_FRN_3COT,HUE_CD_FRN_2COT,HUE_CD_FRN_1COT,HUE_CD_BAK_1COT,HUE_CD_BAK_2COT,HUE_CD_BAK_3COT,HUE_CD_BAK_4COT,HUE_CD_LMN,ORD_NO,SPC_AVR,ORD_USG_CD,PRD_NM_CD,FNL_CUS_CD,ORD_EXC_THK,ORD_EXC_WTH,QLT_DSN_END_DH,CLR_SUB_MTL_CD,USE_YN,CLR_NM,SUB_MTL_TP,LUS_RT_NM,MDF_PRS_ID,CLR_MDF_DH,CCL_BOM_NO1,CCL_BOM_USE_YN1,PRT_ROLL_NO1,PRT_ROLL_NO2,PRT_ROLL_NO3,PRT_ROLL_NO4,PRT_ROLL_BAK_NO1,PRT_ROLL_BAK_NO2,PRT_ROLL_BAK_NO3,PRT_ROLL_BAK_NO4,CCL_BOM_NO2,PRT_ROLL_NO1U,PRT_ROLL_NO2U,PRT_ROLL_NO3U,PRT_ROLL_NO4U,PRT_ROLL_BAK_NO1U,PRT_ROLL_BAK_NO2U,PRT_ROLL_BAK_NO3U,PRT_ROLL_BAK_NO4U,CCL_BOM_NO_INK,CCL_BOM_USE_YN_INK,PRT_INK_CD1,PRT_INK_CD2,PRT_INK_CD3,PRT_INK_CD4,PRT_INK_BAK_CD1,PRT_INK_BAK_CD2,PRT_INK_BAK_CD3,PRT_INK_BAK_CD4,CCL_BOM_NO3,FNL_CUS_CD,FNL_CUS_CD_NM,ORD_USG_CD,ORD_USG_CD_NM,PTT_FLM_DTL_CD,PNT_CMP_NM,PRD_WHS_OX,MTL_PRD_ORD_YN,MO_CVT_ORD_YN</userdata>
 <row id="0">
 <cell/>
 <cell/>

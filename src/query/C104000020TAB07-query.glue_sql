@@ -2,7 +2,7 @@
 <queryMap desc="C104000020TAB07"> 
 	 <query id="C104000020TAB07.select" desc="CCL BOM 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C104000020TAB07   박재영   C104000020TAB07.select    */ 
+SELECT /* C104000020TAB07   박재영   C104000020TAB07.select    */ 
     A.ORD_NO,--주문번호
     A.ORD_LN,--주문행번     
     A.COT_MTH || 
@@ -385,14 +385,20 @@ SELECT /*+ C104000020TAB07   박재영   C104000020TAB07.select    */
 				WHERE CD_TP = 'PTT_FLM_PRD_ADH_CD'         
 			        AND   CATEGORY_GROUP_NM = 'SZ0000'
 		  	        AND   CD_V = A.PTT_FLM_PRD_ADH_CD))  AS PTT_FLM_MNG_ADH_TXT
+    , KEY_WRD1
+    , KEY_WRD2
+    , KEY_WRD3
+    , KEY_WRD4
+    , KEY_WRD1_LNK
+    , KEY_WRD2_LNK
+    , KEY_WRD3_LNK
+    , KEY_WRD4_LNK               
 FROM  TB_C10_QLT_DSN_CCL_BOM A
      ,TB_C10_QLT_DSN_CMN     B
 WHERE A.ORD_NO = B.ORD_NO
 AND   A.ORD_LN = B.ORD_LN 
 AND   A.ORD_NO = :ORD_NO
 AND   A.ORD_LN = :ORD_LN
-AND NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
-                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB07.MNFupdate" desc="C104000020TAB07.MNFupdate" fetchSize="10" isNamed="true">
@@ -426,8 +432,6 @@ SELECT  /*+ C10 칼라-제조사양 C104000020TAB07.CMNselect 박재영 */
    FROM TB_C10_QLT_DSN_CMN A
 WHERE  ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN
-AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
-                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB07.STSselect" desc="C104000020TAB07.STSselect" fetchSize="10" isNamed="true">
@@ -442,14 +446,35 @@ SELECT /*+ C10 품질설계결과공통조회 C104000020TAB07.STSselect 박재�
 	 </query>
 	 <query id="C104000020TAB07.CCLupdate" desc="C104000020TAB07.CCLupdate" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-UPDATE /*+ C10 칼라-제조사양메세지 C104000020TAB07.CCLupdate 박재영*/                      
-TB_C10_QLT_DSN_CCL_BOM
+UPDATE /* C10 칼라-제조사양메세지 C104000020TAB07.CCLupdate 박재영*/                      
+    TB_C10_QLT_DSN_CCL_BOM
 SET    
-       LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
-      ,LAST_UPDATED_OBJECT_ID = :ObjectId              --최종변경OBJECTID  
-      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
-      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
-      ,CCL_QLT_MSG_TXT = :CCL_QLT_MSG_TXT          --품질Message
+    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID = :ObjectId              --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
+    ,CCL_QLT_MSG_TXT = :CCL_QLT_MSG_TXT          --품질Message
+WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                             --주문행번
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB07.CCLupdate1" desc="C104000020TAB07.CCLupdate1" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /* C10 칼라-제조사양메세지 C104000020TAB07.CCLupdate1 이돈석*/                      
+    TB_C10_QLT_DSN_CCL_BOM
+SET    
+    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
+    ,LAST_UPDATED_OBJECT_ID = :ObjectId              --최종변경OBJECTID  
+    ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+    ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
+    ,KEY_WRD1 = :KEY_WRD1
+    ,KEY_WRD2 = :KEY_WRD2
+    ,KEY_WRD3 = :KEY_WRD3
+    ,KEY_WRD4 = :KEY_WRD4
+    ,KEY_WRD1_LNK = :KEY_WRD1
+    ,KEY_WRD2_LNK = :KEY_WRD2
+    ,KEY_WRD3_LNK = :KEY_WRD3
+    ,KEY_WRD4_LNK = :KEY_WRD4
 WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
   AND ORD_LN = :ORD_LN                             --주문행번
 		 ]]> 
@@ -491,7 +516,7 @@ VALUES
 	 </query>
 	 <query id="C104000020TAB07.CCLBOMupdate" desc="C104000020TAB07.CCLBOMupdate" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-UPDATE /*+ C10 칼라-제조사양메세지 C104000020TAB07.CCLBOMupdate 박재영*/                      
+UPDATE /* C10 칼라-제조사양메세지 C104000020TAB07.CCLBOMupdate 박재영*/                      
 C10APUSER.TB_C10_CLR_MPR
 SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
       ,LAST_UPDATED_OBJECT_ID = :ObjectId          --최종변경OBJECTID  
@@ -658,6 +683,27 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 LOG C104000020TAB07.CLR_MPR_MDF_L
        OR (A.CUS_CD = '******' AND A.ORD_USG_CD =:ORD_USG_CD)
        OR (A.CUS_CD = :FNL_CUS_CD AND A.ORD_USG_CD ='******')
        OR (A.CUS_CD = :FNL_CUS_CD AND A.ORD_USG_CD = :ORD_USG_CD) )
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB07.CCLBOMKWDupdate" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /* C10 칼라-제조사양메세지 C104000020TAB07.CCLBOMKWDupdate 이돈석*/                      
+C10APUSER.TB_C10_CLR_MPR
+SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId          --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
+      ,KEY_WRD1 = :KEY_WRD1  --키워드1
+      ,KEY_WRD2 = :KEY_WRD2  --키워드2
+      ,KEY_WRD3 = :KEY_WRD3  --키워드3
+      ,KEY_WRD4 = :KEY_WRD4  --키워드4
+WHERE CCL_BOM_NO = (SELECT CCL_BOM_NO FROM TB_C10_QLT_DSN_CMN
+                     WHERE ORD_NO = :ORD_NO
+                       AND ORD_LN = :ORD_LN)
+    AND ((CUS_CD = '******' AND ORD_USG_CD ='******')
+       OR (CUS_CD = '******' AND ORD_USG_CD =:ORD_USG_CD)
+       OR (CUS_CD = :FNL_CUS_CD AND ORD_USG_CD ='******')
+       OR (CUS_CD = :FNL_CUS_CD AND ORD_USG_CD = :ORD_USG_CD)) 
 		 ]]> 
 	 </query>
 </queryMap>

@@ -8,15 +8,15 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="MSG 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="이력저장" />
+    <transition name="success" value="end" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB07.CCLupdate" />
     <property name="dao" value="mesdao" />
   </activity>
-  <activity name="이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="end" />
+  <activity name="KWD 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="BOM KWD UPD" />
     <property name="isAudit" value="true" />
-    <property name="sqlkey" value="C104000020TAB07.CHG_HSTinsert" />
+    <property name="sqlkey" value="C104000020TAB07.CCLupdate1" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="BOM MSG UPD" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
@@ -43,6 +43,13 @@
     <transition name="STS_find" value="상태 조회" />
     <transition name="MSG_save" value="MSG 저장" />
     <transition name="MSG_sync" value="BOM MSG UPD" />
+    <transition name="KWD_save" value="KWD 저장" />
+  </activity>
+  <activity name="BOM KWD UPD" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C104000020TAB07.CCLBOMKWDupdate" />
+    <property name="isAudit" value="true" />
   </activity>
   <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="end" />
