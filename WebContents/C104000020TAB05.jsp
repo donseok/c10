@@ -203,7 +203,7 @@ function save(eventName,formDivObj,referenceItem){
 	var gridObj3 = items['C104000020TAB05_Grid_4'].getDhxGrid();
 	var cgl_proc_st3 = gridObj3.cellByIndex(0,1).getValue();
 	var cgl_proc_st5 = gridObj3.cellByIndex(1,1).getValue();
-	
+	/*
 	if(isNull(proc_st1) || isNull(proc_st2)){
 		//통과공정의 값을 받아온다
 		var param2= "ServiceName=C104000020TAB05-service&PROC_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=SUB_PROC_CD1,SUB_PROC_CD2";
@@ -226,7 +226,9 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		}
 	}//end if PL ST..
+	*/
 	
+	/*
 	if(isNull(cgl_proc_st2) || isNull(cgl_proc_st3) || isNull(cgl_proc_st4) || isNull(cgl_proc_st5)){
 		//통과공정의 값을 받아온다
 		var param3= "ServiceName=C104000020TAB05-service&PROC_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=SUB_PROC_CD1,SUB_PROC_CD2";
@@ -264,7 +266,7 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		}
 	}//end if CGL ANN..
-	
+	*/
 	dhtmlx.confirm({
 		title:"[[ 확인 ]]",
 		ok:"확인", cancel:"취소",

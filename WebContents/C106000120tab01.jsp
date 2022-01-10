@@ -88,7 +88,8 @@ function undo(referenceItem){
 function redo(referenceItem){
 	items[referenceItem].redo();	
 }
-function onGridContextMenuClick(id,gridObj,menuObj){    
+function onGridContextMenuClick(id,gridObj,menuObj){
+	
     var isChecked = menuObj.getCheckboxState(id); 
     if("move_grid" == id){
         if(isChecked)
@@ -111,6 +112,7 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   	if("excel_grid" == id){
      	gridObj.toExcel('<%=request.getContextPath()%>/gridexcel','color');
   	}
+  	
 } 
 function findMessage(referenceItem){
 	uiCommon.message("C106000120tab01_messagebox",referenceItem.getUserData("","appMsg"));
