@@ -36,6 +36,12 @@
     <property name="sqlkey" value="C104000020TAB06.RMTupdate" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="소둔 제조사양 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="이력저장" />
+    <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB06.ANN_saveUpdate" />
+    <property name="dao" value="mesdao" />
+  </activity>
   <activity name="메세지 save" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="이력저장" />
     <transition name="failure" value="end" />
@@ -50,7 +56,6 @@
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="RMT_find" value="원자재조회" />
-    <transition name="RMT_save" value="원자재 save" />
     <transition name="MSG_save" value="메세지 save" />
     <transition name="STS_find" value="확정주문" />
     <transition name="MSG_find" value="메세지조회" />
@@ -59,6 +64,8 @@
     <transition name="PROC_find" value="통과공정확인" />
     <transition name="ANN_find" value="소둔통과공정확인" />
     <transition name="CMN_find" value="설계공통확인" />
+    <transition name="RMT_save" value="원자재 save" />
+    <transition name="ANN_save" value="소둔 제조사양 저장" />
   </activity>
   <activity name="메세지조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />

@@ -43,9 +43,9 @@
 <column align="center" clabel="HCANN소둔보정시간" dbname="HCANN소둔보정시간" id="COR_TM_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="10" color="FFFFC0">보정시간</column>
 <column align="center" clabel="HCANN코일온도" dbname="HCANN코일온도" id="COIL_TMP_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="10" color="FFFFC0">코일온도</column>
 <column align="center" clabel="HCANN냉각종료온도" dbname="HCANN냉각종료온도" id="CLG_END_TMP_HC_ANN" sort="na" table="TB_C10_QLT_DSN_MNF" type="ed" width="*" color="FFFFC0">냉각온도</column>
-<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
-<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
-<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="7" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
+<column align="right" clabel="QLT_DSN_MNF_TP" dbname="제조사양구분" hidden="true" id="QLT_DSN_MNF_TP" index="11" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">품질설계제조구분</column>
+<column align="right" clabel="ORD_NO" dbname="주문번호" hidden="true" id="ORD_NO" index="12" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문번호</column>
+<column align="right" clabel="ORD_LN" dbname="주문행번" hidden="true" id="ORD_LN" index="13" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">주문행번</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
@@ -62,7 +62,6 @@
 <cell id = "COR_TM_HC_ANN" />
 <cell id = "COIL_TMP_HC_ANN" />
 <cell id = "CLG_END_TMP_HC_ANN" />
-<cell id = "QLT_DSN_MNF_TP" />
 <cell id = "QLT_DSN_MNF_TP" />
 <cell id = "ORD_NO" />
 <cell id = "ORD_LN" />

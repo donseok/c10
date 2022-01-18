@@ -2,4 +2,8 @@
 	<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
 	<item offset="2" type="newcolumn"/>
 	<item label="ANN" name="std_title" type="label" />
+	<item offset="100" type="newcolumn"/>
+	<item label="※CCLI(SOFT-GL) 제품 ANN 투입에만 사용 바랍니다." name="std_title1" type="label" hidden="true" />
+	<item offset="300" type="newcolumn"/>	
+    <item command="AnnSave" name="AnnSave" type="button" value="소둔저장" hidden="true"/>
 </items>

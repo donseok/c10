@@ -42,7 +42,6 @@
  div.gridbox_dhx_skyblue .odd_dhx_skyblue{background-color:#FFFFFF;}
 </style>
 <script type="text/javascript">
-<!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
@@ -91,8 +90,8 @@ function find(eventName){
 	}else{
 		upt_clear();
 		var findUrl = uiCommon.parameters4('C104000020_Form_1','C104000020TAB06_Grid_2','RMT_find'); 
-		items['C104000020TAB06_Grid_2'].loadData(findUrl,findMessage);		
-	}	
+		items['C104000020TAB06_Grid_2'].loadData(findUrl,findMessage);
+	}
 	fg_grid3_update = "N";
 }
 function onGridContextMenuClick(id,gridObj,menuObj){  	
@@ -300,6 +299,75 @@ function save(eventName,formDivObj,referenceItem){
 		}
 	}); 
 }
+
+function AnnSave(eventName,formDivObj,referenceItem){
+	var parentForm = parent.items['C104000020_Form_1'];
+	var comboList = parentForm.getDhxForm().getCombo("ORD_LN");
+	var ord_no = parentForm.getItemValue("ORD_NO");
+	
+	var gridObj6 = items['C104000020TAB06_Grid_6'].getDhxGrid();
+	gridObj6.selectRow(gridObj6.getRowIndex(gridObj6.getRowId(0)));
+
+	row_status6 = gridObj6.getUserData(gridObj6.getRowId(0),"!nativeeditor_status");
+	if( row_status6 == "" ){
+		dhtmlx.alert("변경된 데이터가 없습니다.2");
+		return;
+	}
+  	
+	var param1= "ServiceName=C104000020TAB06-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_NO";
+	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
+	var cells1 = xmlObj1.getElementsByTagName("cell");
+	if(cells1.length > 0){						
+		dhtmlx.alert("확정된 주문입니다2");
+		return;					
+	}
+	
+	//ANN Cycle 값을 지울경우 해당 통과공정이 있으면 삭제불가
+	//제조사양의 작업지시 값이 있는지 여부를 확인
+	var gridObj2 = items['C104000020TAB06_Grid_6'].getDhxGrid();
+	var proc_gen = gridObj2.cellByIndex(0,1).getValue();
+	var proc_hic = gridObj2.cellByIndex(0,6).getValue();
+	
+	if(isNull(proc_gen) || isNull(proc_hic)){
+		//통과공정의 값을 받아온다
+		var param3= "ServiceName=C104000020TAB06-service&ANN_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=SUB_PROC_CD1,SUB_PROC_CD2";
+		var xmlObj3 = uiCommon.ajaxLoadData('c10AjaxData.do',param3);
+		var cells3 = xmlObj3.getElementsByTagName("cell");
+		if(cells3.length > 0){	
+			if(isNull(proc_gen)){
+				if(cells3.item(0).firstChild.nodeValue == "43" || cells3.item(1).firstChild.nodeValue == "43" ||
+				   cells3.item(0).firstChild.nodeValue == "44" || cells3.item(1).firstChild.nodeValue == "44") //cells3.item(0) -> 컬럼info의 정보를 말한다
+				{
+					dhtmlx.alert("일반ANN의 통과공정을 먼저 삭제해 주세요2");
+					return;
+				}
+			}
+			if(isNull(proc_hic)){
+				if(cells3.item(0).firstChild.nodeValue == "41" || cells3.item(1).firstChild.nodeValue == "41") //cells3.item(0) -> 컬럼info의 정보를 말한다
+				{
+					dhtmlx.alert("H-C ANN의 통과공정을 먼저 삭제해 주세요2");
+					return;
+				}
+			}
+		}
+	}//end if ANN
+	
+	dhtmlx.confirm({
+		title:"[[ 확인 ]]",
+		ok:"확인", cancel:"취소",
+		text:"소둔 공정 저장 하시겠습니까?",
+		callback:function(val){
+			if(val){
+				var gridObj6 = items['C104000020TAB06_Grid_6'].getDhxGrid();
+				var row_status6 = gridObj6.getUserData(gridObj6.getRowId(0),"!nativeeditor_status");
+				if(row_status6 != "" && row_status6 == "updated" )
+				    items['C104000020TAB06_Grid_6'].sendGrid('C104000020TAB06_Grid_6',"ANN_save");
+				return;
+			}
+		}
+	}); 
+}
+
 function onRowSelect_Grid1(id,ind){ 
        items['C104000020TAB06_Grid_2'].getDhxGrid().clearSelection();
        items['C104000020TAB06_Grid_3'].getDhxGrid().clearSelection();
@@ -567,6 +635,15 @@ function findMessage(referenceItem){
 //	deteilFind(grid.getRowId(0));//적정 원자재 조회
     setTimeout(function(){grid.selectRow(0); deteilFind(grid.getRowId(0))},7);//적정 원자재 조회
 	document.getElementById("C104000020TAB06_messagebox").innerHTML = "&nbsp;MESSAGE&nbsp;&nbsp;|&nbsp" + grid.getUserData("","appMsg"); //원자재 조회메세지 설정
+
+	var prdNmCd = parent.items['C104000020_Form_2'].getItemValue("PRD_NM_CD");
+	if (prdNmCd != null && prdNmCd !== undefined && prdNmCd.substring(0,1) == '4') {
+		items["C104000020TAB06_Form_4"].getDhxForm().showItem("std_title1");
+		items["C104000020TAB06_Form_4"].getDhxForm().showItem("AnnSave");
+	} else {
+		items["C104000020TAB06_Form_4"].getDhxForm().hideItem("std_title1");
+		items["C104000020TAB06_Form_4"].getDhxForm().hideItem("AnnSave");
+	}	
 }
 function upt_clear(){
 	
@@ -1215,8 +1292,20 @@ function simul(){
 		winObj.setModal();
 	}
 }
+function onLoadForm4 (){
+	var prdNmCd = parent.items['C104000020_Form_2'].getItemValue("PRD_NM_CD");
+
+	if (prdNmCd != null && prdNmCd !== undefined && prdNmCd.substring(0,1) == '4') {
+		items["C104000020TAB06_Form_4"].getDhxForm().showItem("std_title1");
+		items["C104000020TAB06_Form_4"].getDhxForm().showItem("AnnSave");
+	} else {
+		items["C104000020TAB06_Form_4"].getDhxForm().hideItem("std_title1");
+		items["C104000020TAB06_Form_4"].getDhxForm().hideItem("AnnSave");
+	}
+
+	items['C104000020TAB06_Form_4'].getDhxForm().detachEvent(onXLEForm4);
+}
 //]]>
--->
 </script>
 </head>
 <body>
@@ -1253,7 +1342,6 @@ function simul(){
 </body>
 </html>
 <script>
-<!--
 //<![CDATA[
        ui.initializeDHTMLX();   
        items['C104000020TAB06_Form_1'].setBackgroundColor("#FFFFFF");
@@ -1269,7 +1357,9 @@ function simul(){
        items['C104000020TAB06_Grid_5'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid5);
        items['C104000020TAB06_Grid_6'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid6);
        items['C104000020TAB06_Grid_7'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid7);
-       items['C104000020TAB06_Grid_8'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid8);       
+       items['C104000020TAB06_Grid_8'].getDhxGrid().attachEvent("onRowSelect", onRowSelect_Grid8);
+	   
+	   var onXLEForm4 = items['C104000020TAB06_Form_4'].onXLEEvent(onLoadForm4);
 	   var onXLEGrid1 = items['C104000020TAB06_Grid_1'].onXLEEvent(onLoadGrid1);	    
 	   var onXLEGrid2 = items['C104000020TAB06_Grid_2'].onXLEEvent(onLoadGrid2);
 	   var onXLEGrid3 = items['C104000020TAB06_Grid_3'].onXLEEvent(onLoadGrid3);
@@ -1284,5 +1374,4 @@ function simul(){
 	   items["C104000020TAB06_Grid_7"].onEditCellEvent(onEditCellEvent7);
 	   items["C104000020TAB06_Grid_2"].rowSelected(deteilFind);       
 //]]>
--->
 </script>

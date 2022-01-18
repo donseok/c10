@@ -2,8 +2,7 @@
 <queryMap desc="C104000020TAB06"> 
 	 <query id="C104000020TAB06_MNF.select" desc="제조표준조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계결과-용융도금(제조표준)(C10400002
- 박재영 */
+SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06_MNF 박재영) */
         TB_C10_QLT_DSN_MNF.ORD_NO,--주문번호
         TB_C10_QLT_DSN_MNF.ORD_LN,--주문행번
         TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP,--품질설계제조구분
@@ -139,7 +138,7 @@ AND      TB_C10_QLT_DSN_MNF.ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
 AND      TB_C10_QLT_DSN_MNF.ORD_NO = :ORD_NO
 AND      TB_C10_QLT_DSN_MNF.ORD_LN = :ORD_LN
 AND      TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP
-AND      TB_C10_QLT_DSN_CMN.PRD_NM_CD IN ('A','B','C','D','E','1','2','N','8')
+AND      TB_C10_QLT_DSN_CMN.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
 AND      NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
                            WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')
 		 ]]> 
@@ -183,7 +182,7 @@ WHERE A.ORD_NO = B.ORD_NO
 AND A.ORD_LN = B.ORD_LN    
 AND A.ORD_NO = :ORD_NO
 AND A.ORD_LN = :ORD_LN
-AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','N','8')
+AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
 ORDER BY A.QLT_DSN_MNF_TP
 		 ]]> 
 	 </query>
@@ -326,13 +325,13 @@ UPDATE /*+ C10 전기도금-제조표준 C104000020TAB06.MSGupdate 박재영*/
 TB_C10_QLT_DSN_MSG
 SET    
        LAST_UPDATED_OBJECT_TYPE = :ObjectType     --최종변경OBJECT유형
-      ,LAST_UPDATED_OBJECT_ID = :ObjectId             --최종변경OBJECTID  
-      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
-      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시    
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId         --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId        --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp         --최종변경일시
       ,QLT_MSG_NM = (CASE WHEN LENGTHB(:QLT_MSG_NM) >1000 THEN substrb(:QLT_MSG_NM,1,1000) ELSE :QLT_MSG_NM END)               --품질Message
-WHERE ORD_NO = :ORD_NO                                  --주문번호                                                                                      
-  AND ORD_LN = :ORD_LN                                     --주문행번
-  AND QLT_DSN_MNF_TP = '1'        			    --품질설계제조구분
+WHERE ORD_NO = :ORD_NO                            --주문번호
+  AND ORD_LN = :ORD_LN                            --주문행번
+  AND QLT_DSN_MNF_TP = '1'        			      --품질설계제조구분
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06.EGL_MNFupdate" desc="C104000020TAB06.EGL_MNFupdate" fetchSize="10" isNamed="true">
@@ -391,11 +390,11 @@ WHERE ORD_NO = :ORD_NO                                  --주문번호
 	 <query id="C104000020TAB06.STSselect" desc="C104000020TAB06.STSselect" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 SELECT /*+ C10 품질설계결과공통조회 C104000020TAB06.STSselect 박재영*/      
-*                               
- FROM TB_C10_QLT_DSN_CMN
- WHERE ORD_NO = :ORD_NO
- AND    ORD_LN = :ORD_LN
- AND    QLT_DSN_STS_CD = 'A'
+		*
+FROM TB_C10_QLT_DSN_CMN
+WHERE ORD_NO = :ORD_NO
+AND   ORD_LN = :ORD_LN
+AND   QLT_DSN_STS_CD = 'A'
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06.CHG_HSTinsert" desc="C104000020TAB06.CHG_HSTinsert" fetchSize="10" isNamed="true">
@@ -434,25 +433,46 @@ VALUES
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_PROC" desc="C104000020TAB06_PROC" fetchSize="10" isNamed="true">
-		 <![CDATA[ 
+		 <![CDATA[
 SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C104000020TAB06_PROC.select 이돈석 */ 
 	  SUB_PROC_CD1, 
-         SUB_PROC_CD2    
+      SUB_PROC_CD2
 FROM  TB_C10_QLT_DSN_PROC
 WHERE ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN
 AND   (MAIN_PROC_CD LIKE '8%' OR MAIN_PROC_CD LIKE '9%')
-		 ]]> 
+		 ]]>
 	 </query>
 	 <query id="C104000020TAB06_ANN" desc="C104000020TAB06_ANN" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C104000020TAB06_PROC.select 이돈석 */ 
 	  SUB_PROC_CD1, 
-         SUB_PROC_CD2    
+      SUB_PROC_CD2
 FROM  TB_C10_QLT_DSN_PROC
 WHERE ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN
 AND   MAIN_PROC_CD LIKE '4%'
-		 ]]> 
+		 ]]>
+	 </query>
+	 <query id="C104000020TAB06.ANN_saveUpdate" desc="C104000020TAB06.ANN_saveUpdate" fetchSize="10" isNamed="true">
+		<![CDATA[ 
+UPDATE /*+ C10 소둔전기도금-제조표준 C104000020TAB06.ANN_saveUpdate JKJ */
+TB_C10_QLT_DSN_MNF
+SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = :ObjectId          --최종변경OBJECTID
+      ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시
+      ,HEAT_CYL_NO_GEN_ANN = :HEAT_CYL_NO_GEN_ANN  --일반ANN소둔CYCLE
+      ,COR_TM_GEN_ANN = :COR_TM_GEN_ANN            --일반ANN소둔보정시간
+      ,COIL_TMP_GEN_ANN = :COIL_TMP_GEN_ANN        --일반ANN코일온도
+      ,CLG_END_TMP_GEN_ANN = :CLG_END_TMP_GEN_ANN  --일반ANN냉각종료온도
+      ,HEAT_CYL_NO_HC_ANN = :HEAT_CYL_NO_HC_ANN    --HCANN소둔CYCLE
+      ,COR_TM_HC_ANN = :COR_TM_HC_ANN              --HCANN소둔보정시간
+      ,COIL_TMP_HC_ANN = :COIL_TMP_HC_ANN          --HCANN코일온도
+      ,CLG_END_TMP_HC_ANN = :CLG_END_TMP_HC_ANN    --HCANN냉각종료온도
+WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
+  AND ORD_LN = :ORD_LN                             --주문행번
+  AND QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP             --품질설계제조구분
+		]]>
 	 </query>
 </queryMap>
