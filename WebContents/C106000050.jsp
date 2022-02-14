@@ -97,7 +97,7 @@ var initLayout =
 };
 
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
-var columnList = "USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,LUS_RT_LLV,LUS_RT_ULV,RL_LUS_RT,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_FLM_THK_CD_NM,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,CMP_USE_YN,PNT_CMP_CD,PNT_CMP_NM,NV,PNT_GRA,SLV_GRA,PNT_UNT";
+var columnList = "USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,LUS_RT_LLV,LUS_RT_ULV,RL_LUS_RT,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_FLM_THK_CD_NM,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,CMP_USE_YN,PNT_CMP_CD,PNT_CMP_NM,NV,PNT_GRA,SLV_GRA,PNT_UNT,LAMINA_INS_YN";
 var tempRowId = "";
 var popCompleteYN    = "N"; //칼라부재료업체 정보 저장 사유 입력여부 
 var popCfmRea			= "";	// C106000050pop01 에서 업체 정보 저장 사유.
@@ -131,24 +131,23 @@ function save(eventName,formDivObj,referenceItem){
 		var rowID = gridObj.getRowId(i);		
 		var rowStatus = gridObj.getUserData(rowID,"!nativeeditor_status");
 		if(rowStatus != ""){ //전체적으로 5개의 컬럼이 추가 되었음
-			var cellValue = grid.getCellValue(rowID,3);//부재료구분
-			var cellValue2 = grid.getCellValue(rowID,1);//컬러코드
-			var cellValue3 = grid.getCellValue(rowID,2);//색상명
-			var cellValue5  = grid.getCellValue(rowID,6);//수지타입
-			var cellValue7  = grid.getCellValue(rowID,8);//광택도코드		  
-			var cellValue12 = grid.getCellValue(rowID,17);//도막두께
-			var cellValue13 = grid.getCellValue(rowID,18);//InkType
-			var cellValue15 = grid.getCellValue(rowID,20);//고형분(NV)
-			var cellValue16 = grid.getCellValue(rowID,21);//도료비중(SG)
-			var cellValue17 = grid.getCellValue(rowID,22);//용재비중
-			var cellValue20 = grid.getCellValue(rowID,25);//도료원단위
-			var cellValue21 = grid.getCellValue(rowID,26);//PMT
-			//var cellValue26 = grid.getCellValue(rowID,31);//Lamina유형
-			var cellValue26 = grid.getCellValue(rowID,37);//Lamina유형
+			var cellValue = grid.getCellValue(rowID,  gridObj.getColIndexById("SUB_MTL_TP"));//3 부재료구분
+			var cellValue2 = grid.getCellValue(rowID, gridObj.getColIndexById("CLR_SUB_MTL_CD"));//1 컬러코드
+			var cellValue3 = grid.getCellValue(rowID, gridObj.getColIndexById("CLR_NM"));//2 색상명
+			var cellValue5  = grid.getCellValue(rowID,gridObj.getColIndexById("RSN_TP"));//6 수지타입
+			var cellValue7  = grid.getCellValue(rowID,gridObj.getColIndexById("LUS_RT_CD"));//8 광택도코드		  
+			var cellValue12 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_FLM_THK"));//17 도막두께
+			var cellValue13 = grid.getCellValue(rowID,gridObj.getColIndexById("PRT_INK_TP"));//18 InkType
+			var cellValue15 = grid.getCellValue(rowID,gridObj.getColIndexById("NV"));//20 고형분(NV)
+			var cellValue16 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_GRA"));//21 도료비중(SG)
+			var cellValue17 = grid.getCellValue(rowID,gridObj.getColIndexById("SLV_GRA"));//22 용재비중
+			var cellValue20 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_UNT"));//25 도료원단위
+			var cellValue21 = grid.getCellValue(rowID,gridObj.getColIndexById("PMT"));//26 PMT
+			var cellValue26 = grid.getCellValue(rowID,gridObj.getColIndexById("LMN_KND_TP"));//37 Lamina유형
             var msg = "";		
 		    var colidx = 0;			
 			
-			grid.setCellValue(rowID,gridObj.getColIndexById("USERNO"),<%=userNo%>);
+			grid.setCellValue(rowID,gridObj.getColIndexById("USERNO"), <%=userNo%>);
 			
         if(isNull(cellValue)){
 	        dhtmlx.alert("부재료구분을 선택해주세요.");		
@@ -854,30 +853,29 @@ function onFormLoadFunction(){
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,33,34,35,36,37,38,40,42,44,46,48,49,50,51,52,53,54",false);
 			}
 			*/
-			
 			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60",false);
-				grid.setColumnHiddenFlag("18,37,39,40,41,42,43,44,46,48,50,52",true); //완료!!
+				grid.setColumnHiddenFlag("18,37,39,40,41,42,43,44,46,48,50,52,71",true); //완료!!
 			}else if(!isNull(comboValue) && (comboValue == "S33")){	 //Thinner 완료!!
 				grid.setColumnHiddenFlag("1,2,3,6,25,56,57,58,59,60",false);
-				grid.setColumnHiddenFlag("8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52",true); 
+				grid.setColumnHiddenFlag("8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,71",true); 
 			}else if(!isNull(comboValue) && (comboValue == "S37")){	//도장기타 완료!!
 				grid.setColumnHiddenFlag("1,2,3,25,54,55,56,57,58,59,60",false);
-				grid.setColumnHiddenFlag("6,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52",true); 
+				grid.setColumnHiddenFlag("6,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,71",true); 
 			}else if(!isNull(comboValue) && (comboValue == "S34")){	//Ink 완료!!
 				grid.setColumnHiddenFlag("1,2,3,6,8,18,25,30,31,32,33,34,35,36,54,55,56,57,58,59,60",false);
-				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52",true); 
+				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52,71",true); 
 			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!
 				grid.setColumnHiddenFlag("1,2,3,25,38,40,44,46,48,49,52,53,54",false);
-				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43",true);  
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,71",true);  
 			}else if(!isNull(comboValue) && (comboValue == "S39")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!
 				grid.setColumnHiddenFlag("1,2,3,40,42,48,49",false);
-				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,42,43,44,50,52,56,57,58,59,60",true);	
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,42,43,44,50,52,56,57,58,59,60,71",true);	
 			}else if(!isNull(comboValue) && (comboValue == "S38")){	//Lamina  완료!!   ---
-				grid.setColumnHiddenFlag("1,2,3,8,17,25,26,37,39,40,41,42,43,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("1,2,3,8,17,25,26,37,39,40,41,42,43,54,55,56,57,58,59,60,71",false);
 				grid.setColumnHiddenFlag("5,6,10,11,12,13,14,15,16,18,20,21,23,27,28,29,30,31,32,33,34,35,36,44,46,48,50,52",true);  
 			}else{
-				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60",false);
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,71",false);
 			}
 			
 		});  

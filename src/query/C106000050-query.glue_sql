@@ -123,7 +123,8 @@ SELECT  /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김
         FUNC_CD, 
         TTE_CD, 
         USE_POS_CD, 
-        WTY_YN 
+        WTY_YN,
+        LAMINA_INS_YN
   FROM C10APUSER.TB_C10_CLR_CD_MNG 
  WHERE NVL(CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
    AND NVL(SUB_MTL_TP,'%') LIKE '%' || DECODE(:SUB_MTL_TP_SH,'all','%',:SUB_MTL_TP_SH) ||'%'
@@ -154,63 +155,64 @@ SELECT  /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김
 		 <![CDATA[ 
 UPDATE /* C10 품질설계 칼라코드관리 C106000050.colorupdate 김종범 */ 
 TB_C10_CLR_CD_MNG SET 
-CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD,--칼라부자재코드
-CLR_NM = :CLR_NM,--색상명
-SUB_MTL_TP = :SUB_MTL_TP,--부자재구분
-RSN_TP = :RSN_TP,--수지타입
-LUS_RT_CD = :LUS_RT_CD,--광택도코드
-LUS_RT_LLV = :LUS_RT_LLV,--광택도하한값
-LUS_RT_ULV = :LUS_RT_ULV,--광택도상한값
-WK_VISCO = :WK_VISCO,--작업점도
-PNT_FLM_THK = :PNT_FLM_THK,--도막두께
-PRT_INK_TP = :PRT_INK_TP,--PrintInkType
-NV = :NV,--고형분
-PNT_GRA = :PNT_GRA,--도료비중
-SLV_GRA = :SLV_GRA,--용재비중
-THR_CD = :THR_CD,--신나코드
-PNT_UNT = :PNT_UNT,--도료원단위
-PMT = :PMT,--PMT
-QT_L = :QT_L,--L
-QT_A = :QT_A,--A
-QT_B = :QT_B,--B
-STD_CLR_NM = :STD_CLR_NM,--표준색상명
-LMN_KND_TP = :LMN_KND_TP,--Lamina유형
-LMN_BND_CD = :LMN_BND_CD,--Lamina접착제코드
-LMN_BND_THR_CD = :LMN_BND_THR_CD,--Lamina접착제신나코드
-LMN_BND_CD1 = :LMN_BND_CD1,--Lamina접착제코드1
-LMN_BND_THR_CD1 = :LMN_BND_THR_CD1,--Lamina접착제신나코드1
-LMN_FLM_THK_CD = :LMN_FLM_THK_CD,--Lamina필름두께코드
-PTT_FLM_LUS_RT_CD = :PTT_FLM_LUS_RT_CD,--보호필름광택코드
-PTT_FLM_THK_CD = :PTT_FLM_THK_CD,--보호필름두께코드
-PTT_FLM_MQL_CD = :PTT_FLM_MQL_CD,--보호필름재질코드
-PTT_FLM_SUS_ADH_CD = :PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력코드
-PTT_FLM_PRD_ADH_CD = :PTT_FLM_PRD_ADH_CD,--보호필름제품점착력코드
-RMRK = :RMRK,--비고
-RL_LUS_RT = :RL_LUS_RT,
-EX_YN = DECODE(:EX_YN,'1','Y','N'),
-COL_DIF_STD = :COL_DIF_STD,
-EX_YN1 = DECODE(:EX_YN1,'1','Y','N'),
-TP_CD = :TP_CD,
-RSN_TP_QT = :RSN_TP_QT,
-PAT_CD = :PAT_CD,
-FUNC_CD = :FUNC_CD,
-TTE_CD = :TTE_CD,
-USE_POS_CD = :USE_POS_CD,
-WTY_YN = :WTY_YN,
-MDF_PRS_ID = :ObjectId, 
-CLR_MDF_DH = SYSDATE,
-USE_YN = DECODE(:USE_YN,'1','Y','Y','Y','N'),--사용여부
-MGR_CLR_SUB_MTL_CD = :MGR_CLR_SUB_MTL_CD, --통합컬러코드
-CLR_SUB_MTL_CD_OLD = :CLR_SUB_MTL_CD_OLD,--구칼라부자재코드
-RSN_TP_OLD = :RSN_TP_OLD,--구수지타입
-LUS_RT_CD_OLD = :LUS_RT_CD_OLD,--구광택도코드
-PNT_FLM_THK_OLD = :PNT_FLM_THK_OLD,--구도막두께
-MOD_YN = :MOD_YN,
-RAL_CD = :RAL_CD,
-LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
-LAST_UPDATED_OBJECT_ID=:ObjectId,      
-LAST_UPDATE_PROGRAM_ID=:ProgramId,     
-LAST_UPDATE_TIMESTAMP=:Timestamp   
+	CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD,--칼라부자재코드
+	CLR_NM = :CLR_NM,--색상명
+	SUB_MTL_TP = :SUB_MTL_TP,--부자재구분
+	RSN_TP = :RSN_TP,--수지타입
+	LUS_RT_CD = :LUS_RT_CD,--광택도코드
+	LUS_RT_LLV = :LUS_RT_LLV,--광택도하한값
+	LUS_RT_ULV = :LUS_RT_ULV,--광택도상한값
+	WK_VISCO = :WK_VISCO,--작업점도
+	PNT_FLM_THK = :PNT_FLM_THK,--도막두께
+	PRT_INK_TP = :PRT_INK_TP,--PrintInkType
+	NV = :NV,--고형분
+	PNT_GRA = :PNT_GRA,--도료비중
+	SLV_GRA = :SLV_GRA,--용재비중
+	THR_CD = :THR_CD,--신나코드
+	PNT_UNT = :PNT_UNT,--도료원단위
+	PMT = :PMT,--PMT
+	QT_L = :QT_L,--L
+	QT_A = :QT_A,--A
+	QT_B = :QT_B,--B
+	STD_CLR_NM = :STD_CLR_NM,--표준색상명
+	LMN_KND_TP = :LMN_KND_TP,--Lamina유형
+	LMN_BND_CD = :LMN_BND_CD,--Lamina접착제코드
+	LMN_BND_THR_CD = :LMN_BND_THR_CD,--Lamina접착제신나코드
+	LMN_BND_CD1 = :LMN_BND_CD1,--Lamina접착제코드1
+	LMN_BND_THR_CD1 = :LMN_BND_THR_CD1,--Lamina접착제신나코드1
+	LMN_FLM_THK_CD = :LMN_FLM_THK_CD,--Lamina필름두께코드
+	PTT_FLM_LUS_RT_CD = :PTT_FLM_LUS_RT_CD,--보호필름광택코드
+	PTT_FLM_THK_CD = :PTT_FLM_THK_CD,--보호필름두께코드
+	PTT_FLM_MQL_CD = :PTT_FLM_MQL_CD,--보호필름재질코드
+	PTT_FLM_SUS_ADH_CD = :PTT_FLM_SUS_ADH_CD,--보호필름SUS점착력코드
+	PTT_FLM_PRD_ADH_CD = :PTT_FLM_PRD_ADH_CD,--보호필름제품점착력코드
+	RMRK = :RMRK,--비고
+	RL_LUS_RT = :RL_LUS_RT,
+	EX_YN = DECODE(:EX_YN,'1','Y','N'),
+	COL_DIF_STD = :COL_DIF_STD,
+	EX_YN1 = DECODE(:EX_YN1,'1','Y','N'),
+	TP_CD = :TP_CD,
+	RSN_TP_QT = :RSN_TP_QT,
+	PAT_CD = :PAT_CD,
+	FUNC_CD = :FUNC_CD,
+	TTE_CD = :TTE_CD,
+	USE_POS_CD = :USE_POS_CD,
+	WTY_YN = :WTY_YN,
+	MDF_PRS_ID = :ObjectId, 
+	CLR_MDF_DH = SYSDATE,
+	USE_YN = DECODE(:USE_YN,'1','Y','Y','Y','N'),--사용여부
+	MGR_CLR_SUB_MTL_CD = :MGR_CLR_SUB_MTL_CD, --통합컬러코드
+	CLR_SUB_MTL_CD_OLD = :CLR_SUB_MTL_CD_OLD,--구칼라부자재코드
+	RSN_TP_OLD = :RSN_TP_OLD,--구수지타입
+	LUS_RT_CD_OLD = :LUS_RT_CD_OLD,--구광택도코드
+	PNT_FLM_THK_OLD = :PNT_FLM_THK_OLD,--구도막두께
+	MOD_YN = :MOD_YN,
+	RAL_CD = :RAL_CD,
+	LAMINA_INS_YN = :LAMINA_INS_YN,
+	LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+	LAST_UPDATED_OBJECT_ID=:ObjectId,      
+	LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+	LAST_UPDATE_TIMESTAMP=:Timestamp   
 WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 		 ]]> 
 	 </query>
@@ -278,6 +280,7 @@ INSERT INTO TB_C10_CLR_CD_MNG/* C10 품질설계 칼라코드관리 C106000050.c
     TTE_CD,
     USE_POS_CD,
     WTY_YN,
+    LAMINA_INS_YN,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -341,6 +344,7 @@ INSERT INTO TB_C10_CLR_CD_MNG/* C10 품질설계 칼라코드관리 C106000050.c
     :TTE_CD,
     :USE_POS_CD,
     :WTY_YN,
+    :LAMINA_INS_YN,
     :ObjectType,
     :ObjectId,
     :ProgramId,
@@ -771,7 +775,7 @@ SELECT /*+ C10 칼라코드관리- 전송대상조회 C106000050.COLORSELECT2 �
        ERP_SND_DH,   --ERP전송일시 추가
        LAST_UPDATE_TIMESTAMP,
        SND_LST
-FROM(
+FROM (
 SELECT 
        DECODE(USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
        CLR_SUB_MTL_CD,

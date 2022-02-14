@@ -471,14 +471,14 @@ public class DbSearchDeliSpec extends PosActivity implements C10NuiConstantsIF
             colValue[6] = ord_exc_lth; // 주문환산길이
 
             // 로깅시작
-//            logger.logError( "=== 규격인수도 기준 ===" );
-//            logger.logError( "조건값 - 인수도규격     : " + (String) ctx.get( COL_ACPT_RT_SPC ) );
-//            logger.logError( "조건값 - 품명           : " + prd_nm_cd );
-//            logger.logError( "조건값 - 제품형태       : " + prd_shp );
-//            logger.logError( "조건값 - 주문에지구분   : " + ord_edg_asg_tp );
-//            logger.logError( "조건값 - 주문두께       : " + ord_exc_thk );
-//            logger.logError( "조건값 - 주문폭         : " + ord_exc_wth );
-//            logger.logError( "조건값 - 주문길이       : " + ord_exc_lth );
+            logger.logDebug( "=== 규격인수도 기준 ===" );
+            logger.logDebug( "조건값 - 인수도규격     : " + (String) ctx.get( COL_ACPT_RT_SPC ) );
+            logger.logDebug( "조건값 - 품명           : " + prd_nm_cd );
+            logger.logDebug( "조건값 - 제품형태       : " + prd_shp );
+            logger.logDebug( "조건값 - 주문에지구분   : " + ord_edg_asg_tp );
+            logger.logDebug( "조건값 - 주문두께       : " + ord_exc_thk );
+            logger.logDebug( "조건값 - 주문폭         : " + ord_exc_wth );
+            logger.logDebug( "조건값 - 주문길이       : " + ord_exc_lth );
 
             checker = EasyAccess.getPosDecisionChecker( C10B1013, null );
             try
