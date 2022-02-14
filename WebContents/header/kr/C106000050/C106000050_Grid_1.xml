@@ -120,7 +120,7 @@
 <column align="left" id="LMN_FLM_THK_CD_NM" index="69" sort="sort_str_custom" type="ro" width="150" hidden="true">Lamina필름두께코드명</column>
 <column align="center" id="SND_LST" index="70" sort="sort_str_custom" type="ro" width="150" hidden="true">전송대상</column>
 <column align="center" clabel="사용자사번" dbname="사용자사번" id="USERNO" index="71" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="00" hidden="true">사용자사번</column>
-<column align="center" clabel="라미나수입검사여부 " dbname="라미나수입검사여부" id="LAMINA_INS_YN" index="72" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ch" width="50">라미나&lt;br&gt;수입&lt;br&gt;검사&lt;br&gt;여부</column>
+<column align="center" clabel="라미나수입검사여부" dbname="라미나수입검사여부" id="LAMINA_INS_YN" index="72" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ch" width="50">라미나&lt;br&gt;수입&lt;br&gt;검사&lt;br&gt;여부</column>
 <settings>
 <colwidth>px</colwidth>
 </settings>
