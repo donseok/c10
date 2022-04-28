@@ -448,12 +448,13 @@ set    RSN_TP_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :RSN_TP, RSN_T
        PMT_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_2COT),
        PMT_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_3COT),
        PMT_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :PMT, PMT_BAK_4COT),
+       LMN_FLM_THK_CD = decode(HUE_CD_LMN, :CLR_SUB_MTL_CD, :LMN_FLM_THK_CD, LMN_FLM_THK_CD),
        LAST_UPDATED_OBJECT_TYPE = :ObjectType,  
        LAST_UPDATED_OBJECT_ID   = :ObjectId,      
        LAST_UPDATE_PROGRAM_ID   = :ProgramId,     
        LAST_UPDATE_TIMESTAMP    = :Timestamp  
 where  :CLR_SUB_MTL_CD in (HUE_CD_FRN_1COT, HUE_CD_FRN_2COT, HUE_CD_FRN_3COT, HUE_CD_FRN_4COT,
-                           HUE_CD_BAK_1COT, HUE_CD_BAK_2COT, HUE_CD_BAK_3COT, HUE_CD_BAK_4COT)
+                           HUE_CD_BAK_1COT, HUE_CD_BAK_2COT, HUE_CD_BAK_3COT, HUE_CD_BAK_4COT, HUE_CD_LMN)
 		 ]]> 
 	 </query>
 	 <query id="C106000050.detailselect" desc="상세조회" fetchSize="10" isNamed="true">
