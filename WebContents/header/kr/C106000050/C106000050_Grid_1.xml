@@ -121,11 +121,13 @@
 <column align="center" id="SND_LST" index="70" sort="sort_str_custom" type="ro" width="150" hidden="true">전송대상</column>
 <column align="center" clabel="사용자사번" dbname="사용자사번" id="USERNO" index="71" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="00" hidden="true">사용자사번</column>
 <column align="center" clabel="라미나수입검사여부" dbname="라미나수입검사여부" id="LAMINA_INS_YN" index="72" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ch" width="50">라미나&lt;br&gt;수입&lt;br&gt;검사&lt;br&gt;여부</column>
+<column align="center" clabel="구매담당자확정" dbname="구매담당자확정" id="PUR_CHR_CFM" index="73" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50">구매&lt;br&gt;담당자&lt;br&gt;확정</column>
+<column align="center" id="MDF_RSN" index="74" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="txt" width="00" hidden="true"></column>
 <settings>
 <colwidth>px</colwidth>
 </settings>
 </head>
-<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,THR_NM,PNT_UNT,PMT,QT_L,QT_A,QT_B,RSN_TP_QT,PAT_CD,FUNC_CD,TTE_CD,USE_POS_CD,WTY_YN,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,SUB_MTL_TP_HIDDEN,LMN_FLM_THK_CD_NM,SND_LST,USERNO,LAMINA_INS_YN</userdata>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,THR_NM,PNT_UNT,PMT,QT_L,QT_A,QT_B,RSN_TP_QT,PAT_CD,FUNC_CD,TTE_CD,USE_POS_CD,WTY_YN,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,SUB_MTL_TP_HIDDEN,LMN_FLM_THK_CD_NM,SND_LST,USERNO,LAMINA_INS_YN,PUR_CHR_CFM,MDF_RSN</userdata>
 <row id="0">
 <cell/>
 <cell/>

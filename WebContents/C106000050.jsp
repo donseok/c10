@@ -103,7 +103,7 @@ var popCompleteYN    = "N"; //칼라부재료업체 정보 저장 사유 입력�
 var popCfmRea			= "";	// C106000050pop01 에서 업체 정보 저장 사유.
 
 function find(eventName,formDivObj,referenceItem){
-
+	items[referenceItem].clearDataProcess();
 	var form = items['C106000050_Form_1'];
 	//var clrSubMtlCd = form.getItemValue("CLR_SUB_MTL_CD_SH");	
 	var sndLst = form.getDhxForm().isItemChecked("SND_LST");	
@@ -556,8 +556,20 @@ function save(eventName,formDivObj,referenceItem){
     			 return;					
 		      }          
            }
+           
+           if(rowStatus == "updated" || rowStatus == "deleted"){
+       		 if(popCompleteYN != "Y"){
+         	  	 popCompleteYN = "Y";
+	  	   	   	 C10_linkC106000050pop01("grid1");
+				 return false;
+	    	 }
+
+			grid.setCellValue(rowID,gridObj.getColIndexById("MDF_RSN"), popCfmRea);
+		   }
 		 } // end of if(rowStatus != "")
 	} // end of for loop
+	
+  	popCompleteYN = "N";
 
 	dhtmlx.confirm({
 		title:"[[ 확인 ]]",
@@ -583,7 +595,7 @@ function save1(eventName,formDivObj,referenceItem){
 	if(gridObj2.getRowSelectedId()){
 		if(!(popCompleteYN=="Y")){
 	    	popCompleteYN = "Y";
-	    	C10_linkC106000050pop01(); //칼라부재료업체 정보 저장 사유 입력 popup
+	    	C10_linkC106000050pop01("grid2"); //칼라부재료업체 정보 저장 사유 입력 popup
 			return false;
 		}
 		for(var i=0; i<grid2_row_cnt; i++){	
@@ -621,7 +633,7 @@ function save1(eventName,formDivObj,referenceItem){
 
 //menu refresh event function
 function refresh(referenceItem){ //grid selection clear event
-	items[referenceItem].clearDataProcess();
+	//items[referenceItem].clearDataProcess();
 	find('find','C106000050_Form_1',referenceItem);
 }
 
@@ -1225,8 +1237,8 @@ function findAfterEvent(){
 		var sndLst = gridObj.cellById(gridObj.getRowId(i),69).getValue();  //67번인지 확인필요
     
 	 	if(sndLst == "Y"){
-        gridObj.setRowTextStyle(gridObj.getRowId(i), "color: red;");		
-    		}
+        	gridObj.setRowTextStyle(gridObj.getRowId(i), "color: red;");		
+    	}
   	}
   	uiCommon.progressOff(parent);	
   	findMessage(gridObj);
@@ -1877,12 +1889,23 @@ function chkVal(rId,cInd,state) {
 		}
 	}
 	return true; 
-} 
+}
 //물성정보 저장 사유입력 Poup호출
-function C10_linkC106000050pop01() {
-	popCfmRea		= "";
-	
-	winObj = new ui.window("popup","업체정보 저장사유","0","0","349","174","C106000050pop01.jsp");
+function C10_linkC106000050pop01(gridObj) {
+	popCfmRea = "";
+
+	var pageNM = "";
+	var pageId = "";
+
+	if( gridObj == "grid1") {
+		pageNM = "칼라부재료 수정 사유";
+		pageId = "C106000050pop05.jsp";
+	} else if( gridObj == "grid2") {
+		pageNM = "칼라부재료 업체 저장 사유";
+		pageId = "C106000050pop01.jsp";
+	}
+
+	winObj = new ui.window("popup",pageNM,"0","0","349","174",pageId);
 	winObj.setButtonDisable("park,minmax1");
 
 	winObj.getDhxWindow().attachEvent("onClose", function(win){
@@ -1890,11 +1913,15 @@ function C10_linkC106000050pop01() {
 		if( popCfmRea==null || popCfmRea.length==0 || C10_trim(popCfmRea)=="" ) {
 			popCompleteYN = "N";
 		} else {
-			save1('save1','C106000050_Form_3','C106000050_Grid_2');
+			if( gridObj == "grid1") {
+				save('save','C106000050_Form_1','C106000050_Grid_1');	
+			} else if( gridObj == "grid2") {			
+				save1('save1','C106000050_Form_3','C106000050_Grid_2');
+			}			
 		}
 		return true;
 	});
-} 
+}
 //칼라부재료업체 정보 수정이력 조회 Popup을 호출한다.
 function C10_linkC106000050pop02() {
 	if(items['C106000050_Grid_2'].getRowSelectedId()){
@@ -1904,10 +1931,23 @@ function C10_linkC106000050pop02() {
 
 		winObj = new ui.window("popup","칼라부재료업체 정보 수정이력","0","0","718","400","c106000050pop02.do?clr_cd="+g2_clrcd+"&pnt_cmp_cd="+g2_pntcmpcd);
 		winObj.setButtonDisable("park,minmax1");
-	}else {
+	} else {
 		alert("칼라부재료업체정보에 선택된 행이 없습니다."); 
-		return;				
-	}	
+		return;
+	}
+}
+//칼라코드 정보 수정이력 조회 Popup을 호출한다.
+function C10_linkC106000050pop04() {
+	if(items['C106000050_Grid_1'].getRowSelectedId()){
+		var g1_selectedId = items['C106000050_Grid_1'].getSelectedRowId();
+  	    var g1_clrcd = items['C106000050_Grid_1'].getCellValue(g1_selectedId,1);
+
+		winObj = new ui.window("popup","칼라업체 정보 수정이력","0","0","900","400","C106000050pop04.jsp?clr_cd="+g1_clrcd);
+		winObj.setButtonDisable("park,minmax1");
+	} else {
+		alert("칼라코드 정보에 선택된 행이 없습니다."); 
+		return;
+	}
 }
 //]]>
 </script>

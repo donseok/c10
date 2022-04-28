@@ -259,6 +259,12 @@ public class DbSearchChemData extends PosActivity implements C10NuiConstantsIF
             colValue[0] = prd_nm_cd; // 품명코드
             colValue[1] = mql_cd; // 재질코드
             colValue[2] = ord_exc_thk; // 주문환산두께
+            
+            logger.logDebug( "=== 사내성분사양(C10B1031) ===");
+            logger.logDebug( "품명코드        : " + colValue[0]);
+            logger.logDebug( "재질코드        : " + colValue[1]);
+            logger.logDebug( "주문환산두께  : " + colValue[2]);
+
 
             PosDecisionChecker checker = EasyAccess.getPosDecisionChecker( C10B1031, null );
             PosRuleVO result2 = null;

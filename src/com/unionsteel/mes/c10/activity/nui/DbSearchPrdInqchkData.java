@@ -473,20 +473,20 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             colValue[11] = Double.toString( ord_exc_thk );
             colValue[12] = Double.toString( exc_wth );
             
-            logger.logDebug( "=== 이돈석 확인 ===" );
-            logger.logDebug( "조건값 - 품명                : " + colValue[0] );
-            logger.logDebug( "조건값 - 제품형태            : " + colValue[1] );
-            logger.logDebug( "조건값 - 규격약호            : " + colValue[2] );
-            logger.logDebug( "조건값 - 주문용도코드        : " + colValue[3] );
-            logger.logDebug( "조건값 - 최종고객사          : " + colValue[4] );
-            logger.logDebug( "조건값 - 고객 사양번호       : " + colValue[5] );
-            logger.logDebug( "조건값 - EMBOSS무늬         : " + colValue[6] );
-            logger.logDebug( "조건값 - 주문Spangle구분    : " + colValue[7] );
-            logger.logDebug( "조건값 - 주문도금량지정코드  : " + colValue[8] );
-            logger.logDebug( "조건값 - 주문표면처리코드    : " + colValue[9] );
-            logger.logDebug( "조건값 - CCLBOM번호(1~5)   : " + colValue[10] );
-            logger.logDebug( "조건값 - 주문두께            : " + colValue[11] );
-            logger.logDebug( "조건값 - 주문폭              : " + colValue[12] );
+//            logger.logDebug( "=== 이돈석 확인 ===" );
+//            logger.logDebug( "조건값 - 품명                : " + colValue[0] );
+//            logger.logDebug( "조건값 - 제품형태            : " + colValue[1] );
+//            logger.logDebug( "조건값 - 규격약호            : " + colValue[2] );
+//            logger.logDebug( "조건값 - 주문용도코드        : " + colValue[3] );
+//            logger.logDebug( "조건값 - 최종고객사          : " + colValue[4] );
+//            logger.logDebug( "조건값 - 고객 사양번호       : " + colValue[5] );
+//            logger.logDebug( "조건값 - EMBOSS무늬         : " + colValue[6] );
+//            logger.logDebug( "조건값 - 주문Spangle구분    : " + colValue[7] );
+//            logger.logDebug( "조건값 - 주문도금량지정코드  : " + colValue[8] );
+//            logger.logDebug( "조건값 - 주문표면처리코드    : " + colValue[9] );
+//            logger.logDebug( "조건값 - CCLBOM번호(1~5)   : " + colValue[10] );
+//            logger.logDebug( "조건값 - 주문두께            : " + colValue[11] );
+//            logger.logDebug( "조건값 - 주문폭              : " + colValue[12] );
 
             try
             {
@@ -746,7 +746,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
                     break;
                 }
             }
-        }        
+        } // while 문 끝       
         //CCL BOM 기준
         if( ctx.get( COL_PRD_NM_CD ).equals( PRD_NM_CD_1 ) 
                 || ctx.get( COL_PRD_NM_CD ).equals( PRD_NM_CD_2 ) 

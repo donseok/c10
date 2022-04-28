@@ -24,5 +24,7 @@
 <item foreground-color="255,140,50" inputWidth="138" label="INK TYPE" name="PRT_INK_TP_SH" type="combo"/>
 <item foreground-color="255,140,50" offset="10" type="newcolumn"/>
 <item foreground-color="255,140,50" inputWidth="130" label="전송대상" name="SND_LST" type="checkbox"/>
+<item foreground-color="255,140,50" offset="30" type="newcolumn"/>
+<item type="linkbutton" name="C10_linkC106000050pop04" value="수정이력조회" command="C10_linkC106000050pop04" position="absolute" inputTop="6" width="90"/>
 </item>
 </items>

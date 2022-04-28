@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050pop04 Page 쿼리파일"> 
+	 <query id="C106000050pop04.select" desc="C106000050pop04 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라코드 정보 수정이력 popup조회 C106000050pop04.SELECT */
+	    CLR_SUB_MTL_CD,
+        MDF_SEQ,
+        MDF_RSN,
+        SUB_MTL_TP,
+        RSN_TP,
+       (SELECT CD_V_MEANING
+        FROM   M00APUSER.VI_M00_CODE_ACCESS
+        WHERE  CD_TP='RSN_TP'
+        AND    CATEGORY_GROUP_NM ='SZ0000'
+        AND    CD_V = RSN_TP) RSN_TP_NM,
+        LUS_RT_CD,
+        LUS_RT_LLV,
+        LUS_RT_ULV,
+        WK_VISCO,
+        PNT_FLM_THK,
+        PRT_INK_TP,
+        NV,
+        PNT_GRA,
+        SLV_GRA,
+        THR_CD,
+        PNT_UNT,
+        PMT,
+        QT_L,
+        QT_A,
+        QT_B,
+        STD_CLR_NM,
+        LMN_KND_TP,
+        LMN_BND_CD,
+        LMN_BND_THR_CD,
+        LMN_FLM_THK_CD,
+        PTT_FLM_LUS_RT_CD,
+        PTT_FLM_THK_CD,
+        PTT_FLM_MQL_CD,
+        PTT_FLM_SUS_ADH_CD,
+        PTT_FLM_PRD_ADH_CD,
+        RMRK,
+     	NVL((SELECT USER_NAME
+	 		 FROM M90APUSER.TB_M90_EMP_INF
+			 WHERE USER_NO = RGS_PRS_ID),RGS_PRS_ID) AS RGS_PRS_ID,
+        RGS_DH,
+        NVL((SELECT USER_NAME
+       		 FROM M90APUSER.TB_M90_EMP_INF
+        	 WHERE USER_NO = MDF_PRS_ID),MDF_PRS_ID) AS MDF_PRS_ID,
+        CLR_MDF_DH,    
+        CLR_SUB_MTL_CD_OLD,
+        RSN_TP_OLD,
+        LUS_RT_CD_OLD,
+        PNT_FLM_THK_OLD,
+        USE_YN,
+        ERP_SND_DH,
+        MGR_CLR_SUB_MTL_CD,
+        MOD_YN,
+        RAL_CD,
+        RL_LUS_RT,
+        EX_YN,
+        TP_CD,
+        COL_DIF_STD,
+        EX_YN1,
+        LMN_BND_CD1,
+        LMN_BND_THR_CD1,
+        RSN_TP_QT,
+        PAT_CD,
+        FUNC_CD,
+        TTE_CD,
+        USE_POS_CD,
+        WTY_YN,
+        DECODE(LAMINA_INS_YN,'1','Y','N')	AS LAMINA_INS_YN,
+        DECODE(PUR_CHR_CFM,'1','Y','N')	AS PUR_CHR_CFM 
+FROM TB_C10_CLR_CD_MNG_MDF_LOG
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+ORDER BY MDF_SEQ DESC
+		 ]]> 
+	 </query>
+</queryMap>

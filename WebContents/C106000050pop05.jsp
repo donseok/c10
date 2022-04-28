@@ -1,15 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%--
- * PROGRAM NAME	:  C106000050pop01.jsp
+ * PROGRAM NAME	:  C106000050pop05.jsp
  * VERSION				:  V1.0
- * DESCRIPTION			:  칼라부재료 업체정보 저장 사유 입력
- * DESIGNER NAME	:  성낙원
- * DEVELOPER NAME	:  성낙원
- * CREATE DATE			:  2016.10.19
+ * DESCRIPTION			:  칼라부재료 수정 사유 입력
+ * DESIGNER NAME	:  JKJ
+ * DEVELOPER NAME	:  JKJ
+ * CREATE DATE			:  2022.04.19
  *
  * Date				Ver		Name		Description
  * -----------------------------------------------------------------
- * 최초생성일자		V1.0		성낙원		Initial Version
+ * 최초생성일자		V1.0		JKJ		Initial Version
  * 변경일자      version number  개발자이름 변경사항
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,7 +19,7 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 </meta>
 <title>
-칼라부재료 업체 저장 사유
+칼라부재료 수정 사유
 </title>
 <script src="./dhtmlx/codebase/glue.ui.bootstrap.js" type="text/javascript">
 </script>
@@ -30,7 +30,7 @@
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
-      '{"itemType":"form","renderTo":"C106000050pop01_Form_1","xml":".\/header\/kr\/C106000050pop01\/C106000050pop01_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000050pop01_Form_1","service":"C106000050pop01-service"}' +
+      '{"itemType":"form","renderTo":"C106000050pop05_Form_1","xml":".\/header\/kr\/C106000050pop05\/C106000050pop05_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000050pop05_Form_1","service":"C106000050pop05-service"}' +
    ']';
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
@@ -40,7 +40,7 @@ function ok() {
 	var cfmRea		= items[ aForm1[0] ].getItemValue("CFM_REA");		// 확인사유
 		
 	if( cfmRea==null || cfmRea.length == 0 ||  C10_trim(cfmRea)=="" ){
-		dhtmlx.alert("저장 사유를 입력하세요.");
+		dhtmlx.alert("수정 사유를 입력하세요.");
 		return false;
 	}
 	parent.popCfmRea	= cfmRea;	    // 확인사유	
@@ -57,7 +57,7 @@ function cancel() {
 </script>
 </head>
 <body>
-<div id="C106000050pop01_Form_1" style="position:absolute;height:131px;width:330px;left:0px;top:0px;">
+<div id="C106000050pop05_Form_1" style="position:absolute;height:131px;width:330px;left:0px;top:0px;">
 </div>
 </body>
 </html>
@@ -66,7 +66,7 @@ function cancel() {
 //<![CDATA[
 	ui.initializeDHTMLX();
 	
-	var aForm1 = ["C106000050pop01_Form_1"	, ""]; 
+	var aForm1 = ["C106000050pop05_Form_1"	, ""]; 
 	
 	items[ aForm1[0] ].onXLEEvent( function(){
 		aForm1[1]	= items[ aForm1[0]	].getDhxForm();
