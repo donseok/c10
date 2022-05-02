@@ -1838,10 +1838,17 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             }
     
             // PLTCM마진량
-            colValue = new String[3];
+            colValue = new String[4];
             colValue[0] = ctx.get( COL_RMTL_CD ).toString(); // 원자재코드
             colValue[1] = ctx.get( COL_RMTL_TAR_THK ).toString(); // 원자재두께
             colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭
+            colValue[3] = ctx.get( COL_FNL_CUS_CD ).toString(); // 고객사코드
+            
+            logger.logError( "PLTCM폭마진량 원자재코드         : " + colValue[0]);
+            logger.logError( "PLTCM폭마진량 원자재두께         : " + colValue[1]);
+            logger.logError( "PLTCM폭마진량 PLTCM폭         : " + colValue[2]);
+            logger.logError( "PLTCM폭마진량 고객사코드         : " + colValue[3]);
+
             checker = EasyAccess.getPosDecisionChecker( C10B1073, null );
             result = null;
             try

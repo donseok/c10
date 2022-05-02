@@ -84,7 +84,7 @@
     <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
     <property key="bind-result" value="RMT_SEARCH"/>
     <property key="countName" value="RMT_CD_COUNT"/>
-    <property key="param-count" value="20"/>
+    <property key="param-count" value="21"/>
     <property key="param0" value="ORD_NO|ORD_NO"/>
     <property key="param1" value="ORD_LN|ORD_LN"/>
     <property key="param2" value="QLT_DSN_MNF_TP|QLT_DSN_MNF_TP"/>
@@ -105,6 +105,7 @@
     <property key="param17" value="CGL_WTH_TRV|CGL_WTH_TRV"/>
     <property key="param18" value="EGL_MAIN_PROC_CD|EGL_MAIN_PROC_CD"/>
     <property key="param19" value="CGL_MAIN_PROC_CD|CGL_MAIN_PROC_CD"/>
+    <property key="param20" value="FNL_CUS_CD|FNL_CUS_CD"/>
     <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;원자재코드값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다.&#xD;&#xA;5. 2016.3.15&#xD;&#xA;   . Zero S/T인 경우 원자재폭 = 제품폭 + CGL/EGL폭 감소량으로 원자재 폭 설계."/>
   </child>
   <child xsi:type="Glue:ModifyActivity" id="51305" location="217,244" size="113,-1" input="//@wire.11" output="//@wire.12 //@wire.14" name="MODIFY_RMT">

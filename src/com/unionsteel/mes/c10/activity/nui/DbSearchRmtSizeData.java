@@ -149,6 +149,8 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         String egl_main_proc_cd = C10STR_SPACE; //EGL 통과공정(2016.3.15)
         String cgl_main_proc_cd = C10STR_SPACE; //CGL 통과공정(2016.3.15)
         String mql_cd = C10STR_SPACE; //재질추가(2016.3.15)
+        String fnl_cus_cd = C10STR_SPACE; //최종고객사(2022.5.02)
+        
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
         double ord_mix_wth2 = 0;
@@ -227,8 +229,6 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                 		                                + ord_mix_wth6 + ord_mix_wth7 + ord_mix_wth8 + ord_mix_wth9 + ord_mix_wth10 );
              else
                  ord_exc_wth = ctx.get( COL_ORD_EXC_WTH ).toString();
-        	
-        	
         }
         if ( !DbCommonUtil.isNull( ctx.get( COL_CGL_THK_TRV ) ) )
             cgl_thk_trv = ctx.get( COL_CGL_THK_TRV ).toString();
@@ -247,8 +247,12 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
             max_pltcm_wth_trv = pltcm_wth_trv1;
         else
             max_pltcm_wth_trv = pltcm_wth_trv2;
+        
         if(max_pltcm_wth_trv < pltcm_wth_trv3)
             max_pltcm_wth_trv = pltcm_wth_trv3;
+        
+        if ( !DbCommonUtil.isNull( ctx.get( COL_FNL_CUS_CD ) ) )
+        	fnl_cus_cd = ctx.get( COL_FNL_CUS_CD ).toString();
         
         pltcm_wth_trv = Double.toString( max_pltcm_wth_trv );
         
@@ -390,11 +394,17 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                 colValue[0] = rmtl_cd; // 원자재코드
                 colValue[1] = ctx.get( COL_RMTL_TAR_THK ).toString(); // 원자재두께
                 colValue[2] = pltcm_wth_trv; // PLTCM폭
+                colValue[3] = fnl_cus_cd; // 고객사코드  
+                logger.logError( "PLTCM폭마진량 원자재코드  : " + colValue[0]);
+                logger.logError( "PLTCM폭마진량 원자재두께  : " + colValue[1]);
+                logger.logError( "PLTCM폭마진량 PLTCM폭  : " + colValue[2]);
+                logger.logError( "PLTCM폭마진량 고객사코드   : " + colValue[3]);
+                
                 checker = EasyAccess.getPosDecisionChecker( C10B1073, null );
                 result = null;
                 try{
                     result = checker.getPosRule( colValue );
-                }catch ( MasterDataException e ){
+                } catch ( MasterDataException e ){
                     result = null;
                     ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT05 );
                     ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
@@ -404,6 +414,7 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
 
                 if( result.getRecordCount() == 1 ){
                     mrg_wth = result.getRuleValueAt( COL_MRG_WTH );
+                    logger.logError( "PLTCM폭마진량 결과  : " + mrg_wth);
                 }else if( result.getRecordCount() > 1 ){
                     ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT15 );
                     ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
