@@ -29,8 +29,8 @@
 <column id="PTT_FLM_NOT_ADH_DS" index="6" sort="na" align="center" dbname="보호필름미부착폭DS" width="*" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="보호필름미부착폭DS" >보호필름미부착폭DS</column>
 <column id="EMBOSS_CD" index="7" sort="na" align="center" dbname="EMBOSS무늬코드" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="EMBOSS무늬코드" hidden="true">EMBOSS무늬코드</column>
 <column id="EMBS_CD" index="8" sort="na" align="left" dbname="EMBOSS무늬" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="EMBOSS무늬" hidden="true">EMBOSS무늬</column>
-<column id="BAK_MRK_CD" index="9" sort="na" align="center" dbname="Back마킹코드" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="Back마킹코드" hidden="true">Back마킹코드</column>
-<column id="BAK_MRK" index="10" sort="na" align="left" dbname="Back마킹" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="Back마킹" hidden="true">Back마킹</column>
+<column id="BAK_MRK_CD" index="9" sort="na" align="center" dbname="마킹코드" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="마킹코드" hidden="true">마킹코드</column>
+<column id="BAK_MRK" index="10" sort="na" align="left" dbname="Marking" width="0" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="Marking" hidden="true">Marking</column>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
@@ -47,7 +47,7 @@
 <row id="1">
 <cell align="center" class="form_cell">EMBOSS무늬</cell>
 <cell id="EMBS_CD"/>
-<cell align="center" class="form_cell">Back마킹</cell>
+<cell align="center" class="form_cell">Marking</cell>
 <cell id="BAK_MRK" colspan="3"></cell>
 <cell class="form_cell" ></cell>
 <cell class="form_cell" ></cell>

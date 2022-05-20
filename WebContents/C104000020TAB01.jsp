@@ -46,7 +46,7 @@ function save(eventName,formDivObj,referenceItem){
     var ord_ln = comboList.getSelectedValue();
 	var uiFormObj = items['C104000020TAB01_Form_1'];
 	var ord_spc_txt = uiFormObj.getItemValue("ORD_SPC_TXT");
-	var bak_mrk = uiFormObj.getItemValue("BAK_MRK");   //2013.07.09 이세민대리 Back Marking수정 가능하게 요청
+	var bak_mrk = uiFormObj.getItemValue("BAK_MRK");   //2013.07.09 이세민대리 TOB BACK Marking수정 가능하게 요청
 
 	if(isNull(ord_no)){
 		alert("주문번호를 입력해주세요.");
@@ -64,6 +64,14 @@ function save(eventName,formDivObj,referenceItem){
     }
 	uiFormObj.setItemValue("ORD_NO",ord_no);
 	uiFormObj.setItemValue("ORD_LN",ord_ln);
+	
+	if(!isNull(bak_mrk)){
+		if(bak_mrk.substring(0,4) != "BACK" || bak_mrk.substring(0,3) != "TOP"){
+			alert("마킹이 TOP 또는 BACK인지 말머리에 입력해 주세요.");
+			parentForm.setItemFocus("ORD_NO");
+			return;
+		}
+	}
 	
 	dhtmlx.confirm({
 		title:"[ 품질설계텍스트수정 ]",

@@ -164,7 +164,7 @@
 <item inputWidth="165" label="고객정의색상" labelWidth="120" name="CUS_REQ_CLR_NM" readonly="true" type="input" labelAlign="right" />
 </item>
 <item type="block" width="960">
-<item inputWidth="488" label="Back Marking" labelWidth="120" name="BAK_MRK" type="input" style="background-color:#FFFFC0" labelAlign="right" />
+<item inputWidth="488" label="Marking" labelWidth="120" name="BAK_MRK" type="input" style="background-color:#FFFFC0" labelAlign="right" />
 <item offset="25" type="newcolumn"/>
 <item inputWidth="164" label="포장재중량" labelWidth="120" name="ORD_PAK_MTL_WGT" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
 </item>

@@ -210,8 +210,9 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
             ord_no = (String) ctx.get( COL_ORD_NO );
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_LN ) ) )
             ord_ln = (String) ctx.get( COL_ORD_LN );
-        if ( !DbCommonUtil.isNull( ctx.get( COL_BAK_MRK ) ) )
-            bak_mrk = C10STR_YES;
+        if ( !DbCommonUtil.isNull( ctx.get( COL_BAK_MRK ) ) 
+        	&& ((String) ctx.get( COL_BAK_MRK )).substring(0,4).equals("BACK") )
+        		bak_mrk = C10STR_YES;
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_COIL_IDIA ) ) )
             ord_coil_idia = ctx.get( COL_ORD_COIL_IDIA ).toString();
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_SLV_KND_TP ) ) )
@@ -306,22 +307,24 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
 
         param = new PosParameter(); // MD View param
         param.setWhereClauseParameter( 0, pas_proc_no );
+        
+        logger.logDebug( "JKJ -> " +bak_mrk+ " -> " +((String) ctx.get( COL_BAK_MRK )).substring(0,3) ); 
 
         // 칼라제품 공정코드 Check
         if ( prd_nm_cd.equals( PRD_NM_CD_1 ) || 
-                prd_nm_cd.equals( PRD_NM_CD_2 ) || 
-                prd_nm_cd.equals( PRD_NM_CD_3 ) || 
-                prd_nm_cd.equals( PRD_NM_CD_4 ) || 
-                prd_nm_cd.equals( PRD_NM_CD_5 ) || 
-                prd_nm_cd.equals( PRD_NM_CD_6 ) ||
-                prd_nm_cd.equals( PRD_NM_CD_7 ) ||
-                prd_nm_cd.equals( PRD_NM_CD_8 ) ||
-                prd_nm_cd.equals( PRD_NM_CD_9 ) )
+             prd_nm_cd.equals( PRD_NM_CD_2 ) || 
+             prd_nm_cd.equals( PRD_NM_CD_3 ) || 
+             prd_nm_cd.equals( PRD_NM_CD_4 ) || 
+             prd_nm_cd.equals( PRD_NM_CD_5 ) || 
+             prd_nm_cd.equals( PRD_NM_CD_6 ) ||
+             prd_nm_cd.equals( PRD_NM_CD_7 ) ||
+             prd_nm_cd.equals( PRD_NM_CD_8 ) ||
+             prd_nm_cd.equals( PRD_NM_CD_9 ) )
         {
             try{
                 // 결과값 잘 가져오는지 확인
                 rowset = dao.find( VI_M00_C10A1054_PROC_CHK, param ); // 통과공정기준View.select
-            }catch ( Exception e ){
+            } catch ( Exception e ){
                 rowset = null;
                 ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KP05 );
                 ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
