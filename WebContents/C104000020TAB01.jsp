@@ -66,7 +66,7 @@ function save(eventName,formDivObj,referenceItem){
 	uiFormObj.setItemValue("ORD_LN",ord_ln);
 	
 	if(!isNull(bak_mrk)){
-		if(bak_mrk.substring(0,4) != "BACK" || bak_mrk.substring(0,3) != "TOP"){
+		if(bak_mrk.substring(0,4) != "BACK" && bak_mrk.substring(0,3) != "TOP"){
 			alert("마킹이 TOP 또는 BACK인지 말머리에 입력해 주세요.");
 			parentForm.setItemFocus("ORD_NO");
 			return;

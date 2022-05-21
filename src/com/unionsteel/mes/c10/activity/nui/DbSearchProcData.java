@@ -210,8 +210,8 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
             ord_no = (String) ctx.get( COL_ORD_NO );
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_LN ) ) )
             ord_ln = (String) ctx.get( COL_ORD_LN );
-        if ( !DbCommonUtil.isNull( ctx.get( COL_BAK_MRK ) ) 
-        	&& ((String) ctx.get( COL_BAK_MRK )).substring(0,4).equals("BACK") )
+        if ( !DbCommonUtil.isNull( ctx.get( COL_BAK_MRK ) ) )
+        	if ( ((String) ctx.get( COL_BAK_MRK )).substring(0,4).equals("BACK") )
         		bak_mrk = C10STR_YES;
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_COIL_IDIA ) ) )
             ord_coil_idia = ctx.get( COL_ORD_COIL_IDIA ).toString();
