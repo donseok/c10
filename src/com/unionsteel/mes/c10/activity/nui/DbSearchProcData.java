@@ -308,7 +308,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         param = new PosParameter(); // MD View param
         param.setWhereClauseParameter( 0, pas_proc_no );
         
-        logger.logDebug( "JKJ -> " +bak_mrk+ " -> " +((String) ctx.get( COL_BAK_MRK )).substring(0,3) ); 
+        //logger.logDebug( "JKJ -> " +bak_mrk+ " -> " + ord_no +","+ ord_ln );
 
         // 칼라제품 공정코드 Check
         if ( prd_nm_cd.equals( PRD_NM_CD_1 ) || 
