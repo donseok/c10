@@ -9,6 +9,7 @@
 <item name="DIV_CD" type="hidden" readonly="true"/>
 <item name="CLS_CD" type="hidden" readonly="true"/>
 <item name="BRD_CMP_2_CHECK" type="hidden" readonly="true"/>
+<item name="WAR_PRT_SEQ_NO" type="hidden" readonly="true"/>
 </item>
 <item type="block" width="945">
 <item offset="350" type="newcolumn"/>

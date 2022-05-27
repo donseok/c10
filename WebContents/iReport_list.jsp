@@ -8,6 +8,7 @@
 <%@ page import="com.posdata.glue.util.log.PosLog" %>
 <%@ page import="com.posdata.glue.util.log.PosLogFactory" %>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%
   PosLog logger = PosLogFactory.getLogger("report_list.jsp");
@@ -20,6 +21,9 @@
 		String keyValue			= (request.getParameter("keyValue") == null)	   ? "":request.getParameter("keyValue");
 		String keyName      	= (request.getParameter("keyName") == null)	       ? "":request.getParameter("keyName");
 		String reportFileName	= (request.getParameter("reportFileName") == null) ? "":request.getParameter("reportFileName");
+		String cclBomNo      	= (request.getParameter("cclBomNo") == null)	   ? "":request.getParameter("cclBomNo");
+		String warPrtseqno  	= (request.getParameter("warPrtseqno") == null)	   ? "":request.getParameter("warPrtseqno");		
+		
 		
 
 		logger.logInfo("reportFileName => "+reportFileName);
@@ -56,8 +60,12 @@
 		exporter.setParameter(JRExporterParameter.JASPER_PRINT_LIST, jasperPrintList);
 		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
 		exporter.setParameter(JRPdfExporterParameter.IS_CREATING_BATCH_MODE_BOOKMARKS, Boolean.TRUE);
-
+		
 		exporter.exportReport();
+		
+		String outputFilename = cclBomNo + "_" + warPrtseqno + ".pdf";
+		JasperExportManager.exportReportToPdfFile(print, "/APP/WAS/FILES/C10/07/" + outputFilename);
+		
 
    }catch(Exception ex){
 	   logger.logInfo("ex.getMessage() => "+ex.getMessage());

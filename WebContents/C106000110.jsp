@@ -384,9 +384,17 @@ function prtRpt(){
 	               "CH_TRM_13,CH_WAL_18,CH_WAL_17,CH_ROF_16,CH_ROF_15,BRD_CMP_2_5,CLS_CD,DIV_CD,"+
 	               "BRD_CMP_2_CHECK,NAT_ENM_1,BRD_CMP_2_6,PRT_RSN,BRD_CMP_2_7,PE_FL_20,PE_FL_1,CUS_NM,GT_MT,GT_FT";
 	
+	var uiFormObj     = items['C106000110_Form_1'];
+	//폼 입력값 
+	var ccl_bom_no     = uiFormObj.getItemValue("CCL_BOM_NO"); //컬러코드
+	var war_prt_seq_no = uiFormObjSub.getItemValue("WAR_PRT_SEQ_NO"); //발행번호
+	
 	winObj = new ui.window("popup","보증서출력","0","0","550","600",false,"iReport_list.jsp?reportFileName="+reportFileName +
-			                                                         "&keyValue=" + keyValue + 
-			                                                         "&keyName="  + keyName);	
+			                                                         "&keyValue=" + keyValue   + 
+			                                                         "&keyName="  + keyName    +
+			                                                         "&cclBomNo=" + ccl_bom_no + 
+			                                                         "&warPrtseqno=" + war_prt_seq_no);	
+	
 	winObj.setModal();
 }
 // 폼의 필수 값 입력 체크 

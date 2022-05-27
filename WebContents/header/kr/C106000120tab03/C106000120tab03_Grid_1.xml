@@ -20,7 +20,7 @@
 <column align="center" clabel="영문보증서첨부파일여부" dbname="영문보증서첨부파일여부" id="WTY_ENG_YN" index="4" sort="str" table="TB_C10_WAR_PRT_MNG" type="ro" width="11" color="FFFFC0">보증서</column>
 <column id="SPC_TXT" sort="str" align="left"  dbname="SPC_TXT" width="35" table="TB_C10_WAR_PRT_MNG" type="ro">비고</column>
 <column id="WAR_PRT_EMP_ID" sort="str" align="center"  dbname="WAR_PRT_EMP_ID" width="13" table="TB_C10_WAR_PRT_MNG" type="ro">발행자명</column>
-<column id="WAR_PRT_DH" sort="sort_date_custom" align="center"  dbname="WAR_PRT_DH" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
+<column id="WAR_PRT_DH" sort="str" align="center"  dbname="WAR_PRT_DH" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행일자</column>
 <column id="FNL_CUS_CD" sort="str" align="left"  dbname="FNL_CUS_CD" width="23" table="TB_C10_WAR_PRT_MNG" type="ro">최종수요가</column>
 <column id="PRT_RSN" sort="sort_date_custom" align="left" dbname="PRT_RSN" width="18" table="TB_C10_WAR_PRT_MNG" type="ro">발행목적</column>
 <column id="BRD_CMP_2" sort="sort_date_custom" align="left" dbname="BRD_CMP_2" width="17" table="TB_C10_WAR_PRT_MNG" type="ro">Brand 명칭</column>

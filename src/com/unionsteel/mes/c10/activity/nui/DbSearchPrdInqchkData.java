@@ -1639,10 +1639,14 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         //if ( prd_nm_cd.equals( PRD_NM_CD_E ) || prd_nm_cd.equals( PRD_NM_CD_2 ) || prd_nm_cd.equals( PRD_NM_CD_N ))
         if ( prd_nm_cd.equals( PRD_NM_CD_E ) || prd_nm_cd.equals( PRD_NM_CD_2 ) || prd_nm_cd.equals( PRD_NM_CD_N ) || prd_nm_cd.equals( PRD_NM_CD_8 ))	
         {
-            colValue = new String[3];
+            colValue = new String[6];
             colValue[0] = prd_nm_cd; // 품명
             colValue[1] = Double.toString( ord_exc_thk ); // 두께
             colValue[2] = Double.toString( exc_wth ); // 주문폭
+            colValue[3] = fnl_cus_cd;// 최종수요가 (2022.05.23 백선이과장 추가요청)
+            colValue[4] = cus_bth_pap_no; // 고객사양 (2022.05.23 백선이과장 추가요청)
+            colValue[5] = ccl_bom_no;// cclbom (2022.05.23 백선이과장 추가요청)
+            
             checker = EasyAccess.getPosDecisionChecker( C10B2230, null );
             result = null;
             try

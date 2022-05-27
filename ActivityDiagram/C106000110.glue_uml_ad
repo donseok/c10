@@ -12,7 +12,7 @@
     <property key="sqlkey" value="C106000110.select"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="16" location="289,180" size="102,-1" input="//@wire.5" output="//@wire.8" name="저장">
+  <child xsi:type="Glue:DinaActivity" id="16" location="289,180" size="102,-1" input="//@wire.5" output="//@wire.19" name="저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="insert-sql" value="C106000110.insert"/>
@@ -58,6 +58,14 @@
     <property key="sqlkey" value="C106000110.selectClass"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:DinaActivity" id="255960" location="293,245" size="102,-1" input="//@wire.19" output="//@wire.8" name="파일저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="insert-sql" value="C106000110.Fileinsert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000110.Fileinsert"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value=""/>
   <wire id="10969" guardcondition="success" firstRelativePoint="228,209" lastRelativePoint="289,323"/>
@@ -76,7 +84,7 @@
     <bendpoint weight="0.5" firstDimension="67,59" secondDimension="2,-37"/>
   </wire>
   <wire id="0" guardcondition="success" firstRelativePoint="481,208" lastRelativePoint="355,330"/>
-  <wire id="10976" guardcondition="success" firstRelativePoint="342,210" lastRelativePoint="396,321">
+  <wire id="10976" guardcondition="success" firstRelativePoint="344,275" lastRelativePoint="394,324">
     <bendpoint weight="0.5" firstDimension="2,80" secondDimension="-62,-53"/>
   </wire>
   <wire id="10977" guardcondition="cclBomChk" firstRelativePoint="612,112" lastRelativePoint="612,176"/>
@@ -97,4 +105,5 @@
   <wire id="11890" guardcondition="success" firstRelativePoint="752,207" lastRelativePoint="414,327">
     <bendpoint weight="0.5" firstDimension="2,135" secondDimension="348,-1"/>
   </wire>
+  <wire id="11891" guardcondition="success" firstRelativePoint="343,210" lastRelativePoint="343,245"/>
 </Glue:GlueDiagram>

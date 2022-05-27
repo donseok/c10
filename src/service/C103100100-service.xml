@@ -144,7 +144,9 @@
     <property name="param8" value="PLTCM_SET_THK_TRV|PLTCM_SET_THK_TRV" />
     <property name="param9" value="PLTCM_WTH_SUB_PROC1_TRV|PLTCM_WTH_SUB_PROC1_TRV" />
     <property name="param20" value="FNL_CUS_CD|FNL_CUS_CD" />
-    <property name="param-count" value="21" />
+    <property name="param21" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO" />
+    <property name="param22" value="CCL_BOM_NO|CCL_BOM_NO" />
+    <property name="param-count" value="23" />
     <property name="param10" value="PLTCM_WTH_SUB_PROC2_TRV|PLTCM_WTH_SUB_PROC2_TRV" />
     <property name="bind-result" value="RMT_SEARCH" />
     <property name="param11" value="EGL_THK_TRV|EGL_THK_TRV" />
@@ -186,10 +188,10 @@
   <activity name="SEARCH_RMT" class="com.posdata.glue.biz.activity.PosSearch">
     <transition name="success" value="RMT_LOOP" />
     <transition name="failure" value="SUBSERVICE_ERR1" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C102100RMTL.RMselect" />
-    <property name="param0" value="ORD_NO" />
+    <property name="sqlkey" value="C103100100.select" />
     <property name="resultkey" value="RMT_SEARCH" />
+    <property name="dao" value="mesdao" />
+    <property name="param0" value="ORD_NO" />
     <property name="param1" value="ORD_LN" />
     <property name="param-count" value="2" />
   </activity>

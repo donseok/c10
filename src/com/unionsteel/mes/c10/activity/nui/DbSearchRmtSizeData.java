@@ -150,6 +150,9 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         String cgl_main_proc_cd = C10STR_SPACE; //CGL 통과공정(2016.3.15)
         String mql_cd = C10STR_SPACE; //재질추가(2016.3.15)
         String fnl_cus_cd = C10STR_SPACE; //최종고객사(2022.5.02)
+        String cus_bth_pap_no = C10STR_SPACE;
+        String ccl_bom_no = C10STR_SPACE;
+        
         
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
@@ -253,6 +256,12 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         
         if ( !DbCommonUtil.isNull( ctx.get( COL_FNL_CUS_CD ) ) )
         	fnl_cus_cd = ctx.get( COL_FNL_CUS_CD ).toString();
+               
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_CUS_BTH_PAP_NO ) ) )
+        	cus_bth_pap_no = (String) ctx.get( COL_CUS_BTH_PAP_NO );
+        
+        if ( !DbCommonUtil.isNull( ctx.get( COL_CCL_BOM_NO ) ) )
+        	ccl_bom_no = ctx.get( COL_CCL_BOM_NO ).toString();
         
         pltcm_wth_trv = Double.toString( max_pltcm_wth_trv );
         
@@ -260,10 +269,14 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         logger.logDebug( prd_nm_cd + C10STR_COLON + ord_exc_thk  + C10STR_COLON + ord_exc_wth);
 
         if( !prd_nm_cd.equals( PRD_NM_CD_5 ) && !prd_nm_cd.equals( PRD_NM_CD_7 ) ){  
-        	colValue = new String[3];
+        	colValue = new String[6];
             colValue[0] = prd_nm_cd; // 품명
             colValue[1] = Double.toString( ord_exc_thk ); // 두께
             colValue[2] = ord_exc_wth; // 주문폭
+            colValue[3] = fnl_cus_cd; // 최종고객사
+            colValue[4] = cus_bth_pap_no; // 고객사양번호
+            colValue[5] = ccl_bom_no; // cclbom
+            
             checker = EasyAccess.getPosDecisionChecker( C10B2230, null );
             result = null;
             try{

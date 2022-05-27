@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C103100090"> 
+	 <query id="C103100090.select" desc="제조사양조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /* C10 품질설계결과제조사양조회 C103100090.select 이돈석*/ 
+      B.FNL_CUS_CD,
+      B.CUS_BTH_PAP_NO,
+      B.CCL_BOM_NO,
+      A.*
+FROM TB_C10_QLT_DSN_MNF A,
+     TB_C10_QLT_DSN_CMN B
+WHERE A.ORD_NO = B.ORD_NO
+AND   A.ORD_LN = B.ORD_LN
+AND   A.ORD_NO = ?
+AND   A.ORD_LN = ?
+ORDER BY A.QLT_DSN_MNF_TP
+		 ]]> 
+	 </query>
+</queryMap>

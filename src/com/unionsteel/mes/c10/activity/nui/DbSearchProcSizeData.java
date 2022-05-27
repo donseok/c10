@@ -346,6 +346,8 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
         String ord_wth_mng_cd = C10STR_SPACE;
         String qlt_dsn_mnf_tp = C10STR_SPACE;
         String ord_spnl_tp = C10STR_SPACE;
+        String fnl_cus_cd = C10STR_SPACE;
+        String cus_bth_pap_no = C10STR_SPACE;
         double pltcm_set_thk_trv = 0;
         double gal_thk_trv = 0;
         double cor_thk_trv = 0;
@@ -466,6 +468,11 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
             ord_wth_mng_cd = (String) ctx.get( COL_ORD_WTH_MNG_CD );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
             ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_FNL_CUS_CD ) ) )
+            fnl_cus_cd = (String) ctx.get( COL_FNL_CUS_CD );
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_CUS_BTH_PAP_NO ) ) )
+        	cus_bth_pap_no = (String) ctx.get( COL_CUS_BTH_PAP_NO );
+        
 
         if ( !qlt_dsn_mnf_tp.equals("1")  && 
             	!rmtl_cd.toString().substring(0,1).equals("H") && !rmtl_cd.toString().substring(0,1).equals("M") && 
@@ -946,10 +953,13 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
 
         // EGL 제품)
         if ( prd_nm_cd.equals( PRD_NM_CD_E ) || prd_nm_cd.equals( PRD_NM_CD_2 ) || prd_nm_cd.equals( PRD_NM_CD_N ) || prd_nm_cd.equals( PRD_NM_CD_8 )){
-            colValue = new String[3];
+            colValue = new String[6];
             colValue[0] = prd_nm_cd; // 품명
             colValue[1] = Double.toString( ord_exc_thk ); // 두께
             colValue[2] = Double.toString( cegl_exc_wth ); // 주문폭
+            colValue[3] = fnl_cus_cd; // 최종수요가
+            colValue[4] = cus_bth_pap_no ; // 고객사양번호
+            colValue[5] = ccl_bom_no; // ccl bom
             checker = EasyAccess.getPosDecisionChecker( C10B2230, null );
             result = null;
             try
