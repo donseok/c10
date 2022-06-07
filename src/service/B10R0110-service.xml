@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="B10R0110-service" initial="INIT_QLT_ERR">
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <transaction-manager id="tx4" commit="true" />
+  <activity name="modify_CLR_CD__RSN_PUR" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
+    <transition name="failure" value="PROC_LOOP" />
+    <transition name="success" value="Insert_CLR_MNG_MDF_LOG" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0110.colorupdate" />
+  </activity>
+  <activity name="COMMIT_IF" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="end" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx2" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="COMMIT" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
+    <transition name="success" value="COMMIT_IF" />
+    <property name="checkId" value="P_ERR_KEY" />
+    <property name="txname" value="tx4" />
+    <property name="exitFlag" value="N" />
+  </activity>
+  <activity name="Insert_CLR_MNG_MDF_LOG" class="com.poscoict.glue.biz.dhtmlx.form.FormInsert">
+    <transition name="success" value="STAT_SET" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0110.clrMngMdf_log" />
+  </activity>
+  <activity name="STAT_SET" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="MODIFY_IF" />
+    <property name="param0" value="XSTAT|S" />
+    <property name="param1" value="XMSGS|sp_null" />
+    <property name="param2" value="XSTAT_CALLBACK|sp_null" />
+    <property name="param-count" value="3" />
+  </activity>
+  <activity name="MODIFY_IF" class="com.posdata.glue.biz.activity.PosModify">
+    <transition name="success" value="PROC_LOOP" />
+    <property name="sqlkey" value="B10R0110.modify" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
+    <property name="param0" value="XSTAT" />
+    <property name="param1" value="XMSGS" />
+    <property name="param2" value="XSTAT_CALLBACK" />
+    <property name="param3" value="IF_GRP_ID" />
+    <property name="param4" value="SEQ_NO" />
+    <property name="param5" value="XSEQ" />
+    <property name="param-count" value="6" />
+  </activity>
+  <activity name="INIT_QLT_ERR" class="com.unionsteel.mes.c10.activity.common.DbSetParam">
+    <transition name="success" value="SEARCH" />
+    <property name="param-count" value="1" />
+    <property name="param0" value="P_PROC_FLAG|C" />
+  </activity>
+  <activity name="modify_CCL_BOM" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
+    <transition name="success" value="modify_CLR_CD__RSN_PUR" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0110.cclbomupdate" />
+  </activity>
+  <activity name="modify_CLR_CD_RSN" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
+    <transition name="success" value="STAT_SET" />
+    <transition name="failure" value="PROC_LOOP" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="B10R0110.colorPurUpdate" />
+  </activity>
+  <activity name="SEARCH" class="com.posdata.glue.biz.activity.PosSearch">
+    <transition name="failure" value="end" />
+    <transition name="success" value="PROC_LOOP" />
+    <property name="resultkey" value="RK_SEARCH" />
+    <property name="dao" value="eaidao" />
+    <property name="param-count" value="0" />
+    <property name="sqlkey" value="B10R0110.select" />
+  </activity>
+  <activity name="CHECK_CNT_CLR" class="com.unionsteel.mes.c10.activity.nui.DbCheckCnt">
+    <transition name="false" value="modify_CCL_BOM" />
+    <transition name="true" value="modify_CLR_CD_RSN" />
+    <property name="sqlkey" value="B10R0110_C10.select" />
+    <property name="dao" value="mesdao" />
+    <property name="param0" value="CLR_SUB_MTL_CD" />
+    <property name="param1" value="CHG_RSN_TP" />
+    <property name="param-count" value="2" />
+  </activity>
+  <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
+    <transition name="exit" value="COMMIT" />
+    <transition name="success" value="CHECK_CNT_CLR" />
+    <property name="param1" value="SEQ_NO|SEQ_NO" />
+    <property name="param2" value="XSEQ|XSEQ" />
+    <property name="param3" value="XCRUD|XCRUD" />
+    <property name="param4" value="XSTAT|XSTAT" />
+    <property name="param5" value="XMSGS|XMSGS" />
+    <property name="param6" value="XDATE|XDATE" />
+    <property name="param7" value="XTIME|XTIME" />
+    <property name="param8" value="XSTAT_CALLBACK|XSTAT_CALLBACK" />
+    <property name="param9" value="NUM_REQ_RST|NUM_REQ_RST" />
+    <property name="param-count" value="15" />
+    <property name="param10" value="SPC_TXT|SPC_TXT" />
+    <property name="bind-result" value="RK_SEARCH" />
+    <property name="param11" value="CHG_RSN_TP|CHG_RSN_TP" />
+    <property name="param12" value="CLR_SUB_MTL_CD|CLR_SUB_MTL_CD" />
+    <property name="param13" value="RGS_PRS_ID|RGS_PRS_ID" />
+    <property name="param14" value="END_DH|END_DH" />
+    <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
+    <property name="param0" value="IF_GRP_ID|IF_GRP_ID" />
+  </activity>
+</service>
+

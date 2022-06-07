@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="B10R0110"> 
+	 <query id="B10R0110.select" desc="구매담당자 확정수신" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT /* 구매담당자 확정수신 B10R0110.select JKJ */ 
+	IF_GRP_ID,
+ 	SEQ_NO,
+ 	XSEQ,
+ 	XCRUD,
+ 	XSTAT,
+ 	XMSGS,
+ 	XDATE,
+ 	XTIME,
+ 	XSTAT_CALLBACK,
+ 	NUM_REQ_RST,
+ 	SPC_TXT,
+    CHG_RSN_TP,
+    CLR_SUB_MTL_CD,
+    RGS_PRS_ID,
+    END_DD||END_DH 	AS END_DH
+FROM  EAIAPUSER.TB_C10_B10R0110
+WHERE XSTAT='D'
+ORDER BY IF_GRP_ID, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="B10R0110_C10.select" desc="구매확인 수지 코드 변경 조회" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+SELECT CLR_SUB_MTL_CD 
+FROM  C10APUSER.TB_C10_CLR_CD_MNG
+WHERE CLR_SUB_MTL_CD  = ?
+AND   RSN_TP  = ?
+		 ]]> 
+	 </query>
+	 <query id="B10R0110.modify" desc="." fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+UPDATE /*+ 구매확인 IF 처리 B10R0110.modify*/                      
+EAIAPUSER.TB_C10_B10R0110
+SET    
+       LAST_UPDATED_OBJECT_TYPE = ?  --최종변경OBJECT유형
+      ,LAST_UPDATED_OBJECT_ID = ?    --최종변경OBJECTID  
+      ,LAST_UPDATE_PROGRAM_ID = ?    --최종변경프로그램ID
+      ,LAST_UPDATE_TIMESTAMP = ?     --최종변경일시    
+      ,XSTAT = ?                     --PI 처리 상태
+      ,XMSGS = ?                     --PI 에러 메세지
+      ,XSTAT_CALLBACK = ?            --PI 처리 상태
+WHERE IF_GRP_ID = ?                  --Interface Group ID                                                                                      
+  AND SEQ_NO = ?                     --Interface SEQ
+  AND XSEQ = ?                       --PI Sequence Key Value
+		 ]]> 
+	 </query>
+	 <query id="B10R0110.cclbomupdate" desc="cclbom 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_CCL_BOM
+SET    RSN_TP_FRN_1COT = decode(HUE_CD_FRN_1COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_FRN_1COT),
+       RSN_TP_FRN_2COT = decode(HUE_CD_FRN_2COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_FRN_2COT),
+       RSN_TP_FRN_3COT = decode(HUE_CD_FRN_3COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_FRN_3COT),
+       RSN_TP_FRN_4COT = decode(HUE_CD_FRN_4COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_FRN_4COT),
+       RSN_TP_BAK_1COT = decode(HUE_CD_BAK_1COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_BAK_1COT),
+       RSN_TP_BAK_2COT = decode(HUE_CD_BAK_2COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_BAK_2COT),
+       RSN_TP_BAK_3COT = decode(HUE_CD_BAK_3COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_BAK_3COT),
+       RSN_TP_BAK_4COT = decode(HUE_CD_BAK_4COT, :CLR_SUB_MTL_CD, :CHG_RSN_TP, RSN_TP_BAK_4COT),
+       LAST_UPDATED_OBJECT_TYPE = :ObjectType,  
+       LAST_UPDATED_OBJECT_ID   = :ObjectId,      
+       LAST_UPDATE_PROGRAM_ID   = :ProgramId,     
+       LAST_UPDATE_TIMESTAMP    = :Timestamp  
+WHERE  :CLR_SUB_MTL_CD in (HUE_CD_FRN_1COT, HUE_CD_FRN_2COT, HUE_CD_FRN_3COT, HUE_CD_FRN_4COT,
+                           HUE_CD_BAK_1COT, HUE_CD_BAK_2COT, HUE_CD_BAK_3COT, HUE_CD_BAK_4COT, HUE_CD_LMN)
+		 ]]> 
+	 </query>
+	 <query id="B10R0110.colorupdate" desc="칼라코드정보 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE /* C10 품질설계 칼라코드관리 B10R0110.colorupdate JKJ */ 
+	C10APUSER.TB_C10_CLR_CD_MNG
+SET	RSN_TP = :CHG_RSN_TP,
+	MDF_PRS_ID = :ObjectId,
+	CLR_MDF_DH = SYSDATE,
+	PUR_CHR_CFM = DECODE(:NUM_REQ_RST,'A','Y','R','R'),
+	LAST_UPDATED_OBJECT_TYPE=:ObjectType,
+	LAST_UPDATED_OBJECT_ID=:ObjectId,     
+	LAST_UPDATE_PROGRAM_ID=:ProgramId,
+	LAST_UPDATE_TIMESTAMP=:Timestamp
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="B10R0110.colorPurUpdate" desc="칼라코드 구매확인 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE /* C10 칼라코드구매확인 수정 B10R0110.colorPurUpdate JKJ */ 
+	C10APUSER.TB_C10_CLR_CD_MNG
+SET	PUR_CHR_CFM = DECODE(:NUM_REQ_RST,'A','Y','R','R'),
+	LAST_UPDATED_OBJECT_TYPE=:ObjectType,
+	LAST_UPDATED_OBJECT_ID=:ObjectId,     
+	LAST_UPDATE_PROGRAM_ID=:ProgramId,
+	LAST_UPDATE_TIMESTAMP=:Timestamp
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="B10R0110.clrMngMdf_log" desc="C10 칼라코드로그 B10R0110.clrMngMdf_log" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO C10APUSER.TB_C10_CLR_CD_MNG_MDF_LOG /* C10 칼라코드로그 B10R0110.clrMngMdf_log JKJ */
+(
+    CLR_SUB_MTL_CD,
+    MDF_SEQ,
+    MDF_RSN,
+    SUB_MTL_TP,
+    RSN_TP,
+    LUS_RT_CD,
+    LUS_RT_LLV,
+    LUS_RT_ULV,
+    WK_VISCO,
+    PNT_FLM_THK,
+    PRT_INK_TP,
+    NV,
+    PNT_GRA,
+    SLV_GRA,
+    THR_CD,
+    PNT_UNT,
+    PMT,
+    QT_L, QT_A, QT_B,
+    STD_CLR_NM,
+    LMN_KND_TP,
+    LMN_BND_CD,
+    LMN_BND_THR_CD,
+    LMN_FLM_THK_CD,
+    PTT_FLM_LUS_RT_CD,
+    PTT_FLM_THK_CD,
+    PTT_FLM_MQL_CD,
+    PTT_FLM_SUS_ADH_CD,
+    PTT_FLM_PRD_ADH_CD,
+    RMRK,
+    RGS_PRS_ID,
+    RGS_DH,
+    MDF_PRS_ID,
+    CLR_MDF_DH,
+    CLR_SUB_MTL_CD_OLD,
+    RSN_TP_OLD,
+    LUS_RT_CD_OLD,
+    PNT_FLM_THK_OLD,
+    USE_YN,
+    ERP_SND_DH,
+    MGR_CLR_SUB_MTL_CD,
+    MOD_YN,
+    RAL_CD,
+    RL_LUS_RT,
+    EX_YN,
+    TP_CD,
+    COL_DIF_STD,
+    EX_YN1,
+    LMN_BND_CD1,
+    LMN_BND_THR_CD1,
+    RSN_TP_QT,
+    PAT_CD,
+    FUNC_CD,
+    TTE_CD,
+    USE_POS_CD,
+    WTY_YN,
+    LAMINA_INS_YN,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)
+SELECT  CLR_SUB_MTL_CD,
+        NVL((SELECT MAX(MDF_SEQ)+1 
+               FROM TB_C10_CLR_CD_MNG_MDF_LOG
+              WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD),0),
+        :SPC_TXT,
+        SUB_MTL_TP,
+        RSN_TP,
+        LUS_RT_CD,
+        LUS_RT_LLV,
+        LUS_RT_ULV,
+        WK_VISCO,
+        PNT_FLM_THK,
+        PRT_INK_TP,
+        NV,
+        PNT_GRA,
+        SLV_GRA,
+        THR_CD,
+        PNT_UNT,
+        PMT,
+        QT_L, QT_A, QT_B,
+        STD_CLR_NM,
+        LMN_KND_TP,
+        LMN_BND_CD,
+        LMN_BND_THR_CD,
+        LMN_FLM_THK_CD,
+        PTT_FLM_LUS_RT_CD,
+        PTT_FLM_THK_CD,
+        PTT_FLM_MQL_CD,
+        PTT_FLM_SUS_ADH_CD,
+        PTT_FLM_PRD_ADH_CD,
+        RMRK,
+        RGS_PRS_ID,
+        RGS_DH,
+        MDF_PRS_ID,
+        CLR_MDF_DH,    
+        CLR_SUB_MTL_CD_OLD,
+        RSN_TP_OLD,
+        LUS_RT_CD_OLD,
+        PNT_FLM_THK_OLD,
+        USE_YN,
+        ERP_SND_DH,
+        MGR_CLR_SUB_MTL_CD,
+        MOD_YN,
+        RAL_CD,
+        RL_LUS_RT,
+        EX_YN,
+        TP_CD,
+        COL_DIF_STD,
+        EX_YN1,
+        LMN_BND_CD1,
+        LMN_BND_THR_CD1,
+        RSN_TP_QT,
+        PAT_CD,
+        FUNC_CD,
+        TTE_CD,
+        USE_POS_CD,
+        WTY_YN,
+        LAMINA_INS_YN,
+        :ObjectType,
+        :ObjectId,
+        :ProgramId,
+        :Timestamp,
+        LAST_UPDATED_OBJECT_TYPE,
+        LAST_UPDATED_OBJECT_ID,
+        LAST_UPDATE_PROGRAM_ID,
+        LAST_UPDATE_TIMESTAMP
+FROM C10APUSER.TB_C10_CLR_CD_MNG
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+</queryMap>
