@@ -38,16 +38,7 @@
     <property key="param5" value="XSEQ"/>
     <property key="description" value="이 Activity는 에러내용을 고객사 Code 수신 Interface Table에&#xD;&#xA;수정하는 Activity이다."/>
   </child>
-  <child xsi:type="Glue:Activity" id="50996" location="312,131" size="156,-1" input="//@wire.10" output="//@wire.17 //@wire.18" name="CHECK_CNT_CLR">
-    <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbCheckCnt"/>
-    <property key="dao" value="mesdao"/>
-    <property key="param-count" value="2"/>
-    <property key="sqlkey" value="B10R0110_C10.select"/>
-    <property key="param0" value="CLR_SUB_MTL_CD"/>
-    <property key="param1" value="CHG_RSN_TP"/>
-    <property key="description" value="이 Activity는 고객사Code마스타(M00APUSER.TB_M00_CODES030)에 Data 존재유무를 Check하는 Activity이다. &#xD;&#xA;&#xD;&#xA;1. Data가 존재하면 transition='true', &#xD;&#xA;   존재하지 않은 경우 transition='false'로 Set"/>
-  </child>
-  <child xsi:type="Glue:Activity" id="51181" location="323,413" size="141,-1" input="//@wire.13 //@wire.12" output="//@wire.1" name="STAT_SET">
+  <child xsi:type="Glue:Activity" id="51181" location="312,413" size="141,-1" input="//@wire.13 //@wire.12" output="//@wire.1" name="STAT_SET">
     <property key="class" value="com.unionsteel.mes.c10.activity.common.DbSetParam"/>
     <property key="param-count" value="3"/>
     <property key="param0" value="XSTAT|S"/>
@@ -84,7 +75,7 @@
     <property key="param14" value="END_DH|END_DH"/>
     <property key="description" value="이 Activity는 수신받은 고객사정보를&#xD;&#xA;인터페이스그룹아이디, 인터페이스 SEQ, PI Sequence Key Value에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="312003" location="415,277" size="159,-1" input="//@wire.16" output="//@wire.14 //@wire.15" name="modify_CLR_CD__RSN_PUR">
+  <child xsi:type="Glue:DinaActivity" id="312003" location="402,273" size="166,-1" input="//@wire.16" output="//@wire.14 //@wire.15" name="modify_CLR_CD__RSN_PUR">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="B10R0110.colorupdate"/>
@@ -96,16 +87,24 @@
     <property key="sqlkey" value="B10R0110.cclbomupdate"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="312006" location="417,341" size="159,-1" input="//@wire.15" output="//@wire.13" name="Insert_CLR_MNG_MDF_LOG">
+  <child xsi:type="Glue:DinaActivity" id="312006" location="404,341" size="159,-1" input="//@wire.15" output="//@wire.13" name="Insert_CLR_MNG_MDF_LOG">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="B10R0110.clrMngMdf_log"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="312007" location="207,206" size="159,-1" input="//@wire.18" output="//@wire.12 //@wire.8" name="modify_CLR_CD_RSN">
+  <child xsi:type="Glue:DinaActivity" id="312007" location="228,210" size="159,-1" input="//@wire.18" output="//@wire.8 //@wire.12" name="modify_CLR_CD_RSN">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="B10R0110.colorPurUpdate"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="312054" location="315,128" size="144,-1" input="//@wire.10" output="//@wire.18 //@wire.17" name="CHECK_CNT_CLR">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="if-size-zero" value="skip"/>
+    <property key="resultkey" value="RK_PUR"/>
+    <property key="sqlkey" value="B10R0110_C10.select"/>
     <property key="description" value=""/>
   </child>
   <property key="tx1" value="true"/>
@@ -134,21 +133,21 @@
     <bendpoint weight="0.5" firstDimension="229,-2" secondDimension="240,420"/>
     <bendpoint weight="0.5" firstDimension="236,-423" secondDimension="247,-1"/>
   </wire>
-  <wire id="3053" guardcondition="failure" firstRelativePoint="255,246" lastRelativePoint="315,68">
-    <bendpoint weight="0.5" firstDimension="-48,-160" secondDimension="-104,7"/>
+  <wire id="3053" guardcondition="failure" firstRelativePoint="274,239" lastRelativePoint="323,70">
+    <bendpoint weight="0.5" firstDimension="-26,-153" secondDimension="-101,46"/>
   </wire>
   <wire id="9023" guardcondition="success" firstRelativePoint="571,-34" lastRelativePoint="571,-72"/>
-  <wire id="9026" guardcondition="success" firstRelativePoint="378,70" lastRelativePoint="378,188"/>
+  <wire id="9026" guardcondition="success" firstRelativePoint="384,70" lastRelativePoint="384,128"/>
   <wire id="9042" guardcondition="success" firstRelativePoint="497,-86" lastRelativePoint="386,-28">
     <bendpoint weight="0.5" firstDimension="-185,1" secondDimension="8,-73"/>
   </wire>
-  <wire id="12820" guardcondition="success" firstRelativePoint="335,276" lastRelativePoint="338,413"/>
+  <wire id="12820" guardcondition="success" firstRelativePoint="341,257" lastRelativePoint="341,413"/>
   <wire id="13942" guardcondition="success" firstRelativePoint="432,371" lastRelativePoint="429,413"/>
   <wire id="3035" guardcondition="failure" firstRelativePoint="556,277" lastRelativePoint="428,70">
     <bendpoint weight="0.5" firstDimension="62,-158" secondDimension="181,79"/>
   </wire>
   <wire id="12819" guardcondition="success" firstRelativePoint="472,307" lastRelativePoint="472,341"/>
-  <wire id="13944" guardcondition="success" firstRelativePoint="526,238" lastRelativePoint="601,270"/>
-  <wire id="13945" guardcondition="false" firstRelativePoint="446,161" lastRelativePoint="446,208"/>
-  <wire id="13946" guardcondition="true" firstRelativePoint="327,161" lastRelativePoint="327,246"/>
+  <wire id="13944" guardcondition="success" firstRelativePoint="488,238" lastRelativePoint="488,279"/>
+  <wire id="13945" guardcondition="skip" firstRelativePoint="384,70" lastRelativePoint="384,128"/>
+  <wire id="13946" guardcondition="success" firstRelativePoint="427,158" lastRelativePoint="428,208"/>
 </Glue:GlueDiagram>

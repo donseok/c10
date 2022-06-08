@@ -1230,16 +1230,26 @@ function onGridAfterUpdateFinishEvent2(){
 
 //전송대상건 gridrow 붉은색 처리 추가 08-20
 function findAfterEvent(){
-	var gridObj = items["C106000050_Grid_1"].getDhxGrid();		
-	var grid_cnt = gridObj.getRowsNum();	
+	var gridObj = items["C106000050_Grid_1"].getDhxGrid();
+	var grid_cnt = gridObj.getRowsNum();
 
 	for(var i=0; i< grid_cnt; i++){  //ERP전송일시 59번 index
-		var sndLst = gridObj.cellById(gridObj.getRowId(i),69).getValue();  //67번인지 확인필요
-    
+		var sndLst = gridObj.cellById(gridObj.getRowId(i),gridObj.getColIndexById("SND_LST")).getValue();
+		
 	 	if(sndLst == "Y"){
-        	gridObj.setRowTextStyle(gridObj.getRowId(i), "color: red;");		
-    	}
-  	}
+			gridObj.setRowTextStyle(gridObj.getRowId(i), "color: red;");		
+		} else {
+			var purChrCfm = gridObj.cellById(gridObj.getRowId(i),gridObj.getColIndexById("PUR_CHR_CFM")).getValue();
+
+			if(purChrCfm != "Y"){
+				if(purChrCfm == "R") {
+					gridObj.setRowTextStyle(gridObj.getRowId(i), "color: green;");
+				} else{
+					gridObj.setRowTextStyle(gridObj.getRowId(i), "color: blue;");
+				}
+    		}
+		}
+	}
   	uiCommon.progressOff(parent);	
   	findMessage(gridObj);
 }
