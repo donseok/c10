@@ -36,6 +36,14 @@
     <property name="dao" value="eaidao" />
     <property name="param-count" value="1" />
   </activity>
+  <activity name="파일저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="Loop Router" />
+    <property name="insert-sql" value="C106000050.fileuploadinsert" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C106000050.fileuploadupdate" />
+    <property name="isAudit" value="true" />
+    <property name="delete-sql" value="C106000050.fileuploaddelete" />
+  </activity>
   <activity name="도료사저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="ColorUpdate" />
     <property name="dao" value="mesdao" />
@@ -62,11 +70,11 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="칼라코드 정보수정 로깅" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="Loop Router" />
-    <property name="insert-sql" value="C106000050.clrMngMdf_log" />
+    <transition name="success" value="파일저장" />
     <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000050.clrMngMdf_log" />
+    <property name="insert-sql" value="C106000050.clrMngMdf_log" />
     <property name="isAudit" value="true" />
+    <property name="update-sql" value="C106000050.clrMngMdf_log" />
   </activity>
   <activity name="엑셀출력" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -74,8 +82,8 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="Loop Router" class="com.unionsteel.mes.c10.activity.common.LoopRouter">
-    <transition name="next" value="M30 Procedure Call" />
     <transition name="endLoop" value="end" />
+    <transition name="next" value="M30 Procedure Call" />
     <property name="loop-cnt" value="loopCnt1" />
   </activity>
   <activity name="ColorUpdate" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
@@ -85,6 +93,11 @@
     <property name="dao" value="mesdao" />
     <property name="update-sql" value="C106000050.colorupdate2" />
     <property name="isAudit" value="true" />
+  </activity>
+  <activity name="도료사Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000050.compAjaxFind" />
   </activity>
   <activity name="M30 Procedure Call" class="com.poscoict.glue.biz.dhtmlx.PosProcedureInvoker">
     <transition name="success" value="Loop Router" />
@@ -113,6 +126,7 @@
     <transition name="colorAjaxFind" value="colorAjaxFind" />
     <transition name="find1" value="Send List Find" />
     <transition name="save" value="CCL BOM update" />
+    <transition name="compAjaxFind" value="도료사Find" />
   </activity>
 </service>
 

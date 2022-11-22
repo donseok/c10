@@ -2,7 +2,7 @@
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
   <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.6"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="642,-1" input="//@wire.0" output="//@wire.4 //@wire.5 //@wire.3" name="분기">
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="858,-1" input="//@wire.0" output="//@wire.4 //@wire.5 //@wire.3 //@wire.8" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
@@ -28,6 +28,43 @@
     <property key="update-sql" value="C106000010pop01.dsn_update"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:Activity" id="8" location="742,174" size="165,-1" input="//@wire.8" output="//@wire.7" name="도료사 저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="delete-sql" value="C106000010pop01.delete"/>
+    <property key="insert-sql" value="C106000010pop01.cmp_insert"/>
+    <property key="update-sql" value="C106000010pop01.cmp_update"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="266135" location="752,248" size="136,-1" input="//@wire.7" output="//@wire.9" name="SMS송신1">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000010pop01.sms_insert1"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계확정 정보를 Interface Table 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문행번을 Interface Table에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="322329" location="808,531" size="-1,-1" input="//@wire.12"/>
+  <child xsi:type="Glue:DinaActivity" id="326846" location="747,311" size="136,-1" input="//@wire.9" output="//@wire.10" name="SMS송신2">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000010pop01.sms_insert2"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계확정 정보를 Interface Table 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문행번을 Interface Table에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="326847" location="747,384" size="136,-1" input="//@wire.10" output="//@wire.11" name="SMS송신3">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000010pop01.sms_insert3"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계확정 정보를 Interface Table 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문행번을 Interface Table에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="326848" location="752,447" size="136,-1" input="//@wire.11" output="//@wire.12" name="SMS송신4">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C106000010pop01.sms_insert4"/>
+    <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계확정 정보를 Interface Table 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문행번을 Interface Table에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 제조가부검토이력을 조회,등록,수정,삭제하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  Form data 조회 테이블 =>TB_C10_INQ_HST(생산가부검토결과)&#xD;&#xA;  - 조회조건 :  Inquiry번호"/>
   <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
@@ -43,4 +80,10 @@
   <wire id="13" guardcondition="success" firstRelativePoint="602,206" lastRelativePoint="314,312">
     <bendpoint weight="0.5" firstDimension="9,121" secondDimension="298,-1"/>
   </wire>
+  <wire id="13873" guardcondition="success" firstRelativePoint="817,204" lastRelativePoint="817,248"/>
+  <wire id="14" guardcondition="cmp_save" firstRelativePoint="763,112" lastRelativePoint="763,330"/>
+  <wire id="13948" guardcondition="success" firstRelativePoint="822,278" lastRelativePoint="822,311"/>
+  <wire id="13949" guardcondition="success" firstRelativePoint="815,341" lastRelativePoint="815,384"/>
+  <wire id="13950" guardcondition="success" firstRelativePoint="818,414" lastRelativePoint="818,447"/>
+  <wire id="13951" guardcondition="success" firstRelativePoint="818,477" lastRelativePoint="818,530"/>
 </Glue:GlueDiagram>

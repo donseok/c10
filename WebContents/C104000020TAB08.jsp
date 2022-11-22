@@ -356,7 +356,7 @@ function save(eventName,formDivObj,referenceItem){
 							proc_seq_max_temp = proc_seq_max;
 					}
 					//2013.07.25 이돈석 - 공정 추가/삭제 시 순차조정을 위한 경고 메시지 추가
-					//alert("통과공정 추가/삭제 시 반드시 순서를 순차적으로 조정하시기 바랍니다"); 
+					dhtmlx.alert("[알림]용융 및 전기도금 화면에서 S/T값,폭목표값,소둔Cycle등 각종 제조표준 정보를 추가하시기 바랍니다"); 
 				 }else{
 				 	dhtmlx.alert("취소되었습니다.");
 				 }

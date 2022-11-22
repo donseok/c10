@@ -1,0 +1,37 @@
+<items>
+<item type="block">
+<item format="setTitleIcon" name="template" type="template" value="icon_title"/>
+<item offset="4" type="newcolumn"/>
+<item label="설계상태변경" name="std_title" type="label" />
+</item>
+<item type="block">
+<item inputWidth="80" label="주문번호" name="ORD_NO" type="input" disabled="true"/>
+<item offset="4" type="newcolumn"/>
+<item inputWidth="40" label="-" name="ORD_LN" type="input" disabled="true"/>
+<item offset="4" type="newcolumn"/>
+<item inputWidth="40" label="-" name="QLT_DSN_STS_CD" type="input" disabled="true"/>
+<item offset="4" type="newcolumn"/>
+</item>
+
+<item type="block">
+<item label="　" name="std_title" type="label" />
+</item>
+<item type="block">
+<item label="　" name="std_title" type="label" />
+</item>
+<item type="block">
+<item label="　" name="std_title" type="label" />
+</item>
+<item type="block">
+<item label="　" name="std_title" type="label" />
+</item>
+<item type="block">
+<item label="　" name="std_title" type="label" />
+</item>
+<item type="block">
+<item offset="190" type="newcolumn"/>
+<item name="save" command="save" type="button" value="상태변경"/>
+<item offset="4" type="newcolumn"/>
+<item name="winClose" command="winClose" type="button" value="닫기"/>
+</item>
+</items>

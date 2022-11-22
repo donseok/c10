@@ -998,11 +998,13 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 		var param1= "ServiceName=C104000020TAB08-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_NO";
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
+		/*
 		if(cells1.length > 0){	
 		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
+		*/
 
 		if(isNull(nValue)){
 			if(cInd == 0){ 
@@ -1099,11 +1101,13 @@ function onEditCellEvent6(stage,rId,cInd,nValue,oValue){
 		var param1= "ServiceName=C104000020TAB08-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_NO";
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
+		/*
 		if(cells1.length > 0){	
 		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
+		*/
 
 		if(isNull(nValue)){
 			if(cInd == 2){ 
@@ -1219,11 +1223,13 @@ function onEditCellEvent7(stage,rId,cInd,nValue,oValue){
 		var param1= "ServiceName=C104000020TAB08-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_NO";
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
+		/*
 		if(cells1.length > 0){	
 		    dhtmlx.alert("확정된 주문은 수정할 수 없습니다!");
 			grid.setUpdated(rId, false, "")
 		    return false;
 		}
+		*/
 
 		if(isNull(nValue)){
 			if(cInd == 0){ 

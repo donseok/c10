@@ -2,7 +2,7 @@
 <queryMap desc="C106000050pop04 Page 쿼리파일"> 
 	 <query id="C106000050pop04.select" desc="C106000050pop04 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 칼라코드 정보 수정이력 popup조회 C106000050pop04.SELECT */
+SELECT /* C10 칼라코드 정보 수정이력 popup조회 C106000050pop04.SELECT */
 	    CLR_SUB_MTL_CD,
         MDF_SEQ,
         MDF_RSN,
@@ -70,7 +70,13 @@ SELECT /*+ C10 칼라코드 정보 수정이력 popup조회 C106000050pop04.SELE
         USE_POS_CD,
         WTY_YN,
         DECODE(LAMINA_INS_YN,'1','Y','N')	AS LAMINA_INS_YN,
-        PUR_CHR_CFM 
+        PUR_CHR_CFM,
+        RSN_TP_QT_BR,
+       (SELECT CD_V_MEANING
+        FROM   M00APUSER.VI_M00_CODE_ACCESS
+        WHERE  CD_TP='RSN_TP_QT_BR'
+        AND    CATEGORY_GROUP_NM ='SZ0000'
+        AND    CD_V = RSN_TP_QT_BR) RSN_TP_QT_BR_NM
 FROM TB_C10_CLR_CD_MNG_MDF_LOG
 WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 ORDER BY MDF_SEQ DESC

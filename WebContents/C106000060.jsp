@@ -229,7 +229,7 @@ function save(eventName,formDivObj,referenceItem){
 		if(cells.length > 0){
 			var clr_nm_tmp = cells.item(0).firstChild.nodeValue;
 			if(dlt_clr_nm != clr_nm_tmp){
-				alert("칼라코드관리 프로그램의 색상명과 CCL BOM의 상세 색상명이 동일하지 않습니다");
+				//alert("칼라코드관리 프로그램의 색상명과 CCL BOM의 상세 색상명이 동일하지 않습니다");
 				//items['C106000060_Grid_5'].getFilterElement().focus();
 				//items['C106000060_Grid_5'].setCellValue(2,1,cells.item(0).firstChild.nodeValue);
 				//items['C106000060_Grid_5'].setUpdated(items['C106000060_Grid_5'].getDhxGrid().getRowId(4),true,"updated");
@@ -1595,7 +1595,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 					    subMtlTp5 = "";
 					    subMtlTp6 = "S37";
 					    //Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,CLR_SUB_MTL_CD_OLD,SUB_MTL_TP,CLR_NM,USE_YN,ERP_SND_DH";	
+						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,RSN_TP_QT_BR_NM,SUB_MTL_TP,CLR_NM,USE_YN,ERP_SND_DH,RSN_TP_QT_BR";	
 					    var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 					    var cells = xmlObj.getElementsByTagName("cell"); 
 					     
@@ -1624,13 +1624,15 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 								items['C106000060_Grid_3'].setCellValue(rId,9, cells.item(9).firstChild.nodeValue);//고형분
 								items['C106000060_Grid_3'].setCellValue(rId,10, cells.item(10).firstChild.nodeValue);//원단위
 								items['C106000060_Grid_3'].setCellValue(rId,11, cells.item(11).firstChild.nodeValue);//시너											
-								items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(16).firstChild.nodeValue);//구칼라부자재코드	
+								//items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(16).firstChild.nodeValue);//구칼라부자재코드
+								items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(16).firstChild.nodeValue);//품질수지타입으로변경(2022.09.02 김태성부장요청)
 								items['C106000060_Grid_3'].setCellValue(rId,133, cells.item(18).firstChild.nodeValue);//상세색상   08-08 5grid상세색상명
 								
 								if(rId == "1"){										
 									//색상코드(4차 TOP)정보 CCL-BOM정보로 Setting
 									items['C106000060_Grid_3'].setCellValue(rId,104, cells.item(15).firstChild.nodeValue);//광택도코드4(전면)
 									items['C106000060_Grid_3'].setCellValue(rId,103, cells.item(14).firstChild.nodeValue);//수지타입4(전면)
+						
 									
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),12,cells.item(0).firstChild.nodeValue);//색상코드4차(전면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),13,cells.item(14).firstChild.nodeValue);//수지타입4(전면)
@@ -1644,7 +1646,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),20,cells.item(8).firstChild.nodeValue);//도료비중4(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),21,cells.item(9).firstChild.nodeValue);//고형분4(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),22,cells.item(10).firstChild.nodeValue);//원단위4(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),23,cells.item(11).firstChild.nodeValue);//시너4(전면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),23,cells.item(11).firstChild.nodeValue);//시너4(전면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),209,cells.item(21).firstChild.nodeValue);//품질수지4(전면)
 								}else if(rId == "2"){										
 									//색상코드(3차 TOP)정보 CCL-BOM정보로 Setting
 									items['C106000060_Grid_3'].setCellValue(rId,14, cells.item(15).firstChild.nodeValue);//광택도코드3(전면)
@@ -1661,7 +1664,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),32,cells.item(8).firstChild.nodeValue);//도료비중3(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),33,cells.item(9).firstChild.nodeValue);//고형분3(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),34,cells.item(10).firstChild.nodeValue);//원단위3(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),35,cells.item(11).firstChild.nodeValue);//시너3(전면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),35,cells.item(11).firstChild.nodeValue);//시너3(전면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),208,cells.item(21).firstChild.nodeValue);//품질수지3(전면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(1,0,false,false,true);
 								}else if(rId == "3"){										
 									//색상코드(2차 TOP)정보 CCL-BOM정보로 Setting
@@ -1679,7 +1683,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),44,cells.item(8).firstChild.nodeValue);//도료비중2(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),45,cells.item(9).firstChild.nodeValue);//고형분2(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),46,cells.item(10).firstChild.nodeValue);//원단위2(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),47,cells.item(11).firstChild.nodeValue);//시너2(전면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),47,cells.item(11).firstChild.nodeValue);//시너2(전면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),207,cells.item(21).firstChild.nodeValue);//품질수지2(전면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(2,0,false,false,true);
 								}else if(rId == "4"){										
 									//색상코드(1차 TOP)정보 CCL-BOM정보로 Setting
@@ -1697,7 +1702,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),56,cells.item(8).firstChild.nodeValue);//도료비중1(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),57,cells.item(9).firstChild.nodeValue);//고형분1(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),58,cells.item(10).firstChild.nodeValue);//원단위1(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),59,cells.item(11).firstChild.nodeValue);//시너1(전면)		
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),59,cells.item(11).firstChild.nodeValue);//시너1(전면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),206,cells.item(21).firstChild.nodeValue);//품질수지1(전면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(3,0,false,false,true);
 								}else if(rId == "5"){										
 									//색상코드(1차 BACK)정보 CCL-BOM정보로 Setting
@@ -1715,7 +1721,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),68,cells.item(8).firstChild.nodeValue);//도료비중1차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),69,cells.item(9).firstChild.nodeValue);//고형분1차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),70,cells.item(10).firstChild.nodeValue);//원단위1차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),71,cells.item(11).firstChild.nodeValue);//시너1차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),71,cells.item(11).firstChild.nodeValue);//시너1차(후면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),210,cells.item(21).firstChild.nodeValue);//품질수지1(후면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(6,0,false,false,true);
 								}else if(rId == "6"){										
 									//색상코드(2차 BACK)정보 CCL-BOM정보로 Setting
@@ -1733,7 +1740,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),80,cells.item(8).firstChild.nodeValue);//도료비중2차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),81,cells.item(9).firstChild.nodeValue);//고형분2차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),82,cells.item(10).firstChild.nodeValue);//원단위2차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),83,cells.item(11).firstChild.nodeValue);//시너2차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),83,cells.item(11).firstChild.nodeValue);//시너2차(후면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),211,cells.item(21).firstChild.nodeValue);//품질수지2(후면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(7,0,false,false,true);
 								}else if(rId == "7"){										
 									//색상코드(3차 BACK)정보 CCL-BOM정보로 Setting
@@ -1752,8 +1760,9 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),93,cells.item(9).firstChild.nodeValue);//고형분3차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),94,cells.item(10).firstChild.nodeValue);//원단위3차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),95,cells.item(11).firstChild.nodeValue);//시너3차(후면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),212,cells.item(21).firstChild.nodeValue);//품질수지3(후면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(8,0,false,false,true);
-								}else if(rId == "7"){										
+								}else if(rId == "8"){										
 									//색상코드(4차 BACK)정보 CCL-BOM정보로 Setting
 									items['C106000060_Grid_3'].setCellValue(rId,86, cells.item(15).firstChild.nodeValue);//광택도코드4(후면)
 									items['C106000060_Grid_3'].setCellValue(rId,85, cells.item(14).firstChild.nodeValue);//수지타입4(후면)
@@ -1769,7 +1778,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),104,cells.item(8).firstChild.nodeValue);//도료비중4차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),105,cells.item(9).firstChild.nodeValue);//고형분4차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),106,cells.item(10).firstChild.nodeValue);//원단위4차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),107,cells.item(11).firstChild.nodeValue);//시너4차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),107,cells.item(11).firstChild.nodeValue);//시너4차(후면)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),213,cells.item(21).firstChild.nodeValue);//품질수지4(후면)
 									items['C106000060_Grid_3'].getDhxGrid().selectCell(9,0,false,false,true);
 								}
 								
@@ -1883,7 +1893,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 						subMtlTp4 = "";
 						subMtlTp5 = "";
 						//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_KND_TP_NM,LMN_BND_CD_NM,LMN_BND_CD_NM1,LMN_FLM_THK_CD_NM,CLR_SUB_MTL_CD_OLD,LMN_BND_UNT,LMN_BND_UNT1,CLR_NM,USE_YN";	
+						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_KND_TP_NM,LMN_BND_CD_NM,LMN_BND_CD_NM1,LMN_FLM_THK_CD_NM,RSN_TP_QT_BR,LMN_BND_UNT,LMN_BND_UNT1,CLR_NM,USE_YN";	
 						var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 						var cells = xmlObj.getElementsByTagName("cell"); 
 							if(cells.length > 0){
@@ -1904,7 +1914,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_3'].setCellValue(rId,9, cells.item(9).firstChild.nodeValue);//고형분
 									//items['C106000060_Grid_3'].setCellValue(rId,10, cells.item(10).firstChild.nodeValue);//원단위
 									items['C106000060_Grid_3'].setCellValue(rId,11, cells.item(11).firstChild.nodeValue);//시너	
-									items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(26).firstChild.nodeValue);//구칼라부자재코드
+									//items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(26).firstChild.nodeValue);//구칼라부자재코드
+									items['C106000060_Grid_3'].setCellValue(rId,12, cells.item(26).firstChild.nodeValue);//품질수지
 										
 									items['C106000060_Grid_5'].setCellByIndexValue(0,8, cells.item(22).firstChild.nodeValue);//Lamina유형
 									items['C106000060_Grid_5'].setCellByIndexValue(1,8, cells.item(17).firstChild.nodeValue);//Lamina접착제코드

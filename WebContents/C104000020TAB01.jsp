@@ -124,6 +124,7 @@ function findMessage(referenceItem){
 	var ORD_COILG_MTH = uiFormObj.getDhxForm().getItemValue("ORD_COILG_MTH");
 	var ORD_SLV_KND_TP = uiFormObj.getDhxForm().getItemValue("ORD_SLV_KND_TP");
 	var ORD_PAK_UNT_WGT_ULV = uiFormObj.getDhxForm().getItemValue("ORD_PAK_UNT_WGT_ULV");
+	var ORD_WTH_MNG_CD = uiFormObj.getDhxForm().getItemValue("ORD_WTH_MNG_CD");
 
 	
 	if(uiFormObj.getItemValue("messageBox") == "0"){	
@@ -151,6 +152,12 @@ function findMessage(referenceItem){
 	    if(!isNull(ORD_SLV_KND_TP)){
         	if(ORD_SLV_KND_TP.substring(0,1) == "N"){
 	        	uiFormObj.getDhxForm().getInput("ORD_SLV_KND_TP").style.color="red";
+	     	}
+     	}
+	    
+	    if(!isNull(ORD_WTH_MNG_CD)){
+        	if(ORD_WTH_MNG_CD.substring(0,1) == "D"){
+	        	uiFormObj.getDhxForm().getInput("ORD_WTH_MNG_CD").style.color="red";
 	     	}
      	}
 

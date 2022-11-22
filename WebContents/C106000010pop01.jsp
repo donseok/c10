@@ -74,45 +74,66 @@ function save(eventName,formDivObj,referenceItem){
 	items['C106000010pop01_Form_2'].getDhxForm().resetDataProcessor("updated");
 
     var SAL_CHR_REQ_DH = items['C106000010pop01_Form_2'].getItemValue("SAL_CHR_REQ_DH");
-    var SAL_CHR_RGN_DH = items['C106000010pop01_Form_2'].getItemValue("SAL_CHR_RGN_DH");
-    var CLR_SMP_DEV_REQ_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_REQ_DH");
+    //var SAL_CHR_RGN_DH = items['C106000010pop01_Form_2'].getItemValue("SAL_CHR_RGN_DH");
+    //var CLR_SMP_DEV_REQ_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_REQ_DH");
     var CLR_SMP_DEV_LMT_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_LMT_DH");
     var CLR_SMP_DEV_END_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_END_DH");
     var CLR_SMP_DEV_SND_DH = items['C106000010pop01_Form_2'].getItemValue("CLR_SMP_DEV_SND_DH");
     var PTT_FLM_YN = items['C106000010pop01_Form_2'].getItemValue("PTT_FLM_YN");
-    var PRJ_DEV_CD = items['C106000010pop01_Form_2'].getItemValue("PRJ_DEV_CD");
+    var PRD_TP_YN = items['C106000010pop01_Form_2'].getItemValue("PRD_TP_YN");
+    var PRD_NM_CD = items['C106000010pop01_Form_2'].getItemValue("PRD_NM_CD");
+    //var PRJ_DEV_CD = items['C106000010pop01_Form_2'].getItemValue("PRJ_DEV_CD");
     
     items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_REQ_DH", SAL_CHR_REQ_DH);
-   	items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_RGN_DH", SAL_CHR_RGN_DH);
-   	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_REQ_DH", CLR_SMP_DEV_REQ_DH);
+   	//items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_RGN_DH", SAL_CHR_RGN_DH);
+   	//items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_REQ_DH", CLR_SMP_DEV_REQ_DH);
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_LMT_DH", CLR_SMP_DEV_LMT_DH);
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_END_DH", CLR_SMP_DEV_END_DH);   	   	   	   	
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_SND_DH", CLR_SMP_DEV_SND_DH);
    	items['C106000010pop01_Form_2'].setItemValue("DSN_CHR_PRS_ID", "<%=userNo %>");
-
-	if(SAL_CHR_REQ_DH == "" ){
-		dhtmlx.alert("영업요청일은  필수입력입니다.");
-		return;
-	}
-	
-	if(PTT_FLM_YN == null ){
-		dhtmlx.alert("보호필름유무는 필수입력입니다.");
-		return;
-	}
-	
-	if(PRJ_DEV_CD == null ){
-		dhtmlx.alert("프로젝트성 개발유무는 필수입력입니다.");
-		return;
-	}
    	
+   	if('<%=ctl_tp%>' != 'Y' && '<%=ctl_tp%>' != 'Z'){
+		if(SAL_CHR_REQ_DH == "" ){
+			dhtmlx.alert("영업요청일은  필수입력입니다.");
+			return;
+		}
+		
+		if(PTT_FLM_YN == null ){
+			dhtmlx.alert("보호필름유무는 필수입력입니다.");
+			return;
+		}
+		/*
+		if(PRD_NM_CD == null ){
+			dhtmlx.alert("품명은 필수입력입니다.");
+			return;
+		}
+		*/
+		if(PRD_TP_YN == null ){
+			dhtmlx.alert("품명구분은 필수입력입니다.");
+			return;
+		}
+		if(PRD_TP_YN == 'Y' && PRD_NM_CD == null){
+			dhtmlx.alert("품명은 필수입력입니다.");
+			return;
+		}
+		
+		/*
+		if(PRJ_DEV_CD == null ){
+			dhtmlx.alert("프로젝트성 개발유무는 필수입력입니다.");
+			return;
+		}
+	   	*/
+   	}
 	dhtmlx.confirm({
 		title:"[[ 확인 ]]",
 		ok:"확인", cancel:"취소",
 		text:"저장 하시겠습니까?",
 		callback:function(val){
 			if(val){
-				if('<%=ctl_tp%>' == 'Y')
+				if('<%=ctl_tp%>' == 'Y') 
 				    items['C106000010pop01_Form_2'].sendForm("handleDataProcess.do",'C106000010pop01_Form_2','dsn_save');
+				else if('<%=ctl_tp%>' == 'Z')
+				    items['C106000010pop01_Form_2'].sendForm("handleDataProcess.do",'C106000010pop01_Form_2','cmp_save');
 				else
 					items['C106000010pop01_Form_2'].sendForm("handleDataProcess.do",'C106000010pop01_Form_2','sal_save');
 			}
@@ -129,45 +150,32 @@ function popClose(){
 	parent.winObj.winClose();
 }
 function onFormLoadFunction(formDivObj){ 
+	
 	var form  = items['C106000010pop01_Form_2'];
-		
 	var comboList = items['C106000010pop01_Form_2'].getMasterCombos();
-
-	comboList['RSN_ANL_REQ_YN'].readonly(true,false);
-	ui.combo.master(comboList['RSN_ANL_REQ_YN'],'SZ0000','RSN_ANL_REQ_YN','totalValue=,orderBy=value,displayType=all-code',function(){
-		comboList['RSN_ANL_REQ_YN'].selectOption(0,true,true);
-		comboList['RSN_ANL_REQ_YN'].readonly(true);
-		comboList['RSN_ANL_REQ_YN'].setOptionHeight(60);
-	});	
-
+	/*
 	comboList['SMP_SND_YN'].readonly(true,false);
 	ui.combo.master(comboList['SMP_SND_YN'],'SZ0000','SMP_SND_YN','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['SMP_SND_YN'].selectOption(0,true,true);
 		comboList['SMP_SND_YN'].readonly(true);
 		comboList['SMP_SND_YN'].setOptionHeight(60);
-	});	
-	
-	comboList['SMP_LUS_YN'].readonly(true,false);
-	ui.combo.master(comboList['SMP_LUS_YN'],'SZ0000','SMP_LUS_YN','totalValue=,orderBy=value,displayType=all-code',function(){
-		comboList['SMP_LUS_YN'].selectOption(0,true,true);
-		comboList['SMP_LUS_YN'].readonly(true);
-		comboList['SMP_LUS_YN'].setOptionHeight(60);
-	});	
-	
+	});
+	*/
+
 	comboList['DEV_PNT_CMP_CD'].readonly(true,false);
 	ui.combo.master(comboList['DEV_PNT_CMP_CD'],'SZ0000','PNT_CMP_CD','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['DEV_PNT_CMP_CD'].selectOption(0,true,true);
 		comboList['DEV_PNT_CMP_CD'].readonly(true);
 		comboList['DEV_PNT_CMP_CD'].setOptionHeight(220);		
 	});
-	
+
 	comboList['LUS_RT_CD'].readonly(true,false);
-	ui.combo.master(comboList['LUS_RT_CD'],'SZ0000','LUS_RT_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+	ui.combo.master(comboList['LUS_RT_CD'],'SZ0001','LUS_RT_CD','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['LUS_RT_CD'].selectOption(0,true,true);
 		comboList['LUS_RT_CD'].readonly(true);
 		comboList['LUS_RT_CD'].setOptionHeight(140);		
 	});
- 	
+
 	comboList['PRD_NM_CD'].readonly(true,false);
 	ui.combo.master(comboList['PRD_NM_CD'],'SZ0000','PRD_NM_CD','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['PRD_NM_CD'].selectOption(0,true,true);
@@ -177,45 +185,56 @@ function onFormLoadFunction(formDivObj){
 
 	comboList['PRD_TP_YN'].readonly(true,false);
 	ui.combo.master(comboList['PRD_TP_YN'],'SZ0000','PRD_TP_YN','totalValue=,orderBy=value,displayType=all-code',function(){
-		comboList['PRD_TP_YN'].selectOption(0,true,true);
+		comboList['PRD_TP_YN'].selectOption(1,true,true);
 		comboList['PRD_TP_YN'].readonly(true);
 		comboList['PRD_TP_YN'].setOptionHeight(60);		
 	});
-	
+
 	comboList['PTT_FLM_YN'].readonly(true,false);
 	ui.combo.master(comboList['PTT_FLM_YN'],'SZ0000','PTT_FLM_YN','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['PTT_FLM_YN'].selectOption(0,true,true);
 		comboList['PTT_FLM_YN'].readonly(true);
 		comboList['PTT_FLM_YN'].setOptionHeight(60);		
 	});
-		
+	
+	comboList['SMPL_DLV_CMP_CD'].readonly(true,false);
+	ui.combo.master(comboList['SMPL_DLV_CMP_CD'],'SZ0000','SMPL_DLV_CMP_CD','totalValue=,orderBy=value,displayType=all-code',function(){
+		comboList['SMPL_DLV_CMP_CD'].selectOption(0,true,true);
+		comboList['SMPL_DLV_CMP_CD'].readonly(true);
+		comboList['SMPL_DLV_CMP_CD'].setOptionHeight(140);	
+	});
+	
+	/*
 	comboList['DSN_CHR_RGN_YN'].readonly(true,false);
 	ui.combo.master(comboList['DSN_CHR_RGN_YN'],'SZ0000','DSN_CHR_RGN_YN','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['DSN_CHR_RGN_YN'].selectOption(0,true,true);
 		comboList['DSN_CHR_RGN_YN'].readonly(true);
 		comboList['DSN_CHR_RGN_YN'].setOptionHeight(60);
-	});	
-
+	});
+	
 	comboList['CLR_TP'].readonly(true,false);
 	ui.combo.master(comboList['CLR_TP'],'SZ0000','CLR_TP','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['CLR_TP'].selectOption(0,true,true);
 		comboList['CLR_TP'].readonly(true);
 		comboList['CLR_TP'].setOptionHeight(80);
-	});	
-
-	comboList['RSN_TP'].readonly(true,false);
-	ui.combo.master(comboList['RSN_TP'],'SZ0000','RSN_TP','totalValue=,orderBy=value,displayType=all-code',function(){
-		comboList['RSN_TP'].selectOption(0,true,true);
-		comboList['RSN_TP'].readonly(true);
-		comboList['RSN_TP'].setOptionHeight(240);
+	});
+	*/
+	
+	comboList['RSN_TP_QT_BR'].readonly(true,false);
+	ui.combo.master(comboList['RSN_TP_QT_BR'],'SZ0000','RSN_TP_QT_BR','totalValue=,orderBy=value,displayType=all-code',function(){
+		comboList['RSN_TP_QT_BR'].selectOption(0,true,true);
+		comboList['RSN_TP_QT_BR'].readonly(true);
+		comboList['RSN_TP_QT_BR'].setOptionHeight(240);
 	});
 	
+	/*
 	comboList['PRJ_DEV_CD'].readonly(true,false);
 	ui.combo.master(comboList['PRJ_DEV_CD'],'SZ0000','PRJ_DEV_CD','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['PRJ_DEV_CD'].selectOption(0,true,true);
 		comboList['PRJ_DEV_CD'].readonly(true);
 		comboList['PRJ_DEV_CD'].setOptionHeight(240);
 	});
+	*/
 	
 	comboList['SIM_HUE_PRG_YN'].readonly(true,false);
 	ui.combo.master(comboList['SIM_HUE_PRG_YN'],'SZ0000','SIM_HUE_PRG_YN','totalValue=,orderBy=value,displayType=all-code',function(){
@@ -223,16 +242,17 @@ function onFormLoadFunction(formDivObj){
 		comboList['SIM_HUE_PRG_YN'].readonly(true);
 		comboList['SIM_HUE_PRG_YN'].setOptionHeight(80);
 	});
-	
+	/*
 	comboList['COL_CFM_ACT_YN'].readonly(true,false);
 	ui.combo.master(comboList['COL_CFM_ACT_YN'],'SZ0000','COL_CFM_ACT_YN','totalValue=,orderBy=value,displayType=all-code',function(){
 		comboList['COL_CFM_ACT_YN'].selectOption(0,true,true);
 		comboList['COL_CFM_ACT_YN'].readonly(true);
 		comboList['COL_CFM_ACT_YN'].setOptionHeight(80);
 	});
-	
+	*/
 //	form.setItemValue("INQ_RCP_DH",getCurrentMinitesTime());
-	parent.c10popUp_setVal = masterPopup2SetValue;	
+	parent.c10popUp_setVal = masterPopup2SetValue;
+
 	if(!isNull("<%=CLR_SMP_REQ_NO%>")){	
 		items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_REQ_NO","<%=CLR_SMP_REQ_NO%>");
 		var findUrl = uiCommon.parameters6("C106000010pop01_Form_2","C106000010pop01_Form_2","find");
@@ -243,12 +263,12 @@ function onFormLoadFunction(formDivObj){
 
 	//일자 달력 설정
 	items['C106000010pop01_Form_2'].getItem("SAL_CHR_REQ_DH").setWeekStartDay(7);
-	items['C106000010pop01_Form_2'].getItem("SAL_CHR_RGN_DH").setWeekStartDay(7);	
-	items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_REQ_DH").setWeekStartDay(7);
-	items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_LMT_DH").setWeekStartDay(7);	
-	items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_END_DH").setWeekStartDay(7);	
-	items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_SND_DH").setWeekStartDay(7);
-	items['C106000010pop01_Form_2'].getItem("CCL_BOM_RGS_DH").setWeekStartDay(7);	
+	//items['C106000010pop01_Form_2'].getItem("SAL_CHR_RGN_DH").setWeekStartDay(7);	
+	//items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_REQ_DH").setWeekStartDay(7);
+	//items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_LMT_DH").setWeekStartDay(7);	
+	//items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_END_DH").setWeekStartDay(7);	
+	//items['C106000010pop01_Form_2'].getItem("CLR_SMP_DEV_SND_DH").setWeekStartDay(7);
+	//items['C106000010pop01_Form_2'].getItem("CCL_BOM_RGS_DH").setWeekStartDay(7);	
 	
 	//items['C106000010pop01_Form_2'].getItem("SAL_CHR_REQ_DH").setPosition(10,10);
 	//items['C106000010pop01_Form_2'].getItem("SAL_CHR_REQ_DH").setPosition(null,20);
@@ -261,49 +281,114 @@ function onFormLoadFunction(formDivObj){
 //접속ID에 따른 항목 enable
 function fieldEnable(){
 	var formObj  = items['C106000010pop01_Form_2'].getDhxForm();
+         
+	if('<%=ctl_tp%>' == 'Y'){  
+           formObj.enableItem("CUS_REQ_HUE_TXT");
+           formObj.enableItem("RSN_TP_TXT");
+           formObj.enableItem("PNT_FLM_THK_TXT");
+           formObj.enableItem("LUS_RT_CD");
+           formObj.enableItem("CLR_USE_NM");
+           formObj.enableItem("SAL_CHR_PRS_ID");
+           formObj.enableItem("ORD_PRE_WGT");
+           formObj.enableItem("CUS_CD_TXT");  
+           formObj.enableItem("USE_REG_TXT");
+           formObj.enableItem("PRD_NM_CD");
+           formObj.enableItem("PRD_TP_YN");
+           formObj.enableItem("SAL_CHR_REQ_DH");
+           formObj.enableItem("PTT_FLM_YN");
+           formObj.enableItem("CLR_SMP_RMK");  
+           formObj.enableItem("SMS_RCV_HP1");
+           formObj.enableItem("SMS_RCV_HP2");
+           formObj.enableItem("SMS_RCV_HP3");
+           formObj.enableItem("SMS_RCV_HP4");
+           
+           formObj.enableItem("DEV_PNT_CMP_CD");
+           formObj.enableItem("RSN_TP_QT_BR");  
+           //formObj.enableItem("CLR_SMP_DEV_REQ_DH");
+           formObj.enableItem("HUE_CD");
+           formObj.enableItem("SIM_HUE_PRG_YN");
+           formObj.enableItem("CLR_SMP_DSN_RMK");
+           formObj.enableItem("ADD_RSS");
+           
+           formObj.disableItem("PNT_CMP_DLV_EXP_DH");
+           formObj.disableItem("PNT_CMP_DLV_HP");
+           formObj.disableItem("PNT_CMP_DLV_NM");
+           formObj.disableItem("PNT_CMP_DLV_DH");
+           formObj.disableItem("SMPL_DLV_CMP_CD");
+           formObj.disableItem("IVC_NO");
+           formObj.disableItem("PNT_CMP_TXT");
+    }
+	else if('<%=ctl_tp%>' == 'Z'){
+		formObj.disableItem("CUS_REQ_HUE_TXT");
+        formObj.disableItem("RSN_TP_TXT");
+        formObj.disableItem("PNT_FLM_THK_TXT");
+        formObj.disableItem("LUS_RT_CD");
+        formObj.disableItem("CLR_USE_NM");
+        formObj.disableItem("SAL_CHR_PRS_ID");
+        formObj.disableItem("ORD_PRE_WGT");
+        formObj.disableItem("CUS_CD_TXT");  
+        formObj.disableItem("USE_REG_TXT");
+        formObj.disableItem("PRD_NM_CD");
+        formObj.disableItem("PRD_TP_YN");
+        formObj.disableItem("SAL_CHR_REQ_DH");
+        formObj.disableItem("PTT_FLM_YN");
+        formObj.disableItem("CLR_SMP_RMK");  
+        formObj.disableItem("SMS_RCV_HP1");
+        formObj.disableItem("SMS_RCV_HP2");
+        formObj.disableItem("SMS_RCV_HP3");
+        formObj.disableItem("SMS_RCV_HP4");
         
-        formObj.disableItem("CLR_SMP_RCP_NO");
         formObj.disableItem("DEV_PNT_CMP_CD");
-        formObj.disableItem("RSN_TP");
-        formObj.disableItem("CLR_SMP_DEV_REQ_DH");
-        formObj.disableItem("CLR_SMP_DEV_LMT_DH");        
-        formObj.disableItem("CLR_SMP_DEV_END_DH");
-        formObj.disableItem("CLR_SMP_DEV_SND_DH");
-        formObj.disableItem("SMP_SND_INF");
-        formObj.disableItem("DSN_CHR_RGN_YN");
+        formObj.disableItem("RSN_TP_QT_BR");  
+        //formObj.disableItem("CLR_SMP_DEV_REQ_DH");
         formObj.disableItem("HUE_CD");
         formObj.disableItem("SIM_HUE_PRG_YN");
-        formObj.disableItem("CCL_BOM_NO");
-        formObj.disableItem("CCL_BOM_RGS_DH");
-        formObj.disableItem("CLR_TP");
-        formObj.disableItem("DSN_CHR_PRS_ID");
         formObj.disableItem("CLR_SMP_DSN_RMK");
-        //formObj.disableItem("PRJ_DEV_CD");
-        formObj.disableItem("SIM_HUE_PRG_YN");
-        formObj.disableItem("COL_CFM_ACT_YN");
+        formObj.disableItem("ADD_RSS");
         
-         
-        if('<%=ctl_tp%>' == 'Y'){ 
-         	formObj.enableItem("CLR_SMP_RCP_NO");
-            formObj.enableItem("DEV_PNT_CMP_CD");
-            formObj.enableItem("RSN_TP");
-            formObj.enableItem("CLR_SMP_DEV_REQ_DH");
-            formObj.enableItem("CLR_SMP_DEV_LMT_DH");            
-            formObj.enableItem("CLR_SMP_DEV_END_DH");
-            formObj.enableItem("CLR_SMP_DEV_SND_DH");
-            formObj.enableItem("SMP_SND_INF");
-            formObj.enableItem("DSN_CHR_RGN_YN");
-            formObj.enableItem("HUE_CD");
-            formObj.enableItem("SIM_HUE_PRG_YN");
-            formObj.enableItem("CCL_BOM_NO");
-            formObj.enableItem("CCL_BOM_RGS_DH");
-            formObj.enableItem("CLR_TP");  
-            formObj.enableItem("DSN_CHR_PRS_ID");
-            formObj.enableItem("CLR_SMP_DSN_RMK");
-            formObj.enableItem("PRJ_DEV_CD");
-            formObj.enableItem("SIM_HUE_PRG_YN");
-            formObj.enableItem("COL_CFM_ACT_YN");
-        }        
+        formObj.enableItem("PNT_CMP_DLV_EXP_DH");
+        formObj.enableItem("PNT_CMP_DLV_HP");
+        formObj.enableItem("PNT_CMP_DLV_NM");
+        formObj.enableItem("PNT_CMP_DLV_DH");
+        formObj.enableItem("SMPL_DLV_CMP_CD");
+        formObj.enableItem("IVC_NO");
+        formObj.enableItem("PNT_CMP_TXT");
+	}else{
+		formObj.enableItem("CUS_REQ_HUE_TXT");
+        formObj.enableItem("RSN_TP_TXT");
+        formObj.enableItem("PNT_FLM_THK_TXT");
+        formObj.enableItem("LUS_RT_CD");
+        formObj.enableItem("CLR_USE_NM");
+        formObj.enableItem("SAL_CHR_PRS_ID");
+        formObj.enableItem("ORD_PRE_WGT");
+        formObj.enableItem("CUS_CD_TXT");  
+        formObj.enableItem("USE_REG_TXT");
+        formObj.enableItem("PRD_NM_CD");
+        formObj.enableItem("PRD_TP_YN");
+        formObj.enableItem("SAL_CHR_REQ_DH");
+        formObj.enableItem("PTT_FLM_YN");
+        formObj.enableItem("CLR_SMP_RMK");  
+        formObj.enableItem("SMS_RCV_HP1");
+        formObj.enableItem("SMS_RCV_HP2");
+        formObj.enableItem("SMS_RCV_HP3");
+        formObj.enableItem("SMS_RCV_HP4");
+        formObj.enableItem("ADD_RSS");
+        
+        formObj.disableItem("DEV_PNT_CMP_CD");
+        formObj.disableItem("RSN_TP_QT_BR");  
+        //formObj.disableItem("CLR_SMP_DEV_REQ_DH");
+        formObj.disableItem("HUE_CD");
+        formObj.disableItem("SIM_HUE_PRG_YN");
+        formObj.disableItem("CLR_SMP_DSN_RMK");
+        
+        formObj.disableItem("PNT_CMP_DLV_EXP_DH");
+        formObj.disableItem("PNT_CMP_DLV_HP");
+        formObj.disableItem("PNT_CMP_DLV_NM");
+        formObj.disableItem("PNT_CMP_DLV_DH");
+        formObj.disableItem("SMPL_DLV_CMP_CD");
+        formObj.disableItem("IVC_NO");
+        formObj.disableItem("PNT_CMP_TXT");
+	}
 }
 
 // popup으로부터 넘겨받은 값 item에 세팅
@@ -336,12 +421,24 @@ function onAfterUpdateFinishEvent(){
 }
 
 function onPop01Form2Changed(name, value){ //숫자 Check 
+	uiFormObj = items['C106000010pop01_Form_2'].getDhxForm();
 	if(name =="ORD_PRE_WGT"){
 		if(!grid_qnty_check("예상수주량(톤)", 4, 1, true, value)){
 			items['C106000010pop01_Form_2'].getDhxForm().setItemValue(name, "");
 			return true;
 		}
 	}
+	
+	
+	if(name == "PRD_TP_YN"){
+		var PRD_TP_YN = items['C106000010pop01_Form_2'].getItemValue("PRD_TP_YN");
+		if (PRD_TP_YN == 'Y') {
+			uiFormObj.enableItem("PRD_NM_CD");	
+		}else{
+			uiFormObj.disableItem("PRD_NM_CD");	
+		}	
+	}
+	
 }
 
 
@@ -366,6 +463,7 @@ function onPop01Form2Changed(name, value){ //숫자 Check
 	   var _onAfterUp = items['C106000010pop01_Form_2'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
        
 	   items['C106000010pop01_Form_2'].onChangeEvent(onPop01Form2Changed);
+	   
 //]]>
 -->
 </script>

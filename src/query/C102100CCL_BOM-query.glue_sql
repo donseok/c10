@@ -177,6 +177,14 @@ TB_C10_QLT_DSN_CCL_BOM (
     ,KEY_WRD2
     ,KEY_WRD3
     ,KEY_WRD4
+    ,RSN_TP_QT_BR_FRN_1COT
+    ,RSN_TP_QT_BR_FRN_2COT
+    ,RSN_TP_QT_BR_FRN_3COT
+    ,RSN_TP_QT_BR_FRN_4COT
+    ,RSN_TP_QT_BR_BAK_1COT
+    ,RSN_TP_QT_BR_BAK_2COT
+    ,RSN_TP_QT_BR_BAK_3COT
+    ,RSN_TP_QT_BR_BAK_4COT 
     ,CREATED_OBJECT_TYPE        --생성OBJECT유형                                                                 
     ,CREATED_OBJECT_ID          --생성OBJECTID                                                                   
     ,CREATED_PROGRAM_ID         --생성프로그램ID                                                                 
@@ -229,6 +237,8 @@ VALUES
 ?,?,?,SUBSTR(?,4,2),
 ?,?,?,?,
 ?,
+?,?,?,?,
+?,?,?,?,
 ?,?,?,?,
 ?,?,?,?,
 ?,?,?,?
@@ -432,6 +442,14 @@ TB_C10_QLT_DSN_CCL_BOM(ORD_NO,
                        KEY_WRD2,
                        KEY_WRD3,
                        KEY_WRD4,
+                       RSN_TP_QT_BR_FRN_1COT, 
+                       RSN_TP_QT_BR_FRN_2COT, 
+                       RSN_TP_QT_BR_FRN_3COT, 
+                       RSN_TP_QT_BR_FRN_4COT, 
+                       RSN_TP_QT_BR_BAK_1COT, 
+                       RSN_TP_QT_BR_BAK_2COT, 
+                       RSN_TP_QT_BR_BAK_3COT, 
+                       RSN_TP_QT_BR_BAK_4COT, 
                        CREATED_OBJECT_TYPE, 
                        CREATED_OBJECT_ID, 
                        CREATED_PROGRAM_ID, 
@@ -605,6 +623,14 @@ SELECT                 :ORD_NO,
                        KEY_WRD2,
                        KEY_WRD3,
                        KEY_WRD4,
+                       RSN_TP_QT_BR_FRN_1COT, 
+                       RSN_TP_QT_BR_FRN_2COT, 
+                       RSN_TP_QT_BR_FRN_3COT, 
+                       RSN_TP_QT_BR_FRN_4COT, 
+                       RSN_TP_QT_BR_BAK_1COT, 
+                       RSN_TP_QT_BR_BAK_2COT, 
+                       RSN_TP_QT_BR_BAK_3COT, 
+                       RSN_TP_QT_BR_BAK_4COT, 
                        'C',
                        'unknown',
                        'B10R0030_sub-service',

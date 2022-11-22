@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000170pop01-service" initial="품질설계상태변경">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="품질설계상태변경" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="save" value="설계여부업데이트" />
+  </activity>
+  <activity name="설계여부업데이트" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000170.update" />
+    <property name="isAudit" value="true" />
+  </activity>
+</service>
+

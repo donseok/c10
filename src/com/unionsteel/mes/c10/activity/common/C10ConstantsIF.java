@@ -94,6 +94,14 @@ public class C10ConstantsIF
     public static final String C106000160POP02_DELETE 	= "C106000160pop02.delete";
     public static final String C106000160POP02_UPDATE   = "C106000160pop02.update";
     
+    public static final String C106000050POP06_INSERT 	= "C106000050pop06.insert";
+    public static final String C106000050POP06_DELETE 	= "C106000050pop06.delete";
+    public static final String C106000050POP06_UPDATE   = "C106000050pop06.update";
+    
+    public static final String C106000050POP07_INSERT 	= "C106000050pop07.insert";
+    public static final String C106000050POP07_DELETE 	= "C106000050pop07.delete";
+    public static final String C106000050POP07_UPDATE   = "C106000050pop07.update";
+    
     
     // service name
     public static final java.lang.String C104000050_SERVICE = "C104000050-service";

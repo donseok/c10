@@ -313,7 +313,7 @@ AND   ORD_LN = :ORD_LN
 	 </query>
 	 <query id="C104000020TAB01.update" desc="C104000020TAB01.update" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-update /*+ C10 품질설계텍스트수정 C104000020TAB01.update 박재영 */  
+update /* C10 품질설계텍스트수정 C104000020TAB01.update 박재영 */  
 TB_C10_QLT_DSN_CMN
 SET  LAST_UPDATED_OBJECT_TYPE = :ObjectType,
        LAST_UPDATED_OBJECT_ID = :ObjectId,
@@ -322,7 +322,8 @@ SET  LAST_UPDATED_OBJECT_TYPE = :ObjectType,
        ORD_SPC_TXT = :ORD_SPC_TXT,
        BAK_MRK = :BAK_MRK,
 	PPR_RNG_PORD_TXT = :PPR_RNG_PORD_TXT,
-       ORD_COP_STP = DECODE(:ORD_COP_STP,1,'Y',NULL)
+       ORD_COP_STP = DECODE(:ORD_COP_STP,1,'Y',NULL),
+       WIP_PAK_MTH = SUBSTR(:WIP_PAK_MTH,1,6)
 WHERE ORD_NO = :ORD_NO
 AND ORD_LN = :ORD_LN
 		 ]]> 

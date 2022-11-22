@@ -36,25 +36,23 @@ var pageConfiguration = '[' +
    ']';
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
-var columnList = "CLR_SMP_REQ_NO,CLR_SMP_RCP_NO,CUS_REQ_HUE_TXT,RSN_TP_TXT,RSN_ANL_REQ_YN,SMP_SND_YN,PNT_FLM_THK_TXT,SMP_LUS_YN,LUS_RT_CD,CLR_USE_NM,SAL_CHR_PRS_ID,CUS_CD_TXT,USE_REG_TXT,PRD_NM_CD,PRD_TP_YN,SAL_CHR_REQ_DH,SAL_CHR_RGN_DH,CLR_SMP_RMK,DEV_PNT_CMP_CD,DEV_PNT_CMP_CD_NM,RSN_TP,CLR_SMP_DEV_REQ_DH,CLR_SMP_DEV_LMT_DH,CLR_SMP_DEV_END_DH,CLR_SMP_DEV_SND_DH,SMP_SND_INF,DSN_CHR_RGN_YN,HUE_CD,CCL_BOM_NO,CCL_BOM_RGS_DH,CLR_TP,CLR_TP_NM,SIM_HUE_PRG_YN,DSN_CHR_PRS_ID,CLR_SMP_DSN_RMK,SMP_PRC_MAN,MGR_CAL,COL_CFM_ACT_YN,PRJ_DEV_CD";
+var columnList = "CLR_SMP_REQ_NO,CLR_WK_STS_NM,SAL_CHR_REQ_DH,CUS_CD_TXT,CUS_REQ_HUE_TXT,RSN_TP_TXT,SAL_CHR_PRS_ID,DSN_CHR_PRS_ID,DEV_PNT_CMP_CD_NM,PNT_CMP_DLV_NM,PNT_CMP_DLV_HP,PNT_CMP_DLV_EXP_DH,PNT_CMP_DLV_DH,IVC_NO,SMPL_DLV_CMP_NM";
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
     var formObj = items['C106000010_Form_1'].getDhxForm();
-	var form = items['C106000010_Form_1'];
-	
-	var startDt = formObj.getInput("CLR_SMP_DEV_RCP_DH_START").value;
-	var endDt = formObj.getInput("CLR_SMP_DEV_RCP_DH_END").value;
+    var form = items['C106000010_Form_1'];
+	var startDt = formObj.getInput("CLR_SMP_DEV_REQ_DH_START").value;
+	var endDt = formObj.getInput("CLR_SMP_DEV_REQ_DH_END").value;
     var clrSmpReqNo = formObj.getInput("CLR_SMP_REQ_NO").value;//의뢰번호
-	var clrSmpRcpNo = formObj.getInput("CLR_SMP_RCP_NO").value;//접수번호
 	var salChrPrsId = formObj.getInput("SAL_CHR_PRS_ID").value;//영업담당자
 
 	if(isNull(startDt) && !isNull(endDt)){
 		dhtmlx.alert("의뢰 시작일을 입력해주세요.");
-		form.setItemFocus("CLR_SMP_DEV_RCP_DH_START");
+		form.setItemFocus("CLR_SMP_DEV_REQ_DH_START");
 		return;
 	}else if(!isNull(startDt) && isNull(endDt)){
 		dhtmlx.alert("의뢰 종료일을 입력해주세요.");
-		form.setItemFocus("CLR_SMP_DEV_RCP_DH_END");
+		form.setItemFocus("CLR_SMP_DEV_REQ_DH_END");
 		return;
 	}else if(isNull(startDt) && isNull(endDt) && isNull(clrSmpReqNo) && isNull(clrSmpRcpNo) && isNull(salChrPrsId)){
 		dhtmlx.alert("하나 이상의 검색조건을 입력해야 합니다.");
@@ -156,12 +154,12 @@ var formLoadFlag = false;
 function onFormLoadFunction(){ 
 	var formDhxObj   = items['C106000010_Form_1'].getDhxForm();
 	var formObj   = items['C106000010_Form_1'];
-	items['C106000010_Form_1'].setItemValue("CLR_SMP_DEV_RCP_DH_START",firstDay());
-	items['C106000010_Form_1'].setItemValue("CLR_SMP_DEV_RCP_DH_END",uiCommon.getCurrentDate());
+	items['C106000010_Form_1'].setItemValue("CLR_SMP_DEV_REQ_DH_START",firstDay());
+	items['C106000010_Form_1'].setItemValue("CLR_SMP_DEV_REQ_DH_END",uiCommon.getCurrentDate());
 	
 	//Calendar시작일자 변경(2013.05.30 기존 월요일부터 시작 -> 일요일부터 시작으로 변경)
-	items['C106000010_Form_1'].getItem("CLR_SMP_DEV_RCP_DH_START").setWeekStartDay(7);
-	items['C106000010_Form_1'].getItem("CLR_SMP_DEV_RCP_DH_END").setWeekStartDay(7);	
+	items['C106000010_Form_1'].getItem("CLR_SMP_DEV_REQ_DH_START").setWeekStartDay(7);
+	items['C106000010_Form_1'].getItem("CLR_SMP_DEV_REQ_DH_END").setWeekStartDay(7);	
 	
 	formLoadFlag = true;
 

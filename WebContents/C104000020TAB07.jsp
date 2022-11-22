@@ -211,6 +211,28 @@ function MSG_sync(eventName,formDivObj,referenceItem){
 		}						
 	});		
 }
+
+//keyword cclbom에 저장
+function BOM_kwdsync(eventName,formDivObj,referenceItem){								
+	
+	dhtmlx.confirm({							
+		title:"[[ 키워드 동기화처리 ]]",						
+		ok:"동기화", cancel:"취소",						
+		text:"CCL BOM키워드  동기화하시겠습니까?",						
+		callback:function(val){						
+			 if(val){					
+
+			    //강제로 updated로 해서 저장처리 
+			    items["C104000020TAB07_Grid_9"].setUpdated(0,"true","updated");
+				  	
+				items['C104000020TAB07_Grid_9'].sendGrid('C104000020TAB07_Grid_9',"BOM_kwdsync");												
+				return;				
+			 }					
+		}						
+	});		
+}
+
+
 //신뢰성 시험 대상재 등록
 function truTest_save(){
 	var parentForm = parent.items['C104000020_Form_1'];		

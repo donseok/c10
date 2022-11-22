@@ -160,12 +160,20 @@ AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL
 	 </query>
 	 <query id="C104000020TAB06_RMT.select" desc="C104000020TAB06_RMT.select" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C104000020TAB06_RMT.select  박재영 */
+SELECT /* C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C104000020TAB06_RMT.select  박재영 */
      A.ORD_NO--주문번호
     ,A.ORD_LN--주문행번
     ,A.QLT_DSN_MNF_TP--품질설계제조구분
-    ,A.RMTL_CD --원자재코드
-    ,A.RMTL_GRD --원자재등급
+    ,(SELECT A.RMTL_CD || ' - ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'RMTL_CD'         
+     AND   CATEGORY_GROUP_NM = 'SZ0000'
+     AND   CD_V = A.RMTL_CD) AS RMTL_CD
+    ,(SELECT A.RMTL_GRD || ' - ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'RMTL_GRD'         
+     AND   CATEGORY_GROUP_NM = 'SZ0000'
+     AND   CD_V = A.RMTL_GRD) AS RMTL_GRD 
     ,A.RMTL_TAR_THK--원자재목표두께
     ,A.RMTL_TAR_WTH--원자재목표폭
     ,A.RMTL_TAR_THK_LVL--원자재목표두께하한
@@ -182,7 +190,7 @@ WHERE A.ORD_NO = B.ORD_NO
 AND A.ORD_LN = B.ORD_LN    
 AND A.ORD_NO = :ORD_NO
 AND A.ORD_LN = :ORD_LN
-AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
+AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','N','8')
 ORDER BY A.QLT_DSN_MNF_TP
 		 ]]> 
 	 </query>
@@ -194,9 +202,9 @@ SET
        LAST_UPDATED_OBJECT_TYPE = :ObjectType   --최종변경OBJECT유형
       ,LAST_UPDATED_OBJECT_ID = :ObjectId           --최종변경OBJECTID  
       ,LAST_UPDATE_PROGRAM_ID = :ProgramId      --최종변경프로그램ID
-      ,LAST_UPDATE_TIMESTAMP = :Timestamp        --최종변경일시    
-      ,RMTL_CD	= :RMTL_CD                                 --원자재코드
-      ,RMTL_GRD = :RMTL_GRD                              --원자재등급
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp        --최종변경일시
+      ,RMTL_CD	= SUBSTR(:RMTL_CD,1,3)                                 --원자재코드
+      ,RMTL_GRD = SUBSTR(:RMTL_GRD,1,1)                              --원자재등급 
       ,RMTL_TAR_THK = :RMTL_TAR_THK                  --원자재목표두께
       ,RMTL_TAR_WTH = :RMTL_TAR_WTH                --원자재목표폭
       ,RMTL_TAR_THK_LVL = :RMTL_TAR_THK_LVL      --원자재목표두께하한
@@ -433,7 +441,7 @@ VALUES
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_PROC" desc="C104000020TAB06_PROC" fetchSize="10" isNamed="true">
-		 <![CDATA[
+		 <![CDATA[ 
 SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C104000020TAB06_PROC.select 이돈석 */ 
 	  SUB_PROC_CD1, 
       SUB_PROC_CD2
@@ -441,7 +449,7 @@ FROM  TB_C10_QLT_DSN_PROC
 WHERE ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN
 AND   (MAIN_PROC_CD LIKE '8%' OR MAIN_PROC_CD LIKE '9%')
-		 ]]>
+		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_ANN" desc="C104000020TAB06_ANN" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
@@ -452,10 +460,10 @@ FROM  TB_C10_QLT_DSN_PROC
 WHERE ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN
 AND   MAIN_PROC_CD LIKE '4%'
-		 ]]>
+		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06.ANN_saveUpdate" desc="C104000020TAB06.ANN_saveUpdate" fetchSize="10" isNamed="true">
-		<![CDATA[ 
+		 <![CDATA[ 
 UPDATE /*+ C10 소둔전기도금-제조표준 C104000020TAB06.ANN_saveUpdate JKJ */
 TB_C10_QLT_DSN_MNF
 SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
@@ -473,6 +481,6 @@ SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
 WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
   AND ORD_LN = :ORD_LN                             --주문행번
   AND QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP             --품질설계제조구분
-		]]>
+		 ]]> 
 	 </query>
 </queryMap>

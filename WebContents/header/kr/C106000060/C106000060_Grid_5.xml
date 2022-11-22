@@ -169,7 +169,7 @@
 	<cell id="MDF_PRS_ID"  type="ro"></cell>
 </row>
 <row id="5">
-	<cell class="form_cell"><![CDATA[수지타입(T/B)]]></cell>
+	<cell class="form_cell"><![CDATA[구매수지타입(T/B)]]></cell>
 	<cell id="RSN_TP_FRN"></cell>
 	<cell id="RSN_TP_BAK"></cell>
 	<cell class="form_cell" colspan="2">대체공정3</cell>

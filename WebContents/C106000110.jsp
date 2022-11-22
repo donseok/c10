@@ -389,11 +389,21 @@ function prtRpt(){
 	var ccl_bom_no     = uiFormObj.getItemValue("CCL_BOM_NO"); //컬러코드
 	var war_prt_seq_no = uiFormObjSub.getItemValue("WAR_PRT_SEQ_NO"); //발행번호
 	
+	
 	winObj = new ui.window("popup","보증서출력","0","0","550","600",false,"iReport_list.jsp?reportFileName="+reportFileName +
 			                                                         "&keyValue=" + keyValue   + 
 			                                                         "&keyName="  + keyName    +
 			                                                         "&cclBomNo=" + ccl_bom_no + 
 			                                                         "&warPrtseqno=" + war_prt_seq_no);	
+	
+	
+	/* OZ 레포트 사용시 
+	winObj = new ui.window("popup","보증서출력","0","0","700","750",false,"http://210.1.1.230:8080/oz80/sample/QLT_Report.jsp?reportFileName="+reportFileName +
+            "&keyValue=" + keyValue   + 
+            "&keyName="  + keyName    +
+            "&cclBomNo=" + ccl_bom_no + 
+            "&warPrtseqno=" + war_prt_seq_no);
+	*/
 	
 	winObj.setModal();
 }

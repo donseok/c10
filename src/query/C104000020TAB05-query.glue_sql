@@ -2,12 +2,20 @@
 <queryMap desc="C104000020TAB05"> 
 	 <query id="C104000020TAB05_RMT.select" desc="원자재조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계결과-제조표준1(C104000020TAB05) C104000020TAB05_RMT.select  박재영 */
-    A.ORD_NO--주문번호
+SELECT /* C10 품질설계결과-제조표준1(C104000020TAB05) C104000020TAB05_RMT.select  박재영 */
+     A.ORD_NO--주문번호
     ,A.ORD_LN--주문행번
     ,A.QLT_DSN_MNF_TP--품질설계제조구분
-    ,A.RMTL_CD --원자재코드
-    ,A.RMTL_GRD --원자재등급
+    ,(SELECT A.RMTL_CD || ' - ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'RMTL_CD'         
+     AND   CATEGORY_GROUP_NM = 'SZ0000'
+     AND   CD_V = A.RMTL_CD) AS RMTL_CD
+    ,(SELECT A.RMTL_GRD || ' - ' || CD_V_MEANING 
+     FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'RMTL_GRD'         
+     AND   CATEGORY_GROUP_NM = 'SZ0000'
+     AND   CD_V = A.RMTL_GRD) AS RMTL_GRD 
     ,A.RMTL_TAR_THK--원자재목표두께
     ,A.RMTL_TAR_WTH--원자재목표폭
     ,A.RMTL_TAR_THK_LVL--원자재목표두께하한
@@ -190,9 +198,9 @@ SET
        LAST_UPDATED_OBJECT_TYPE = :ObjectType   --최종변경OBJECT유형
       ,LAST_UPDATED_OBJECT_ID = :ObjectId           --최종변경OBJECTID  
       ,LAST_UPDATE_PROGRAM_ID = :ProgramId      --최종변경프로그램ID
-      ,LAST_UPDATE_TIMESTAMP = :Timestamp        --최종변경일시    
-      ,RMTL_CD	= :RMTL_CD                                 --원자재코드
-      ,RMTL_GRD = :RMTL_GRD                              --원자재등급
+      ,LAST_UPDATE_TIMESTAMP = :Timestamp        --최종변경일시
+      ,RMTL_CD	= SUBSTR(:RMTL_CD,1,3)                                 --원자재코드
+      ,RMTL_GRD = SUBSTR(:RMTL_GRD,1,1)                              --원자재등급    
       ,RMTL_TAR_THK = :RMTL_TAR_THK                  --원자재목표두께
       ,RMTL_TAR_WTH = :RMTL_TAR_WTH                --원자재목표폭
       ,RMTL_TAR_THK_LVL = :RMTL_TAR_THK_LVL      --원자재목표두께하한

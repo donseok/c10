@@ -241,6 +241,14 @@
 <column align="center" hidden="true" id="CLR_SPC_PRD_SCLS" index="204" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0"></column>
 <column align="center" color="FFFFC0"  id="HUE_CD_FRN_OLD" index="205" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="7">구색상(T)</column>
 <column align="center" color="FFFFC0"  id="CCL_BOM_ATT_YN" index="206" sort="na_custom" table="TB_C10_CCL_BOM" type="ch" width="4">관심</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_FRN_1COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지전면1</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_FRN_2COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지전면2</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_FRN_3COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지전면3</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_FRN_4COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지전면4</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_BAK_1COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지후면1</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_BAK_2COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지후면2</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_BAK_3COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지후면3</column>
+<column align="center" hidden="true" id="RSN_TP_QT_BR_BAK_4COT" index="74" sort="str_custom" table="TB_C10_CCL_BOM" type="ro" width="0">품질수지후면4</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
@@ -265,7 +273,8 @@ PRT_ROLL_PTN_CD1,PRT_UNT1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_UNT2,PRT
 PRT_ROLL_PTN_CD4,PRT_UNT4,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,CUT_LN_YN,LMN_BND_UNT,LMN_BND_UNT1,QLT_DSN_CFM_TP,RGS_PRS_ID,RGS_DH,
 MDF_PRS_ID,MDF_DH,ERP_SND_DH,ORG_CCL_BOM_USE_YN,SND_LST,UNI_TEX_ROLL_NO,UNI_TEX_PTN_CD,PICK_UP_ROLL_NO,PRT_ROLL_BAK_NO1,PRT_INK_BAK_CD1,
 PRT_ROLL_PTN_BAK_CD1,PRT_BAK_UNT1,PRT_ROLL_BAK_NO2,PRT_INK_BAK_CD2,PRT_ROLL_PTN_BAK_CD2,PRT_BAK_UNT2,PRT_ROLL_BAK_NO3,PRT_INK_BAK_CD3,PRT_ROLL_PTN_BAK_CD3,PRT_BAK_UNT3,
-PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,CCL_BOM_WR_YN,PT_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,CLR_SPC_PRD_SCLS,HUE_CD_FRN_OLD,CCL_BOM_ATT_YN</userdata>
+PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,CCL_BOM_WR_YN,PT_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,CLR_SPC_PRD_SCLS,HUE_CD_FRN_OLD,CCL_BOM_ATT_YN,
+RSN_TP_QT_BR_FRN_1COT,RSN_TP_QT_BR_FRN_2COT,RSN_TP_QT_BR_FRN_3COT,RSN_TP_QT_BR_FRN_4COT,RSN_TP_QT_BR_BAK_1COT,RSN_TP_QT_BR_BAK_2COT,RSN_TP_QT_BR_BAK_3COT,RSN_TP_QT_BR_BAK_4COT</userdata>
 <row id="0">
 <cell/>
 <cell/>

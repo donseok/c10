@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050pop07 Page 쿼리파일"> 
+	 <query id="C106000050pop07.select" desc="C106000050pop07 정보 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000050pop07 원가내역서 파일 조회   C106000050pop07.select  이돈석  */
+       CLR_SUB_MTL_CD,
+       CLR_SUB_MTL_CD_SEQ_NO,
+       SEQ_NO,
+       DECODE(IMG_RGS_TP, '2', '모바일', 'PC') IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       TO_CHAR(CLR_SUB_MTL_CD_RGS_DH, 'YYYY-MM-DD') CLR_SUB_MTL_CD_RGS_DH,
+       CLR_SUB_MTL_CD_RGS_PRS_ID,
+       IMG_NM CHK_IMG_NM,
+       './'||REPLACE(SUBSTR(IMG_ADR, instr(IMG_ADR, 'IMG_UPLOAD')), '\', '/')||'/' CHK_IMG_ADR
+FROM TB_C10_CLR_CD_IMG
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+AND CLR_SUB_MTL_CD_SEQ_NO = :CLR_SUB_MTL_CD_SEQ_NO
+AND PRD_SPC_TP = '0'
+ORDER BY CLR_SUB_MTL_CD, CLR_SUB_MTL_CD_SEQ_NO, SEQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000050pop07.insert" desc="원가내역서 업로드" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000050pop07   원가내역서 파일 업로드  C106000050pop07.insert  이돈석  */
+INTO TB_C10_CLR_CD_IMG (
+    CLR_SUB_MTL_CD,
+	CLR_SUB_MTL_CD_SEQ_NO,
+	SEQ_NO,
+	IMG_RGS_TP,
+	IMG_ADR,
+	IMG_NM,
+	CLR_SUB_MTL_CD_RGS_DH,
+	CLR_SUB_MTL_CD_RGS_PRS_ID,
+    CREATED_OBJECT_TYPE, 
+    CREATED_OBJECT_ID, 
+    CREATED_PROGRAM_ID, 
+    CREATION_TIMESTAMP, 
+    LAST_UPDATED_OBJECT_TYPE, 
+    LAST_UPDATED_OBJECT_ID, 
+    LAST_UPDATE_PROGRAM_ID, 
+    LAST_UPDATE_TIMESTAMP,
+    PRD_SPC_TP)
+VALUES (
+    :IMG_RGS_FLAG_ID, 
+    :IMG_RGS_FLAG_ID2, 
+    (SELECT NVL(MAX(SEQ_NO),0)+1 FROM TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = :IMG_RGS_FLAG_ID AND CLR_SUB_MTL_CD_SEQ_NO = :IMG_RGS_FLAG_ID2), 
+    :IMG_RGS_TP, 
+    :FILE_ADDR,
+    :FILE_NAME,  
+    SYSDATE, 
+    :ObjectId,
+    'C',
+    :ObjectId,
+    'C106000050pop07',
+    SYSTIMESTAMP,
+    'C',
+    :ObjectId,
+    'C106000050pop07',
+    SYSTIMESTAMP,
+    :PRD_SPC_TP)
+		 ]]> 
+	 </query>
+	 <query id="C106000050pop07.delete" desc="원가내역서 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE  /* C106000050pop07   원가내역서 파일 삭제  C106000050pop07.delete  이돈석  */
+TB_C10_CLR_CD_IMG 
+WHERE  CLR_SUB_MTL_CD = :IMG_RGS_FLAG_ID
+AND CLR_SUB_MTL_CD_SEQ_NO =  :IMG_RGS_FLAG_ID2
+AND SEQ_NO = :SEQ
+		 ]]> 
+	 </query>
+	 <query id="C106000050pop07.update" desc="원가내역서 등록여부 yn" isNamed="true">
+		 <![CDATA[ 
+UPDATE  /* C106000050pop06   도장사양서 파일 등록여부 yn  C106000050pop06.update  이돈석  */
+TB_C10_CLR_CD_IMG_MNG
+SET FILE_YN = DECODE((SELECT COUNT(IMG_NM) CNT
+                FROM   TB_C10_CLR_CD_IMG
+                WHERE  CLR_SUB_MTL_CD =  :IMG_RGS_FLAG_ID
+                AND    CLR_SUB_MTL_CD_SEQ_NO =  :IMG_RGS_FLAG_ID2
+                AND    PRD_SPC_TP = '0'), 0, 'N', 'Y' ) ,
+         LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+         LAST_UPDATED_OBJECT_ID = :ObjectId,
+         LAST_UPDATE_PROGRAM_ID = :ProgramId,
+         LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE  CLR_SUB_MTL_CD =  :IMG_RGS_FLAG_ID
+AND    CLR_SUB_MTL_CD_SEQ_NO =  :IMG_RGS_FLAG_ID2
+		 ]]> 
+	 </query>
+</queryMap>

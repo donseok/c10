@@ -2,7 +2,7 @@
 <queryMap desc="C106000010pop01 Page 쿼리파일"> 
 	 <query id="C106000010pop01.select" desc="C106000010pop01 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010pop01.select 박재영 */
+SELECT/* C10 품질설계 칼라시편관리조회 C106000010pop01.select 박재영 */
     CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CUS_REQ_HUE_TXT,--고객요청색상명
     RSN_TP_TXT ,--수지TXT
@@ -39,14 +39,27 @@ SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010pop01.select 박�
     DSN_CHR_PRS_ID, 
     decode(SIM_HUE_PRG_YN,'Y','1','2') as SIM_HUE_PRG_YN,
     PRJ_DEV_CD,
-    decode(COL_CFM_ACT_YN,'Y','1','2') as COL_CFM_ACT_YN
+    decode(COL_CFM_ACT_YN,'Y','1','2') as COL_CFM_ACT_YN,
+    SMS_RCV_HP1, 
+    SMS_RCV_HP2, 
+    SMS_RCV_HP3, 
+    SMS_RCV_HP4, 
+    PNT_CMP_DLV_EXP_DH, 
+    PNT_CMP_DLV_HP, 
+    PNT_CMP_DLV_NM, 
+    PNT_CMP_DLV_DH, 
+    SMPL_DLV_CMP_CD, 
+    IVC_NO, 
+    PNT_CMP_TXT, 
+    RSN_TP_QT_BR,
+    ADD_RSS 
 FROM  C10APUSER.TB_C10_CLR_SMP
 WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
 		 ]]> 
 	 </query>
 	 <query id="C106000010pop01.sal_update" desc="C106000010pop01 정보 수정(영업원)" isNamed="true">
 		 <![CDATA[ 
-UPDATE/*+ C10 품질설계 칼라시편관리 저장(update) C106000010pop01.sal_update 박재영 */ 
+UPDATE/* C10 품질설계 칼라시편관리 저장(update) C106000010pop01.sal_update 박재영 */ 
 TB_C10_CLR_SMP SET
     CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CUS_REQ_HUE_TXT = :CUS_REQ_HUE_TXT,--고객요청색상명
@@ -69,6 +82,11 @@ TB_C10_CLR_SMP SET
     ORD_PRE_WGT = :ORD_PRE_WGT,
     PTT_FLM_YN = :PTT_FLM_YN,
     PRJ_DEV_CD = :PRJ_DEV_CD,
+    SMS_RCV_HP1 = :SMS_RCV_HP1, 
+    SMS_RCV_HP2 = :SMS_RCV_HP2, 
+    SMS_RCV_HP3 = :SMS_RCV_HP3, 
+    SMS_RCV_HP4 = :SMS_RCV_HP4,
+    CLR_WK_STS_CD = 'A', 
     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
     LAST_UPDATED_OBJECT_ID=:ObjectId,      
     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -78,7 +96,7 @@ WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
 	 </query>
 	 <query id="C106000010pop01.dsn_update" desc="C106000010pop01 정보 수정(설계원)" isNamed="true">
 		 <![CDATA[ 
-UPDATE/*+ C10 품질설계 칼라시편관리 저장(update) C106000010pop01.dsn_update 박재영 */ 
+UPDATE/* C10 품질설계 칼라시편관리 저장(update) C106000010pop01.dsn_update 박재영 */ 
 TB_C10_CLR_SMP SET
     CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CUS_REQ_HUE_TXT = :CUS_REQ_HUE_TXT,--고객요청색상명
@@ -118,6 +136,12 @@ TB_C10_CLR_SMP SET
     SIM_HUE_PRG_YN = decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','2','N','N','N'),
     COL_CFM_ACT_YN = decode(:COL_CFM_ACT_YN,'1','Y','Y','Y','2','N','N','N'),
     PRJ_DEV_CD = :PRJ_DEV_CD,
+    SMS_RCV_HP1 = :SMS_RCV_HP1, 
+    SMS_RCV_HP2 = :SMS_RCV_HP2, 
+    SMS_RCV_HP3 = :SMS_RCV_HP3, 
+    SMS_RCV_HP4 = :SMS_RCV_HP4,
+    RSN_TP_QT_BR = :RSN_TP_QT_BR,
+    CLR_WK_STS_CD = 'B',
     LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
     LAST_UPDATED_OBJECT_ID=:ObjectId,      
     LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -134,7 +158,7 @@ WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
 	 </query>
 	 <query id="C106000010pop01.sal_insert" desc="C106000010pop01 정보 추가(영업원)" isNamed="true">
 		 <![CDATA[ 
-INSERT /*+ C10 품질설계 칼라시편관리 C106000010pop01.sal_insert 박재영*/ 
+INSERT /* C10 품질설계 칼라시편관리 C106000010pop01.sal_insert 박재영*/ 
 INTO TB_C10_CLR_SMP
 (   CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CUS_REQ_HUE_TXT,--고객요청색상명
@@ -157,6 +181,13 @@ INTO TB_C10_CLR_SMP
     ORD_PRE_WGT,
     PTT_FLM_YN,
     PRJ_DEV_CD,
+    SMS_RCV_HP1, 
+    SMS_RCV_HP2, 
+    SMS_RCV_HP3, 
+    SMS_RCV_HP4,
+    CLR_WK_STS_CD,
+    CLR_SMP_DEV_REQ_DH,
+    ADD_RSS,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -188,6 +219,13 @@ INTO TB_C10_CLR_SMP
 ,:ORD_PRE_WGT
 ,:PTT_FLM_YN
 ,:PRJ_DEV_CD
+,:SMS_RCV_HP1  
+,:SMS_RCV_HP2  
+,:SMS_RCV_HP3  
+,:SMS_RCV_HP4
+,'A'
+,sysdate
+,:ADD_RSS
 ,:ObjectType
 ,:ObjectId
 ,:ProgramId
@@ -200,7 +238,7 @@ INTO TB_C10_CLR_SMP
 	 </query>
 	 <query id="C106000010pop01.dsn_insert" desc="C106000010pop01 정보 추가(설계원)" isNamed="true">
 		 <![CDATA[ 
-INSERT /*+ C10 품질설계 칼라시편관리 C106000010pop01.dsn_insert 박재영*/ 
+INSERT /* C10 품질설계 칼라시편관리 C106000010pop01.dsn_insert 박재영*/ 
 INTO TB_C10_CLR_SMP
 (   CLR_SMP_REQ_NO,--칼라시편의뢰번호
     CUS_REQ_HUE_TXT,--고객요청색상명
@@ -239,7 +277,21 @@ INTO TB_C10_CLR_SMP
     DSN_CHR_PRS_ID, 
     SIM_HUE_PRG_YN,
     COL_CFM_ACT_YN,
-    PRJ_DEV_CD, 
+    PRJ_DEV_CD,
+    SMS_RCV_HP1,
+    SMS_RCV_HP2,
+    SMS_RCV_HP3,
+    SMS_RCV_HP4,
+    PNT_CMP_DLV_EXP_DH,
+    PNT_CMP_DLV_HP,
+    PNT_CMP_DLV_NM,
+    PNT_CMP_DLV_DH,
+    SMPL_DLV_CMP_CD,
+    IVC_NO,
+    PNT_CMP_TXT,
+    RSN_TP_QT_BR,
+    CLR_WK_STS_CD,
+    ADD_RSS,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -288,6 +340,20 @@ INTO TB_C10_CLR_SMP
 ,decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','2','N','N','N')
 ,decode(:COL_CFM_ACT_YN,'1','Y','Y','Y','2','N','N','N')
 ,:PRJ_DEV_CD
+,:SMS_RCV_HP1
+,:SMS_RCV_HP2
+,:SMS_RCV_HP3
+,:SMS_RCV_HP4
+,:PNT_CMP_DLV_EXP_DH
+,:PNT_CMP_DLV_HP
+,:PNT_CMP_DLV_NM
+,:PNT_CMP_DLV_DH
+,:SMPL_DLV_CMP_CD
+,:IVC_NO
+,:PNT_CMP_TXT
+,:RSN_TP_QT_BR
+,'B'
+,:ADD_RSS
 ,:ObjectType
 ,:ObjectId
 ,:ProgramId
@@ -296,6 +362,427 @@ INTO TB_C10_CLR_SMP
 ,:ObjectId
 ,:ProgramId
 ,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.cmp_insert" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C10 품질설계 칼라시편관리 C106000010pop01.cmp_insert 이돈석*/ 
+INTO TB_C10_CLR_SMP
+(   CLR_SMP_REQ_NO,--칼라시편의뢰번호
+    CUS_REQ_HUE_TXT,--고객요청색상명
+    RSN_TP_TXT ,--수지구분TXT
+    RSN_ANL_REQ_YN, --수지구분 분석요망
+    SMP_SND_YN, --시편송부여부
+    PNT_FLM_THK_TXT,--도막두께TXT
+    LUS_RT_CD,--광택도코드
+    SMP_LUS_YN, --샘플광
+    CLR_USE_NM,--사용용도명
+    SAL_CHR_PRS_ID,--영업담당자ID
+    CUS_CD_TXT, --고객사명
+    USE_REG_TXT,--사용지역명
+    PRD_NM_CD,--품명코드
+    PRD_TP_YN, --품명구분여부
+    CLR_SMP_DEV_RCP_DH,--시편개발접수일
+    SAL_CHR_REQ_DH,--영업담당자요청일
+    SAL_CHR_RGN_DH,--영업담당자승인일
+    CLR_SMP_RMK,--비고
+    CLR_SMP_RCP_NO,--칼라시편접수번호
+    DEV_PNT_CMP_CD,--개발도료업체코드
+    RSN_TP, --수지구분
+    CLR_SMP_DEV_REQ_DH,--칼라시편개발의뢰일
+    CLR_SMP_DEV_LMT_DH,--칼라시편개발예정일
+    CLR_SMP_DEV_END_DH,--칼라시편개발완료일
+    CLR_SMP_DEV_SND_DH,--칼라시편개발송부일
+    SMP_SND_INF, --시편송부정보
+    DSN_CHR_RGN_YN,--설계담당자승인여부
+    HUE_CD,--색상코드 
+    CCL_BOM_NO,--CCLBOM번호
+    CCL_BOM_RGS_DH,--CCLBOM등록일
+    CLR_TP, --색구분
+    CLR_SMP_DSN_RMK, --설계비고
+    ORD_PRE_WGT,
+    PTT_FLM_YN,
+    DSN_CHR_PRS_ID, 
+    SIM_HUE_PRG_YN,
+    COL_CFM_ACT_YN,
+    PRJ_DEV_CD,
+    SMS_RCV_HP1,
+    SMS_RCV_HP2,
+    SMS_RCV_HP3,
+    SMS_RCV_HP4,
+    PNT_CMP_DLV_EXP_DH,
+    PNT_CMP_DLV_HP,
+    PNT_CMP_DLV_NM,
+    PNT_CMP_DLV_DH,
+    SMPL_DLV_CMP_CD,
+    IVC_NO,
+    PNT_CMP_TXT,
+    RSN_TP_QT_BR,
+    CLR_WK_STS_CD,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+(SELECT NVL(MAX(CLR_SMP_REQ_NO),TO_CHAR(SYSDATE,'yyyymmdd')||'00')+1 FROM TB_C10_CLR_SMP
+      WHERE CLR_SMP_REQ_NO LIKE TO_CHAR(SYSDATE,'yyyymmdd') || '%' )
+,:CUS_REQ_HUE_TXT
+,:RSN_TP_TXT
+,:RSN_ANL_REQ_YN
+,:SMP_SND_YN
+,(CASE WHEN LENGTHB(:PNT_FLM_THK_TXT) >10 THEN substrb(:PNT_FLM_THK_TXT,1,10) ELSE :PNT_FLM_THK_TXT END)
+,:LUS_RT_CD
+,:SMP_LUS_YN
+,(CASE WHEN LENGTHB(:CLR_USE_NM) >20 THEN substrb(:CLR_USE_NM,1,20) ELSE :CLR_USE_NM END)
+,(CASE WHEN LENGTHB(:SAL_CHR_PRS_ID) >10 THEN substrb(:SAL_CHR_PRS_ID,1,10) ELSE :SAL_CHR_PRS_ID END)
+,:CUS_CD_TXT
+,(CASE WHEN LENGTHB(:USE_REG_TXT) >20 THEN substrb(:USE_REG_TXT,1,20) ELSE :USE_REG_TXT END)
+,:PRD_NM_CD
+,:PRD_TP_YN
+,DECODE(:SAL_CHR_REQ_DH,NULL,SYSDATE,:SAL_CHR_REQ_DH) 
+,:SAL_CHR_REQ_DH
+,:SAL_CHR_RGN_DH
+,:CLR_SMP_RMK
+,:CLR_SMP_RCP_NO
+,:DEV_PNT_CMP_CD
+,:RSN_TP
+,nvl(trim(:CLR_SMP_DEV_REQ_DH), sysdate)--칼라시편개발의뢰일
+,nvl(trim(:CLR_SMP_DEV_LMT_DH), nvl(to_date(trim(:CLR_SMP_DEV_REQ_DH)), sysdate) + (select to_number(rtrim(trim(LED_TIM_1),'일')) from TB_C10_CLR_CMP_DEV_MNG where PNT_CMP_CD = :DEV_PNT_CMP_CD) )--칼라시편개발예정일
+,:CLR_SMP_DEV_END_DH
+,:CLR_SMP_DEV_SND_DH
+,:SMP_SND_INF
+,:DSN_CHR_RGN_YN
+,:HUE_CD
+,:CCL_BOM_NO
+,:CCL_BOM_RGS_DH
+,:CLR_TP
+,:CLR_SMP_DSN_RMK
+,:ORD_PRE_WGT
+,:PTT_FLM_YN
+,nvl((select emp_nm from M90APUSER.TB_M90_EMP_INF where emp_id = :DSN_CHR_PRS_ID), :DSN_CHR_PRS_ID)
+,decode(:SIM_HUE_PRG_YN,'1','Y','Y','Y','2','N','N','N')
+,decode(:COL_CFM_ACT_YN,'1','Y','Y','Y','2','N','N','N')
+,:PRJ_DEV_CD
+,:SMS_RCV_HP1
+,:SMS_RCV_HP2
+,:SMS_RCV_HP3
+,:SMS_RCV_HP4
+,:PNT_CMP_DLV_EXP_DH
+,:PNT_CMP_DLV_HP
+,:PNT_CMP_DLV_NM
+,:PNT_CMP_DLV_DH
+,:SMPL_DLV_CMP_CD
+,:IVC_NO
+,:PNT_CMP_TXT
+,:RSN_TP_QT_BR
+,DECODE(:IVC_NO,'','C','D')
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp
+,:ObjectType
+,:ObjectId
+,:ProgramId
+,:Timestamp)
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.cmp_update" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE/* C10 품질설계 칼라시편관리 저장(update) C106000010pop01.cmp_update 이돈석 */ 
+TB_C10_CLR_SMP SET
+    PNT_CMP_DLV_EXP_DH = :PNT_CMP_DLV_EXP_DH,
+    PNT_CMP_DLV_HP = :PNT_CMP_DLV_HP,
+    PNT_CMP_DLV_NM = :PNT_CMP_DLV_NM,
+    PNT_CMP_DLV_DH = :PNT_CMP_DLV_DH,
+    SMPL_DLV_CMP_CD = :SMPL_DLV_CMP_CD,
+    IVC_NO = :IVC_NO,
+    PNT_CMP_TXT = :PNT_CMP_TXT,
+    CLR_WK_STS_CD = DECODE(:IVC_NO,'','C','D'),
+    LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+    LAST_UPDATED_OBJECT_ID=:ObjectId,      
+    LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+    LAST_UPDATE_TIMESTAMP=:Timestamp     
+WHERE  CLR_SMP_REQ_NO= :CLR_SMP_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_insert1" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000010pop01 칼라시편배송정보 SMS송신 C106000010pop01.sms_insert1 이돈석 */
+  INTO EAIAPUSER.TB_M90_SMS
+     (
+       IF_GRP_ID            --인터페이스그룹아이디
+     , SEQ_NO               --인터페이스SEQ
+     , SEQNO                --일련번호(송신일련번호)
+     , XSTAT                --Call back 상태
+     , XDATE                --DB 입력날자
+     , XTIME                --DB 입력시간
+     , INTIME               --입력시간
+     , REQTIME              --예약시간
+     , RECVNAME             --수신자명
+     , CALLPHONE            --수신번호
+     , SENDNAME             --회신자명
+     , REQPHONE             --회신번호
+     , SUBJECT              --타이틀
+     , MSG                  --메시지
+     , RESULT               --결과
+     , KIND                 --구분
+     , SYSCODE              --시스템코드
+     , BIZTYPE
+     , YELLOWID_KEY
+     , TEMPLATECODE
+     , RESEND 
+     , CREATED_OBJECT_TYPE  --생성Object유형
+     , CREATED_OBJECT_ID    --생성ObjectID
+     , CREATED_PROGRAM_ID   --생성프로그램ID
+     , CREATION_TIMESTAMP   --생성일시
+     ) 
+SELECT 
+       TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') AS IF_GRP_ID
+     , EAIAPUSER.SQ_M90_SMS.NEXTVAL AS SEQ_NO
+     , 700000000 + TO_NUMBER(TO_CHAR(SYSDATE,'YY')) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL AS SEQNO
+     , 'R' AS XSTAT
+     , TO_CHAR(SYSDATE,'YYYYMMDD') AS XDATE
+     , TO_CHAR(SYSDATE,'HH24MISS') AS XTIME
+     , TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AS INTIME
+     , '00000000000000' AS REQTIME
+     , :CUS_CD_TXT                --수신자명
+     , :SMS_RCV_HP1               --수신번호1
+     , 'MES' AS SENDNAME   --회신자명
+     , '0516405602' AS REQPHONE --회신번호
+     , '배송정보송신' AS SUBJECT        --타이틀
+     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '0' AS RESULT            --결과
+     , 'T' AS KIND              --구분
+     , 'UMES' AS SYSCODE        --시스템코드
+     , 'at' AS BIZTYPE
+     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
+     , 'UNI_MA_07' AS TEMPLATECODE
+     , 'Y' AS RESEND
+     , :ObjectType
+     , :ObjectId
+     , :ProgramId
+     , :Timestamp
+  FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_insert2" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000010pop01 칼라시편배송정보 SMS송신 C106000010pop01.sms_insert2 이돈석 */
+  INTO EAIAPUSER.TB_M90_SMS
+     (
+       IF_GRP_ID            --인터페이스그룹아이디
+     , SEQ_NO               --인터페이스SEQ
+     , SEQNO                --일련번호(송신일련번호)
+     , XSTAT                --Call back 상태
+     , XDATE                --DB 입력날자
+     , XTIME                --DB 입력시간
+     , INTIME               --입력시간
+     , REQTIME              --예약시간
+     , RECVNAME             --수신자명
+     , CALLPHONE            --수신번호
+     , SENDNAME             --회신자명
+     , REQPHONE             --회신번호
+     , SUBJECT              --타이틀
+     , MSG                  --메시지
+     , RESULT               --결과
+     , KIND                 --구분
+     , SYSCODE              --시스템코드
+     , BIZTYPE
+     , YELLOWID_KEY
+     , TEMPLATECODE
+     , RESEND 
+     , CREATED_OBJECT_TYPE  --생성Object유형
+     , CREATED_OBJECT_ID    --생성ObjectID
+     , CREATED_PROGRAM_ID   --생성프로그램ID
+     , CREATION_TIMESTAMP   --생성일시
+     ) 
+SELECT 
+       TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') AS IF_GRP_ID
+     , EAIAPUSER.SQ_M90_SMS.NEXTVAL AS SEQ_NO
+     , 700000000 + TO_NUMBER(TO_CHAR(SYSDATE,'YY')) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL AS SEQNO
+     , 'R' AS XSTAT
+     , TO_CHAR(SYSDATE,'YYYYMMDD') AS XDATE
+     , TO_CHAR(SYSDATE,'HH24MISS') AS XTIME
+     , TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AS INTIME
+     , '00000000000000' AS REQTIME
+     , :CUS_CD_TXT                --수신자명
+     , :SMS_RCV_HP2               --수신번호2
+     , 'MES' AS SENDNAME   --회신자명
+     , '0516405602' AS REQPHONE --회신번호
+     , '배송정보송신' AS SUBJECT        --타이틀
+     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '0' AS RESULT            --결과
+     , 'T' AS KIND              --구분
+     , 'UMES' AS SYSCODE        --시스템코드
+     , 'at' AS BIZTYPE
+     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
+     , 'UNI_MA_07' AS TEMPLATECODE
+     , 'Y' AS RESEND
+     , :ObjectType
+     , :ObjectId
+     , :ProgramId
+     , :Timestamp
+  FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_insert3" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000010pop01 칼라시편배송정보 SMS송신 C106000010pop01.sms_insert3 이돈석 */
+  INTO EAIAPUSER.TB_M90_SMS
+     (
+       IF_GRP_ID            --인터페이스그룹아이디
+     , SEQ_NO               --인터페이스SEQ
+     , SEQNO                --일련번호(송신일련번호)
+     , XSTAT                --Call back 상태
+     , XDATE                --DB 입력날자
+     , XTIME                --DB 입력시간
+     , INTIME               --입력시간
+     , REQTIME              --예약시간
+     , RECVNAME             --수신자명
+     , CALLPHONE            --수신번호
+     , SENDNAME             --회신자명
+     , REQPHONE             --회신번호
+     , SUBJECT              --타이틀
+     , MSG                  --메시지
+     , RESULT               --결과
+     , KIND                 --구분
+     , SYSCODE              --시스템코드
+     , BIZTYPE
+     , YELLOWID_KEY
+     , TEMPLATECODE
+     , RESEND 
+     , CREATED_OBJECT_TYPE  --생성Object유형
+     , CREATED_OBJECT_ID    --생성ObjectID
+     , CREATED_PROGRAM_ID   --생성프로그램ID
+     , CREATION_TIMESTAMP   --생성일시
+     ) 
+SELECT 
+       TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') AS IF_GRP_ID
+     , EAIAPUSER.SQ_M90_SMS.NEXTVAL AS SEQ_NO
+     , 700000000 + TO_NUMBER(TO_CHAR(SYSDATE,'YY')) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL AS SEQNO
+     , 'R' AS XSTAT
+     , TO_CHAR(SYSDATE,'YYYYMMDD') AS XDATE
+     , TO_CHAR(SYSDATE,'HH24MISS') AS XTIME
+     , TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AS INTIME
+     , '00000000000000' AS REQTIME
+     , :CUS_CD_TXT                --수신자명
+     , :SMS_RCV_HP3               --수신번호3
+     , 'MES' AS SENDNAME   --회신자명
+     , '0516405602' AS REQPHONE --회신번호
+     , '배송정보송신' AS SUBJECT        --타이틀
+     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '0' AS RESULT            --결과
+     , 'T' AS KIND              --구분
+     , 'UMES' AS SYSCODE        --시스템코드
+     , 'at' AS BIZTYPE
+     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
+     , 'UNI_MA_07' AS TEMPLATECODE
+     , 'Y' AS RESEND
+     , :ObjectType
+     , :ObjectId
+     , :ProgramId
+     , :Timestamp
+  FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_insert4" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /* C106000010pop01 칼라시편배송정보 SMS송신 C106000010pop01.sms_insert4 이돈석 */
+  INTO EAIAPUSER.TB_M90_SMS
+     (
+       IF_GRP_ID            --인터페이스그룹아이디
+     , SEQ_NO               --인터페이스SEQ
+     , SEQNO                --일련번호(송신일련번호)
+     , XSTAT                --Call back 상태
+     , XDATE                --DB 입력날자
+     , XTIME                --DB 입력시간
+     , INTIME               --입력시간
+     , REQTIME              --예약시간
+     , RECVNAME             --수신자명
+     , CALLPHONE            --수신번호
+     , SENDNAME             --회신자명
+     , REQPHONE             --회신번호
+     , SUBJECT              --타이틀
+     , MSG                  --메시지
+     , RESULT               --결과
+     , KIND                 --구분
+     , SYSCODE              --시스템코드
+     , BIZTYPE
+     , YELLOWID_KEY
+     , TEMPLATECODE
+     , RESEND 
+     , CREATED_OBJECT_TYPE  --생성Object유형
+     , CREATED_OBJECT_ID    --생성ObjectID
+     , CREATED_PROGRAM_ID   --생성프로그램ID
+     , CREATION_TIMESTAMP   --생성일시
+     ) 
+SELECT 
+       TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') AS IF_GRP_ID
+     , EAIAPUSER.SQ_M90_SMS.NEXTVAL AS SEQ_NO
+     , 700000000 + TO_NUMBER(TO_CHAR(SYSDATE,'YY')) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL AS SEQNO
+     , 'R' AS XSTAT
+     , TO_CHAR(SYSDATE,'YYYYMMDD') AS XDATE
+     , TO_CHAR(SYSDATE,'HH24MISS') AS XTIME
+     , TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AS INTIME
+     , '00000000000000' AS REQTIME
+     , :CUS_CD_TXT                --수신자명
+     , :SMS_RCV_HP4               --수신번호4
+     , 'MES' AS SENDNAME   --회신자명
+     , '0516405602' AS REQPHONE --회신번호
+     , '배송정보송신' AS SUBJECT        --타이틀
+     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '0' AS RESULT            --결과
+     , 'T' AS KIND              --구분
+     , 'UMES' AS SYSCODE        --시스템코드
+     , 'at' AS BIZTYPE
+     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
+     , 'UNI_MA_07' AS TEMPLATECODE
+     , 'Y' AS RESEND
+     , :ObjectType
+     , :ObjectId
+     , :ProgramId
+     , :Timestamp
+  FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_check1" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000010pop01 칼라시편배송정보 SMS송신체크 C106000010pop01.sms_check1 이돈석 */
+       1 FLAG
+  FROM TB_C10_CLR_SMP
+ WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
+   AND SMS_RCV_HP1 IS NOT NULL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_check2" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000010pop01 칼라시편배송정보 SMS송신체크 C106000010pop01.sms_check2 이돈석 */
+       1 FLAG
+  FROM TB_C10_CLR_SMP
+ WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
+   AND SMS_RCV_HP2 IS NOT NULL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_check3" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000010pop01 칼라시편배송정보 SMS송신체크 C106000010pop01.sms_check3 이돈석 */
+       1 FLAG
+  FROM TB_C10_CLR_SMP
+ WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
+   AND SMS_RCV_HP3 IS NOT NULL
+		 ]]> 
+	 </query>
+	 <query id="C106000010pop01.sms_check4" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000010pop01 칼라시편배송정보 SMS송신체크 C106000010pop01.sms_check4 이돈석 */
+       1 FLAG
+  FROM TB_C10_CLR_SMP
+ WHERE CLR_SMP_REQ_NO = :CLR_SMP_REQ_NO
+   AND SMS_RCV_HP4 IS NOT NULL
 		 ]]> 
 	 </query>
 </queryMap>

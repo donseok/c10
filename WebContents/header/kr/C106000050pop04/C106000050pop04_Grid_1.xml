@@ -52,11 +52,11 @@
 <column align="center" clabel="사용여부" dbname="사용여부" id="USE_YN" index="1" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG_MDF_LOG" type="ro" width="40">사용&lt;br&gt;여부</column>
 <column align="center" clabel="컬러코드" dbname="컬러코드" id="CLR_SUB_MTL_CD" index="2" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60">컬러코드</column>
 <column align="center" clabel="Seq" dbname="Seq" id="MDF_SEQ" index="3" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="30">Seq</column>
-<column align="center" clabel="수정 사유" dbname="수정 사유" id="MDF_RSN" index="4" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="200" color="FFFFC1" >수정사유</column>
+<column align="center" clabel="수정 사유" dbname="비고" id="MDF_RSN" index="4" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="200" color="FFFFC1" >비고(승인의견/수정-반려사유)</column>
 <column align="center" clabel="부자재구분" dbname="부자재구분" id="SUB_MTL_TP" index="5" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" >부재료&lt;br&gt;구분</column>
 <column align="center" clabel="TYPE구분" dbname="TYPE구분" id="TP_CD" index="6" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50">TYPE&lt;br&gt;구분</column>
-<column align="center" clabel="수지타입" dbname="수지타입" id="RSN_TP" index="7" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="40">수지&lt;br&gt;타입</column>
-<column align="left" id="RSN_TP_NM" index="8" sort="sort_str_custom" type="ro" width="120">수지타입명</column>
+<column align="center" clabel="수지타입" dbname="수지타입" id="RSN_TP" index="7" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="40">구매&lt;br&gt;수지</column>
+<column align="left" id="RSN_TP_NM" index="8" sort="sort_str_custom" type="ro" width="120">구매수지명</column>
 <column align="center" clabel="광택도코드" dbname="광택도코드" id="LUS_RT_CD" index="9" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50" >광택도&lt;br&gt;코드</column>
 <column align="center" clabel="실광택값" dbname="실광택값" format="000.0" id="RL_LUS_RT" index="10" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60">실광&lt;br&gt;택값</column>
 <column align="center" clabel="광택도하한값" dbname="광택도하한값" format="000.0" id="LUS_RT_LLV" index="11" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60">광택&lt;br&gt;하한</column>
@@ -100,18 +100,20 @@
 <column align="center" clabel="수정자" dbname="수정자" id="MDF_PRS_ID" index="49" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="80">수정자</column>
 <column align="center" clabel="수정일" dbname="수정일" id="CLR_MDF_DH" index="50" sort="na" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="120">수정일</column>
 <column align="center" id="MGR_CLR_SUB_MTL_CD" index="51" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" >통합&lt;br&gt;컬러코드</column>
-<column align="center" id="CLR_SUB_MTL_CD_OLD" index="52" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" >(구)&lt;br&gt;컬러코드</column>
-<column align="center" id="RSN_TP_OLD" index="53" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" >(구)&lt;br&gt;수지타입</column>
-<column align="center" id="LUS_RT_CD_OLD" index="54" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="80" >(구)&lt;br&gt;광택도코드</column>
-<column align="center" id="PNT_FLM_THK_OLD" index="55" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" >(구)&lt;br&gt;도막두께</column>
+<column align="center" id="CLR_SUB_MTL_CD_OLD" index="52" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" hidden="true">(구)&lt;br&gt;컬러코드</column>
+<column align="center" id="RSN_TP_OLD" index="53" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" hidden="true">(구)&lt;br&gt;수지타입</column>
+<column align="center" id="LUS_RT_CD_OLD" index="54" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="80" hidden="true">(구)&lt;br&gt;광택도코드</column>
+<column align="center" id="PNT_FLM_THK_OLD" index="55" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="60" hidden="true">(구)&lt;br&gt;도막두께</column>
 <column align="center" clabel="ERP전송일시" dbname="ERP전송일시" id="ERP_SND_DH" index="56" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="120">ERP전송일시</column>
 <column align="center" clabel="수정여부" dbname="수정여부" id="MOD_YN" index="57" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="80">수지수정여부</column>
 <column align="center" clabel="RALCD" dbname="RAL_CD" id="RAL_CD" index="58" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="90">RAL CODE</column>
 <column align="center" clabel="라미나수입검사여부" dbname="라미나수입검사여부" id="LAMINA_INS_YN" index="59" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50">라미나&lt;br&gt;검사&lt;br&gt;여부</column>
 <column align="center" clabel="구매담당자확정" dbname="구매담당자확정" id="PUR_CHR_CFM" index="60" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50">구매&lt;br&gt;담당자&lt;br&gt;확정</column>
+<column align="center" clabel="품질수지타입" dbname="품질수지타입" id="RSN_TP_QT_BR" index="61" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG_MDF_LOG" type="ro" width="50">품질수지타입</column>
+<column align="left" id="RSN_TP_QT_BR_NM" index="62" sort="sort_str_custom" type="ro" width="120">품질수지타입명</column>
 <settings>
 <colwidth>px</colwidth>
 </settings>
 </head>
-<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,MDF_SEQ,MDF_RSN,SUB_MTL_TP,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,RSN_TP_QT,PAT_CD,FUNC_CD,TTE_CD,USE_POS_CD,WTY_YN,STD_CLR_NM,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,LAMINA_INS_YN,PUR_CHR_CFM</userdata>
+<userdata name="column-info">USE_YN,CLR_SUB_MTL_CD,MDF_SEQ,MDF_RSN,SUB_MTL_TP,TP_CD,RSN_TP,RSN_TP_NM,LUS_RT_CD,RL_LUS_RT,LUS_RT_LLV,LUS_RT_ULV,EX_YN,COL_DIF_STD,EX_YN1,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,RSN_TP_QT,PAT_CD,FUNC_CD,TTE_CD,USE_POS_CD,WTY_YN,STD_CLR_NM,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,ERP_SND_DH,MOD_YN,RAL_CD,LAMINA_INS_YN,PUR_CHR_CFM,RSN_TP_QT_BR,RSN_TP_QT_BR_NM</userdata>
 </rows>

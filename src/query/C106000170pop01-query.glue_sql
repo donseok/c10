@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000170pop01 Page 쿼리파일"> 
+	 <query id="C106000170.update" desc="C10 품질설계 재설계 C106000170.update 이돈석" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /* C10 품질설계 상태변경 C106000170.update 이돈석 */ 
+TB_C10_QLT_DSN_CMN SET
+QLT_DSN_STS_CD = :QLT_DSN_STS_CD,
+LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
+LAST_UPDATED_OBJECT_ID=:ObjectId,      
+LAST_UPDATE_PROGRAM_ID=:ProgramId,     
+LAST_UPDATE_TIMESTAMP=:Timestamp      
+WHERE  ORD_NO= :ORD_NO
+AND ORD_LN= :ORD_LN
+		 ]]> 
+	 </query>
+</queryMap>

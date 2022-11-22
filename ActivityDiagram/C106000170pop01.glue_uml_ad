@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="323,29" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="328,313" size="-1,-1" input="//@wire.1"/>
+  <child xsi:type="Glue:RouterActivity" id="3" location="234,97" size="230,-1" input="//@wire.0" output="//@wire.2" name="품질설계상태변경">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:ModifyActivity" id="7" location="261,177" size="143,-1" input="//@wire.2" output="//@wire.1" name="설계여부업데이트">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C106000170.update"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="9" guardcondition="success" firstRelativePoint="276,49" lastRelativePoint="276,98"/>
+  <wire id="14" guardcondition="success" firstRelativePoint="338,207" lastRelativePoint="338,312"/>
+  <wire id="17" guardcondition="save" firstRelativePoint="340,127" lastRelativePoint="340,177"/>
+</Glue:GlueDiagram>

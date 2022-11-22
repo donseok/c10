@@ -31,11 +31,11 @@
 <column id="FA_WAL_11" sort="str" align="right" dbname="FA_WAL_11" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">변색(Fading, ΔE, 이하)Wall 범위 숫자(11)</column>
 <column id="FA_WAL_12" sort="str" align="left" dbname="FA_WAL_12" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">변색(Fading, ΔE, 이하)Wall 범위 영문(12)</column>
 <column id="CH_TRM_13" sort="str" align="right" dbname="CH_TRM_13" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(13)</column>
-<column id="CH_TRM_14" sort="str" align="left" dbname="CH_TRM_14" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(14)</column>
-<column id="CH_ROF_15" sort="str" align="right" dbname="CH_ROF_15" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(15)</column>
-<column id="CH_ROF_16" sort="str" align="left" dbname="CH_ROF_16" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(16)</column>
-<column id="CH_WAL_17" sort="str" align="right" dbname="CH_WAL_17" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(17)</column>
-<column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 숫자(18)</column>
+<column id="CH_TRM_14" sort="str" align="left" dbname="CH_TRM_14" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)기간 영문(14)</column>
+<column id="CH_ROF_15" sort="str" align="right" dbname="CH_ROF_15" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)Roof 범위 숫자(15)</column>
+<column id="CH_ROF_16" sort="str" align="left" dbname="CH_ROF_16" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)Roof 범위 영문(16)</column>
+<column id="CH_WAL_17" sort="str" align="right" dbname="CH_WAL_17" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)Wall 범위 숫자(17)</column>
+<column id="CH_WAL_18" sort="str" align="left" dbname="CH_WAL_18" width="30" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">백화(Chalking, Rate, 이상)Wall 범위 영문(18)</column>
 <column id="PE_FL_1" sort="str" align="right" dbname="PE_FL_1" width="25" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">박리(Peel Flake)기간 숫자(1)</column>
 <column id="PE_FL_20" sort="str" align="left" dbname="PE_FL_20" width="25" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">박리(Peel Flake)기간 영문(20)</column>
 <column id="GT_MT" sort="str" align="right" dbname="PE_FL_1" width="15" table="TB_C10_WAR_TRM_MNG" color="FFFFC0" type="ed">해안가 무보증(m)</column>

@@ -18,9 +18,9 @@
   </activity>
   <activity name="복사금지전송" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="update-sql" value="C104000020TAB01.interFace" />
     <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
   </activity>
 </service>
 

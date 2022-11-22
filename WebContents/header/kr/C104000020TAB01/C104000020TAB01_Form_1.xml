@@ -11,7 +11,9 @@
 <item type="block" width="960">
 <item inputWidth="78" label="품질설계상태" labelWidth="120" name="QLT_DSN_STS_CD" readonly="true" type="input" labelAlign="right" />
 <item offset="7" type="newcolumn"/>
-<item inputWidth="78" name="QLT_HLD_YN" readonly="true" type="input" labelAlign="right" style = "font-weight:bold; color:red" />
+<item inputWidth="50" name="QLT_HLD_YN" readonly="true" type="input" labelAlign="right" style = "font-weight:bold; color:red" />
+<item offset="7" type="newcolumn"/>
+<item inputWidth="21" name="QLT_DSN_STS_CD_CHG" type="input" labelAlign="right" readonly="true"/>
 <item offset="25" type="newcolumn"/>
 <item inputWidth="165" label="주문유형" labelWidth="120" name="ORD_KND" readonly="true" type="input" labelAlign="right" />
 <item offset="25" type="newcolumn"/>
@@ -226,7 +228,7 @@
 <item inputWidth="100" label="설계확정자연락" labelWidth="120" name="HND_PHN_NO" readonly="true" type="input" labelAlign="right" />
 </item>
 <item type="block" width="960">
-<item inputWidth="165" label="반제품포장방법" labelWidth="120" name="WIP_PAK_MTH" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item inputWidth="165" label="반제품포장방법" labelWidth="120" name="WIP_PAK_MTH" type="input" labelAlign="right" style="background-color:#FFFFC0"/>
 <item offset="24" type="newcolumn"/>
 <item inputWidth="487" label="지관메시지" labelWidth="120" name="PPR_RNG_PORD_TXT" type="input" labelAlign="right" style="background-color:#FFFFC0" maxLength="500"/>
 </item>

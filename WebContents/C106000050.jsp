@@ -135,18 +135,19 @@ function save(eventName,formDivObj,referenceItem){
 			var cellValue2 = grid.getCellValue(rowID, gridObj.getColIndexById("CLR_SUB_MTL_CD"));//1 컬러코드
 			var cellValue3 = grid.getCellValue(rowID, gridObj.getColIndexById("CLR_NM"));//2 색상명
 			var cellValue5  = grid.getCellValue(rowID,gridObj.getColIndexById("RSN_TP"));//6 수지타입
-			var cellValue7  = grid.getCellValue(rowID,gridObj.getColIndexById("LUS_RT_CD"));//8 광택도코드		  
-			var cellValue12 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_FLM_THK"));//17 도막두께
-			var cellValue13 = grid.getCellValue(rowID,gridObj.getColIndexById("PRT_INK_TP"));//18 InkType
-			var cellValue15 = grid.getCellValue(rowID,gridObj.getColIndexById("NV"));//20 고형분(NV)
-			var cellValue16 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_GRA"));//21 도료비중(SG)
-			var cellValue17 = grid.getCellValue(rowID,gridObj.getColIndexById("SLV_GRA"));//22 용재비중
-			var cellValue20 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_UNT"));//25 도료원단위
-			var cellValue21 = grid.getCellValue(rowID,gridObj.getColIndexById("PMT"));//26 PMT
-			var cellValue26 = grid.getCellValue(rowID,gridObj.getColIndexById("LMN_KND_TP"));//37 Lamina유형
+			var cellValue7  = grid.getCellValue(rowID,gridObj.getColIndexById("LUS_RT_CD"));//9 광택도코드		  
+			var cellValue12 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_FLM_THK"));//18 도막두께
+			var cellValue13 = grid.getCellValue(rowID,gridObj.getColIndexById("PRT_INK_TP"));//19 InkType
+			var cellValue15 = grid.getCellValue(rowID,gridObj.getColIndexById("NV"));//21 고형분(NV)
+			var cellValue16 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_GRA"));//22 도료비중(SG)
+			var cellValue17 = grid.getCellValue(rowID,gridObj.getColIndexById("SLV_GRA"));//23 용재비중
+			var cellValue20 = grid.getCellValue(rowID,gridObj.getColIndexById("PNT_UNT"));//26 도료원단위
+			var cellValue21 = grid.getCellValue(rowID,gridObj.getColIndexById("PMT"));//27 PMT
+			var cellValue26 = grid.getCellValue(rowID,gridObj.getColIndexById("LMN_KND_TP"));//38 Lamina유형
             var msg = "";		
 		    var colidx = 0;			
 			
+		    //alert('원단위 :' + gridObj.getColIndexById("PNT_UNT"));
 			grid.setCellValue(rowID,gridObj.getColIndexById("USERNO"), <%=userNo%>);
 			
         if(isNull(cellValue)){
@@ -159,10 +160,10 @@ function save(eventName,formDivObj,referenceItem){
 	        gridObj.selectCell(i, 3 , true, true, true);//SetFocus기능 안됨
 	        return;	
         }else{
-          		//PCM도료 필수항목 체크
+          	  //PCM도료 필수항목 체크
               if((cellValue == "S31") && (isNull(cellValue2)|| isNull(cellValue5) || isNull(cellValue7) || isNull(cellValue12) || isNull(cellValue15) ||
                   isNull(cellValue16) || isNull(cellValue17) || isNull(cellValue20) || isNull(cellValue21))){
-
+					
 	                if(isNull(cellValue2)){
 		                if(msg == ""){                      
 		                	msg = "컬러코드";
@@ -654,8 +655,25 @@ function send(eventName,formDivObj,referenceItem){
 	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
 	var selectedId1 = grid.getSelectedRowId();
 	
+	//도료업체 등록여부 확인 12-07-10 추가
+	//var gridObj2 = items['C106000050_Grid_2'].getDhxGrid();
+	//if(isNull(items['C106000050_Grid_2'].getCellValue(gridObj2.getRowId(0),gridObj2.getColIndexById("CLR_SUB_MTL_CD")))){
+	//	dhtmlx.alert("해당 컬러코드의 도료업체 등록 후 전송하세요.");
+	//	return;
+	//}
+	var clrcd = grid.getCellValue(selectedId1,gridObj.getColIndexById("CLR_SUB_MTL_CD"));
+	
+	var param= "ServiceName=C106000050-service&compAjaxFind=1&CLR_SUB_MTL_CD="+clrcd+"&column-info=CLR_SUB_MTL_CD";				
+	var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+	var cells = xmlObj.getElementsByTagName("cell"); 
+	if(cells.length <= 0){					
+		dhtmlx.alert("해당 컬러코드의 도료업체 등록 후 전송하세요.");
+		return;										
+	}
+	
 	
 	var START_DATE = grid.getCellValue(selectedId1,gridObj.getColIndexById("ERP_SND_DH"));
+
 	if(isNull(START_DATE)){
 		//한번도 전송한적이 없음.diff를 10이상으로 하기위해 임의 날짜 set
 		var START_DATE = "2014-01-01 12:59:59";
@@ -673,12 +691,7 @@ function send(eventName,formDivObj,referenceItem){
 	*/
 	
 	
-	//도료업체 등록여부 확인 12-07-10 추가
-	var gridObj2 = items['C106000050_Grid_2'].getDhxGrid();
-	if(isNull(items['C106000050_Grid_2'].getCellValue(gridObj2.getRowId(0),gridObj2.getColIndexById("CLR_SUB_MTL_CD")))){
-	  dhtmlx.alert("해당 컬러코드의 도료업체 등록 후 전송하세요.");
-		return;
-	}	
+		
   
 	var selectedId = grid.getSelectedRowId();
 	if(!isNull(selectedId)){		
@@ -865,6 +878,8 @@ function onFormLoadFunction(){
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,33,34,35,36,37,38,40,42,44,46,48,49,50,51,52,53,54",false);
 			}
 			*/
+			
+			/* 2022.06.21 원본 (2개 항목 원가내역서, 도장사양서 추가전) 
 			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60",false);
 				grid.setColumnHiddenFlag("18,37,39,40,41,42,43,44,46,48,50,52,71",true); //완료!!
@@ -889,7 +904,58 @@ function onFormLoadFunction(){
 			}else{
 				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,71",false);
 			}
-			
+			*/
+			//2022.08.23 원본 (1개 항목 품질라미나 추가전)
+			/*
+			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("18,37,39,40,41,42,43,44,46,48,50,52,73",true); //완료!!
+			}else if(!isNull(comboValue) && (comboValue == "S33")){	 //Thinner 완료!!
+				grid.setColumnHiddenFlag("1,2,3,6,25,54,55,56,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S37")){	//도장기타 완료!!
+				grid.setColumnHiddenFlag("1,2,3,25,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("6,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S34")){	//Ink 완료!!
+				grid.setColumnHiddenFlag("1,2,3,6,8,18,25,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!
+				grid.setColumnHiddenFlag("1,2,3,25,38,40,44,46,48,49,52,53,54,55,56",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,73",true);  
+			}else if(!isNull(comboValue) && (comboValue == "S39")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!
+				grid.setColumnHiddenFlag("1,2,3,40,42,48,49",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,40,41,42,43,44,50,52,58,59,60,61,62,73",true);	
+			}else if(!isNull(comboValue) && (comboValue == "S38")){	//Lamina  완료!!   ---
+				grid.setColumnHiddenFlag("1,2,3,8,17,25,26,37,39,40,41,42,43,54,55,56,57,58,59,60,61,62,73",false);
+				grid.setColumnHiddenFlag("5,6,10,11,12,13,14,15,16,18,20,21,23,27,28,29,30,31,32,33,34,35,36,44,46,48,50,52",true);  
+			}else{
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,61,62,73",false);
+			}
+			*/
+			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ")){	
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("37,39,40,41,42,43,44,46,48,50,52,73",true); //완료!! (0)
+			}else if(!isNull(comboValue) && (comboValue == "S33")){	 //Thinner 완료!! (0)
+				grid.setColumnHiddenFlag("1,2,3,6,8,25,54,55,56,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S37")){	//도장기타 완료!!
+				grid.setColumnHiddenFlag("1,2,3,21,22,23,25,26,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("4,5,6,8,10,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S34")){	//Ink 완료!!
+				grid.setColumnHiddenFlag("1,2,3,6,8,18,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,24,25,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52,73",true); 
+			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!  (0)
+				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
+				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
+			}else if(!isNull(comboValue) && (comboValue == "S39")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!  (0)
+				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
+				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
+			}else if(!isNull(comboValue) && (comboValue == "S38")){	//Lamina  완료!!   (0)
+				grid.setColumnHiddenFlag("1,2,3,18,23,26,27,37,39,40,41,42,43,44,55,56,57,58,59,60,61,62,73",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54",true);  
+			}else{
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,61,62,73",false);
+			}
 		});  
 			
 	    comboList['RSN_TP_SH'].readonly(true,true);//수지타입
@@ -1002,34 +1068,32 @@ function onGrid1LoadFunction(){
 			var rowId = grid.getRowSelectedId();
 			
 			grid.setCellValue(rowId,gridObj.getColIndexById("SUB_MTL_TP_HIDDEN"),sub_mtl_tp_Combo.getSelectedValue());
+			
 			var SUB_MTL_TP_HIDDEN =  gridObj.cellById(rowId, gridObj.getColIndexById("SUB_MTL_TP_HIDDEN")).getValue();
-
-			//
+			
 			if(SUB_MTL_TP_HIDDEN != "S31" && SUB_MTL_TP_HIDDEN != "S32" && SUB_MTL_TP_HIDDEN != "S35" && SUB_MTL_TP_HIDDEN != "S37" && SUB_MTL_TP_HIDDEN != "ZZZ" && (!isNull(grid.getCellValue(rowId,23)))){	
-				grid.setCellValue(rowId,23,"");				
+				grid.setCellValue(rowId,23,"");	
 			}else{
 				if(SUB_MTL_TP_HIDDEN == "S31" || SUB_MTL_TP_HIDDEN == "S32" || SUB_MTL_TP_HIDDEN == "S35" || SUB_MTL_TP_HIDDEN == "S37" || SUB_MTL_TP_HIDDEN == "ZZZ"){
-
 					//도료원단위계산식
 					var nv = 0, unt_gra = 0, slv_gra = 0, pnt_unt = 0;
-					nv = gridObj.cellById(rowId,gridObj.getColIndexById("NV")).getValue();
-					unt_gra = gridObj.cellById(rowId,gridObj.getColIndexById("PNT_GRA")).getValue();
-					slv_gra = gridObj.cellById(rowId,gridObj.getColIndexById("SLV_GRA")).getValue();			
-					pnt_unt = (parseFloat(unt_gra)*100)/(100-((100-parseFloat(nv))*(parseFloat(unt_gra)/parseFloat(slv_gra))));	 
-				
+					nv = gridObj.cellById(rowId,gridObj.getColIndexById("NV")).getValue();   //21
+					unt_gra = gridObj.cellById(rowId,gridObj.getColIndexById("PNT_GRA")).getValue();  //22
+					slv_gra = gridObj.cellById(rowId,gridObj.getColIndexById("SLV_GRA")).getValue();  //23			
+					pnt_unt = (parseFloat(unt_gra)*100)/(100-((100-parseFloat(nv))*(parseFloat(unt_gra)/parseFloat(slv_gra))));	//26 
+			
 					if(nv == "0" || unt_gra == "0" || slv_gra == "0" ){
-					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), "");          
+					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), ""); 
 					}else if(isNull(nv) || isNull(unt_gra) || isNull(slv_gra)){			
-					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), "");          
+					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), "");
 					}else{	           
-					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), pnt_unt.toFixed(2));   
+					   items['C106000050_Grid_1'].setCellValue(rowId, gridObj.getColIndexById("PNT_UNT"), pnt_unt.toFixed(2));
 					}
-					
 				}
 			}
 		});
 	
-    var rsnTpCombo = gridObj.getColumnCombo(gridObj.getColIndexById('RSN_TP')); //수지타입
+    var rsnTpCombo = gridObj.getColumnCombo(gridObj.getColIndexById('RSN_TP')); //구매수지타입
         rsnTpCombo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=RSN_TP&totalValue=&orderBy=value&displayType=all-code");   
 		rsnTpCombo.enableOptionAutoPositioning(true);
 		rsnTpCombo.readonly(true,true);
@@ -1137,6 +1201,13 @@ function onGrid1LoadFunction(){
 		wty_yn_Combo.readonly(true,true);
 		wty_yn_Combo.setOptionHeight(220);
 		
+		//2022.08.19 1개 항목추가
+	var rsn_tp_qt_br_Combo = gridObj.getColumnCombo(gridObj.getColIndexById('RSN_TP_QT_BR')); //type유형
+		rsn_tp_qt_br_Combo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=RSN_TP_QT_BR&totalValue=&orderBy=value&displayType=all-code");     
+		rsn_tp_qt_br_Combo.enableOptionAutoPositioning(true);
+		rsn_tp_qt_br_Combo.readonly(true,true);
+		rsn_tp_qt_br_Combo.setOptionHeight(220);
+		
 		/*
 		//부재료구분
 		tp_cd_Combo.attachEvent("onSelectionChange", function(){
@@ -1170,7 +1241,42 @@ function onGrid2LoadFunction(){
 		//items['C106000050_Grid_2'].getDhxGrid().detachEvent(onXleGrid2);
 }
 
-//(물성) 등록을 위한 POP-UP
+//도장사양서 등록을 위한 POP-UP
+function doImgPopUp10(rowIdx){	
+	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
+	var rowId = gridObj.getRowIndex(rowIdx);
+	
+	var md_url = "C106000050pop06.jsp?rowId="+rowId;
+		md_url += "&CLR_SUB_MTL_CD="+items['C106000050_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('CLR_SUB_MTL_CD'));
+		md_url += "&CLR_SUB_MTL_CD_SEQ_NO=1"; // 1로 고정
+		md_url += "&parent_item=C106000050_Grid_1";
+		md_url += "&IMG_RGS_TP=1";  // 1로 고정(PC)
+		md_url += "&PRD_SPC_TP=9";  // 1로 고정(제품이미지)
+		
+
+	var cusWinObj = new ui.window("C106000050PopWin","도장사양서 파일 등록","0","0","465","405",md_url);
+		cusWinObj.setButtonDisable("park,minmax1");
+		cusWinObj.setModal();
+}
+
+//원가내역서 등록을 위한 POP-UP
+function doImgPopUp11(rowIdx){	
+	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
+	var rowId = gridObj.getRowIndex(rowIdx);
+	
+	var md_url = "C106000050pop07.jsp?rowId="+rowId;
+		md_url += "&CLR_SUB_MTL_CD="+items['C106000050_Grid_1'].getCellByIndexValue(rowId,gridObj.getColIndexById('CLR_SUB_MTL_CD'));
+		md_url += "&CLR_SUB_MTL_CD_SEQ_NO=1"; // 1로 고정
+		md_url += "&parent_item=C106000050_Grid_1";
+		md_url += "&IMG_RGS_TP=1";  // 1로 고정(PC)
+		md_url += "&PRD_SPC_TP=0";  // 1로 고정(제품이미지)
+
+	var cusWinObj = new ui.window("C106000050PopWin","원가내역서 파일 다운로드","0","0","465","405",md_url);
+		cusWinObj.setButtonDisable("park,minmax1");
+		cusWinObj.setModal();
+}
+
+//MSDS 등록을 위한 POP-UP
 function doImgPopUp2(rowIdx){	
 	var gridObj = items['C106000050_Grid_2'].getDhxGrid();
 	var rowId = gridObj.getRowIndex(rowIdx);
@@ -1184,7 +1290,6 @@ function doImgPopUp2(rowIdx){
 	var cusWinObj = new ui.window("C106000050PopWin","MSDS 파일 다운로드","0","0","465","405",md_url);
 		cusWinObj.setButtonDisable("park,minmax1");
 		cusWinObj.setModal();
-	
 }
 
 
@@ -1304,7 +1409,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}
-		}else if(cInd == 11 ) { //광택도하한값
+		}
+    	else if(cInd == 12 ) { //광택도하한값
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1317,7 +1423,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 12 ) { //광택도상한값
+		}
+    	else if(cInd == 13 ) { //광택도상한값
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1330,7 +1437,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			} 
-		}else if(cInd == 16 ) { //작업점도
+		}
+    	else if(cInd == 17 ) { //작업점도
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1343,7 +1451,107 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 17 ) { //도막두께
+		}
+    	else if(cInd == 18 ) { //도막두께
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("도막두께의",3,0,true,this.value)){
+						return true;
+					}else{
+						gridObj.editor.obj.value = "";
+						return true;
+					}					
+				}
+			}
+    	}
+		else if(cInd == 22 ) { //MAX LENGTH 체크
+				gridObj.editor.obj.onkeyup = function(e){
+					e = e||window.event;
+					if((e.keyCode >= 47) || (e.keyCode == 0)){
+						var text = this.value;
+						if(grid_qnty_check("도료비중의",7,2,true,this.value)){
+							return true;
+						}else{
+							gridObj.editor.obj.value = "";
+							return true;
+						}					
+					}
+				}
+		}
+		else if(cInd == 23 ) { //MAX LENGTH 체크
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("용재비중의",7,2,true,this.value)){
+						return true;
+					}else{
+						gridObj.editor.obj.value = "";
+						return true;
+					}					
+				}
+			}
+    	}
+    	else if(cInd == 26 ) { //MAX LENGTH 체크
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("도료원단위의",8,2,true,this.value)){
+						return true;
+					}else{
+						gridObj.editor.obj.value = "";
+						return true;
+					}					
+				}
+			}
+		 }
+		/*
+    	else if(cInd == 11 ) { //광택도하한값
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("광택도하한값의",4,1,true,this.value)){
+						return true;
+					}else{
+						this.value = "";
+						return true;
+					}					
+				}
+			}
+		}
+    	else if(cInd == 12 ) { //광택도상한값
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("광택도상한값의",4,1,true,this.value)){
+						return true;
+					}else{
+						gridObj.editor.obj.value = "";
+						return true;
+					}					
+				}
+			} 
+		}
+    	else if(cInd == 16 ) { //작업점도
+			gridObj.editor.obj.onkeyup = function(e){
+				e = e||window.event;
+				if((e.keyCode >= 47) || (e.keyCode == 0)){
+					var text = this.value;
+					if(grid_qnty_check("작업점도의",3,0,true,this.value)){
+						return true;
+					}else{
+						this.value = "";
+						return true;
+					}					
+				}
+			}
+		}
+    	else if(cInd == 17 ) { //도막두께
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1369,7 +1577,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 20 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 20 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1382,7 +1591,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 22 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 22 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1395,7 +1605,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-    	}else if(cInd == 23 ){//적용시너코드
+    	}
+		else if(cInd == 23 ){//적용시너코드
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
   				if(!hanCheck(valueLength,'5')){
@@ -1404,7 +1615,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}			
-		}else if(cInd == 25 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 25 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1417,7 +1629,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 26 ) { //MAX LENGTH 체크
+		  }
+		  else if(cInd == 27 ) { //MAX LENGTH 체크	
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1430,7 +1643,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 27 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 28 ) { //MAX LENGTH 체크	
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1443,7 +1657,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 28 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 28 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1456,7 +1671,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}
-		}else if(cInd == 29 ) { //MAX LENGTH 체크
+		}
+		else if(cInd == 29 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -1469,7 +1685,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					}					
 				}
 			}						 			 			
-    	}else if(cInd == 36){//표준색상명 
+    	}
+		else if(cInd == 36){//표준색상명 
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
   				if(!hanCheck(valueLength,'20')){
@@ -1478,14 +1695,13 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}	
-    	/*
     	}else if(cInd == 33 || cInd == 34 || cInd == 35 || cInd == 36){//라미나접착제 -> 대문자입력
 			gridObj.editor.obj.onkeydown = function(e){
 			    var cellValue = gridObj.editor.obj.value;
 		  	    if(cellValue.charAt(cellValue - 1) <= 'z' && cellValue.charAt(cellValue.length - 1) >= 'a'){
 		  		   gridObj.editor.obj.value = cellValue.toUpperCase();
 		  		}
-		    }*/
+
     	}else if(cInd == 39 || cInd == 40 || cInd == 41 || cInd == 42){//라미나접착제 -> 대문자입력
 			gridObj.editor.obj.onkeydown = function(e){
 			    var cellValue = gridObj.editor.obj.value;
@@ -1493,7 +1709,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 		  		   gridObj.editor.obj.value = cellValue.toUpperCase();
 		  		}
 		    }	    
-    	/*
+
     	}else if(cInd == 48){//비고
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
@@ -1521,7 +1737,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}
-    	*/
+
     	}else if(cInd == 54){//비고
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
@@ -1531,7 +1747,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}
-    	}else if(cInd == 55){//등록자
+    	}
+    	else if(cInd == 55){//등록자
   			gridObj.editor.obj.onkeyup = function() {
   				var valueLength = gridObj.editor.obj.value+'';
   				if(!hanCheck(valueLength,'10')){
@@ -1549,7 +1766,8 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
   					return false;
   				}				
   			}
-  		}else{
+  		}*/
+    	else{
   			return true;
   		}
 	}else if(stage ==2){
@@ -1573,7 +1791,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 					//grid.setUpdated(rId,false,""); 
 					return;										
 				}
-			}else if((cInd==20 || cInd==21 || cInd==22)){
+			}else if((cInd==21 || cInd==22 || cInd==23)){
                 var SUB_MTL_TP_HIDDEN =  gridObj.cellById(rId, gridObj.getColIndexById("SUB_MTL_TP_HIDDEN")).getValue();
 
 				if(isNull(SUB_MTL_TP_HIDDEN)){
@@ -1614,7 +1832,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 				items['C106000050_Grid_1'].setCellValue(rId, gridObj.getColIndexById("COL_DIF_STD"), col_diff_std);
 			}
 			//색상명, 수지, 광택도 변경 시 수정여부에 값 입력되는 로직 추가
-			else if((cInd==2 || cInd==6 || cInd==8)){
+			else if((cInd==2 || cInd==6 || cInd==9)){
 				if (oValue != nValue)
 				{
 					//ERP전송 기록이 있는 경우만 수정여부에 M을 넣어주고 그렇지 않고 전송기록이 한번도 없는경우는 M을 넣지 않는다
@@ -1622,7 +1840,7 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 						items['C106000050_Grid_1'].setCellValue(rId, gridObj.getColIndexById("MOD_YN"), "M");
 					}
 				}
-			}else if(cInd==10)
+			}else if(cInd==11)
 				{
 				var SUB_MTL_TP_HIDDEN =  gridObj.cellById(rId, gridObj.getColIndexById("SUB_MTL_TP_HIDDEN")).getValue();
 

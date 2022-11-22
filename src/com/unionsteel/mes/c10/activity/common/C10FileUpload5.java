@@ -59,7 +59,7 @@ public class C10FileUpload5 extends PosActivity {
 			param.setNamedParamter("IMG_RGS_FLAG_ID4",ctx.get("IMG_RGS_FLAG_ID4"));
 			param.setNamedParamter("FILE_NAME"       ,ctx.get("FILE_NAME"));
 			param.setNamedParamter("FILE_ADDR"       ,ctx.get("FILE_ADDR"));
-			//param.setNamedParamter("PRD_SPC_TP"      ,prdSpcTp);
+			param.setNamedParamter("PRD_SPC_TP"      ,prdSpcTp);
 			param.setNamedParamter("SEQ"             ,ctx.get("SEQ"));
 
 			if ("03".equals(img_rgs_flag)) {
@@ -97,7 +97,28 @@ public class C10FileUpload5 extends PosActivity {
 					queryStr = C10ConstantsIF.C106000140POP02_INSERT;
 					delQueryStr = C10ConstantsIF.C106000140POP02_DELETE;
 					upQueryStr = C10ConstantsIF.C106000140POP02_UPDATE;
+				} else if ("7".equals(prdSpcTp)) {
+					//규격이미지인 경우 (prdSpcTp 값 : 6)	
+					queryStr = C10ConstantsIF.C106000160POP01_INSERT;
+					delQueryStr = C10ConstantsIF.C106000160POP01_DELETE;
+					upQueryStr = C10ConstantsIF.C106000160POP01_UPDATE;
+				} else if ("8".equals(prdSpcTp)) {
+					//규격이미지인 경우 (prdSpcTp 값 : 6)	
+					queryStr = C10ConstantsIF.C106000160POP02_INSERT;
+					delQueryStr = C10ConstantsIF.C106000160POP02_DELETE;
+					upQueryStr = C10ConstantsIF.C106000160POP02_UPDATE;
+				} else if ("9".equals(prdSpcTp)) { //여기 작업
+					//도장사양서 경우 (prdSpcTp 값 : 9)
+					queryStr = C10ConstantsIF.C106000050POP06_INSERT;
+					delQueryStr = C10ConstantsIF.C106000050POP06_DELETE;
+					upQueryStr = C10ConstantsIF.C106000050POP06_UPDATE;
+				} else if ("0".equals(prdSpcTp)) { //여기 작업
+					//원가내역서 경우 (prdSpcTp 값 : A)	
+					queryStr = C10ConstantsIF.C106000050POP07_INSERT;
+					delQueryStr = C10ConstantsIF.C106000050POP07_DELETE;
+					upQueryStr = C10ConstantsIF.C106000050POP07_UPDATE;
 				}
+				
 			}  else if ("05".equals(img_rgs_flag)) {
 				queryStr    = C10ConstantsIF.C108000010POP02_INSERT;
 				delQueryStr = C10ConstantsIF.C108000010POP02_DELETE;

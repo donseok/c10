@@ -10,4 +10,8 @@
 			<item offset="2" type="newcolumn" />
 	    <item command="truTest_save" name="truTest_save" type="custombutton" value="신뢰성시험"/>
 	</item>
+	<item background-color="255,128,128" type="block" width="80">
+			<item offset="2" type="newcolumn" />
+	    <item command="BOM_kwdsync" label="BOM_KWDSYNC" name="BOM_kwdsync" type="custombutton" value="KWD동기화"  />
+	</item>
 </items>

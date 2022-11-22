@@ -27,11 +27,13 @@
 <column id="KEY_WRD4" index="8" sort="na" align="left" dbname="참고항목4" width="18" table="TB_C10_QLT_DSN_CMN" type="ahref_idx" clabel="참고항목4" >참고항목4</column>
 <column align="center" index="9" clabel="ORD_NO" dbname="주문번호" id="ORD_NO" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문번호</column>
 <column align="center" index="10" clabel="ORD_LN" dbname="주문행번" id="ORD_LN" sort="na" table="TB_C10_QLT_DSN_CCL_BOM" type="ro" width="10" hidden="true">주문행번</column>
+<column align="center" index="11" clabel="FNL_CUS_CD" dbname="최종수요가코드" id="FNL_CUS_CD" sort="na" table="TB_C10_CLR_MPR" type="ro" width="10" hidden="true">고객사코드</column>
+<column align="center" index="12" clabel="ORD_USG_CD" dbname="주문용도코드" id="ORD_USG_CD" sort="na" table="TB_C10_CLR_MPR" type="ro" width="10" hidden="true">주문용도코드</column>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
-<userdata name="column-info">KEY_WRD1_TXT,KEY_WRD1,KEY_WRD2_TXT,KEY_WRD2,KEY_WRD3_TXT,KEY_WRD3,KEY_WRD4_TXT,KEY_WRD4,ORD_NO,ORD_LN</userdata>
+<userdata name="column-info">KEY_WRD1_TXT,KEY_WRD1,KEY_WRD2_TXT,KEY_WRD2,KEY_WRD3_TXT,KEY_WRD3,KEY_WRD4_TXT,KEY_WRD4,ORD_NO,ORD_LN,FNL_CUS_CD,ORD_USG_CD</userdata>
 <row id="0">
 <cell align="center" class="form_cell">링크1</cell>
 <cell id="KEY_WRD1" />

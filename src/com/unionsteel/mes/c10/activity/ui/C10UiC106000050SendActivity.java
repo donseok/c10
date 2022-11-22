@@ -90,6 +90,23 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
         
         String[] MOD_YN = null;
         
+        String[] RSN_TP_QT = null;
+        String[] RSN_TP_QT_NM = null;
+        String[] PAT_CD = null;
+        String[] PAT_CD_NM = null;
+        String[] FUNC_CD = null;
+        String[] FUNC_CD_NM = null;
+        String[] TTE_CD = null;
+        String[] TTE_CD_NM = null;
+        String[] USE_POS_CD = null;
+        String[] USE_POS_CD_NM = null;
+        String[] WTY_YN = null;
+        String[] WTY_YN_NM = null;
+        //String[] RGS_PRS_ID = null;
+        String[] LAST_UPDATED_OBJECT_ID = null; 
+        
+        
+        
         int idx = 0;
         int nRELULT = 0;
 		int dmlCnt = 0;
@@ -122,8 +139,22 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
             	PTT_FLM_PRD_ADH_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PTT_FLM_PRD_ADH_NM"));
             	MOD_YN = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("MOD_YN"));
             	//PNT_CMP_USE_YN = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PNT_CMP_USE_YN"));
-           	   
-    	
+           	    
+            	// 2022.10.5 홍성업부장 요청 (인터페이스 항목추가)
+            	RSN_TP_QT = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("RSN_TP_QT"));
+            	RSN_TP_QT_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("RSN_TP_QT_NM"));
+            	PAT_CD = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PAT_CD"));
+            	PAT_CD_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PAT_CD_NM"));
+            	FUNC_CD = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("FUNC_CD"));
+            	FUNC_CD_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("FUNC_CD_NM"));
+            	TTE_CD = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("TTE_CD"));
+            	TTE_CD_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("TTE_CD_NM"));
+            	USE_POS_CD = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("USE_POS_CD"));
+            	USE_POS_CD_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("USE_POS_CD_NM"));
+            	WTY_YN = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("WTY_YN"));
+            	WTY_YN_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("WTY_YN_NM"));
+            	LAST_UPDATED_OBJECT_ID = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("LAST_UPDATED_OBJECT_ID"));
+            	
             	param = new PosParameter();
                 param.setNamedParamter( "CLR_SUB_MTL_CD", CLR_SUB_MTL_CD );
                 param.setWhereClauseParameter( 0, CLR_SUB_MTL_CD );
@@ -183,6 +214,21 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                 	param.setNamedParamter( "PTT_FLM_PRD_ADH_CD", PTT_FLM_PRD_ADH_CD );
                 	param.setNamedParamter( "PTT_FLM_PRD_ADH_NM", PTT_FLM_PRD_ADH_NM );
                 	param.setNamedParamter( "MOD_YN", MOD_YN );
+                	param.setNamedParamter( "RSN_TP_QT", RSN_TP_QT );
+                	param.setNamedParamter( "RSN_TP_QT_NM", RSN_TP_QT_NM );
+                	param.setNamedParamter( "PAT_CD", PAT_CD );
+                	param.setNamedParamter( "PAT_CD_NM", PAT_CD_NM );
+                	param.setNamedParamter( "FUNC_CD", FUNC_CD );
+                	param.setNamedParamter( "FUNC_CD_NM", FUNC_CD_NM );
+                	param.setNamedParamter( "TTE_CD", TTE_CD );
+                	param.setNamedParamter( "TTE_CD_NM", TTE_CD_NM );
+                	param.setNamedParamter( "USE_POS_CD", USE_POS_CD );
+                	param.setNamedParamter( "USE_POS_CD_NM", USE_POS_CD_NM );
+                	param.setNamedParamter( "WTY_YN", WTY_YN );
+                	param.setNamedParamter( "WTY_YN_NM", WTY_YN_NM );
+                	param.setNamedParamter( "LAST_UPDATED_OBJECT_ID", LAST_UPDATED_OBJECT_ID );
+                	
+                	
                 	
                 	// Audit 값이 안들어가서 임의로 추가해봄 
                 	param.setNamedParamter("LAST_UPDATED_OBJECT_ID", audit.getObjectId());

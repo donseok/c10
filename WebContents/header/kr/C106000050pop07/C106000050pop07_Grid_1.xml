@@ -1,0 +1,59 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" id="CLR_SUB_MTL_CD" index="1" sort="str" type="ro" width="19">컬러코드</column>
+<column align="center" id="SEQ_NO" index="2" sort="str" type="ro" width="8">순번</column>
+<column align="center" id="IMG_RGS_TP" index="3" type="ro" width="11">구분</column>
+<column align="left" id="IMG_NM" index="4" type="ahref_idx" width="*">파일</column>
+<column align="center" id="CLR_SUB_MTL_CD_RGS_DH" index="5" type="ro" width="20">등록일자</column>
+<column align="center" id="CLR_SUB_MTL_CD_RGS_PRS_ID" index="6" type="ro" width="16">등록자</column>
+<column align="center" id="DEL_IMG" index="7" type="ro" width="8">삭제</column>
+<column align="right" id="CLR_SUB_MTL_CD_SEQ_NO" hidden="true" index="2" sort="str" type="ro"></column>
+<column align="center" hidden="true" id="IMG_ADR" index="8" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CHK_IMG_NM" index="8" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CHK_IMG_ADR" index="8" sort="str" type="ro"/>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head> 
+<userdata name="column-info">CLR_SUB_MTL_CD,SEQ_NO,IMG_RGS_TP,IMG_NM,CLR_SUB_MTL_CD_RGS_DH,CLR_SUB_MTL_CD_RGS_PRS_ID,DEL_IMG,CLR_SUB_MTL_CD_SEQ_NO,IMG_ADR,CHK_IMG_NM,CHK_IMG_ADR</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="1">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

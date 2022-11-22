@@ -2,80 +2,45 @@
 <queryMap desc="C106000010 Page 쿼리파일"> 
 	 <query id="C106000010.select" desc="C106000010 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT/*+ C10 품질설계 칼라시편관리조회 C106000010.select 이민균 */
+SELECT/* C10 품질설계 칼라시편관리조회 C106000010.select 이민균 */
     CLR_SMP_REQ_NO,--칼라시편의뢰번호
-    CLR_SMP_RCP_NO,--칼라시편접수번호
+    DECODE(CLR_WK_STS_CD,'A','개발등록','B','개발승인','C','개발접수','D','배송출발','') AS CLR_WK_STS_NM,
+    TO_CHAR(SAL_CHR_REQ_DH,'yyyy-mm-dd') AS SAL_CHR_REQ_DH,--영업담당자요청등록일
     CUS_REQ_HUE_TXT,--고객요청색상명
     RSN_TP || (SELECT ' : ' || CD_V_MEANING 
          FROM M00APUSER.VI_M00_CODE_ACCESS
          WHERE CD_TP = 'RSN_TP'         
          AND   CATEGORY_GROUP_NM = 'SZ0000'
          AND   CD_V = RSN_TP) AS RSN_TP,--수지타입
+    RSN_TP_TXT,
     RSN_ANL_REQ_YN, --수지분석여부  
-    SMP_SND_YN, --시편송부여부   
-    PNT_FLM_THK_TXT,--도막두께TXT 
-    SMP_LUS_YN, --샘플광
-    LUS_RT_CD || (SELECT ' : ' || CD_V_MEANING 
-         FROM M00APUSER.VI_M00_CODE_ACCESS
-         WHERE CD_TP = 'LUS_RT_CD'         
-         AND   CATEGORY_GROUP_NM = 'SZ0000'
-         AND   CD_V = LUS_RT_CD) AS LUS_RT_CD,--광택도코드
-    CLR_USE_NM,--사용용도명
-    PRD_NM_CD,--품명코드
-    PRD_TP_YN, --품명구분여부
     SAL_CHR_PRS_ID,--영업담당자ID
     CUS_CD_TXT,--고객사명
-    USE_REG_TXT,--사용지역명
-    TO_CHAR(SAL_CHR_REQ_DH,'yyyy-mm-dd') AS SAL_CHR_REQ_DH,--영업담당자요청일
-    TO_CHAR(SAL_CHR_RGN_DH,'yyyy-mm-dd') AS SAL_CHR_RGN_DH,--영업담당자승인일
     DEV_PNT_CMP_CD,
     (SELECT CD_V_MEANING 
        FROM M00APUSER.VI_M00_CODE_ACCESS
       WHERE CD_TP = 'PNT_CMP_CD'         
         AND CATEGORY_GROUP_NM = 'SZ0000'
         AND CD_V = DEV_PNT_CMP_CD) AS DEV_PNT_CMP_CD_NM,--개발도료업체코드
-    TO_CHAR(CLR_SMP_DEV_REQ_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_REQ_DH,--칼라시편개발의뢰일
-    TO_CHAR(CLR_SMP_DEV_LMT_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_LMT_DH,--칼라시편개발예정일
-    TO_CHAR(CLR_SMP_DEV_END_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_END_DH,--칼라시편개발완료일
-    TO_CHAR(CLR_SMP_DEV_SND_DH,'yyyy-mm-dd') AS CLR_SMP_DEV_SND_DH,--칼라시편개발송부일
-    SMP_SND_INF, --시편송부정보
-    DSN_CHR_RGN_YN,
-    (SELECT CD_V_MEANING 
-       FROM M00APUSER.VI_M00_CODE_ACCESS
-      WHERE CD_TP = 'DSN_CHR_RGN_YN'         
-        AND CATEGORY_GROUP_NM = 'SZ0000'
-        AND CD_V = DSN_CHR_RGN_YN) AS DSN_CHR_RGN_YN_NM,--승인
-    HUE_CD,-- 색상코드
-    CCL_BOM_NO,--CCLBOM번호
-    TO_CHAR(CCL_BOM_RGS_DH,'yyyy-mm-dd') AS CCL_BOM_RGS_DH,--CCLBOM등록일
-    CLR_TP,
-    (SELECT CD_V_MEANING 
-       FROM M00APUSER.VI_M00_CODE_ACCESS
-      WHERE CD_TP = 'CLR_TP'         
-        AND   CATEGORY_GROUP_NM = 'SZ0000'
-        AND   CD_V = CLR_TP) AS CLR_TP_NM,--색구분
-    SIM_HUE_PRG_YN, --유사색상진행여부
     DSN_CHR_PRS_ID, --설계담당자
-    B.SMP_PRC_MAN,
-    B.MGR_CAL,  
-    CLR_SMP_RMK, --비고  
-    CLR_SMP_DSN_RMK, --설계비고
-    RSN_TP_TXT,
-    ORD_PRE_WGT,
-    COL_CFM_ACT_YN,
-    DECODE(PRJ_DEV_CD,'1','1~3회','2','반복','') AS PRJ_DEV_CD --프로젝트성개발   
-FROM  C10APUSER.TB_C10_CLR_SMP A,
-          C10APUSER.TB_C10_CLR_CMP_DEV_MNG B
-WHERE  CLR_SMP_DEV_RCP_DH BETWEEN TO_DATE(NVL(:CLR_SMP_DEV_RCP_DH_START,'1900-01-01'),'YYYY-MM-DD')
-AND TO_DATE(NVL(:CLR_SMP_DEV_RCP_DH_END,'2999-12-31'),'YYYY-MM-DD') + 1
+    PNT_CMP_DLV_HP, 
+    PNT_CMP_DLV_NM,
+    TO_CHAR(PNT_CMP_DLV_EXP_DH,'yyyy-mm-dd') AS PNT_CMP_DLV_EXP_DH,  
+    TO_CHAR(PNT_CMP_DLV_DH,'yyyy-mm-dd') AS PNT_CMP_DLV_DH, 
+    SMPL_DLV_CMP_CD,
+    (SELECT CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+      WHERE CD_TP = 'SMPL_DLV_CMP_CD'         
+        AND CATEGORY_GROUP_NM = 'SZ0000'
+        AND CD_V = SMPL_DLV_CMP_CD) AS SMPL_DLV_CMP_NM,--배송업체
+    IVC_NO 
+FROM  C10APUSER.TB_C10_CLR_SMP
+WHERE  CLR_SMP_DEV_REQ_DH BETWEEN TO_DATE(NVL(:CLR_SMP_DEV_REQ_DH_START,'1900-01-01'),'YYYY-MM-DD')
+AND TO_DATE(NVL(:CLR_SMP_DEV_REQ_DH_END,'2999-12-31'),'YYYY-MM-DD') + 1
 AND NVL(CLR_SMP_REQ_NO, ' ') LIKE NVL(:CLR_SMP_REQ_NO,'%') || '%'
-AND NVL(CLR_SMP_RCP_NO, ' ') LIKE NVL(:CLR_SMP_RCP_NO,'%')  || '%'
 AND NVL(DEV_PNT_CMP_CD, ' ') LIKE  NVL(:DEV_PNT_CMP_CD,'%')  || '%'
 AND NVL(SAL_CHR_PRS_ID, ' ') LIKE  NVL(:SAL_CHR_PRS_ID,'%') || '%'
-AND A.DEV_PNT_CMP_CD = B.PNT_CMP_CD(+)
-AND ((:NOT_REC_YN = '1' AND (DEV_PNT_CMP_CD IS NULL OR CLR_SMP_DEV_REQ_DH IS NULL OR CLR_SMP_DEV_LMT_DH IS NULL))
- OR :NOT_REC_YN != '1')  --미의뢰현황 클릭시 도료업체값, 의뢰일, 예정일 중 한 개 항목이라도 없는 대상List 조회 
-ORDER BY CLR_SMP_REQ_NO, CLR_SMP_RCP_NO
+ORDER BY CLR_SMP_REQ_NO
 		 ]]> 
 	 </query>
 	 <query id="C106000010.update" desc="C106000010 정보 수정" isNamed="true">

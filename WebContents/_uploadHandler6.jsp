@@ -5,8 +5,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.posdata.glue.context.PosContext" %>
 <%@ page import="com.unionsteel.mes.c10.activity.common.C10FileUpload5" %>
-<%@page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
-<%@page import = "com.posdata.glue.web.security.PosUser" %>
+<%@ page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
+<%@ page import = "com.posdata.glue.web.security.PosUser" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 PosUser	user		= (PosUser)session.getAttribute(PosSecurityConstants.USER);
@@ -50,7 +50,7 @@ if (!isMultipart) {
         	if("IMG_RGS_FLAG_ID2".equals(f_field_name))	IMG_RGS_FLAG_ID2 = fitem.getString();
         	if("IMG_RGS_FLAG_ID3".equals(f_field_name))	IMG_RGS_FLAG_ID3 = fitem.getString();
         	if("IMG_RGS_FLAG_ID4".equals(f_field_name))	IMG_RGS_FLAG_ID4 = fitem.getString();
-        	//if("PRD_SPC_TP".equals(f_field_name))	    PRD_SPC_TP       = fitem.getString();
+        	if("PRD_SPC_TP".equals(f_field_name))	    PRD_SPC_TP       = fitem.getString();
 		}
 	}
 
@@ -105,7 +105,8 @@ if (!isMultipart) {
 			ctx.put("FILE_ADDR"			, FILE_ADDR);	
 			ctx.put("FILE_NAME"			, fileName);	
 			ctx.put("ObjectId"			, userNo);
-			//ctx.put("PRD_SPC_TP"	    , PRD_SPC_TP);
+			ctx.put("PRD_SPC_TP"	    , PRD_SPC_TP);
+				
 			
 			C10FileUpload5 fileUploead = new C10FileUpload5();
 			fileUploead.runActivity(ctx);
