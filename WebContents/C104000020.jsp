@@ -12,15 +12,21 @@
  * 2011.11.14     V1.0      박재영      Initial Version
  * 변경일자        
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
+<%@page import = "com.posdata.glue.web.security.PosUser" %>
 <%
- String ORD_NO = request.getParameter("ORD_NO") !=null ? request.getParameter("ORD_NO") : "";
- String ORD_LN = request.getParameter("ORD_LN") !=null ? request.getParameter("ORD_LN") : "";
- String QLT_DSN_YN = request.getParameter("QLT_DSN_YN") !=null ? request.getParameter("QLT_DSN_YN") : "";
- String CCL_BOM_NO = request.getParameter("CCL_BOM_NO") !=null ? request.getParameter("CCL_BOM_NO") : "";
- String colorTabOpen = request.getParameter("colorTabOpen") !=null ? request.getParameter("colorTabOpen") : ""; //20210204 변정훈 품질설계결과 화면 오픈 시 칼라제조사양 탭 오픈 여부 변수
+	String ORD_NO = request.getParameter("ORD_NO") !=null ? request.getParameter("ORD_NO") : "";
+	String ORD_LN = request.getParameter("ORD_LN") !=null ? request.getParameter("ORD_LN") : "";
+	String QLT_DSN_YN = request.getParameter("QLT_DSN_YN") !=null ? request.getParameter("QLT_DSN_YN") : "";
+	String CCL_BOM_NO = request.getParameter("CCL_BOM_NO") !=null ? request.getParameter("CCL_BOM_NO") : "";
+    String colorTabOpen = request.getParameter("colorTabOpen") !=null ? request.getParameter("colorTabOpen") : ""; //20210204 변정훈 품질설계결과 화면 오픈 시 칼라제조사양 탭 오픈 여부 변수
+ 
+	PosUser	user = (PosUser)session.getAttribute(PosSecurityConstants.USER);
+	String userNo	= "";
+	if(user != null) {
+		userNo 	= (String)user.getUserInfo("USER_NO");
+	}
  
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,21 +54,22 @@ var initConfig = JSON.parse(pageConfiguration);
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":"/dhtmlx/codebase/imgs/"};
 //form find button item event function (requred)
 function find(eventName){
- var form = items['C104000020_Form_1'];
- var comboList = form.getDhxForm().getCombo("ORD_LN");
- if(isNull(form.getItemValue("ORD_NO"))){
-  dhtmlx.alert("주문번호를 입력해주세요.");
-  form.setItemFocus("ORD_NO");
-  return; 
- }else if(isNull(comboList.getSelectedValue())){
-  dhtmlx.alert("주문행번를 선택해주세요.");
-  comboList.DOMelem_input.focus();
-  return; 
- }else{
-  var findUrl = uiCommon.parameters6('C104000020_Form_1','C104000020_Form_2',eventName);
-  items['C104000020_Form_2'].loadData(findUrl,findMessage); 
-  items["C104000020_Tabbar_1"].activeTabFrame().contentWindow.find(eventName);     
- }
+	var form = items['C104000020_Form_1'];
+	var comboList = form.getDhxForm().getCombo("ORD_LN");
+
+	if(isNull(form.getItemValue("ORD_NO"))){
+		dhtmlx.alert("주문번호를 입력해주세요.");
+		form.setItemFocus("ORD_NO");
+		return; 
+	}else if(isNull(comboList.getSelectedValue())){
+		dhtmlx.alert("주문행번를 선택해주세요.");
+		comboList.DOMelem_input.focus();
+		return; 
+	}else{
+		var findUrl = uiCommon.parameters6('C104000020_Form_1','C104000020_Form_2',eventName);
+		items['C104000020_Form_2'].loadData(findUrl,findMessage); 
+		items["C104000020_Tabbar_1"].activeTabFrame().contentWindow.find(eventName);     
+	}
 }
 function tag_popup(){
  //var grid = items['C105000010_Grid_1'];
@@ -96,91 +103,107 @@ function tag_popup(){
 
 
 function save(eventName,formDivObj,referenceItem){
- var form = items['C104000020_Form_1'];
- var form2 = items['C104000020_Form_2'];
- var comboList = form.getDhxForm().getCombo("ORD_LN");
-    var ord_no = form.getItemValue("ORD_NO");
-    var ord_ln = comboList.getSelectedValue();
-    var ccl_bom = form2.getItemValue("CCL_BOM_NO");
-    var ccl_bom_tmp = ccl_bom.substring(0,2);
+	var form = items['C104000020_Form_1'];
+	var form2 = items['C104000020_Form_2'];
+	var comboList = form.getDhxForm().getCombo("ORD_LN");
+	var ord_no = form.getItemValue("ORD_NO");
+	var ord_ln = comboList.getSelectedValue();
+	var ccl_bom = form2.getItemValue("CCL_BOM_NO");
+	var ccl_bom_tmp = ccl_bom.substring(0,2);
+	var prd_nm_cd = form2.getItemValue("PRD_NM_CD_ORG");
     
- if(isNull(ord_no)){
-  dhtmlx.alert("주문번호를 입력해주세요.");
-  form.setItemFocus("ORD_NO");
-  return; 
- }else if(isNull(ord_ln)){
-  dhtmlx.alert("주문행번를 선택해주세요.");
-  comboList.DOMelem_input.focus();
-  return; 
- }
- var cnt = "0";
- var param= "ServiceName=C104000020-service&ERR_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=NO_THK";
- var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
- var cells = xmlObj.getElementsByTagName("cell");
+	if(isNull(ord_no)){
+		dhtmlx.alert("주문번호를 입력해주세요.");
+		form.setItemFocus("ORD_NO");
+		return; 
+	}else if(isNull(ord_ln)){
+		dhtmlx.alert("주문행번를 선택해주세요.");
+		comboList.DOMelem_input.focus();
+		return; 
+	}
+	
+	var cnt = "0";
+	var param= "ServiceName=C104000020-service&ERR_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=NO_THK";
+	var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+	var cells = xmlObj.getElementsByTagName("cell");
  
- if(cells.length > 0){
-  cnt = cells.item(0).firstChild.nodeValue;
-  if(cnt == "1")
-     {
-   dhtmlx.confirm({
-    title:"[[ 설계확정 ]]",
-    ok:"확정", cancel:"취소",
-    text:"제품두께범위를 벗어난 주문입니다.\n 그래도 확정하시겠습니까?",
-    callback:function(val){
-      if(val){
-      var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
-      form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
-      return;
-      }
-    }
-   });
-     }  
- } 
+	if(cells.length > 0){
+		cnt = cells.item(0).firstChild.nodeValue;
+		if(cnt == "1"){
+			dhtmlx.confirm({
+    		title:"[[ 설계확정 ]]",
+    		ok:"확정", cancel:"취소",
+    		text:"제품두께범위를 벗어난 주문입니다.\n 그래도 확정하시겠습니까?",
+    		callback:function(val){
+      			if(val){
+      				var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
+      				form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
+      				return;}
+    			}
+   			});
+     	}  
+	} 
  
- if(cnt != "1")
- {
-  param= "ServiceName=C104000020-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
-  xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-  cells = xmlObj.getElementsByTagName("cell");
-  if(cells.length > 0){      
-   dhtmlx.alert("반송된 주문이거나 보류 혹은 설계상태가 확정대기가 아닙니다!");
-   return;     
-  }
+	if(cnt != "1")
+	{
+		param= "ServiceName=C104000020-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
+		xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+		cells = xmlObj.getElementsByTagName("cell");
   
-  //CCLBOM이 US****로 시작하는 주문은 확정하기 전에 통과공정이 RB가 있는지 확인하고 없는경우는 확정이 안되게 한다
-  //2014.12.15 변경
+		if(cells.length > 0){      
+			dhtmlx.alert("반송된 주문이거나 보류 혹은 설계상태가 확정대기가 아닙니다!");
+   			return;     
+  		}
   
-  if(ccl_bom_tmp == "US"){
-   param= "ServiceName=C104000020-service&PROC_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
-   xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-   cells = xmlObj.getElementsByTagName("cell");
-   if(cells.length < 1){      
-    dhtmlx.alert("해당주문은 CP(RH)공정이 반드시 추가되어야 하는 주문입니다(US****로 시작하는 BOM때문)!");
-    return;     
-   }
-  }
+  		//CCLBOM이 US****로 시작하는 주문은 확정하기 전에 통과공정이 RB가 있는지 확인하고 없는경우는 확정이 안되게 한다
+  		//2014.12.15 변경
+		if(ccl_bom_tmp == "US"){
+			param= "ServiceName=C104000020-service&PROC_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
+   			xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+   			cells = xmlObj.getElementsByTagName("cell");
+   
+   			if(cells.length < 1){      
+    			dhtmlx.alert("해당주문은 CP(RH)공정이 반드시 추가되어야 하는 주문입니다(US****로 시작하는 BOM때문)!");
+    			return;
+    		}
+  		}
   
-  //위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2015.3.12 박성용기사요청)
-  var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
-  if(trst_proc_yn == "Y"){
-   dhtmlx.alert("위탁임가공 주문입니다. 통과공정정보를 반드시 확인하시고 확정하시기 바랍니다."); 
-  }   
-
-  dhtmlx.confirm({
-   title:"[[ 설계확정 ]]",
-   ok:"확정", cancel:"취소",
-   text:"확정하시겠습니까?",
-   callback:function(val){
-     if(val){
-     //var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
-     var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
-     form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
-     //form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
-     return;
-     }
-   }
-  });  
-    }
+		//위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2015.3.12 박성용기사요청)
+		var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
+		if(trst_proc_yn == "Y"){
+			dhtmlx.alert("위탁임가공 주문입니다. 통과공정정보를 반드시 확인하시고 확정하시기 바랍니다."); 
+  		}
+		
+		//로그인한 설계원과 설계내용 수정한 설계원이 동일한 경우 설계확정이 안되게 체크한다 (2023.2.7 이상현차장 요청)
+		if(prd_nm_cd == "G" || prd_nm_cd == "L" || prd_nm_cd == "V" || prd_nm_cd == "W"){
+			param= "ServiceName=C104000020-service&MOD_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=LAST_UPDATED_OBJECT_ID";
+			xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+			cells = xmlObj.getElementsByTagName("cell");
+			
+			if(cells.length > 0){
+				var modUserId = cells.item(0).firstChild.nodeValue;
+				if(modUserId == <%=userNo%>){      
+					dhtmlx.alert("설계내용 수정자와 설계 확정자가 동일함으로 확정이 불가합니다 ");
+		   			return;     
+		  		}
+			}
+		}
+		
+		dhtmlx.confirm({
+			title:"[[ 설계확정 ]]",
+			ok:"확정", cancel:"취소",
+			text:"확정하시겠습니까?",
+				callback:function(val){
+					if(val){
+					//var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
+						var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
+						form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
+						//form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
+						return;
+					}
+				}
+		});  
+	}
 }
 function holdy(eventName,formDivObj,referenceItem){        
 
@@ -410,18 +433,41 @@ function findMassage(){
 function findMessage(referenceItem){
  //위탁임가공 값 세팅 
  setTrstProcYn();
+ //품질협정서 여부 확인
+ setQltYn();
  uiCommon.progressOff(parent);
  
  return true;
 }
+function setQltYn(){
+	//품질협정서 여부체크
+	var form = items['C104000020_Form_2'];
+	var cnt_qlt = '';
+	var cus_cd = form.getDhxForm().getItemValue("CUS_CD_ORG");
+	var act_cus_cd = form.getDhxForm().getItemValue("ACT_CUS_CD_ORG");
+	var fnl_cus_cd = form.getDhxForm().getItemValue("FNL_CUS_CD_ORG");
+		
+	param= "ServiceName=C104000020-service&QLT_find=1&FNL_CUS_CD=" + fnl_cus_cd + "&CUS_CD=" + cus_cd + "&ACT_CUS_CD=" + act_cus_cd + "&column-info=QLT_CNT";
+	xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+	cells = xmlObj.getElementsByTagName("cell");
+	cnt_qlt = cells.item(0).firstChild.nodeValue;
+
+	if(cnt_qlt < 1){
+		items['C104000020_Form_1'].getDhxForm().disableItem("custom_call");
+	}else{
+		items['C104000020_Form_1'].getDhxForm().enableItem("custom_call");
+	}
+	
+}
+
 function setTrstProcYn(){
- var form1 = items['C104000020_Form_1'];
- var form2 = items['C104000020_Form_2'];
- var ordLn      = form1.getItemValue("ORD_LN");
- var trstProcYn = form2.getItemValue("TRST_PROC_YN");
- var att_ord_Yn = form2.getItemValue("ATT_ORD_YN");
- form1.setItemValue("TRST_PROC_YN",trstProcYn);
- form1.setItemValue("ATT_ORD_YN",att_ord_Yn);
+	 var form1 = items['C104000020_Form_1'];
+	 var form2 = items['C104000020_Form_2'];
+	 var ordLn      = form1.getItemValue("ORD_LN");
+	 var trstProcYn = form2.getItemValue("TRST_PROC_YN");
+	 var att_ord_Yn = form2.getItemValue("ATT_ORD_YN");
+	 form1.setItemValue("TRST_PROC_YN",trstProcYn);
+	 form1.setItemValue("ATT_ORD_YN",att_ord_Yn);
 }
 
 function onFormLoadEvent(){ 
@@ -454,6 +500,8 @@ function onFormLoadEvent(){
 function onFormLoadEvent2(){ 
  //위탁임가공 값 세팅 
  setTrstProcYn();
+//품질협정서 여부 확인
+ setQltYn();
  readOnlyItemBackEvent('C104000020_Form_2');
  return true;  
 }
@@ -556,9 +604,11 @@ function custom_call(){
    flag++;
   }
  }
- 
+	//품질협정서 flag 3번으로 송신
+	vUrl = vUrl + "&" + "CUS_SPC_TP_CD=" + "3";
+ //고객특성등록화면
  if(flag > 0){
-   parent.newRemoveOpenTab("M205010011", vUrl); 
+   parent.newRemoveOpenTab("M205010010", vUrl); 
  }
 }
 function winClose(){
@@ -617,26 +667,26 @@ function closeProgressBar() {
 <body>
 <div id="C104000020_Form_1" style="position:absolute;height:28px;width:981px;left:0px;top:1px;">
 </div>
-<div id="C104000020_Tabbar_1" style="position:absolute;height:479px;width:979px;left:1px;top:114px;">
+<div id="C104000020_Form_2" style="position:absolute;height:60px;width:981px;left:0px;top:29px;">
 </div>
-<div id="C104000020_Form_2" style="position:absolute;height:60px;width:981px;left:0px;top:42px;">
+<div id="C104000020_Tabbar_1" style="position:absolute;height:479px;width:979px;left:1px;top:114px;">
 </div>
 </body>
 </html>
 <script>
 <!--
 //<![CDATA[
-       ui.initializeDHTMLX();  
-       items['C104000020_Form_1'].onXLEEvent(onFormLoadEvent);
-    items['C104000020_Form_2'].onXLEEvent(onFormLoadEvent2);
-    initializeTabEvent();
-       items['C104000020_Form_1'].getDhxForm().attachEvent("onChange",onChange);
-       onXLETab = items['C104000020_Tabbar_1'].getDhxTabbar().attachEvent("onXLE", onTabLoadEvent); //20210204 변정훈 추가
-    items['C104000020_Tabbar_1'].getDhxTabbar().attachEvent("onTabContentLoaded",onTabContentLoaded);
-       items['C104000020_Form_1'].setBackgroundColor("#FFFFFF");
-       items['C104000020_Form_2'].setBackgroundColor("#FFFFFF");
-       items['C104000020_Form_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
-       //items['C104000020_Form_2'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
+        ui.initializeDHTMLX();  
+		items['C104000020_Form_1'].onXLEEvent(onFormLoadEvent);
+		items['C104000020_Form_2'].onXLEEvent(onFormLoadEvent2);
+        initializeTabEvent();
+        items['C104000020_Form_1'].getDhxForm().attachEvent("onChange",onChange);
+        onXLETab = items['C104000020_Tabbar_1'].getDhxTabbar().attachEvent("onXLE", onTabLoadEvent); //20210204 변정훈 추가
+        items['C104000020_Tabbar_1'].getDhxTabbar().attachEvent("onTabContentLoaded",onTabContentLoaded);
+        items['C104000020_Form_1'].setBackgroundColor("#FFFFFF");
+        items['C104000020_Form_2'].setBackgroundColor("#FFFFFF");
+        items['C104000020_Form_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
+        //items['C104000020_Form_2'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
        
 //]]>
 -->

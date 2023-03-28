@@ -127,7 +127,10 @@ function save(eventName,formDivObj,referenceItem){
 	var grid9 = items['C106000060_Grid_9'];
 		//gridObj.selectRow(0);선택불필요
 		
+	
+		
 	var tmpColorValue = items['C106000060_Grid_3'].getAllColumnValue(0);//색상코드값 여부 확인
+	
 	var	colorValue = tmpColorValue.replace(/,/gi,"");
 		colorValue = colorValue.replace("색상코드","");
 		colorValue = colorValue.replace(",","");
@@ -136,11 +139,13 @@ function save(eventName,formDivObj,referenceItem){
 			return;
 		}
 	
+	
 	//프린트롤No,유니텍스롤No 체크
 	var prtPtnCd = "";
 	var rollNo = "";
 	var rollNo2 = "";
 	var unitexNo = "";
+	
 	if(!isNull(grid4.getCellByIndexValue(0,12))){
 		rollNo = grid4.getCellByIndexValue(0,12);
 	}else if(!isNull(grid4.getCellByIndexValue(0,8))){
@@ -161,24 +166,24 @@ function save(eventName,formDivObj,referenceItem){
 		rollNo9 = grid9.getCellByIndexValue(0,0);
 	}
 	
-	//alert(rollNo9);
-	
 	//PrintPatternCode 추가
 	if(!isNull(rollNo)){
 		var param= "ServiceName=C106000060-service&prtPntCdFind=1&PRT_ROLL_NO="+rollNo+"&column-info=PRT_PTN_CD,PRT_PTN_CD_NM";	
 		var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 		var cells = xmlObj.getElementsByTagName("cell"); 
+	
 		if(cells.length > 0){            										
 			items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),168,cells.item(0).firstChild.nodeValue);//PrintPatternCode 추가
 			items['C106000060_Grid_5'].setCellValue(6,8,cells.item(1).firstChild.nodeValue);//PrintPatternCode 추가
 		}
 	}
+
 	
 	//CCL BOM NO입력체크
 	var cclBomNo = grid.getCellValue(grid.getRowSelectedId(),0);
 	var cclBomNo5 = cclBomNo.substr(0,5);
 	var hueCdFrn = grid.getCellValue(grid.getRowSelectedId(),7);
-	
+
 	if(isNull(cclBomNo)){
 		dhtmlx.alert("CCL-BOM NO를 입력하세요.");
 		return;	
@@ -199,13 +204,15 @@ function save(eventName,formDivObj,referenceItem){
 	*/
 	
     //칼라물성 입력체크
-	var gridObj2 = items['C106000060_Grid_2'].getDhxGrid();
+	/*
+    var gridObj2 = items['C106000060_Grid_2'].getDhxGrid();
 	var ccl_cus  = gridObj2.cellByIndex(0,2).getValue();
 	if(isNull(ccl_cus)){
 		dhtmlx.alert("컬러물성를 입력하세요.");
 		return;	
 	}
-
+	*/
+	
     //chemical coat, 무독성구분 입력체크
 	var gridObj5 = items['C106000060_Grid_5'].getDhxGrid();
 	var chemical_coat  = gridObj5.cellByIndex(1,1).getValue();
@@ -213,12 +220,16 @@ function save(eventName,formDivObj,referenceItem){
 		dhtmlx.alert("Chemical Coat를 입력하세요");
 		return;	
 	}
+	
 	//상세색상명 입력체크(2014.11.12 이돈석)
 	var dlt_clr_nm  = gridObj5.cellByIndex(2,1).getValue();
 	if(isNull(dlt_clr_nm)){
 		dhtmlx.alert("상세색상명을 입력하세요");
 		return;	
-	}else{
+	}
+	
+	/*
+	else{
 		//ajax로 최신 색상명을 검색하고 화면의 값이랑 비교하여 
 		//값이 다를 시 경고메시지 발생시킨다(2015.01.02 이돈석)
 		var clr_sub_mtl_cd = gridObj5.cellByIndex(4,1).getValue();
@@ -230,26 +241,31 @@ function save(eventName,formDivObj,referenceItem){
 			var clr_nm_tmp = cells.item(0).firstChild.nodeValue;
 			if(dlt_clr_nm != clr_nm_tmp){
 				//alert("칼라코드관리 프로그램의 색상명과 CCL BOM의 상세 색상명이 동일하지 않습니다");
-				//items['C106000060_Grid_5'].getFilterElement().focus();
-				//items['C106000060_Grid_5'].setCellValue(2,1,cells.item(0).firstChild.nodeValue);
-				//items['C106000060_Grid_5'].setUpdated(items['C106000060_Grid_5'].getDhxGrid().getRowId(4),true,"updated");
-				//gridObj5.setUpdated(grid.getRowSelectedId(),true,"updated");
-				//alert("상세 색상명을 자동 변경하였습니다.");
+				items['C106000060_Grid_5'].getFilterElement().focus();
+				items['C106000060_Grid_5'].setCellValue(2,1,cells.item(0).firstChild.nodeValue);
+				items['C106000060_Grid_5'].setUpdated(items['C106000060_Grid_5'].getDhxGrid().getRowId(4),true,"updated");
+				gridObj5.setUpdated(grid.getRowSelectedId(),true,"updated");
+				dhtmlx.alert("상세 색상명을 자동 변경하였습니다.");
 				return;
 			}
 		}	
 	}
-	
+	*/
+
 	var tlp_tp  = gridObj5.cellByIndex(6,1).getValue();
 	if(isNull(tlp_tp)){
 		dhtmlx.alert("무독성구분을 입력하세요");
 		return;	
 	}
+	
 	if((chemical_coat == "CHCRO" && tlp_tp == "N") || (chemical_coat == "CHNCR" && tlp_tp== "C") || (chemical_coat == "NOCHE" && tlp_tp== "C")){
 		dhtmlx.alert("Chemical Coat와 무독성구분 불일치");
 		return;
 	}
-		
+	
+	//상세색상명 강제 업데이트(Grid_1이 인서트, 업데이트의 몸통임!!)
+	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),119,gridObj5.cellByIndex(2,1).getValue());
+	
 	if(duplicateCclBom()){
 		dhtmlx.confirm({
 			title:"[[ 확인 ]]",
@@ -575,8 +591,8 @@ function copy(referenceItem){
 		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), 0, "ed"); // 확정컬럼 ch로 변경
 		gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), 1, "ch"); // 확정컬럼 ch로 변경
 	    
-		//ccl bom복사 시 Grid1에 추가된 항목들을 여기에 넣어줘야 된다.(2013.08.05) ==> Grid1의 개수와 복사되는 개수는 동일해야 insert할때 에러 발생하지 않음.
-		var copyParam= "ServiceName=C106000060-service&find=1&CCL_BOM_NO="+cellVal+"&column-info=CCL_BOM_NO,CCL_BOM_USE_YN,COT_MTH_NM,RSN_TP_FRN_NM,RSN_TP_BAK_NM,LUS_RT_CD_FRN_NM,LUS_RT_CD_BAK_NM,HUE_CD_FRN,HUE_CD_BAK,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,CCL_BOM_USE_YN_HIDDEN,HUE_CD_FRN_4COT,RSN_TP_FRN_4COT,LUS_RT_CD_FRN_4COT,LUS_RT_FRN_4COT_LLV,WK_VISCO_FRN_4COT,PMT_FRN_4COT,PNT_FLM_THK_FRN_4COT,SLV_GRA_FRN_4COT,PNT_GRA_FRN_4COT,NV_FRN_4COT,PNT_UNT_FRN_4COT,THR_CD_FRN_4COT,HUE_CD_FRN_3COT,RSN_TP_FRN_3COT,LUS_RT_CD_FRN_3COT,LUS_RT_FRN_3COT_LLV,WK_VISCO_FRN_3COT,PMT_FRN_3COT,PNT_FLM_THK_FRN_3COT,SLV_GRA_FRN_3COT,PNT_GRA_FRN_3COT,NV_FRN_3COT,PNT_UNT_FRN_3COT,THR_CD_FRN_3COT,HUE_CD_FRN_2COT,RSN_TP_FRN_2COT,LUS_RT_CD_FRN_2COT,LUS_RT_FRN_2COT_LLV,WK_VISCO_FRN_2COT,PMT_FRN_2COT,PNT_FLM_THK_FRN_2COT,SLV_GRA_FRN_2COT,PNT_GRA_FRN_2COT,NV_FRN_2COT,PNT_UNT_FRN_2COT,THR_CD_FRN_2COT,HUE_CD_FRN_1COT,RSN_TP_FRN_1COT,LUS_RT_CD_FRN_1COT,LUS_RT_FRN_1COT_LLV,WK_VISCO_FRN_1COT,PMT_FRN_1COT,PNT_FLM_THK_FRN_1COT,SLV_GRA_FRN_1COT,PNT_GRA_FRN_1COT,NV_FRN_1COT,PNT_UNT_FRN_1COT,THR_CD_FRN_1COT,HUE_CD_BAK_1COT,RSN_TP_BAK_1COT,LUS_RT_CD_BAK_1COT,LUS_RT_BAK_1COT_LLV,WK_VISCO_BAK_1COT,PMT_BAK_1COT,PNT_FLM_THK_BAK_1COT,SLV_GRA_BAK_1COT,PNT_GRA_BAK_1COT,NV_BAK_1COT,PNT_UNT_BAK_1COT,THR_CD_BAK_1COT,HUE_CD_BAK_2COT,RSN_TP_BAK_2COT,LUS_RT_CD_BAK_2COT,LUS_RT_BAK_2COT_LLV,WK_VISCO_BAK_2COT,PMT_BAK_2COT,PNT_FLM_THK_BAK_2COT,SLV_GRA_BAK_2COT,PNT_GRA_BAK_2COT,NV_BAK_2COT,PNT_UNT_BAK_2COT,THR_CD_BAK_2COT,HUE_CD_BAK_3COT,RSN_TP_BAK_3COT,LUS_RT_CD_BAK_3COT,LUS_RT_BAK_3COT_LLV,WK_VISCO_BAK_3COT,PMT_BAK_3COT,PNT_FLM_THK_BAK_3COT,SLV_GRA_BAK_3COT,PNT_GRA_BAK_3COT,NV_BAK_3COT,PNT_UNT_BAK_3COT,THR_CD_BAK_3COT,HUE_CD_BAK_4COT,RSN_TP_BAK_4COT,LUS_RT_CD_BAK_4COT,LUS_RT_BAK_4COT_LLV,WK_VISCO_BAK_4COT,PMT_BAK_4COT,PNT_FLM_THK_BAK_4COT,SLV_GRA_BAK_4COT,PNT_GRA_BAK_4COT,NV_BAK_4COT,PNT_UNT_BAK_4COT,THR_CD_BAK_4COT,HUE_CD_LMN,RSN_TP_LMN,LUS_RT_CD_LMN,LUS_RT_LMN_LLV,PMT_LMN,PNT_FLM_THK_LMN,PNT_UNT_LMN,COT_MTH,RSN_TP_FRN,LUS_RT_CD_FRN,HUE_CD_CHM,DTL_CLR_NM,ANON_CD,ANON_UNT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,DISC_PTN_WTH_CD,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,LUS_RT_FRN_4COT_ULV,LUS_RT_FRN_3COT_ULV,LUS_RT_FRN_2COT_ULV,LUS_RT_FRN_1COT_ULV,LUS_RT_BAK_1COT_ULV,LUS_RT_BAK_2COT_ULV,LUS_RT_BAK_3COT_ULV,LUS_RT_BAK_4COT_ULV,LUS_RT_LMN_ULV,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,RSN_TP_BAK,LUS_RT_CD_BAK,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_PTN_CD1,PRT_UNT1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_UNT2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_PTN_CD3,PRT_UNT3,PRT_ROLL_NO4,PRT_INK_CD4,PRT_ROLL_PTN_CD4,PRT_UNT4,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,CUT_LN_YN,LMN_BND_UNT,LMN_BND_UNT1,QLT_DSN_CFM_TP,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,MDF_DH,ERP_SND_DH,ORG_CCL_BOM_USE_YN,SND_LST,UNI_TEX_ROLL_NO,UNI_TEX_PTN_CD,PICK_UP_ROLL_NO,PRT_ROLL_BAK_NO1,PRT_INK_BAK_CD1,PRT_ROLL_PTN_BAK_CD1,PRT_BAK_UNT1,PRT_ROLL_BAK_NO2,PRT_INK_BAK_CD2,PRT_ROLL_PTN_BAK_CD2,PRT_BAK_UNT2,PRT_ROLL_BAK_NO3,PRT_INK_BAK_CD3,PRT_ROLL_PTN_BAK_CD3,PRT_BAK_UNT3,PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,CCL_BOM_WR_YN,PT_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,CLR_SPC_PRD_SCLS,CCL_BOM_ATT_YN";
+		//ccl bom복사 시 Grid1의 index와 동일한 순서로 입력해야 한다(2013.08.05) ==> Grid1의 개수와 복사되는 개수는 동일해야 insert할때 에러 발생하지 않음.
+		var copyParam= "ServiceName=C106000060-service&find=1&CCL_BOM_NO="+cellVal+"&column-info=CCL_BOM_NO,CCL_BOM_USE_YN,COT_MTH_NM,RSN_TP_FRN_NM,RSN_TP_BAK_NM,LUS_RT_CD_FRN_NM,LUS_RT_CD_BAK_NM,HUE_CD_FRN,HUE_CD_BAK,PNT_FLM_THK_FRN_TOT,PNT_FLM_THK_BAK_TOT,CCL_BOM_USE_YN_HIDDEN,HUE_CD_FRN_4COT,RSN_TP_FRN_4COT,LUS_RT_CD_FRN_4COT,LUS_RT_FRN_4COT_LLV,WK_VISCO_FRN_4COT,PMT_FRN_4COT,PNT_FLM_THK_FRN_4COT,SLV_GRA_FRN_4COT,PNT_GRA_FRN_4COT,NV_FRN_4COT,PNT_UNT_FRN_4COT,THR_CD_FRN_4COT,HUE_CD_FRN_3COT,RSN_TP_FRN_3COT,LUS_RT_CD_FRN_3COT,LUS_RT_FRN_3COT_LLV,WK_VISCO_FRN_3COT,PMT_FRN_3COT,PNT_FLM_THK_FRN_3COT,SLV_GRA_FRN_3COT,PNT_GRA_FRN_3COT,NV_FRN_3COT,PNT_UNT_FRN_3COT,THR_CD_FRN_3COT,HUE_CD_FRN_2COT,RSN_TP_FRN_2COT,LUS_RT_CD_FRN_2COT,LUS_RT_FRN_2COT_LLV,WK_VISCO_FRN_2COT,PMT_FRN_2COT,PNT_FLM_THK_FRN_2COT,SLV_GRA_FRN_2COT,PNT_GRA_FRN_2COT,NV_FRN_2COT,PNT_UNT_FRN_2COT,THR_CD_FRN_2COT,HUE_CD_FRN_1COT,RSN_TP_FRN_1COT,LUS_RT_CD_FRN_1COT,LUS_RT_FRN_1COT_LLV,WK_VISCO_FRN_1COT,PMT_FRN_1COT,PNT_FLM_THK_FRN_1COT,SLV_GRA_FRN_1COT,PNT_GRA_FRN_1COT,NV_FRN_1COT,PNT_UNT_FRN_1COT,THR_CD_FRN_1COT,HUE_CD_BAK_1COT,RSN_TP_BAK_1COT,LUS_RT_CD_BAK_1COT,LUS_RT_BAK_1COT_LLV,WK_VISCO_BAK_1COT,PMT_BAK_1COT,PNT_FLM_THK_BAK_1COT,SLV_GRA_BAK_1COT,PNT_GRA_BAK_1COT,NV_BAK_1COT,PNT_UNT_BAK_1COT,THR_CD_BAK_1COT,HUE_CD_BAK_2COT,RSN_TP_BAK_2COT,LUS_RT_CD_BAK_2COT,LUS_RT_BAK_2COT_LLV,WK_VISCO_BAK_2COT,PMT_BAK_2COT,PNT_FLM_THK_BAK_2COT,SLV_GRA_BAK_2COT,PNT_GRA_BAK_2COT,NV_BAK_2COT,PNT_UNT_BAK_2COT,THR_CD_BAK_2COT,HUE_CD_BAK_3COT,RSN_TP_BAK_3COT,LUS_RT_CD_BAK_3COT,LUS_RT_BAK_3COT_LLV,WK_VISCO_BAK_3COT,PMT_BAK_3COT,PNT_FLM_THK_BAK_3COT,SLV_GRA_BAK_3COT,PNT_GRA_BAK_3COT,NV_BAK_3COT,PNT_UNT_BAK_3COT,THR_CD_BAK_3COT,HUE_CD_BAK_4COT,RSN_TP_BAK_4COT,LUS_RT_CD_BAK_4COT,LUS_RT_BAK_4COT_LLV,WK_VISCO_BAK_4COT,PMT_BAK_4COT,PNT_FLM_THK_BAK_4COT,SLV_GRA_BAK_4COT,PNT_GRA_BAK_4COT,NV_BAK_4COT,PNT_UNT_BAK_4COT,THR_CD_BAK_4COT,HUE_CD_LMN,RSN_TP_LMN,LUS_RT_CD_LMN,LUS_RT_LMN_LLV,PMT_LMN,PNT_FLM_THK_LMN,PNT_UNT_LMN,COT_MTH,RSN_TP_FRN,LUS_RT_CD_FRN,HUE_CD_CHM,DTL_CLR_NM,ANON_CD,ANON_UNT,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,DISC_PTN_WTH_CD,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,LUS_RT_FRN_4COT_ULV,LUS_RT_FRN_3COT_ULV,LUS_RT_FRN_2COT_ULV,LUS_RT_FRN_1COT_ULV,LUS_RT_BAK_1COT_ULV,LUS_RT_BAK_2COT_ULV,LUS_RT_BAK_3COT_ULV,LUS_RT_BAK_4COT_ULV,LUS_RT_LMN_ULV,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,RSN_TP_BAK,LUS_RT_CD_BAK,PRT_ROLL_NO1,PRT_INK_CD1,PRT_ROLL_PTN_CD1,PRT_UNT1,PRT_ROLL_NO2,PRT_INK_CD2,PRT_ROLL_PTN_CD2,PRT_UNT2,PRT_ROLL_NO3,PRT_INK_CD3,PRT_ROLL_PTN_CD3,PRT_UNT3,PRT_ROLL_NO4,PRT_INK_CD4,PRT_ROLL_PTN_CD4,PRT_UNT4,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,CUT_LN_YN,LMN_BND_UNT,LMN_BND_UNT1,QLT_DSN_CFM_TP,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,MDF_DH,ERP_SND_DH,ORG_CCL_BOM_USE_YN,SND_LST,UNI_TEX_ROLL_NO,UNI_TEX_PTN_CD,PICK_UP_ROLL_NO,PRT_ROLL_BAK_NO1,PRT_INK_BAK_CD1,PRT_ROLL_PTN_BAK_CD1,PRT_BAK_UNT1,PRT_ROLL_BAK_NO2,PRT_INK_BAK_CD2,PRT_ROLL_PTN_BAK_CD2,PRT_BAK_UNT2,PRT_ROLL_BAK_NO3,PRT_INK_BAK_CD3,PRT_ROLL_PTN_BAK_CD3,PRT_BAK_UNT3,PRT_ROLL_BAK_NO4,PRT_INK_BAK_CD4,PRT_ROLL_PTN_BAK_CD4,PRT_BAK_UNT4,CCL_BOM_WR_YN,PT_TP,IMPT_ROLL_NO,IMPT_ROLL_BAK_NO,CLR_SPC_PRD_SCLS,HUE_CD_FRN_OLD,CCL_BOM_ATT_YN,RSN_TP_QT_BR_FRN_1COT,RSN_TP_QT_BR_FRN_2COT,RSN_TP_QT_BR_FRN_3COT,RSN_TP_QT_BR_FRN_4COT,RSN_TP_QT_BR_BAK_1COT,RSN_TP_QT_BR_BAK_2COT,RSN_TP_QT_BR_BAK_3COT,RSN_TP_QT_BR_BAK_4COT,RSN_TP_QT_BR_FRN,RSN_TP_QT_BR_BAK,LUXTEEL_BRD_CD";
 		var copyXmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',copyParam);
 		var cells = copyXmlObj.getElementsByTagName("cell");
 		if(cells.length > 0){
@@ -1332,6 +1348,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 	var subMtlTp4 = "";
 	var subMtlTp5 = "";
 	var subMtlTp6 = "";
+	var subMtlTp7 = "";
 	var param = ""; 
 	if(stage == 1 ){	
 		if(isNull(grid.getRowSelectedId())){
@@ -1892,6 +1909,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 						subMtlTp3 = "";
 						subMtlTp4 = "";
 						subMtlTp5 = "";
+						subMtlTp6 = "S40";
 						//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
 						param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP_NM,LUS_RT_CD_NM,LUS_RT,WK_VISCO,PMT,PNT_FLM_THK,SLV_GRA,PNT_GRA,NV,PNT_UNT,THR_CD,LUS_RT_LLV,LUS_RT_ULV,RSN_TP,LUS_RT_CD,LMN_KND_TP,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_KND_TP_NM,LMN_BND_CD_NM,LMN_BND_CD_NM1,LMN_FLM_THK_CD_NM,RSN_TP_QT_BR,LMN_BND_UNT,LMN_BND_UNT1,CLR_NM,USE_YN";	
 						var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
@@ -2244,8 +2262,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp4 = "S38";
 				subMtlTp5 = "ZZZ";
 				subMtlTp6 = "S37";
+				subMtlTp7 = "S40";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2282,8 +2301,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp4 = "S38";
 				subMtlTp5 = "ZZZ";
 				subMtlTp6 = "S37";
+				subMtlTp7 = "S40";
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2674,6 +2694,21 @@ function popSetValue5(rowId,colIndex,rollCode){
 	items['C106000060_Grid_9'].setCellValue(rowId,colIndex,rollCode); //Grid9에 값 화면 표시
 	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),202,rollCode); //표시된 값을 Grid1에 모아서 저장할때 한번에 전송
 	items['C106000060_Grid_9'].setUpdated(items['C106000060_Grid_9'].getDhxGrid().getRowId(0),true,"updated"); //업데이트 모드
+	grid.setUpdated(grid.getRowSelectedId(),true,"updated");
+	
+	return true;
+}
+
+//C106000060pop08으로부터 넘겨받은 값 item에 세팅(품질수지타입, 브랜드 업데이트)
+function popSetValue10(rowId,colIndex1,rsnTpQtBrFrnCb,colIndex2,rsnTpQtBrBakCb,colIndex3,luxBrdCdCb){
+	var grid = items['C106000060_Grid_1'];
+	items['C106000060_Grid_5'].setCellValue(rowId,colIndex1,rsnTpQtBrFrnCb); //Grid5에 값 화면 표시
+	items['C106000060_Grid_5'].setCellValue(rowId,colIndex2,rsnTpQtBrBakCb); //Grid5에 값 화면 표시
+	items['C106000060_Grid_5'].setCellValue(rowId,colIndex3,luxBrdCdCb); //Grid5에 값 화면 표시
+	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),214,rsnTpQtBrFrnCb); //표시된 값을 Grid1에 모아서 저장할때 한번에 전송
+	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),215,rsnTpQtBrBakCb); //표시된 값을 Grid1에 모아서 저장할때 한번에 전송
+	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),216,luxBrdCdCb); //표시된 값을 Grid1에 모아서 저장할때 한번에 전송
+	items['C106000060_Grid_5'].setUpdated(items['C106000060_Grid_5'].getDhxGrid().getRowId(7),true,"updated"); //업데이트 모드
 	grid.setUpdated(grid.getRowSelectedId(),true,"updated");
 	
 	return true;
@@ -3329,6 +3364,60 @@ function Grid_doLink(val,rowIdx,cellIdx){
 	}
 }
 
+function rsnbndSelectPopup(rId,cInd){
+	var grid = items['C106000060_Grid_1'];
+	var gridObj5 = items['C106000060_Grid_5'];
+	var grid5DhxObj = items['C106000060_Grid_5'].getDhxGrid();
+	if(isNull(grid.getRowSelectedId())){
+			alert("CCL-BOM 번호가 없습니다!\n CCL-BOM번호를 선택해주세요.");			
+			return;
+	}
+	
+	if((rId == 7 && cInd == 1) || (rId == 7 && cInd == 2) || (rId == 7 && cInd == 5)){
+		var cellVal = gridObj5.getCellValue(rId,cInd);
+		//winObj = new ui.window("rsnbndSelectPopup","품질수지타입/Brand선택","0","0","635","230","c106000060pop08.do"?prt_roll_no="+encodeURIComponent(cellVal)+"&rowId="+rId+"&cellIndex="+cInd+"&targetDivId=C106000060_Grid_5");	
+		winObj = new ui.window("rsnbndSelectPopup","품질수지타입/Brand선택","0","0","635","230","c106000060pop08.do?rsn_tp_qt_br_frn="+encodeURIComponent(cellVal)+"&rowId="+rId+"&cellIndex="+cInd+"&targetDivId=C106000060_Grid_5");
+		//winObj = new ui.window("rsnbndSelectPopup","품질수지타입/Brand선택","0","0","635","230","c106000060pop08.do");
+		winObj.setButtonDisable("park,minmax1");
+		winObj.setModal();
+		
+		winObj.getDhxWindow().attachEvent("onClose", function(win){
+			this.hide();
+			return true;
+			
+		});
+	}
+	/*
+	if(cInd == 0 || cInd == 4 || cInd == 8 || cInd == 12){
+		var cellVal = gridObj9.getCellValue(rId,cInd);
+		winObj = new ui.window("rollSelectPopup","Print롤 선택","0","0","669","532","c106000060pop01.do?prt_roll_no="+encodeURIComponent(cellVal)+"&rowId="+rId+"&cellIndex="+cInd+"&targetDivId=C106000060_Grid_9");		
+		winObj.setButtonDisable("park,minmax1");
+		winObj.setModal();
+		
+		winObj.getDhxWindow().attachEvent("onClose", function(win){
+			this.hide();
+			return true;
+			
+		});
+	}else if(cInd == 1 || cInd == 5 || cInd == 9 || cInd == 13){
+		grid9DhxObj.setCellExcellType(grid9DhxObj.getRowId(0), cInd, "ed"); // 확정컬럼 ch로 변경
+		return true;
+	}else if(cInd == 18){
+		//2015.12.17 IMPRINTING BACK ROLL번호 자동입력 용 POP-UP프로그램 호출
+		var cellVal = gridObj9.getCellValue(rId,cInd);
+		winObj = new ui.window("rollSelectPopup9","Imprinting Roll선택","100","100","669","532","c106000060pop05.do?impt_roll_no="+encodeURIComponent(cellVal)+"&rowId="+rId+"&cellIndex="+cInd+"&targetDivId=C106000060_Grid_9");		
+		winObj.setButtonDisable("park,minmax1");
+		winObj.setModal();
+		
+		winObj.getDhxWindow().attachEvent("onClose", function(win){
+			this.hide();
+			return true;	
+		});
+	}
+	*/
+}
+
+
 //]]>
 -->
 </script>
@@ -3365,10 +3454,10 @@ function Grid_doLink(val,rowIdx,cellIdx){
 		style="position: absolute; height: 22px; width: 923px; left: 39px; top: 634px;">
 	</div>
 	<div id="C106000060_Grid_5"
-		style="position: absolute; height: 174px; width: 961px; left: 1px; top: 664px;">
+		style="position: absolute; height: 194px; width: 961px; left: 1px; top: 664px;">
 	</div>
 	<div id="C106000060_messagebox"
-		style="position: absolute; height: 23px; width: 960px; left: 1px; top: 819px;">
+		style="position: absolute; height: 23px; width: 960px; left: 1px; top: 840px;">
 	</div>
 	<div id="C106000060_Grid_6"
 		style="position: absolute; height: 220px; width: 70px; left: 1px; top: 333px;">
@@ -3394,6 +3483,7 @@ items["C106000060_Grid_9"].onEditCellEvent(onEditCellEvent9);
 items["C106000060_Grid_5"].onEditCellEvent(onEditCellEvent5);
 items["C106000060_Grid_4"].rowDblClicked(rollSelectPopup4);
 items["C106000060_Grid_9"].rowDblClicked(rollSelectPopup9);
+items["C106000060_Grid_5"].rowDblClicked(rsnbndSelectPopup);
 var onXleForm = items["C106000060_Form_1"].onXLEEvent(onFormLoadFunction);
 var onXleGrid = items['C106000060_Grid_1'].onXLEEvent(onGridLoadFunction);
 var onXleGrid2 = items['C106000060_Grid_2'].onXLEEvent(onGridLoadFunction2);
@@ -3401,7 +3491,7 @@ items['C106000060_Menu_1'].setBackgroundColor("#FFFFFF");
 items['C106000060_Form_2'].setBackgroundColor("#FFFFFF");
 items['C106000060_Menu_2'].setBackgroundColor("#FFFFFF");
 items['C106000060_Form_3'].setBackgroundColor("#FFFFFF");
-items["C106000060_Grid_1"].onCheckboxEvent(onCheckboxEvent); 
+items["C106000060_Grid_1"].onCheckboxEvent(onCheckboxEvent);
 var onXleGrid5 = items['C106000060_Grid_5'].onXLEEvent(onGridLoadFunction5);
 //items['C106000060_Grid_2'].getDhxGrid().attachEvent("onEnter", focusMove); //Edit Grid Enter Move
 //]]>

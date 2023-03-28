@@ -403,7 +403,9 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
 
         ArrayList<String> DEL_PROC = new ArrayList<String>();
         ArrayList<String> DATA_PROC = new ArrayList<String>();
-        colValue = new String[22];
+        //2022.12.27 백선이과장요청 (slit 조수 조건 추가)
+        //colValue = new String[22];
+        colValue = new String[23];
         colValue[0] = prd_nm_cd;
         colValue[1] = bak_mrk;
         colValue[2] = ord_coil_idia;
@@ -426,29 +428,32 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         colValue[19] = fnl_cus_cd;  // 최종수요가추가(2017.07.17 - 우병우과장 요청)
         colValue[20] = ord_usg_cd;  // 주문용도추가(2017.07.17 - 우병우과장 요청)
         colValue[21] = ord_spnl_tp;  //스팽글추가(2020.04.17 - 이동윤기사 요청)
+        colValue[22] = Double.toString(ord_slit_grp_cnt); //slit조수(2022.12.27 이돈석 - 백선이과장 요청)
         
         logger.logDebug( "==='통과공정삭제' 기준 조건 Param=== ");
-        logger.logDebug("품명                 : " + colValue[0]);
-        logger.logDebug("bak_mrk            : " + colValue[1]);
+        logger.logDebug("품명                                  : " + colValue[0]);
+        logger.logDebug("bak_mrk             : " + colValue[1]);
         logger.logDebug("ord_coil_idia       : " + colValue[2]);
-        logger.logDebug("ord_slv_knd_tp    : " + colValue[3]);
-        logger.logDebug("ord_sur_hnd_cd  : " + colValue[4]);
-        logger.logDebug("gw_asg_cd         : " + colValue[5]);
-        logger.logDebug("embs_cd            : " + colValue[6]);
+        logger.logDebug("ord_slv_knd_tp      : " + colValue[3]);
+        logger.logDebug("ord_sur_hnd_cd      : " + colValue[4]);
+        logger.logDebug("gw_asg_cd           : " + colValue[5]);
+        logger.logDebug("embs_cd             : " + colValue[6]);
         logger.logDebug("ord_pak_unt_wgt_llv : " + colValue[7]);
-        logger.logDebug("ord_coil_odia      : " + colValue[8]);
-        logger.logDebug("ord_exc_thk        : " + colValue[9]);
-        logger.logDebug("exc_wth            : " + colValue[10]);
+        logger.logDebug("ord_coil_odia       : " + colValue[8]);
+        logger.logDebug("ord_exc_thk         : " + colValue[9]);
+        logger.logDebug("exc_wth             : " + colValue[10]);
         logger.logDebug("rsn_tp_frn          : " + colValue[11]);
         logger.logDebug("lus_rt_cd_frn       : " + colValue[12]);
         logger.logDebug("ptt_flm_dtl_cd      : " + colValue[13]);
         logger.logDebug("mql_cd              : " + colValue[14]);
-        logger.logDebug("ord_edg_asg_tp   : " + colValue[15]);
+        logger.logDebug("ord_edg_asg_tp      : " + colValue[15]);
         logger.logDebug("ord_exc_lth         : " + colValue[16]);
-        logger.logDebug("prd_shp            : " + colValue[17]);
-        logger.logDebug("ord_coilg_mth      : " + colValue[18]);
-        logger.logDebug("fnl_cus_cd           : " + colValue[19]);
-        logger.logDebug("ord_usg_cd         : " + colValue[20]);
+        logger.logDebug("prd_shp             : " + colValue[17]);
+        logger.logDebug("ord_coilg_mth       : " + colValue[18]);
+        logger.logDebug("fnl_cus_cd          : " + colValue[19]);
+        logger.logDebug("ord_usg_cd          : " + colValue[20]);
+        logger.logDebug("ord_spnl_tp         : " + colValue[21]);
+        logger.logDebug("ord_slit_grp_cnt    : " + colValue[22]);
 
         try{
             // 결과값 잘 가져오는지 확인

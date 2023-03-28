@@ -5,12 +5,11 @@
 <item label="반납확정 등록용 재설계" name="std_title" type="label" />
 </item>
 <item type="block">
-<item inputWidth="80" label="주문번호" name="ORD_NO" type="input" disabled="true"/>
+<item inputWidth="80" label="주문번호" name="ORD_NO" type="input"/>
 <item offset="4" type="newcolumn"/>
-<item inputWidth="40" label="-" name="ORD_LN" type="input" disabled="true"/>
+<item inputWidth="40" label="-" name="ORD_LN" type="input"/>
 <item offset="4" type="newcolumn"/>
 </item>
-
 <item type="block">
 <item label="　" name="std_title" type="label" />
 </item>
@@ -27,7 +26,8 @@
 <item label="　" name="std_title" type="label" />
 </item>
 <item type="block">
-<item offset="190" type="newcolumn"/>
+<item offset="170" type="newcolumn"/>
+<item offset="4" type="newcolumn"/>
 <item name="save" command="save" type="button" value="재설계"/>
 <item offset="4" type="newcolumn"/>
 <item name="winClose" command="winClose" type="button" value="닫기"/>

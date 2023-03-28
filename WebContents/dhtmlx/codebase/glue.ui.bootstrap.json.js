@@ -78,7 +78,10 @@
     	// 도메인변경 (2020.12.14 일괄작업)  
     	//window.document.domain="unionsteel.co.kr";
     	 
-    	window.document.domain="dongkuk.com";
+    	//window.document.domain="dongkuk.com";
+    	
+    	//도메인변경 (2023.03.07 일괄작업 시작 -> 6월 최종 변경)
+    	window.document.domain="dongkukcm.com";
 		  
 	  }
 })();

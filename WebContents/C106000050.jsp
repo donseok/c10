@@ -403,8 +403,39 @@ function save(eventName,formDivObj,referenceItem){
 	                return;
                 }
 
-            //Lamina 필수항목 체크  
+              //구매Lamina 필수항목 체크  
               if((cellValue == "S38") && (isNull(cellValue2) || isNull(cellValue12) || isNull(cellValue26))){
+
+	                if(isNull(cellValue2)){
+	                 	if(msg == ""){
+	                  		msg = "컬러코드";
+	                  		colidx = 1;
+	                  	}else{ 
+	                  		msg = msg + ",컬러코드";
+	                  	}
+	                }
+	                if(isNull(cellValue12)){
+	                  	if(msg == ""){
+	                  		msg = "도막두께";
+	                  		colidx = 12;
+	                  	}else{
+	                  		msg = msg + ",도막두께";
+	                  	}
+	                }
+	                if(isNull(cellValue26)){
+	                  	if(msg == ""){
+	                  		msg = "Lamina유형";
+	                  		colidx = 26;
+	                  	}else{
+	                  		msg = msg + ",Lamina유형";
+	                  	}
+	                }                                                                                                                
+	                dhtmlx.alert("Lamina의 필수 항목이 누락되었습니다.\n(" + msg + ")");  //이부분수정
+	                gridObj.selectCell(i, colidx , true, true);
+	                return;
+                }
+            //생산Lamina 필수항목 체크  
+              if((cellValue == "S40") && (isNull(cellValue2) || isNull(cellValue12) || isNull(cellValue26))){
 
 	                if(isNull(cellValue2)){
 	                 	if(msg == ""){
@@ -947,10 +978,13 @@ function onFormLoadFunction(){
 			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!  (0)
 				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
 				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
-			}else if(!isNull(comboValue) && (comboValue == "S39")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!  (0)
+			}else if(!isNull(comboValue) && (comboValue == "S39" || comboValue == "S49")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!  (0) -> 생산용 USG필름 추가!! (2023.03.03)
 				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
 				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
-			}else if(!isNull(comboValue) && (comboValue == "S38")){	//Lamina  완료!!   (0)
+			}else if(!isNull(comboValue) && (comboValue == "S38")){	//구매Lamina  완료!!   (0)
+				grid.setColumnHiddenFlag("1,2,3,18,23,26,27,37,39,40,41,42,43,44,55,56,57,58,59,60,61,62,73",false);
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54",true);  
+			}else if(!isNull(comboValue) && (comboValue == "S40")){	//생산Lamina  완료!!   (0)
 				grid.setColumnHiddenFlag("1,2,3,18,23,26,27,37,39,40,41,42,43,44,55,56,57,58,59,60,61,62,73",false);
 				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54",true);  
 			}else{

@@ -254,7 +254,10 @@ LMN_FLM_THK_CD || (SELECT ' : ' || CD_V_MEANING
     RSN_TP_QT_BR_BAK_2COT, 
     RSN_TP_QT_BR_BAK_3COT, 
     RSN_TP_QT_BR_BAK_4COT, 
-    BR_WT_CD 
+    BR_WT_CD,
+    RSN_TP_QT_BR_FRN,
+    RSN_TP_QT_BR_BAK,
+    LUXTEEL_BRD_CD
 FROM C10APUSER.TB_C10_CCL_BOM
 WHERE 1=1 
 AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'
@@ -474,7 +477,10 @@ CCL_BOM_WR_YN = DECODE(:CCL_BOM_WR_YN,'1','Y','N'),--CCLBOM사용여부
 PT_TP = :PT_TP,
 IMPT_ROLL_NO = :IMPT_ROLL_NO,
 IMPT_ROLL_BAK_NO = :IMPT_ROLL_BAK_NO,
-CLR_SPC_PRD_SCLS = :CLR_SPC_PRD_SCLS    
+CLR_SPC_PRD_SCLS = :CLR_SPC_PRD_SCLS,
+RSN_TP_QT_BR_FRN = :RSN_TP_QT_BR_FRN,
+RSN_TP_QT_BR_BAK = :RSN_TP_QT_BR_BAK,
+LUXTEEL_BRD_CD = :LUXTEEL_BRD_CD
 WHERE  CCL_BOM_NO = :CCL_BOM_NO--CCLBOM번호
 		 ]]> 
 	 </query>
@@ -674,6 +680,13 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이민
     QLT_DSN_CFM_TP,--품질설계확정구분
     LMN_BND_UNT,--Lamina접착제원단위
     LMN_BND_UNT1,--Lamina접착제원단위1
+    UNI_TEX_ROLL_NO,--유니텍스롤번호
+    UNI_TEX_PTN_CD, --유니텍스페턴코드
+    PICK_UP_ROLL_NO, --픽업롤번호
+    PT_TP, --핀트종류
+    IMPT_ROLL_NO, --Imprinting롤번호
+    IMPT_ROLL_BAK_NO,
+    CLR_SPC_PRD_SCLS, --칼라특수제품소분류
     RSN_TP_QT_BR_FRN_1COT, --품질수지1
     RSN_TP_QT_BR_FRN_2COT,
     RSN_TP_QT_BR_FRN_3COT,
@@ -682,6 +695,13 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이민
     RSN_TP_QT_BR_BAK_2COT, 
     RSN_TP_QT_BR_BAK_3COT, 
     RSN_TP_QT_BR_BAK_4COT,
+    RSN_TP_QT_BR_FRN, 
+    RSN_TP_QT_BR_BAK,
+    LUXTEEL_BRD_CD,
+    RGS_PRS_ID,  --등록자
+    RGS_DH    ,  --등록일
+    MDF_PRS_ID,  --수정자
+    MDF_DH,      --수정일
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -689,19 +709,7 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이민
     LAST_UPDATED_OBJECT_TYPE,
     LAST_UPDATED_OBJECT_ID,
     LAST_UPDATE_PROGRAM_ID,
-    LAST_UPDATE_TIMESTAMP,
-    UNI_TEX_ROLL_NO,--유니텍스롤번호
-    UNI_TEX_PTN_CD, --유니텍스페턴코드
-    PICK_UP_ROLL_NO, --픽업롤번호
-    PT_TP, --핀트종류
-    IMPT_ROLL_NO, --Imprinting롤번호
-    IMPT_ROLL_BAK_NO,
-    CLR_SPC_PRD_SCLS, --칼라특수제품소분류
-    RGS_PRS_ID,  --등록자
-    RGS_DH    ,  --등록일
-    MDF_PRS_ID,  --수정자
-    MDF_DH       --수정일
- 
+    LAST_UPDATE_TIMESTAMP
 )VALUES(
     :CCL_BOM_NO,--CCLBOM번호
     DECODE(:CCL_BOM_ATT_YN,'1','Y','N'),--관심CCLBOM
@@ -889,6 +897,13 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이민
     :QLT_DSN_CFM_TP,--품질설계확정구분
     :LMN_BND_UNT,--Lamina접착제원단위
     :LMN_BND_UNT1,--Lamina접착제원단위1
+    :UNI_TEX_ROLL_NO,--유니텍스롤번호
+    :UNI_TEX_PTN_CD,--유니텍스페턴코드
+    :PICK_UP_ROLL_NO,--픽업롤번호
+    :PT_TP, --핀트종류
+    :IMPT_ROLL_NO, --Imprinting롤번호
+    :IMPT_ROLL_BAK_NO,
+    :CLR_SPC_PRD_SCLS,
     :RSN_TP_QT_BR_FRN_1COT, --품질수지1
     :RSN_TP_QT_BR_FRN_2COT,
     :RSN_TP_QT_BR_FRN_3COT,
@@ -897,25 +912,21 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.cclBomInfoInsert 이민
     :RSN_TP_QT_BR_BAK_2COT, 
     :RSN_TP_QT_BR_BAK_3COT, 
     :RSN_TP_QT_BR_BAK_4COT,
-    :ObjectType,--ObjectType
-    :ObjectId,--ObjectId
-    :ProgramId,--ProgramId
-    :Timestamp,--Timestamp
-    :ObjectType,--ObjectType
-    :ObjectId,--ObjectId
-    :ProgramId,--ProgramId
-    :Timestamp,--Timestamp
-    :UNI_TEX_ROLL_NO,--유니텍스롤번호
-    :UNI_TEX_PTN_CD,--유니텍스페턴코드
-    :PICK_UP_ROLL_NO,--픽업롤번호
-    :PT_TP, --핀트종류
-    :IMPT_ROLL_NO, --Imprinting롤번호
-    :IMPT_ROLL_BAK_NO,
-    :CLR_SPC_PRD_SCLS,
+    :RSN_TP_QT_BR_FRN, 
+    :RSN_TP_QT_BR_BAK,
+    :LUXTEEL_BRD_CD,
     :ObjectId,--ObjectId
     sysdate,
     :ObjectId,--ObjectId
-    sysdate
+    sysdate,
+    :ObjectType,--ObjectType
+    :ObjectId,--ObjectId
+    :ProgramId,--ProgramId
+    :Timestamp,--Timestamp
+    :ObjectType,--ObjectType
+    :ObjectId,--ObjectId
+    :ProgramId,--ProgramId
+    :Timestamp--Timestamp
 )
 		 ]]> 
 	 </query>

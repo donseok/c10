@@ -1,0 +1,38 @@
+<items>	
+	<item type="block" width="615">
+	    <item type="newcolumn" offset="80" />
+		<item label="품질수지타입(T)" name="RSN_TP_QT_BR_FRN" type="label"/>
+	    <item type="newcolumn" offset="85" />
+	    <item label="품질수지타입(B)" name="RSN_TP_QT_BR_BAK" type="label"/>
+		<item type="newcolumn" offset="110" />
+	    <item label="Brand" name="LUXTEEL_BRD_CD" type="label"/>
+	</item>
+	<item type="block" width="615">
+		<item type="newcolumn" offset="5" />
+		<item label="추천" name="RSN_TP_QT_BR_FRN_KND_TP" position="label-right" type="radio" value="A"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="RSN_TP_QT_BR_FRN_AI" type="input" labelAlign="left" value="" readonly="true"/>
+		<item type="newcolumn" offset="5" />
+		<item label="" name="RSN_TP_QT_BR_BAK_KND_TP" position="label-right" type="radio" value="A"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="RSN_TP_QT_BR_BAK_AI" type="input" labelAlign="left" value="" readonly="true"/>
+		<item type="newcolumn" offset="5" />
+		<item label="" name="LUXTEEL_BRD_CD_KND_TP" position="label-right" type="radio" value="A"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="LUXTEEL_BRD_CD_AI" type="input" labelAlign="left" value="" readonly="true"/>
+	</item>
+	<item type="block" width="615">	
+		<item type="newcolumn" offset="5" />
+		<item label="선정" name="RSN_TP_QT_BR_FRN_KND_TP" position="label-right" type="radio" value="B" checked="true"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="RSN_TP_QT_BR_FRN_CB" type="combo" labelAlign="right" value=""/>
+		<item type="newcolumn" offset="5" />
+		<item label="" name="RSN_TP_QT_BR_BAK_KND_TP" position="label-right" type="radio" value="B" checked="true"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="RSN_TP_QT_BR_BAK_CB" type="combo" labelAlign="right" value=""/>
+		<item type="newcolumn" offset="5" />
+		<item label="" name="LUXTEEL_BRD_CD_KND_TP" position="label-right" type="radio" value="B" checked="true"/>
+		<item type="newcolumn" offset="5" />
+		<item labelWidth="" inputWidth="150" label="" name="LUXTEEL_BRD_CD_CB" type="combo" labelAlign="right" value=""/>
+	</item>
+</items>

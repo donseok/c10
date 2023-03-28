@@ -191,6 +191,7 @@ function save(eventName,formDivObj,referenceItem){
 			    sub_proc2 = gridObj.cellByIndex(i,3).getValue();
 			    sub_proc3 = gridObj.cellByIndex(i,4).getValue();
 			    
+			    /*
 			    if(	sub_proc3.substring(0,1) == "8" || sub_proc3.substring(0,1) == "9"){
 			    	//alert("PL ST폭은 입력할 수 없습니다!");
 					//return;		
@@ -213,8 +214,10 @@ function save(eventName,formDivObj,referenceItem){
 						}						
 				    }
 			    } //end if PL ST..
+			    */
 			    
 			    //CGL 소둔사이클 코드가 없으면 해당 통과공정 추가 불가
+			    /*
 				if(sub_proc1.substring(0,1) == "8"){
 					var param3= "ServiceName=C104000020TAB08-service&CANN_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=HEAT_CYL_NO_2CGL,HEAT_CYL_NO_3CGL,HEAT_CYL_NO_4CGL,HEAT_CYL_NO_5CGL";
 					var xmlObj3 = uiCommon.ajaxLoadData('c10AjaxData.do',param3);
@@ -280,8 +283,10 @@ function save(eventName,formDivObj,referenceItem){
 						}							
 				    }
 			    } //end if CGL소둔 사이클..
+			    */
 			    
 			    //ANN 소둔사이클 코드가 없으면 해당 통과공정 추가 불가
+			    
 				if(sub_proc1.substring(0,1) == "4"){
 					var param4= "ServiceName=C104000020TAB08-service&ANN_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=HEAT_CYL_NO_GEN_ANN,HEAT_CYL_NO_HC_ANN";
 					var xmlObj4 = uiCommon.ajaxLoadData('c10AjaxData.do',param4);
@@ -356,7 +361,7 @@ function save(eventName,formDivObj,referenceItem){
 							proc_seq_max_temp = proc_seq_max;
 					}
 					//2013.07.25 이돈석 - 공정 추가/삭제 시 순차조정을 위한 경고 메시지 추가
-					dhtmlx.alert("[알림]용융 및 전기도금 화면에서 S/T값,폭목표값,소둔Cycle등 각종 제조표준 정보를 추가하시기 바랍니다"); 
+					//dhtmlx.alert("[알림]용융 및 전기도금 화면에서 S/T값,폭목표값,소둔Cycle등 각종 제조표준 정보를 추가하시기 바랍니다"); 
 				 }else{
 				 	dhtmlx.alert("취소되었습니다.");
 				 }

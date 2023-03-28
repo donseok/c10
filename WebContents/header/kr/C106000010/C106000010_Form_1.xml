@@ -22,5 +22,7 @@
 		<item inputWidth="200" label="도료업체" name="DEV_PNT_CMP_CD" maxLength="10"   type="combo" />
 		<item offset="10" type="newcolumn"/>
 		<item inputWidth="100" label="영업담당자" name="SAL_CHR_PRS_ID" maxLength="20" type="input" style="background-color:#FFFFC0"/>
+		<item offset="10" type="newcolumn"/>
+		<item inputWidth="100" label="요청진도" name="CLR_WK_STS_CD" maxLength="10"   type="combo" />
 	</item>
 </items>

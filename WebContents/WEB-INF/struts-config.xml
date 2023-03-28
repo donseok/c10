@@ -56,6 +56,9 @@
 	<action path="/c106000060pop07" type="com.posdata.glue.web.control.PosStrutsAction">
 	  <forward name="success" path="/C106000060pop07.jsp"/>
 	</action>
+	<action path="/c106000060pop08" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C106000060pop08.jsp"/>
+	</action>
 	<action path="/c106000080pop03" type="com.posdata.glue.web.control.PosStrutsAction">
 	  <forward name="success" path="/C106000080pop03.jsp"/>
 	</action>

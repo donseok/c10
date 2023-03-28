@@ -1,38 +1,51 @@
 <items>
 <item type="block" width="961">
-<item offset="5" type="newcolumn"/>
-<item inputWidth="100" label="최종수요가" labelWidth="65" maxLength="6" name="FNL_CUS_CD" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="110" label="규격약호" labelWidth="60" maxLength="15" name="SPC_AVR" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="50" label="주문Size" labelWidth="60" maxLength="5" name="ORD_EXC_THK" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
-<item offset="5" type="newcolumn"/>
-<item inputWidth="56" maxLength="5" name="ORD_EXC_WTH" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
-<item offset="5" type="newcolumn"/>
-<item inputWidth="60" maxLength="6" name="ORD_EXC_LTH" readonly="true" type="input" labelAlign="right" style="text-align:right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="220" label="고객사양명" labelWidth="90" maxLength="10" name="CUS_BTH_NM" readonly="true" type="input" labelAlign="right" />
+<item inputWidth="160" label="최종수요가" labelWidth="63" maxLength="6" name="FNL_CUS_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="100" label="규격약호" labelWidth="50" maxLength="15" name="SPC_AVR" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" label="주문Size" labelWidth="50" maxLength="5" name="ORD_EXC_THK" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" maxLength="5" name="ORD_EXC_WTH" readonly="true" type="input" labelAlign="right" style="text-align:right"/>
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" maxLength="6" name="ORD_EXC_LTH" readonly="true" type="input" labelAlign="right" style="text-align:right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="140" label="고객사양명" labelWidth="70" maxLength="10" name="CUS_BTH_NM" readonly="true" type="input" labelAlign="right" />
 </item>
 <item type="block" width="961">
-<item offset="5" type="newcolumn"/>
-<item inputWidth="50" label="품명" labelWidth="30" maxLength="2" name="PRD_NM_CD" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="200" label="용도" labelWidth="30" maxLength="4" name="ORD_USG_CD" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="70" label="재질/원자재" labelWidth="70" maxLength="3" name="MQL_CD" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="120" maxLength="3" name="RMTL_CD" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item inputWidth="50" label="BOM" labelWidth="30" maxLength="6" name="CCL_BOM_NO" readonly="true" type="input" labelAlign="right" />
-<item offset="5" type="newcolumn"/>
-<item label="BOM_LNK" name="BOM_LNK" type="linkbutton" value="BOM" width="60" command="openBom" />
-<item offset="5" type="newcolumn"/>
-<item label="COR_IMG" name="COR_IMG" type="linkbutton" value="이미지" width="60" command="openColImg"/>
-<item offset="5" type="newcolumn"/>
-<item label="CD_USG" name="CD_USG" type="linkbutton" value="코드사용" width="70" command="openCdUsg"/>
+<item inputWidth="60" label="품명" labelWidth="30" maxLength="2" name="PRD_NM_CD" readonly="true" type="input" labelAlign="left" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="320" label="용도" labelWidth="30" maxLength="4" name="ORD_USG_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="90" label="재질/원자재" labelWidth="70" maxLength="3" name="MQL_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="140" maxLength="3" name="RMTL_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="60" label="수정설계원" labelWidth="65" maxLength="3" name="MOD_USER_NM" readonly="true" type="input" labelAlign="right" />
 <item inputWidth="40" label="CUS_CD" maxLength="10" name="CUS_CD" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="ACT_CUS_CD" maxLength="10" name="ACT_CUS_CD" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="TRST_PROC_YN" maxLength="10" name="TRST_PROC_YN" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="ATT_ORD_YN" maxLength="10" name="ATT_ORD_YN" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="MOD_ID" maxLength="10" name="MOD_ID" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="MOD_PGM" maxLength="10" name="MOD_PGM" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="CUS_CD_ORG" maxLength="10" name="CUS_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="ACT_CUS_CD_ORG" maxLength="10" name="ACT_CUS_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="FNL_CUS_CD_ORG" maxLength="10" name="FNL_CUS_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="PRD_NM_CD_ORG" maxLength="10" name="PRD_NM_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
+</item>
+<item type="block" width="961">
+<item inputWidth="150" label="품질수지(T/B)" labelWidth="90" maxLength="100" name="RSN_TP_QT_BR_FRN" readonly="true" type="input" labelAlign="left" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="150" maxLength="100" name="RSN_TP_QT_BR_BAK" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="200" label="Brand" labelWidth="40" maxLength="4" name="LUXTEEL_BRD_CD" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item inputWidth="50" label="BOM" labelWidth="30" maxLength="6" name="CCL_BOM_NO" readonly="true" type="input" labelAlign="right" />
+<item offset="2" type="newcolumn"/>
+<item label="BOM_LNK" name="BOM_LNK" type="linkbutton" value="BOM" width="60" command="openBom" />
+<item offset="2" type="newcolumn"/>
+<item label="COR_IMG" name="COR_IMG" type="linkbutton" value="이미지" width="60" command="openColImg"/>
+<item offset="2" type="newcolumn"/>
+<item label="CD_USG" name="CD_USG" type="linkbutton" value="코드사용" width="70" command="openCdUsg"/>
 </item>
 </items>

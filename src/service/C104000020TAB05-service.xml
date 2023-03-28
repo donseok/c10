@@ -59,7 +59,7 @@
   </activity>
   <activity name="MSG저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="failure" value="end" />
-    <transition name="success" value="이력저장" />
+    <transition name="success" value="end" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB05.MSGupdate" />
     <property name="dao" value="mesdao" />

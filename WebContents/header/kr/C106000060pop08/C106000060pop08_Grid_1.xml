@@ -1,0 +1,40 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column align="center" dbname="PRT_ROLL_NO" id="PRT_ROLL_NO" index="1" sort="str" table="VI_M00_C10A1091" type="ro" width="15">ROLL NO</column>
+<column align="center" dbname="RPV_CLR_NM" id="RPV_CLR_NM" index="2" sort="str" table="VI_M00_C10A1091" type="ro" width="15">대표색상</column>
+<column align="center" dbname="PRC_CD" id="PRC_CD" index="3" sort="str" table="VI_M00_C10A1091" type="ro" width="10">적용라인</column>
+<column align="center" dbname="PTN_NM" id="PTN_NM" index="4" sort="str" table="VI_M00_C10A1091" type="ro" width="*">PATTERN 명</column>
+<column align="center" dbname="PRT_PTN_CD" id="PRT_PTN_CD" index="5" sort="str" table="VI_M00_C10A1091" type="ro" width="12">프린트패턴코드</column>
+<column align="center" dbname="PRT_ROLL_PTN_CD" id="PRT_ROLL_PTN_CD" index="5" sort="str" table="VI_M00_C10A1091" type="ro" width="12">롤패턴코드</column>
+<column align="center" dbname="PRT_ROLL_PTN_NM" id="PRT_ROLL_PTN_NM" index="6" sort="str" table="VI_M00_C10A1091" type="ro" width="10">원단위</column>
+<column align="center" dbname="PRT_ROLL_WHS_DD" id="PRT_ROLL_WHS_DD" index="7" sort="str" table="VI_M00_C10A1091" type="ro" width="13">롤입고일자</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">PRT_ROLL_NO,RPV_CLR_NM,PRC_CD,PTN_NM,PRT_PTN_CD,PRT_ROLL_PTN_CD,PRT_ROLL_PTN_NM,PRT_ROLL_WHS_DD</userdata>
+</rows>

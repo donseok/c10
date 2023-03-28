@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000060pop08 Page 쿼리파일"> 
+	 <query id="C106000060pop08.select" desc="C106000060pop08 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C10 품질수지popup조회 C106000060pop08.SELECT 이돈석*/   
+     RSN_TP_QT_BR_FRN,
+     RSN_TP_QT_BR_BAK,
+     LUXTEEL_BRD_CD
+FROM TB_C10_CCL_BOM
+WHERE CCL_BOM_NO = :CCL_BOM_NO
+		 ]]> 
+	 </query>
+</queryMap>

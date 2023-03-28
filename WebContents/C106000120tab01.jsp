@@ -47,9 +47,9 @@ function save(eventName,formDivObj,referenceItem){
 	var gridObj = items['C106000120tab01_Grid_1'].getDhxGrid();
 	
 	//모든 그리드 업데이트(보증서 변경내역 저장을 위해) 
-/* 	for(var i=0; i< gridObj.getRowsNum(); i++){
+ 	for(var i=0; i< gridObj.getRowsNum(); i++){
 		grid.setUpdated(grid.getDhxGrid().getRowId(i),true,"updated"); 
-	} */
+	} 
 		
 	dhtmlx.confirm({
 		ok:"확인", cancel:"취소",
@@ -90,7 +90,8 @@ function redo(referenceItem){
 }
 function onGridContextMenuClick(id,gridObj,menuObj){
 	
-    var isChecked = menuObj.getCheckboxState(id); 
+    var isChecked = menuObj.getCheckboxState(id);
+    
     if("move_grid" == id){
         if(isChecked)
           gridObj.enableColumnMove(true);
@@ -101,13 +102,15 @@ function onGridContextMenuClick(id,gridObj,menuObj){
   		if(isChecked)
          gridObj.enableHeaderMenu();
   	}
-  
+  	
+  	
   	if("editable_grid" == id){
   		if(isChecked)
          gridObj.setEditable(true);
   		else	
   		  gridObj.setEditable(false);
   	}
+  	
   	
   	if("excel_grid" == id){
      	gridObj.toExcel('<%=request.getContextPath()%>/gridexcel','color');
@@ -293,6 +296,7 @@ function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
     
     items['C106000120tab01_Grid_1'].setCellValue(rId,5, cells.item(0).firstChild.nodeValue);//수지명
     */
+	return true;
 }
 
 //전송버튼 클릭 시 실행 

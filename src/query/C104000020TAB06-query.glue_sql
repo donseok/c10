@@ -139,8 +139,6 @@ AND      TB_C10_QLT_DSN_MNF.ORD_NO = :ORD_NO
 AND      TB_C10_QLT_DSN_MNF.ORD_LN = :ORD_LN
 AND      TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP
 AND      TB_C10_QLT_DSN_CMN.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
-AND      NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
-                           WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_MSG.select" desc="메세지조회" fetchSize="10" isNamed="true">
@@ -154,8 +152,6 @@ FROM   TB_C10_QLT_DSN_MSG A
 WHERE  ORD_NO = :ORD_NO
 AND    ORD_LN = :ORD_LN
 AND    QLT_DSN_MNF_TP = '1'
-AND    NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
-                           WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_RMT.select" desc="C104000020TAB06_RMT.select" fetchSize="10" isNamed="true">
@@ -190,7 +186,7 @@ WHERE A.ORD_NO = B.ORD_NO
 AND A.ORD_LN = B.ORD_LN    
 AND A.ORD_NO = :ORD_NO
 AND A.ORD_LN = :ORD_LN
-AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','N','8')
+AND B.PRD_NM_CD IN ('A','B','C','D','E','1','2','N','8','4')
 ORDER BY A.QLT_DSN_MNF_TP
 		 ]]> 
 	 </query>

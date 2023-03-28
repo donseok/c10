@@ -2,7 +2,7 @@
 <queryMap desc="C104000020"> 
 	 <query id="C104000020.select" desc="C104000020.select" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계결과Main C104000020.select 박재영 */
+SELECT /* C10 품질설계결과Main C104000020.select 박재영 */
        CUS_CD || 
       (SELECT ' : ' || CD_V_MEANING 
        FROM M00APUSER.VI_M00_CODE_ACCESS
@@ -34,7 +34,8 @@ SELECT /*+ C10 품질설계결과Main C104000020.select 박재영 */
        WHERE CD_TP = 'PRD_NM_CD' 
        AND   CATEGORY_GROUP_NM = 'SZ0000'
        AND   CD_V = PRD_NM_CD) PRD_NM_CD
-      ,(SELECT CD_V_MEANING 
+      ,ORD_USG_CD ||
+      (SELECT  ' : ' || CD_V_MEANING 
        FROM M00APUSER.VI_M00_CODE_ACCESS 
        WHERE CD_TP = 'ORD_USG_CD' 
        AND   CATEGORY_GROUP_NM = 'SZ0000'
@@ -52,15 +53,82 @@ SELECT /*+ C10 품질설계결과Main C104000020.select 박재영 */
        WHERE CD_TP = 'RMTL_CD' 
        AND   CATEGORY_GROUP_NM = 'SZ0000'
        AND   CD_V = RMTL_CD) RMTL_CD
-      ,CRM_MNF_STD_NO
-      ,HUE_CD_FRN
-      ,PAS_PROC_NO
-      ,CCL_BOM_NO
-      ,DECODE(TRST_PROC_YN,'N',NULL,TRST_PROC_YN) AS TRST_PROC_YN
-      ,NVL(ATT_ORD_YN,'N') AS ATT_ORD_YN
-   FROM C10APUSER.TB_C10_QLT_DSN_CMN A
-WHERE ORD_NO = :ORD_NO
-AND   ORD_LN = :ORD_LN
+      ,A.CRM_MNF_STD_NO
+      ,A.HUE_CD_FRN
+      ,A.PAS_PROC_NO
+      ,A.CCL_BOM_NO
+      ,DECODE(A.TRST_PROC_YN,'N',NULL,TRST_PROC_YN) AS TRST_PROC_YN
+      ,NVL(A.ATT_ORD_YN,'N') AS ATT_ORD_YN
+      ,B.RSN_TP_QT_BR_FRN || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'RSN_TP_QT_BR' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = B.RSN_TP_QT_BR_FRN) AS RSN_TP_QT_BR_FRN
+      ,B.RSN_TP_QT_BR_BAK || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'RSN_TP_QT_BR' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = B.RSN_TP_QT_BR_BAK) AS RSN_TP_QT_BR_BAK
+      ,B.LUXTEEL_BRD_CD || 
+      (SELECT ' : ' || CD_V_MEANING 
+       FROM M00APUSER.VI_M00_CODE_ACCESS
+       WHERE CD_TP = 'LUXTEEL_BRD_CD' 
+       AND   CATEGORY_GROUP_NM = 'SZ0000'
+       AND   CD_V = B.LUXTEEL_BRD_CD) AS LUXTEEL_BRD_CD,
+      (SELECT LAST_UPDATED_OBJECT_ID
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+           AND SEQ = 
+        (   
+        SELECT MAX(SEQ)
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+        )
+       ) AS MOD_ID,
+             (SELECT CHG_TXT
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+           AND SEQ = 
+        (   
+        SELECT MAX(SEQ)
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+        )
+       ) AS MOD_PGM,
+       (SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+           AND SEQ = 
+        (   
+        SELECT MAX(SEQ)
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+         WHERE ORD_NO = :ORD_NO
+           AND ORD_LN = :ORD_LN
+           AND CHG_TXT = 'C104000020TAB05'
+        )
+       ) AS MOD_USER_NM
+       , A.CUS_CD AS CUS_CD_ORG
+       , A.FNL_CUS_CD AS FNL_CUS_CD_ORG
+       , A.ACT_CUS_CD AS ACT_CUS_CD_ORG
+       , A.PRD_NM_CD AS PRD_NM_CD_ORG
+   FROM C10APUSER.TB_C10_QLT_DSN_CMN A,
+        C10APUSER.TB_C10_QLT_DSN_CCL_BOM B
+WHERE A.ORD_NO = B.ORD_NO(+)
+AND A.ORD_LN = B.ORD_LN(+)
+AND A.ORD_NO = :ORD_NO
+AND A.ORD_LN = :ORD_LN
 		 ]]> 
 	 </query>
 	 <query id="C104000020.combo" desc="C104000020.combo" fetchSize="10" isNamed="true">
@@ -297,6 +365,31 @@ SELECT /*+ C104000020  품질설계확정결과송신  C104000020.selectForB20R5
      , :ORD_LN AS ORD_LN          --주문행번
      , 'Y' AS QLT_DSN_CFM_YN       --품질설계확정여부
 FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C104000020.MODselect" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT LAST_UPDATED_OBJECT_ID/* C10 품질설계변경이력조회 C104000020.MODselect 이돈석*/      
+  FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+ WHERE ORD_NO = :ORD_NO
+   AND ORD_LN = :ORD_LN
+   AND CHG_TXT = 'C104000020TAB05'
+   AND SEQ = 
+(   
+    SELECT MAX(SEQ)
+      FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+     WHERE ORD_NO = :ORD_NO
+       AND ORD_LN = :ORD_LN
+       AND CHG_TXT = 'C104000020TAB05'
+)
+		 ]]> 
+	 </query>
+	 <query id="C104000020.QLTselect" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C10 품질협정서 조회 C104000020.QLTselect 이돈석*/ COUNT(*) AS QLT_CNT
+  FROM TB_M20_QLTIV_CUS_SQ
+ WHERE CUS_SPC_TP_CD = '3'
+   AND CUS_CD IN (:CUS_CD,:FNL_CUS_CD,:ACT_CUS_CD)
 		 ]]> 
 	 </query>
 </queryMap>

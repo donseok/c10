@@ -126,6 +126,7 @@ function save(eventName,formDivObj,referenceItem){
 	var param = "";
 	var xmlObj = "";
 	var cells = "";
+	var prd_nm_cd = "";
 	
 	for(var i=0; i< grid_cnt; i++){
 		var row_status 			= gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status")
@@ -136,9 +137,12 @@ function save(eventName,formDivObj,referenceItem){
 			if(checkVal == 1){
 				ord_no = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_NO")).getValue();
 				ord_ln  = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_LN")).getValue();
+				prd_nm_cd = gridObj.cellByIndex(i,gridObj.getColIndexById("PRD_NM_CD")).getValue();
+				
 				param= "ServiceName=C104000050-service&BRY_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=QLT_DSN_STS_CD,ORD_BAK_SND_TP,QLT_HLD_YN";						
 				xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
 				cells = xmlObj.getElementsByTagName("cell");						
+				
 				if(cells.length > 0){
 					QLT_DSN_STS_CD = cells.item(0).firstChild.nodeValue;
 					ORD_BAK_SND_TP = cells.item(1).firstChild.nodeValue;
@@ -153,8 +157,26 @@ function save(eventName,formDivObj,referenceItem){
 		  			items['C104000050_Grid_1'].setCellValue(gridObj.getRowId(i),0,0);
 		  			items['C104000050_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 			
 					return;					
-				}	
-
+				}
+				
+				//2023.02.09 이상현차장 요청(설계수정자 = 설계확정자가 동일한 경우 설계확정 불가)
+				if(prd_nm_cd == "G" || prd_nm_cd == "L" || prd_nm_cd == "V" || prd_nm_cd == "W"){
+					param= "ServiceName=C104000050-service&MOD_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=LAST_UPDATED_OBJECT_ID";						
+					xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
+					cells = xmlObj.getElementsByTagName("cell");
+					
+					if(cells.length > 0){
+						var modUserId = cells.item(0).firstChild.nodeValue;
+						
+						if(modUserId == <%=userNo%>){      
+							dhtmlx.alert("주문: "+ord_no+"-"+ord_ln+"의 설계내용 수정자와 설계 확정자가 동일함으로 확정이 불가합니다"); 
+				  			
+							items['C104000050_Grid_1'].setCellValue(gridObj.getRowId(i),0,0);
+				  			items['C104000050_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 			
+							return;	
+				  		}
+					}
+				}
 			} 
 		}
    }

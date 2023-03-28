@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="379,23" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="377,434" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.5 //@wire.11 //@wire.13 //@wire.14 //@wire.15 //@wire.17 //@wire.20 //@wire.22"/>
+  <child xsi:type="Glue:FinalState" id="1" location="377,434" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.5 //@wire.11 //@wire.13 //@wire.14 //@wire.15 //@wire.17 //@wire.20 //@wire.22 //@wire.16"/>
   <child xsi:type="Glue:RouterActivity" id="2" location="32,102" size="1082,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.7 //@wire.12 //@wire.1 //@wire.18 //@wire.10 //@wire.19 //@wire.21" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   원자재, 제조사양, 품질메세지조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   RMT_find는 품질설계-원자재, MNF_find는 품질설계-제조표준&#xD;&#xA;   MSG_find는 품질설계-메세지를 각각 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
@@ -51,7 +51,7 @@
     <property key="sqlkey" value="C104000020TAB05.STSselect"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계상태를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="156732" location="330,283" size="180,-1" input="//@wire.8 //@wire.16 //@wire.6" output="//@wire.14" name="이력저장">
+  <child xsi:type="Glue:DinaActivity" id="156732" location="330,283" size="180,-1" input="//@wire.8 //@wire.6" output="//@wire.14" name="이력저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
@@ -111,7 +111,7 @@
     <bendpoint weight="0.5" firstDimension="119,3" secondDimension="176,-224"/>
     <bendpoint weight="0.5" firstDimension="118,189" secondDimension="175,-38"/>
   </wire>
-  <wire id="9116" guardcondition="success" firstRelativePoint="613,251" lastRelativePoint="510,301">
+  <wire id="9116" guardcondition="success" firstRelativePoint="596,251" lastRelativePoint="395,440">
     <bendpoint weight="0.5" firstDimension="-6,65" secondDimension="193,3"/>
   </wire>
   <wire id="9117" guardcondition="failure" firstRelativePoint="308,205" lastRelativePoint="381,435">

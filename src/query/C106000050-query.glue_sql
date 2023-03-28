@@ -164,6 +164,8 @@ SELECT /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김�
         PUR_CHR_CFM,
         NVL(B.IMAGE_YN,'N') AS MIMAGE_YN,
         NVL(B.FILE_YN,'N')  AS MFILE_YN,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND SEQ_NO = 1) AS PCM_SPEC_FILE1,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND SEQ_NO = 2) AS COST_STM_FILE1,
         A.LAST_UPDATED_OBJECT_ID AS LAST_UPDATED_OBJECT_ID
   FROM C10APUSER.TB_C10_CLR_CD_MNG A,
        C10APUSER.TB_C10_CLR_CD_IMG_MNG B
@@ -589,6 +591,10 @@ INSERT INTO /* C10 칼라부자재코드전송IF TB_C10_B10S0130.insert 김종�
                  ,USE_POS_CD_NM
                  ,WTY_YN
                  ,WTY_YN_NM
+                 ,RSN_TP_QT_BR
+                 ,RSN_TP_QT_BR_NM
+                 ,PCM_SPEC_FILE1
+                 ,COST_STM_FILE1
                  ,RGS_PRS_ID 
                  ,CREATED_OBJECT_TYPE         
                  ,CREATED_OBJECT_ID        
@@ -639,6 +645,10 @@ VALUES
               :USE_POS_CD_NM,
               :WTY_YN,
               :WTY_YN_NM,
+              :RSN_TP_QT_BR,
+              :RSN_TP_QT_BR_NM,
+              :PCM_SPEC_FILE1,
+              :COST_STM_FILE1,
               :LAST_UPDATED_OBJECT_ID, 
               :ObjectType,
               :ObjectId,
@@ -769,7 +779,7 @@ SELECT /*+ C10 칼라코드관리- 칼라코드업체조회 C106000050.DetailSen
 	 </query>
 	 <query id="C106000050.erp_snd_update" desc="ERP전송일시관리" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-UPDATE /*+ C10 품질설계 칼라코드관리 C106000050.erp_snd_update 김종범 */ 
+UPDATE /* C10 품질설계 칼라코드관리 C106000050.erp_snd_update 김종범 */ 
 TB_C10_CLR_CD_MNG SET 
 ERP_SND_DH = sysdate + 0.5/1440
 WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD

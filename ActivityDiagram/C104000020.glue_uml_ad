@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="10" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="66" location="300,25" size="-1,-1" output="//@wire.2"/>
-  <child xsi:type="Glue:FinalState" id="67" location="314,293" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.9 //@wire.21"/>
-  <child xsi:type="Glue:RouterActivity" id="68" location="20,91" size="1288,-1" input="//@wire.2" output="//@wire.0 //@wire.3 //@wire.5 //@wire.8 //@wire.12 //@wire.13 //@wire.14 //@wire.10 //@wire.11 //@wire.20 //@wire.22" name="분기">
+  <child xsi:type="Glue:FinalState" id="67" location="314,293" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.9 //@wire.21 //@wire.29"/>
+  <child xsi:type="Glue:RouterActivity" id="68" location="20,91" size="1288,-1" input="//@wire.2" output="//@wire.0 //@wire.3 //@wire.5 //@wire.8 //@wire.12 //@wire.13 //@wire.14 //@wire.10 //@wire.11 //@wire.20 //@wire.22 //@wire.28 //@wire.30" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   콤보조회및 폼조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find는 폼조회, OrdLnFind는 콤보데이터를 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
   </child>
@@ -90,7 +90,7 @@
     <property key="param-count" value="named"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:FinalState" id="264425" location="979,296" size="-1,-1" input="//@wire.15 //@wire.16 //@wire.17 //@wire.19 //@wire.25"/>
+  <child xsi:type="Glue:FinalState" id="264425" location="979,296" size="-1,-1" input="//@wire.15 //@wire.16 //@wire.17 //@wire.19 //@wire.25 //@wire.31"/>
   <child xsi:type="Glue:DinaActivity" id="264427" location="1189,240" size="120,-1" input="//@wire.18" output="//@wire.19" name="관심주문SMS대상삭제">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
@@ -117,6 +117,18 @@
     <property key="insert-sql" value="C104000020.AttSmsupdate"/>
     <property key="isAudit" value="true"/>
     <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계상태를 품질설계확정('A')으로 업데이트하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문번호의 품질설계상태를 업데이트한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="265791" location="465,368" size="86,-1" input="//@wire.28" output="//@wire.29" name="설계변경">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020.MODselect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계- 품질설계 변경여부를 확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="265792" location="734,382" size="98,-1" input="//@wire.30" output="//@wire.31" name="품질협정서체크">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020.QLTselect"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계상태를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
   </child>
   <property key="tx1" value="true"/>
   <property key="tx2" value="true"/>
@@ -180,4 +192,12 @@
   </wire>
   <wire id="12730" guardcondition="success" firstRelativePoint="583,271" lastRelativePoint="583,316"/>
   <wire id="12757" guardcondition="success" firstRelativePoint="577,346" lastRelativePoint="577,767"/>
+  <wire id="12758" guardcondition="MOD_find" firstRelativePoint="466,388" lastRelativePoint="324,312"/>
+  <wire id="12759" guardcondition="success" firstRelativePoint="466,388" lastRelativePoint="324,312">
+    <bendpoint weight="0.5" firstDimension="-184,5" secondDimension="0,85"/>
+  </wire>
+  <wire id="12760" guardcondition="QLT_find" firstRelativePoint="832,398" lastRelativePoint="984,315"/>
+  <wire id="12761" guardcondition="success" firstRelativePoint="832,398" lastRelativePoint="987,315">
+    <bendpoint weight="0.5" firstDimension="198,1" secondDimension="-2,92"/>
+  </wire>
 </Glue:GlueDiagram>

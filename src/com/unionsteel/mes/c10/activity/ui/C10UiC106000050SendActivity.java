@@ -102,10 +102,18 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
         String[] USE_POS_CD_NM = null;
         String[] WTY_YN = null;
         String[] WTY_YN_NM = null;
+        
+        //2022.12.12 홍성업부장 요청 추가 항목
+        String[] RSN_TP_QT_BR = null;
+        String[] RSN_TP_QT_BR_NM = null; 
+		String[] PCM_SPEC_FILE1 = null;
+		//String[] PCM_SPEC_FILE2 = null;
+		String[] COST_STM_FILE1 = null;
+		//String[] COST_STM_FILE2 = null;
+		//String[] COST_STM_FILE3 = null;
+        		
         //String[] RGS_PRS_ID = null;
         String[] LAST_UPDATED_OBJECT_ID = null; 
-        
-        
         
         int idx = 0;
         int nRELULT = 0;
@@ -153,6 +161,13 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
             	USE_POS_CD_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("USE_POS_CD_NM"));
             	WTY_YN = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("WTY_YN"));
             	WTY_YN_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("WTY_YN_NM"));
+            	
+            	//2022.12.12 홍성업부장 요청 추가 항목 (인터페이스 항목추가)
+            	RSN_TP_QT_BR = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("RSN_TP_QT_BR"));
+            	RSN_TP_QT_BR_NM = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("RSN_TP_QT_BR_NM"));
+            	PCM_SPEC_FILE1 = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PCM_SPEC_FILE1"));
+            	COST_STM_FILE1 = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("COST_STM_FILE1"));
+            	 
             	LAST_UPDATED_OBJECT_ID = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("LAST_UPDATED_OBJECT_ID"));
             	
             	param = new PosParameter();
@@ -226,10 +241,12 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                 	param.setNamedParamter( "USE_POS_CD_NM", USE_POS_CD_NM );
                 	param.setNamedParamter( "WTY_YN", WTY_YN );
                 	param.setNamedParamter( "WTY_YN_NM", WTY_YN_NM );
+                	//2022.12.12 홍성업부장 요청 추가 항목 (인터페이스 항목추가)
+                	param.setNamedParamter( "RSN_TP_QT_BR", RSN_TP_QT_BR );
+                	param.setNamedParamter( "RSN_TP_QT_BR_NM", RSN_TP_QT_BR_NM );
+                	param.setNamedParamter( "PCM_SPEC_FILE1", PCM_SPEC_FILE1 );
+                	param.setNamedParamter( "COST_STM_FILE1", COST_STM_FILE1 );
                 	param.setNamedParamter( "LAST_UPDATED_OBJECT_ID", LAST_UPDATED_OBJECT_ID );
-                	
-                	
-                	
                 	// Audit 값이 안들어가서 임의로 추가해봄 
                 	param.setNamedParamter("LAST_UPDATED_OBJECT_ID", audit.getObjectId());
                 	param.setNamedParamter("LAST_UPDATE_PROGRAM_ID", audit.getProgramId());

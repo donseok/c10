@@ -92,12 +92,14 @@
 <column align="center" id="UNI_TEX_PTN_CD" index="45" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">UNI-TEX패턴코드</column>
 <column align="center" id="CLR_SPC_PRD_SCLS" index="46" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">칼라특수제품소분류</column>
 <column align="center" id="CUT_LN_YN" index="47" sort="int" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">재단선유무</column>
-
+<column align="center" id="RSN_TP_QT_BR_FRN" index="48" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">품질수지타입(T)</column>
+<column align="center" id="RSN_TP_QT_BR_BAK" index="49" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">품질수지타입(B)</column>
+<column align="center" id="LUXTEEL_BRD_CD" index="50" sort="str" table="TB_C10_CCL_BOM" type="ro" width="0" hidden="true">Brand</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">ANON_CD,ANON_UNT,DISC_PTN_WTH_CD_NM,HUE_CD_CHM,DTL_CLR_NM,COT_MTH,HUE_CD_FRN,RSN_TP_FRN,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD_NM,PTT_FLM_THK_CD_NM,PTT_FLM_MQL_CD_NM,PTT_FLM_SUS_ADH_CD_NM,PTT_FLM_PRD_ADH_CD_NM,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD_NM,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,DISC_PTN_WTH_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,HUE_CD_BAK,RSN_TP_BAK,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,PRT_PTN_CD_NM,QLT_DSN_CFM_TP_NM,LMN_BND_UNT,LMN_BND_UNT1,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,MDF_DH,ERP_SND_DH,UNI_TEX_PTN_CD,CLR_SPC_PRD_SCLS,CUT_LN_YN</userdata>
+<userdata name="column-info">ANON_CD,ANON_UNT,DISC_PTN_WTH_CD_NM,HUE_CD_CHM,DTL_CLR_NM,COT_MTH,HUE_CD_FRN,RSN_TP_FRN,PTT_FLM_DTL_CD,PTT_FLM_LUS_RT_CD_NM,PTT_FLM_THK_CD_NM,PTT_FLM_MQL_CD_NM,PTT_FLM_SUS_ADH_CD_NM,PTT_FLM_PRD_ADH_CD_NM,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD_NM,MAIN_PROC_CD,SUB_PROC_CD1,SUB_PROC_CD2,DISC_PTN_WTH_CD,PTT_FLM_LUS_RT_CD,PTT_FLM_THK_CD,PTT_FLM_MQL_CD,PTT_FLM_SUS_ADH_CD,PTT_FLM_PRD_ADH_CD,HUE_CD_BAK,RSN_TP_BAK,SUB_PROC_CD3,TLP_TP,PRT_USG_CD,PRT_PTN_CD,PRT_PTN_CD_NM,QLT_DSN_CFM_TP_NM,LMN_BND_UNT,LMN_BND_UNT1,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,MDF_DH,ERP_SND_DH,UNI_TEX_PTN_CD,CLR_SPC_PRD_SCLS,CUT_LN_YN,RSN_TP_QT_BR_FRN,RSN_TP_QT_BR_BAK,LUXTEEL_BRD_CD</userdata>
 <row id="0">
 	<cell class="form_cell">칼라특수제품분류</cell>
 	<cell id="CLR_SPC_PRD_SCLS" type="combo_v" colspan="2"></cell>
@@ -195,5 +197,13 @@
 	<cell class="form_cell"></cell>
 	<cell class="form_cell">ERP전송일</cell>
 	<cell id="ERP_SND_DH" type="ro"></cell>
+</row>
+<row id="7">
+	<cell class="form_cell"><![CDATA[품질수지타입(T/B)]]></cell>
+	<cell id="RSN_TP_QT_BR_FRN" color="FFFFC0"></cell>
+	<cell id="RSN_TP_QT_BR_BAK" color="FFFFC0"></cell>
+	<cell class="form_cell" colspan="2">Brand</cell>
+	<cell class="form_cell"></cell>
+	<cell id="LUXTEEL_BRD_CD" color="FFFFC0"></cell>
 </row>
 </rows>

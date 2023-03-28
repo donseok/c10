@@ -247,7 +247,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         PosRuleVO result = null;
 
         String colValue[] = null; // 컬럼값
-        boolean fnl_cus = false;
+        //boolean fnl_cus = false;
 
         String prd_nm_cd = C10STR_SPACE;
         String prd_shp = C10STR_SPACE;
@@ -255,6 +255,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         String ord_usg_cd = C10STR_SPACE;
         String fnl_cus_cd = C10STR_SPACE;
         String cus_bth_pap_no = C10STR_SPACE;
+        String bak_mrk = C10STR_SPACE;
         double ord_exc_thk = 0;
         double ord_exc_wth = 0;
         double ord_exc_lth = 0;
@@ -405,6 +406,9 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             ptt_flm_dtl_cd = ctx.get( COL_ORD_PTT_FLM_CD ).toString();
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_COILG_MTH ) ) )
         	ord_coilg_mth = (String) ctx.get( COL_ORD_COILG_MTH );
+        if ( !DbCommonUtil.isNull( ctx.get( COL_BAK_MRK ) ) )
+        	if ( ((String) ctx.get( COL_BAK_MRK )).substring(0,4).equals("BACK") )
+        		bak_mrk = C10STR_YES;
         if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_EXC_WTH ) ) )
         {
             //if ( ord_slit_grp_cnt > 0 && 
@@ -1312,7 +1316,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             ctx.put( COL_ORD_ERR_TXT, ERRMSG_I12 );
             ctx.put( COL_ERR_YN, C10STR_YES );
             logger.logError( e.getMessage() );
-            logger.logError( "여기서 에러남...2020/12/08" );
+            //logger.logError( "여기서 에러남...2020/12/08" );
             return PosBizControlConstants.SUCCESS;
         }
 
@@ -1453,9 +1457,11 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             String main_proc_cd = C10STR_SPACE;
             ArrayList<String> DEL_PROC = new ArrayList<String>();
             ArrayList<String> DATA_PROC = new ArrayList<String>();
-            colValue = new String[22];
+            //2022.12.27 백선이과장요청 (slit 조수 조건 추가)
+            //colValue = new String[22];
+            colValue = new String[23];
             colValue[0] = prd_nm_cd;
-            colValue[1] = C10STR_SPACE;
+            colValue[1] = bak_mrk;
             colValue[2] = ord_coil_idia;
             colValue[3] = ord_slv_knd_tp;
             colValue[4] = ord_sur_hnd_cd;
@@ -1469,13 +1475,14 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             colValue[12] = lus_rt_cd_frn;
             colValue[13] = ptt_flm_dtl_cd;
             colValue[14] = ctx.get( COL_MQL_CD ).toString();
-            colValue[15] = ord_edg_asg_tp;                  //주문에지구분
-            colValue[16] = Double.toString( ord_exc_lth );  //주문길이추가
-            colValue[17] = prd_shp;                         //제품형태추가
-            colValue[18] = ord_coilg_mth;                   //주문권취방법추가	
-            colValue[19] = fnl_cus_cd;                      //최종수요가	
-            colValue[20] = ord_usg_cd;                      //주문용도	
-            colValue[21] = ord_spnl_tp;                     //spangle구분	
+            colValue[15] = ord_edg_asg_tp;                    //주문에지구분
+            colValue[16] = Double.toString( ord_exc_lth );    //주문길이추가
+            colValue[17] = prd_shp;                           //제품형태추가
+            colValue[18] = ord_coilg_mth;                     //주문권취방법추가	
+            colValue[19] = fnl_cus_cd;                        //최종수요가	
+            colValue[20] = ord_usg_cd;                        //주문용도	
+            colValue[21] = ord_spnl_tp;                       //spangle구분
+            colValue[22] = Double.toString(ord_slit_grp_cnt);  //slit조수
 
             try
             {

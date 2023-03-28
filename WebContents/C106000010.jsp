@@ -14,6 +14,13 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
+<%@page import = "com.posdata.glue.web.security.PosUser" %>
+<%
+	PosUser user = (PosUser)session.getAttribute(PosSecurityConstants.USER);	
+	String userNo = (String) user.getUserInfo("USER_NO");
+
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -162,17 +169,45 @@ function onFormLoadFunction(){
 	items['C106000010_Form_1'].getItem("CLR_SMP_DEV_REQ_DH_END").setWeekStartDay(7);	
 	
 	formLoadFlag = true;
-
 	items['C106000010_Form_1'].getDhxForm().detachEvent(onXleForm);
 	
-	var comboList = items['C106000010_Form_1'].getMasterCombos();
-	comboList['DEV_PNT_CMP_CD'].readonly(true,false);
-	ui.combo.master(comboList['DEV_PNT_CMP_CD'],'SZ0000','PNT_CMP_CD','totalValue=%,orderBy=value,displayType=all-code',function(){
-		comboList['DEV_PNT_CMP_CD'].selectOption(0,true,true);
-		comboList['DEV_PNT_CMP_CD'].readonly(true);
-		comboList['DEV_PNT_CMP_CD'].setOptionHeight(240);		
-	});
+	//사용자정보
+	var userNo = "<%=userNo %>";
 	
+	if(userNo.length == '6'){ //도료사이면...
+		var comboList = items['C106000010_Form_1'].getMasterCombos();
+		ui.combo.master(comboList['DEV_PNT_CMP_CD'],'SZ0000','PNT_CMP_CD','displayType=all-code',function(){
+			items['C106000010_Form_1'].setItemValue("DEV_PNT_CMP_CD", userNo);
+			comboList['DEV_PNT_CMP_CD'].readonly(true);
+			comboList['DEV_PNT_CMP_CD'].setOptionHeight(240);		
+		});
+		
+		items['C106000010_Form_1'].getDhxForm().disableItem("DEV_PNT_CMP_CD");
+		
+		var comboList = items['C106000010_Form_1'].getMasterCombos();
+		comboList['CLR_WK_STS_CD'].readonly(true,false);
+		ui.combo.master(comboList['CLR_WK_STS_CD'],'SZ0001','CLR_WK_STS_CD','totalValue=%,orderBy=value,displayType=all-code',function(){
+			comboList['CLR_WK_STS_CD'].selectOption(0,true,true);
+			comboList['CLR_WK_STS_CD'].readonly(true);
+			comboList['CLR_WK_STS_CD'].setOptionHeight(240);
+		});
+	}else{  //아니면...
+		var comboList = items['C106000010_Form_1'].getMasterCombos();
+		comboList['DEV_PNT_CMP_CD'].readonly(true,false);
+		ui.combo.master(comboList['DEV_PNT_CMP_CD'],'SZ0000','PNT_CMP_CD','totalValue=%,orderBy=value,displayType=all-code',function(){
+			comboList['DEV_PNT_CMP_CD'].selectOption(0,true,true);
+			comboList['DEV_PNT_CMP_CD'].readonly(true);
+			comboList['DEV_PNT_CMP_CD'].setOptionHeight(240);		
+		});
+		
+		var comboList = items['C106000010_Form_1'].getMasterCombos();
+		comboList['CLR_WK_STS_CD'].readonly(true,false);
+		ui.combo.master(comboList['CLR_WK_STS_CD'],'SZ0000','CLR_WK_STS_CD','totalValue=%,orderBy=value,displayType=all-code',function(){
+			comboList['CLR_WK_STS_CD'].selectOption(0,true,true);
+			comboList['CLR_WK_STS_CD'].readonly(true);
+			comboList['CLR_WK_STS_CD'].setOptionHeight(240);		
+		});
+	}
 }
 
 function onGridLoadFunction(){

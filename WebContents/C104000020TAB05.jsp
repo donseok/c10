@@ -285,7 +285,7 @@ function save(eventName,formDivObj,referenceItem){
 				}
 				if(row_status != "" && row_status == "updated" )
 			    {
-				    items['C104000020TAB05_Grid_1'].sendGrid('C104000020TAB05_Grid_1',"RMT_save");					
+				    items['C104000020TAB05_Grid_1'].sendGrid('C104000020TAB05_Grid_1',"RMT_save");
 			    }
 				else
 			    {
@@ -304,7 +304,9 @@ function save(eventName,formDivObj,referenceItem){
 						    items['C104000020TAB05_Grid_7'].sendGrid('C104000020TAB05_Grid_7',"MSG_save");
 				    }
 			    }
-				
+				////
+				//parent.find();
+				//
 				return;
 			}
 		}

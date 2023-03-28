@@ -17,13 +17,13 @@
 <item command="atty" label="atty" name="atty" type="custombutton" value="등록"/>
 <item offset="3" type="newcolumn"/>
 <item command="attn" label="attn" name="attn" type="custombutton" value="관심해제"/>
-<item offset="8" type="newcolumn"/>
+<item offset="3" type="newcolumn"/>
 <item command="tag_popup" name="tag_popup" type="custombutton" value="Tag조회" disabled="true"/>
 <item offset="3" type="newcolumn"/>
-<item command="custom_call" label="Display Name" name="custom_call" type="linkbutton" value="고객특성"/>
+<item command="custom_call" label="Display Name" name="custom_call" type="linkbutton" value="품질협정서" style = "font-weight:bold; color:green; text-align:center"/>
 <item offset="3" type="newcolumn"/>
 <item command="save" label="save" name="save" type="custombutton" value="설계확정" disabled="true"/>
-<item offset="8" type="newcolumn"/>
+<item offset="3" type="newcolumn"/>
 <item command="find" label="find" name="find" type="button" value="조회" disabled="true"/>
 <item offset="3" type="newcolumn"/>
 <item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>

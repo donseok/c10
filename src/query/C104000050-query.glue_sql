@@ -102,6 +102,34 @@ SELECT /* C10 품질설계결과확정 C104000050.select 박재영 */
                ) 
             )
    ) AS CUS_CMPL_HST_YN
+   ,(SELECT LAST_UPDATED_OBJECT_ID
+       FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+      WHERE ORD_NO = A.ORD_NO
+        AND ORD_LN = A.ORD_LN
+        AND CHG_TXT = 'C104000020TAB05'
+        AND SEQ = 
+            (   
+            SELECT MAX(SEQ)
+              FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+             WHERE ORD_NO = A.ORD_NO
+               AND ORD_LN = A.ORD_LN
+               AND CHG_TXT = 'C104000020TAB05'
+            )
+       ) AS MOD_ID
+   ,(SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
+       FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+      WHERE ORD_NO = A.ORD_NO
+        AND ORD_LN = A.ORD_LN
+        AND CHG_TXT = 'C104000020TAB05'
+        AND SEQ = 
+            (   
+            SELECT MAX(SEQ)
+              FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+             WHERE ORD_NO = A.ORD_NO
+               AND ORD_LN = A.ORD_LN
+               AND CHG_TXT = 'C104000020TAB05'
+            )
+       ) AS MOD_ID_NM    
    FROM
    TB_C10_QLT_DSN_CMN A,
    (SELECT ORD_NO, ORD_LN, MAIN_PROC_CD FROM TB_C10_QLT_DSN_PROC WHERE SUBSTR(MAIN_PROC_CD,1,1) ='A') B
@@ -707,6 +735,34 @@ SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
                ) 
             )
    ) AS CUS_CMPL_HST_YN
+   ,(SELECT LAST_UPDATED_OBJECT_ID
+       FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+      WHERE ORD_NO = A.ORD_NO
+        AND ORD_LN = A.ORD_LN
+        AND CHG_TXT = 'C104000020TAB05'
+        AND SEQ = 
+            (   
+            SELECT MAX(SEQ)
+              FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+             WHERE ORD_NO = A.ORD_NO
+               AND ORD_LN = A.ORD_LN
+               AND CHG_TXT = 'C104000020TAB05'
+            )
+       ) AS MOD_ID
+   ,(SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
+       FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+      WHERE ORD_NO = A.ORD_NO
+        AND ORD_LN = A.ORD_LN
+        AND CHG_TXT = 'C104000020TAB05'
+        AND SEQ = 
+            (   
+            SELECT MAX(SEQ)
+              FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+             WHERE ORD_NO = A.ORD_NO
+               AND ORD_LN = A.ORD_LN
+               AND CHG_TXT = 'C104000020TAB05'
+            )
+       ) AS MOD_ID_NM
    FROM
    TB_C10_QLT_DSN_CMN A,
    (SELECT ORD_NO, ORD_LN, MAIN_PROC_CD FROM TB_C10_QLT_DSN_PROC WHERE SUBSTR(MAIN_PROC_CD,1,1) ='A') B
@@ -731,6 +787,13 @@ SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
     AND NVL(A.ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
     AND NVL(A.QLT_DSN_CFM_TP,' ') LIKE DECODE(:QLT_DSN_CFM_TP,1,'A','M')||'%'
 ORDER BY A.ORD_NO, A.ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000050.delete_hst" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE TB_C10_QLT_DSN_CHG_HST /* C10 품질설계 변경이력 삭제 C104000050.delete_hst 이돈석 */ 
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
 		 ]]> 
 	 </query>
 </queryMap>

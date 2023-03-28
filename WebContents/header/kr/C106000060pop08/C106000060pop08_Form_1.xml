@@ -1,0 +1,8 @@
+<items>	
+	<item type="block" width="615">
+		<item type="newcolumn" offset="415" />
+		<item command="parentSetValue" label="parentSetValue" name="parentSetValue" type="custombutton" value="적용하기"/>
+		<item type="newcolumn" offset="5" />
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>

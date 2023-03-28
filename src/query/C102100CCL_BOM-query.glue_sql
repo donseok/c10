@@ -184,7 +184,10 @@ TB_C10_QLT_DSN_CCL_BOM (
     ,RSN_TP_QT_BR_BAK_1COT
     ,RSN_TP_QT_BR_BAK_2COT
     ,RSN_TP_QT_BR_BAK_3COT
-    ,RSN_TP_QT_BR_BAK_4COT 
+    ,RSN_TP_QT_BR_BAK_4COT
+    ,RSN_TP_QT_BR_FRN
+    ,RSN_TP_QT_BR_BAK
+    ,LUXTEEL_BRD_CD 
     ,CREATED_OBJECT_TYPE        --생성OBJECT유형                                                                 
     ,CREATED_OBJECT_ID          --생성OBJECTID                                                                   
     ,CREATED_PROGRAM_ID         --생성프로그램ID                                                                 
@@ -240,6 +243,7 @@ VALUES
 ?,?,?,?,
 ?,?,?,?,
 ?,?,?,?,
+?,?,?,
 ?,?,?,?,
 ?,?,?,?
 )
@@ -449,7 +453,10 @@ TB_C10_QLT_DSN_CCL_BOM(ORD_NO,
                        RSN_TP_QT_BR_BAK_1COT, 
                        RSN_TP_QT_BR_BAK_2COT, 
                        RSN_TP_QT_BR_BAK_3COT, 
-                       RSN_TP_QT_BR_BAK_4COT, 
+                       RSN_TP_QT_BR_BAK_4COT,
+                       RSN_TP_QT_BR_FRN,
+                       RSN_TP_QT_BR_BAK,
+                       LUXTEEL_BRD_CD,
                        CREATED_OBJECT_TYPE, 
                        CREATED_OBJECT_ID, 
                        CREATED_PROGRAM_ID, 
@@ -630,7 +637,10 @@ SELECT                 :ORD_NO,
                        RSN_TP_QT_BR_BAK_1COT, 
                        RSN_TP_QT_BR_BAK_2COT, 
                        RSN_TP_QT_BR_BAK_3COT, 
-                       RSN_TP_QT_BR_BAK_4COT, 
+                       RSN_TP_QT_BR_BAK_4COT,
+                       RSN_TP_QT_BR_FRN,
+                       RSN_TP_QT_BR_BAK,
+                       LUXTEEL_BRD_CD,
                        'C',
                        'unknown',
                        'B10R0030_sub-service',
