@@ -20,7 +20,7 @@
 <item inputWidth="80" label="3)" labelWidth="80" name="F_CCL_BOM_NO" type="input" labelAlign="right" />
 </item>
 <item type="block" width="945">
-<item name="SS_1"                 label="DONGKUK STEEL provides the following warranty concerning" type="label" />
+<item name="SS_1"                 label="DONGKUK CM provides the following warranty concerning" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="BRD_CMP_2_1"     label="2)" labelAlign="right" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
@@ -41,7 +41,7 @@
 <item offset="5" type="newcolumn"/>
 	
 <item type="block" width="945" >
-<item name="S1_1"                 label="1. DONGKUK STEEL warrants that the" type="label" />
+<item name="S1_1"                 label="1. DONGKUK CM warrants that the" type="label" />
 <item offset="3" type="newcolumn"/>
 <item name="BRD_CMP_2_2"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
@@ -59,7 +59,7 @@
 </item>
 <item offset="10" type="newcolumn"/>
 <item type="block" width="945" >
-<item name="S1A0_1"               label="A. The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK STEEL - whichever occurs first " type="label" />
+<item name="S1A0_1"               label="A. The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK CM - whichever occurs first " type="label" />
 </item>
 <item offset="10" type="newcolumn"/>
 <item type="block" width="945" >
@@ -172,32 +172,32 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item offset="3" type="newcolumn"/>
 </item>
 <item type="block" width="945" >
-<item name="S3"                    label="3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. Corrosion, Peel or other effects due to shear or cut surface exposure are also excluded. DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk steel&#39;s control." type="label" />
+<item name="S3"                    label="3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. Corrosion, Peel or other effects due to shear or cut surface exposure are also excluded. DONGKUK CM also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk CM&#39;s control." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S4"                    label="4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK STEEL&#39;s approved color range. DONGKUK STEEL will inform you the time of color matching if the color you have selected is not an approved color." type="label" />
+<item name="S4"                    label="4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK CM&#39;s approved color range. DONGKUK CM will inform you the time of color matching if the color you have selected is not an approved color." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S5"                    label="5. DONGKUK STEEL&#39;s responsibility extends only to the direct cost of refinishing or replacing failed coated substrate. Dongkuk steel cannot accept liability for loss or damage to other property or equipment, loss of profits or sales, or any other claims relative to standard business interruption, or any other incidental or consequential damages." type="label" />
-<item name="S5_1"                    label="A. DONGKUK STEEL shall only be liable for the cost of having the same metal panel or steel sheet" type="label" />
-<item name="S5_2"                    label="B. DONGKUK STEEL shall not be liable for the cost of construction equipments, labor or any kind of losses" type="label" />
+<item name="S5"                    label="5. DONGKUK CM&#39;s responsibility extends only to the direct cost of refinishing or replacing failed coated substrate. Dongkuk CM cannot accept liability for loss or damage to other property or equipment, loss of profits or sales, or any other claims relative to standard business interruption, or any other incidental or consequential damages." type="label" />
+<item name="S5_1"                    label="A. DONGKUK CM shall only be liable for the cost of having the same metal panel or CM sheet" type="label" />
+<item name="S5_2"                    label="B. DONGKUK CM shall not be liable for the cost of construction equipments, labor or any kind of losses" type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S6"                    label="6. DONGKUK STEEL reserves the right to establish whether repainting or replacing material is required and to approve and participate in the negotiation of any subcontracted material replacement, installation, or refinishing. After replacement or re-finishing of the repaired area, this area will be considered as installed as of the original installation date for the purpose of the application of this warranty." type="label" />
+<item name="S6"                    label="6. DONGKUK CM reserves the right to establish whether repainting or replacing material is required and to approve and participate in the negotiation of any subcontracted material replacement, installation, or refinishing. After replacement or re-finishing of the repaired area, this area will be considered as installed as of the original installation date for the purpose of the application of this warranty." type="label" />
 <item name="S6_1"                  label="" type="label" />
 <item name="S6_2"                  label="" type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S7"                    label="7. Claims under this warranty must be submitted in writing within thirty (30) days of discovery of the warranted performance failure and DONGKUK STEEL requires the opportunity for site failure inspection and investigation. DONGKUK STEEL also reserves the right to evaluate and determine its obligation under the terms and condition of this limited warranty." type="label" />
+<item name="S7"                    label="7. Claims under this warranty must be submitted in writing within thirty (30) days of discovery of the warranted performance failure and DONGKUK CM requires the opportunity for site failure inspection and investigation. DONGKUK CM also reserves the right to evaluate and determine its obligation under the terms and condition of this limited warranty." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S8"                    label="8. DONGKUK STEEL shall maintain, or have access to, adequate records to identify the coil coater, coil numbers, product identification and date of installation. In the event of a claim, DONGKUK STEEL reserves the right to inspect all records mentioned above." type="label" />
+<item name="S8"                    label="8. DONGKUK CM shall maintain, or have access to, adequate records to identify the coil coater, coil numbers, product identification and date of installation. In the event of a claim, DONGKUK CM reserves the right to inspect all records mentioned above." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="S9"                    label="9. This limited warranty supersedes any and all other warranties of performance, expressed or implied, by DONGKUK STEEL. Any modifications, additions, or adjustments made to this warranty must be officially added as a signed written amendment." type="label" />
+<item name="S9"                    label="9. This limited warranty supersedes any and all other warranties of performance, expressed or implied, by DONGKUK CM. Any modifications, additions, or adjustments made to this warranty must be officially added as a signed written amendment." type="label" />
 </item>
 <item type="block" width="945" >
-<item name="SA"                    label="10. This limited warranty is non-transferable, non-assignable, and may not be modified, extended or enlarged by any representative of DONGKUK STEEL or intermediate salesman or agent." type="label" />
+<item name="SA"                    label="10. This limited warranty is non-transferable, non-assignable, and may not be modified, extended or enlarged by any representative of DONGKUK CM or intermediate salesman or agent." type="label" />
 </item>
 <item type="block" width="945" >
 <item name="SB"                    label="" type="label" />
@@ -209,7 +209,7 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
 <item name="SD"                    label="" type="label" />
 </item>
 <item type="block" width="945" >
-<item name="SE"                    label="This warranty becomes effective when all of the above conditions meet and DONGKUK STEEL have signed this agreement as of the date set forth below." type="label" />
+<item name="SE"                    label="This warranty becomes effective when all of the above conditions meet and DONGKUK CM have signed this agreement as of the date set forth below." type="label" />
 </item>
 <item type="block" width="945" >
 <item name="CUS_NM"      label="최종수요가명" type="input" inputWidth="100" />

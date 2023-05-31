@@ -123,8 +123,8 @@ function save(eventName,formDivObj,referenceItem){
     	var cells1 = xmlObj1.getElementsByTagName("cell");
     	
     	if(cells1.length > 0){						
-    		dhtmlx.alert("확정된 주문입니다!");
-    		return;					
+    		dhtmlx.alert("확정된 주문이니 APS에서 반드시 설계 상속 받으시기 바랍니다!");
+    		//return;					
     	} 
     }
 	if(row_status12 != "" && fg_grid2_update == "N")
@@ -134,8 +134,8 @@ function save(eventName,formDivObj,referenceItem){
     	var cells1 = xmlObj1.getElementsByTagName("cell");
     	
     	if(cells1.length > 0){						
-    		dhtmlx.alert("확정된 주문입니다!");
-    		return;					
+    		dhtmlx.alert("확정된 주문이니 APS에서 반드시 설계 상속 받으시기 바랍니다!!");
+    		//return;					
     	} 
     }
 
@@ -801,7 +801,8 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					dhtmlx.alert("확정된 주문을 삭제/수정 할 수 없습니다! 대체공정 추가에 따른 수정은 가능.");
 				    grid.setUpdated(rId, false, "")
 				    return false;
-			    }else{
+			    }
+			    /*else{
 					var param2= "ServiceName=C104000020TAB05-service&PROC_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=SUB_PROC_CD1,SUB_PROC_CD2";
 					var xmlObj2 = uiCommon.ajaxLoadData('c10AjaxData.do',param2);
 					var cells2 = xmlObj2.getElementsByTagName("cell");
@@ -826,7 +827,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					    grid.setUpdated(rId, false, "")
 					    return false;
 					}			    	
-			    }				
+			    } */				
 			}
 		}else{
 			if(cells1.length > 0){	

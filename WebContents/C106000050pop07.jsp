@@ -140,6 +140,8 @@ function onVaultLoad() {
             dhtmlx.alert("파일업로드에 실패하였습니다.");
 		}else{
 			onLoadGrid();
+			//부모 프로그램을 재 조회 한다.
+			parent.find("find","C106000050_Form_1","C106000050_Grid_1");
 		}			
 	};
 }
@@ -196,6 +198,7 @@ function doImgDel(rowIdx){
 	
 	if(confirm(" 선택한 이미지를 삭제하시겠습니까? ")) {
 		dhtmlxAjax.get(del_url,onLoadGrid);
+		parent.find("find","C106000050_Form_1","C106000050_Grid_1");
 		return;
 	}	
 }

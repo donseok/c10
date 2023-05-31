@@ -637,7 +637,7 @@ function save1(eventName,formDivObj,referenceItem){
 			var rowStatus =  gridObj2.getDhxGrid().getUserData(rowID,"!nativeeditor_status");
 			if(!isNull(clrcd)&&!isNull(pntcmpcd)){
 				if(rowStatus == "inserted" || rowStatus == "updated" || rowStatus == "deleted"){
-					gridObj2.setCellValue(rowID,20, popCfmRea);
+					gridObj2.setCellValue(rowID,21, popCfmRea);
 				}
 			}else{
 				alert("칼라코드, 업체코드를 선택해주세요.");

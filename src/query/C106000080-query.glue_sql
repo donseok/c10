@@ -164,6 +164,7 @@ order by 1
 		 <![CDATA[ 
 UPDATE C10APUSER.TB_C10_PTN_ROLL_MNG
    SET USE_YN                   = :USE_YN,
+       DET_LOC			   = :DET_LOC,
        ROLL_DIA                 = :ROLL_DIA,
        ROLL_CIR                 = :ROLL_CIR,
        ROLL_WTH                 = :ROLL_WTH,

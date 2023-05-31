@@ -33,9 +33,9 @@
 		<item type="newcolumn"/>
 		<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
 		<item offset="10" type="newcolumn"/>
-		<item type="input" label="CCL-BOM" name="CCL_BOM_NO" inputWidth="50" maxLength="6" labelAlign="left"/>	
-		<item offset="10" type="newcolumn"/>
 		<item inputWidth="60" label="등록자" name="ORD_RGS_PRS_NAME" type="input" maxLength="10" labelAlign="left"/>
+		<item offset="10" type="newcolumn"/>
+		<item inputWidth="60" label="CCLBOM" name="CCL_BOM_NO" type="input" maxLength="10" labelAlign="left"/>
 		<item offset="35" type="newcolumn"/>
 		<item command="find" label="Display Name" name="find" type="button" value="조회" disabled="true"/>
 		<item offset="5" type="newcolumn"/>

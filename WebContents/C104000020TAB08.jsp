@@ -191,6 +191,27 @@ function save(eventName,formDivObj,referenceItem){
 			    sub_proc2 = gridObj.cellByIndex(i,3).getValue();
 			    sub_proc3 = gridObj.cellByIndex(i,4).getValue();
 			    
+			    
+			    if(sub_proc1.substring(0,1) == "8"){
+			    	var param1= "ServiceName=C104000020TAB08-service&PL_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=PL_WTH_SUB_PROC1_TRV,PL_WTH_SUB_PROC2_TRV";
+					var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
+					var cells1 = xmlObj1.getElementsByTagName("cell");
+					if(isNull(cells1.item(0).firstChild.nodeValue)){						
+						alert("대체공정1에 Side Trimming Set값 및 폭목표 값을 반드시 입력하세요!");
+						//return;					
+					}
+			    }
+			    
+			    
+			    if(sub_proc2.substring(0,1) == "8"){
+			    	var param2= "ServiceName=C104000020TAB08-service&PL_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=PL_WTH_SUB_PROC1_TRV,PL_WTH_SUB_PROC2_TRV";
+					var xmlObj2 = uiCommon.ajaxLoadData('c10AjaxData.do',param2);
+					var cells2 = xmlObj2.getElementsByTagName("cell");
+					if(isNull(cells2.item(1).firstChild.nodeValue)){						
+						alert("대체공정2에 Side Trimming Set값 및 폭목표 값을 반드시 입력하세요!");
+						//return;					
+					}
+			    }
 			    /*
 			    if(	sub_proc3.substring(0,1) == "8" || sub_proc3.substring(0,1) == "9"){
 			    	//alert("PL ST폭은 입력할 수 없습니다!");
@@ -203,7 +224,7 @@ function save(eventName,formDivObj,referenceItem){
 					var xmlObj2 = uiCommon.ajaxLoadData('c10AjaxData.do',param2);
 					var cells2 = xmlObj2.getElementsByTagName("cell");
 					if(isNull(cells2.item(0).firstChild.nodeValue)){						
-						//alert("PL ST폭 대체공정1을 먼저 입력하신 후 통과공정을 추가하세요!");
+						//alert("대체공정2에 Side Trimming Set값 및 폭 목표 값을 반드시 입력하세요!");
 						//return;					
 					}
 					

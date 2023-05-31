@@ -94,7 +94,6 @@ SELECT /*+ C10 품질설계의뢰현황 C104000010.select 박재영 */
                                         AND NVL(:ORD_EXT_THK_END,10)
       AND NVL(URG_MTL_TP,' ') LIKE DECODE(:URG_MTL_TP,1,'Y','')||'%'
       AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
-      AND NOT EXISTS (SELECT 'Y' FROM MESAPUSER.VI_MES_TRM_CTL WHERE CTL_NO = A.ORD_NO AND CTL_TP = 'O')
 ORDER BY ORD_NO, ORD_LN
 		 ]]> 
 	 </query>

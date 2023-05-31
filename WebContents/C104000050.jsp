@@ -536,21 +536,34 @@ function onFormLoadEvent(){
 	});
 	*/
 	////////
-
+	
+	
 	var inputObj = formObj.getInput("CCL_BOM_NO");
+	    //alert("1");
 		inputObj.onkeyup = function(e){
+			//alert("2");
 			if(inputObj.value.charAt(inputObj.value.length - 1) <= 'z' && inputObj.value.charAt(inputObj.value.length - 1) >= 'a'){
+				//alert("3");
 			  inputObj.value = inputObj.value.toUpperCase();
+			  //alert(inputObj.value);
 			}	
 			e = e||window.event;
+			//alert("5");
 			if(e.keyCode == 13){
+				//alert("6");
 				formObj.setItemValue("CCL_BOM_NO",inputObj.value);
-				find("find","C104000050_Form_1","C104000050_Grid_1");			
+				//alert("7");
+				find("find","C104000050_Form_1","C104000050_Grid_1");
+				//alert("8");
 			}
 		}
 		
+		//alert(renderCnt);
+		
 	if(renderCnt >1) {
+		//alert("10");
 			find('findBsts','C104000050_Form_1','C104000050_Grid_1');
+		//alert("11");
 	}
 
 	items['C104000050_Form_1'].getDhxForm().detachEvent(onXleForm);

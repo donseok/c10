@@ -2,7 +2,7 @@
 <queryMap desc="C104000040"> 
 	 <query id="C104000040.select" desc="C104000040.select" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계 재설계조회 C104000040.select 이민균 */        
+SELECT /* C10 품질설계 재설계조회 C104000040.select 이민균 */        
     ORD_NO,--주문번호
     ORD_LN,--주문행번
     (SELECT CD_V || ' : ' || CD_V_MEANING 
@@ -50,8 +50,6 @@ AND NVL(SPC_AVR,' ') LIKE :SPC_AVR||'%'
 AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
 AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
 AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'
-AND NOT EXISTS (SELECT * FROM MESAPUSER.VI_MES_TRM_CTL 
-                           WHERE CTL_NO = TB_C10_QLT_DSN_CMN.ORD_NO AND CTL_TP = 'O')  
 ORDER BY ORD_NO,ORD_LN
 		 ]]> 
 	 </query>

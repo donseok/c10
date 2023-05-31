@@ -374,6 +374,7 @@ function prtRpt(){
 	}else{
 		if(sDivCd != "PREMIUM")
 			reportFileName	= 'C106000110.jasper';
+			//reportFileName	= 'C106000110_20230329.jasper';
 		else
 			reportFileName	= 'C106000110_PREMIUM.jasper';
 	}
@@ -610,13 +611,13 @@ function checkCode(){
 				FormD2.hideItem("CH_ROF_15");
 				FormD2.hideItem("BRD_CMP_2_5");
 								
-				FormD2.setItemLabel('SS_1', "본 보증서는 동국제강(주) ");
+				FormD2.setItemLabel('SS_1', "본 보증서는 동국씨엠(주) ");
 				FormD2.setItemLabel('SS_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_1") + "제품에 대하여 출고일로부터 ");
 				FormD2.setItemLabel('SS_3', "");
 				FormD2.setItemLabel('SS_4',  items['C106000110_Form_2'].getItemValue("PER_FOR_19") + "년 동안 유효합니다. "); 
 				FormD2.setItemLabel('SS_5', "또한 아래 보증 항목이 적용됩니다. ");
 				
-				FormD2.setItemLabel('S1_1', "1. 동국제강(주)는 하기 명기된 항목에 따라 대한민국내 건축물에 적용된  ");
+				FormD2.setItemLabel('S1_1', "1. 동국씨엠(주)는 하기 명기된 항목에 따라 대한민국내 건축물에 적용된  ");
 				FormD2.setItemLabel('S1_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_2") + "에 대하여 다음의 기준으로 제품을 보증합니다. ");
 				FormD2.setItemLabel('primiumClassA', "");
 				FormD2.setItemLabel('primiumClassB', "");
@@ -651,31 +652,31 @@ function checkCode(){
 			    FormD2.setItemLabel('S2_1', "2. 해안으로부터 1km 이내 또는 염분이 포함된 대기 환경에 대해서는 ");
 				FormD2.setItemLabel('S2_2',  items['C106000110_Form_2'].getItemValue("BRD_CMP_2_5") + "의 보증범위에 포함되지 않습니다. 따라서 해안가 시공의 경우 제조사측과 별도의 협의과정을 거쳐야 합니다. ");
 
-				FormD2.setItemLabel('S3', "3. 본 보증서는 동국제강(주)에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염분과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다. 그리고 외부로 노출되는 절단 또는 타공면에서 발생되는 녹, 페인트 불량은 보증에서 제외됩니다.");
+				FormD2.setItemLabel('S3', "3. 본 보증서는 동국씨엠(주)에서 제어할 수 없는 환경 즉, 화산폭발 등의 천재지변, 전쟁, 폭동, 낙하물, 외부압력, 유독가스, 화학물, 염분과다 대기, 동물의 배설물, 외부오염(모래, 흙, 철가루, 티끌), 부적절한 취급과 저장 및 기타 가공에 의해 발생한 결함 및 문제에 대해서는 보증범위에 포함되지 않습니다. 그리고 외부로 노출되는 절단 또는 타공면에서 발생되는 녹, 페인트 불량은 보증에서 제외됩니다.");
 
 				FormD2.setItemLabel('S4', "4. 부적절한 운송이나 보관, 가공으로 인해 발생하는 문제는 보증에서 제외됩니다. ");
 
-			    FormD2.setItemLabel('S5', "5. 본 보증서는 동국제강(주)에서 승인된 색상 및 용도 범위에서만 적용됩니다. 고객의 요구로 추가 개발 및 조정된 색상은 상기 표준에 맞지 않을 수 있으며, 별도의 협의를 거칩니다. ");
+			    FormD2.setItemLabel('S5', "5. 본 보증서는 동국씨엠(주)에서 승인된 색상 및 용도 범위에서만 적용됩니다. 고객의 요구로 추가 개발 및 조정된 색상은 상기 표준에 맞지 않을 수 있으며, 별도의 협의를 거칩니다. ");
 			    FormD2.setItemLabel('S5_1', "");
 			    FormD2.setItemLabel('S5_2', "");
 
-			    FormD2.setItemLabel('S6', "6. 동국제강(주)의 책임은 하자가 있는 제품의 교환 또는 환불 등 직접적인 비용에 한정되며, 제품의 결함에 의해 추가 발생한 간접적인, 특별한, 필연적인 손해와 노동력 손실에 대한 비용은 보상하지 않습니다. ");
-			    FormD2.setItemLabel('S6_1', "가. 동국제강(주)의 클레임 보상 책임은 METAL PANEL 또는 STEEL SHEET 가격내에서 보상한다. ");			    
-			    FormD2.setItemLabel('S6_2', "나. 동국제강(주)는 장비사용료, 노동임금 또는 별도의 간접적인 손실 금액 등에 대해서는 보상하지 않는다. ");
+			    FormD2.setItemLabel('S6', "6. 동국씨엠(주)의 책임은 하자가 있는 제품의 교환 또는 환불 등 직접적인 비용에 한정되며, 제품의 결함에 의해 추가 발생한 간접적인, 특별한, 필연적인 손해와 노동력 손실에 대한 비용은 보상하지 않습니다. ");
+			    FormD2.setItemLabel('S6_1', "가. 동국씨엠(주)의 클레임 보상 책임은 METAL PANEL 또는 STEEL SHEET 가격내에서 보상한다. ");			    
+			    FormD2.setItemLabel('S6_2', "나. 동국씨엠(주)는 장비사용료, 노동임금 또는 별도의 간접적인 손실 금액 등에 대해서는 보상하지 않는다. ");
 
-			    FormD2.setItemLabel('S7', "7. 동국제강(주)는 하자가 있는 제품에 대해서 재도장 및 재시공 방법을 결정할 권한과 다른 재료 교체, 설치, 또는 재처를 결정하는 자리에 참여와 승인 자격을 가지게 됩니다. 교체나 재처리 후, 보증의 연장 부분은 최소 보증의 잔여기간 동안만 유효합니다. ");
+			    FormD2.setItemLabel('S7', "7. 동국씨엠(주)는 하자가 있는 제품에 대해서 재도장 및 재시공 방법을 결정할 권한과 다른 재료 교체, 설치, 또는 재처를 결정하는 자리에 참여와 승인 자격을 가지게 됩니다. 교체나 재처리 후, 보증의 연장 부분은 최소 보증의 잔여기간 동안만 유효합니다. ");
 
-			    FormD2.setItemLabel('S8', "8. 본 보증서에 명시된 제품의 성능 관련된 모든 클레임은 고객이 제푸에 대한 결함을 알게 되었거나 알고 있는 시점으로부터 30일 이내에 동국제강(주)에 문서로 제출하여야 하며, 그렇지 않을 경우 클레임 청구 권리가 철회됩니다. 동국제강(주)은 필요한 경우 시험분석을 위한 샘플을 요청할 권한이 있으며 동국제강(주) 요구시 클레임 청구자는 샘플을 제공해야 할 책임이 있습니다. ");
+			    FormD2.setItemLabel('S8', "8. 본 보증서에 명시된 제품의 성능 관련된 모든 클레임은 고객이 제푸에 대한 결함을 알게 되었거나 알고 있는 시점으로부터 30일 이내에 동국씨엠(주)에 문서로 제출하여야 하며, 그렇지 않을 경우 클레임 청구 권리가 철회됩니다. 동국씨엠(주)은 필요한 경우 시험분석을 위한 샘플을 요청할 권한이 있으며 동국씨엠(주) 요구시 클레임 청구자는 샘플을 제공해야 할 책임이 있습니다. ");
 
-			    FormD2.setItemLabel('S9', "9. 동국제강(주)는 제품이 판매되어 시공되는 과정에 관여한 제조사, 가공처, 유통점, 시공사, 건설사에 대한 정보를 요구할 권리를 가지며, 고객은 이에 대한 충분한 정보를 제공하여야 합니다. 또한 동국제강(주)은 제품의 Coil Number, 가공일자, 시공일자 등에 대한 충분한 자료 및 기록을 확인하고 조사할 권리를 가집니다. ");
+			    FormD2.setItemLabel('S9', "9. 동국씨엠(주)는 제품이 판매되어 시공되는 과정에 관여한 제조사, 가공처, 유통점, 시공사, 건설사에 대한 정보를 요구할 권리를 가지며, 고객은 이에 대한 충분한 정보를 제공하여야 합니다. 또한 동국씨엠(주)은 제품의 Coil Number, 가공일자, 시공일자 등에 대한 충분한 자료 및 기록을 확인하고 조사할 권리를 가집니다. ");
 
-			    FormD2.setItemLabel('SA', "10. 동국제강(주)는 판매된 제품 자체에 대한 클레임만 수용할 뿐, 보증항목에 해당하지 않는 원인으로 발생된 클레임에 대해서는 어떠한 의무도 지지 않습니다. ");
+			    FormD2.setItemLabel('SA', "10. 동국씨엠(주)는 판매된 제품 자체에 대한 클레임만 수용할 뿐, 보증항목에 해당하지 않는 원인으로 발생된 클레임에 대해서는 어떠한 의무도 지지 않습니다. ");
 
 			    FormD2.setItemLabel('SB', "11. 본 보증서는 발급대상으로 명기된 고객을 제외한 누구에게도 양도 혹은 이전될 수 없습니다. 또한, 보증서를 발급받은 고객을 제외한 어떠한 대리인, 대표자, 중개인도 고객을 대신하여 이 보증서에 대한 권리를 가질 수 없으며, 제품에 대한 어떠한 책임도 물을 수 없습니다. ");
 
-			    FormD2.setItemLabel('SC', "12. 본 보증서는 동국제강(주)에서 발행되는 다른 모든 제품의 보증서에 우선하여 적용됩니다. 본 보증서 상의 모든 변경, 수정, 추가사항은 반드시 동국제강(주) 품질담당자의 서명을 포함하여 명문화 되어야 합니다. 영업사원이나 중계상의 동의에 의해 변경된 보증서는 효력을 상실하게 됩니다.");
+			    FormD2.setItemLabel('SC', "12. 본 보증서는 동국씨엠(주)에서 발행되는 다른 모든 제품의 보증서에 우선하여 적용됩니다. 본 보증서 상의 모든 변경, 수정, 추가사항은 반드시 동국씨엠(주) 품질담당자의 서명을 포함하여 명문화 되어야 합니다. 영업사원이나 중계상의 동의에 의해 변경된 보증서는 효력을 상실하게 됩니다.");
 
-			    FormD2.setItemLabel('SD', "13. 본 보증과 관련하여 법적인 분쟁이 발생하는 경우 동국제강(주) 본사 소재지의 관할법원에서 처리함을 원칙으로 합니다.");
+			    FormD2.setItemLabel('SD', "13. 본 보증과 관련하여 법적인 분쟁이 발생하는 경우 동국씨엠(주) 본사 소재지의 관할법원에서 처리함을 원칙으로 합니다.");
 
 			    FormD2.setItemLabel('SE', "본 보증서는 아래 서명 후에 효력이 발생합니다. ");
 
@@ -709,13 +710,13 @@ function checkCode(){
 				FormD2.showItem("CH_ROF_15");
 				FormD2.showItem("BRD_CMP_2_5");
 				
-				FormD2.setItemLabel("SS_1", "DONGKUK STEEL provides the following warranty concerning");
+				FormD2.setItemLabel("SS_1", "DONGKUK CM provides the following warranty concerning");
     			FormD2.setItemLabel("SS_2", "System for building and roofing panel end");
 	    		FormD2.setItemLabel("SS_3", " use in ");
 	    		FormD2.setItemLabel("SS_4", "");
 	    		FormD2.setItemLabel("SS_5", "Warranty is subjected to the following terms and conditions : " );
 				
-	    		FormD2.setItemLabel("S1_1", "1. DONGKUK STEEL warrants that the");
+	    		FormD2.setItemLabel("S1_1", "1. DONGKUK CM warrants that the");
 	    		FormD2.setItemLabel("S1_2", "covered by this warranty will conform to the performance standards listed below. ");
 				FormD2.setItemLabel('primiumClassA', "Items #A through # C below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:");
 				FormD2.setItemLabel('primiumClassB', "Items #A through # C below apply to metal building and similar structures installed in");
@@ -750,25 +751,25 @@ function checkCode(){
 			    FormD2.setItemLabel('S2_1', "2. No warranty is provided for ");
 				FormD2.setItemLabel('S2_2', "on any substrate that is subjected to sea spray or installed on property located within 1,000 meters (3,250 feets) of a salt-water environment.");
 
-				FormD2.setItemLabel('S3', "3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. DONGKUK STEEL also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk steel&#39;s control.");
+				FormD2.setItemLabel('S3', "3. This warranty is restricted to failures resulted from normal weathering and does not include coating failures caused by scratches, scrapes or any other unnatural damage including improperly formed, fabricated or embossed material. This warranty excludes failures caused by standing water, and direct exposure to corrosive and aggressive atmospheres including salt spray and animal waste products. DONGKUK CM also holds no liability for damages caused by acts of God, radiation, falling objects, explosions, or other external forces beyond Dongkuk cm&#39;s control.");
 
-				FormD2.setItemLabel('S4', "4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK STEEL&#39;s approved color range. DONGKUK STEEL will inform you the time of color matching if the color you have selected is not an approved color.");
+				FormD2.setItemLabel('S4', "4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK CM&#39;s approved color range. DONGKUK CM will inform you the time of color matching if the color you have selected is not an approved color.");
 
-			    FormD2.setItemLabel('S5', "5. DONGKUK STEEL&#39;s responsibility extends only to the direct cost of refinishing or replacing failed coated substrate. Dongkuk steel cannot accept liability for loss or damage to other property or equipment, loss of profits or sales, or any other claims relative to standard business interruption, or any other incidental or consequential damages.");
-			    FormD2.setItemLabel('S5_1', "A. DONGKUK STEEL shall only be liable for the cost of having the same metal panel or steel sheet");			    
-			    FormD2.setItemLabel('S5_2', "B. DONGKUK STEEL shall not be liable for the cost of construction equipments, labor or any kind of losses");
+			    FormD2.setItemLabel('S5', "5. DONGKUK CM&#39;s responsibility extends only to the direct cost of refinishing or replacing failed coated substrate. Dongkuk cm cannot accept liability for loss or damage to other property or equipment, loss of profits or sales, or any other claims relative to standard business interruption, or any other incidental or consequential damages.");
+			    FormD2.setItemLabel('S5_1', "A. DONGKUK CM shall only be liable for the cost of having the same metal panel or steel sheet");			    
+			    FormD2.setItemLabel('S5_2', "B. DONGKUK CM shall not be liable for the cost of construction equipments, labor or any kind of losses");
 			    
-			    FormD2.setItemLabel('S6', "6. DONGKUK STEEL reserves the right to establish whether repainting or replacing material is required and to approve and participate in the negotiation of any subcontracted material replacement, installation, or refinishing. After replacement or re-finishing of the repaired area, this area will be considered as installed as of the original installation date for the purpose of the application of this warranty.");
+			    FormD2.setItemLabel('S6', "6. DONGKUK CM reserves the right to establish whether repainting or replacing material is required and to approve and participate in the negotiation of any subcontracted material replacement, installation, or refinishing. After replacement or re-finishing of the repaired area, this area will be considered as installed as of the original installation date for the purpose of the application of this warranty.");
 			    FormD2.setItemLabel('S6_1', "");
 			    FormD2.setItemLabel('S6_2', "");
 			    
-			    FormD2.setItemLabel('S7', "7. Claims under this warranty must be submitted in writing within thirty (30) days of discovery of the warranted performance failure and DONGKUK STEEL requires the opportunity for site failure inspection and investigation. DONGKUK STEEL also reserves the right to evaluate and determine its obligation under the terms and condition of this limited warranty.");
+			    FormD2.setItemLabel('S7', "7. Claims under this warranty must be submitted in writing within thirty (30) days of discovery of the warranted performance failure and DONGKUK CM requires the opportunity for site failure inspection and investigation. DONGKUK CM also reserves the right to evaluate and determine its obligation under the terms and condition of this limited warranty.");
 
-			    FormD2.setItemLabel('S8', "8. DONGKUK STEEL shall maintain, or have access to, adequate records to identify the coil coater, coil numbers, product identification and date of installation. In the event of a claim, DONGKUK STEEL reserves the right to inspect all records mentioned above.");
+			    FormD2.setItemLabel('S8', "8. DONGKUK CM shall maintain, or have access to, adequate records to identify the coil coater, coil numbers, product identification and date of installation. In the event of a claim, DONGKUK CM reserves the right to inspect all records mentioned above.");
 
-			    FormD2.setItemLabel('S9', "9. This limited warranty supersedes any and all other warranties of performance, expressed or implied, by DONGKUK STEEL. Any modifications, additions, or adjustments made to this warranty must be officially added as a signed written amendment.");
+			    FormD2.setItemLabel('S9', "9. This limited warranty supersedes any and all other warranties of performance, expressed or implied, by DONGKUK CM. Any modifications, additions, or adjustments made to this warranty must be officially added as a signed written amendment.");
 
-			    FormD2.setItemLabel('SA', "10. This limited warranty is non-transferable, non-assignable, and may not be modified, extended or enlarged by any representative of DONGKUK STEEL or intermediate salesman or agent.");
+			    FormD2.setItemLabel('SA', "10. This limited warranty is non-transferable, non-assignable, and may not be modified, extended or enlarged by any representative of DONGKUK CM or intermediate salesman or agent.");
 			    
 			    FormD2.setItemLabel('SB', "");
 			    
@@ -776,7 +777,7 @@ function checkCode(){
 			    
 			    FormD2.setItemLabel('SD', "");
 			    
-			    FormD2.setItemLabel('SE', "This warranty becomes effective when all of the above conditions meet 	and DONGKUK STEEL have signed this agreement as of the date set forth below.");
+			    FormD2.setItemLabel('SE', "This warranty becomes effective when all of the above conditions meet 	and DONGKUK CM have signed this agreement as of the date set forth below.");
 
 			}
 		}
