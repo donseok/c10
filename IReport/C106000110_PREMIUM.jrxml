@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="768"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="CCL_BOM_NO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -137,8 +137,8 @@ ELSE
 'DONGKUK CM warrants that the '||$P{BRD_CMP_2_2}||' covered by this warranty will conform to the performance standards listed below. Items #A through # D below apply to metal building and similar structures installed north of the 15th parallel in the northern hemisphere or south of the 15th parallel in the southern hemisphere. Only item # A applies to metal building and similar structures installed between these latitudes:
 '
 END detail_2,
-'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK CM - whichever occurs first.
-' as detail_2_0_1,
+
+'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK CM - whichever occurs first.' as detail_2_0_1,
 'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will have prior to corrosion to perforation in the natural element.
 ' as detail_2_1_0,
 'For '||$P{PE_FL_20}|| '('||$P{PE_FL_1}||') years, '||$P{BRD_CMP_2_3}||' will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary outdoor visual observation.
@@ -270,12 +270,12 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_1}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="64">
+		<band height="44">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="37" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="74" y="-1" width="460" height="35" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Top">
-					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
+					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="&lt;Different Values&gt;" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
 						<tabStop position="0" alignment="Left"/>
 					</paragraph>
 				</textElement>
@@ -284,31 +284,33 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 			<staticText>
 				<reportElement x="40" y="0" width="33" height="23"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
+					<font fontName="Times New Roman" size="11" pdfEncoding="&lt;Different Values&gt;" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="9.5"/>
 				</textElement>
 				<text><![CDATA[1.]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="75" y="42" width="12" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
-				</textElement>
-				<text><![CDATA[A.]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="42" width="441" height="20" isPrintWhenDetailOverflows="true"/>
-				<textElement>
-					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{DETAIL_2_0_1}]]></textFieldExpression>
-			</textField>
 		</band>
 		<band height="23">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="0" width="441" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="2" width="441" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" pdfEncoding="&lt;Different Values&gt;" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="8.6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DETAIL_2_0_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="0" width="12" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" pdfEncoding="&lt;Different Values&gt;" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="9.5"/>
+				</textElement>
+				<text><![CDATA[A.]]></text>
+			</staticText>
+		</band>
+		<band height="23">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="90" y="3" width="441" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
@@ -316,7 +318,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_0}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="75" y="0" width="12" height="20"/>
+				<reportElement x="73" y="0" width="12" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Times New Roman" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
@@ -326,7 +328,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 		</band>
 		<band height="55">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="4" width="441" height="50" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="50" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
@@ -334,7 +336,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DETAL_2_1_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="75" y="4" width="12" height="20"/>
+				<reportElement x="73" y="0" width="12" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Times New Roman" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
@@ -343,34 +345,26 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 			</staticText>
 		</band>
 		<band height="26">
-			<staticText>
-				<reportElement x="75" y="4" width="12" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Times New Roman" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
-				</textElement>
-				<text><![CDATA[D.]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="90" y="4" width="441" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="91" y="0" width="441" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font fontName="Times New Roman" size="10" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="8.6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DETAIL_2_1_2}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="74" y="0" width="12" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="8.5"/>
+				</textElement>
+				<text><![CDATA[D.]]></text>
+			</staticText>
 		</band>
 		<band height="23">
-			<staticText>
-				<reportElement x="40" y="0" width="33" height="23"/>
-				<textElement textAlignment="Right" verticalAlignment="Top">
-					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
-					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
-				</textElement>
-				<text><![CDATA[2.]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="75" y="0" width="460" height="23" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Times New Roman" size="11" isBold="false" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2" tabStopWidth="20">
@@ -379,10 +373,18 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DETAIL_2_2_1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="42" y="0" width="33" height="23"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="11" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="9.5"/>
+				</textElement>
+				<text><![CDATA[2.]]></text>
+			</staticText>
 		</band>
-		<band height="51">
+		<band height="50">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="63" y="0" width="498" height="50" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="65" y="0" width="498" height="50" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font fontName="Times New Roman" size="11" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2"/>
@@ -397,7 +399,7 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 	<lastPageFooter>
 		<band height="842">
 			<textField pattern="">
-				<reportElement mode="Transparent" x="58" y="140" width="503" height="307"/>
+				<reportElement mode="Transparent" x="65" y="140" width="503" height="307"/>
 				<textElement>
 					<font fontName="Times New Roman" size="11" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 					<paragraph lineSpacing="Fixed" lineSpacingSize="9.6" leftIndent="2"/>
