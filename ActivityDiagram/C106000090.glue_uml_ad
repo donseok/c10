@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="477,445" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.6 //@wire.10 //@wire.11 //@wire.14 //@wire.16 //@wire.17 //@wire.19 //@wire.21 //@wire.22 //@wire.25 //@wire.27 //@wire.29 //@wire.32 //@wire.34"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="35,82" size="1411,-1" input="//@wire.0" output="//@wire.1 //@wire.7 //@wire.8 //@wire.12 //@wire.15 //@wire.20 //@wire.24 //@wire.33 //@wire.28" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="477,445" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.6 //@wire.10 //@wire.11 //@wire.14 //@wire.16 //@wire.17 //@wire.19 //@wire.21 //@wire.22 //@wire.25 //@wire.27 //@wire.29 //@wire.32 //@wire.34 //@wire.35 //@wire.38"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="35,82" size="1411,-1" input="//@wire.0" output="//@wire.1 //@wire.7 //@wire.8 //@wire.12 //@wire.15 //@wire.20 //@wire.24 //@wire.33 //@wire.28 //@wire.36" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA; 입력된 event에 해당하는 Activity 로 분기하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;- find : 부재료 정보검색 Activity를 호출한다.&#xD;&#xA;- basicinfo : 부재료판정기준정보검색 Activity를 호출한다.&#xD;&#xA;- infosave : 부재료정보 Activity를 호출한다.&#xD;&#xA;- basicsave : 부재료판정기준정보 Activity를 호출한다&#xD;&#xA;- allsave : 부재료정보처리, 부재료판정기준정보처리 Activity를 호출한다&#xD;&#xA;"/>
   </child>
@@ -18,9 +18,9 @@
     <property key="sqlkey" value="C106000090_Grid2_CLRCD.select"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:RouterActivity" id="132479" location="37,157" size="676,-1" input="//@wire.1" output="//@wire.4 //@wire.5 //@wire.9 //@wire.13 //@wire.18 //@wire.23 //@wire.31 //@wire.26" name="findRouter">
+  <child xsi:type="Glue:RouterActivity" id="132479" location="37,157" size="745,-1" input="//@wire.1" output="//@wire.4 //@wire.5 //@wire.9 //@wire.13 //@wire.18 //@wire.23 //@wire.31 //@wire.26 //@wire.37" name="findRouter">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosValueRouter"/>
-    <property key="param-count" value="8"/>
+    <property key="param-count" value="9"/>
     <property key="param0" value="SEARCH_CD_SEL|1|Findcolor"/>
     <property key="param1" value="SEARCH_CD_SEL|2|Findcclbom"/>
     <property key="param2" value="SEARCH_CD_SEL|3|Findrsntp"/>
@@ -29,6 +29,7 @@
     <property key="param5" value="SEARCH_CD_SEL|6|FindInk"/>
     <property key="param6" value="SEARCH_CD_SEL|7|FindFlm"/>
     <property key="param7" value="SEARCH_CD_SEL|8|FindBnd"/>
+    <property key="param8" value="SEARCH_CD_SEL|9|FindUgs"/>
     <property key="description" value=""/>
   </child>
   <child xsi:type="Glue:DinaActivity" id="132481" location="128,243" size="85,-1" input="//@wire.5" output="//@wire.6" name="CCLBOM검색">
@@ -115,6 +116,18 @@
     <property key="sqlkey" value="C106000090_Grid2_BND_CCLBOM.select"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:SearchActivity" id="265797" location="1346,463" size="98,-1" input="//@wire.36" output="//@wire.35" name="생산USG필름사용검색">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000090_Grid2_USGCD.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="311418" location="667,511" size="79,-1" input="//@wire.37" output="//@wire.38" name="생산UGS필름">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000090_Grid1_FLMUGS.select"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value="1) 개요 : 부재료 Code별 판정기준을 등록하고 조회하는화면&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;2) 요건정의&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;    - Lov는 Master data의 코드값을 가져와 출력하고 Hard코딩을 하지 않는다.&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;    - 조회대상은 조회조건 입력 Field 항목의 And조건으로 검색한다.&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;    - 수정 및 입력 항목은 조회항목과 구분하여 Coloring 처리하고 수정된 값은 Text 색깔을 바꾼다.&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;"/>
   <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
@@ -192,4 +205,10 @@
   <wire id="12736" guardcondition="success" firstRelativePoint="1325,358" lastRelativePoint="496,455">
     <bendpoint weight="0.5" firstDimension="-45,195" secondDimension="828,83"/>
   </wire>
+  <wire id="12738" guardcondition="success" firstRelativePoint="1385,501" lastRelativePoint="496,455">
+    <bendpoint weight="0.5" firstDimension="2,114" secondDimension="898,145"/>
+  </wire>
+  <wire id="13944" guardcondition="useFindUgs" firstRelativePoint="1416,112" lastRelativePoint="1416,463"/>
+  <wire id="13945" guardcondition="FindUgs" firstRelativePoint="672,515" lastRelativePoint="487,464"/>
+  <wire id="13946" guardcondition="success" firstRelativePoint="671,516" lastRelativePoint="487,464"/>
 </Glue:GlueDiagram>

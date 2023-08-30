@@ -304,4 +304,21 @@ SELECT A.CCL_BOM_NO AS CCL_BOM_NO3,
 ORDER BY A.CCL_BOM_NO, B.CUS_CD
 		 ]]> 
 	 </query>
+	 <query id="C106000090_Grid1_FLMUGS.select" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C106000090   생산UGS필름코드조회   C106000090_Grid1_FLMUGS.select   이돈석  */
+   CLR_SUB_MTL_CD UNI_GLS_FLM_CD
+FROM TB_C10_CLR_CD_MNG
+WHERE CLR_SUB_MTL_CD LIKE NVL(:FIND_CD||'%','%')
+  AND SUB_MTL_TP ='S49'
+ORDER BY SUB_MTL_TP , CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000090_Grid2_USGCD.select" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT CCL_BOM_NO CCL_BOM_NO3
+  FROM TB_C10_CLR_MPR
+ WHERE UNI_GLS_FLM_CD = :UNI_GLS_FLM_CD
+		 ]]> 
+	 </query>
 </queryMap>

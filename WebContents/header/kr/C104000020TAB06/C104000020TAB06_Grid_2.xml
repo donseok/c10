@@ -29,11 +29,16 @@
 <column align="right" clabel="원자재목표두께하한기준값" dbname="원자재목표두께하한기준값" hidden="true" id="RMTL_TAR_THK_LVL_STD" index="10" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께하한기준값</column>
 <column align="right" clabel="원자재목표두께상한기준값" dbname="원자재목표두께상한기준값" hidden="true" id="RMTL_TAR_THK_UVL_STD" index="11" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께상한기준값</column>
 <column align="right" clabel="원자재목표폭기준값" dbname="원자재목표폭기준값" hidden="true" id="RMTL_TAR_WTH_STD" index="12" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro"   width="0">원자재목표폭기준값</column>
+
+<column align="right" clabel="원자재목표두께변경전값" dbname="원자재목표두께변경전값" hidden="true" id="RMTL_TAR_THK_BF" index="13" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께변경전값</column>
+<column align="right" clabel="원자재목표두께하한변경전값" dbname="원자재목표두께하한변경전값" hidden="true" id="RMTL_TAR_THK_LVL_BF" index="14" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께하한변경전값</column>
+<column align="right" clabel="원자재목표두께상한변경전값" dbname="원자재목표두께상한변경전값" hidden="true" id="RMTL_TAR_THK_UVL_BF" index="15" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro" width="0">원자재목표두께상한변경전값</column>
+<column align="right" clabel="원자재목표폭변경전값" dbname="원자재목표폭변경전값" hidden="true" id="RMTL_TAR_WTH_BF" index="16" sort="na" table="TB_C10_QLT_DSN_RMT" type="ro"   width="0">원자재목표폭변경전값</column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">RMTL_CD,RMTL_GRD,RMTL_TAR_THK,RMTL_TAR_THK_LVL,RMTL_TAR_THK_UVL,RMTL_TAR_WTH,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,RMTL_TAR_THK_LVL_STD,RMTL_TAR_THK_UVL_STD,RMTL_TAR_WTH_STD</userdata>
+<userdata name="column-info">RMTL_CD,RMTL_GRD,RMTL_TAR_THK,RMTL_TAR_THK_LVL,RMTL_TAR_THK_UVL,RMTL_TAR_WTH,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,RMTL_TAR_THK_LVL_STD,RMTL_TAR_THK_UVL_STD,RMTL_TAR_WTH_STD,RMTL_TAR_THK_BF,RMTL_TAR_THK_LVL_BF,RMTL_TAR_THK_UVL_BF,RMTL_TAR_WTH_BF</userdata>
 <row id="0">
 <cell/>
 <cell/>

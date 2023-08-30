@@ -12,7 +12,7 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="end" />
+    <transition name="success" value="전기도금이력저장" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB06.CHG_HSTinsert" />
     <property name="dao" value="mesdao" />
@@ -48,6 +48,12 @@
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB06.MSGupdate" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="전기도금이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C104000020TAB06.MNF_MDFinsert" />
+    <property name="isAudit" value="true" />
   </activity>
   <activity name="원자재조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />

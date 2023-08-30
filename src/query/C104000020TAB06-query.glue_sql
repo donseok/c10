@@ -2,143 +2,156 @@
 <queryMap desc="C104000020TAB06"> 
 	 <query id="C104000020TAB06_MNF.select" desc="제조표준조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 품질설계결과-전기도금(제조표준)(C104000020TAB06_MNF 박재영) */
-        TB_C10_QLT_DSN_MNF.ORD_NO,--주문번호
-        TB_C10_QLT_DSN_MNF.ORD_LN,--주문행번
-        TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP,--품질설계제조구분
-        TB_C10_QLT_DSN_MNF.RMTL_CD,--원자재코드
-        TB_C10_QLT_DSN_MNF.CRM_MNF_STD_NO,--냉연제조표준번호
-        TB_C10_QLT_DSN_MNF.PLTCM_5STD_WR_TP,--PLTCM5StandWRType
-        TB_C10_QLT_DSN_MNF.PLTCM_SLV_USE_YN,--PLTCM내경링사용여부
-        TB_C10_QLT_DSN_MNF.ECL_CDR_CD,--ECLC-D방지약품
-        TB_C10_QLT_DSN_MNF.ECL_COILG_TS_CD,--ECL권취장력
+SELECT /* C10 품질설계결과-전기도금(제조표준)(C104000020TAB06_MNF 박재영) */
+        A.ORD_NO,--주문번호
+        A.ORD_LN,--주문행번
+        A.QLT_DSN_MNF_TP,--품질설계제조구분
+        A.RMTL_CD,--원자재코드
+        A.CRM_MNF_STD_NO,--냉연제조표준번호
+        A.PLTCM_5STD_WR_TP,--PLTCM5StandWRType
+        A.PLTCM_SLV_USE_YN,--PLTCM내경링사용여부
+        A.ECL_CDR_CD,--ECLC-D방지약품
+        A.ECL_COILG_TS_CD,--ECL권취장력
         '일반 ANN' FUR_TP_GEN_ANN,
         --TB_C10_QLT_DSN_MNF.FUR_TP_GEN_ANN,--일반ANN소둔로유형
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_GEN_ANN,--일반ANN소둔CYCLE
-        TB_C10_QLT_DSN_MNF.COR_TM_GEN_ANN,--일반ANN소둔보정시간
-        TB_C10_QLT_DSN_MNF.COIL_TMP_GEN_ANN,--일반ANN코일온도
-        TB_C10_QLT_DSN_MNF.CLG_END_TMP_GEN_ANN,--일반ANN냉각종료온도
+        A.HEAT_CYL_NO_GEN_ANN,--일반ANN소둔CYCLE
+        A.COR_TM_GEN_ANN,--일반ANN소둔보정시간
+        A.COIL_TMP_GEN_ANN,--일반ANN코일온도
+        A.CLG_END_TMP_GEN_ANN,--일반ANN냉각종료온도
         'H-C ANN' FUR_TP_HC_ANN,
         --TB_C10_QLT_DSN_MNF.FUR_TP_HC_ANN,--HCANN소둔로유형
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_HC_ANN,--HCANN소둔CYCLE
-        TB_C10_QLT_DSN_MNF.COR_TM_HC_ANN,--HCANN소둔보정시간
-        TB_C10_QLT_DSN_MNF.COIL_TMP_HC_ANN,--HCANN코일온도
-        TB_C10_QLT_DSN_MNF.CLG_END_TMP_HC_ANN,--HCANN냉각종료온도
-        TB_C10_QLT_DSN_MNF.TM_PASS_CNT,--TMPass수
-        TB_C10_QLT_DSN_MNF.ROU_RA_LLV,--조도RA하한값
-        TB_C10_QLT_DSN_MNF.ROU_RA_ULV,--조도RA상한값
-        TB_C10_QLT_DSN_MNF.ROU_PPI_LLV,--조도PPI하한값
-        TB_C10_QLT_DSN_MNF.ROU_PPI_ULV,--조도PPI상한값
-        TB_C10_QLT_DSN_MNF.ROU_R_MAX_LLV,--조도RMAX하한값
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_2CGL,--소둔CYCLE#2CGL
-        TB_C10_QLT_DSN_MNF.HTG_TEM_2CGL,--가열온도#2CGL
-        TB_C10_QLT_DSN_MNF.CLG_TEM_2CGL,--냉각온도#2CGL
-        TB_C10_QLT_DSN_MNF.SHK_TM_2CGL,--ShockingTime#2CGL
-        TB_C10_QLT_DSN_MNF.LN_SPD_2CGL,--LineSpeed#2CGL
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_3CGL,--소둔CYCLE#3CGL
-        TB_C10_QLT_DSN_MNF.HTG_TEM_3CGL,--가열온도#3CGL
-        TB_C10_QLT_DSN_MNF.CLG_TEM_3CGL,--냉각온도#3CGL
-        TB_C10_QLT_DSN_MNF.SHK_TM_3CGL,--ShockingTime#3CGL
-        TB_C10_QLT_DSN_MNF.LN_SPD_3CGL,--LineSpeed#3CGL
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_4CGL,--소둔CYCLE#4CGL
-        TB_C10_QLT_DSN_MNF.HTG_TEM_4CGL,--가열온도#4CGL
-        TB_C10_QLT_DSN_MNF.CLG_TEM_4CGL,--냉각온도#4CGL
-        TB_C10_QLT_DSN_MNF.SHK_TM_4CGL,--ShockingTime#4CGL
-        TB_C10_QLT_DSN_MNF.LN_SPD_4CGL,--LineSpeed#4CGL
-        TB_C10_QLT_DSN_MNF.HEAT_CYL_NO_5CGL,--소둔CYCLE#5CGL
-        TB_C10_QLT_DSN_MNF.HTG_TEM_5CGL,--가열온도#5CGL
-        TB_C10_QLT_DSN_MNF.CLG_TEM_5CGL,--냉각온도#5CGL
-        TB_C10_QLT_DSN_MNF.SHK_TM_5CGL,--ShockingTime#5CGL
-        TB_C10_QLT_DSN_MNF.LN_SPD_5CGL,--LineSpeed#5CGL
-        TB_C10_QLT_DSN_MNF.SPNL_TP ||
+        A.HEAT_CYL_NO_HC_ANN,--HCANN소둔CYCLE
+        A.COR_TM_HC_ANN,--HCANN소둔보정시간
+        A.COIL_TMP_HC_ANN,--HCANN코일온도
+        A.CLG_END_TMP_HC_ANN,--HCANN냉각종료온도
+        A.TM_PASS_CNT,--TMPass수
+        A.ROU_RA_LLV,--조도RA하한값
+        A.ROU_RA_ULV,--조도RA상한값
+        A.ROU_PPI_LLV,--조도PPI하한값
+        A.ROU_PPI_ULV,--조도PPI상한값
+        A.ROU_R_MAX_LLV,--조도RMAX하한값
+        A.HEAT_CYL_NO_2CGL,--소둔CYCLE#2CGL
+        A.HTG_TEM_2CGL,--가열온도#2CGL
+        A.CLG_TEM_2CGL,--냉각온도#2CGL
+        A.SHK_TM_2CGL,--ShockingTime#2CGL
+        A.LN_SPD_2CGL,--LineSpeed#2CGL
+        A.HEAT_CYL_NO_3CGL,--소둔CYCLE#3CGL
+        A.HTG_TEM_3CGL,--가열온도#3CGL
+        A.CLG_TEM_3CGL,--냉각온도#3CGL
+        A.SHK_TM_3CGL,--ShockingTime#3CGL
+        A.LN_SPD_3CGL,--LineSpeed#3CGL
+        A.HEAT_CYL_NO_4CGL,--소둔CYCLE#4CGL
+        A.HTG_TEM_4CGL,--가열온도#4CGL
+        A.CLG_TEM_4CGL,--냉각온도#4CGL
+        A.SHK_TM_4CGL,--ShockingTime#4CGL
+        A.LN_SPD_4CGL,--LineSpeed#4CGL
+        A.HEAT_CYL_NO_5CGL,--소둔CYCLE#5CGL
+        A.HTG_TEM_5CGL,--가열온도#5CGL
+        A.CLG_TEM_5CGL,--냉각온도#5CGL
+        A.SHK_TM_5CGL,--ShockingTime#5CGL
+        A.LN_SPD_5CGL,--LineSpeed#5CGL
+        A.SPNL_TP ||
         (SELECT ' : ' || CD_V_MEANING
          FROM M00APUSER.VI_M00_CODE_ACCESS
          WHERE CD_TP = 'ORD_SPNL_TP'
          AND   CD_V = SPNL_TP
          AND   CATEGORY_GROUP_NM =
-        DECODE(TB_C10_QLT_DSN_CMN.PRD_NM_CD,'C','SC0000','D','SC0000','G','SG0000','K','SG0000','J','SG0000','L','SL0000','V','SV0000','W','SW0000','SZ0000')) SPNL_TP,--Spangle구분
-        TB_C10_QLT_DSN_MNF.CGL_LVL_YN,--CGLLeveler사용여부
-        TB_C10_QLT_DSN_MNF.CGL_SP_ASG_YN,--CGLSkinPass
-        TB_C10_QLT_DSN_MNF.CGL_SUR_HND_CD ||
+        DECODE(B.PRD_NM_CD,'C','SC0000','D','SC0000','G','SG0000','K','SG0000','J','SG0000','L','SL0000','V','SV0000','W','SW0000','SZ0000')) SPNL_TP,--Spangle구분
+        A.CGL_LVL_YN,--CGLLeveler사용여부
+        A.CGL_SP_ASG_YN,--CGLSkinPass
+        A.CGL_SUR_HND_CD ||
     (SELECT ' : ' || CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
     WHERE CD_TP = 'ORD_SUR_HND_CD'
     AND   CATEGORY_GROUP_NM = 'SZ0000'
-    AND   CD_V = TB_C10_QLT_DSN_MNF.CGL_SUR_HND_CD) AS CGL_SUR_HND_CD,--CGL표면처리코드
-    TB_C10_QLT_DSN_MNF.EGL_SUR_HND_CD || 
+    AND   CD_V = A.CGL_SUR_HND_CD) AS CGL_SUR_HND_CD,--CGL표면처리코드
+    A.EGL_SUR_HND_CD || 
     (SELECT ' : ' || CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
     WHERE CD_TP = 'ORD_SUR_HND_CD'
     AND   CATEGORY_GROUP_NM = 'SE0000'
-    AND   CD_V = TB_C10_QLT_DSN_MNF.EGL_SUR_HND_CD) AS EGL_SUR_HND_CD,--EGL표면처리코드
-        TB_C10_QLT_DSN_MNF.RSN_ATT_AMT_TRV,--수지부착량기준목표
-        TB_C10_QLT_DSN_MNF.RSN_ATT_AMT_LLV,--수지부착량기준하한
-        TB_C10_QLT_DSN_MNF.RSN_ATT_AMT_ULV,--수지부착량기준상한
-        TB_C10_QLT_DSN_MNF.WK_GW_TRV,--작업도금량목표값
-        TB_C10_QLT_DSN_MNF.WK_GW_FRN_LLV,--작업도금량전면하한값
-        TB_C10_QLT_DSN_MNF.WK_GW_FRN_ULV,--작업도금량전면상한값
-        TB_C10_QLT_DSN_MNF.WK_GW_BAK_LLV,--작업도금량후면하한값
-        TB_C10_QLT_DSN_MNF.WK_GW_BAK_ULV,--작업도금량후면상한값
-        TB_C10_QLT_DSN_MNF.WK_GW_TOT_LLV,--작업도금량전체하한값
-        TB_C10_QLT_DSN_MNF.WK_GW_TOT_ULV,--작업도금량전체상한값
-        TB_C10_QLT_DSN_MNF.PIL_DIR,--Piling방향
-        TB_C10_QLT_DSN_MNF.OIL_PNT_CD,--도유코드
-        TB_C10_QLT_DSN_MNF.PRD_THK_RNG_LLV,--제품두께범위하한값
-        TB_C10_QLT_DSN_MNF.PRD_THK_RNG_ULV,--제품두께범위상한값
-        TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_LLV,--제품폭범위하한값
-        TB_C10_QLT_DSN_MNF.PRD_WTH_RNG_ULV,--제품폭범위상한값
-        TB_C10_QLT_DSN_MNF.GAL_THK_LLV,--도금두께하한
-        TB_C10_QLT_DSN_MNF.GAL_THK_ULV,--도금두께상한
-        TB_C10_QLT_DSN_MNF.GAL_THK_TRV,--도금두께목표
-        TB_C10_QLT_DSN_MNF.SPC_GAL_THK,--사양도금두께
-        TB_C10_QLT_DSN_MNF.COR_THK_TRV,--정전두께목표값
-        TB_C10_QLT_DSN_MNF.COR_WTH_TRV,--정전폭목표값
-        TB_C10_QLT_DSN_MNF.SLIT_GRP_CNT,--Slit조수
-        TB_C10_QLT_DSN_MNF.MIX_WTH1,--조합폭1
-        TB_C10_QLT_DSN_MNF.MIX_WTH2,--조합폭2
-        TB_C10_QLT_DSN_MNF.MIX_WTH3,--조합폭3
-        TB_C10_QLT_DSN_MNF.MIX_WTH4,--조합폭4
-        TB_C10_QLT_DSN_MNF.MIX_WTH5,--조합폭5
-        TB_C10_QLT_DSN_MNF.MIX_WTH6,--조합폭6
-        TB_C10_QLT_DSN_MNF.MIX_WTH7,--조합폭7
-        TB_C10_QLT_DSN_MNF.MIX_WTH8,--조합폭8
-        TB_C10_QLT_DSN_MNF.CCL_THK_TRV,--CCL두께목표값
-        TB_C10_QLT_DSN_MNF.CCL_WTH_TRV,--CCL폭목표값
-        TB_C10_QLT_DSN_MNF.MID_COR_THK_TRV,--중간정전두께목표값
-        TB_C10_QLT_DSN_MNF.MID_COR_WTH_TRV,--중간정전폭목표값
-        TB_C10_QLT_DSN_MNF.CGL_THK_TRV,--CGL두께목표값
-        TB_C10_QLT_DSN_MNF.CGL_WTH_TRV,--CGL폭목표값
-        TB_C10_QLT_DSN_MNF.EGL_THK_TRV,--EGL두께목표값
-        TB_C10_QLT_DSN_MNF.EGL_WTH_TRV,--EGL폭목표값
-        TB_C10_QLT_DSN_MNF.TM_THK_TRV,--TM두께목표값
-        TB_C10_QLT_DSN_MNF.TM_WTH_TRV,--TM폭목표값
-        TB_C10_QLT_DSN_MNF.TM_WTH_SUB_PROC1_TRV,--TM폭대체공정1목표값
-        TB_C10_QLT_DSN_MNF.TM_WTH_SUB_PROC2_TRV,--TM폭대체공정2목표값
-        TB_C10_QLT_DSN_MNF.PLTCM_SET_THK_TRV,--PLTCMX-RaySet두께값
-        TB_C10_QLT_DSN_MNF.PLTCM_THK_TRV,--PLTCM두께목표값
-        TB_C10_QLT_DSN_MNF.PLTCM_THK_LLV,--PLTCM두께하한값
-        TB_C10_QLT_DSN_MNF.PLTCM_THK_ULV,--PLTCM두께상한값
-        TB_C10_QLT_DSN_MNF.PLTCM_WTH_TRV,--PLTCM폭목표값
-        TB_C10_QLT_DSN_MNF.PLTCM_WTH_SUB_PROC1_TRV,--PLTCM폭대체공정1목표값
-        TB_C10_QLT_DSN_MNF.PLTCM_WTH_SUB_PROC2_TRV,--PLTCM폭대체공정2목표값
-        TB_C10_QLT_DSN_MNF.PLTCM_EDG_ASG_TP,--PLTCMEdge지정구분
-        TB_C10_QLT_DSN_MNF.COR_EDG_ASG_TP,--정전Edge지정구분
-        TB_C10_QLT_DSN_CMN.BAK_MRK,--Back마킹
-    TB_C10_QLT_DSN_CMN.EMBS_CD  ||
+    AND   CD_V = A.EGL_SUR_HND_CD) AS EGL_SUR_HND_CD,--EGL표면처리코드
+        A.RSN_ATT_AMT_TRV,--수지부착량기준목표
+        A.RSN_ATT_AMT_LLV,--수지부착량기준하한
+        A.RSN_ATT_AMT_ULV,--수지부착량기준상한
+        A.WK_GW_TRV,--작업도금량목표값
+        A.WK_GW_FRN_LLV,--작업도금량전면하한값
+        A.WK_GW_FRN_ULV,--작업도금량전면상한값
+        A.WK_GW_BAK_LLV,--작업도금량후면하한값
+        A.WK_GW_BAK_ULV,--작업도금량후면상한값
+        A.WK_GW_TOT_LLV,--작업도금량전체하한값
+        A.WK_GW_TOT_ULV,--작업도금량전체상한값
+        A.PIL_DIR,--Piling방향
+        A.OIL_PNT_CD,--도유코드
+        A.PRD_THK_RNG_LLV,--제품두께범위하한값
+        A.PRD_THK_RNG_ULV,--제품두께범위상한값
+        A.PRD_WTH_RNG_LLV,--제품폭범위하한값
+        A.PRD_WTH_RNG_ULV,--제품폭범위상한값
+        A.GAL_THK_LLV,--도금두께하한
+        A.GAL_THK_ULV,--도금두께상한
+        A.GAL_THK_TRV,--도금두께목표
+        A.SPC_GAL_THK,--사양도금두께
+        A.COR_THK_TRV,--정전두께목표값
+        A.COR_WTH_TRV,--정전폭목표값
+        A.SLIT_GRP_CNT,--Slit조수
+        A.MIX_WTH1,--조합폭1
+        A.MIX_WTH2,--조합폭2
+        A.MIX_WTH3,--조합폭3
+        A.MIX_WTH4,--조합폭4
+        A.MIX_WTH5,--조합폭5
+        A.MIX_WTH6,--조합폭6
+        A.MIX_WTH7,--조합폭7
+        A.MIX_WTH8,--조합폭8
+        A.CCL_THK_TRV,--CCL두께목표값
+        A.CCL_WTH_TRV,--CCL폭목표값
+        A.MID_COR_THK_TRV,--중간정전두께목표값
+        A.MID_COR_WTH_TRV,--중간정전폭목표값
+        A.CGL_THK_TRV,--CGL두께목표값
+        A.CGL_WTH_TRV,--CGL폭목표값
+        A.EGL_THK_TRV,--EGL두께목표값
+        A.EGL_WTH_TRV,--EGL폭목표값
+        A.TM_THK_TRV,--TM두께목표값
+        A.TM_WTH_TRV,--TM폭목표값
+        A.TM_WTH_SUB_PROC1_TRV,--TM폭대체공정1목표값
+        A.TM_WTH_SUB_PROC2_TRV,--TM폭대체공정2목표값
+        A.PLTCM_SET_THK_TRV,--PLTCMX-RaySet두께값
+        A.PLTCM_THK_TRV,--PLTCM두께목표값
+        A.PLTCM_THK_LLV,--PLTCM두께하한값
+        A.PLTCM_THK_ULV,--PLTCM두께상한값
+        A.PLTCM_WTH_TRV,--PLTCM폭목표값
+        A.PLTCM_WTH_SUB_PROC1_TRV,--PLTCM폭대체공정1목표값
+        A.PLTCM_WTH_SUB_PROC2_TRV,--PLTCM폭대체공정2목표값
+        A.PLTCM_EDG_ASG_TP,--PLTCMEdge지정구분
+        A.COR_EDG_ASG_TP,--정전Edge지정구분
+        B.BAK_MRK,--Back마킹
+    B.EMBS_CD  ||
     (SELECT ' : ' || CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
     WHERE CD_TP = 'EMBS_CD'
     AND   CATEGORY_GROUP_NM = 'SZ0000'
-    AND   CD_V = TB_C10_QLT_DSN_CMN.EMBS_CD) AS EMBS_CD,--EMBOSS무늬
+    AND   CD_V = B.EMBS_CD) AS EMBS_CD,--EMBOSS무늬
     PL_WTH_TRV,--PL폭목표값
     PL_WTH_SUB_PROC1_TRV,--PL폭대체공정1목표값
     PL_WTH_SUB_PROC2_TRV,--PL폭대체공정2목표값
-    PL_WTH_TRV - TB_C10_QLT_DSN_MNF.PLTCM_WTH_TRV AS NECKING_WTH,
-    C10APUSER.FC_NECKING_CAL(TB_C10_QLT_DSN_MNF.RMTL_CD,PL_WTH_TRV,TB_C10_QLT_DSN_MNF.PLTCM_SET_THK_TRV) AS BIGDATA_NECKING_WTH
-FROM TB_C10_QLT_DSN_MNF, TB_C10_QLT_DSN_CMN
-WHERE    TB_C10_QLT_DSN_MNF.ORD_NO = TB_C10_QLT_DSN_CMN.ORD_NO
-AND      TB_C10_QLT_DSN_MNF.ORD_LN = TB_C10_QLT_DSN_CMN.ORD_LN
-AND      TB_C10_QLT_DSN_MNF.ORD_NO = :ORD_NO
-AND      TB_C10_QLT_DSN_MNF.ORD_LN = :ORD_LN
-AND      TB_C10_QLT_DSN_MNF.QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP
-AND      TB_C10_QLT_DSN_CMN.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
+    PL_WTH_TRV - A.PLTCM_WTH_TRV AS NECKING_WTH,
+    C10APUSER.FC_NECKING_CAL(A.RMTL_CD,PL_WTH_TRV,A.PLTCM_SET_THK_TRV) AS BIGDATA_NECKING_WTH,
+    A.PLTCM_5STD_WR_TP AS PLTCM_5STD_WR_TP_BF,--PLTCM5StandWRType변경이전값(2023.7.27추가)
+	A.PLTCM_SLV_USE_YN AS PLTCM_SLV_USE_YN_BF,--PLTCM내경링사용여부변경이전값(2023.7.27추가)
+    A.PLTCM_EDG_ASG_TP AS PLTCM_EDG_ASG_TP_BF,--PLTCMEdge지정구분변경이전값(2023.8.3추가)
+    A.PL_WTH_TRV           AS PL_WTH_TRV_BF,  
+    A.PL_WTH_SUB_PROC1_TRV AS PL_WTH_SUB_PROC1_TRV_BF,
+    A.PL_WTH_SUB_PROC2_TRV AS PL_WTH_SUB_PROC2_TRV_BF,
+    A.PLTCM_SET_THK_TRV    AS PLTCM_SET_THK_TRV_BF, 
+    A.PLTCM_THK_TRV        AS PLTCM_THK_TRV_BF,  
+    A.PLTCM_THK_LLV        AS PLTCM_THK_LLV_BF,   
+    A.PLTCM_THK_ULV        AS PLTCM_THK_ULV_BF,   
+    A.PLTCM_WTH_TRV        AS PLTCM_WTH_TRV_BF,   
+    A.PLTCM_WTH_SUB_PROC1_TRV  AS PLTCM_WTH_SUB_PROC1_TRV_BF,  
+    A.PLTCM_WTH_SUB_PROC2_TRV  AS PLTCM_WTH_SUB_PROC2_TRV_BF
+FROM TB_C10_QLT_DSN_MNF A, TB_C10_QLT_DSN_CMN B
+WHERE    A.ORD_NO = B.ORD_NO
+AND      A.ORD_LN = B.ORD_LN
+AND      A.ORD_NO = :ORD_NO
+AND      A.ORD_LN = :ORD_LN
+AND      A.QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP
+AND      B.PRD_NM_CD IN ('A','B','C','D','E','1','2','4','N','8')
 		 ]]> 
 	 </query>
 	 <query id="C104000020TAB06_MSG.select" desc="메세지조회" fetchSize="10" isNamed="true">
@@ -179,6 +192,10 @@ SELECT /* C10 품질설계결과-전기도금(제조표준)(C104000020TAB06) C10
     ,NVL(A.RMTL_TAR_THK_LVL_STD,A.RMTL_TAR_THK_LVL) AS RMTL_TAR_THK_LVL_STD--원자재목표두께하한기준값
     ,NVL(A.RMTL_TAR_THK_UVL_STD,A.RMTL_TAR_THK_UVL) AS RMTL_TAR_THK_UVL_STD--원자재목표두께상한기준값
     ,NVL(A.RMTL_TAR_WTH_STD,A.RMTL_TAR_WTH) AS RMTL_TAR_WTH_STD--원자재목표폭기준값
+    ,A.RMTL_TAR_THK AS RMTL_TAR_THK_BF     --원자재목표두께변경전값
+    ,A.RMTL_TAR_THK_LVL AS RMTL_TAR_THK_LVL_BF --원자재목표두께하한변경전값
+    ,A.RMTL_TAR_THK_UVL AS RMTL_TAR_THK_UVL_BF --원자재목표두께상한변경전값
+    ,A.RMTL_TAR_WTH AS RMTL_TAR_WTH_BF --원자재목표폭변경전값
 FROM
 TB_C10_QLT_DSN_RMT A,
 TB_C10_QLT_DSN_CMN B
@@ -477,6 +494,73 @@ SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
 WHERE ORD_NO = :ORD_NO                             --주문번호                                                                                      
   AND ORD_LN = :ORD_LN                             --주문행번
   AND QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP             --품질설계제조구분
+		 ]]> 
+	 </query>
+	 <query id="C104000020TAB06.MNF_MDFinsert" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /* C10 품질설계결과수정이력 C104000020TAB06.MNF_MDFinsert 이돈석*/
+            TB_C10_QLT_DSN_MNF_MDF_LOG
+            (    
+              ORD_NO
+             ,ORD_LN
+             ,MDF_SEQ
+             ,QLT_DSN_MNF_TP
+             ,RMTL_TAR_THK
+             ,RMTL_TAR_THK_LVL
+             ,RMTL_TAR_THK_UVL
+             ,RMTL_TAR_WTH
+             ,PLTCM_5STD_WR_TP
+             ,PLTCM_SLV_USE_YN
+             ,PLTCM_EDG_ASG_TP
+             ,RMTL_TAR_THK_BF
+             ,RMTL_TAR_THK_LVL_BF
+             ,RMTL_TAR_THK_UVL_BF
+             ,RMTL_TAR_WTH_BF
+             ,PLTCM_5STD_WR_TP_BF
+             ,PLTCM_SLV_USE_YN_BF
+             ,PLTCM_EDG_ASG_TP_BF
+             ,MDF_PRS_ID
+             ,MDF_DH
+             ,CREATED_OBJECT_TYPE
+             ,CREATED_OBJECT_ID
+             ,CREATED_PROGRAM_ID
+             ,CREATION_TIMESTAMP
+             ,LAST_UPDATED_OBJECT_TYPE
+             ,LAST_UPDATED_OBJECT_ID
+             ,LAST_UPDATE_PROGRAM_ID
+             ,LAST_UPDATE_TIMESTAMP
+            )
+VALUES
+            (
+             :ORD_NO
+             ,:ORD_LN 
+             ,NVL((SELECT MAX(MDF_SEQ) + 1 FROM TB_C10_QLT_DSN_MNF_MDF_LOG WHERE ORD_NO = :ORD_NO AND ORD_LN = :ORD_LN),1)
+             ,:QLT_DSN_MNF_TP
+             ,:RMTL_TAR_THK
+             ,:RMTL_TAR_THK_LVL
+             ,:RMTL_TAR_THK_UVL
+             ,:RMTL_TAR_WTH
+             ,:PLTCM_5STD_WR_TP
+             ,:PLTCM_SLV_USE_YN
+             ,:PLTCM_EDG_ASG_TP
+             ,:RMTL_TAR_THK_BF
+             ,:RMTL_TAR_THK_LVL_BF
+             ,:RMTL_TAR_THK_UVL_BF
+             ,:RMTL_TAR_WTH_BF
+             ,:PLTCM_5STD_WR_TP_BF
+             ,:PLTCM_SLV_USE_YN_BF
+             ,:PLTCM_EDG_ASG_TP_BF
+             ,:ObjectId
+             ,sysdate
+             ,:ObjectType
+             ,:ObjectId
+             ,:ProgramId
+             ,:Timestamp
+             ,:ObjectType
+             ,:ObjectId
+             ,:ProgramId
+             ,:Timestamp
+            )
 		 ]]> 
 	 </query>
 </queryMap>

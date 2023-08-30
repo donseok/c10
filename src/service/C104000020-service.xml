@@ -50,6 +50,11 @@
     <property name="sqlkey" value="C104000020.MODselect" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="2CGL공정체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C104000020.PROCselect1" />
+  </activity>
   <activity name="관심주문설계원업데이트" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="설계결과전송" />
     <property name="insert-sql" value="C104000020.AttSmsupdate" />
@@ -63,8 +68,8 @@
   </activity>
   <activity name="품질협정서체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C104000020.QLTselect" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="관심주문등록" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="SMS등록" />
@@ -112,6 +117,7 @@
     <transition name="save" value="설계확정" />
     <transition name="MOD_find" value="설계변경" />
     <transition name="QLT_find" value="품질협정서체크" />
+    <transition name="PROC_find1" value="2CGL공정체크" />
   </activity>
   <activity name="SMS전송상태" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />

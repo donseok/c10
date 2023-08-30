@@ -127,6 +127,7 @@ function save(eventName,formDivObj,referenceItem){
 	var xmlObj = "";
 	var cells = "";
 	var prd_nm_cd = "";
+	var ccl_bom_no = "";
 	
 	for(var i=0; i< grid_cnt; i++){
 		var row_status 			= gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status")
@@ -138,6 +139,7 @@ function save(eventName,formDivObj,referenceItem){
 				ord_no = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_NO")).getValue();
 				ord_ln  = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_LN")).getValue();
 				prd_nm_cd = gridObj.cellByIndex(i,gridObj.getColIndexById("PRD_NM_CD")).getValue();
+				ccl_bom_no = gridObj.cellByIndex(i,gridObj.getColIndexById("CCL_BOM_NO")).getValue();
 				
 				param= "ServiceName=C104000050-service&BRY_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=QLT_DSN_STS_CD,ORD_BAK_SND_TP,QLT_HLD_YN";						
 				xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
@@ -154,6 +156,22 @@ function save(eventName,formDivObj,referenceItem){
 					}else if(QLT_HLD_YN == "Y"){
 						dhtmlx.alert("주문: "+ord_no+"-"+ord_ln+"의 품질설계가 보류 상태이기에 설계확정 대상이 아닙니다!");					
 					}
+		  			items['C104000050_Grid_1'].setCellValue(gridObj.getRowId(i),0,0);
+		  			items['C104000050_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 			
+					return;					
+				}
+				
+				//2023.08.10 김태성부장 요청(ccl bom 첫번째 자리가 J이고, #82번 공정이 있는 경우 설계 확정이 안되게 한다.)
+				
+				var ccl_bom_tmp = ccl_bom_no.substring(0,1);
+				
+				param= "ServiceName=C104000050-service&PROC_find1=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";						
+				xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
+				cells = xmlObj.getElementsByTagName("cell");						
+				
+				if(ccl_bom_tmp == "J" && cells.length > 0){
+					dhtmlx.alert("디지털 프린팅 #2CGL 원판 적용 불가");				
+				
 		  			items['C104000050_Grid_1'].setCellValue(gridObj.getRowId(i),0,0);
 		  			items['C104000050_Grid_1'].setUpdated(gridObj.getRowId(i),false,""); 			
 					return;					

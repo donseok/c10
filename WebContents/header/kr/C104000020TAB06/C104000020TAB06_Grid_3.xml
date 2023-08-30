@@ -69,11 +69,24 @@
 <column align="center" index="48" clabel="EGL표면처리코드" dbname="EGL표면처리코드" hidden="true" id="EGL_SUR_HND_CD" sort="na" table="TB_C10_QLT_DSN_MNF" type="ro" width="0">EGL표면처리코드</column>
 <column align="center" index="49" clabel="EGL두께목표값" dbname="EGL두께목표값" format="00.000" hidden="true" id="EGL_THK_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">EGL두께목표값</column>
 <column align="center" index="50" clabel="EGL폭목표값" dbname="EGL폭목표값" format="0000.0" hidden="true" id="EGL_WTH_TRV" sort="na" table="TB_C10_QLT_DSN_MNF" type="ron" width="0">EGL폭목표값</column>
+<column id="PLTCM_5STD_WR_TP_BF" index="74" sort="na" width="0" align="center" dbname="PLTCM5StandWRType변경이전값" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCM5StandWRType변경이전값"  hidden="true"></column>
+<column id="PLTCM_SLV_USE_YN_BF" index="75" sort="na" width="0" align="center" dbname="PLTCM내경링사용여부변경이전값" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCM내경링사용여부변경이전값"  hidden="true"></column>
+<column id="PLTCM_EDG_ASG_TP_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PL_WTH_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PL_WTH_SUB_PROC1_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PL_WTH_SUB_PROC2_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_SET_THK_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_THK_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_THK_LLV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_THK_ULV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_WTH_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_WTH_SUB_PROC1_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
+<column id="PLTCM_WTH_SUB_PROC2_TRV_BF" index="75" sort="na" width="0" align="center" dbname="PLTCMEdge지정구분" table="TB_C10_QLT_DSN_MNF" type="ro" clabel="PLTCMEdge지정구분변경이전값"  hidden="true"></column>
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">PLTCM_5STD_WR_TP,PLTCM_SLV_USE_YN,PLTCM_EDG_ASG_TP,PLTCM_SET_THK_TRV,PL_WTH_TRV,PL_WTH_SUB_PROC1_TRV,PL_WTH_SUB_PROC2_TRV,NECKING_WTH,BIGDATA_NECKING_WTH,PLTCM_THK_TRV,PLTCM_THK_LLV,PLTCM_THK_ULV,PLTCM_WTH_TRV,PLTCM_WTH_SUB_PROC1_TRV,PLTCM_WTH_SUB_PROC2_TRV,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,ECL_CDR_CD,ECL_COILG_TS_CD,TM_PASS_CNT,ROU_RA_LLV,ROU_RA_ULV,ROU_PPI_LLV,ROU_PPI_ULV,ROU_R_MAX_LLV,TM_THK_TRV,TM_WTH_TRV,TM_WTH_SUB_PROC1_TRV,TM_WTH_SUB_PROC2_TRV,FUR_TP_GEN_ANN,HEAT_CYL_NO_GEN_ANN,COR_TM_GEN_ANN,COIL_TMP_GEN_ANN,CLG_END_TMP_GEN_ANN,FUR_TP_HC_ANN,HEAT_CYL_NO_HC_ANN,COR_TM_HC_ANN,COIL_TMP_HC_ANN,CLG_END_TMP_HC_ANN,EMBS_CD,WK_GW_FRN_LLV,WK_GW_FRN_ULV,WK_GW_BAK_LLV,WK_GW_BAK_ULV,WK_GW_TRV,GAL_THK_TRV,EGL_SUR_HND_CD,EGL_THK_TRV,EGL_WTH_TRV</userdata>
+<userdata name="column-info">PLTCM_5STD_WR_TP,PLTCM_SLV_USE_YN,PLTCM_EDG_ASG_TP,PLTCM_SET_THK_TRV,PL_WTH_TRV,PL_WTH_SUB_PROC1_TRV,PL_WTH_SUB_PROC2_TRV,NECKING_WTH,BIGDATA_NECKING_WTH,PLTCM_THK_TRV,PLTCM_THK_LLV,PLTCM_THK_ULV,PLTCM_WTH_TRV,PLTCM_WTH_SUB_PROC1_TRV,PLTCM_WTH_SUB_PROC2_TRV,QLT_DSN_MNF_TP,ORD_NO,ORD_LN,ECL_CDR_CD,ECL_COILG_TS_CD,TM_PASS_CNT,ROU_RA_LLV,ROU_RA_ULV,ROU_PPI_LLV,ROU_PPI_ULV,ROU_R_MAX_LLV,TM_THK_TRV,TM_WTH_TRV,TM_WTH_SUB_PROC1_TRV,TM_WTH_SUB_PROC2_TRV,FUR_TP_GEN_ANN,HEAT_CYL_NO_GEN_ANN,COR_TM_GEN_ANN,COIL_TMP_GEN_ANN,CLG_END_TMP_GEN_ANN,FUR_TP_HC_ANN,HEAT_CYL_NO_HC_ANN,COR_TM_HC_ANN,COIL_TMP_HC_ANN,CLG_END_TMP_HC_ANN,EMBS_CD,WK_GW_FRN_LLV,WK_GW_FRN_ULV,WK_GW_BAK_LLV,WK_GW_BAK_ULV,WK_GW_TRV,GAL_THK_TRV,EGL_SUR_HND_CD,EGL_THK_TRV,EGL_WTH_TRV,PLTCM_5STD_WR_TP_BF,PLTCM_SLV_USE_YN_BF,PLTCM_EDG_ASG_TP_BF,PL_WTH_TRV_BF,PL_WTH_SUB_PROC1_TRV_BF,PL_WTH_SUB_PROC2_TRV_BF,PLTCM_SET_THK_TRV_BF,PLTCM_THK_TRV_BF,PLTCM_THK_LLV_BF,PLTCM_THK_ULV_BF,PLTCM_WTH_TRV_BF,PLTCM_WTH_SUB_PROC1_TRV_BF,PLTCM_WTH_SUB_PROC2_TRV_BF</userdata>
 <row id="0">
 <cell id="PLTCM_5STD_WR_TP"/>
 <cell id="PLTCM_SLV_USE_YN"/>
@@ -125,5 +138,18 @@
 <cell id = "EGL_SUR_HND_CD" hidden="true"/>
 <cell id = "EGL_THK_TRV" hidden="true"/>
 <cell id = "EGL_WTH_TRV" hidden="true"/>
+<cell id="PLTCM_5STD_WR_TP_BF" hidden="true" />
+<cell id="PLTCM_SLV_USE_YN_BF" hidden="true" />
+<cell id="PLTCM_EDG_ASG_TP_BF" hidden="true" />
+<cell id="PL_WTH_TRV_BF"  hidden="true" />
+<cell id="PL_WTH_SUB_PROC1_TRV_BF" hidden="true" />
+<cell id="PL_WTH_SUB_PROC2_TRV_BF" hidden="true"/>
+<cell id="PLTCM_SET_THK_TRV_BF" hidden="true" />
+<cell id="PLTCM_THK_TRV_BF"  hidden="true" />
+<cell id="PLTCM_THK_LLV_BF"   hidden="true" />
+<cell id="PLTCM_THK_ULV_BF"   hidden="true" />
+<cell id="PLTCM_WTH_TRV_BF"   hidden="true" />
+<cell id="PLTCM_WTH_SUB_PROC1_TRV_BF"  hidden="true" />
+<cell id="PLTCM_WTH_SUB_PROC2_TRV_BF"  hidden="true" />
 </row>
 </rows>

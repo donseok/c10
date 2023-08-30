@@ -307,10 +307,24 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                 colValue = new String[3];
                 colValue[0] = rmtl_cd; // 원자재코드
                 colValue[1] = pltcm_set_thk_trv; // PLTCM X-Ray Set치
-                colValue[2] = pltcm_wth_trv; // PLTCM폭
+                //colValue[2] = pltcm_wth_trv; // PLTCM폭
+                logger.logDebug( "주문Edge구분 : " + ord_edg_asg_tp );
+                //2023.6.7 김태성부장 요청. 품질설계 H/C 두께 선정 개선
+                if(ord_edg_asg_tp.equals(NO_SLIT) || ord_edg_asg_tp.equals(COIL_EDGE)) 
+                {
+                	colValue[2] = Double.toString(Double.parseDouble(pltcm_wth_trv) + 20);
+                	//colValue[2] = Double.parseDouble(pltcm_wth_trv)+20;
+                	//colValue[2] = pltcm_wth_trv + 20; 6.27 여기수정필요!!
+                	logger.logDebug( "C10B1071 + 20mm: " + colValue[2]  );
+                }else{
+                	colValue[2] = pltcm_wth_trv; // PLTCM폭
+                	logger.logDebug( "C10B1071 : " + colValue[2]  );
+                }
+                
                 logger.logDebug( "C10B1071 : " + rmtl_cd  );
                 logger.logDebug( "C10B1071 : " + pltcm_set_thk_trv  );
-                logger.logDebug( "C10B1071 : " + pltcm_wth_trv  );
+                //logger.logDebug( "C10B1071 : " + pltcm_wth_trv  );
+                
                 checker = EasyAccess.getPosDecisionChecker( C10B1071, null );
                 result = null;
                 try{

@@ -392,4 +392,13 @@ SELECT /* C10 품질협정서 조회 C104000020.QLTselect 이돈석*/ COUNT(*) A
    AND CUS_CD IN (:CUS_CD,:FNL_CUS_CD,:ACT_CUS_CD)
 		 ]]> 
 	 </query>
+	 <query id="C104000020.PROCselect1" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT *
+  FROM TB_C10_QLT_DSN_PROC
+ WHERE ORD_NO = :ORD_NO
+   AND ORD_LN = :ORD_LN
+   AND (MAIN_PROC_CD = '82' OR SUB_PROC_CD1 = '82' OR SUB_PROC_CD2 = '82')
+		 ]]> 
+	 </query>
 </queryMap>

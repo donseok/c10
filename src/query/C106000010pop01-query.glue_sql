@@ -552,15 +552,15 @@ SELECT
      , :CUS_CD_TXT                --수신자명
      , :SMS_RCV_HP1               --수신번호1
      , 'MES' AS SENDNAME   --회신자명
-     , '0516405602' AS REQPHONE --회신번호
+     , '0222220114' AS REQPHONE --회신번호
      , '배송정보송신' AS SUBJECT        --타이틀
-     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '[동국씨엠(주) 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
      , '0' AS RESULT            --결과
      , 'T' AS KIND              --구분
      , 'UMES' AS SYSCODE        --시스템코드
      , 'at' AS BIZTYPE
-     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
-     , 'UNI_MA_07' AS TEMPLATECODE
+     , '1915d4111be77a18ffd7c5f0bdba383278a9ffc0' AS YELLOWID_KEY
+     , 'UNI_MA_08' AS TEMPLATECODE
      , 'Y' AS RESEND
      , :ObjectType
      , :ObjectId
@@ -612,15 +612,15 @@ SELECT
      , :CUS_CD_TXT                --수신자명
      , :SMS_RCV_HP2               --수신번호2
      , 'MES' AS SENDNAME   --회신자명
-     , '0516405602' AS REQPHONE --회신번호
+     , '0222220114' AS REQPHONE --회신번호
      , '배송정보송신' AS SUBJECT        --타이틀
-     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '[동국씨엠(주) 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
      , '0' AS RESULT            --결과
      , 'T' AS KIND              --구분
      , 'UMES' AS SYSCODE        --시스템코드
      , 'at' AS BIZTYPE
-     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
-     , 'UNI_MA_07' AS TEMPLATECODE
+     , '1915d4111be77a18ffd7c5f0bdba383278a9ffc0' AS YELLOWID_KEY
+     , 'UNI_MA_08' AS TEMPLATECODE
      , 'Y' AS RESEND
      , :ObjectType
      , :ObjectId
@@ -672,15 +672,15 @@ SELECT
      , :CUS_CD_TXT                --수신자명
      , :SMS_RCV_HP3               --수신번호3
      , 'MES' AS SENDNAME   --회신자명
-     , '0516405602' AS REQPHONE --회신번호
+     , '0222220114' AS REQPHONE --회신번호
      , '배송정보송신' AS SUBJECT        --타이틀
-     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '[동국씨엠(주) 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
      , '0' AS RESULT            --결과
      , 'T' AS KIND              --구분
      , 'UMES' AS SYSCODE        --시스템코드
      , 'at' AS BIZTYPE
-     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
-     , 'UNI_MA_07' AS TEMPLATECODE
+     , '1915d4111be77a18ffd7c5f0bdba383278a9ffc0' AS YELLOWID_KEY
+     , 'UNI_MA_08' AS TEMPLATECODE
      , 'Y' AS RESEND
      , :ObjectType
      , :ObjectId
@@ -732,15 +732,15 @@ SELECT
      , :CUS_CD_TXT                --수신자명
      , :SMS_RCV_HP4               --수신번호4
      , 'MES' AS SENDNAME   --회신자명
-     , '0516405602' AS REQPHONE --회신번호
+     , '0222220114' AS REQPHONE --회신번호
      , '배송정보송신' AS SUBJECT        --타이틀
-     , '[동국제강 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
+     , '[동국씨엠(주) 칼라 개발 시편 배송정보]▶고객사명 : ['||:CUS_CD_TXT||'] ▶고객요청색상 : ['||:CUS_REQ_HUE_TXT||'] ▶수지 : ['||:RSN_TP_TXT||'] ▶배송업체 : ['||MESAPUSER.FUNC_DECODE_01('SMPL_DLV_CMP_CD','SZ0000',:SMPL_DLV_CMP_CD)||'] ▶송장No : ['||:IVC_NO||']'
      , '0' AS RESULT            --결과
      , 'T' AS KIND              --구분
      , 'UMES' AS SYSCODE        --시스템코드
      , 'at' AS BIZTYPE
-     , 'eb6b7c370b91cca8856108cde69e263a6fc561fd' AS YELLOWID_KEY
-     , 'UNI_MA_07' AS TEMPLATECODE
+     , '1915d4111be77a18ffd7c5f0bdba383278a9ffc0' AS YELLOWID_KEY
+     , 'UNI_MA_08' AS TEMPLATECODE
      , 'Y' AS RESEND
      , :ObjectType
      , :ObjectId

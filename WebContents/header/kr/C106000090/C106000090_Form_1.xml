@@ -25,5 +25,7 @@
 	<item label="보호필름코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="7"/>
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
 	<item label="접착제코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="8"/>
+	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+	<item label="생산UGS필름코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="9"/>
 </item>    
 </items>

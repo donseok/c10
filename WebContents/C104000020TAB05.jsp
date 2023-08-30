@@ -424,11 +424,14 @@ function onGridLoadEvent1(){
 		var grid1 =  items['C104000020TAB05_Grid_1'];
 	    var gridObj1 = items['C104000020TAB05_Grid_1'].getDhxGrid();	
 	    
-        var rmtlcdCombo = gridObj1.getColumnCombo(gridObj1.getColIndexById('RMTL_CD')); //원자재코드
+        // 김태성부장 요청. 원자재 스펙 수동 결정 기능 불가 요청. (2023.07.21)
+        /*
+	    var rmtlcdCombo = gridObj1.getColumnCombo(gridObj1.getColIndexById('RMTL_CD')); //원자재코드
         rmtlcdCombo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=RMTL_CD&totalValue=&orderBy=value&displayType=all-code");   
 		rmtlcdCombo.enableOptionAutoPositioning(true);
 		rmtlcdCombo.readonly(true,true);
 		rmtlcdCombo.setOptionHeight(200);
+		*/
 		
         var rmtlgrdCombo = gridObj1.getColumnCombo(gridObj1.getColIndexById('RMTL_GRD')); //원자재등급
         rmtlgrdCombo.loadXML("basicLovData.do?ServiceName=lov-service&category=SZ0000&code=RMTL_GRD&totalValue=&orderBy=value&displayType=all-code");   

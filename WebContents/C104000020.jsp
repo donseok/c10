@@ -110,6 +110,7 @@ function save(eventName,formDivObj,referenceItem){
 	var ord_ln = comboList.getSelectedValue();
 	var ccl_bom = form2.getItemValue("CCL_BOM_NO");
 	var ccl_bom_tmp = ccl_bom.substring(0,2);
+	var ccl_bom_tmp1 = ccl_bom.substring(0,1);
 	var prd_nm_cd = form2.getItemValue("PRD_NM_CD_ORG");
     
 	if(isNull(ord_no)){
@@ -164,6 +165,20 @@ function save(eventName,formDivObj,referenceItem){
    
    			if(cells.length < 1){      
     			dhtmlx.alert("해당주문은 CP(RH)공정이 반드시 추가되어야 하는 주문입니다(US****로 시작하는 BOM때문)!");
+    			return;
+    		}
+  		}
+  		
+  		
+		//CCLBOM이 J*****로 시작하는 주문은 확정하기 전에 통과공정이 #2CGL이 있는지 확인하고 없는 경우 확정이 안되게 한다
+  		//2023.08.10 변경 김태성부장 요청
+		if(ccl_bom_tmp1 == "J"){
+			param= "ServiceName=C104000020-service&PROC_find1=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=ORD_NO";
+   			xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+   			cells = xmlObj.getElementsByTagName("cell");
+   
+   			if(cells.length >= 1){      
+    			dhtmlx.alert("디지털 프린팅 #2CGL 원판 적용 불가");
     			return;
     		}
   		}

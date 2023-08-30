@@ -15,15 +15,17 @@
     <transition name="FindInk" value="Ink코드검색" />
     <transition name="FindBnd" value="접착제코드검색" />
     <transition name="FindFlm" value="보호필름코드검색" />
-    <property name="param6" value="SEARCH_CD_SEL|7|FindFlm" />
-    <property name="param7" value="SEARCH_CD_SEL|8|FindBnd" />
-    <property name="param-count" value="8" />
+    <transition name="FindUgs" value="생산UGS필름" />
     <property name="param0" value="SEARCH_CD_SEL|1|Findcolor" />
     <property name="param1" value="SEARCH_CD_SEL|2|Findcclbom" />
     <property name="param2" value="SEARCH_CD_SEL|3|Findrsntp" />
     <property name="param3" value="SEARCH_CD_SEL|4|Findcclbom1" />
     <property name="param4" value="SEARCH_CD_SEL|5|Findcclbom2" />
     <property name="param5" value="SEARCH_CD_SEL|6|FindInk" />
+    <property name="param6" value="SEARCH_CD_SEL|7|FindFlm" />
+    <property name="param7" value="SEARCH_CD_SEL|8|FindBnd" />
+    <property name="param8" value="SEARCH_CD_SEL|9|FindUgs" />
+    <property name="param-count" value="9" />
   </activity>
   <activity name="수지사용검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -65,6 +67,11 @@
     <property name="sqlkey" value="C106000090_Grid1_SamePrintRoll.select" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="생산USG필름사용검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000090_Grid2_USGCD.select" />
+  </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="find" value="findRouter" />
     <transition name="useFindcolor" value="칼라코드사용검색" />
@@ -75,6 +82,7 @@
     <transition name="useFindInk" value="Ink코드사용검색" />
     <transition name="useFindBnd" value="접착제 CCLBOM사용검색" />
     <transition name="useFindFlm" value="CCLBOM사용검색3" />
+    <transition name="useFindUgs" value="생산USG필름사용검색" />
   </activity>
   <activity name="접착제코드검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -104,6 +112,11 @@
   <activity name="CCLBOM사용검색1" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000090_Grid2_PrintRoll.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="생산UGS필름" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000090_Grid1_FLMUGS.select" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="칼라코드사용검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">

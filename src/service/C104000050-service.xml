@@ -23,8 +23,13 @@
   </activity>
   <activity name="설계변경" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C104000020.MODselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="2CGL공정체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C104000050.PROCselect1" />
   </activity>
   <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -58,6 +63,7 @@
     <transition name="BRY_find" value="설계상태" />
     <transition name="findBsts" value="확정대기에러동시조회" />
     <transition name="MOD_find" value="설계변경" />
+    <transition name="PROC_find1" value="2CGL공정체크" />
   </activity>
   <activity name="조회(excelExport)" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -99,9 +105,9 @@
   </activity>
   <activity name="변경기록삭제" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="STATUS_SET" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000050.delete_hst" />
     <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000050.delete_hst" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="상태확인" class="com.unionsteel.mes.c10.activity.ui.C10UiCheckActivity">
     <transition name="failure" value="end" />

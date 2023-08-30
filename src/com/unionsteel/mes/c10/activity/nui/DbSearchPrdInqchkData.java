@@ -1752,7 +1752,23 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             colValue = new String[3];
             colValue[0] = ctx.get( COL_RMTL_CD ).toString(); // 원자재코드
             colValue[1] = ctx.get( COL_ROL_TAR_THK ).toString(); // PLTCM두께
-            colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭
+            //colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭 => 이부분 수정이 필요함!!
+            
+            //2023.6.7 김태성부장 요청 원자재 두께 관리 기준 변경.
+            if(ord_edg_asg_tp.equals(NO_SLIT) || ord_edg_asg_tp.equals(COIL_EDGE)) 
+            {
+            	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString() + 20;
+            	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString();  원본
+            	
+            	colValue[2] = Double.toString(Double.parseDouble(ctx.get(COL_PLTCM_WTH_TRV).toString())+20);
+            	
+            	logger.logDebug( "C10B1071 + 20mm: " + colValue[2]  );
+            }else{
+            	colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭
+            	logger.logDebug( "C10B1071 : " + colValue[2]  );
+            }
+            
+            
             checker = EasyAccess.getPosDecisionChecker( C10B1071, null );
             result = null;
             try
