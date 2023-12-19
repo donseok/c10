@@ -140,6 +140,7 @@ function save(eventName,formDivObj,referenceItem){
 				ord_ln  = gridObj.cellByIndex(i,gridObj.getColIndexById("ORD_LN")).getValue();
 				prd_nm_cd = gridObj.cellByIndex(i,gridObj.getColIndexById("PRD_NM_CD")).getValue();
 				ccl_bom_no = gridObj.cellByIndex(i,gridObj.getColIndexById("CCL_BOM_NO")).getValue();
+				trst_proc_yn = gridObj.cellByIndex(i,gridObj.getColIndexById("TRST_PROC_YN")).getValue();
 				
 				param= "ServiceName=C104000050-service&BRY_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=QLT_DSN_STS_CD,ORD_BAK_SND_TP,QLT_HLD_YN";						
 				xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);						
@@ -195,6 +196,19 @@ function save(eventName,formDivObj,referenceItem){
 				  		}
 					}
 				}
+				if(trst_proc_yn == "Y"){
+					/*
+					/var gridObj = items['C104000050_Grid_1'].getDhxGrid();
+					var md_url = "C104000050pop01.jsp?ORD_NO="+ord_no;
+					md_url += "&ORD_LN="+ord_ln;
+									
+					winObj = new ui.window("popup","위탁임가공 주문 설계 확정","0","0","349","174",md_url);
+					winObj.setButtonDisable("park,minmax1");
+					*/
+					dhtmlx.alert("주문: "+ord_no+"-"+ord_ln+"은 위탁임가공 주문입니다. 통과공정을 반드시 확인하시고 품질설계 결과 화면에서 개별 확정 하시기 바랍니다!");
+					return;
+				}	
+				
 			} 
 		}
    }
@@ -202,7 +216,7 @@ function save(eventName,formDivObj,referenceItem){
 	if(chgCnt == 0 ){
 	  	dhtmlx.alert("확정할 데이터가 없습니다.");
 		return;
-	}else{
+	}else{		
 		dhtmlx.confirm({
 			title:"품질설계확정",
 			ok:"확인", cancel:"취소",

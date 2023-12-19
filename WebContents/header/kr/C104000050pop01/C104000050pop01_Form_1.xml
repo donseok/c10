@@ -1,0 +1,20 @@
+<items>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item format="doLink" label="&lt;span style=color:red;font-weight:bold;&gt;위탁임가공 주문입니다.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
+        <item format="doLink" label="&lt;span style=color:red;font-weight:bold;&gt;통과공정 반드시 확인 후 확정하세요.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
+    </item>
+    <item type="block">
+    	<item offset="20" type="newcolumn"/>
+		<item inputWidth="75" label="주문번호" maxLength="10" name="ORD_NO" type="input" labelAlign="right" readonly="true"/>
+		<item offset="0" type="newcolumn"/>
+		<item label="-" name="ORD_NO_BT" type="label"/>
+		<item offset="0" type="newcolumn"/>
+		<item inputWidth="50" maxLength="3" name="ORD_LN" type="input" labelAlign="right" readonly="true"/>
+    </item>
+    <item type="block">
+        <item command="ok" inputLeft="60" inputTop="5" name="ok" position="absolute" type="button" value="설계확정"/>
+        <item offset="20" type="newcolumn"/>
+        <item command="cancel" inputLeft="170" inputTop="5" name="cancel" position="absolute" type="button" value="재확인"/>
+    </item>
+</items>

@@ -1071,6 +1071,8 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
                 colValue[8] = Double.toString( ord_exc_thk );
                 //colValue[9] = Double.toString( ord_exc_wth );
                 colValue[9] = Double.toString( exc_wth );
+                
+                logger.logDebug( "고객사양이 없거나 고객요청 압연두께 목표치가 0인경우");
     
                 checker = EasyAccess.getPosDecisionChecker( C10B2060, null );
                 result = null;
@@ -1139,7 +1141,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             }
     
             ctx.put( COL_ROL_TAR_THK, DbCommonUtil.thk_dot( DbCommonUtil.pltcm_x_Ray( crm_thk ) ) );
-    
+            logger.logDebug("압연목표두께 : " + COL_ROL_TAR_THK);
 //            if ( ord_wth_mng_cd.equals( C10STR_Z ) )
 //            {
 //                if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_WTH_TLN_LLV ) ) )
@@ -1274,7 +1276,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
                 logger.logError( ERRMSG_I35 );
                 return PosBizControlConstants.SUCCESS;
             }            
-        }
+        }//품명이 5,7인 경우...
         else ctx.put( COL_ROL_TAR_THK, ord_exc_thk );
 
         

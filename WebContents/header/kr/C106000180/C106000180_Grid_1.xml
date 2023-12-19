@@ -1,0 +1,110 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+<call command="setColValidators"><param>NotEmpty</param></call>
+<call command="enableSmartRendering">
+	<param>true</param>
+</call>
+<call command="enablePreRendering">
+	<param>22</param>
+</call>
+<call command="enableStableSorting">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+	<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<call command="setDateFormat"><param><![CDATA[%Y-%m-%d]]></param></call>
+<call command="setNoHeader"><param>false</param></call>
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="ORD_NO" sort="sort_str_custom" width="8" align="center" dbname="주문번호" table="TB_C10_QLT_DSN_ERR" type="ro" clabel="주문번호">주문번호</column>
+<column id="ORD_LN" sort="sort_int_custom" width="4" align="center" dbname="주문행번" table="TB_C10_QLT_DSN_ERR" type="ro" clabel="주문행번">행번</column>
+<column id="MDF_SEQ" sort="sort_str_custom" width="10" align="center" dbname="변경이력" table="TB_C10_QLT_DSN_ERR" type="ro" clabel="변경이력순서">변경이력순서</column>
+<column id="QLT_DSN_MNF_TP" sort="na" align="center" width="7" type="ro" table="TB_C10_QLT_DSN_ERR">제조구분</column>
+<column id="RMTL_TAR_THK" sort="na" align="left" width="14" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께</column>
+<column id="RMTL_TAR_THK_BF" sort="na" align="left" width="18" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께(변경전)</column>
+<column id="RMTL_TAR_THK_LVL" sort="na" align="left" width="14" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께하한</column>
+<column id="RMTL_TAR_THK_LVL_BF" sort="na" align="left" width="18" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께하한(변경전)</column>
+<column id="RMTL_TAR_THK_UVL" sort="na" align="left" width="14" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께상한</column>
+<column id="RMTL_TAR_THK_UVL_BF" sort="na" align="left" width="18" type="ro" table="TB_C10_QLT_DSN_ERR">원자재목표두께상한(변경전)</column>
+
+<settings>
+<colwidth><![CDATA[%]]></colwidth>
+</settings>
+</head>
+<userdata name="column-info">ORD_NO,ORD_LN,MDF_SEQ,QLT_DSN_MNF_TP,RMTL_TAR_THK,RMTL_TAR_THK_BF,RMTL_TAR_THK_LVL,RMTL_TAR_THK_LVL_BF,RMTL_TAR_THK_UVL,RMTL_TAR_THK_UVL_BF</userdata>
+<row id="0">
+<cell/>
+</row>
+<row id="1">
+<cell/>
+</row>
+<row id="2">
+<cell/>
+</row>
+<row id="3">
+<cell/>
+</row>
+<row id="4">
+<cell/>
+</row>
+<row id="5">
+<cell/>
+</row>
+<row id="6">
+<cell/>
+</row>
+<row id="7">
+<cell/>
+</row>
+<row id="8">
+<cell/>
+</row>
+<row id="9">
+<cell/>
+</row>
+<row id="10">
+<cell/>
+</row>
+<row id="11">
+<cell/>
+</row>
+<row id="12">
+<cell/>
+</row>
+<row id="13">
+<cell/>
+</row>
+<row id="14">
+<cell/>
+</row>
+<row id="15">
+<cell/>
+</row>
+<row id="16">
+<cell/>
+</row>
+<row id="17">
+<cell/>
+</row>
+<row id="18">
+<cell/>
+</row>
+<row id="19">
+<cell/>
+</row>
+<row id="20">
+<cell/>
+</row>
+<row id="21">
+<cell/>
+</row>
+</rows>

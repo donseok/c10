@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1056"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="CCL_BOM_NO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -160,20 +160,20 @@ It is undersood that fading or color changes may not be uniform if the surfaces 
     exposure to corrosive and aggressive atmospheres including salt spray and animal waste products.
     Corrosion, Peel or other effects due to shear or cut surface exposure are also excluded.
     DONGKUK CM also holds no liability for damages caused by acts of God, radiation, falling objects,
-    explosions, or other external forces beyond Dongkuk cm’s control.
+    explosions, or other external forces beyond DONGKUK CM’s control.
 
 4. Some colors may not meet our high standards. So this warranty applies only to colors that are on DONGKUK
     CM’s approved color range. DONGKUK CM will inform you the time of color matching if the color
      you have selected is not an approved color.' as detail_2_2_2,
 
 ' 5. DONGKUK CM’s responsibility extends only to the direct cost of refinishing or replacing failed coated
-      substrate. Dongkuk cm cannot accept liability for loss or damage to other property or equipment, loss of
+      substrate. DONGKUK CM cannot accept liability for loss or damage to other property or equipment, loss of
       profits or sales, or any other claims relative to standard business interruption, or any other incidental or
       consequential damages.
 
       A. DONGKUK CM shall only be liable for the cost of having the same metal panel or steel sheet
 
-      B. DONGKUK CM shall not be liable for the cost of construction equipments, labor or any kind of losses
+      B. DONGKUK CM shall not be liable for the cost of construction equipment, labor or any kind of losses
 
  6. DONGKUK CM reserves the right to establish whether repainting or replacing material is required and
      to approve and participate in the negotiation of any subcontracted material replacement, installation, or

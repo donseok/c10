@@ -112,6 +112,7 @@ function save(eventName,formDivObj,referenceItem){
 	var ccl_bom_tmp = ccl_bom.substring(0,2);
 	var ccl_bom_tmp1 = ccl_bom.substring(0,1);
 	var prd_nm_cd = form2.getItemValue("PRD_NM_CD_ORG");
+	var trst_proc_chk = "";
     
 	if(isNull(ord_no)){
 		dhtmlx.alert("주문번호를 입력해주세요.");
@@ -183,10 +184,14 @@ function save(eventName,formDivObj,referenceItem){
     		}
   		}
   
-		//위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2015.3.12 박성용기사요청)
+		//위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2023.11.08 김태성부장요청)
 		var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
 		if(trst_proc_yn == "Y"){
-			dhtmlx.alert("위탁임가공 주문입니다. 통과공정정보를 반드시 확인하시고 확정하시기 바랍니다."); 
+
+			winObj = new ui.window("popup","위탁임가공 주문 설계 확정","0","0","349","174","C104000020POP03.jsp");
+			winObj.setButtonDisable("park,minmax1");
+
+			trst_proc_chk = "Y";
   		}
 		
 		//로그인한 설계원과 설계내용 수정한 설계원이 동일한 경우 설계확정이 안되게 체크한다 (2023.2.7 이상현차장 요청)
@@ -204,20 +209,23 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		}
 		
-		dhtmlx.confirm({
-			title:"[[ 설계확정 ]]",
-			ok:"확정", cancel:"취소",
-			text:"확정하시겠습니까?",
-				callback:function(val){
-					if(val){
-					//var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
-						var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
-						form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
-						//form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
-						return;
+		if(trst_proc_chk != "Y")
+		{
+			dhtmlx.confirm({
+				title:"[[ 설계확정 ]]",
+				ok:"확정", cancel:"취소",
+				text:"확정하시겠습니까?",
+					callback:function(val){
+						if(val){
+						//var customParam = {"ORD_NO":ord_no,"ORD_LN":ord_ln,"QLT_DSN_STS_CD":"A"};
+							var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
+							form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
+							//form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',customParam);
+							return;
+						}
 					}
-				}
-		});  
+			});
+		}
 	}
 }
 function holdy(eventName,formDivObj,referenceItem){        

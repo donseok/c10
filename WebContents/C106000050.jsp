@@ -106,8 +106,50 @@ function find(eventName,formDivObj,referenceItem){
 	items[referenceItem].clearDataProcess();
 	var form = items['C106000050_Form_1'];
 	//var clrSubMtlCd = form.getItemValue("CLR_SUB_MTL_CD_SH");	
-	var sndLst = form.getDhxForm().isItemChecked("SND_LST");	
+	var sndLst = form.getDhxForm().isItemChecked("SND_LST");
+	var lTot = form.getDhxForm().isItemChecked("L_TOT");
+	var uTot = form.getDhxForm().isItemChecked("U_TOT");
+	
+	if(lTot == true && uTot == true){
+		dhtmlx.alert("동시에 선택할 수 없습니다");
+	}
+	
+	//alert("sndLst :" + sndLst + "lTot :" + lTot + "uTot :" + uTot);
+	
+	if(sndLst == true && lTot == false && uTot == false)
+	{
+		eventName = "find1";
+	}
+	else if(sndLst == true && lTot == false && uTot == true){
+		dhtmlx.alert("동시에 선택할 수 없습니다");
+		return false;
+	}
+	else if(sndLst == true && lTot == true && uTot == true){
+		dhtmlx.alert("동시에 선택할 수 없습니다");
+		return false;
+	}
+	else if(sndLst == true && lTot == true && uTot == false){
+		dhtmlx.alert("동시에 선택할 수 없습니다");
+		return false;
+	}
+	else if(sndLst == false && lTot == true && uTot == false){
+		eventName = "find2";
+	}
+	else if(sndLst == false && lTot == true && uTot == true){
+		dhtmlx.alert("동시에 선택할 수 없습니다");
+		return false;
+	}
+	else if(sndLst == false && lTot == false && uTot == true){
+		eventName = "find3";
+	}
+	else if(sndLst == false && lTot == false && uTot == false){
+		eventName = "find";
+	}
+	
+	var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
+    items[referenceItem].loadData(findUrl,findAfterEvent);
 
+	/*
 	if(sndLst == false){
       eventName = "find";		
     }else{
@@ -115,7 +157,7 @@ function find(eventName,formDivObj,referenceItem){
     }
 	var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
     items[referenceItem].loadData(findUrl,findAfterEvent);
-    
+    */
 }
 
 function save(eventName,formDivObj,referenceItem){
@@ -1000,6 +1042,27 @@ function onFormLoadFunction(){
 		});
 
 		comboList['RSN_TP_SH'].DOMelem_input.onkeydown = function(e){
+		key = (e) ? e.keyCode : event.keyCode;
+			if(key==8 || key==116){
+				if(e){   //표준         
+					e.preventDefault();
+				}
+				else{ //익스용
+					event.keyCode = 0;
+					event.returnValue = false;
+				}
+			}
+		}
+		
+		
+		comboList['RSN_TP_QT_BR_SH'].readonly(true,true);//수지타입
+			ui.combo.master(comboList['RSN_TP_QT_BR_SH'],'SZ0000','RSN_TP_QT_BR','totalValue=%,orderBy=value&displayType=all-code',function(){ 
+			comboList['RSN_TP_QT_BR_SH'].selectOption(0,true,true);	
+			comboList['RSN_TP_QT_BR_SH'].readonly(true);
+			comboList['RSN_TP_QT_BR_SH'].setOptionHeight(200);				
+		});
+	
+		comboList['RSN_TP_QT_BR_SH'].DOMelem_input.onkeydown = function(e){
 		key = (e) ? e.keyCode : event.keyCode;
 			if(key==8 || key==116){
 				if(e){   //표준         

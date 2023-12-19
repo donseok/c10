@@ -54,6 +54,11 @@
     <property name="delete-sql" value="C106000050.detaildelete" />
     <property name="update-sql" value="C106000050.detailupdate" />
   </activity>
+  <activity name="Lamina Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000050.colorselect2" />
+  </activity>
   <activity name="수지_MTC NOTE 편집기준 Check" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050.rule_chk" />
@@ -76,6 +81,11 @@
     <property name="isAudit" value="true" />
     <property name="update-sql" value="C106000050.clrMngMdf_log" />
   </activity>
+  <activity name="UGS Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000050.colorselect3" />
+  </activity>
   <activity name="엑셀출력" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050xls.select" />
@@ -96,8 +106,8 @@
   </activity>
   <activity name="도료사Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C106000050.compAjaxFind" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="M30 Procedure Call" class="com.poscoict.glue.biz.dhtmlx.PosProcedureInvoker">
     <transition name="success" value="Loop Router" />
@@ -127,6 +137,8 @@
     <transition name="find1" value="Send List Find" />
     <transition name="save" value="CCL BOM update" />
     <transition name="compAjaxFind" value="도료사Find" />
+    <transition name="find2" value="Lamina Total Find" />
+    <transition name="find3" value="UGS Total Find" />
   </activity>
 </service>
 

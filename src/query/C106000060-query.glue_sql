@@ -1501,7 +1501,7 @@ VALUES
 	 </query>
 	 <query id="C106000060.interFaceCCLBOM" desc="C106000060.interFaceCCLBOM" isNamed="true">
 		 <![CDATA[ 
-INSERT /*+ C10 품질설계 CCL-BOM관리 C106000060.interFaceCCLBOM  이민균  */   
+INSERT /* C10 품질설계 CCL-BOM관리 C106000060.interFaceCCLBOM  이민균  */   
 INTO EAIAPUSER.TB_C10_B10S0110
 (
 	IF_GRP_ID --인터페이스그룹아이디
@@ -1643,7 +1643,15 @@ INTO EAIAPUSER.TB_C10_B10S0110
     ,PRT_INKJT_UNT6
     ,PRT_INKJT_CD7
     ,PRT_INKJT_UNT7
-    ,CCL_BOM_PRS_ID 
+    ,CCL_BOM_PRS_ID
+    ,RSN_TP_QT_BR_FRN_1COT
+    ,RSN_TP_QT_BR_FRN_2COT
+    ,RSN_TP_QT_BR_FRN_3COT
+    ,RSN_TP_QT_BR_FRN_4COT
+    ,RSN_TP_QT_BR_BAK_1COT
+    ,RSN_TP_QT_BR_BAK_2COT
+    ,RSN_TP_QT_BR_BAK_3COT
+    ,RSN_TP_QT_BR_BAK_4COT 
 	,CREATED_OBJECT_TYPE --생성Object유형
 	,CREATED_OBJECT_ID  --생성ObjectID 
 	,CREATED_PROGRAM_ID --생성프로그램ID
@@ -1794,7 +1802,15 @@ VALUES
     ,DECODE(:COT_MTH,'K',(SELECT PNT_UNT FROM  C10APUSER.TB_C10_CLR_CD_MNG WHERE CLR_SUB_MTL_CD = 'TIJLK' AND ROWNUM = 1),'')
     ,DECODE(:COT_MTH,'K','TIJLM','')
     ,DECODE(:COT_MTH,'K',(SELECT PNT_UNT FROM  C10APUSER.TB_C10_CLR_CD_MNG WHERE CLR_SUB_MTL_CD = 'TIJLM' AND ROWNUM = 1),'')
-	,:LAST_UPDATED_OBJECT_ID                           --최종변경ObjectID 
+	,:LAST_UPDATED_OBJECT_ID                           --최종변경ObjectID
+    ,:RSN_TP_QT_BR_FRN_1COT
+    ,:RSN_TP_QT_BR_FRN_2COT
+    ,:RSN_TP_QT_BR_FRN_3COT
+    ,:RSN_TP_QT_BR_FRN_4COT
+    ,:RSN_TP_QT_BR_BAK_1COT
+    ,:RSN_TP_QT_BR_BAK_2COT
+    ,:RSN_TP_QT_BR_BAK_3COT
+    ,:RSN_TP_QT_BR_BAK_4COT
 	,:ObjectType                                       --생성Object유형
 	,:ObjectId                                         --생성ObjectID 
 	,:ProgramId                                        --생성프로그램ID

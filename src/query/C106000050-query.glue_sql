@@ -174,6 +174,7 @@ SELECT /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김�
    AND NVL(A.SUB_MTL_TP,'%') LIKE '%' || DECODE(:SUB_MTL_TP_SH,'all','%',:SUB_MTL_TP_SH) ||'%'
    AND NVL(A.TP_CD,'%') LIKE '%' || :TP_CD ||'%'
    AND NVL(A.RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
+   AND NVL(A.RSN_TP_QT_BR,'%') LIKE '%' || :RSN_TP_QT_BR_SH ||'%'
    AND NVL(A.LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
    AND NVL(A.PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
    AND (NVL(A.RAL_CD,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
@@ -1419,6 +1420,400 @@ SELECT /* C10 칼라코드관리- 업체코드AJAX조회 C106000050.compAjaxFind
        CLR_SUB_MTL_CD
   FROM C10APUSER.TB_C10_CLR_CMP_MNG
  WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorselect2" desc="구매,생산라미나 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C10 칼라코드관리- 구매,생산라미나 조회 C106000050.colorselect2 이돈석 */ 
+       DECODE(A.USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
+       A.CLR_SUB_MTL_CD,
+       A.CLR_NM,
+       A.SUB_MTL_TP,
+       A.SUB_MTL_TP AS SUB_MTL_TP_HIDDEN,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='SUB_MTL_TP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = SUB_MTL_TP) SUB_MTL_TP_NM,
+       RSN_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP) RSN_TP_NM,
+       RSN_TP_QT_BR,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP_QT_BR'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP_QT_BR) RSN_TP_QT_BR_NM,
+       LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LUS_RT_CD) LUS_RT_NM,
+       LUS_RT_LLV,
+       LUS_RT_ULV,
+       TP_CD,
+       RL_LUS_RT,
+       DECODE(EX_YN,'Y','1','N','0') AS EX_YN,
+       COL_DIF_STD,
+       DECODE(EX_YN1,'Y','1','N','0') AS EX_YN1,
+       WK_VISCO,
+       PNT_FLM_THK,
+       PRT_INK_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PRT_INK_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PRT_INK_TP) PRT_INK_TP_NM,
+       NV,
+       PNT_GRA,
+       SLV_GRA,
+       THR_CD,
+       PNT_UNT,
+       PMT,
+       QT_L,
+       QT_A,
+       QT_B,
+       STD_CLR_NM,
+       LMN_KND_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_KND_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_KND_TP) LMN_KND_TP_NM,
+       LMN_BND_CD,
+       LMN_BND_THR_CD,
+       LMN_BND_CD1,
+       LMN_BND_THR_CD1,
+       LMN_FLM_THK_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_FLM_THK_CD) LMN_FLM_THK_CD_NM,  --Lamina필름두께코드
+       PTT_FLM_LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_LUS_RT_CD) PTT_FLM_LUS_RT_NM,
+       PTT_FLM_THK_CD,
+      (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_THK_CD) PTT_FLM_THK_NM,
+       PTT_FLM_MQL_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_MQL_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_MQL_CD) PTT_FLM_MQL_NM,
+       PTT_FLM_SUS_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_SUS_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_SUS_ADH_CD) PTT_FLM_SUS_ADH_NM,
+       PTT_FLM_PRD_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_PRD_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_PRD_ADH_CD) PTT_FLM_PRD_ADH_NM,
+       RMRK,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.CREATED_OBJECT_ID) AS RGS_PRS_ID,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD HH24:MI:SS') AS RGS_DH,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.LAST_UPDATED_OBJECT_ID)AS MDF_PRS_ID,
+       TO_CHAR(CLR_MDF_DH, 'YYYY-MM-DD HH24:MI:SS') AS CLR_MDF_DH,
+       MGR_CLR_SUB_MTL_CD,
+       CLR_SUB_MTL_CD_OLD,
+       RSN_TP_OLD,
+       LUS_RT_CD_OLD,
+       PNT_FLM_THK_OLD,
+       TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH,  --ERP전송일시 추가
+       MOD_YN,
+       RAL_CD, 
+       CASE
+        WHEN TO_CHAR(A.LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') > NVL(TO_CHAR(A.ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS'),'1900-01-01 00:00:00')THEN 'Y'
+        ELSE 'N'
+        END SND_LST,
+        '' as USERNO,
+        RSN_TP_QT,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP_QT'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP_QT) RSN_TP_QT_NM,
+        PAT_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PAT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PAT_CD) PAT_CD_NM,
+        FUNC_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='FUNC_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = FUNC_CD) FUNC_CD_NM,
+        TTE_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='TTE_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = TTE_CD) TTE_CD_NM,
+        USE_POS_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='USE_POS_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = USE_POS_CD) USE_POS_CD_NM,
+        WTY_YN,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='WTY_YN'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = WTY_YN) WTY_YN_NM,
+        LAMINA_INS_YN,
+        PUR_CHR_CFM,
+        NVL(B.IMAGE_YN,'N') AS MIMAGE_YN,
+        NVL(B.FILE_YN,'N')  AS MFILE_YN,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '9' AND ROWNUM = 1) AS PCM_SPEC_FILE1,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '0' AND ROWNUM = 1) AS COST_STM_FILE1,
+        A.LAST_UPDATED_OBJECT_ID AS LAST_UPDATED_OBJECT_ID
+  FROM C10APUSER.TB_C10_CLR_CD_MNG A,
+       C10APUSER.TB_C10_CLR_CD_IMG_MNG B
+ WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD(+)
+   AND NVL(A.CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
+   AND A.SUB_MTL_TP IN ('S38','S40')
+   AND NVL(A.TP_CD,'%') LIKE '%' || :TP_CD ||'%'
+   AND NVL(A.RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
+   AND NVL(A.RSN_TP_QT_BR,'%') LIKE '%' || :RSN_TP_QT_BR_SH ||'%'
+   AND NVL(A.LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
+   AND NVL(A.PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
+   AND (NVL(A.RAL_CD,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_SUB_MTL_CD_OLD,'%') LIKE '%' || :RAL_CD ||'%')
+ORDER BY A.RGS_DH
+		 ]]> 
+	 </query>
+	 <query id="C106000050.colorselect3" desc="구매,생산UGS 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C10 칼라코드관리- 구매,생산UGS 조회 C106000050.colorselect3 이돈석 */ 
+       DECODE(A.USE_YN,'Y','1','N','0') AS USE_YN,--사용여부
+       A.CLR_SUB_MTL_CD,
+       A.CLR_NM,
+       A.SUB_MTL_TP,
+       A.SUB_MTL_TP AS SUB_MTL_TP_HIDDEN,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='SUB_MTL_TP_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = SUB_MTL_TP) SUB_MTL_TP_NM,
+       RSN_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP) RSN_TP_NM,
+       RSN_TP_QT_BR,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP_QT_BR'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP_QT_BR) RSN_TP_QT_BR_NM,
+       LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LUS_RT_CD) LUS_RT_NM,
+       LUS_RT_LLV,
+       LUS_RT_ULV,
+       TP_CD,
+       RL_LUS_RT,
+       DECODE(EX_YN,'Y','1','N','0') AS EX_YN,
+       COL_DIF_STD,
+       DECODE(EX_YN1,'Y','1','N','0') AS EX_YN1,
+       WK_VISCO,
+       PNT_FLM_THK,
+       PRT_INK_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PRT_INK_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PRT_INK_TP) PRT_INK_TP_NM,
+       NV,
+       PNT_GRA,
+       SLV_GRA,
+       THR_CD,
+       PNT_UNT,
+       PMT,
+       QT_L,
+       QT_A,
+       QT_B,
+       STD_CLR_NM,
+       LMN_KND_TP,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_KND_TP'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_KND_TP) LMN_KND_TP_NM,
+       LMN_BND_CD,
+       LMN_BND_THR_CD,
+       LMN_BND_CD1,
+       LMN_BND_THR_CD1,
+       LMN_FLM_THK_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='LMN_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = LMN_FLM_THK_CD) LMN_FLM_THK_CD_NM,  --Lamina필름두께코드
+       PTT_FLM_LUS_RT_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_LUS_RT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_LUS_RT_CD) PTT_FLM_LUS_RT_NM,
+       PTT_FLM_THK_CD,
+      (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_THK_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_THK_CD) PTT_FLM_THK_NM,
+       PTT_FLM_MQL_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_MQL_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_MQL_CD) PTT_FLM_MQL_NM,
+       PTT_FLM_SUS_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_SUS_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_SUS_ADH_CD) PTT_FLM_SUS_ADH_NM,
+       PTT_FLM_PRD_ADH_CD,
+       (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PTT_FLM_PRD_ADH_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PTT_FLM_PRD_ADH_CD) PTT_FLM_PRD_ADH_NM,
+       RMRK,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.CREATED_OBJECT_ID) AS RGS_PRS_ID,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD HH24:MI:SS') AS RGS_DH,
+       (SELECT USER_NAME
+        FROM M90APUSER.TB_M90_EMP_INF
+        WHERE USER_NO = A.LAST_UPDATED_OBJECT_ID)AS MDF_PRS_ID,
+       TO_CHAR(CLR_MDF_DH, 'YYYY-MM-DD HH24:MI:SS') AS CLR_MDF_DH,
+       MGR_CLR_SUB_MTL_CD,
+       CLR_SUB_MTL_CD_OLD,
+       RSN_TP_OLD,
+       LUS_RT_CD_OLD,
+       PNT_FLM_THK_OLD,
+       TO_CHAR(ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS') AS ERP_SND_DH,  --ERP전송일시 추가
+       MOD_YN,
+       RAL_CD, 
+       CASE
+        WHEN TO_CHAR(A.LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') > NVL(TO_CHAR(A.ERP_SND_DH, 'YYYY-MM-DD HH24:MI:SS'),'1900-01-01 00:00:00')THEN 'Y'
+        ELSE 'N'
+        END SND_LST,
+        '' as USERNO,
+        RSN_TP_QT,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='RSN_TP_QT'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = RSN_TP_QT) RSN_TP_QT_NM,
+        PAT_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='PAT_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = PAT_CD) PAT_CD_NM,
+        FUNC_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='FUNC_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = FUNC_CD) FUNC_CD_NM,
+        TTE_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='TTE_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = TTE_CD) TTE_CD_NM,
+        USE_POS_CD,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='USE_POS_CD'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = USE_POS_CD) USE_POS_CD_NM,
+        WTY_YN,
+        (SELECT CD_V_MEANING
+            FROM   M00APUSER.VI_M00_CODE_ACCESS
+            WHERE  CD_TP='WTY_YN'
+            AND    CATEGORY_GROUP_NM ='SZ0000'
+            AND    CD_V = WTY_YN) WTY_YN_NM,
+        LAMINA_INS_YN,
+        PUR_CHR_CFM,
+        NVL(B.IMAGE_YN,'N') AS MIMAGE_YN,
+        NVL(B.FILE_YN,'N')  AS MFILE_YN,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '9' AND ROWNUM = 1) AS PCM_SPEC_FILE1,
+        (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '0' AND ROWNUM = 1) AS COST_STM_FILE1,
+        A.LAST_UPDATED_OBJECT_ID AS LAST_UPDATED_OBJECT_ID
+  FROM C10APUSER.TB_C10_CLR_CD_MNG A,
+       C10APUSER.TB_C10_CLR_CD_IMG_MNG B
+ WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD(+)
+   AND NVL(A.CLR_SUB_MTL_CD,'%') LIKE  :CLR_SUB_MTL_CD_SH ||'%'
+   AND A.SUB_MTL_TP IN ('S39','S49')
+   AND NVL(A.TP_CD,'%') LIKE '%' || :TP_CD ||'%'
+   AND NVL(A.RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
+   AND NVL(A.RSN_TP_QT_BR,'%') LIKE '%' || :RSN_TP_QT_BR_SH ||'%'
+   AND NVL(A.LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
+   AND NVL(A.PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
+   AND (NVL(A.RAL_CD,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RAL_CD,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.RMRK,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || UPPER(:RAL_CD ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || LOWER(:RAL_CD ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || UPPER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.STD_CLR_NM,'%') LIKE '%' || LOWER(REPLACE(:RAL_CD,' ','') ||'%') OR
+        NVL(A.CLR_SUB_MTL_CD_OLD,'%') LIKE '%' || :RAL_CD ||'%')
+ORDER BY A.RGS_DH
 		 ]]> 
 	 </query>
 </queryMap>

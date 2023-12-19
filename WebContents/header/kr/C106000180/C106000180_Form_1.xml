@@ -1,0 +1,19 @@
+<items>	
+<item type="block" width="981">
+<item inputWidth="75" label="주문번호" maxLength="10" name="ORD_NO" type="input"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="ORD_NO_BT" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="30" maxLength="3" name="ORD_LN" type="input"/>
+<item offset="20" type="newcolumn"/>
+<item inputWidth="75" label="품질설계수정일자" name="MDF_DH_STR" type="calendar" dateFormat="%Y-%m-%d" />
+<item offset="0" type="newcolumn"/>
+<item label="~" name="MDF_DH_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="75" name="MDF_DH_END" type="calendar" dateFormat="%Y-%m-%d" />
+<item offset="165" type="newcolumn"/>
+<item command="find" label="find" name="find" type="button" value="조회" disabled="true"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+</items>
