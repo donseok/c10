@@ -118,7 +118,7 @@
 <column align="center" id="PNT_FLM_THK_OLD" index="64" sort="sort_int_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="60" color="FFFFC0">(구)&lt;br&gt;도막두께</column>
 <column align="center" clabel="ERP전송일시" dbname="ERP전송일시" id="ERP_SND_DH" index="65" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="120">ERP전송일시</column>
 <column align="center" clabel="수정여부" dbname="수정여부" id="MOD_YN" index="66" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="80">수정여부</column>
-<column align="center" clabel="RALCD" dbname="RAL_CD" id="RAL_CD" index="67" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="90" color="FFFFC0">RAL CODE</column>
+<column align="center" clabel="RALCD" dbname="RAL_CD" id="RAL_CD" index="67" sort="sort_str_custom" table="TB_C10_CLR_CD_MNG" type="ed" width="90" color="FFFFC0">RAL CODE/라미나필름사 CODE</column>
 <column align="center" clabel="부재료구분" dbname="부재료구분" id="SUB_MTL_TP_HIDDEN" index="68" sort="sort_date_custom" table="TB_C10_CLR_CD_MNG" type="ro" width="100" hidden="true"></column>
 <column align="left" id="LMN_FLM_THK_CD_NM" index="69" sort="sort_str_custom" type="ro" width="150" hidden="true">Lamina필름두께코드명</column>
 <column align="center" id="SND_LST" index="70" sort="sort_str_custom" type="ro" width="150" hidden="true">전송대상</column>
