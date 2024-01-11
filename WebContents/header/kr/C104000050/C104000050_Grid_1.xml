@@ -55,7 +55,7 @@
 <column id="ORD_RGS_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="주문등록자ID" width="90" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문등록자ID">주문등록자</column>
 <column id="QLT_DSN_CFM_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="품질설계확정자ID" width="90" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="품질설계확정자ID">설계확정자</column>
 <column id="QLT_RDSN_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="품질재설계자ID" width="80" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="품질재설계자ID">재설계자</column>
-<column id="DSN_ATO_CFM_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="자동확정검증자ID" width="80" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="자동확정검증자ID">자동확정검증자</column>
+<column id="DSN_ATO_CFM_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="자동확정검증자ID" width="100" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="자동확정검증자ID">자동확정검증자</column>
 <column id="DSN_ATO_CFM_DH" sort="sort_date_custom" align="center" dbname="자동확정검증일자" width="130" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문반송일시">자동확정검증일시</column>
 <column id="ORD_BAK_SND_TP_NM" sort="sort_str_custom" align="center" dbname="주문반송구분" width="80" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문반송구분">반송구분</column>
 <column id="ORD_BAK_SND_PRS_ID_NM" sort="sort_str_custom" align="center" dbname="주문반송자" width="90" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문반송자">반송요청자</column>
