@@ -45,7 +45,6 @@ SET
       ,XSTAT_CALLBACK = ?            --PI 처리 상태
 WHERE IF_GRP_ID = ?                  --Interface Group ID                                                                                      
   AND SEQ_NO = ?                     --Interface SEQ
-  AND XSEQ = ?                       --PI Sequence Key Value
 		 ]]> 
 	 </query>
 	 <query id="B10R0110.cclbomupdate" desc="cclbom 수정" isNamed="true">
@@ -163,7 +162,7 @@ INSERT INTO C10APUSER.TB_C10_CLR_CD_MNG_MDF_LOG /* C10 칼라코드로그 B10R01
 )
 SELECT  CLR_SUB_MTL_CD,
         NVL((SELECT MAX(MDF_SEQ)+1 
-               FROM TB_C10_CLR_CD_MNG_MDF_LOG
+               FROM C10APUSER.TB_C10_CLR_CD_MNG_MDF_LOG
               WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD),0),
         :SPC_TXT,
         SUB_MTL_TP,

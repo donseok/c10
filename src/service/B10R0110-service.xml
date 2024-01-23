@@ -60,17 +60,16 @@
   </activity>
   <activity name="MODIFY_IF" class="com.posdata.glue.biz.activity.PosModify">
     <transition name="success" value="PROC_LOOP" />
-    <property name="resultkey" value="RK_RESULT" />
-    <property name="isAudit" value="true" />
     <property name="sqlkey" value="B10R0110.modify" />
-    <property name="param-count" value="6" />
+    <property name="isAudit" value="true" />
+    <property name="resultkey" value="RK_RESULT" />
+    <property name="dao" value="eaidao" />
     <property name="param0" value="XSTAT" />
     <property name="param1" value="XMSGS" />
     <property name="param2" value="XSTAT_CALLBACK" />
-    <property name="dao" value="eaidao" />
     <property name="param3" value="IF_GRP_ID" />
     <property name="param4" value="SEQ_NO" />
-    <property name="param5" value="XSEQ" />
+    <property name="param-count" value="5" />
   </activity>
   <activity name="COMMIT_IF" class="com.unionsteel.mes.c10.activity.common.DbSetCommit">
     <transition name="success" value="end" />
@@ -96,10 +95,10 @@
   <activity name="CHECK_CNT_CLR" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="modify_CLR_CD_RSN" />
     <transition name="skip" value="modify_CCL_BOM" />
-    <property name="resultkey" value="RK_PUR" />
     <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="B10R0110_C10.select" />
     <property name="if-size-zero" value="skip" />
+    <property name="sqlkey" value="B10R0110_C10.select" />
+    <property name="resultkey" value="RK_PUR" />
   </activity>
 </service>
 

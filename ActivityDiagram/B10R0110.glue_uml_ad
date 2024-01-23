@@ -27,7 +27,7 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosModify"/>
     <property key="dao" value="eaidao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="6"/>
+    <property key="param-count" value="5"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="B10R0110.modify"/>
     <property key="param0" value="XSTAT"/>
@@ -35,7 +35,6 @@
     <property key="param2" value="XSTAT_CALLBACK"/>
     <property key="param3" value="IF_GRP_ID"/>
     <property key="param4" value="SEQ_NO"/>
-    <property key="param5" value="XSEQ"/>
     <property key="description" value="이 Activity는 에러내용을 고객사 Code 수신 Interface Table에&#xD;&#xA;수정하는 Activity이다."/>
   </child>
   <child xsi:type="Glue:Activity" id="51181" location="312,413" size="141,-1" input="//@wire.13 //@wire.12" output="//@wire.1" name="STAT_SET">
