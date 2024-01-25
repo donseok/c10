@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="610,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.5" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="5" location="122,179" size="162,-1" input="//@wire.2" output="//@wire.1" name="품질설계상태조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000070.findQltSts"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="342512" location="477,178" size="135,-1" input="//@wire.3" output="//@wire.4" name="품질설계 상태 변경">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000070.saveQltSts"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="342536" location="329,180" size="119,-1" input="//@wire.5" output="//@wire.6" name="품질설계행번조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000070.combo"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 품질설계결과공통 테이블에서 주문행번을 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   사용자가 입력한 주문번호에 따라 주문행번을 조회 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="195,209" lastRelativePoint="293,312">
+    <bendpoint weight="0.5" firstDimension="-8,118" secondDimension="-109,-1"/>
+  </wire>
+  <wire id="6" guardcondition="findQltSts" firstRelativePoint="197,112" lastRelativePoint="197,179"/>
+  <wire id="14181" guardcondition="saveQltSts" firstRelativePoint="552,112" lastRelativePoint="552,178">
+    <bendpoint weight="0.5" firstDimension="157,72" secondDimension="8,-24"/>
+    <bendpoint weight="0.5" firstDimension="157,52" secondDimension="8,-44"/>
+  </wire>
+  <wire id="14183" guardcondition="success" firstRelativePoint="551,208" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="7,120" secondDimension="247,0"/>
+  </wire>
+  <wire id="14184" guardcondition="OrdLnFind" firstRelativePoint="389,112" lastRelativePoint="389,180">
+    <bendpoint weight="0.5" firstDimension="-6,81" secondDimension="1,-17"/>
+    <bendpoint weight="0.5" firstDimension="-6,51" secondDimension="1,-47"/>
+  </wire>
+  <wire id="14185" guardcondition="success" firstRelativePoint="386,210" lastRelativePoint="313,312">
+    <bendpoint weight="0.5" firstDimension="5,118" secondDimension="82,0"/>
+  </wire>
+</Glue:GlueDiagram>

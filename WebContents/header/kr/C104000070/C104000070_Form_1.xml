@@ -1,0 +1,25 @@
+<items>
+	<item type="block" width="1500">
+		<item offset="10" type="newcolumn"/>
+		<item label="품질설계 확정 상태 변경" name="filedSet" type="fieldset" width="340">
+			<item type="block">
+				<item inputWidth="75" label="주문번호" maxLength="10" name="ORD_NO" type="input" style="background-color:#FFFFC0"/>
+				<item offset="0" type="newcolumn"/>
+				<item label="-" name="ORD_NO_BT" type="label"/>
+				<item offset="0" type="newcolumn"/>
+				<item inputWidth="50" maxLength="3" name="ORD_LN" type="combo" style="background-color:#FFFFC0"/>
+				<item offset="5" type="newcolumn"/>			
+				<item foreground-color="255,140,50" offset="40" type="newcolumn"/>
+				<item command="findQltSts" label="조회" name="findQltSts" type="custombutton" value="조회"/>
+				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+				<item command="saveQltSts" label="저장" name="saveQltSts" type="custombutton" value="저장"/>				
+			</item>
+			<item type="block">
+				<item inputWidth="30" label="현재상태"  labelWidth="52" maxLength="20" name="QLT_DSN_STS_CD" type="input" readonly="true" />
+				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>			
+				<item inputWidth="80" labelAlign="right" labelWidth="10" maxLength="20" name="QLT_DSN_STS_CD_NM" type="input" readonly="true" />
+				<item foreground-color="255,140,50" offset="20" type="newcolumn"/>
+			</item>
+		</item>
+	</item>
+</items>

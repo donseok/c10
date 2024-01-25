@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000070 Page 쿼리파일"> 
+	 <query id="C104000070.findQltSts" desc="C104000070 품질설계상태조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계B/U C104000070 품질설계상태조회 */ 
+ORD_NO, ORD_LN, QLT_DSN_STS_CD, DECODE(QLT_DSN_STS_CD,'A','확정','B','확정대기','E','에러','X','종료','기타') AS QLT_DSN_STS_CD_NM
+  FROM C10APUSER.TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+   AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C104000070.saveQltSts" desc="C104000070 품질설계상태변경" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_QLT_DSN_CMN
+   SET QLT_DSN_STS_CD = 'B'
+ WHERE ORD_NO = :ORD_NO
+   AND ORD_LN = :ORD_LN
+   AND QLT_DSN_STS_CD = 'A'
+		 ]]> 
+	 </query>
+	 <query id="C104000070.combo" desc="C104000070 품질설계행번조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ 품질설계행번조회 C104000070.combo */ ORD_LN
+  FROM C10APUSER.TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+		 ]]> 
+	 </query>
+</queryMap>
