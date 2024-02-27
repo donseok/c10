@@ -83,6 +83,12 @@ function save(eventName,formDivObj,referenceItem){
     var PRD_TP_YN = items['C106000010pop01_Form_2'].getItemValue("PRD_TP_YN");
     var PRD_NM_CD = items['C106000010pop01_Form_2'].getItemValue("PRD_NM_CD");
     //var PRJ_DEV_CD = items['C106000010pop01_Form_2'].getItemValue("PRJ_DEV_CD");
+    var SMS_RCV_HP1 = items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP1");
+    var SMS_RCV_HP2 = items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP2");
+    var SMS_RCV_HP3 = items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP3");
+    var SMS_RCV_HP4 = items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP4");
+    
+    
     
     items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_REQ_DH", SAL_CHR_REQ_DH);
    	//items['C106000010pop01_Form_2'].setItemValue("SAL_CHR_RGN_DH", SAL_CHR_RGN_DH);
@@ -91,6 +97,10 @@ function save(eventName,formDivObj,referenceItem){
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_END_DH", CLR_SMP_DEV_END_DH);   	   	   	   	
    	items['C106000010pop01_Form_2'].setItemValue("CLR_SMP_DEV_SND_DH", CLR_SMP_DEV_SND_DH);
    	items['C106000010pop01_Form_2'].setItemValue("DSN_CHR_PRS_ID", "<%=userNo %>");
+   	
+   	
+   	
+
    	
    	if('<%=ctl_tp%>' != 'Y' && '<%=ctl_tp%>' != 'Z'){
 		if(SAL_CHR_REQ_DH == "" ){
@@ -123,6 +133,26 @@ function save(eventName,formDivObj,referenceItem){
 			return;
 		}
 	   	*/
+	   	 		   		   
+	   	
+	   	for(var i=1;i<5;i++){
+	   		
+			if(items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP"+i) != null){
+				if(isNaN(items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP"+i))){
+					dhtmlx.alert("수신 HP"+i+"는 숫자만 입력해 주세요");
+					items['C106000010pop01_Form_2'].setItemValue("SMS_RCV_HP"+i, "");
+					return;
+				}
+				
+				if(items['C106000010pop01_Form_2'].getItemValue("SMS_RCV_HP"+i).length != 11){
+					dhtmlx.alert("수신 HP"+i+"는 11자리만 가능합니다.");
+					return;
+				}
+			}
+	   		
+	   	}
+	   		   	
+	   	
    	}
 	dhtmlx.confirm({
 		title:"[[ 확인 ]]",

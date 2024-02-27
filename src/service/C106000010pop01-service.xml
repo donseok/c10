@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="C106000010pop01-service" initial="분기">
-  <transaction-manager id="tx1" commit="true" />
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000010pop01.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="SMS전송" class="com.unionsteel.mes.c10.activity.ui.C10UiC106000010InsertActivity">
+    <transition name="success" value="end" />
+  </activity>
   <activity name="설계원 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="end" />
     <property name="dao" value="mesdao" />
@@ -8,10 +15,12 @@
     <property name="delete-sql" value="C106000010pop01.delete" />
     <property name="update-sql" value="C106000010pop01.dsn_update" />
   </activity>
-  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000010pop01.select" />
+  <activity name="도료사 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="SMS전송" />
     <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C106000010pop01.cmp_insert" />
+    <property name="delete-sql" value="C106000010pop01.delete" />
+    <property name="update-sql" value="C106000010pop01.cmp_update" />
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="find" value="조회" />
@@ -19,43 +28,13 @@
     <transition name="sal_save" value="영업원 저장" />
     <transition name="cmp_save" value="도료사 저장" />
   </activity>
+  <transaction-manager id="tx1" commit="true" />
   <activity name="영업원 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="end" />
     <property name="dao" value="mesdao" />
     <property name="insert-sql" value="C106000010pop01.sal_insert" />
     <property name="delete-sql" value="C106000010pop01.delete" />
     <property name="update-sql" value="C106000010pop01.sal_update" />
-  </activity>
-  <activity name="SMS송신3" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="SMS송신4" />
-    <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000010pop01.sms_insert3" />
-    <property name="isAudit" value="true" />
-  </activity>
-  <activity name="SMS송신2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="SMS송신3" />
-    <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000010pop01.sms_insert2" />
-    <property name="isAudit" value="true" />
-  </activity>
-  <activity name="SMS송신1" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="SMS송신2" />
-    <property name="update-sql" value="C106000010pop01.sms_insert1" />
-    <property name="isAudit" value="true" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="도료사 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="SMS송신1" />
-    <property name="dao" value="mesdao" />
-    <property name="insert-sql" value="C106000010pop01.cmp_insert" />
-    <property name="delete-sql" value="C106000010pop01.delete" />
-    <property name="update-sql" value="C106000010pop01.cmp_update" />
-  </activity>
-  <activity name="SMS송신4" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000010pop01.sms_insert4" />
-    <property name="isAudit" value="true" />
   </activity>
 </service>
 
