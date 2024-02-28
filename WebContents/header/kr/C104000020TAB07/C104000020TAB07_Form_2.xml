@@ -1,5 +1,5 @@
 <items>
 	<item background-color="255,128,128" type="block" width="800">
-	    <item type="label" labelWidth="300" label="키워드 입력시 특수문자 입력불가 예)〈,〉" />
+	    <item type="label" labelWidth="400" label="품질메세지, 키워드 입력시 특수문자 입력불가 예)〈,〉" />
 	</item>
 </items>
