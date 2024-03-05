@@ -80,7 +80,7 @@ function onChange(id,value){
 	 var item = id;
 	 if(item == "ORD_NO")
 	 {
-	  var ORD_NO = items[aForm1].getItemValue("ORD_NO");
+	  var ORD_NO = items["C104000070_Form_1"].getItemValue("ORD_NO");
 	  var comboList = items[aForm1].getMasterCombos();
 	  comboList['ORD_LN'].readonly(false,false);
 	  ui.combo(comboList['ORD_LN'],"OrdlnComboData.do","ServiceName=C104000070-service&OrdLnFind=1&column-info=ORD_LN,ORD_LN&ORD_NO="+ORD_NO);
