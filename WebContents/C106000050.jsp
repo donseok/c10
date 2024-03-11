@@ -1992,7 +1992,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 	var gridObj1 = items["C106000050_Grid_1"].getDhxGrid();
 	
 	if(stage==1){
-		if(cInd == 6 ) { //MAX LENGTH 체크
+		if(cInd == 7 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -2005,7 +2005,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 7 ) { //MAX LENGTH 체크
+		}else if(cInd == 8 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -2018,7 +2018,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 8 ) { //MAX LENGTH 체크
+		}else if(cInd == 9 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
@@ -2031,7 +2031,7 @@ function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 					}					
 				}
 			}
-		}else if(cInd == 9 ) { //MAX LENGTH 체크
+		}else if(cInd == 10 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;
 				if((e.keyCode >= 47) || (e.keyCode == 0)){
