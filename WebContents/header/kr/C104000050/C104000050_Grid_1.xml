@@ -68,11 +68,12 @@
 <column id="ORD_BAK_SND_PRS_ID" sort="sort_str_custom" align="center" dbname="주문반송자" width="9" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문반송자" hidden="true">반송요청자</column>
 <column id="QLT_HLD_YN" sort="sort_str_custom" align="center" dbname="보류여부" width="9" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="보류여부" hidden="true">보류여부</column>
 <column id="MOD_ID" sort="sort_str_custom" align="center" dbname="설계수정자ID" width="9" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="설계수정자ID" hidden="true">설계수정자</column>
+<column id="ORD_END_TP" sort="sort_str_custom" align="center" dbname="주문종결구분" width="9" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="주문종결구분" hidden="true">주문종결구분</column>
 <settings>
 <colwidth>PX</colwidth>
 </settings>
 </head>
-<userdata name="column-info">QLT_DSN_CFM,ORD_REP_YN,CUS_CMPL_HST_YN,ORD_NO,ORD_LN,FNL_CUS_CD,MOD_ID_NM,PRD_NM_CD,SPC_AVR,ORD_USG_CD,CCL_BOM_NO,CCL_PROC,DSN_ATO_CFM_YN,QLT_DSN_STS_CD,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,ORD_LN_WGT,MTL_PRD_ORD_YN,MO_CVT_ORD_YN,TRST_PROC_YN,CUS_REQ_DLV_DD,QLT_DSN_INST_DH,QLT_DSN_END_DH,QLT_DSN_CFM_DH,ORD_RGS_PRS_ID_NM,QLT_DSN_CFM_PRS_ID_NM,QLT_RDSN_PRS_ID_NM,DSN_ATO_CFM_PRS_ID_NM,DSN_ATO_CFM_DH,ORD_BAK_SND_TP_NM,ORD_BAK_SND_PRS_ID_NM,ORD_BAK_SND_DH,ORD_BAK_SND_CAU,ORD_BAK_SND_TP,QLT_DSN_CFM_PRS_ID,QLT_RDSN_PRS_ID,DSN_ATO_CFM_PRS_ID,ORD_BAK_SND_PRS_ID,QLT_HLD_YN,MOD_ID</userdata>
+<userdata name="column-info">QLT_DSN_CFM,ORD_REP_YN,CUS_CMPL_HST_YN,ORD_NO,ORD_LN,FNL_CUS_CD,MOD_ID_NM,PRD_NM_CD,SPC_AVR,ORD_USG_CD,CCL_BOM_NO,CCL_PROC,DSN_ATO_CFM_YN,QLT_DSN_STS_CD,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,ORD_LN_WGT,MTL_PRD_ORD_YN,MO_CVT_ORD_YN,TRST_PROC_YN,CUS_REQ_DLV_DD,QLT_DSN_INST_DH,QLT_DSN_END_DH,QLT_DSN_CFM_DH,ORD_RGS_PRS_ID_NM,QLT_DSN_CFM_PRS_ID_NM,QLT_RDSN_PRS_ID_NM,DSN_ATO_CFM_PRS_ID_NM,DSN_ATO_CFM_DH,ORD_BAK_SND_TP_NM,ORD_BAK_SND_PRS_ID_NM,ORD_BAK_SND_DH,ORD_BAK_SND_CAU,ORD_BAK_SND_TP,QLT_DSN_CFM_PRS_ID,QLT_RDSN_PRS_ID,DSN_ATO_CFM_PRS_ID,ORD_BAK_SND_PRS_ID,QLT_HLD_YN,MOD_ID,ORD_END_TP</userdata>
 <row id="0">
 <cell/>
 </row>

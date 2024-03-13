@@ -116,7 +116,7 @@ SELECT /* C10 품질설계결과확정 C104000050.select 박재영 */
                AND CHG_TXT = 'C104000020TAB05'
             )
        ) AS MOD_ID
-   ,(SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
+   ,DECODE(ORD_END_TP,'E','종결', (SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
        FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
       WHERE ORD_NO = A.ORD_NO
         AND ORD_LN = A.ORD_LN
@@ -129,7 +129,8 @@ SELECT /* C10 품질설계결과확정 C104000050.select 박재영 */
                AND ORD_LN = A.ORD_LN
                AND CHG_TXT = 'C104000020TAB05'
             )
-       ) AS MOD_ID_NM    
+       )) AS MOD_ID_NM    
+   , ORD_END_TP       
    FROM
    TB_C10_QLT_DSN_CMN A,
    (SELECT ORD_NO, ORD_LN, MAIN_PROC_CD FROM TB_C10_QLT_DSN_PROC WHERE SUBSTR(MAIN_PROC_CD,1,1) ='A') B
@@ -749,7 +750,7 @@ SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
                AND CHG_TXT = 'C104000020TAB05'
             )
        ) AS MOD_ID
-   ,(SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
+   ,DECODE(ORD_END_TP,'E','종결', (SELECT FUNC_USER_NM(LAST_UPDATED_OBJECT_ID)
        FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
       WHERE ORD_NO = A.ORD_NO
         AND ORD_LN = A.ORD_LN
@@ -762,7 +763,8 @@ SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
                AND ORD_LN = A.ORD_LN
                AND CHG_TXT = 'C104000020TAB05'
             )
-       ) AS MOD_ID_NM
+       )) AS MOD_ID_NM
+   , ORD_END_TP 
    FROM
    TB_C10_QLT_DSN_CMN A,
    (SELECT ORD_NO, ORD_LN, MAIN_PROC_CD FROM TB_C10_QLT_DSN_PROC WHERE SUBSTR(MAIN_PROC_CD,1,1) ='A') B
