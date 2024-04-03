@@ -16,7 +16,7 @@
 	<item offset="80" type="newcolumn"/>
 	<item inputWidth="90" label="코드" name="FIND_CD" type="input" maxLength="18"/>
 	<item offset="40" type="newcolumn"/>
-	<item command="find" name="find" type="button" value="조회" disabled="true"/>
+	<item command="find" name="find" id="find" type="button" value="조회" disabled="true"/>
 	<item offset="4" type="newcolumn"/>
 	<item command="winClose" name="winClose" type="button" value="닫기"/>
 </item>
@@ -27,5 +27,12 @@
 	<item label="접착제코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="8"/>
 	<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
 	<item label="생산UGS필름코드" name="SEARCH_CD_SEL" position="label-right" type="radio" value="9"/>
+
+	<item offset="272" type="newcolumn"/>
+	<item inputWidth="60" label="기간" name="SEARCH_TERM" id="termCombo" type="combo">
+        <option value="12" text="1년" selected="true">1년</option>
+        <option value="36" text="3년">3년</option>
+        <option value="360" text="전체">전체</option>
+	</item>	
 </item>    
 </items>

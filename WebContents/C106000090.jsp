@@ -11,6 +11,7 @@
  * ------------  ------    --------  ------------------------
  * 2014.03.04     V1.0     김종화	 최초작성
  * 2019.01.16     V1.0     전경진	 수정작성  
+ * 2024.03.26     V1.1     서재섭	 수정작성
 --%>
 <%@page import = "com.posdata.glue.web.security.PosSecurityConstants" %>
 <%@page import = "com.posdata.glue.web.security.PosUser" %>
@@ -18,7 +19,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String rollCd = request.getParameter("ROLL_CD") != null? request.getParameter("ROLL_CD") : "";
-	String CCL_BOM_NO = request.getParameter("CCL_BOM_NO") != null ? request.getParameter("CCL_BOM_NO") : "";
+	String CCL_BOM_NO = request.getParameter("CCL_BOM_NO") != null ? request.getParameter("CCL_BOM_NO") : "";	
+	
 %>    
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,22 +30,64 @@
 <title>
 코드사용조회
 </title>
-<script type="text/javascript" src="./dhtmlx/codebase/glue.ui.bootstrap.js">
+<script type="text/javascript" src="./dhtmlx/codebase/glue.3x.ui.bootstrap.js">
 </script>
 <script src="./js/c10.ui.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
-var pageConfiguration = '[' + 
-      '{"itemType":"form","renderTo":"C106000090_Form_1","xml":".\/header\/kr\/C106000090\/C106000090_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"find","security":"true"},' +
-      '{"itemType":"form","renderTo":"C106000090_Form_2","xml":".\/header\/kr\/C106000090\/C106000090_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service"},' +
-      '{"itemType":"grid","renderTo":"C106000090_Grid_1","xml":".\/header\/kr\/C106000090\/C106000090_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Form_1","service":"C106000090-service","actionType":"save"},' +
-      '{"itemType":"messagebox","renderTo":"C106000090_messagebox","xml":".\/header\/kr\/C106000090\/C106000090_messagebox.xml","service":"C106000090-service"},' +
-      '{"itemType":"grid","renderTo":"C106000090_Grid_2","xml":".\/header\/kr\/C106000090\/C106000090_Grid_2.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Form_1","service":"C106000090-service","actionType":"save"},' +
-      '{"itemType":"menu","renderTo":"C106000090_Menu_2","xml":".\/header\/kr\/C106000090\/C106000090_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000090_Grid_2","service":"C106000090-service"}' +
-   ']';
-var initConfig = JSON.parse(pageConfiguration);	     
+// var pageConfiguration = '[' + 
+//       '{"itemType":"form","renderTo":"C106000090_Form_1","xml":".\/header\/kr\/C106000090\/C106000090_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"find","security":"true"},' +
+//       '{"itemType":"form","renderTo":"C106000090_Form_2","xml":".\/header\/kr\/C106000090\/C106000090_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service"},' +
+//       '{"itemType":"grid","renderTo":"C106000090_Grid_1","xml":".\/header\/kr\/C106000090\/C106000090_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Form_1","service":"C106000090-service","actionType":"save"},' +
+//       '{"itemType":"messagebox","renderTo":"C106000090_messagebox","xml":".\/header\/kr\/C106000090\/C106000090_messagebox.xml","service":"C106000090-service"},' +
+//       '{"itemType":"grid","renderTo":"C106000090_Grid_2","xml":".\/header\/kr\/C106000090\/C106000090_Grid_2.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Form_1","service":"C106000090-service","actionType":"save"},' +
+//       '{"itemType":"menu","renderTo":"C106000090_Menu_2","xml":".\/header\/kr\/C106000090\/C106000090_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000090_Grid_2","service":"C106000090-service"}' +
+//    ']';
+// var initConfig = JSON.parse(pageConfiguration);	        
+   
+var Form_1 = {"itemType":"form","renderTo":"C106000090_Form_1","xml":".\/header\/kr\/C106000090\/C106000090_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"find","security":"true"};
+var Form_2 = {"itemType":"form","renderTo":"C106000090_Form_2","xml":".\/header\/kr\/C106000090\/C106000090_Form_2.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"save","security":"true"};
+var Form_3 = {"itemType":"form","renderTo":"C106000090_Form_3","xml":".\/header\/kr\/C106000090\/C106000090_Form_3.xml","url":"basicGridData.do","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"save","security":"true"};
+var Menu_2 = {"itemType":"menu","renderTo":"C106000090_Menu_2","xml":".\/header\/kr\/C106000090\/C106000090_Menu_2.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000090_Grid_2","service":"C106000090-service"};
+var Grid_1 = {"itemType":"grid","renderTo":"C106000090_Grid_1","xml":".\/header\/kr\/C106000090\/C106000090_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Grid_1","service":"C106000090-service","actionType":"save"};
+var Grid_2 = {"itemType":"grid","renderTo":"C106000090_Grid_2","xml":".\/header\/kr\/C106000090\/C106000090_Grid_2.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C106000090_Grid_2","service":"C106000090-service","actionType":"save"};
+
+var initLayout = 
+{
+	"programId":"C106000090", "itemType": "layout", "messageBox":true, "dirType":"row", "splitter":false, 
+	"itemType": "layout", "dirType":"row", "childSize":"60,", "splitter":true, "components": 
+	[
+		Form_1,
+		{
+			"itemType": "layout", "messageBox":false, "dirType":"row", "childSize":"30,*", "splitter":false, "components": 			
+				[
+				 	{
+				 		"itemType": "layout", "messageBox":false, "dirType":"col", "childSize":"340,120,*", "splitter":false, "components":
+				 			[
+								Form_2,								
+		 			 			Menu_2,
+		 			 			Form_3
+				 			]
+					 
+				 	},
+
+					{
+						"itemType": "layout", "messageBox":false, "dirType":"col", "childSize":"340,*", "splitter":false, "components": 
+							[
+								Grid_1,
+								Grid_2
+							]
+					}					
+				]		
+		}
+	]
+
+};      
+   
+   
+
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 var rollCd = '<%=rollCd%>';
 var CCL_BOM_NO = '<%=CCL_BOM_NO%>';
@@ -55,11 +99,14 @@ function find(eventName,formDivObj,referenceItem){
 	
 	var formObj = items['C106000090_Form_1'].getDhxForm();
 	var radioValue = formObj.getItemValue("SEARCH_CD_SEL");
+	
 	items['C106000090_Grid_1'].getDhxGrid().clearAll();	
-	if( radioValue == "1" ){	
+	if( radioValue == "1" ){		
+		
 		var useFindUrl = 
 		items['C106000090_Form_1'].getServiceUrl()+"?ServiceName="+items['C106000090_Form_1'].getServiceName()+"&useFindcolor=1&column-info="+items['C106000090_Grid_2'].getColumnInfo()+"&blank-row-count="+items['C106000090_Grid_2'].getBlankRowCntInfo();	
 	}else if(radioValue == "2"){	
+				
 		var useFindUrl = 
 		items['C106000090_Form_1'].getServiceUrl()+"?ServiceName="+items['C106000090_Form_1'].getServiceName()+"&useFindcclbom=1&column-info="+items['C106000090_Grid_2'].getColumnInfo()+"&blank-row-count="+items['C106000090_Grid_2'].getBlankRowCntInfo();	
 	}else if(radioValue == "3"){	
@@ -96,6 +143,7 @@ function useFindcolor(){
 }
 
 function useFindcclbom(){
+	
 	var prdFindUrl =  uiCommon.parameters('C106000090_Form_1','C106000090_Grid_2','useFindcclbom');
 	items["C106000090_Grid_2"].loadData(prdFindUrl);
 	uiCommon.progressOff(parent);
@@ -238,69 +286,78 @@ function onFormLoad(){
 		items['C106000090_Form_1'].getDhxForm().setItemValue("SEARCH_CD_SEL","4");
 		rollCd = "";
 	}
-
+	
 	var radioValue = formObj.getItemValue("SEARCH_CD_SEL");
 
 	if( radioValue == "1" ){ //이 부분 수정 2023/6/8
 		items['C106000090_Form_2'].setItemValue("ALERT","칼라코드가 사용된 CCL BOM검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("0,1,2",false);
-		grid1.setColumnHiddenFlag("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",true);		
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,57,59,60,61,62",false);
-		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,63,64,65,66",true);			
+		grid1.setColumnHiddenFlag("3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",true);		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,58,60,61,62,63,68",false);
+		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,59,64,65,66,67,69",true);
+		
 	}else if(radioValue == "2"){
 		items['C106000090_Form_2'].setItemValue("ALERT","CCL BOM이 사용된 주문검색");
+		items['C106000090_Form_3'].setItemValue("NOTICE","※ O : 1급 생산이력, △ : 상품, 할당, 등외품 등, X : 이력 없음");
 		grid1.setColumnHiddenFlag("3,4,5",false);
-		grid1.setColumnHiddenFlag("0,1,2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,64,65,66",false);  //59		
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63",true);  //59
-		
-		
+		grid1.setColumnHiddenFlag("0,1,2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("13,14,15,16,17,18,19,20,21,65,66,67,68,69",false);  //59		
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",true);  //59
+				
 		if(CCL_BOM_NO != ""){
-			items['C106000090_Form_1'].setItemValue("FIND_CD",CCL_BOM_NO);
-		}
+			items['C106000090_Form_1'].setItemValue("FIND_CD",CCL_BOM_NO);						
+		}		
 		
 	}else if(radioValue == "3"){
 		items['C106000090_Form_2'].setItemValue("ALERT","수지타입이 사용된 칼라코드 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("6,7",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,8,9,10,11,12,13,14,15,16,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("21,22,23,24,25,26,27",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66",true);		
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,8,9,10,11,12,13,14,15,16,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("22,23,24,25,26,27,28,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,69",true);		
 	}else if(radioValue == "4"){
 		items['C106000090_Form_2'].setItemValue("ALERT","Print Roll이 사용된 CCL BOM 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("8,9,10",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,11,12,13,14,15,16,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("28,29,30,31,32,33,34,35,36,37",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66",true);		
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,11,12,13,14,15,16,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("29,31,32,33,34,35,36,37,38,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,69",true);		
 	}else if(radioValue == "5"){
 		items['C106000090_Form_2'].setItemValue("ALERT","동일Print Roll이 사용된 CCL BOM 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("11,12",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("38,39,40,41,42,43,44,45,46",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66",true);		
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,13,14,15,16,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("39,40,41,42,43,44,45,46,47,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,69",true);		
 	}else if(radioValue == "6"){
 		items['C106000090_Form_2'].setItemValue("ALERT","Ink코드가 사용된 CCL BOM 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("13,14,15",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,16,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("47,48,49,50,51,52,53,54,55,56",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,57,58,59,60,61,62,63,64,65,66",true);		
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,16,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("48,50,51,52,53,54,55,56,57,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,49,58,59,60,61,62,63,64,65,66,67,69",true);		
 	}else if(radioValue == "7"){
 		items['C106000090_Form_2'].setItemValue("ALERT","보호필름코드가 사용된 CCL BOM 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("16",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20",true);
-		grid2.setColumnHiddenFlag("58,59,60,61,62",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,63,64,65,66",true);
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21",true);
+		grid2.setColumnHiddenFlag("59,60,61,62,63,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,64,65,66,67,69",true);
 	}else if(radioValue == "8"){
 		items['C106000090_Form_2'].setItemValue("ALERT","접착제가 사용된 CCL BOM 검색");	
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("17,18,19",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,20",true);
-		grid2.setColumnHiddenFlag("58,59,60,61,62,63",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,64,65,66",true);		
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,20,21",true);
+		grid2.setColumnHiddenFlag("59,60,61,62,63,64,68",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,65,66,67,69",true);		
 	}else if(radioValue == "9"){
 		items['C106000090_Form_2'].setItemValue("ALERT","생산UGS필름코드가 사용된 CCL BOM 검색");
+		items['C106000090_Form_3'].setItemValue("NOTICE","");
 		grid1.setColumnHiddenFlag("20",false);
-		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",true);
-		grid2.setColumnHiddenFlag("58",false);
-		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,59,60,61,62,63,64,65,66,67",true);
+		grid1.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21",true);
+		grid2.setColumnHiddenFlag("59",false);
+		grid2.setColumnHiddenFlag("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69",true);
 	}
 }
 
@@ -308,13 +365,12 @@ function onFormLoad2(){
 	var formObj = items['C106000090_Form_1'].getDhxForm();
 	var radioValue = formObj.getItemValue("SEARCH_CD_SEL");
 	
-	
-	//alert(radioValue);
 
 	if( radioValue == "1" ){	
 		items['C106000090_Form_2'].setItemValue("ALERT","칼라코드가 사용된 CCL BOM검색");
 	}else if(radioValue == "2"){
 		items['C106000090_Form_2'].setItemValue("ALERT","CCL BOM이 사용된 주문검색");
+		items['C106000090_Form_3'].setItemValue("NOTICE","※ O : 1급 생산이력, △ : 상품, 할당, 등외품 등, X : 이력 없음");
 	}else if(radioValue == "3"){	
 		items['C106000090_Form_2'].setItemValue("ALERT","수지타입이 사용된 칼라코드 검색");
 	}else if(radioValue == "4"){	
@@ -331,7 +387,7 @@ function onFormLoad2(){
 		items['C106000090_Form_2'].setItemValue("ALERT","생산UGS필름코드가 사용된 CCL BOM 검색");
 	}
 	
-	items['C106000090_Form_2'].getDhxForm().detachEvent(formXle);
+	items['C106000090_Form_3'].getDhxForm().detachEvent(formXle);
 }
 
 function useSelect(id){
@@ -342,14 +398,18 @@ function useSelect(id){
 	if(radioValue == "1"){	
 		var CLR_SUB_MTL_CD = gridObj.cellById(id,gridObj.getColIndexById("CLR_SUB_MTL_CD")).getValue();
 		if(CLR_SUB_MTL_CD != "") {
-			var prdFindUrl = uiCommon.parameters2('C106000090_Form_1','C106000090_Grid_1','C106000090_Grid_2','useFindcolor',id);
+			var prdFindUrl = uiCommon.parameters2('C106000090_Form_1','C106000090_Grid_1','C106000090_Grid_2','useFindcolor',id);		
 			items["C106000090_Grid_2"].loadData(prdFindUrl,'');		
 			uiCommon.progressOff(parent);
 		}
 	}else if(radioValue == "2"){	
 		var CCL_BOM_NO = gridObj.cellById(id,gridObj.getColIndexById("CCL_BOM_NO")).getValue();
+	
+		gridObj.cellById(id,gridObj.getColIndexById("TERM")).setValue(formObj.getItemValue("SEARCH_TERM"));
+
 		if(CCL_BOM_NO != "") {
 			var prdFindUrl = uiCommon.parameters2('C106000090_Form_1','C106000090_Grid_1','C106000090_Grid_2','useFindcclbom',id);
+
 			items["C106000090_Grid_2"].loadData(prdFindUrl,'');		
 			uiCommon.progressOff(parent);
 		}
@@ -411,7 +471,8 @@ function onGridLoad1(){
 
 		gridObj.attachEvent("onSelectStateChanged", function(id){
 			useSelect(items['C106000090_Grid_1'].getSelectedRowId());
-		}); 
+		});
+				
 	return true;
 }
 
@@ -476,13 +537,13 @@ function onGridLoad2(){
 		}
 	}else if(radioValue == "2"){
 		
-		/* 수정필요
+		/* 수정필요  
 		var Find_cd_temp = items['C106000090_Form_1'].getItemValue("FIND_CD",CCL_BOM_NO);
 		
-		if(Find_cd_temp != ""){
+		if(Find_cd_temp != "" && Find_cd_temp != null){
 			firstFind();
-		}
-		*/
+		} */
+		
 		
 	}else if(radioValue == "4"){
 	    var PRT_ROLL_NO = getGridCellData(gridObj1,gridObj1.getSelectedRowId(),"PRT_ROLL_NO");
@@ -608,6 +669,14 @@ function C106000090_doLink(val,rowIdx,cellIdx){
 	}
 }
 
+function onPageLoad() {
+
+	if(CCL_BOM_NO != null && CCL_BOM_NO != ""){
+		firstFind();
+	}	
+
+}
+
 
 function firstFind(){
 				
@@ -615,27 +684,41 @@ function firstFind(){
 	items["C106000090_Grid_1"].loadData(parentFindUrl);	
 	uiCommon.progressOff(parent);	
 	
-	items['C106000090_Grid_1'].getDhxGrid().detachEvent(grdXle);
+// 	items['C106000090_Grid_1'].getDhxGrid().detachEvent(grdXle);
+	return true;
 }
 
+
+
+function OnRadioChanged(id, value){
+	if(id =="SEARCH_CD_SEL"){
+		var FormD1 = items['C106000090_Form_1'].getDhxForm();
+		
+		if(value == "2"){ 			
+			FormD1.showItem("SEARCH_TERM");
+		}else{
+			FormD1.hideItem("SEARCH_TERM");
+		}
+	}
+}
 
 //]]>
 -->
 </script>
 </head>
 <body>
-<div id="C106000090_Form_1" style="position:absolute;height:58px;width:981px;left:0px;top:0px;">
-</div>
-<div id="C106000090_Form_2" style="position:absolute;height:23px;width:300px;left:0px;top:58px;">
-</div>
-<div id="C106000090_Grid_1" style="position:absolute;height:481px;width:300px;left:1px;top:83px;">
-</div>
-<div id="C106000090_Menu_2" style="position:absolute;height:25px;width:670px;left:309px;top:60px; background:#FFFFFF">
-</div>
-<div id="C106000090_Grid_2" style="position:absolute;height:481px;width:668px;left:309px;top:83px;">
-</div>
-<div id="C106000090_messagebox" style="position:absolute;height:19px;width:978px;left:0px;top:567px;">
-</div>
+<!-- <div id="C106000090_Form_1" style="position:absolute;height:58px;width:981px;left:0px;top:0px;"> -->
+<!-- </div> -->
+<!-- <div id="C106000090_Form_2" style="position:absolute;height:23px;width:300px;left:0px;top:58px;"> -->
+<!-- </div> -->
+<!-- <div id="C106000090_Grid_1" style="position:absolute;height:481px;width:300px;left:1px;top:83px;"> -->
+<!-- </div> -->
+<!-- <div id="C106000090_Menu_2" style="position:absolute;height:25px;width:670px;left:309px;top:60px; background:#FFFFFF"> -->
+<!-- </div> -->
+<!-- <div id="C106000090_Grid_2" style="position:absolute;height:481px;width:668px;left:309px;top:83px;"> -->
+<!-- </div> -->
+<!-- <div id="C106000090_messagebox" style="position:absolute;height:19px;width:978px;left:0px;top:567px;"> -->
+<!-- </div> -->
 </body>
 </html>
 <script>
@@ -643,12 +726,16 @@ function firstFind(){
 //<![CDATA[
 	ui.initializeDHTMLX();
 	items['C106000090_Form_1'].onXLEEvent(onFormLoad);
-	var formXle = items['C106000090_Form_2'].onXLEEvent(onFormLoad2);
+	var formXle = items['C106000090_Form_3'].onXLEEvent(onFormLoad2);
 	//items["C106000090_Grid_1"].rowSelected(useSelect);
 	items['C106000090_Form_1'].getDhxForm().attachEvent("onChange",onFormLoad);
 	items['C106000090_Grid_1'].onXLEEvent(onGridLoad1);
 	items['C106000090_Grid_2'].onXLEEvent(onGridLoad2);	
     items['C106000090_Form_2'].setBackgroundColor("#FFFFFF");	
+	items['C106000090_Form_1'].onChangeEvent(OnRadioChanged); // 기간 조회 숨김 처리
+     
+    
+    window.onload = onPageLoad;
     //var grdXle = items['C106000090_Grid_2'].onXLEEvent(firstFind);
 //]]>
 -->

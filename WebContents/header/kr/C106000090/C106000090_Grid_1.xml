@@ -64,12 +64,13 @@
 <column align="center" id="BND_SUB_MTL_TP" index="20" sort="str" table="TB_C10_CLR_CD_MNG" type="ro" width="15">구분</column>
 
 <column align="center" id="UNI_GLS_FLM_CD" index="21" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">생산USG필름</column>
+<column align="center" id="TERM" index="22" sort="str" table="TB_C10_CCL_BOM" type="ro" width="*">기간</column>
 
 <settings>
 <colwidth>%</colwidth>
 </settings>
 </head>
-<userdata name="column-info">CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,CCL_BOM_NO,DTL_CLR_NM,RSN_TP_FRN,RSN_TP,RSN_TP_NM,PRT_ROLL_NO,RPV_CLR_NM,PTN_NM,CCL_BOM_NO1,COT_MTH_NM,CLR_SUB_MTL_CD_INK,CLR_NM_INK,RSN_TP_INK,PTT_FLM_DTL_CD,LMN_BND_CD,BND_CLR_NM,BND_SUB_MTL_TP,UNI_GLS_FLM_CD</userdata>
+<userdata name="column-info">CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,CCL_BOM_NO,DTL_CLR_NM,RSN_TP_FRN,RSN_TP,RSN_TP_NM,PRT_ROLL_NO,RPV_CLR_NM,PTN_NM,CCL_BOM_NO1,COT_MTH_NM,CLR_SUB_MTL_CD_INK,CLR_NM_INK,RSN_TP_INK,PTT_FLM_DTL_CD,LMN_BND_CD,BND_CLR_NM,BND_SUB_MTL_TP,UNI_GLS_FLM_CD,TERM</userdata>
 <row id="0">
 <cell/>
 <cell/>
