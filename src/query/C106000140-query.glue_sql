@@ -8,6 +8,7 @@ SELECT A.DGT_PRT_IMG_NO,
        A.CUS_CD || (SELECT ' : ' || CD_V_MEANING 
          FROM M00APUSER.VI_M00_CODE_ACCESS
          WHERE CD_TP = 'CUS_CD'
+         AND   CATEGORY_GROUP_NM = 'SZ0000'
          AND   CD_V = A.CUS_CD) AS CUS_CD, --최종수요가명(MASTER)
        A.CCL_BOM_NO,
        A.DGT_PRT_IMG_TXT,
@@ -39,6 +40,7 @@ AND EXISTS (
         SELECT 'X'
         FROM M00APUSER.VI_M00_CODE_ACCESS
         WHERE CD_TP = 'CUS_CD'
+        AND   CATEGORY_GROUP_NM = 'SZ0000'    
         AND   CD_V = SUBSTR(:CUS_CD,1,6) )
 		 ]]> 
 	 </query>
@@ -95,6 +97,7 @@ WHERE EXISTS (
         SELECT 'X'
         FROM M00APUSER.VI_M00_CODE_ACCESS
         WHERE CD_TP = 'CUS_CD'
+        AND   CATEGORY_GROUP_NM = 'SZ0000'    
         AND   CD_V = SUBSTR(:CUS_CD,1,6) )
 		 ]]> 
 	 </query>
