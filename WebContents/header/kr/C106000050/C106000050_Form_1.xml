@@ -3,6 +3,8 @@
 <item inputWidth="100" label="부재료구분" name="SUB_MTL_TP_SH" type="combo" style="background-color:#FFFFC0"/>
 <item offset="10" type="newcolumn"/>
 <item inputWidth="90" maxLength="5" label="컬러코드" name="CLR_SUB_MTL_CD_SH" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item type="linkbutton" command="unusedCodePop" name="unusedCode" value="미사용 코드"/>
 <item offset="40" type="newcolumn"/>
 <item type="custombutton" command="excelExport" name="excelExport"  value="엑셀출력"/>
 <item offset="5" type="newcolumn"/>

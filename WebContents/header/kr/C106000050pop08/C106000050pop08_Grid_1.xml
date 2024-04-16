@@ -1,0 +1,23 @@
+<rows>
+<head>
+		<beforeInit>
+			<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+			<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+			<call command="enableMultiselect"><param>true</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="enableSmartRendering"><param>true</param></call>
+			<call command="setAwaitedRowHeight"><param>22</param></call>
+		</beforeInit>
+		<afterInit>
+			<!-- 가변항목 관련 세팅 시작. -->
+			<call command="enableStableSorting"><param>true</param></call>
+			<call command="setDateFormat"><param><![CDATA[%Y-%m-%d 00:00:00]]></param></call>
+			<call command="setNoHeader"><param>false</param></call>
+			<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>
+		<column id="UNUSED_CODE" sort="str" align="center" table="TB_C10_CLR_CD_MNG" type="ro" width="*">미사용 코드</column>
+<settings><colwidth><![CDATA[%]]></colwidth></settings>
+</head>
+<userdata name="column-info">UNUSED_CODE</userdata>
+</rows>

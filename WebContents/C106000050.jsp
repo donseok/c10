@@ -2274,6 +2274,46 @@ function C10_linkC106000050pop04() {
 		return;
 	}
 }
+
+//미사용 코드 조회
+function unusedCodePop(){
+	var form = items['C106000050_Form_1'];
+	var searchCode = form.getItemValue("CLR_SUB_MTL_CD_SH");	
+	
+	if(searchCode == null || searchCode == ""){
+		dhtmlx.alert('1글자 이상 입력하세요.');
+		return;
+	}
+	
+	winObj = new ui.window("popup","미사용 코드 찾기","0","0","800","700","C106000050pop08.jsp?CLR_SUB_MTL_CD_SH="+searchCode); 
+	winObj.setButtonDisable("park,minmax1");
+	winObj.setModal();
+
+	winObj.getDhxWindow().attachEvent("onClose", function(win){
+			this.hide();
+			return true;
+			//winObj.unload();
+	});
+}
+
+//popup으로부터 넘겨받은 값 item에 세팅
+function masterSetValue(value1,formId){
+	items[formId].setItemValue('CLR_SUB_MTL_CD_SH',value1);
+	
+    var gridDhxObj = items['C106000050_Grid_1'].getDhxGrid();	   
+    //gridDhxObj.setEditable(true); //grid rock(C106000050_Grid_1.xml의 setEditable이 false)
+	items['C106000050_Grid_1'].addRow(); //행추가
+	gridDhxObj.setCellExcellType(gridDhxObj.getRowId(0), 1, "ed"); // 컬러코드 ed로 변경	
+	
+//    	var colorCode = gridObj.getColIndexById("CLR_SUB_MTL_CD");   	      		
+    items['C106000050_Grid_1'].getDhxGrid().cells(gridDhxObj.getRowId(0),1).setValue(value1);	
+}
+
+
+
+
+
+
 //]]>
 </script>
 </head>

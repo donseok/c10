@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000050pop08 Page 쿼리파일"> 
+	 <query id="C106000050pop08.select" desc="C106000050pop08 미사용 코드 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+WITH ALPHABET AS (
+    SELECT CHR(ASCII('A') + LEVEL - 1) AS LETTER
+    FROM DUAL
+    CONNECT BY LEVEL <= 26
+),
+NUMBERS AS (
+    SELECT LPAD(LEVEL - 1, 4, '0') AS NUM
+    FROM DUAL
+    WHERE MOD(LEVEL - 1, 10) = 0
+    CONNECT BY LEVEL <= 10000
+),
+CODES AS (
+    SELECT LETTER || NUM AS UNUSED_CODE
+    FROM ALPHABET, NUMBERS
+)
+SELECT /* C106000050pop08 미사용 코드 조회 C106000050pop08.select SJS */ 
+		C.UNUSED_CODE
+FROM CODES C
+WHERE C.UNUSED_CODE NOT IN (SELECT CLR_SUB_MTL_CD
+                            FROM TB_C10_CLR_CD_MNG
+                            WHERE CLR_SUB_MTL_CD LIKE :CLR_SUB_MTL_CD_SH ||'%')
+AND C.UNUSED_CODE LIKE :CLR_SUB_MTL_CD_SH ||'%'
+		 ]]> 
+	 </query>
+	 
+	 <query id="C106000050pop08.select2" desc="C106000050pop08 미사용 코드 조회2" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+WITH ALPHABET AS (
+    SELECT CHR(ASCII('A') + LEVEL - 1) AS LETTER
+    FROM DUAL
+    CONNECT BY LEVEL <= 26
+),
+NUMBERS AS (
+    SELECT LPAD(LEVEL - 1, 4, '0') AS NUM
+    FROM DUAL
+    CONNECT BY LEVEL <= 10000
+),
+CODES AS (
+    SELECT LETTER || NUM AS UNUSED_CODE
+    FROM ALPHABET, NUMBERS
+)
+SELECT /* C106000050pop08 미사용 코드 조회2 C106000050pop08.select SJS */ 
+		C.UNUSED_CODE
+FROM CODES C
+WHERE C.UNUSED_CODE NOT IN (SELECT CLR_SUB_MTL_CD
+                            FROM TB_C10_CLR_CD_MNG
+                            WHERE CLR_SUB_MTL_CD LIKE :CLR_SUB_MTL_CD_SH ||'%')
+AND C.UNUSED_CODE LIKE :CLR_SUB_MTL_CD_SH ||'%'
+		 ]]> 
+	 </query>	 
+</queryMap>

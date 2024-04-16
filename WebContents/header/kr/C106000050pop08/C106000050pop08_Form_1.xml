@@ -1,0 +1,17 @@
+<items>
+	<item background-color="255,128,128" type="block">
+		<item foreground-color="255,140,50" offset="2" type="newcolumn"/>
+		<item inputWidth="60" label="칼라코드" name="CLR_SUB_MTL_CD_SH" type="input"/>
+		
+		<item foreground-color="255,140,50" offset="20" type="newcolumn"/>
+		<item label="4자리" name="DISITS" position="label-right" type="radio" value="1" checked="true"/>
+		<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+		<item label="5자리" name="DISITS" position="label-right" type="radio" value="2" />		
+		<item foreground-color="255,140,50" offset="20" type="newcolumn"/>		
+		<item command="find" label="조회" name="find" type="button" value="조회"/> 
+		<item foreground-color="255,140,50" offset="1" type="newcolumn"/>
+		<item command="choice" label="선택" name="choice" type="button" value="선택"/> 
+		<item foreground-color="255,140,50" offset="1" type="newcolumn"/>		
+		<item type="button" label="닫기" name="winClose" value="닫기" command="winClose"/>
+	</item>
+</items>
