@@ -114,10 +114,14 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
         		
         //String[] RGS_PRS_ID = null;
         String[] LAST_UPDATED_OBJECT_ID = null; 
+        //2024.04.26 생산Lamina, 생상UGS필름 전송시 필요 컬럼 추가
+        String[] PNT_FLM_THK = null;
+        String[] LMN_KND_TP = null;
         
         int idx = 0;
         int nRELULT = 0;
 		int dmlCnt = 0;
+		int fmesIF = 0;
         
         try
         {
@@ -169,6 +173,10 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
             	COST_STM_FILE1 = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("COST_STM_FILE1"));
             	 
             	LAST_UPDATED_OBJECT_ID = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("LAST_UPDATED_OBJECT_ID"));
+            	
+            	//2024.04.26 생산Lamina, 생상UGS필름 전송시 필요 컬럼 추가
+            	PNT_FLM_THK = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PNT_FLM_THK"));
+            	LMN_KND_TP = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("LMN_KND_TP"));
             	
             	param = new PosParameter();
                 param.setNamedParamter( "CLR_SUB_MTL_CD", CLR_SUB_MTL_CD );
@@ -253,10 +261,25 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                 	param.setNamedParamter("LAST_UPDATED_OBJECT_TYPE", audit.getObjectType());
                 	//Audit 값이 안들어가서 임의로 추가해봄
                 	
+                	//2024.04.26 생산Lamina, 생상UGS필름 전송시 필요 컬럼 추가 
+                	param.setNamedParamter( "PNT_FLM_THK", PNT_FLM_THK );
+                	param.setNamedParamter( "LMN_KND_TP", LMN_KND_TP );
+                	
+                	
                     param.setAuditAttributes( audit );  
                     
                 	nRELULT = eaidao.insert( C10ConstantsIF.IFB10S0130_INSERT, param );
                     logger.logDebug( C10ConstantsIF.IFB10S0130_INSERT ); 
+                    
+                    // 2024.04.25 생산Lamina, 생산UGS필름 FMES로 I/F 전송
+                    
+            		logger.logDebug("SUB_MTL_TP : "+ SUB_MTL_TP[i] );
+                    if(SUB_MTL_TP[i].equals("S40") || SUB_MTL_TP[i].equals("S49")){
+                    	fmesIF = eaidao.insert( C10ConstantsIF.IFB10S0150_INSERT, param );
+                        logger.logDebug( C10ConstantsIF.IFB10S0150_INSERT ); 
+                    }
+                    
+                    
                 }
                 
 

@@ -40,6 +40,7 @@ public class C10ConstantsIF
     public static final java.lang.String C106000050_SELECT = "C106000050.DetailSendSelec";
     public static final java.lang.String IFB10S1010_INSERT = "IFB10S1010.insert";
     public static final java.lang.String IFB10S0130_INSERT = "IFB10S0130.insert";
+    public static final java.lang.String IFB10S0150_INSERT = "IFB10S0150.insert";
     public static final java.lang.String C106000050_erp_snd_update = "C106000050.erp_snd_update";
     public static final String C106000080POP01_INSERT 	= "C106000080pop01.insert";
     public static final String C106000080POP01_DELETE 	= "C106000080pop01.delete";

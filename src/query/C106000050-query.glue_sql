@@ -1816,4 +1816,67 @@ SELECT /* C10 칼라코드관리- 구매,생산UGS 조회 C106000050.colorselect
 ORDER BY A.RGS_DH
 		 ]]> 
 	 </query>
+	 <query id="IFB10S0150.insert" desc="" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /* C10 부재료 정보(FMES) 전송 IF TB_C10_B10S0150.insert 서재섭*/
+            TB_C10_B10S0150
+            (
+                  IF_GRP_ID
+                 ,SEQ_NO   
+                 ,XSEQ       
+                 ,XCRUD  
+                 ,XSTAT
+				 ,XMSGS
+				 ,XDATE
+				 ,XTIME
+				 ,XSTAT_CALLBACK 
+				 ,ERP_IF_GRP_ID
+				 ,ERP_SEQ_NO
+				 ,CLR_SUB_MTL_CD
+				 ,CLR_NM
+				 ,FILM_WTH
+				 ,FILM_THK
+				 ,SUB_MTL_TP
+				 ,LMN_KND_TP
+				 ,USE_YN 
+                 ,CREATED_OBJECT_TYPE         
+                 ,CREATED_OBJECT_ID        
+                 ,CREATED_PROGRAM_ID      
+                 ,CREATION_TIMESTAMP     
+                 ,LAST_UPDATED_OBJECT_TYPE
+                 ,LAST_UPDATED_OBJECT_ID  
+                 ,LAST_UPDATE_PROGRAM_ID  
+                 ,LAST_UPDATE_TIMESTAMP     
+            )
+VALUES
+            (
+              :IF_GRP_ID,
+              SQ_C10_B10S0150.NEXTVAL,
+	          '1',
+              'C',
+              'R',
+			  :XMSGS,
+			  :XDATE,
+			  :XTIME,
+			  :XSTAT_CALLBACK,
+			  :ERP_IF_GRP_ID,
+			  :ERP_SEQ_NO,
+			  :CLR_SUB_MTL_CD,
+			  :CLR_NM,
+			  '',
+			  DECODE(:SUB_MTL_TP,'S40',:PNT_FLM_THK,:PTT_FLM_THK_NM),
+			  :SUB_MTL_TP,
+			  :LMN_KND_TP,
+			  DECODE(:USE_YN,'1','Y','N'),
+              :ObjectType,
+              :ObjectId,
+              :ProgramId,
+              :Timestamp,
+              :ObjectType,
+              :ObjectId,
+              :ProgramId,
+              :Timestamp
+            )
+		 ]]> 
+	 </query>
 </queryMap>
