@@ -19,7 +19,7 @@
 	String file_path = request.getParameter(C10ConstantsIF.FILE_ADR);
 	response.reset();
 	response.setHeader("Content-Type", "application/x-msdownload");
-	String fileName = URLEncoder.encode(file_name, "UTF-8")
+/*	String fileName = URLEncoder.encode(file_name, "UTF-8")
 				.replaceAll("\\+", "%20")
 				.replaceAll("\\%21", "!")
 				.replaceAll("\\%25", "%")
@@ -31,6 +31,22 @@
 				.replaceAll("\\%29", ")");
 	
 	response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ";");
+*/	
+
+	// RFC 5987 인코딩을 사용하여 파일명 설정
+	String encodedFileName = URLEncoder.encode(file_name, "UTF-8")
+	    .replaceAll("\\+", "%20")
+	    .replaceAll("\\%21", "!")
+	    .replaceAll("\\%27", "'")
+	    .replaceAll("\\%28", "(")
+	    .replaceAll("\\%29", ")")
+	    .replaceAll("\\%7E", "~");
+	
+	String contentDisposition = String.format("attachment; filename*=UTF-8''%s", encodedFileName);
+	
+	response.setHeader("Content-Disposition", contentDisposition);
+
+
 		
 	File file = new File(file_path + "/" + file_name);
 	
