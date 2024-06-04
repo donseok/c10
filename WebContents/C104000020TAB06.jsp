@@ -68,6 +68,7 @@ var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":wi
 var fg_grid3_update = "N";
 
 var rmtlKind = "";
+var pltcmLnkTp = "N";
 
 //원재료 두께, 폭 조정 사용자 오류방지
 var redflag1 = 0;
@@ -168,9 +169,13 @@ function save(eventName,formDivObj,referenceItem){
 	//PL ST폭 값을 지울경우 해당 통과공정이 있으면 삭제불가
 	//제조사양의 작업지시 값이 있는지 여부를 확인
 	var gridObj = items['C104000020TAB06_Grid_3'].getDhxGrid();
-	var proc_st0 = gridObj.cellByIndex(0,4).getValue(); //주공정
-	var proc_st1 = gridObj.cellByIndex(0,5).getValue(); //대체공정1
-	var proc_st2 = gridObj.cellByIndex(0,6).getValue(); //대체공정2
+
+// 	var proc_st0 = gridObj.cellByIndex(0,4).getValue(); //주공정
+// 	var proc_st1 = gridObj.cellByIndex(0,5).getValue(); //대체공정1
+// 	var proc_st2 = gridObj.cellByIndex(0,6).getValue(); //대체공정2
+	var proc_st0 = gridObj.cellById(gridObj.getRowId(0),gridObj.getColIndexById("PL_WTH_TRV")).getValue();	//주공정
+	var proc_st1 = gridObj.cellById(gridObj.getRowId(0),gridObj.getColIndexById("PL_WTH_SUB_PROC1_TRV")).getValue();	//대체공정1
+	var proc_st2 = gridObj.cellById(gridObj.getRowId(0),gridObj.getColIndexById("PL_WTH_SUB_PROC2_TRV")).getValue();	//대체공정2
 
 	var param_tmp= "ServiceName=C104000020TAB06-service&CMN_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_EXC_WTH,ORD_SLIT_GRP_CNT";
 	var xmlObj_tmp = uiCommon.ajaxLoadData('c10AjaxData.do',param_tmp);
@@ -280,9 +285,29 @@ function save(eventName,formDivObj,referenceItem){
 				else
 			    {
 					var gridObj1 = items['C104000020TAB06_Grid_3'].getDhxGrid();
-					var row_status1 = gridObj1.getUserData(gridObj1.getRowId(0),"!nativeeditor_status");
+					var row_status1 = gridObj1.getUserData(gridObj1.getRowId(0),"!nativeeditor_status");		
+					
 					if(row_status1 != "" && row_status1 == "updated" )
 			        {
+						
+                        if(pltcmLnkTp = "Y"){
+                            
+                            var PLTCM_SET_THK_LNK_TP;
+                            if(items['C104000020TAB06_Form_1'].getDhxForm().isItemChecked("PLTCM_SET_THK_LNK_TP")){
+                                PLTCM_SET_THK_LNK_TP = "1";
+                            }else{
+                                PLTCM_SET_THK_LNK_TP = "0";
+                            }
+                                                        
+                            var param1= "ServiceName=C104000020TAB06-service&PLTCM_update=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue()+"&PLTCM_SET_THK_LNK_TP="+PLTCM_SET_THK_LNK_TP+ "&column-info=PLTCM_SET_THK_LNK_TP";
+                            var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);                
+                            
+                            var parentForm = parent.items['C104000020_Form_2'];
+                            parentForm.setItemValue("PLTCM_SET_THK_LNK_TP",PLTCM_SET_THK_LNK_TP);
+                            
+                            pltcmLnkTp = "N";
+                        }                        
+						
 					    items['C104000020TAB06_Grid_3'].sendGrid('C104000020TAB06_Grid_3',"MNF_save");
 					    fg_grid3_update = "N";
 			        }
@@ -512,6 +537,7 @@ function onLoadGrid3 (){
 		pltcmedgasgtpCombo.readonly(true,true);
 		pltcmedgasgtpCombo.setOptionHeight(60);				
 	grid.onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent2);
+	
 	items['C104000020TAB06_Grid_3'].getDhxGrid().detachEvent(onXLEGrid3);
 }
 function onGridAfterUpdateFinishEvent2(){
@@ -626,6 +652,10 @@ function deteilFind(rowId,cellIndex){
 		param = parameters12('C104000020_Form_1','C104000020TAB06_Grid_8','C104000020TAB06-service','MSG_find',customparam);
 		xmlObj = uiCommon.ajaxLoadData('verticalGridData.do',param);
 		uiCommon.renderToGrid('C104000020TAB06_Grid_8',xmlObj);	
+		
+		//압연set지정 체크박스 체크용
+		addCheckboxChangeListener(items['C104000020TAB06_Form_1'], 0);				
+		
 		upt_clear();
 }
 function findMessage(referenceItem){	
@@ -1311,6 +1341,51 @@ function onLoadForm4 (){
 
 	items['C104000020TAB06_Form_4'].getDhxForm().detachEvent(onXLEForm4);
 }
+
+
+function addCheckboxChangeListener(form, rowId) {
+	
+	/*
+	var gridObj = items['C104000020TAB05_Grid_2'].getDhxGrid();	
+	formObj = items['C104000020TAB05_Form_1'].getDhxForm();
+	var lnk_tp_chk = items['C104000020TAB05_Grid_2'].getDhxGrid().cellById(gridObj.getRowId(0),gridObj.getColIndexById("PLTCM_SET_THK_LNK_TP")).getValue();	
+	*/	
+	
+	var gridObj = items['C104000020TAB06_Grid_3'].getDhxGrid();	
+	var parentForm = parent.items['C104000020_Form_2'];
+	var lnk_tp_chk = parentForm.getItemValue("PLTCM_SET_THK_LNK_TP");
+	formObj = items['C104000020TAB06_Form_1'].getDhxForm();
+	var checkbox = "0";
+	
+	if(lnk_tp_chk == "1"){
+		checkbox = true;
+		formObj.checkItem("PLTCM_SET_THK_LNK_TP");
+	}else{
+		checkbox = false;
+		formObj.uncheckItem("PLTCM_SET_THK_LNK_TP");
+	}
+	
+    // 초기 체크박스 값 저장
+    var initialCheckboxValue = checkbox;
+    
+    formObj.attachEvent("onChange", function(name, value) {
+        if (name === "PLTCM_SET_THK_LNK_TP") {
+            var currentCheckboxValue = formObj.isItemChecked("PLTCM_SET_THK_LNK_TP");
+
+            // 체크박스 값이 변경되었을 때 그리드의 !nativeeditor_status를 'updated'로 설정
+            if (initialCheckboxValue !== currentCheckboxValue) {
+            	items['C104000020TAB06_Grid_3'].setUpdated(gridObj.getRowId(0),true,"updated");
+            	pltcmLnkTp = "Y";
+            	
+                initialCheckboxValue = currentCheckboxValue; // 초기값 갱신
+            }else{
+            	pltcmLnkTp = "N";
+            }
+        }
+    });        
+}
+
+
 //]]>
 </script>
 </head>

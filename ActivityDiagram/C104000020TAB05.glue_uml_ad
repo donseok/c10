@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="379,23" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="400,660" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.5 //@wire.11 //@wire.13 //@wire.14 //@wire.16 //@wire.19 //@wire.21 //@wire.15 //@wire.22"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="32,102" size="1082,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.7 //@wire.12 //@wire.1 //@wire.17 //@wire.10 //@wire.18 //@wire.20" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="400,660" size="-1,-1" input="//@wire.2 //@wire.3 //@wire.5 //@wire.11 //@wire.13 //@wire.14 //@wire.16 //@wire.19 //@wire.21 //@wire.15 //@wire.22 //@wire.25"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="32,102" size="1082,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.7 //@wire.12 //@wire.1 //@wire.17 //@wire.10 //@wire.18 //@wire.20 //@wire.24" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   원자재, 제조사양, 품질메세지조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   RMT_find는 품질설계-원자재, MNF_find는 품질설계-제조표준&#xD;&#xA;   MSG_find는 품질설계-메세지를 각각 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
   </child>
@@ -77,6 +77,13 @@
     <property key="sqlkey" value="C104000020TAB05.MNF_MDFinsert"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계결과수정이력테이블(TB_C10_QLT_DSN_CHG_HST)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호,주문행번의 수정화면명등을 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
   </child>
+  <child xsi:type="Glue:DinaActivity" id="433711" location="1033,179" size="79,-1" input="//@wire.24" output="//@wire.25" name="압연SET지정">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="isAudit" value="true"/>
+    <property key="sqlkey" value="C104000020TAB05.PLTCM_update"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계결과-제조표준1을 조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;그리드 항목조회&#xD;&#xA;  -   TB_C10_QLT_DSN_RMT(품질설계 - 원자재), TB_C10_QLT_DSN_MNF&#xD;&#xA;(품질설계 - 제조사양), TB_C10_QLT_DSN_MSG(품질설계 - 메세지)&#xD;&#xA;  - 조회조건 품질설계결과Main에서 입력된 주문번호, 주문행번 대하여&#xD;&#xA;    품질설계-원자재, 품질설계-제조사양, 품질설계-메세지 항목을 조회한다.                  "/>
   <wire id="0" guardcondition="success" firstRelativePoint="379,53" lastRelativePoint="379,102">
@@ -134,4 +141,8 @@
   </wire>
   <wire id="12509" guardcondition="success" firstRelativePoint="410,447" lastRelativePoint="410,659"/>
   <wire id="12511" guardcondition="success" firstRelativePoint="413,313" lastRelativePoint="413,417"/>
+  <wire id="14583" guardcondition="PLTCM_update" firstRelativePoint="1075,209" lastRelativePoint="419,668"/>
+  <wire id="14584" guardcondition="success" firstRelativePoint="1075,209" lastRelativePoint="419,668">
+    <bendpoint weight="0.5" firstDimension="3,395" secondDimension="665,-81"/>
+  </wire>
 </Glue:GlueDiagram>

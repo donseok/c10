@@ -563,4 +563,17 @@ VALUES
             )
 		 ]]> 
 	 </query>
+	 <query id="C104000020TAB06.PLTCM_update" desc="C104000020TAB06.PLTCM_update" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계결과-제조표준 압연SET지정 C104000020TAB06.PLTCM_update SJS */  
+C10APUSER.TB_C10_QLT_DSN_CMN
+SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType,
+       LAST_UPDATED_OBJECT_ID = :ObjectId,
+       LAST_UPDATE_PROGRAM_ID = :ProgramId,
+       LAST_UPDATE_TIMESTAMP = :Timestamp,
+       PLTCM_SET_THK_LNK_TP = :PLTCM_SET_THK_LNK_TP
+WHERE ORD_NO = :ORD_NO
+AND ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>	 	 
 </queryMap>
