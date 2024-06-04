@@ -637,7 +637,7 @@ AND ORD_LN= :ORD_LN
 	 <query id="C104000050.selectBsts" desc="품질설계상태 BE인 것들 조회" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
-       DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_CFM
+      DISTINCT DECODE(QLT_DSN_STS_CD,'A','1','E','0','0') QLT_DSN_CFM
       ,A.ORD_NO
       ,A.ORD_LN
       ,A.FNL_CUS_CD || 
