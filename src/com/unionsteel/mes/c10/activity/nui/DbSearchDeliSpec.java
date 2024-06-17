@@ -616,17 +616,37 @@ public class DbSearchDeliSpec extends PosActivity implements C10NuiConstantsIF
                     logger.logDebug( cname + C10STR_COLON + ctx.get( cname ) );
                 } else if ( cname.equals( COL_WTH_TLN_LLV ) || cname.equals( COL_WTH_TLN_ULV ) )
                 {
-                    // 폭공차의 경우 상하한값 둘다 없으면 규격사양 적용
-                    if ( DbCommonUtil.isNull( ctx.get( COL_WTH_TLN_LLV ) ) && 
-                            DbCommonUtil.isNull( ctx.get( COL_WTH_TLN_ULV ) ) )
-                    {
-                        ctx.put( COL_WTH_TLN_LLV, 
+                	logger.logDebug("PRD_NM_CD : " +ctx.get( COL_PRD_NM_CD ));
+                	// 20240613 김재용 차장 요청, 품명 E,C,D의 경우 보증사양 인수도 폭공차는 고객사양과 규격사양중 더 작은 값이 보증사양이 될 수 있도록 변경
+                	if(ctx.get( COL_PRD_NM_CD ).equals("E") || ctx.get( COL_PRD_NM_CD ).equals("C") || ctx.get( COL_PRD_NM_CD ).equals("D")){
+                		
+                		// 하한값은 기존과 동일하게 적용 
+                		ctx.put( COL_WTH_TLN_LLV, 
                                 DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_LLV ), 
                                         row2.getAttribute( COL_WTH_TLN_LLV ), true ) );
-                        ctx.put( COL_WTH_TLN_ULV, 
-                                DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_ULV ), 
-                                        row2.getAttribute( COL_WTH_TLN_ULV ), true ) );
-                    }
+                		// 상한값은 고객사양과 규격사양중 더 작은 값이 보증사양이 되도록 변경                		                		
+                        double num1 = Double.parseDouble(ctx.get( COL_WTH_TLN_ULV ).toString());
+                        double num2 = Double.parseDouble(row2.getAttribute( COL_WTH_TLN_ULV ).toString());                                                                      
+                        double lowerNum = Math.min(num1, num2);
+                        String lowerStr = String.valueOf(lowerNum);                		
+                		
+                        ctx.put( COL_WTH_TLN_ULV, lowerStr);            
+                        logger.logDebug("품명 E,C,D일 경우 폭공차 상한값은 더 작은 값으로 : "+lowerStr);
+                	}else{
+                		
+                		// 폭공차의 경우 상하한값 둘다 없으면 규격사양 적용
+                        if ( DbCommonUtil.isNull( ctx.get( COL_WTH_TLN_LLV ) ) && 
+                                DbCommonUtil.isNull( ctx.get( COL_WTH_TLN_ULV ) ) )
+                        {
+                            ctx.put( COL_WTH_TLN_LLV, 
+                                    DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_LLV ), 
+                                            row2.getAttribute( COL_WTH_TLN_LLV ), true ) );
+                            ctx.put( COL_WTH_TLN_ULV, 
+                                    DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_ULV ), 
+                                            row2.getAttribute( COL_WTH_TLN_ULV ), true ) );
+                        }                		
+                		                		
+                	}                    
                     logger.logDebug( cname + C10STR_COLON + ctx.get( cname ) );
                 } else if ( cname.equals( COL_LTH_TLN_LLV ) || cname.equals( COL_LTH_TLN_ULV ) )
                 {

@@ -257,7 +257,8 @@ SET
     CUS_REQ_ROL_THK = '',	--고객요청압연두께
     THK_COR_UNT = '', --두께보정단위
     PRD_THK_CAL_APL_CD = '', --제품두께계산적용코드
-    QLT_DSN_ERR_YN = '' --품질설계에러여부
+    QLT_DSN_ERR_YN = '', --품질설계에러여부
+    PLTCM_SET_THK_LNK_TP = '' --압연Set지정체크해제
 WHERE QLT_DSN_STS_CD = 'J'
 		 ]]> 
 	 </query>
