@@ -31,10 +31,10 @@
         <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
     </item>
     <item type="block">
-        <item command="ok" inputLeft="110" inputTop="5" name="ok" position="absolute" type="button" value="설계확정"/>
+        <item command="ok" inputLeft="125" inputTop="5" name="ok" position="absolute" type="button" value="설계확정"/>
         <item offset="20" type="newcolumn"/>
-        <item command="openCdUsg" inputLeft="220" inputTop="5" name="openCdUsg" position="absolute" type="button" value="코드사용"/>
+        <item command="openCdUsg" inputLeft="215" inputTop="5" name="openCdUsg" position="absolute" type="button" value="코드사용"/>
         <item offset="20" type="newcolumn"/>
-        <item command="cancel" inputLeft="330" inputTop="5" name="cancel" position="absolute" type="button" value="통과공정"/>        
+        <item command="cancel" inputLeft="325" inputTop="5" name="cancel" position="absolute" type="button" value="통과공정"/>        
     </item>
 </items>
