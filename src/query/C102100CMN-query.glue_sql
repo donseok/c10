@@ -56,7 +56,8 @@ ORD_NO,ORD_LN,QLT_DSN_STS_CD,PLNT_TP,PRD_NM_CD,PRD_SHP,FLOW_CHL
 ,RMTL_GRD,CRM_MNF_STD_NO,PAS_PROC_NO,ACPT_RT_SPC,ORD_END_TP
 ,ORD_END_DD,ORD_END_PRS_ID,QLT_DSN_CFM_DH,QLT_DSN_CFM_PRS_ID
 ,QLT_RDSN_DH,QLT_RDSN_PRS_ID,QLT_DSN_ERR_YN,ORD_DSN_CFM_TP
-,LTH_MNG_YN,LTH_MNG_FROM,LTH_MNG_TO,BORON_ADD_YN, ORD_REP_YN, ORD_REP_NO, ORD_REP_LN                         
+,LTH_MNG_YN,LTH_MNG_FROM,LTH_MNG_TO,BORON_ADD_YN, ORD_REP_YN, ORD_REP_NO, ORD_REP_LN
+,PRJ_QLT_MNG_YN                         
  FROM TB_C10_QLT_DSN_CMN                                            
 WHERE ORD_NO = ?
 AND   ORD_LN = ?
@@ -196,6 +197,7 @@ TB_C10_QLT_DSN_CMN (
     ,POC_AUTO_YN            --임가공자동설계구분
     ,POC_CGL_YN             --CGL임가공구분
     ,POC_CCL_YN             --CCL임가공구분
+    ,PRJ_QLT_MNG_YN			--Project품질관리여부
     ,CREATED_OBJECT_TYPE       --생성OBJECT유형  
     ,CREATED_OBJECT_ID         --생성OBJECTID    
     ,CREATED_PROGRAM_ID        --생성프로그램ID  
@@ -229,7 +231,7 @@ VALUES(
 ,?,?,?,?,?
 ,?,?,?,?,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
 ,?,?,?,?,?,?
-,?,?,?,?,?,?,?,?,DECODE(?,'X','Y','N'),?,DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N')
+,?,?,?,?,?,?,?,?,DECODE(?,'X','Y','N'),?,DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N'),DECODE(?,'X','Y','N'),?
 ,?,?,?,?
 ,?,?,?,?
 )
@@ -517,21 +519,22 @@ TB_C10_QLT_DSN_CMN (
 							,TAG_HUE_BAK	            --Tag색상후면
 							,TAG_SPC_MRK	            --Tag특수마킹형태
 							,RMTL_PRFR_CD		          --원자재선호도
-                                                 ,QLT_DSN_YN               --주문SkinPass지정구분
-                                                 ,TAG_PO_NO2               --P/O번호 TAG2
-                                                 ,CTR_SHPM_MN            --계약선적월
-                                                 ,SVC_CRD_PUB_YN        --서비스카드발행여부
-                                                 ,PAK_MSG_CD              --포장메세지코드
-                                                 ,ORD_TEM_GRP_CD       --영업그룹코드
-                                                 ,QLT_DSN_END_DH            --품질설계완료일시
+                            ,QLT_DSN_YN               --주문SkinPass지정구분
+                            ,TAG_PO_NO2               --P/O번호 TAG2
+                            ,CTR_SHPM_MN            --계약선적월
+                            ,SVC_CRD_PUB_YN        --서비스카드발행여부
+                            ,PAK_MSG_CD              --포장메세지코드
+                            ,ORD_TEM_GRP_CD       --영업그룹코드
+                            ,QLT_DSN_END_DH            --품질설계완료일시
 							,QLT_DSN_INST_DH		          --품질설계지시일시
-                                                 ,PTT_FLM_NOT_ADH_WS	          --보호필름미부착폭
-                                                 ,PTT_FLM_NOT_ADH_DS             --보호필름미부착폭
-                                                 ,TAG_PART_NO                          --TagPartNo
-                                                 ,MO_CVT_ORD_YN                     --MO전환주문여부
-                                                 ,MTL_PRD_ORD_YN                    --소재생산주문여부
-                                                 ,QLT_DSN_CFM_DH                    --품질설계확정일시
-                                                 ,QLT_DSN_CFM_PRS_ID               --품질설계확정자ID
+							,PTT_FLM_NOT_ADH_WS	          --보호필름미부착폭
+							,PTT_FLM_NOT_ADH_DS             --보호필름미부착폭
+							,TAG_PART_NO                          --TagPartNo
+							,MO_CVT_ORD_YN                     --MO전환주문여부
+							,MTL_PRD_ORD_YN                    --소재생산주문여부
+							,QLT_DSN_CFM_DH                    --품질설계확정일시
+							,QLT_DSN_CFM_PRS_ID               --품질설계확정자ID
+                            ,PRJ_QLT_MNG_YN			   --Project품질관리여부                    
 							,CREATED_OBJECT_TYPE       --생성OBJECT유형  
 							,CREATED_OBJECT_ID         --생성OBJECTID    
 							,CREATED_PROGRAM_ID        --생성프로그램ID  
@@ -567,6 +570,7 @@ VALUES(
 ,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS')
 ,?,?,?,?,?
 ,TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS'),'YYYYMMDDHH24MISS'),'SYSTEM'
+,?
 ,?,?,?,?
 ,?,?,?,?
 )

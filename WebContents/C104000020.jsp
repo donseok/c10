@@ -39,6 +39,11 @@
 </script>
 <script src="./js/c10.ui.js" type="text/javascript">
 </script>
+<style>
+    .red-checkbox {
+        color: red !important;
+    }
+</style>
 <script type="text/javascript">
 <!--
 //<![CDATA[
@@ -67,9 +72,12 @@ function find(eventName){
 		return; 
 	}else{
 		var findUrl = uiCommon.parameters6('C104000020_Form_1','C104000020_Form_2',eventName);
-		items['C104000020_Form_2'].loadData(findUrl,findMessage); 
-		items["C104000020_Tabbar_1"].activeTabFrame().contentWindow.find(eventName);     
-	}
+		items['C104000020_Form_2'].loadData(findUrl,findMessage);
+// 		prjQltChk();
+		items["C104000020_Tabbar_1"].activeTabFrame().contentWindow.find(eventName);
+	
+	}	
+	
 }
 function tag_popup(){
  //var grid = items['C105000010_Grid_1'];
@@ -183,16 +191,24 @@ function save(eventName,formDivObj,referenceItem){
     			return;
     		}
   		}
-  
+  		
 		//위탁임가공의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2023.11.08 김태성부장요청)
-		var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
+        var trst_proc_yn = form.getItemValue("TRST_PROC_YN");
 		if(trst_proc_yn == "Y"){
 
 			winObj = new ui.window("popup","위탁임가공 주문 설계 확정","0","0","349","174","C104000020POP03.jsp");
 			winObj.setButtonDisable("park,minmax1");
 
 			trst_proc_chk = "Y";
-  		}
+  		}		
+		
+		//프로젝트 수주건의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2024.06.24 김태성부장요청)
+		var prj_yn = form2.getItemValue("PRJ_YN");
+		if(prj_yn == "X"){
+
+			winObj = new ui.window("popup","Project 주문","0","0","600","400","C104000020POP04.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
+			winObj.setButtonDisable("park,minmax1");
+  		}		
 		
 		//로그인한 설계원과 설계내용 수정한 설계원이 동일한 경우 설계확정이 안되게 체크한다 (2023.2.7 이상현차장 요청)
 		if(prd_nm_cd == "G" || prd_nm_cd == "L" || prd_nm_cd == "V" || prd_nm_cd == "W"){
@@ -209,7 +225,7 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		}
 		
-		if(trst_proc_chk != "Y")
+		if(trst_proc_chk != "Y" && prj_yn != "X")
 		{
 			dhtmlx.confirm({
 				title:"[[ 설계확정 ]]",
@@ -458,6 +474,9 @@ function findMessage(referenceItem){
  setTrstProcYn();
  //품질협정서 여부 확인
  setQltYn();
+ //프로젝트수주여부 확인
+ prjQltChk();
+ 
  uiCommon.progressOff(parent);
  
  return true;
@@ -526,6 +545,7 @@ function onFormLoadEvent2(){
 //품질협정서 여부 확인
  setQltYn();
  readOnlyItemBackEvent('C104000020_Form_2');
+
  return true;  
 }
 function onChange(id,value){
@@ -683,6 +703,32 @@ function onTabLoadEvent() {
 function closeProgressBar() {
  uiCommon.progressOff(parent);
 }
+
+//20240625 프로젝트 수주건 체크박스
+function prjQltChk(){
+	
+	 var form = items['C104000020_Form_2'];
+	 var prj_yn = form.getDhxForm().getItemValue("PRJ_YN");
+	 
+	 if(prj_yn == "X"){
+		 form.getDhxForm().checkItem("PRJ_QLT_MNG_YN");		 
+// 		 form.getDhxForm().disableItem("PRJ_QLT_MNG_YN");
+		 
+		 document.getElementById("PRJ_QLT_MNG_YN").style.color = "red";
+	 	 document.getElementById("PRJ_QLT_MNG_YN").style.fontWeight = "bold";
+	 	 form.getDhxForm().setReadonly("PRJ_QLT_MNG_YN",true);
+		 
+	 }else{
+		 form.getDhxForm().uncheckItem("PRJ_QLT_MNG_YN");
+// 		 form.getDhxForm().enableItem("PRJ_QLT_MNG_YN");
+		 
+		 document.getElementById("PRJ_QLT_MNG_YN").style.color = "black";
+	 	 document.getElementById("PRJ_QLT_MNG_YN").style.fontWeight = "400";	
+	 	 form.getDhxForm().setReadonly("PRJ_QLT_MNG_YN",true);
+	 } 						
+	
+}
+
 //]]>
 -->
 </script>

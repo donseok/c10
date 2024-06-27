@@ -1763,6 +1763,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString();  원본
             	
             	colValue[2] = Double.toString(Double.parseDouble(ctx.get(COL_PLTCM_WTH_TRV).toString())+20);
+            	ctx.put(COL_PLTCM_WTH_TRV, colValue[2]);
             	
             	logger.logDebug( "C10B1071 + 20mm: " + colValue[2]  );
             }else{
