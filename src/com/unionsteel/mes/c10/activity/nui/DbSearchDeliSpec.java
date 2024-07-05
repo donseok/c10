@@ -624,14 +624,27 @@ public class DbSearchDeliSpec extends PosActivity implements C10NuiConstantsIF
                 		ctx.put( COL_WTH_TLN_LLV, 
                                 DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_LLV ), 
                                         row2.getAttribute( COL_WTH_TLN_LLV ), true ) );
-                		// 상한값은 고객사양과 규격사양중 더 작은 값이 보증사양이 되도록 변경                		                		
-                        double num1 = Double.parseDouble(ctx.get( COL_WTH_TLN_ULV ).toString());
-                        double num2 = Double.parseDouble(row2.getAttribute( COL_WTH_TLN_ULV ).toString());                                                                      
-                        double lowerNum = Math.min(num1, num2);
-                        String lowerStr = String.valueOf(lowerNum);                		
                 		
-                        ctx.put( COL_WTH_TLN_ULV, lowerStr);            
-                        logger.logDebug("품명 E,C,D일 경우 폭공차 상한값은 더 작은 값으로 : "+lowerStr);
+                		// 둘 중 하나라도 NULL이 있다면
+                		if(DbCommonUtil.isNull(ctx.get(COL_WTH_TLN_ULV)) || DbCommonUtil.isNull(row2.getAttribute( COL_WTH_TLN_ULV))
+                		){
+                			
+                            ctx.put( COL_WTH_TLN_ULV, 
+                                    DbCommonUtil.numCompare( ctx.get( COL_WTH_TLN_ULV ), 
+	                                    row2.getAttribute( COL_WTH_TLN_ULV ), true ) );                			
+                            
+                		}else{
+	                		// 상한값은 고객사양과 규격사양중 더 작은 값이 보증사양이 되도록 변경                		                		
+	                        double num1 = Double.parseDouble(ctx.get( COL_WTH_TLN_ULV ).toString());
+	                        double num2 = Double.parseDouble(row2.getAttribute( COL_WTH_TLN_ULV ).toString());      
+	                        
+	                        double lowerNum = Math.min(num1, num2);
+	                        String lowerStr = String.valueOf(lowerNum);                		
+	                		
+	                        ctx.put( COL_WTH_TLN_ULV, lowerStr);            
+	                        logger.logDebug("품명 E,C,D일 경우 폭공차 상한값은 더 작은 값으로 : "+lowerStr);
+                        
+                		}
                 	}else{
                 		
                 		// 폭공차의 경우 상하한값 둘다 없으면 규격사양 적용
