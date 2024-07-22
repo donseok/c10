@@ -19,7 +19,7 @@
     <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
     <property key="bind-result" value="RK_SEARCH"/>
     <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
-    <property key="param-count" value="23"/>
+    <property key="param-count" value="24"/>
     <property key="param0" value="ORD_NO|ORD_NO"/>
     <property key="param1" value="ORD_LN|ORD_LN"/>
     <property key="param2" value="PRD_NM_CD|PRD_NM_CD"/>
@@ -43,6 +43,7 @@
     <property key="param20" value="WTH_TLN_ULV|WTH_TLN_ULV"/>
     <property key="param21" value="ORD_WTH_MNG_CD|ORD_WTH_MNG_CD"/>
     <property key="param22" value="TRST_PROC_YN|TRST_PROC_YN"/>
+    <property key="param23" value="ORD_SPNL_TP|ORD_SPNL_TP"/>
     <property key="description" value="이 Activity는 품질설계상태코드='J'인 주문정보를&#xD;&#xA;주문번호, 주문행번에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
   </child>
   <child xsi:type="Glue:Activity" id="50091" location="203,30" size="145,-1" input="//@wire.4" output="//@wire.3" name="COMMIT">
