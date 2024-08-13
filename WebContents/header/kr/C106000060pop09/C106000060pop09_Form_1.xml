@@ -1,0 +1,21 @@
+<items>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item format="doLink" label="&lt;span style=font-size:16px;color:red;font-weight:bold;margin-left:40px;&gt;※ [주의] 광택차 20% 초과 광얼룩 예상&lt;/span&gt;" name="Wax" position="label-center" type="template"/>
+        <item format="doLink" label="&lt;div style=margin-top:8px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />        
+        <item format="doLink" label="&lt;span style=color:black;font-weight:bold;&gt;TOP / BACK 광택을 확인하세요.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-center" type="template"/>
+        <item format="doLink" label="&lt;span style=color:black;font-weight:bold;&gt;고객-영업과 협의 후 진행하세요.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-center" type="template"/>
+    </item>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />        
+		<item name="TOP" type="template" style="color: black;font-weight:bold;" />
+		<item name="BACK" type="template" style="color: black;font-weight:bold;" />
+		<item name="DIFF" type="template" style="color: black;font-weight:bold;" />
+    </item>
+    <item type="block">
+        <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
+<!--         <item command="ok" inputLeft="70" inputTop="5" name="ok" position="absolute" type="button" value="확인"/> -->
+        <item command="cancel" inputLeft="170" inputTop="5" name="cancel" position="absolute" type="button" value="닫기"/>
+    </item>
+</items>
