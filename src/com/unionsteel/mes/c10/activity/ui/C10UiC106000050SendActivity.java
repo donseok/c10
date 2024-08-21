@@ -188,6 +188,8 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                 
                 param.setWhereClauseParameter( 0, CLR_SUB_MTL_CD );
                 PosRowSet rowset = mesdao.find( C10ConstantsIF.C106000050_SELECT , param );
+                
+                PosRowSet sendRowset = mesdao.find( C10ConstantsIF.IFB10S0150_CHECK , param );
                
                 logger.logDebug( C10ConstantsIF.SELECT_COUNT + rowset.count() );
                 if ( rowset.count() == 0 )
@@ -272,9 +274,16 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                     logger.logDebug( C10ConstantsIF.IFB10S0130_INSERT ); 
                     
                     // 2024.04.25 생산Lamina, 생산UGS필름 FMES로 I/F 전송
-                    
-            		logger.logDebug("SUB_MTL_TP : "+ SUB_MTL_TP[i] );
                     if(SUB_MTL_TP[i].equals("S40") || SUB_MTL_TP[i].equals("S49")){
+                    	
+                    	if(sendRowset.count() == 0){
+                    		param.setNamedParamter( "XCRUD", "C");
+                    	}else{
+                    		param.setNamedParamter( "XCRUD", "U");
+                    		param.setNamedParamter( "PNT_FLM_THK", "");
+                    	}
+                    	
+                    	
                     	fmesIF = eaidao.insert( C10ConstantsIF.IFB10S0150_INSERT, param );
                         logger.logDebug( C10ConstantsIF.IFB10S0150_INSERT ); 
                     }

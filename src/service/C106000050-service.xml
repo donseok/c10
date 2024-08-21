@@ -56,8 +56,8 @@
   </activity>
   <activity name="Lamina Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C106000050.colorselect2" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="수지_MTC NOTE 편집기준 Check" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -81,10 +81,15 @@
     <property name="isAudit" value="true" />
     <property name="update-sql" value="C106000050.clrMngMdf_log" />
   </activity>
-  <activity name="UGS Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+  <activity name="칼라코드 FMES 송신이력 확인" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="IFB10S0150.check" />
+  </activity>
+  <activity name="UGS Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050.colorselect3" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="엑셀출력" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -139,6 +144,7 @@
     <transition name="compAjaxFind" value="도료사Find" />
     <transition name="find2" value="Lamina Total Find" />
     <transition name="find3" value="UGS Total Find" />
+    <transition name="sendChk" value="칼라코드 FMES 송신이력 확인" />
   </activity>
 </service>
 

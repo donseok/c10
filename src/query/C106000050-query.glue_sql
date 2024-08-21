@@ -1853,7 +1853,7 @@ VALUES
               :IF_GRP_ID,
               SQ_C10_B10S0150.NEXTVAL,
 	          '1',
-              'C',
+              :XCRUD,
               'R',
 			  :XMSGS,
 			  :XDATE,
@@ -1879,4 +1879,12 @@ VALUES
             )
 		 ]]> 
 	 </query>
+	 
+	 <query id="IFB10S0150.check" desc="" isNamed="true">
+		 <![CDATA[  
+SELECT * /* C10 부재료 정보(FMES) 전송이력 체크 IF TB_C10_B10S0150.check SJS */
+FROM EAIAPUSER.TB_C10_B10S0150
+WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>	 
 </queryMap>
