@@ -31,6 +31,11 @@
     <property name="sqlkey" value="C106000060.UtPntCdSelect" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="칼라물성 전송2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="ERP전송일시UPDATE2" />
+    <property name="insert-sql" value="C106000060.interFaceColor2" />
+    <property name="dao" value="eaidao" />
+  </activity>
   <activity name="colorDetailFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000060.colorSelect" />
@@ -45,6 +50,12 @@
   <activity name="colNmFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000060.colorName" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="물성_IU_Log2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C106000060.colorInfo_IU_Log_Insert2" />
+    <property name="isAudit" value="true" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="칼라물성변경" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
@@ -74,6 +85,13 @@
     <property name="sqlkey" value="C106000060.cclBomInfoSelect" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="customInsert2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="칼라물성추가2" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C106000060.cclBomInfoInsert" />
+    <property name="delete-sql" value="C106000060.cclBomInfoDelete" />
+    <property name="update-sql" value="C106000060.cclBomInfoUpdate" />
+  </activity>
   <activity name="Event_Router" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="colorAjaxFind" value="colorAjaxFind" />
     <transition name="save" value="신뢰성 시험등록" />
@@ -90,6 +108,7 @@
     <transition name="utPntCDFind" value="utPntCDFind" />
     <transition name="excelExport" value="엑셀출력" />
     <transition name="colNm" value="colNmFind" />
+    <transition name="saveAll" value="신뢰성 시험등록2" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <transaction-manager id="tx2" commit="true" />
@@ -129,6 +148,11 @@
   <activity name="IF_GRP_ID생성2" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
     <transition name="success" value="LoopRouter2" />
   </activity>
+  <activity name="ERP전송일시UPDATE2" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="물성_IU_Log2" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000060.clr_snd_update" />
+  </activity>
   <activity name="물성_D_Log" class="com.poscoict.glue.biz.dhtmlx.form.FormInsert">
     <transition name="success" value="LoopRouter2" />
     <property name="isAudit" value="true" />
@@ -139,6 +163,11 @@
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000060.cusCdAjaxSelect" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="칼라물성추가2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="칼라물성 전송2" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C106000060.colorInfoInsert2" />
   </activity>
   <activity name="ERP전송일Update" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
     <transition name="success" value="LoopRouter" />
@@ -151,6 +180,11 @@
   <activity name="colorAjaxFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000060.colorAjaxSelect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="신뢰성 시험등록2" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="customInsert2" />
+    <property name="sqlkey" value="C106000060.tru_tst_Insert" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="CCL-BOM전송" class="com.poscoict.glue.biz.dhtmlx.form.FormInsert">

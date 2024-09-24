@@ -2625,4 +2625,259 @@ where MAIN_PROC_CD = :MAIN_PROC_CD
 and ROWNUM = 1
 		 ]]> 
 	 </query>
+	 <query id="C106000060.mprSelect" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT * /*+ 칼라 물성 조회 C106000060.mprSelect SJS */   
+FROM C10APUSER.TB_C10_CLR_MPR
+WHERE CCL_BOM_NO = :ORG_CCL_BOM_NO
+AND CUS_CD = :CUS_CD
+AND ORD_USG_CD = :ORD_USG_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000060.saveall" desc="C106000060.saveall" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C106000060  CCL_BOM전체저장 C106000060.saveall SJS */ 
+INTO C10APUSER.TB_C10_CCL_BOM	 
+(   
+         CCL_BOM_NO,--CCLBOM번호
+         CREATED_OBJECT_TYPE,
+		CREATED_OBJECT_ID,
+		CREATED_PROGRAM_ID,
+		CREATION_TIMESTAMP,
+		LAST_UPDATED_OBJECT_TYPE,
+		LAST_UPDATED_OBJECT_ID,
+		LAST_UPDATE_PROGRAM_ID,
+		LAST_UPDATE_TIMESTAMP
+)
+VALUES
+(
+	:CCL_BOM_NO,
+    :ObjectType,--ObjectType
+    :ObjectId,--ObjectId
+    :ProgramId,--ProgramId
+    :Timestamp,--Timestamp
+    :ObjectType,--ObjectType
+    :ObjectId,--ObjectId
+    :ProgramId,--ProgramId
+    :Timestamp--Timestamp
+)
+		 ]]> 
+	 </query>
+	 
+	 <query id="C106000060.colorInfoInsert2" desc="C106000060.colorInfoInsert2" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민균*/TB_C10_CLR_MPR(
+    CCL_BOM_NO,--CCLBOM번호
+    CUS_CD,--고객사코드
+    ORD_USG_CD,--주문용도코드
+    PTT_FLM_DTL_CD,--보호필름상세코드
+    PTT_FLM_DTL_CD_N,--구보호필름상세코드
+    UNI_GLS_FLM_CD,--UGS필름
+    PTT_FLM_MNG_ADH_TXT, --보호필름 관리 점착력
+    CLR_DIF_FRN_LLV,--색차전면하한값
+    CLR_DIF_FRN_ULV,--색차전면상한값
+    CLR_DIF_BAK_LLV,--색차후면하한값
+    CLR_DIF_BAK_ULV,--색차후면상한값
+    MPR_BAS_PNCL_HRDN_FRN,--물성기준연필경도전면
+    MPR_BAS_PNCL_HRDN_BAK,--물성기준연필경도후면
+    MPR_BAS_MEK_FRN,--물성기준MEK전면
+    MPR_BAS_MEK_BAK,--물성기준MEK후면
+    CLR_BND_TST_FRN_STD_CD,--칼라Bending전면기준코드
+    CLR_BND_TST_FRN_GRD_PNT,--칼라Bending시험전면평점
+    CLR_BND_TST_BAK_STD_CD,--칼라Bending후면기준코드
+    CLR_BND_TST_BAK_GRD_PNT,--칼라Bending시험후면평점
+    PTT_FLM_ADH_LLV,--보호필름점착력하한
+    PTT_FLM_ADH_ULV,--보호필름점착력상한
+    CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    KEY_WRD1,--키워드1
+    KEY_WRD2,--키워드2
+    KEY_WRD3,--키워드3
+    KEY_WRD4,--키워드4
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CCL_BOM_NO,--CCLBOM번호
+    :CUS_CD,--고객사코드
+    :ORD_USG_CD,--주문용도코드
+    :COPY_PTT_FLM_DTL_CD,--보호필름상세코드
+    :PTT_FLM_DTL_CD_N,--구보호필름상세코드
+    :UNI_GLS_FLM_CD,--UGS필름
+    :PTT_FLM_MNG_ADH_TXT, --보호필름 관리 점착력
+    :CLR_DIF_FRN_LLV,--색차전면하한값
+    :CLR_DIF_FRN_ULV,--색차전면상한값
+    :CLR_DIF_BAK_LLV,--색차후면하한값
+    :CLR_DIF_BAK_ULV,--색차후면상한값
+    :MPR_BAS_PNCL_HRDN_FRN,--물성기준연필경도전면
+    :MPR_BAS_PNCL_HRDN_BAK,--물성기준연필경도후면
+    :MPR_BAS_MEK_FRN,--물성기준MEK전면
+    :MPR_BAS_MEK_BAK,--물성기준MEK후면
+    :CLR_BND_TST_FRN_STD_CD,--칼라Bending전면기준코드
+    :CLR_BND_TST_FRN_GRD_PNT,--칼라Bending시험전면평점
+    :CLR_BND_TST_BAK_STD_CD,--칼라Bending후면기준코드
+    :CLR_BND_TST_BAK_GRD_PNT,--칼라Bending시험후면평점
+    :PTT_FLM_ADH_LLV,--보호필름점착력하한
+    :PTT_FLM_ADH_ULV,--보호필름점착력상한
+    :CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    :KEY_WRD1,--키워드1
+    :KEY_WRD2,--키워드2
+    :KEY_WRD3,--키워드3
+    :KEY_WRD4,--키워드4
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp
+)
+		 ]]> 
+	 </query>	 
+	 <query id="C106000060.interFaceColor2" desc="C106000060.interFaceColor2" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C10 품질설계 CCL-BOM관리 C106000060.interFaceColor2  이민균  */   
+INTO TB_C10_B10S0120
+(
+      IF_GRP_ID                                         --인터페이스그룹아이디
+    , SEQ_NO                                            --인터페이스 SEQ
+    , XSEQ                                              --PI Sequence Key Value
+    , XCRUD                                             --PI Data 유형
+    , XSTAT                                             --처리상태 
+    , XDATE                                             --응답날짜
+    , XTIME                                             --응답시간
+    , CCL_BOM_NO                                        --CCLBOM번호
+    , CUS_CD                                            --고객사코드
+    , ORD_USG_CD                                        --주문용도코드
+    , PTT_FLM_DTL_CD                                    --보호필름상세코드
+    , PTT_FLM_PRD_ADH_NM                                --보호필름제품점착력명
+    , PTT_FLM_THK_NM                                    --보호필름두께명
+    , PTT_FLM_MQL_NM                                    --보호필름재질명
+    , UNI_GLS_FLM_CD                                    --UniGls필름코드    
+    , CCL_QLT_MSG_TXT                                   --품질메시지
+    , CREATED_OBJECT_TYPE                               --생성Object유형
+    , CREATED_OBJECT_ID                                 --생성ObjectID 
+    , CREATED_PROGRAM_ID                                --생성프로그램ID
+    , CREATION_TIMESTAMP                                --생성일시 
+    , LAST_UPDATED_OBJECT_TYPE                          --최종변경Object유형
+    , LAST_UPDATED_OBJECT_ID                            --최종변경ObjectID 
+    , LAST_UPDATE_PROGRAM_ID                            --최종변경프로그램ID
+    , LAST_UPDATE_TIMESTAMP                             --최종변경일시
+)
+VALUES
+(
+     TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS')			--인터페이스그룹아이디
+    , SQ_C10_B10S0120.NEXTVAL                           --인터페이스 SEQ
+    , '1'                                               --PI Sequence Key Value
+    , 'C'                                               --PI Data 유형
+    , 'R'                                               --처리상태
+    , SUBSTR(TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS'), 1, 8)                          --응답날짜
+    , SUBSTR(TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISSSSS'), 9, 6)                          --응답시간
+    , :CCL_BOM_NO                                       --CCLBOM번호
+    , :CUS_CD                                           --고객사코드
+    , :ORD_USG_CD                                       --주문용도코드
+    , :COPY_PTT_FLM_DTL_CD                                   --보호필름상세코드
+    , :PTT_FLM_PRD_ADH_CD_NM_MASTER                     --보호필름제품점착력명
+    , :PTT_FLM_THK_CD_NM_MASTER                         --보호필름두께명
+    , :PTT_FLM_MQL_CD_NM_MASTER                         --보호필름재질명
+    , :UNI_GLS_FLM_CD                                   --UNIGLS필름코드   
+    , :CCL_QLT_MSG_TXT                                  --품질메시지
+    , :ObjectType                                       --생성Object유형
+    , :ObjectId                                         --생성ObjectID 
+    , :ProgramId                                        --생성프로그램ID
+    , :Timestamp                                        --생성일시 
+    , :ObjectType                                       --최종변경Object유형
+    , :ObjectId                                         --최종변경ObjectID 
+    , :ProgramId                                        --최종변경프로그램ID
+    , :Timestamp                                        --최종변경일시 
+)
+		 ]]> 
+	 </query>	 
+	 <query id="C106000060.colorInfo_IU_Log_Insert2" desc="C106000060.colorInfo_IU_Log_Insert2" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfo_IU_Log_Insert2 이민균*/ TB_C10_CLR_MPR_MDF_LOG(
+    CCL_BOM_NO,--CCLBOM번호
+    CUS_CD,--고객사코드
+    ORD_USG_CD,--주문용도코드
+    MDF_SEQ, --수정 Seq
+    MDF_RSN, --수정 사유
+    PTT_FLM_DTL_CD,--보호필름상세코드
+    PTT_FLM_DTL_CD_N,--구보호필름상세코드
+    UNI_GLS_FLM_CD,--UGS필름
+    PTT_FLM_MNG_ADH_TXT, --보호필름 관리 점착력
+    CLR_DIF_FRN_LLV,--색차전면하한값
+    CLR_DIF_FRN_ULV,--색차전면상한값
+    CLR_DIF_BAK_LLV,--색차후면하한값
+    CLR_DIF_BAK_ULV,--색차후면상한값
+    MPR_BAS_PNCL_HRDN_FRN,--물성기준연필경도전면
+    MPR_BAS_PNCL_HRDN_BAK,--물성기준연필경도후면
+    MPR_BAS_MEK_FRN,--물성기준MEK전면
+    MPR_BAS_MEK_BAK,--물성기준MEK후면
+    CLR_BND_TST_FRN_STD_CD,--칼라Bending전면기준코드
+    CLR_BND_TST_FRN_GRD_PNT,--칼라Bending시험전면평점
+    CLR_BND_TST_BAK_STD_CD,--칼라Bending후면기준코드
+    CLR_BND_TST_BAK_GRD_PNT,--칼라Bending시험후면평점
+    PTT_FLM_ADH_LLV,--보호필름점착력하한
+    PTT_FLM_ADH_ULV,--보호필름점착력상한
+    CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+)VALUES(
+    :CCL_BOM_NO,--CCLBOM번호
+    :CUS_CD,--고객사코드
+    :ORD_USG_CD,--주문용도코드
+    nvl((select max(mdf_seq)+1 from TB_C10_CLR_MPR_MDF_LOG where CCL_BOM_NO = :CCL_BOM_NO and CUS_CD = :CUS_CD and ORD_USG_CD = :ORD_USG_CD),0), --수정 Seq No
+    :ORG_CCL_BOM_NO || '에서 복사', -- 수정 사유
+    :COPY_PTT_FLM_DTL_CD,--보호필름상세코드
+    :PTT_FLM_DTL_CD_N,--구보호필름상세코드
+    :UNI_GLS_FLM_CD,--UGS필름
+    :PTT_FLM_MNG_ADH_TXT, --보호필름 관리 점착력
+    :CLR_DIF_FRN_LLV,--색차전면하한값
+    :CLR_DIF_FRN_ULV,--색차전면상한값
+    :CLR_DIF_BAK_LLV,--색차후면하한값
+    :CLR_DIF_BAK_ULV,--색차후면상한값
+    :MPR_BAS_PNCL_HRDN_FRN,--물성기준연필경도전면
+    :MPR_BAS_PNCL_HRDN_BAK,--물성기준연필경도후면
+    :MPR_BAS_MEK_FRN,--물성기준MEK전면
+    :MPR_BAS_MEK_BAK,--물성기준MEK후면
+    :CLR_BND_TST_FRN_STD_CD,--칼라Bending전면기준코드
+    :CLR_BND_TST_FRN_GRD_PNT,--칼라Bending시험전면평점
+    :CLR_BND_TST_BAK_STD_CD,--칼라Bending후면기준코드
+    :CLR_BND_TST_BAK_GRD_PNT,--칼라Bending시험후면평점
+    :PTT_FLM_ADH_LLV,--보호필름점착력하한
+    :PTT_FLM_ADH_ULV,--보호필름점착력상한
+    :CCL_QLT_MSG_TXT,--CCL공정품질메시지
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp
+)
+		 ]]> 
+	 </query>	 
+	 <query id="C106000060.clr_snd_update2" desc="칼라물성전송시 ERP전송일시 등록2" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 품질설계 칼라물성전송관리 C106000060.clr_snd_update2 김종범 */ 
+TB_C10_CLR_MPR SET 
+ERP_SND_DH = SYSDATE  --ERP전송일시
+WHERE CCL_BOM_NO = :CCL_BOM_NO
+AND CUS_CD = :CUS_CD --고객사코드
+AND ORD_USG_CD = :ORD_USG_CD --고객사코드
+		 ]]> 
+	 </query>	 
+	 
 </queryMap>

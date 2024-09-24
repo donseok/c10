@@ -3632,4 +3632,14 @@ public interface C10NuiConstantsIF {
     public static final String KEY_COUNT = "keyCount";
 
     public static final String COLUMN_INFO = "column-info";
+    
+    public static final String ARGS = "args";
+    
+    public static final String DELIMITER = "/";
+    
+    public static final String SERVICE_NAME = "ServiceName";
+    
+    public static final String DASH = "-";
+    
+    public static final String EQUAL = "=";
 }

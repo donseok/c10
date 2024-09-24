@@ -15,5 +15,9 @@
 		<item type="button" name="find" value="조회" command="find" disabled="true"/>
 		<item type="newcolumn" offset="1" />
 		<item type="button" name="winClose" value="닫기" command="winClose"/>
+
+<item inputWidth="40" label="ORG_CCL_BOM_NO" maxLength="10" name="ORG_CCL_BOM_NO" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="CUS_CD" maxLength="10" name="CUS_CD" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="ORD_USG_CD" maxLength="10" name="ORD_USG_CD" readonly="true" type="hidden" labelAlign="right" />		
 	</item>	
 </items>
