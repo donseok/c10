@@ -36,6 +36,7 @@
 <item inputWidth="40" label="FNL_CUS_CD_ORG" maxLength="10" name="FNL_CUS_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="PRD_NM_CD_ORG" maxLength="10" name="PRD_NM_CD_ORG" readonly="true" type="hidden" labelAlign="right" />
 <item inputWidth="40" label="PLTCM_SET_THK_LNK_TP" maxLength="10" name="PLTCM_SET_THK_LNK_TP" readonly="true" type="hidden" labelAlign="right" />
+<item inputWidth="40" label="KISS_CUT_YN" maxLength="10" name="KISS_CUT_YN" readonly="true" type="hidden" labelAlign="right" />
 </item>
 <item type="block" width="961">
 <item inputWidth="150" label="품질수지(T/B)" labelWidth="90" maxLength="100" name="RSN_TP_QT_BR_FRN" readonly="true" type="input" labelAlign="left" />

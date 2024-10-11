@@ -180,6 +180,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         String tm_proc_cd = C10STR_SPACE;
         String ord_coilg_mth = C10STR_SPACE;
         String ord_spnl_tp = C10STR_SPACE;
+        String kiss_cut_yn = C10STR_SPACE;
         double mix_wth = 0;
         double ord_slit_grp_cnt = 0;
         double ord_mix_wth1 = 0;
@@ -272,7 +273,9 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_COILG_MTH ) ) )
         	ord_coilg_mth = (String) ctx.get( COL_ORD_COILG_MTH );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
-            ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
+            kiss_cut_yn = (String) ctx.get( COL_ORD_SPNL_TP );
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_KISS_CUT_YN ) ) )
+        	kiss_cut_yn = (String) ctx.get( COL_KISS_CUT_YN );        
 
         //폭조합 중 가장 작은것으로 저장(정전공정추가기준 조건용)
         if ( ord_slit_grp_cnt > 0 ){
@@ -1194,6 +1197,33 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         logger.logDebug( "check 15 ccl_proc_cd2   : " + ccl_proc_cd2 );
         logger.logDebug( "check 15 ccl_proc_cd3   : " + ccl_proc_cd3 );
         
+//        logger.logDebug( "===KISS CUTTING=== ");
+//        logger.logDebug( "===KISS CUTTING : === "+kiss_cut_yn);
+        
+        //2024.10.10 박재행 부장 요청 KISS CUTTING건 6I공정 추가(설계원이 일단 알림만 띄워달라고 함)
+//        if(kiss_cut_yn.equals(C10STR_YES)){
+//        	
+//        	add_seq++;
+//            proc_seq = Integer.parseInt( row.getAttribute( COL_PROC_SEQ ).toString() ) + add_seq;
+//            //
+//            ctx.put( COL_PROC_SEQ, proc_seq );
+//            ctx.put( COL_MAIN_PROC_CD, PROC_CD_INS_SHL ); //6I공정
+//            ctx.put( COL_SUB_PROC_CD1, C10STR_SPACE );
+//            ctx.put( COL_SUB_PROC_CD2, C10STR_SPACE );
+//            ctx.put( COL_SUB_PROC_CD3, C10STR_SPACE );
+//            ctx.put( COL_SUB_PROC_CD4, C10STR_SPACE );
+//            ctx.put( COL_SUB_PROC_CD5, C10STR_SPACE );
+//            ctx.put( COL_SUB_PROC_CD6, C10STR_SPACE );
+//             ctx.put( COL_SEM_PROD_MTL_CD, sem_prod_mtl_cd );
+//            if ( !InsProc( dao, ctx ) ){
+//                ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_TB08 );
+//                ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//                return PosBizControlConstants.FAILURE;
+//            }        	
+//        	
+//        }
+        
+        
         return PosBizControlConstants.SUCCESS;
     }
 
@@ -1332,7 +1362,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         param.setValueParamter( 7, ctx.get( COL_SEM_PROD_MTL_CD ) );
         param.setAuditAttributes( audit );
         */
-        
+    	
         //테스트소스
     	PosAuditAttributes audit = ctx.getAuditAttribute();
         PosParameter param = new PosParameter(); // MD View param

@@ -309,7 +309,8 @@ SELECT  /*+ C10 품질설계결과-공통 C104000020TAB01.select 박재영 */
           DECODE(TRST_PROC_YN,'N',NULL,TRST_PROC_YN) AS TRST_PROC_YN,
           DEF_RED_TXT,
           PPR_RNG_PORD_TXT,
-          PE_FOAM_TXT 
+          PE_FOAM_TXT,
+          KISS_CUT_YN
    FROM C10APUSER.TB_C10_QLT_DSN_CMN A
 WHERE  ORD_NO = :ORD_NO
 AND   ORD_LN = :ORD_LN

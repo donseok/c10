@@ -220,10 +220,12 @@
 <item inputWidth="70" label="반복주문번호" labelWidth="120" name="ORD_REP_NO" readonly="true" type="input" labelAlign="right" style="text-align:left" />
 <item offset="2" type="newcolumn"/>
 <item inputWidth="25" label="" labelWidth="120" name="ORD_REP_LN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
-<item offset="91" type="newcolumn"/>
-<item inputWidth="30" label="위탁임가공여부" labelWidth="120" name="TRST_PROC_YN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="53" type="newcolumn"/>
+<item inputWidth="15" label="위탁임가공여부" labelWidth="90" name="TRST_PROC_YN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
 <item offset="5" type="newcolumn"/>
-<item inputWidth="50" label="PE-FOAM" labelWidth="68" name="PE_FOAM_TXT" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item inputWidth="15" label="KISS CUTTING" labelWidth="90" name="KISS_CUT_YN" readonly="true" type="input" labelAlign="right" style="text-align:left" />
+<item offset="6" type="newcolumn"/>
+<item inputWidth="20" label="PE-FOAM" labelWidth="58" name="PE_FOAM_TXT" readonly="true" type="input" labelAlign="right" style="text-align:left" />
 <item offset="25" type="newcolumn"/>
 <item inputWidth="100" label="설계확정자연락" labelWidth="120" name="HND_PHN_NO" readonly="true" type="input" labelAlign="right" />
 </item>

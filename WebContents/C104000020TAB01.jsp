@@ -166,6 +166,8 @@ function findMessage(referenceItem){
 	    } else {
 			uiFormObj.getDhxForm().getInput("ORD_PAK_UNT_WGT_ULV").style.color="black";
 		}
+       	
+// 		kis_cut_popup();	
 
     }
 	return true;
@@ -180,6 +182,7 @@ function onFormLoad(){
 	backspaceOff("C104000020TAB01_Form_1");
 	items['C104000020TAB01_Form_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
 	items['C104000020TAB01_Form_1'].getDhxForm().detachEvent(_onXLE);
+	
 	return false; 
 }
 function onSelectTab(id, lastId){ 
@@ -193,6 +196,7 @@ function onAfterUpdateFinishEvent(){
 	 items['C104000020TAB01_Form_1'].getDhxForm().resetDataProcessor("updated");
 	var findUrl = uiCommon.parameters3('C104000020_Form_1','C104000020TAB01_Form_1',"find"); 
 	 items['C104000020TAB01_Form_1'].loadData(findUrl,findMessage); 
+	 
 }
 
 function backSpaceNotEvent(e){ 
@@ -207,6 +211,20 @@ function backSpaceNotEvent(e){
 		}
 	}	
 }
+
+// function kis_cut_popup(){
+// 	 var form = items['C104000020TAB01_Form_1'];
+// 	 var kisCutYn = form.getDhxForm().getItemValue("KISS_CUT_YN");
+	
+// 	if(kisCutYn == "Y"){
+		
+// 		dhtmlx.alert("해당 주문은<span style='color:red;font-size:13px'> KISS CUTTING </span>건입니다. <br><br> 업무에 참고하시기 바랍니다.");
+// 		return;
+// 	}
+	 
+// }
+
+
 //]]>
 
 </script>

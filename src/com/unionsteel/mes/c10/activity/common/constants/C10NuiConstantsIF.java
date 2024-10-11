@@ -253,6 +253,7 @@ public interface C10NuiConstantsIF {
     public static final String PROC_CD_WJ_CGL = "8O";
     public static final String PROC_CD_WJ_R_S = "7O";
     public static final String PROC_CD_WJ_SHL = "6O";
+    public static final String PROC_CD_INS_SHL = "6I";
     public static final String PROC_CD_3ARP = "3A";
     public static final String PROC_CD_2R_Shop = "2R";
     public static final String PROC_CD_1R_Shop = "1R";
@@ -3049,6 +3050,8 @@ public interface C10NuiConstantsIF {
     
     /** 폭보정치 */
     public static final String COL_WTH_COR_VAL = "WTH_COR_VAL";
+    /** KISS CUTTING 여부 */
+    public static final String COL_KISS_CUT_YN = "KISS_CUT_YN";    
     
     // 단순구조View컬럼
     public static final String COL_MDL_DEFINE_NM = "MDL_DEFINE_NM";

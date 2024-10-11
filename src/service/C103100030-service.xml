@@ -73,7 +73,7 @@
     <property name="param2" value="RMTL_CD|RMTL_CD" />
     <property name="param3" value="ORD_EXC_THK|ORD_EXC_THK" />
     <property name="param4" value="ORD_EXC_WTH|ORD_EXC_WTH" />
-    <property name="param-count" value="37" />
+    <property name="param-count" value="38" />
     <property name="param5" value="PRD_NM_CD|PRD_NM_CD" />
     <property name="param6" value="PRD_SHP|PRD_SHP" />
     <property name="param7" value="MTL_CD|MTL_CD" />
@@ -86,6 +86,7 @@
     <property name="param34" value="LUS_RT_CD_FRN|LUS_RT_CD_FRN" />
     <property name="param35" value="CCL_BOM_NO|CCL_BOM_NO" />
     <property name="param36" value="ORD_COILG_MTH|ORD_COILG_MTH" />
+    <property name="param37" value="KISS_CUT_YN|KISS_CUT_YN" />
     <property name="param10" value="ORD_COIL_IDIA|ORD_COIL_IDIA" />
     <property name="param11" value="ORD_SLV_KND_TP|ORD_SLV_KND_TP" />
     <property name="param12" value="ORD_SUR_HND_CD|ORD_SUR_HND_CD" />

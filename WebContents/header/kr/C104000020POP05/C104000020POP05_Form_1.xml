@@ -1,0 +1,33 @@
+<items>
+    <item type="block">
+        <item offset="20" type="newcolumn"/>
+        <item format="doLink" label="&lt;span style=font-size:16px;color:red;font-weight:bold;margin-left:134px;&gt;※ [주의] KISS CUTTING 주문입니다.&lt;/span&gt;" name="Wax" position="label-center" type="template"/>
+        <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />        
+        <item format="doLink" label="&lt;span style=color:black;font-weight:bold;&gt;통과공정을 확인하세요.&lt;/span&gt;" labelWidth="265" name="Wax" position="label-center" type="template"/>
+    </item>
+    <item type="block">
+        <item format="doLink" label="&lt;div style=margin-top:10px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
+    </item>    
+    <item type="block">
+    	<item offset="20" type="newcolumn"/>
+    	<item name="PROC" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC1" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC2" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC3" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC4" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC5" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC6" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC7" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC8" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC9" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC10" type="template" style="color: black;font-weight:bold;" />
+    </item>            
+    <item type="block">
+        <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />
+    </item>
+    <item type="block">
+        <item command="ok" inputLeft="125" inputTop="5" name="ok" position="absolute" type="button" value="설계확정"/>
+        <item offset="20" type="newcolumn"/>
+        <item command="cancel" inputLeft="325" inputTop="5" name="cancel" position="absolute" type="button" value="통과공정"/>        
+    </item>
+</items>

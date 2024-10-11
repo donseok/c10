@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020POP05 Page 쿼리파일"> 
+	 <query id="C104000020POP05.selectProc" desc="C104000020POP05 통과공정 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 KISS CUTTING-통과공정 C104000020POP04.selectproc SJS */ 
+    MAX(CASE WHEN rn = 1 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD1,
+    MAX(CASE WHEN rn = 2 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD2,
+    MAX(CASE WHEN rn = 3 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD3,
+    MAX(CASE WHEN rn = 4 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD4,
+    MAX(CASE WHEN rn = 5 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD5,
+    MAX(CASE WHEN rn = 6 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD6,
+    MAX(CASE WHEN rn = 7 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD7,
+    MAX(CASE WHEN rn = 8 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD8,
+    MAX(CASE WHEN rn = 9 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD9,
+    MAX(CASE WHEN rn = 10 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD10                 
+FROM (
+    SELECT 
+        MAIN_PROC_CD,
+        ROW_NUMBER() OVER (ORDER BY PROC_SEQ) AS rn
+    FROM C10APUSER.TB_C10_QLT_DSN_PROC
+    WHERE ORD_NO = :ORD_NO
+    AND ORD_LN = :ORD_LN
+)
+		 ]]> 
+	 </query>
+</queryMap>

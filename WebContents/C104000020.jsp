@@ -202,14 +202,6 @@ function save(eventName,formDivObj,referenceItem){
 			trst_proc_chk = "Y";
   		}		
 		
-		//프로젝트 수주건의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2024.06.24 김태성부장요청)
-		var prj_yn = form2.getItemValue("PRJ_YN");
-		if(prj_yn == "X"){
-
-			winObj = new ui.window("popup","Project 주문","0","0","600","400","C104000020POP04.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
-			winObj.setButtonDisable("park,minmax1");
-  		}		
-		
 		//로그인한 설계원과 설계내용 수정한 설계원이 동일한 경우 설계확정이 안되게 체크한다 (2023.2.7 이상현차장 요청)
 		if(prd_nm_cd == "G" || prd_nm_cd == "L" || prd_nm_cd == "V" || prd_nm_cd == "W"){
 			param= "ServiceName=C104000020-service&MOD_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=LAST_UPDATED_OBJECT_ID";
@@ -225,7 +217,23 @@ function save(eventName,formDivObj,referenceItem){
 			}
 		}
 		
-		if(trst_proc_chk != "Y" && prj_yn != "X")
+		//프로젝트 수주건의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2024.06.24 김태성부장요청)
+		var prj_yn = form2.getItemValue("PRJ_YN");
+		if(prj_yn == "X"){
+
+			winObj = new ui.window("popup","Project 주문","0","0","600","400","C104000020POP04.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
+			winObj.setButtonDisable("park,minmax1");
+  		}		
+		
+		//KISS CUTTING건의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2024.10.10 박재행부장요청)
+		var kiss_cut_yn = form2.getItemValue("KISS_CUT_YN");
+		if(kiss_cut_yn == "Y"){
+
+			winObj = new ui.window("popup","KISS CUTTING 주문","0","0","600","400","C104000020POP05.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
+			winObj.setButtonDisable("park,minmax1");
+  		}			
+		
+		if(trst_proc_chk != "Y" && prj_yn != "X" && kiss_cut_yn != "Y")
 		{
 			dhtmlx.confirm({
 				title:"[[ 설계확정 ]]",
