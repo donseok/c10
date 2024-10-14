@@ -775,10 +775,28 @@ function send(eventName,formDivObj,referenceItem){
 				dhtmlx.alert("선택한 행의 컬러코드값이 없습니다. 입력해주세요.");
 				return;			
 			}
+
 			if((!isNull(grid.getCellValue(rowIdArray[i],1))) &&( grid.getCellValue(rowIdArray[i],1).substring(0,3).toUpperCase() == "ZZZ" || grid.getCellValue(rowIdArray[i],3).substring(0,3).toUpperCase() == "ZZZ")){
 				dhtmlx.alert("선택한 행의 컬러코드값이나 부재료구분값이 ZZZ인 경우 전송할 수 없습니다.");
 				return;
 			}
+			
+			if(byteCount(grid.getCellValue(rowIdArray[i],2)) > 40){
+				dhtmlx.alert("선택한 행의 색상명의 <br>글자수가 초과하였습니다. <br><br>40byte 이하로 입력해주세요. <br> 현재 : "+byteCount(grid.getCellValue(rowIdArray[i],2))+" byte");
+				return;			
+			}						
+			
+			if(byteCount(grid.getCellValue(rowIdArray[i],7)) > 40){
+				dhtmlx.alert("선택한 행의 구매수지타입의 <br>글자수가 초과하였습니다. <br><br>40byte 이하로 입력해주세요. <br> 현재 : "+byteCount(grid.getCellValue(rowIdArray[i],7))+" byte");
+				return;			
+			}			
+			
+			if(byteCount(grid.getCellValue(rowIdArray[i],83)) > 40){
+				dhtmlx.alert("선택한 행의 품질수지타입의 <br>글자수가 초과하였습니다. <br><br>40byte 이하로 입력해주세요. <br> 현재 : "+byteCount(grid.getCellValue(rowIdArray[i],83))+" byte");
+				return;			
+			}	
+			
+			
 			grid.setUpdated(rowIdArray[i],true,"updated"); 
 		}	 
 		dhtmlx.confirm({
@@ -2309,9 +2327,23 @@ function masterSetValue(value1,formId){
     items['C106000050_Grid_1'].getDhxGrid().cells(gridDhxObj.getRowId(0),1).setValue(value1);	
 }
 
-
-
-
+//byte 계산
+function byteCount(str) {
+	  let count = 0;
+	  for (let i = 0; i < str.length; i++) {
+	    let charCode = str.charCodeAt(i);
+	    if (charCode <= 0x7f) {
+	      count += 1;
+	    } else if (charCode <= 0x7ff) {
+	      count += 2;
+	    } else if (charCode <= 0xffff) {
+	      count += 3;
+	    } else {
+	      count += 4;
+	    }
+	  }
+	  return count;
+	}
 
 
 //]]>
