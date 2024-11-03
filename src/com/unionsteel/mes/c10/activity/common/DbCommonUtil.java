@@ -11,6 +11,8 @@
  */
 package com.unionsteel.mes.c10.activity.common;
 
+import java.math.BigDecimal;
+
 import com.posdata.glue.dao.vo.PosRow;
 import com.posdata.glue.dao.vo.PosRowSet;
 import com.unionsteel.mes.c10.activity.common.constants.C10NuiConstantsIF;
@@ -338,22 +340,25 @@ public class DbCommonUtil implements C10NuiConstantsIF
             value1 = Double.toString( PLTCM_THK_TRV ).substring( 0, IDX );
             value2 = Double.toString( PLTCM_THK_TRV ).substring( IDX + 1, 
                     Double.toString( PLTCM_THK_TRV ).length() );
+            
             if ( value2.length() > 2 )
             {
                 if ( value2.substring( 2, 3 ).equals( NUM1 ) || 
                         value2.substring( 2, 3 ).equals( NUM2 ) )
-                    result = Double.parseDouble( value1 + C10STR_DOT + 
-                            value2.substring( 0, 2 ) + NUM0 );
+                    result = Double.parseDouble( value1 + C10STR_DOT + value2.substring( 0, 2 ) + NUM0 );
                 else if ( value2.substring( 2, 3 ).equals( NUM3 ) 
                         || value2.substring( 2, 3 ).equals( NUM4 ) 
                         || value2.substring( 2, 3 ).equals( NUM6 ) 
                         || value2.substring( 2, 3 ).equals( NUM7 ) )
-                    result = Double.parseDouble( value1 + C10STR_DOT + 
-                            value2.substring( 0, 2 ) + NUM5 );
+                    result = Double.parseDouble( value1 + C10STR_DOT + value2.substring( 0, 2 ) + NUM5 );
                 else if ( value2.substring( 2, 3 ).equals( NUM8 ) 
                         || value2.substring( 2, 3 ).equals( NUM9 ) )
                 {
-                    result = Double.parseDouble(value1 + C10STR_DOT + value2.substring( 0, 2 )) + 0.01;
+                    BigDecimal tmpResult = new BigDecimal(value1 + C10STR_DOT + value2.substring(0, 2));
+                    BigDecimal finalResult = tmpResult.add(new BigDecimal("0.01"));
+                	double resultAsDouble = finalResult.doubleValue();
+                	result = resultAsDouble;
+//                    result = Double.parseDouble(value1 + C10STR_DOT + value2.substring( 0, 2 )) + 0.01;
                 }
             }
         }

@@ -433,6 +433,34 @@ function duplicateCclBom (){
 	}
 	return resultFlag;
 }
+
+function duplicateColorInfo(){
+	var gridObj1 = items['C106000060_Grid_2'].getDhxGrid();
+	var gridObj = items['C106000060_Grid_2'];
+	var grid_cnt1 = gridObj1.getRowsNum();
+	var row_status = "";
+	var code = "";
+	var resultFlag = true;
+	for(var i=0; i< grid_cnt1; i++){
+		row_status = gridObj1.getUserData(gridObj1.getRowId(i),"!nativeeditor_status");
+		if(row_status != "" && row_status == "inserted" ){
+			code = gridObj.getCellByIndexValue(i,0) + gridObj.getCellByIndexValue(i,2);
+			
+			for(var j=0; j< grid_cnt1; j++){
+				if(i!=j){
+					var nextCode = gridObj.getCellByIndexValue(j,0) + gridObj.getCellByIndexValue(j,2);
+					
+					if(code == nextCode){							
+						resultFlag = false;
+						break;
+					}
+				}
+			}
+		}
+	}
+	return resultFlag;
+}
+
 //칼라물성정보 저장
 function save1(eventName,formDivObj,referenceItem){	
 	var gridObj = items['C106000060_Grid_1'];
@@ -448,6 +476,11 @@ function save1(eventName,formDivObj,referenceItem){
 		var cclBomNo = gridObj.getCellValue(gridObj.getRowSelectedId(),0);	
 		if(gridObj2.getRowSelectedId()){
 			var selectedId = gridObj2.getSelectedRowId();
+			
+			if(!duplicateColorInfo()){
+				dhtmlx.alert("중복되는 칼라물성 정보가 있습니다. <br>확인해주세요.");
+				return;			
+			}
 	  	    
 		    if(!(popCompleteYN=="Y")){
 		    	popCompleteYN = "Y";
@@ -3858,19 +3891,26 @@ function saveAll(eventName,formDivObj,referenceItem){
 	grid.setCellValue(grid.getRowSelectedId(),gridObj.getColIndexById("MDF_RSN"),
 	grid2.getDhxGrid().cellById(grid2.getRowSelectedId(),grid2.getDhxGrid().getColIndexById('MDF_RSN')).getValue());		
 
+	if(duplicateCclBom()){
 
-    dhtmlx.confirm({
-		title:"[[ 전체저장 ]]",
-		ok:"저장", cancel:"취소",
-		text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
-		callback:function(val){
-			if(val){
-				items[referenceItem].sendGrid(referenceItem,eventName);		
-				items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
-				return;
+	    dhtmlx.confirm({
+			title:"[[ 전체저장 ]]",
+			ok:"저장", cancel:"취소",
+			text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
+			callback:function(val){
+				if(val){
+					items[referenceItem].sendGrid(referenceItem,eventName);		
+					items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
+					return;
+				}
 			}
-		}
-});
+		});	
+	}else{
+		alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
+		return;			
+	}
+	
+
 	
 }
 

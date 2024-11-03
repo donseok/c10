@@ -625,7 +625,9 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
         if ( prd_nm_cd.equals( PRD_NM_CD_5 ) || prd_nm_cd.equals( PRD_NM_CD_7 ) )
             pltcm_set_thk_trv = ord_exc_thk;
         else
-            pltcm_set_thk_trv = DbCommonUtil.thk_dot( DbCommonUtil.pltcm_x_Ray( pltcm_thk_trv ) );        
+            pltcm_set_thk_trv = DbCommonUtil.thk_dot( DbCommonUtil.pltcm_x_Ray( pltcm_thk_trv ) ); 
+        
+        logger.logDebug( "pltcm_set_thk_trv          : " + pltcm_set_thk_trv );
 
         // 제품두께범위
         ctx.put( COL_PRD_THK_RNG_LLV, prd_thk_rng_llv );
