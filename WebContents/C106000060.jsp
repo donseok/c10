@@ -57,6 +57,7 @@ html,body {
 	width: 90%;
 	height: 90%;
 }
+
 </style>
 <script type="text/javascript"
 	src="./dhtmlx/codebase/glue.ui.bootstrap.js">
@@ -92,8 +93,11 @@ var popCompleteYN   = "N"; //칼라물성 저장 사유 입력여부
 var popCfmRea		= "";	// C106000060pop06 에서 물성 저장 사유.
 var loadForm1_yn = "N"; //화면 열릴때 조회를 위한 Check Flag(F1, G1)
 var loadGrid1_yn = "N";  //화면 열릴때 조회를 위한 Check Flag(F1, G1)
+var useCopy = "N";	//CCL BOM 복사 기능을 사용했는지 구분 Flag
 
 function find(eventName,formDivObj,referenceItem){
+	
+	useCopy = "N";
 	var formObj = items['C106000060_Form_1'].getDhxForm();
 	var form = items['C106000060_Form_1'];
 	var comboList = form.getMasterCombos();
@@ -118,18 +122,40 @@ function find(eventName,formDivObj,referenceItem){
 		var findUrl = uiCommon.parameters(formDivObj,referenceItem,eventName);
 			items[referenceItem].loadData(findUrl,findAfterFunction);		
 			
-			items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
+			// 전체저장 버튼 색깔 다시 disable 색깔로 변경
+// 			var elements = document.querySelectorAll('.dhxlist_obj_dhx_skyblue');		
+// 			var element = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_m');
+// 			element.style.backgroundColor = '#E1E1E1';
+// 			element.style.color = '#B2B2B2';				
 		
 }
-//CCL-BOM정보 저장
+
+
+// 2024.11.12 전체저장과 BOM저장을 구분하기 위해 버튼 분리
 function save(eventName,formDivObj,referenceItem){
+	
+// 	var gridObj2 = items['C106000060_Grid_2'].getDhxGrid();
+	
+	// 복사기능을 눌렀다면, 칼라물성 grid에 하나도 없을 경우
+// 	if(useCopy == "Y" && gridObj2.getRowsNum() != 0){
+	// 복사기능을 눌렀다면 무조건
+	if(useCopy == "Y"){
+ 		saveAll('saveAll',formDivObj,referenceItem);		
+	}else{
+		saveBom(eventName,formDivObj,referenceItem);
+	}	
+	
+}
+
+
+//CCL-BOM정보 저장
+function saveBom(eventName,formDivObj,referenceItem){
+		
 	var gridObj = items['C106000060_Grid_1'].getDhxGrid();
 	var grid = items['C106000060_Grid_1'];
 	var grid4 = items['C106000060_Grid_4'];
 	var grid9 = items['C106000060_Grid_9'];
 		//gridObj.selectRow(0);선택불필요
-		
-	
 		
 	var tmpColorValue = items['C106000060_Grid_3'].getAllColumnValue(0);//색상코드값 여부 확인
 	
@@ -140,7 +166,6 @@ function save(eventName,formDivObj,referenceItem){
 			dhtmlx.alert("색상코드값을 입력해주세요.");
 			return;
 		}
-	
 	
 	//프린트롤No,유니텍스롤No 체크
 	var prtPtnCd = "";
@@ -383,7 +408,6 @@ function save(eventName,formDivObj,referenceItem){
 		}		
 
 	}
-	
 	
 	//상세색상명 강제 업데이트(Grid_1이 인서트, 업데이트의 몸통임!!)
 	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),119,gridObj5.cellByIndex(2,1).getValue());
@@ -735,6 +759,8 @@ function add(referenceItem){
 //menu new row and copy event function
 //CCL-BOM번호 복사
 function copy(referenceItem){
+	
+	useCopy = "Y";
 	var gridDhxObj = items['C106000060_Grid_1'].getDhxGrid();
 	var gridObj = items['C106000060_Grid_1'];
 	var gridObj2 = items['C106000060_Grid_2'];
@@ -767,10 +793,39 @@ function copy(referenceItem){
 		  }
 		}		
 		
-		items['C106000060_Form_2'].getDhxForm().enableItem("saveAll");
-		if(!isNull(gridObj2.getRowSelectedId())){
-		}else{
-		}
+		//전체버튼 활성화 후 기존 버튼 이미지 삭제 후 신규 색깔 부여
+// 		items['C106000060_Form_2'].getDhxForm().enableItem("saveAll");
+// 		items['C106000060_Form_2'].getDhxForm().disableItem("save");
+
+// 		var elements = document.querySelectorAll('.dhxlist_obj_dhx_skyblue');		
+// 		var element = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_m');
+// 		var elementR = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_r');
+// 		var elementL = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_l');
+				
+// 		element.style.backgroundImage = 'none';
+// 		elementR.style.backgroundImage = 'none';
+// 		elementL.style.backgroundImage = 'none';
+// 		element.style.borderRadius = '4px';
+// 		element.style.backgroundColor = '#00FF00';
+// 		element.style.color = '#0000EE';
+// 		element.style.borderWidth = '1px';
+// 		element.style.borderStyle = 'solid';
+// 		element.style.borderColor = 'gray';
+// 		elementR.style.color = '#0000EE';
+// 		elementL.style.color = '#0000EE';
+
+
+// 		document.getElementById("saveAllButton").style.background-color = "#00FF00";
+		
+// 		var formContainer = items['C106000060_Form_2'].getDhxForm().getContainer();
+// 		var saveAllButton = formContainer.querySelector('div.dhx_toolbar_btn[name="saveAll"]');
+		
+// 		var saveAllButton = document.querySelector('[name="saveAll"]');
+		
+// 		if (saveAllButton) {
+// 			saveAllButton.style.backgroundColor = "#00FF00"; // 원하는 배경색
+// 			saveAllButton.style.color = "white"; // 텍스트 색상
+// 		}
 		
 		var customparam = {"CCL_BOM_NO":cellVal};	
 // 		var detailFindUrl = parameters14('C106000060_Grid_1','C106000060_Grid_2','detailFind','basicGridData.do');
@@ -3895,14 +3950,25 @@ function saveAll(eventName,formDivObj,referenceItem){
 
 	    dhtmlx.confirm({
 			title:"[[ 전체저장 ]]",
-			ok:"저장", cancel:"취소",
+			ok:"전체저장", cancel:"취소",
 			text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
 			callback:function(val){
 				if(val){
 					items[referenceItem].sendGrid(referenceItem,eventName);		
-					items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
+// 					items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
+// 					items['C106000060_Form_2'].getDhxForm().enableItem("save");
+										
+					// 전체저장 버튼 색깔 다시 disable 색깔로 변경
+// 					var elements = document.querySelectorAll('.dhxlist_obj_dhx_skyblue');		
+// 					var element = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_m');
+// 					element.style.backgroundColor = '#E1E1E1';
+// 					element.style.color = '#B2B2B2';					
+					
 					return;
 				}
+// 				else{
+// 					saveBom('save',formDivObj,referenceItem);
+// 				}
 			}
 		});	
 	}else{
@@ -3913,6 +3979,35 @@ function saveAll(eventName,formDivObj,referenceItem){
 
 	
 }
+
+
+// function enableCheck(){
+	
+// 	var buttonState = items['C106000060_Form_2'].getDhxForm().isItemEnabled("saveAll");
+	
+// 	if(buttonState){
+		
+// 		element.addEventListener('mouseover', function() {
+// 			  element.style.backgroundColor = '#008E00';
+// 			});
+		
+// 		element.addEventListener('mouseout', function() {
+// 			  element.style.backgroundColor = '#00FF00';
+// 			});			
+		
+// 	}else{
+// 		element.addEventListener('mouseover', function() {
+// 			  element.style.backgroundColor = '#E1E1E1';
+// 			});
+		
+// //			element.style.backgroundColor = '#E1E1E1';
+// //			element.style.color = '#B2B2B2';		
+// 		element.addEventListener('mouseout', function() {
+// 			  element.style.backgroundColor = '#E1E1E1';
+// 			});					
+// 	}
+	
+// }
 
 //]]>
 -->
