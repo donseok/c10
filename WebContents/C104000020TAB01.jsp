@@ -125,6 +125,7 @@ function findMessage(referenceItem){
 	var ORD_SLV_KND_TP = uiFormObj.getDhxForm().getItemValue("ORD_SLV_KND_TP");
 	var ORD_PAK_UNT_WGT_ULV = uiFormObj.getDhxForm().getItemValue("ORD_PAK_UNT_WGT_ULV");
 	var ORD_WTH_MNG_CD = uiFormObj.getDhxForm().getItemValue("ORD_WTH_MNG_CD");
+	var KISS_CUT_YN = uiFormObj.getDhxForm().getItemValue("KISS_CUT_YN");
 
 	
 	if(uiFormObj.getItemValue("messageBox") == "0"){	
@@ -168,6 +169,14 @@ function findMessage(referenceItem){
 		}
        	
 // 		kis_cut_popup();	
+    	
+    	if(KISS_CUT_YN == "Y"){	
+    		uiFormObj.getDhxForm().getInput("KISS_CUT_YN").style.color="red";	     
+    		uiFormObj.getDhxForm().getInput("KISS_CUT_YN").style.fontWeight="bold";	   
+    	}else{
+    		uiFormObj.getDhxForm().getInput("KISS_CUT_YN").style.color="black";	     
+    		uiFormObj.getDhxForm().getInput("KISS_CUT_YN").style.fontWeight="normal";	       		
+    	}
 
     }
 	return true;
@@ -178,7 +187,7 @@ function onFormLoadEvent(){
 function onFormLoad(){ 
 	var findUrl = uiCommon.parameters3('C104000020_Form_1','C104000020TAB01_Form_1',"find"); 
 	items['C104000020TAB01_Form_1'].loadData(findUrl,findMessage); 
-
+	
 	backspaceOff("C104000020TAB01_Form_1");
 	items['C104000020TAB01_Form_1'].onAfterUpdateFinishEvent(onAfterUpdateFinishEvent);
 	items['C104000020TAB01_Form_1'].getDhxForm().detachEvent(_onXLE);

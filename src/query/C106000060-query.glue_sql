@@ -1231,7 +1231,31 @@ SELECT  /* C10 CCL-BOM관리- 색상코드조회 C106000060.colorSelect 이민�
      WHERE CLR_SUB_MTL_CD = HUE_CD_FRN) AS RL_LUS_RT_FRN, --실광택값(전면)
      (SELECT RL_LUS_RT
      FROM TB_C10_CLR_CD_MNG
-     WHERE CLR_SUB_MTL_CD = HUE_CD_BAK) AS RL_LUS_RT_BAK --실광택값(후면)     
+     WHERE CLR_SUB_MTL_CD = HUE_CD_BAK) AS RL_LUS_RT_BAK, --실광택값(후면)
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_FRN_1COT) AS TP_CD_FRN_1COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_FRN_2COT) AS TP_CD_FRN_2COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_FRN_3COT) AS TP_CD_FRN_3COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_FRN_4COT) AS TP_CD_FRN_4COT, --Type유형  	 
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_BAK_1COT) AS TP_CD_BAK_1COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_BAK_2COT) AS TP_CD_BAK_2COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_BAK_3COT) AS TP_CD_BAK_3COT, --Type유형  
+   	 (SELECT DECODE(TP_CD,'2','V','') TP_CD
+ 	 FROM TB_C10_CLR_CD_MNG
+ 	 WHERE CLR_SUB_MTL_CD = HUE_CD_BAK_4COT) AS TP_CD_BAK_4COT --Type유형  
 FROM C10APUSER.TB_C10_CCL_BOM
 WHERE  CCL_BOM_NO = :CCL_BOM_NO
 		 ]]> 
@@ -1258,8 +1282,8 @@ RSN_TP,--수지코드
 FUNC_DECODE('LUS_RT_CD', 'SZ0000', LUS_RT_CD) AS LUS_RT_CD_NM,--광택도코드 NM
 LUS_RT_CD,--광택도코드
 DECODE(DECODE(NVL(TO_CHAR(LUS_RT_LLV), '%'), '%',RPAD(NVL(TO_CHAR(LUS_RT_LLV),' '), 3, ' '), LUS_RT_LLV) || ' - '
-    || DECODE(NVL(TO_CHAR(LUS_RT_ULV), '%'), '%',LPAD(NVL(TO_CHAR(LUS_RT_ULV),' '), 3, ' '), LUS_RT_LLV),'    -    ','',DECODE(NVL(TO_CHAR(LUS_RT_LLV), '%'), '%',RPAD(NVL(TO_CHAR(LUS_RT_LLV),' '), 3, ' '), LUS_RT_LLV) || ' - '
-    || DECODE(NVL(TO_CHAR(LUS_RT_ULV), '%'), '%',LPAD(NVL(TO_CHAR(LUS_RT_ULV),' '), 3, ' '), LUS_RT_LLV)) AS LUS_RT,--광택도
+    || DECODE(NVL(TO_CHAR(LUS_RT_ULV), '%'), '%',LPAD(NVL(TO_CHAR(LUS_RT_ULV),' '), 3, ' '), LUS_RT_ULV),'    -    ','',DECODE(NVL(TO_CHAR(LUS_RT_LLV), '%'), '%',RPAD(NVL(TO_CHAR(LUS_RT_LLV),' '), 3, ' '), LUS_RT_LLV) || ' - '
+    || DECODE(NVL(TO_CHAR(LUS_RT_ULV), '%'), '%',LPAD(NVL(TO_CHAR(LUS_RT_ULV),' '), 3, ' '), LUS_RT_ULV)) AS LUS_RT,--광택도
 WK_VISCO,--작업점도
 PMT,--PMT
 PNT_FLM_THK,--도막두께
@@ -1318,7 +1342,8 @@ PNT_UNT AS LMN_BND_UNT1,--(도료원단위)Lamina접착제원단위1
 CLR_NM, --색상명
 USE_YN, -- 컬러코드사용유무
 TO_CHAR(ERP_SND_DH,'YYYYMMDD') ERP_SND_DH,  -- ERP전송일자
-RL_LUS_RT -- 실광택값
+RL_LUS_RT, -- 실광택값
+DECODE(TP_CD,'2','V','') TP_CD -- Type유형
 FROM TB_C10_CLR_CD_MNG
 WHERE (SUB_MTL_TP = :SUB_MTL_TP1 OR SUB_MTL_TP = :SUB_MTL_TP2 OR SUB_MTL_TP = :SUB_MTL_TP3 
        OR SUB_MTL_TP = :SUB_MTL_TP4 OR SUB_MTL_TP = :SUB_MTL_TP5 OR SUB_MTL_TP = :SUB_MTL_TP6)
@@ -2663,7 +2688,6 @@ VALUES
 )
 		 ]]> 
 	 </query>
-	 
 	 <query id="C106000060.colorInfoInsert2" desc="C106000060.colorInfoInsert2" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민균*/TB_C10_CLR_MPR(
@@ -2738,7 +2762,7 @@ INSERT INTO /* C10 품질설계 CCL-BOM관리 C106000060.colorInfoInsert 이민�
     :Timestamp
 )
 		 ]]> 
-	 </query>	 
+	 </query>
 	 <query id="C106000060.interFaceColor2" desc="C106000060.interFaceColor2" isNamed="true">
 		 <![CDATA[ 
 INSERT /*+ C10 품질설계 CCL-BOM관리 C106000060.interFaceColor2  이민균  */   
@@ -2797,7 +2821,7 @@ VALUES
     , :Timestamp                                        --최종변경일시 
 )
 		 ]]> 
-	 </query>	 
+	 </query>
 	 <query id="C106000060.colorInfo_IU_Log_Insert2" desc="C106000060.colorInfo_IU_Log_Insert2" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfo_IU_Log_Insert2 이민균*/ TB_C10_CLR_MPR_MDF_LOG(
@@ -2868,7 +2892,7 @@ INSERT INTO /*+ C10 품질설계 CCL-BOM관리 C106000060.colorInfo_IU_Log_Inser
     :Timestamp
 )
 		 ]]> 
-	 </query>	 
+	 </query>
 	 <query id="C106000060.clr_snd_update2" desc="칼라물성전송시 ERP전송일시 등록2" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
 UPDATE /*+ C10 품질설계 칼라물성전송관리 C106000060.clr_snd_update2 김종범 */ 
@@ -2878,6 +2902,5 @@ WHERE CCL_BOM_NO = :CCL_BOM_NO
 AND CUS_CD = :CUS_CD --고객사코드
 AND ORD_USG_CD = :ORD_USG_CD --고객사코드
 		 ]]> 
-	 </query>	 
-	 
+	 </query>
 </queryMap>
