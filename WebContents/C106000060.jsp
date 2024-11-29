@@ -2232,7 +2232,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 								return;					
 							}			
 					}
-				}else if(cInd==6){
+				}else if(cInd==7){
+					
 						if(rId == "1"){		
 							pntFlmThkMax = sumColumnTop();
 							items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),9,pntFlmThkMax);//도막두께전면Total	
@@ -2417,7 +2418,7 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 								return;					
 							}
 					}
-				}else if(cInd==6){
+				}else if(cInd==7){
 						if(rId == "1"){		
 							pntFlmThkMax = sumColumnTop();
 							items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),113,nValue);//도막두께Lamina
@@ -3366,13 +3367,13 @@ function sumColumnTop() {
 	var grid3 = items['C106000060_Grid_3'];
     //도막두께전면Total 값설정
 	for(var h=1; h< 5; h++){
-		if(!isNull(grid3.getCellByIndexValue(h,6))){			
-			out = out + parseInt(grid3.getCellByIndexValue(h,6));		
+		if(!isNull(grid3.getCellByIndexValue(h,7))){			
+			out = out + parseInt(grid3.getCellByIndexValue(h,7));		
 		}
 	}
 	//라미나 도막두께유무에 따른 도막두께전면값 설정
-	if(!isNull(grid3.getCellByIndexValue(9,6))){
-		out = out + parseInt(grid3.getCellByIndexValue(9,6));
+	if(!isNull(grid3.getCellByIndexValue(9,7))){
+		out = out + parseInt(grid3.getCellByIndexValue(9,7));
 	}
     return out;
 }
@@ -3381,8 +3382,8 @@ function sumColumnBack() {
 	var grid3 = items['C106000060_Grid_3'];
 	//도막두께후면Total 값설정
 	for(var e=8; e> 4; e--){
-		if(!isNull(grid3.getCellByIndexValue(e,6))){			
-			out = out + parseInt(grid3.getCellByIndexValue(e,6));		
+		if(!isNull(grid3.getCellByIndexValue(e,7))){			
+			out = out + parseInt(grid3.getCellByIndexValue(e,7));		
 		}
 	}
     return out;
