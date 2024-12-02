@@ -273,7 +273,7 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_COILG_MTH ) ) )
         	ord_coilg_mth = (String) ctx.get( COL_ORD_COILG_MTH );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_ORD_SPNL_TP ) ) )
-            kiss_cut_yn = (String) ctx.get( COL_ORD_SPNL_TP );
+            ord_spnl_tp = (String) ctx.get( COL_ORD_SPNL_TP );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_KISS_CUT_YN ) ) )
         	kiss_cut_yn = (String) ctx.get( COL_KISS_CUT_YN );        
 
@@ -461,9 +461,11 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         try{
             // 결과값 잘 가져오는지 확인
             PosDecisionRuleVO result = EasyAccess.getPosDecisionRuleLov( C10B2010, colValue, null );
+            logger.logDebug( "==='통과공정삭제' 기준 적용 공정=== ");            
             result.next(); //여러건인 경우확인
             DEL_PROC.add( result.getRuleValueAt( COL_PROC_CD ) );
-            logger.logDebug( "==='통과공정삭제' 기준 적용 공정=== ");
+            logger.logDebug("삭제 proc_cd   : " + result.getRuleValueAt( COL_PROC_CD ));
+//            logger.logDebug( "==='통과공정삭제' 기준 적용 공정=== ");
             while ( result.next() ){
             	//logger.logDebug( "===CCL BOM PROC CHECK TEST=== ");
                 //logger.logDebug( "check 2 COL_PROC_CD    : " + COL_PROC_CD );

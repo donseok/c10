@@ -212,7 +212,7 @@
 <row id="1">
 <cell id="HUE_CD_FRN_4COT"></cell>
 <cell id="RSN_TP_FRN_4COT" style="text-align:left"></cell>
-<cell id="TP_CD_FRN_4COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_FRN_4COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_FRN_4COT"  style="text-align:left"></cell>
 <cell id="LUS_RT_FRN_4COT_LLV"></cell>
 <cell id="WK_VISCO_FRN_4COT" style="text-align:right"></cell>
@@ -228,7 +228,7 @@
 <row id="2">
 <cell id="HUE_CD_FRN_3COT"></cell>
 <cell id="RSN_TP_FRN_3COT"  style="text-align:left"></cell>
-<cell id="TP_CD_FRN_3COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_FRN_3COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_FRN_3COT"  style="text-align:left"></cell>
 <cell id="LUS_RT_FRN_3COT_LLV"></cell>
 <cell id="WK_VISCO_FRN_3COT" style="text-align:right"></cell>
@@ -244,7 +244,7 @@
 <row id="3">
 <cell id="HUE_CD_FRN_2COT"></cell>
 <cell id="RSN_TP_FRN_2COT" style="text-align:left"></cell>
-<cell id="TP_CD_FRN_2COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_FRN_2COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_FRN_2COT" style="text-align:left"></cell>
 <cell id="LUS_RT_FRN_2COT_LLV"></cell>
 <cell id="WK_VISCO_FRN_2COT" style="text-align:right"></cell>
@@ -260,7 +260,7 @@
 <row id="4">
 <cell id="HUE_CD_FRN_1COT"></cell>
 <cell id="RSN_TP_FRN_1COT" style="text-align:left"></cell>
-<cell id="TP_CD_FRN_1COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_FRN_1COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_FRN_1COT" style="text-align:left"></cell>
 <cell id="LUS_RT_FRN_1COT_LLV"></cell>
 <cell id="WK_VISCO_FRN_1COT" style="text-align:right"></cell>
@@ -276,7 +276,7 @@
 <row id="5">
 <cell id="HUE_CD_BAK_1COT"></cell>
 <cell id="RSN_TP_BAK_1COT" style="text-align:left"></cell>
-<cell id="TP_CD_BAK_1COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_BAK_1COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_BAK_1COT" style="text-align:left"></cell>
 <cell id="LUS_RT_BAK_1COT_LLV"></cell>
 <cell id="WK_VISCO_BAK_1COT" style="text-align:right"></cell>
@@ -292,7 +292,7 @@
 <row id="6">
 <cell id="HUE_CD_BAK_2COT"></cell>
 <cell id="RSN_TP_BAK_2COT" style="text-align:left"></cell>
-<cell id="TP_CD_BAK_2COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_BAK_2COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_BAK_2COT" style="text-align:left"></cell>
 <cell id="LUS_RT_BAK_2COT_LLV"></cell>
 <cell id="WK_VISCO_BAK_2COT" style="text-align:right"></cell>
@@ -308,7 +308,7 @@
 <row id="7">
 <cell id="HUE_CD_BAK_3COT"></cell>
 <cell id="RSN_TP_BAK_3COT" style="text-align:left"></cell>
-<cell id="TP_CD_BAK_3COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_BAK_3COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_BAK_3COT" style="text-align:left"></cell>
 <cell id="LUS_RT_BAK_3COT_LLV"></cell>
 <cell id="WK_VISCO_BAK_3COT" style="text-align:right"></cell>
@@ -324,7 +324,7 @@
 <row id="8">
 <cell id="HUE_CD_BAK_4COT"></cell>
 <cell id="RSN_TP_BAK_4COT" style="text-align:left"></cell>
-<cell id="TP_CD_BAK_4COT" style="text-align:center;color:#2987FF;font-weight:bold"></cell>
+<cell id="TP_CD_BAK_4COT" style="text-align:center;color:red;font-weight:bold"></cell>
 <cell id="LUS_RT_CD_BAK_4COT" style="text-align:left"></cell>
 <cell id="LUS_RT_BAK_4COT_LLV"></cell>
 <cell id="WK_VISCO_BAK_4COT" style="text-align:right"></cell>

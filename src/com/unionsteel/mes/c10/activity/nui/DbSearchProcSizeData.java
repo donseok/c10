@@ -1398,6 +1398,10 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
            	colValue[0] = rmtl_cd; // 원자재코드
             colValue[1] = Double.toString( pltcm_thk_trv ); // PLTCM두께
             colValue[2] = Double.toString( pltcm_wth_trv ); // PLTCM폭
+            
+            logger.logInfo("PLTCM두께: " + colValue[1]);
+            logger.logInfo("PLTCM폭: " + colValue[2]);
+            
             checker = EasyAccess.getPosDecisionChecker( C10B1074, null );
             result = null;
             try
@@ -1415,6 +1419,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
             if ( result.getRecordCount() == 1 )
             {
                 tcm_wth_shr_qty = Double.parseDouble( result.getRuleValueAt( COL_TCM_WTH_SHR_QTY ) );
+                logger.logInfo("PLTCM폭수축량: " + tcm_wth_shr_qty);
             } else if ( result.getRecordCount() > 1 )
             {
                 ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT14 );
@@ -1429,7 +1434,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                 return PosBizControlConstants.FAILURE;
             }
             pltcm_wth_trv_max = pltcm_wth_trv + tcm_wth_shr_qty;
-
+            logger.logInfo("폭목표최대값: " + pltcm_wth_trv_max);
             if ( pltcm_wth_sub_proc1_trv > 0 )
             {
                 // PLTCM수축량
@@ -1437,6 +1442,10 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                	colValue[0] = rmtl_cd; // 원자재코드
                 colValue[1] = Double.toString( pltcm_thk_trv ); // PLTCM두께
                 colValue[2] = Double.toString( pltcm_wth_sub_proc1_trv ); // PLTCM폭
+                
+                logger.logInfo("원자재코드: " + colValue[0]);                
+                logger.logInfo("PLTCM두께: " + colValue[1]);
+                logger.logInfo("PLTCM폭: " + colValue[2]);
                 checker = EasyAccess.getPosDecisionChecker( C10B1074, null );
                 result = null;
                 try
@@ -1454,6 +1463,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                 if ( result.getRecordCount() == 1 )
                 {
                     tcm_wth_shr_qty1 = Double.parseDouble( result.getRuleValueAt( COL_TCM_WTH_SHR_QTY ) );
+                    logger.logInfo("tcm_wth_shr_qty1: " + tcm_wth_shr_qty1);
                 } else if ( result.getRecordCount() > 1 )
                 {
                     ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT14 );
@@ -1469,6 +1479,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                 }
                 if(Double.compare( pltcm_wth_trv_max, pltcm_wth_sub_proc1_trv + tcm_wth_shr_qty1 ) < 0)
                     pltcm_wth_trv_max = pltcm_wth_sub_proc1_trv + tcm_wth_shr_qty1;
+                	logger.logInfo("pltcm_wth_trv_max: " + pltcm_wth_trv_max);
 
             }
     
@@ -1479,6 +1490,10 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                	colValue[0] = rmtl_cd; // 원자재코드
                 colValue[1] = Double.toString( pltcm_thk_trv ); // PLTCM두께
                 colValue[2] = Double.toString( pltcm_wth_sub_proc2_trv ); // PLTCM폭
+                
+                logger.logInfo("원자재코드: " + colValue[0]);                
+                logger.logInfo("PLTCM두께: " + colValue[1]);
+                logger.logInfo("PLTCM폭: " + colValue[2]);                
                 checker = EasyAccess.getPosDecisionChecker( C10B1074, null );
                 result = null;
                 try
@@ -1496,6 +1511,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                 if ( result.getRecordCount() == 1 )
                 {
                     tcm_wth_shr_qty2 = Double.parseDouble( result.getRuleValueAt( COL_TCM_WTH_SHR_QTY ) );
+                    logger.logInfo("tcm_wth_shr_qty2: " + tcm_wth_shr_qty2);    
                 } else if ( result.getRecordCount() > 1 )
                 {
                     ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT14 );
@@ -1511,13 +1527,32 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
                 }
                 if(Double.compare( pltcm_wth_trv_max, pltcm_wth_sub_proc2_trv + tcm_wth_shr_qty2 ) < 0)
                     pltcm_wth_trv_max = pltcm_wth_sub_proc2_trv + tcm_wth_shr_qty2;
+            		logger.logInfo("pltcm_wth_trv_max: " + pltcm_wth_trv_max);                
             }
         }
-
-        if(Double.compare( pltcm_wth_trv_max, pltcm_wth_trv + tcm_wth_shr_qty + pltcm_wth_cor_val ) > 0)
-            ctx.put( COL_PL_WTH_TRV, Math.round( pltcm_wth_trv + tcm_wth_shr_qty + pltcm_wth_cor_val ) );        
-        else ctx.put( COL_PL_WTH_TRV, Math.round( pltcm_wth_trv_max ) );
         
+        logger.logInfo("pltcm_wth_trv_max: " + pltcm_wth_trv_max);
+        logger.logInfo("pltcm_wth_trv: " + pltcm_wth_trv);    
+        logger.logInfo("pltcm폭수축량 tcm_wth_shr_qty: " + tcm_wth_shr_qty);    
+        logger.logInfo("폭보정치 pltcm_wth_cor_val: " + pltcm_wth_cor_val);    
+        logger.logInfo("pltcm_wth_sub_proc1_trv: " + pltcm_wth_sub_proc1_trv);
+        logger.logInfo("pltcm폭수축량 tcm_wth_shr_qty1: " + tcm_wth_shr_qty1);
+        logger.logInfo("폭보정치 pltcm_wth_sub_proc1_cor_val: " + pltcm_wth_sub_proc1_cor_val);
+        
+        logger.logInfo("pltcm_wth_sub_proc2_trv: " + pltcm_wth_sub_proc2_trv);
+        logger.logInfo("pltcm폭수축량 tcm_wth_shr_qty2: " + tcm_wth_shr_qty2);
+        logger.logInfo("폭보정치 pltcm_wth_sub_proc1_cor_va2: " + pltcm_wth_sub_proc2_cor_val);
+        
+        
+
+        if(Double.compare( pltcm_wth_trv_max, pltcm_wth_trv + tcm_wth_shr_qty + pltcm_wth_cor_val ) > 0){
+        	ctx.put( COL_PL_WTH_TRV, Math.round( pltcm_wth_trv + tcm_wth_shr_qty + pltcm_wth_cor_val ) );
+            logger.logInfo("COL_PL_WTH_TRV: " + Math.round( pltcm_wth_trv + tcm_wth_shr_qty + pltcm_wth_cor_val ));  
+        }else{
+            ctx.put( COL_PL_WTH_TRV, Math.round( pltcm_wth_trv_max ) );        	
+            logger.logInfo("COL_PL_WTH_TRV: " + Math.round( pltcm_wth_trv_max ));  
+        }
+                    
         if ( pltcm_wth_sub_proc1_trv > 0 )
         {
             if(Double.compare( pltcm_wth_trv_max, pltcm_wth_sub_proc1_trv + tcm_wth_shr_qty1 + pltcm_wth_sub_proc1_cor_val ) > 0)

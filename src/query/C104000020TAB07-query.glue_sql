@@ -571,6 +571,7 @@ SET    LAST_UPDATED_OBJECT_TYPE = :ObjectType      --최종변경OBJECT유형
       ,LAST_UPDATE_PROGRAM_ID = :ProgramId         --최종변경프로그램ID
       ,LAST_UPDATE_TIMESTAMP = :Timestamp          --최종변경일시   
       ,CCL_QLT_MSG_TXT = :CCL_QLT_MSG_TXT
+      ,ERP_SND_DH = SYSDATE
 WHERE CCL_BOM_NO = (SELECT CCL_BOM_NO FROM TB_C10_QLT_DSN_CMN
                      WHERE ORD_NO = :ORD_NO
                        AND ORD_LN = :ORD_LN)
