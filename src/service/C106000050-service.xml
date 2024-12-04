@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="C106000050-service" initial="Event_Router">
-  <transaction-manager id="tx1" commit="true" />
-  <transaction-manager id="tx2" commit="true" />
   <activity name="CCL BOM update" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="customInsert" />
     <property name="dao" value="mesdao" />
@@ -17,24 +15,10 @@
     <property name="isAudit" value="true" />
     <property name="delete-sql" value="C106000050.colordelete" />
   </activity>
-  <activity name="도료업체 정보수정 로깅" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+  <activity name="thinAjaxFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="insert-sql" value="C106000050.detailupsert_log" />
     <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000050.detailupsert_log" />
-    <property name="isAudit" value="true" />
-    <property name="delete-sql" value="C106000050.detaildelete_log" />
-  </activity>
-  <activity name="Send List Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000050.colorselect2" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="칼라부자재코드전송" class="com.unionsteel.mes.c10.activity.ui.C10UiC106000050SendActivity">
-    <transition name="success" value="end" />
-    <property name="param0" value="CLR_SUB_MTL_CD" />
-    <property name="dao" value="eaidao" />
-    <property name="param-count" value="1" />
+    <property name="sqlkey" value="C106000050.thinAjaxFind" />
   </activity>
   <activity name="파일저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="Loop Router" />
@@ -44,16 +28,6 @@
     <property name="isAudit" value="true" />
     <property name="delete-sql" value="C106000050.fileuploaddelete" />
   </activity>
-  <activity name="도료사저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="ColorUpdate" />
-    <property name="dao" value="mesdao" />
-    <property name="isAudit" value="true" />
-    <property name="insert-sql" value="C106000050.detailinsert" />
-    <property name="param0" value="CLR_SUB_MTL_CD" />
-    <property name="param-count" value="1" />
-    <property name="delete-sql" value="C106000050.detaildelete" />
-    <property name="update-sql" value="C106000050.detailupdate" />
-  </activity>
   <activity name="Lamina Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050.colorselect2" />
@@ -62,11 +36,6 @@
   <activity name="수지_MTC NOTE 편집기준 Check" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050.rule_chk" />
-    <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="colorAjaxFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000050.colorAjaxFind" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="detailFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
@@ -81,25 +50,10 @@
     <property name="isAudit" value="true" />
     <property name="update-sql" value="C106000050.clrMngMdf_log" />
   </activity>
-  <activity name="칼라코드 FMES 송신이력 확인" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="IFB10S0150.check" />
-  </activity>
-  <activity name="UGS Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000050.colorselect3" />
-    <property name="dao" value="mesdao" />
-  </activity>
   <activity name="엑셀출력" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000050xls.select" />
     <property name="dao" value="mesdao" />
-  </activity>
-  <activity name="Loop Router" class="com.unionsteel.mes.c10.activity.common.LoopRouter">
-    <transition name="endLoop" value="end" />
-    <transition name="next" value="M30 Procedure Call" />
-    <property name="loop-cnt" value="loopCnt1" />
   </activity>
   <activity name="ColorUpdate" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="도료업체 정보수정 로깅" />
@@ -109,10 +63,10 @@
     <property name="update-sql" value="C106000050.colorupdate2" />
     <property name="isAudit" value="true" />
   </activity>
-  <activity name="도료사Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="sqlkey" value="C106000050.compAjaxFind" />
-    <property name="dao" value="mesdao" />
+  <activity name="Loop Router" class="com.unionsteel.mes.c10.activity.common.LoopRouter">
+    <transition name="endLoop" value="end" />
+    <transition name="next" value="M30 Procedure Call" />
+    <property name="loop-cnt" value="loopCnt1" />
   </activity>
   <activity name="M30 Procedure Call" class="com.poscoict.glue.biz.dhtmlx.PosProcedureInvoker">
     <transition name="success" value="Loop Router" />
@@ -122,9 +76,6 @@
     <property name="param1" value="IN,CLR_SUB_MTL_CD" />
     <property name="param2" value="IN,USERNO" />
     <property name="param-count" value="3" />
-  </activity>
-  <activity name="IF_GRP_ID 생성" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
-    <transition name="success" value="칼라부자재코드전송" />
   </activity>
   <activity name="find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -145,6 +96,61 @@
     <transition name="find2" value="Lamina Total Find" />
     <transition name="find3" value="UGS Total Find" />
     <transition name="sendChk" value="칼라코드 FMES 송신이력 확인" />
+    <transition name="thinAjaxFind" value="thinAjaxFind" />
+  </activity>
+  <transaction-manager id="tx1" commit="true" />
+  <transaction-manager id="tx2" commit="true" />
+  <activity name="도료업체 정보수정 로깅" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C106000050.detailupsert_log" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C106000050.detailupsert_log" />
+    <property name="isAudit" value="true" />
+    <property name="delete-sql" value="C106000050.detaildelete_log" />
+  </activity>
+  <activity name="칼라부자재코드전송" class="com.unionsteel.mes.c10.activity.ui.C10UiC106000050SendActivity">
+    <transition name="success" value="end" />
+    <property name="param0" value="CLR_SUB_MTL_CD" />
+    <property name="dao" value="eaidao" />
+    <property name="param-count" value="1" />
+  </activity>
+  <activity name="Send List Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000050.colorselect2" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="도료사저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="ColorUpdate" />
+    <property name="dao" value="mesdao" />
+    <property name="isAudit" value="true" />
+    <property name="insert-sql" value="C106000050.detailinsert" />
+    <property name="param0" value="CLR_SUB_MTL_CD" />
+    <property name="param-count" value="1" />
+    <property name="delete-sql" value="C106000050.detaildelete" />
+    <property name="update-sql" value="C106000050.detailupdate" />
+  </activity>
+  <activity name="colorAjaxFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000050.colorAjaxFind" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="칼라코드 FMES 송신이력 확인" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="IFB10S0150.check" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="UGS Total Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000050.colorselect3" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="도료사Find" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000050.compAjaxFind" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="IF_GRP_ID 생성" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
+    <transition name="success" value="칼라부자재코드전송" />
   </activity>
 </service>
 

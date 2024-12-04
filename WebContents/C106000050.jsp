@@ -1609,6 +1609,26 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 				}
 			}
     	}
+		else if(cInd == 24 ) { //시너코드 변경 시 시너코드명 출력
+			
+			gridObj.editor.obj.onkeyup = function(e){
+			
+				var thin_cd = gridObj.cellById(rId, gridObj.getColIndexById("THR_CD")).getValue();
+				var param= "ServiceName=C106000050-service&thinAjaxFind=1&&THR_CD="+thin_cd+"&column-info=THR_NM";				
+				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+				var cells = xmlObj.getElementsByTagName("cell");
+				
+				if(cells.length <= 0){					
+// 					dhtmlx.alert("등록된 시너코드가 없습니다.");
+					grid.setCellValue(rId,25, "");
+					return true;										
+				}else{
+					grid.setCellValue(rId,25, cells.item(0).firstChild.nodeValue);
+					return true;
+				}
+
+			}
+    	}		
     	else if(cInd == 26 ) { //MAX LENGTH 체크
 			gridObj.editor.obj.onkeyup = function(e){
 				e = e||window.event;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="5" location="375,16" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="6" location="381,606" size="-1,-1" input="//@wire.1 //@wire.7 //@wire.13 //@wire.17 //@wire.18 //@wire.20 //@wire.22 //@wire.23 //@wire.27 //@wire.33 //@wire.39"/>
-  <child xsi:type="Glue:RouterActivity" id="7" location="54,101" size="1345,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.5 //@wire.19 //@wire.8 //@wire.21 //@wire.12 //@wire.16 //@wire.30 //@wire.32 //@wire.34 //@wire.36 //@wire.38" name="Event_Router">
+  <child xsi:type="Glue:FinalState" id="6" location="381,606" size="-1,-1" input="//@wire.1 //@wire.7 //@wire.13 //@wire.17 //@wire.18 //@wire.20 //@wire.22 //@wire.23 //@wire.27 //@wire.33 //@wire.39 //@wire.41"/>
+  <child xsi:type="Glue:RouterActivity" id="7" location="54,101" size="1345,-1" input="//@wire.0" output="//@wire.4 //@wire.9 //@wire.5 //@wire.19 //@wire.8 //@wire.21 //@wire.12 //@wire.16 //@wire.30 //@wire.32 //@wire.34 //@wire.36 //@wire.38 //@wire.40" name="Event_Router">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
@@ -157,6 +157,12 @@
     <property key="sqlkey" value="IFB10S0150.check"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:DinaActivity" id="441153" location="1392,307" size="142,-1" input="//@wire.40" output="//@wire.41" name="thinAjaxFind">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000050.thinAjaxFind"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="tx2" value="true"/>
   <property key="description" value=""/>
@@ -221,5 +227,11 @@
   <wire id="14593" guardcondition="sendChk" firstRelativePoint="310,359" lastRelativePoint="383,608"/>
   <wire id="14594" guardcondition="success" firstRelativePoint="310,359" lastRelativePoint="383,608">
     <bendpoint weight="0.5" firstDimension="3,186" secondDimension="-81,-86"/>
+  </wire>
+  <wire id="14661" guardcondition="thinAjaxFind" firstRelativePoint="1384,131" lastRelativePoint="1465,307">
+    <bendpoint weight="0.5" firstDimension="739,29" secondDimension="2,-177"/>
+  </wire>
+  <wire id="14662" guardcondition="success" firstRelativePoint="1466,337" lastRelativePoint="400,615">
+    <bendpoint weight="0.5" firstDimension="3,229" secondDimension="1075,-65"/>
   </wire>
 </Glue:GlueDiagram>

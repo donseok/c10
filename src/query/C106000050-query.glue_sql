@@ -50,6 +50,7 @@ SELECT /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김�
        PNT_GRA,
        SLV_GRA,
        THR_CD,
+       (SELECT SMTL_CLR_NM FROM TB_M30_SMTL_CD WHERE SMTL_KND_TP = 'S33' AND SMTL_CLR_CD = A.THR_CD AND ROWNUM = 1) THR_NM,
        PNT_UNT,
        PMT,
        QT_L,
@@ -1879,12 +1880,19 @@ VALUES
             )
 		 ]]> 
 	 </query>
-	 
 	 <query id="IFB10S0150.check" desc="" isNamed="true">
-		 <![CDATA[  
+		 <![CDATA[ 
 SELECT * /* C10 부재료 정보(FMES) 전송이력 체크 IF TB_C10_B10S0150.check SJS */
 FROM EAIAPUSER.TB_C10_B10S0150
 WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+	 <query id="C106000050.thinAjaxFind" desc="C106000050.thinAjaxFind" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라코드관리- 시너코드AJAX조회 C106000050.thinAjaxFind SJS */  
+SMTL_CLR_NM AS THR_NM
+FROM TB_M30_SMTL_CD 
+WHERE SMTL_KND_TP = 'S33' AND SMTL_CLR_CD = :THR_CD AND ROWNUM = 1
 		 ]]> 
 	 </query>	 
 </queryMap>
