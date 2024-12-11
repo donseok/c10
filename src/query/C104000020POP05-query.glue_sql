@@ -52,7 +52,17 @@ SELECT /*+ C10 KISS CUTTING-통과공정 C104000020POP04.selectproc SJS */
                         FROM   M00APUSER.VI_M00_CODE_ACCESS
                         WHERE  CD_TP = 'PROC_CD'
                         AND    CATEGORY_GROUP_NM = 'SZ0000'
-                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD10                 
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD10,
+    MAX(CASE WHEN rn = 11 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD11,
+    MAX(CASE WHEN rn = 12 THEN MAIN_PROC_CD || ' - ' || (SELECT CD_V_MEANING
+                        FROM   M00APUSER.VI_M00_CODE_ACCESS
+                        WHERE  CD_TP = 'PROC_CD'
+                        AND    CATEGORY_GROUP_NM = 'SZ0000'
+                        AND    CD_V = MAIN_PROC_CD) END) AS MAIN_PROC_CD12                                                  
 FROM (
     SELECT 
         MAIN_PROC_CD,

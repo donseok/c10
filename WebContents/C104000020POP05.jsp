@@ -60,15 +60,16 @@ function find(){
 	var form = items['C104000020POP05_Form_1'];
 	var j = 0;
 	
-	var param = "ServiceName=C104000020POP05-service&findProc=1&ORD_NO=" + "<%= ORD_NO %>"+ "&ORD_LN=" + "<%= ORD_LN %>" + "&column-info=MAIN_PROC_CD1,MAIN_PROC_CD2,MAIN_PROC_CD3,MAIN_PROC_CD4,MAIN_PROC_CD5,MAIN_PROC_CD6,MAIN_PROC_CD7,MAIN_PROC_CD8,MAIN_PROC_CD9,MAIN_PROC_CD10";
+	var param = "ServiceName=C104000020POP05-service&findProc=1&ORD_NO=" + "<%= ORD_NO %>"+ "&ORD_LN=" + "<%= ORD_LN %>" + "&column-info=MAIN_PROC_CD1,MAIN_PROC_CD2,MAIN_PROC_CD3,MAIN_PROC_CD4,MAIN_PROC_CD5,MAIN_PROC_CD6,MAIN_PROC_CD7,MAIN_PROC_CD8,MAIN_PROC_CD9,MAIN_PROC_CD10,MAIN_PROC_CD11,MAIN_PROC_CD12";
 	var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
 	var cells = xmlObj.getElementsByTagName("cell");
 		
 	if(cells.length > 0){
 		
-		for(var i=0 ; i<10 ; i++){
+		for(var i=0 ; i<12 ; i++){
+// 			arr[i] = cells.item(i).firstChild.nodeValue != null ? cells.item(i).firstChild.nodeValue : "";
 			arr[i] = cells.item(i).firstChild.nodeValue;
-			console.log("arr : "+i+" : "+arr[i]);
+// 			console.log("arr : "+i+" : "+arr[i]);
 			if(arr[i] == null || arr[i] == ""){
 				j = i;
 				break;
@@ -120,7 +121,7 @@ function cancel() {
 </script>
 </head>
 <body>
-<div id="C104000020POP05_Form_1" style="position:absolute;height:357px;width:582px;left:0px;top:0px;">
+<div id="C104000020POP05_Form_1" style="position:absolute;height:457px;width:582px;left:0px;top:0px;">
 </div>
 </body>
 </html>

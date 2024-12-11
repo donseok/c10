@@ -2486,6 +2486,33 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 			}
 		}*/
 		
+		if(rId == "4" && cInd==1){
+			grdObj.editor.obj.onkeyup = function() {
+				var valueLength = grdObj.editor.obj.value+'';
+				if(!hanCheck(valueLength,'5')){
+// 					alert("5자리만 입력 가능합니다.");
+// 					grdObj.editor.obj.value = "";
+					var fiveValue = valueLength.substring(0, 5);
+					grdObj.editor.obj.value = fiveValue;
+// 					grdObj.cells(rId, cInd).setValue(fiveValue);
+					return false;
+				}				
+			}			
+		}
+		
+		if(rId == "4" && cInd==2){
+			grdObj.editor.obj.onkeyup = function() {
+				var valueLength = grdObj.editor.obj.value+'';
+				if(!hanCheck(valueLength,'5')){
+// 					alert("5자리만 입력 가능합니다.");
+// 					grdObj.editor.obj.value = "";
+					grdObj.editor.obj.value = valueLength.substring(0, 5);
+					return false;
+				}				
+			}			
+		}		
+		
+		
         if(rId == "1" && ( cInd==8 || cInd == 9 )){//라미나접착제 -> 대문자입력
         	grdObj.editor.obj.onkeydown = function(e){
 		       var cellValue = grdObj.editor.obj.value;
@@ -2685,8 +2712,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp5 = "ZZZ";
 				subMtlTp6 = "S37";
 				subMtlTp7 = "S40";
+				
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue.substring(0, 5)+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,CLR_NM,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){
@@ -2724,8 +2752,9 @@ function onEditCellEvent5(stage,rId,cInd,nValue,oValue){
 				subMtlTp5 = "ZZZ";
 				subMtlTp6 = "S37";
 				subMtlTp7 = "S40";
+				
 				//Grid변경시 colorAjaxFind 의 column-info 필드 확인 및 유의
-				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
+				param= "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&SUB_MTL_TP7="+subMtlTp7+"&CLR_SUB_MTL_CD="+nValue.substring(0, 5)+"&column-info=CLR_SUB_MTL_CD,RSN_TP,RSN_TP_NM,SUB_MTL_TP,USE_YN";	
 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
                 var cells = xmlObj.getElementsByTagName("cell");
 					if(cells.length > 0){

@@ -21,6 +21,8 @@
 		<item name="MAIN_PROC8" type="template" style="color: black;font-weight:bold;" />
 		<item name="MAIN_PROC9" type="template" style="color: black;font-weight:bold;" />
 		<item name="MAIN_PROC10" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC11" type="template" style="color: black;font-weight:bold;" />
+		<item name="MAIN_PROC12" type="template" style="color: black;font-weight:bold;" />				
     </item>            
     <item type="block">
         <item format="doLink" label="&lt;div style=margin-top:4px;&gt;&lt;/div&gt;" labelWidth="265" name="Wax" position="label-center" type="template" />

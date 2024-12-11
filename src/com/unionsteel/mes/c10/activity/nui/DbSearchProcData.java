@@ -1199,31 +1199,31 @@ public class DbSearchProcData extends PosActivity implements C10NuiConstantsIF
         logger.logDebug( "check 15 ccl_proc_cd2   : " + ccl_proc_cd2 );
         logger.logDebug( "check 15 ccl_proc_cd3   : " + ccl_proc_cd3 );
         
-//        logger.logDebug( "===KISS CUTTING=== ");
-//        logger.logDebug( "===KISS CUTTING : === "+kiss_cut_yn);
+        logger.logDebug( "===KISS CUTTING=== ");
+        logger.logDebug( "===KISS CUTTING 여부 : === "+kiss_cut_yn);
         
-        //2024.10.10 박재행 부장 요청 KISS CUTTING건 6I공정 추가(설계원이 일단 알림만 띄워달라고 함)
-//        if(kiss_cut_yn.equals(C10STR_YES)){
-//        	
-//        	add_seq++;
-//            proc_seq = Integer.parseInt( row.getAttribute( COL_PROC_SEQ ).toString() ) + add_seq;
-//            //
-//            ctx.put( COL_PROC_SEQ, proc_seq );
-//            ctx.put( COL_MAIN_PROC_CD, PROC_CD_INS_SHL ); //6I공정
-//            ctx.put( COL_SUB_PROC_CD1, C10STR_SPACE );
-//            ctx.put( COL_SUB_PROC_CD2, C10STR_SPACE );
-//            ctx.put( COL_SUB_PROC_CD3, C10STR_SPACE );
-//            ctx.put( COL_SUB_PROC_CD4, C10STR_SPACE );
-//            ctx.put( COL_SUB_PROC_CD5, C10STR_SPACE );
-//            ctx.put( COL_SUB_PROC_CD6, C10STR_SPACE );
-//             ctx.put( COL_SEM_PROD_MTL_CD, sem_prod_mtl_cd );
-//            if ( !InsProc( dao, ctx ) ){
-//                ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_TB08 );
-//                ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
-//                return PosBizControlConstants.FAILURE;
-//            }        	
-//        	
-//        }
+        //2024.10.10 박재행 부장 요청 KISS CUTTING건 6I공정 추가
+        if(kiss_cut_yn.equals(C10STR_YES)){
+        	
+        	add_seq++;
+            proc_seq = Integer.parseInt( row.getAttribute( COL_PROC_SEQ ).toString() ) + add_seq;
+            //
+            ctx.put( COL_PROC_SEQ, proc_seq );
+            ctx.put( COL_MAIN_PROC_CD, PROC_CD_INS_SHL ); //6I공정
+            ctx.put( COL_SUB_PROC_CD1, C10STR_SPACE );
+            ctx.put( COL_SUB_PROC_CD2, C10STR_SPACE );
+            ctx.put( COL_SUB_PROC_CD3, C10STR_SPACE );
+            ctx.put( COL_SUB_PROC_CD4, C10STR_SPACE );
+            ctx.put( COL_SUB_PROC_CD5, C10STR_SPACE );
+            ctx.put( COL_SUB_PROC_CD6, C10STR_SPACE );
+             ctx.put( COL_SEM_PROD_MTL_CD, sem_prod_mtl_cd );
+            if ( !InsProc( dao, ctx ) ){
+                ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_TB08 );
+                ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+                return PosBizControlConstants.FAILURE;
+            }        	
+        	
+        }
         
         
         return PosBizControlConstants.SUCCESS;

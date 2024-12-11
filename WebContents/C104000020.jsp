@@ -229,7 +229,7 @@ function save(eventName,formDivObj,referenceItem){
 		var kiss_cut_yn = form2.getItemValue("KISS_CUT_YN");
 		if(kiss_cut_yn == "Y"){
 
-			winObj = new ui.window("popup","KISS CUTTING 주문","0","0","600","400","C104000020POP05.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
+			winObj = new ui.window("popup","KISS CUTTING 주문","0","0","600","500","C104000020POP05.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
 			winObj.setButtonDisable("park,minmax1");
   		}			
 		
