@@ -47,9 +47,10 @@
 <column id="ROLL_MDF_DH" index="29" sort="str" align="center" width="100" table="TB_C10_PTN_ROLL_MNG" type="ro">수정일</column>
 <column align="center" hidden="true" id="IMG_ADR" index="320" sort="str" type="ro"/>
 <column align="center" hidden="true" id="IMG_NM" index="330" sort="str" type="ro"/>
+<column align="center" hidden="true" id="OLD_PROC_CD" index="330" sort="str" type="ro"/>
 <settings>
 <colwidth>PX</colwidth>
 </settings>
 </head>
-<userdata name="column-info">ROLL_CD,ROLL_CD_SEQ_NO,ROLL_TP,PROC_CD,DET_LOC,PTN_NM,USE_YN,ROLL_CIR,ROLL_DIA,ROLL_WTH,ROLL_POINT,USG_NM,DTL_USG_NM,ROLL_PRD_CMP,IMAGE_YN,RPV_CLR_NM,ROLL_USE_LTH,ROLL_USE_CCL_BOM,ROLL_USE_LST_DT,ROLL_UNUSE_DAY,ROLL_WHS_DD,ROLL_USE_STR_DD,ROLL_USE_END_DD,ROLL_DIS_DD,RMK_MSG,ROLL_RGS_PRS_NM,ROLL_RGS_DH,ROLL_MDF_PRS_NM,ROLL_MDF_DH,IMG_ADR,IMG_NM</userdata>
+<userdata name="column-info">ROLL_CD,ROLL_CD_SEQ_NO,ROLL_TP,PROC_CD,DET_LOC,PTN_NM,USE_YN,ROLL_CIR,ROLL_DIA,ROLL_WTH,ROLL_POINT,USG_NM,DTL_USG_NM,ROLL_PRD_CMP,IMAGE_YN,RPV_CLR_NM,ROLL_USE_LTH,ROLL_USE_CCL_BOM,ROLL_USE_LST_DT,ROLL_UNUSE_DAY,ROLL_WHS_DD,ROLL_USE_STR_DD,ROLL_USE_END_DD,ROLL_DIS_DD,RMK_MSG,ROLL_RGS_PRS_NM,ROLL_RGS_DH,ROLL_MDF_PRS_NM,ROLL_MDF_DH,IMG_ADR,IMG_NM,OLD_PROC_CD</userdata>
 </rows>

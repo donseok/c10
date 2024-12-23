@@ -83,7 +83,7 @@ function saveof(eventName,formDivObj,referenceItem){
 	var gridObj = items['C106000080_Grid_1'].getDhxGrid();
 	var grid_cnt = gridObj.getRowsNum();
 	var row_status = "", err_cnt = 0, chgCnt = 0;
-	var ROLL_CD = ""
+	var ROLL_CD = "", PROC_CD = "", ROLL_USE_STR_DD = "", ROLL_USE_END_DD = "", OLD_PROC_CD = "";
 
 	var rowId = items['C106000080_Grid_1'].getRowSelectedId();
 	gridObj.selectRow(gridObj.getRowIndex(rowId));
@@ -92,6 +92,33 @@ function saveof(eventName,formDivObj,referenceItem){
 		row_status = gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status");//INSERT시에만 값체크 하기
 		if(row_status !== ""){
 			chgCnt++;
+			
+			OLD_PROC_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("OLD_PROC_CD")).getValue();
+			ROLL_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_CD")).getValue();
+			PROC_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("PROC_CD")).getValue();
+			ROLL_USE_STR_DD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_USE_STR_DD")).getValue();
+			ROLL_USE_END_DD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_USE_END_DD")).getValue();
+			
+// 			console.log("ROLL_CD : "+ROLL_CD);
+// 			console.log("PROC_CD : "+PROC_CD);
+// 			console.log("ROLL_USE_STR_DD : "+ROLL_USE_STR_DD);
+// 			console.log("ROLL_USE_END_DD : "+ROLL_USE_END_DD);
+
+			if(PROC_CD != OLD_PROC_CD && OLD_PROC_CD != ""){
+				
+				var param= "ServiceName=C106000080-service&use_find=1&ROLL_CD="+ROLL_CD+"&PROC_CD="+PROC_CD+"&ROLL_USE_STR_DD="+ROLL_USE_STR_DD+"&ROLL_USE_END_DD="+ROLL_USE_END_DD+"&column-info=USE_CNT";
+				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+				var cells = xmlObj.getElementsByTagName("cell");
+				
+	// 			console.log("보유라인 건수 : "+cells.item(0).firstChild.nodeValue);
+				if(cells.item(0).firstChild.nodeValue != "0"){
+					dhtmlx.alert("Roll코드 : "+ROLL_CD+"<br>보유라인 : "+PROC_CD+"<br>변경 보유라인에 이미 사용정보가 있어서 <br>변경할 수 없습니다.");
+					return false;
+	// 				err_cnt++;
+	// 				break;   
+				}
+			
+			}
 			
 			if(gridObj.cellById(gridObj.getRowId(i),0).getValue()==""){
 				err_cnt++;
@@ -192,7 +219,7 @@ function saveop(eventName,formDivObj,referenceItem){
 	var gridObj = items['C106000080_Grid_1'].getDhxGrid();
 	var grid_cnt = gridObj.getRowsNum();
 	var row_status = "", err_cnt = 0, chgCnt = 0;
-	var ROLL_CD = ""
+	var ROLL_CD = "", PROC_CD = "", ROLL_USE_STR_DD = "", ROLL_USE_END_DD = "", OLD_PROC_CD = "";
 	//var rowId = items['C106000080_Grid_1'].getRowSelectedId();
 	//gridObj.selectRow(gridObj.getRowIndex(rowId));
 
@@ -200,6 +227,34 @@ function saveop(eventName,formDivObj,referenceItem){
 		row_status = gridObj.getUserData(gridObj.getRowId(i),"!nativeeditor_status");//INSERT시에만 값체크 하기
 		if(row_status !== ""){
 			chgCnt++;			
+			
+			OLD_PROC_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("OLD_PROC_CD")).getValue();
+			ROLL_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_CD")).getValue();
+			PROC_CD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("PROC_CD")).getValue();
+			ROLL_USE_STR_DD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_USE_STR_DD")).getValue();
+			ROLL_USE_END_DD = gridObj.cellById(gridObj.getRowId(i), gridObj.getColIndexById("ROLL_USE_END_DD")).getValue();
+
+			console.log("OLD_PROC_CD : "+OLD_PROC_CD);
+// 			console.log("ROLL_CD : "+ROLL_CD);
+			console.log("PROC_CD : "+PROC_CD);
+// 			console.log("ROLL_USE_STR_DD : "+ROLL_USE_STR_DD);
+// 			console.log("ROLL_USE_END_DD : "+ROLL_USE_END_DD);
+
+			if(PROC_CD != OLD_PROC_CD && OLD_PROC_CD != ""){
+	
+				var param= "ServiceName=C106000080-service&use_find=1&ROLL_CD="+ROLL_CD+"&PROC_CD="+PROC_CD+"&ROLL_USE_STR_DD="+ROLL_USE_STR_DD+"&ROLL_USE_END_DD="+ROLL_USE_END_DD+"&column-info=USE_CNT";
+				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+				var cells = xmlObj.getElementsByTagName("cell");
+				
+				if(cells.item(0).firstChild.nodeValue != "0"){
+					dhtmlx.alert("Roll코드 : "+ROLL_CD+"<br>보유라인 : "+PROC_CD+"<br>변경 보유라인에 이미 사용정보가 있어서 <br>변경할 수 없습니다.");
+					return false;
+	// 				err_cnt++;
+	// 				break;   
+				}			
+			}
+			
+// 			console.log("두번째라인 : " +gridObj.cellById(1, gridObj.getColIndexById("OLD_PROC_CD")).getValue());
 			// if(gridObj.cellById(gridObj.getRowId(i),0).getValue()==""){
 			// 	err_cnt++;
 			// 	dhtmlx.alert("롤코드를 선택하세요.(더블클릭 후 팝업에서 선택)");
@@ -406,7 +461,7 @@ function onLoadGrid (){
 	var procCdCombo = gridObj.getColumnCombo(gridObj.getColIndexById('PROC_CD'));
 	procCdCombo.addOption(procCdComboVal);    
 	procCdCombo.enableOptionAutoPositioning(true);
-	procCdCombo.readonly(true,true);
+// 	procCdCombo.readonly(true,true);
 	procCdCombo.setOptionHeight(140);
 	
 	var useYnCombo = gridObj.getColumnCombo(gridObj.getColIndexById('USE_YN'));
@@ -456,9 +511,9 @@ function onAfterUpdateFinishEvent(){
 function setReadonly(){
 	var gridObj = items['C106000080_Grid_1'].getDhxGrid();
 	var grid_cnt = gridObj.getRowsNum();
-	for(var i=0; i<grid_cnt; i++) {
-		gridObj.setCellExcellType(gridObj.getRowId(i), 3, "ro");
-	}
+// 	for(var i=0; i<grid_cnt; i++) {
+// 		gridObj.setCellExcellType(gridObj.getRowId(i), 3, "ro");
+// 	}
 }
 
 function rollSelectPopup(rId,cInd){
@@ -508,6 +563,18 @@ function onEditCellEvent(stage,rId,cInd,nValue,oValue){
 	
 	if(stage == 2){
 		if(!isNull(nValue)){
+			
+// 			console.log("변경된 보유라인 : "+grdObj.getColIndexById("OLD_PROC_CD").getValue());
+// 			console.log("기존 보유라인 : "+grdObj.cellById(rId,grdObj.getColIndexById("OLD_PROC_CD")).getValue());
+			
+			if(cInd == grdObj.getColIndexById("PROC_CD") && nValue!=oValue && grdObj.cellById(rId,grdObj.getColIndexById("OLD_PROC_CD")).getValue() == ""){
+				
+// 				console.log("기존 보유라인 : "+ oValue);
+// 				console.log("변경 보유라인 : "+ nValue);
+				
+                grid.setCellValue(rId,grdObj.getColIndexById("OLD_PROC_CD"), oValue);
+			}
+			
 			if(cInd==7 && nValue!=oValue){//외주 
 				var roll_dia = parseFloat(nValue)/3.141592;
 			    roll_dia = roll_dia.toFixed(1);

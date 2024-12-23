@@ -2,12 +2,17 @@
 <service name="C106000080-service" initial="분기">
   <transaction-manager id="tx1" commit="true" />
   <activity name="현장 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="end" />
+    <transition name="success" value="롤 사용정보 업데이트" />
     <property name="insert-sql" value="C106000080_DUMY.select" />
     <property name="dao" value="mesdao" />
     <property name="update-sql" value="C106000080.updateOp" />
     <property name="isAudit" value="true" />
     <property name="delete-sql" value="C106000080_DUMY.select" />
+  </activity>
+  <activity name="롤 사용정보조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000080_PTN_ROLL_USE_INF.select" />
   </activity>
   <activity name="프린트롤조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -33,6 +38,10 @@
     <transition name="find_sum" value="Suammary조회" />
     <transition name="saveof" value="사무실 저장" />
     <transition name="saveop" value="현장 저장" />
+    <transition name="use_find" value="롤 사용정보조회" />
+  </activity>
+  <activity name="롤 사용정보 업데이트" class="com.unionsteel.mes.c10.activity.ui.C10UiC106000080UpdateActivity">
+    <transition name="success" value="end" />
   </activity>
   <activity name="Suammary조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -40,7 +49,7 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="프린트롤이미지처리" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="end" />
+    <transition name="success" value="롤 사용정보 업데이트" />
     <property name="insert-sql" value="C106000080_DUMY.select" />
     <property name="dao" value="mesdao" />
     <property name="update-sql" value="C106000080_DUMY.update" />

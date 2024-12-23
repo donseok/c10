@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.8 //@wire.11"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="739,-1" input="//@wire.0" output="//@wire.2 //@wire.5 //@wire.7 //@wire.9 //@wire.10" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="295,433" size="-1,-1" input="//@wire.1 //@wire.6 //@wire.8 //@wire.12 //@wire.14"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="869,-1" input="//@wire.0" output="//@wire.2 //@wire.5 //@wire.7 //@wire.9 //@wire.10 //@wire.13" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
@@ -21,7 +21,7 @@
     <property key="update-sql" value="C106000080.updateOf"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="131302" location="434,305" size="145,-1" input="//@wire.3" output="//@wire.4" name="프린트롤이미지처리">
+  <child xsi:type="Glue:DinaActivity" id="131302" location="454,259" size="145,-1" input="//@wire.3" output="//@wire.4" name="프린트롤이미지처리">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="delete-sql" value="C106000080_IMG.delete"/>
@@ -51,6 +51,16 @@
     <property key="update-sql" value="C106000080.updateOp"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:Activity" id="442051" location="515,340" size="140,-1" input="//@wire.11 //@wire.4" output="//@wire.12" name="롤 사용정보 업데이트">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C10UiC106000080UpdateActivity"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편등록 후 영업정보에 저장된 번호로 SMS 발송하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 업무 기준 : C10A2183 에 'Z' 권한으로 등록된 도료사 권한의 사용자가 저장시 영업정보에 등록된 번호로 SMS 발송됨&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="442052" location="851,173" size="106,-1" input="//@wire.13" output="//@wire.14" name="롤 사용정보조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000080_PTN_ROLL_USE_INF.select"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value=""/>
   <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
@@ -61,9 +71,7 @@
   <wire id="15" guardcondition="success" firstRelativePoint="528,204" lastRelativePoint="528,305">
     <bendpoint weight="0.5" firstDimension="-2,68" secondDimension="22,-63"/>
   </wire>
-  <wire id="8437" guardcondition="success" firstRelativePoint="517,335" lastRelativePoint="314,440">
-    <bendpoint weight="0.5" firstDimension="11,64" secondDimension="212,-59"/>
-  </wire>
+  <wire id="8437" guardcondition="success" firstRelativePoint="559,289" lastRelativePoint="559,340"/>
   <wire id="8440" guardcondition="prtrollajax" firstRelativePoint="791,112" lastRelativePoint="791,173"/>
   <wire id="8441" guardcondition="success" firstRelativePoint="743,203" lastRelativePoint="314,441">
     <bendpoint weight="0.5" firstDimension="-16,208" secondDimension="438,-47"/>
@@ -72,7 +80,12 @@
   <wire id="11066" guardcondition="success" firstRelativePoint="305,208" lastRelativePoint="305,432"/>
   <wire id="13459" guardcondition="saveof" firstRelativePoint="536,112" lastRelativePoint="536,174"/>
   <wire id="13460" guardcondition="saveop" firstRelativePoint="643,112" lastRelativePoint="643,174"/>
-  <wire id="13461" guardcondition="success" firstRelativePoint="650,204" lastRelativePoint="314,441">
-    <bendpoint weight="0.5" firstDimension="1,195" secondDimension="345,-59"/>
+  <wire id="14666" guardcondition="success" firstRelativePoint="647,204" lastRelativePoint="647,255"/>
+  <wire id="14667" guardcondition="success" firstRelativePoint="585,370" lastRelativePoint="314,441">
+    <bendpoint weight="0.5" firstDimension="0,44" secondDimension="280,-44"/>
+  </wire>
+  <wire id="14668" guardcondition="use_find" firstRelativePoint="907,112" lastRelativePoint="907,173"/>
+  <wire id="14669" guardcondition="success" firstRelativePoint="906,203" lastRelativePoint="314,442">
+    <bendpoint weight="0.5" firstDimension="2,200" secondDimension="601,-55"/>
   </wire>
 </Glue:GlueDiagram>

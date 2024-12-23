@@ -175,6 +175,7 @@ UPDATE C10APUSER.TB_C10_PTN_ROLL_MNG
        RMK_MSG                  = :RMK_MSG,
        ROLL_MDF_PRS_ID          = :ObjectId,
        ROLL_MDF_DH              = sysdate,
+       PROC_CD					= :PROC_CD,
        LAST_UPDATED_OBJECT_TYPE = :ObjectType,
        LAST_UPDATED_OBJECT_ID   = :ObjectId,
        LAST_UPDATE_PROGRAM_ID   = :ProgramId,
@@ -192,6 +193,7 @@ UPDATE C10APUSER.TB_C10_PTN_ROLL_MNG
        RMK_MSG                  = :RMK_MSG,
        ROLL_MDF_PRS_ID          = :ObjectId,
        ROLL_MDF_DH              = sysdate,
+       PROC_CD					= :PROC_CD,
        LAST_UPDATED_OBJECT_TYPE = :ObjectType,
        LAST_UPDATED_OBJECT_ID   = :ObjectId,
        LAST_UPDATE_PROGRAM_ID   = :ProgramId,
@@ -304,4 +306,21 @@ SELECT  /*+ C106000080   의미없는 쿼리 C106000080_DUMY.select 이돈석 */
 FROM DUAL
 		 ]]> 
 	 </query>
+	 <query id="C106000080_PTN_ROLL_USE_INF.select" desc="" isNamed="true">
+		 <![CDATA[ 
+SELECT COUNT(*) USE_CNT
+FROM C10APUSER.TB_C10_PTN_ROLL_USE_INF
+WHERE PROC_CD = :PROC_CD
+AND ROLL_CD = :ROLL_CD
+AND PDN_PST_DD BETWEEN REPLACE(:ROLL_USE_STR_DD,'-','') AND NVL(REPLACE(:ROLL_USE_END_DD,'-',''),TO_CHAR(SYSDATE,'YYYYMMDD'))
+		 ]]> 
+	 </query>		 
+	 <query id="C106000080_PTN_ROLL_USE_INF.update" desc="" isNamed="true">
+		 <![CDATA[ 
+UPDATE C10APUSER.TB_C10_PTN_ROLL_USE_INF SET PROC_CD = :PROC_CD
+WHERE PROC_CD = :OLD_PROC_CD
+AND ROLL_CD = :ROLL_CD
+AND PDN_PST_DD BETWEEN REPLACE(:ROLL_USE_STR_DD,'-','') AND NVL(REPLACE(:ROLL_USE_END_DD,'-',''),TO_CHAR(SYSDATE,'YYYYMMDD'))
+		 ]]> 
+	 </query>	 
 </queryMap>
