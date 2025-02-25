@@ -117,8 +117,17 @@ function chkCclBomWrYn(){
 	
 	var param1= "ServiceName=C106000110-service&cclBomChk=1&CCL_BOM_NO=" + sCclBomNo + "&column-info=CCL_BOM_WR_YN";
 	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
-	var cells1 = xmlObj1.getElementsByTagName("cell");
+	var cells1 = xmlObj1.getElementsByTagName("cell");	
 	var cclBomWrYn = cells1.item(0).firstChild.nodeValue;
+	
+	var param2= "ServiceName=C106000110-service&authorityChk=1&USER_NO=" + '<%=userNo %>' + "&column-info=CNT";
+	var xmlObj2 = uiCommon.ajaxLoadData('c10AjaxData.do',param2);
+	var cells2 = xmlObj2.getElementsByTagName("cell");	
+	var authority = 0;
+	
+	if(!isNull(cells2.item(0).firstChild.nodeValue)){
+		authority = cells2.item(0).firstChild.nodeValue;
+	}
 	
 	items[formId1].getDhxForm().disableItem('prtRpt');
 	
@@ -133,7 +142,9 @@ function chkCclBomWrYn(){
 		rtnVal = false;
 	}
 	else{
-		items[formId1].getDhxForm().enableItem('prtRpt');
+		if(authority > 0){
+			items[formId1].getDhxForm().enableItem('prtRpt');			
+		}
 	}
 	return rtnVal;
 }

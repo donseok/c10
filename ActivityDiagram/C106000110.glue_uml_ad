@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="335,20" size="-1,-1" output="//@wire.7"/>
-  <child xsi:type="Glue:FinalState" id="1" location="394,318" size="-1,-1" input="//@wire.3 //@wire.4 //@wire.8 //@wire.10 //@wire.15 //@wire.18"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="131,82" size="667,-1" input="//@wire.7" output="//@wire.5 //@wire.6 //@wire.9 //@wire.11 //@wire.16" name="분기">
+  <child xsi:type="Glue:FinalState" id="1" location="394,318" size="-1,-1" input="//@wire.3 //@wire.4 //@wire.8 //@wire.10 //@wire.15 //@wire.18 //@wire.21"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="131,82" size="770,-1" input="//@wire.7" output="//@wire.5 //@wire.6 //@wire.9 //@wire.11 //@wire.16 //@wire.20" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
@@ -66,6 +66,12 @@
     <property key="update-sql" value="C106000110.Fileinsert"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:SearchActivity" id="255961" location="822,178" size="103,-1" input="//@wire.20" output="//@wire.21" name="보증서 권한 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000110.selectAuthority"/>
+    <property key="description" value=""/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="description" value=""/>
   <wire id="10969" guardcondition="success" firstRelativePoint="228,209" lastRelativePoint="289,323"/>
@@ -77,12 +83,10 @@
   <wire id="10973" guardcondition="success" firstRelativePoint="480,208" lastRelativePoint="411,322">
     <bendpoint weight="0.5" firstDimension="3,84" secondDimension="76,-51"/>
   </wire>
-  <wire id="10967" guardcondition="save" firstRelativePoint="343,112" lastRelativePoint="343,180">
-    <bendpoint weight="0.5" firstDimension="-69,55" secondDimension="3,-43"/>
+  <wire id="10967" guardcondition="save" firstRelativePoint="341,112" lastRelativePoint="338,180">
+    <bendpoint weight="0.5" firstDimension="-175,27" secondDimension="1,-71"/>
   </wire>
-  <wire id="10968" guardcondition="selNat" firstRelativePoint="479,112" lastRelativePoint="479,178">
-    <bendpoint weight="0.5" firstDimension="67,59" secondDimension="2,-37"/>
-  </wire>
+  <wire id="10968" guardcondition="selNat" firstRelativePoint="481,112" lastRelativePoint="481,178"/>
   <wire id="0" guardcondition="success" firstRelativePoint="481,208" lastRelativePoint="355,330"/>
   <wire id="10976" guardcondition="success" firstRelativePoint="344,275" lastRelativePoint="394,324">
     <bendpoint weight="0.5" firstDimension="2,80" secondDimension="-62,-53"/>
@@ -106,4 +110,10 @@
     <bendpoint weight="0.5" firstDimension="2,135" secondDimension="348,-1"/>
   </wire>
   <wire id="11891" guardcondition="success" firstRelativePoint="343,210" lastRelativePoint="343,245"/>
+  <wire id="11892" guardcondition="authorityChk" firstRelativePoint="871,112" lastRelativePoint="871,178">
+    <bendpoint weight="0.5" firstDimension="355,53" secondDimension="-2,-43"/>
+  </wire>
+  <wire id="11893" guardcondition="success" firstRelativePoint="874,208" lastRelativePoint="413,327">
+    <bendpoint weight="0.5" firstDimension="1,135" secondDimension="470,0"/>
+  </wire>
 </Glue:GlueDiagram>

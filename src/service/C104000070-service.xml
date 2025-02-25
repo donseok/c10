@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="C104000070-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
   <activity name="품질설계 상태 변경" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C104000070.saveQltSts" />
-  </activity>
-  <activity name="품질설계상태조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
     <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000070.findQltSts" />
   </activity>
   <activity name="품질설계행번조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C104000070.combo" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="findQltSts" value="품질설계상태조회" />
     <transition name="saveQltSts" value="품질설계 상태 변경" />
     <transition name="OrdLnFind" value="품질설계행번조회" />
+    <transition name="saveForceQltSts" value="품질설계 상태 변경" />
   </activity>
-  <transaction-manager id="tx1" commit="true" />
+  <activity name="품질설계상태조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000070.findQltSts" />
+    <property name="dao" value="mesdao" />
+  </activity>
 </service>
 

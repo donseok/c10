@@ -265,4 +265,16 @@ VALUES (
     )
 		 ]]> 
 	 </query>
+	 <query id="C106000110.selectAuthority" desc="보증서 출력 권한 체크" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C106000110 보증서 출력 권한 체크 C106000110.selectAuthority SJS */
+COUNT(*) CNT 
+FROM M90APUSER.TB_SEC_USER A
+WHERE USER_NO = :USER_NO
+AND EXISTS (SELECT 1
+            FROM M90APUSER.TB_USER_MENU_MAPPING
+            WHERE MENU_ID = '5903'
+            AND USER_ID = A.USER_ID)
+		 ]]> 
+	 </query>
 </queryMap>

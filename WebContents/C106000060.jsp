@@ -3171,14 +3171,83 @@ function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
 	var param= "";	
 	if(stage==1) { 
 		if(cInd == 0){//CCL BOM NO
+			
+// 	        if (gridObj.editor.obj) {
+// 	            gridObj.editor.obj.onkeyup = null; 
+// 	        }
+		
+	        if (gridObj.editor.obj) {
+	            gridObj.editor.obj.onkeyup = null;
+// 	            gridObj.editor.obj.oninput = null; // input 이벤트 초기화
+// 	            gridObj.editor.obj.oncompositionstart = null; // IME 시작 초기화
+// 	            gridObj.editor.obj.oncompositionend = null; // IME 종료 초기화
+	        }
+
+// 	        var isComposing = false; // IME 입력 상태 확인
+
+// 	        gridObj.editor.obj.oncompositionstart = function() {
+// 	            isComposing = true; // IME 입력 중
+// 	        };
+
+// 	        gridObj.editor.obj.oncompositionend = function() {
+// 	            isComposing = false; // IME 입력 종료
+// 	            applyTransformation(); // IME 종료 시 변환 실행
+// 	        };
+
+// 	        gridObj.editor.obj.oninput = function() {
+// 	            if (!isComposing) {
+// 	                applyTransformation(); // IME 입력 중이 아니면 즉시 변환
+// 	            }
+// 	        };		
+		
+// 			gridObj.editor.obj.oninput = function() {
+// 	        function applyTransformation() {
 			gridObj.editor.obj.onkeyup = function() {
-				var valueLength = gridObj.editor.obj.value+'';
-				if(!hanCheck(valueLength,'6')){
-					alert("6자리만 입력 가능합니다.");
-					gridObj.editor.obj.value = "";
-					return false;
-				}				
-			}
+// 				var valueLength = gridObj.editor.obj.value+'';
+// 				var cellValue = gridObj.editor.obj.value;
+				
+				var inputValue = gridObj.editor.obj.value || ''; 
+				
+// 	            inputValue = inputValue.replace(/[\uAC00-\uD7A3]/g, ''); // 한글 제거				
+				
+				
+// 		        한글을 영문으로 변환 (예: 자판 위치 기준으로 변환)
+		        inputValue = inputValue.split('').map(function(char) {
+		            var korToEngMap = {
+		                'ㅂ': 'q', 'ㅈ': 'w', 'ㄷ': 'e', 'ㄱ': 'r', 'ㅅ': 't',
+		                'ㅛ': 'y', 'ㅕ': 'u', 'ㅑ': 'i', 'ㅐ': 'o', 'ㅔ': 'p',
+		                'ㅁ': 'a', 'ㄴ': 's', 'ㅇ': 'd', 'ㄹ': 'f', 'ㅎ': 'g',
+		                'ㅗ': 'h', 'ㅓ': 'j', 'ㅏ': 'k', 'ㅣ': 'l', 
+		                'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b',
+		                'ㅜ': 'n', 'ㅡ': 'm'
+		            };
+		            return korToEngMap[char] || char;
+		        }).join('').toUpperCase();
+		        
+			    var convertedValue = inputValue.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); // 대문자로 변환		        
+
+		        // 그리드의 첫 번째 셀의 값을 직접 수정
+// 		        gridObj.cells(rId, cInd).setValue(convertedValue);
+// 		        cellValue = convertedValue;
+				gridObj.editor.obj.value = convertedValue;
+				
+				
+	            // 커서를 입력 필드의 맨 끝으로 이동
+// 	            var length = convertedValue.length;
+// 	            gridObj.editor.obj.setSelectionRange(length, length);				
+				
+// 				if(cellValue.charAt(cellValue - 1) <= 'z' && cellValue.charAt(cellValue.length - 1) >= 'a'){
+// 					gridObj.editor.obj.value = cellValue.toUpperCase();
+// 				}				
+				
+				
+// 				if(!hanCheck(valueLength,'6')){
+// 					alert("6자리만 입력 가능합니다.");
+// 					gridObj.editor.obj.value = "";
+// 					return false;
+// 				}				
+// 			}
+	        }
 			var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
 			if( rowStatus!="inserted"){
 				alert("행추가를 한경우에만 CCL BOM NO를 입력하실 수 있습니다.");
@@ -4003,37 +4072,127 @@ function saveAll(eventName,formDivObj,referenceItem){
 	grid.setCellValue(grid.getRowSelectedId(),gridObj.getColIndexById("MDF_RSN"),
 	grid2.getDhxGrid().cellById(grid2.getRowSelectedId(),grid2.getDhxGrid().getColIndexById('MDF_RSN')).getValue());		
 
-	if(duplicateCclBom()){
-
-	    dhtmlx.confirm({
-			title:"[[ 전체저장 ]]",
-			ok:"전체저장", cancel:"취소",
-			text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
-			callback:function(val){
-				if(val){
-					items[referenceItem].sendGrid(referenceItem,eventName);		
-// 					items['C106000060_Form_2'].getDhxForm().disableItem("saveAll");
-// 					items['C106000060_Form_2'].getDhxForm().enableItem("save");
-										
-					// 전체저장 버튼 색깔 다시 disable 색깔로 변경
-// 					var elements = document.querySelectorAll('.dhxlist_obj_dhx_skyblue');		
-// 					var element = elements[1].querySelector(' .dhx_list_btn_custom td.custom_btn_m');
-// 					element.style.backgroundColor = '#E1E1E1';
-// 					element.style.color = '#B2B2B2';					
-					
-					return;
-				}
-// 				else{
-// 					saveBom('save',formDivObj,referenceItem);
-// 				}
-			}
-		});	
-	}else{
-		alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
-		return;			
-	}
 	
+	
+	// 저장시 광택차 확인 
+	
+	var grid3 = items['C106000060_Grid_3'];
+	var tmpTopCode = "";
+	var tmpBackCode = "";
+	var tmpTopRow = "";
+	var tmpBackRow = "";
+	
+	for(var j=1;j<5;j++){
+		tmpTopCode = grid3.getCellValue(j,0) == null ? null : grid3.getCellValue(j,0);
+		
+		if(tmpTopCode != null && tmpTopCode != ""){
 
+			tmpTopRow = j;
+			break;
+		}
+		
+		if(j == 4 && tmpTopRow == ""){
+// 			alert("광택차를 비교할 TOP 색상코드가 없습니다.");
+		}
+		
+	}
+
+	for(var i=8;i>4;i--){
+		tmpBackCode = grid3.getCellValue(i,0) == null ? null : grid3.getCellValue(i,0);
+		
+		if(tmpBackCode != null && tmpBackCode != ""){
+
+			tmpBackRow = i;
+			break;
+		}
+		
+		if(i == 5 && tmpBackRow == ""){
+// 			alert("광택차를 비교할 BACK 색상코드가 없습니다.");
+		}
+		
+	}
+
+	var isClose = false;
+	
+	if(tmpTopRow != "" && tmpBackRow != ""){
+		
+		var	subMtlTp1 = "S31";
+		var	subMtlTp2 = "S32";
+		var	subMtlTp3 = "S35";
+		var subMtlTp4 = "ZZZ";  
+		var subMtlTp5 = "";
+		var subMtlTp6 = "S37";
+		
+		var tCode = grid3.getCellValue(tmpTopRow,0);
+		var bCode = grid3.getCellValue(tmpBackRow,0);
+		
+	
+		var topParam = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+tCode+"&column-info=RL_LUS_RT";	
+		var topXmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',topParam);
+		var topCells = topXmlObj.getElementsByTagName("cell");
+	
+		var backParam = "ServiceName=C106000060-service&colorAjaxFind=1&SUB_MTL_TP1="+subMtlTp1+"&SUB_MTL_TP2="+subMtlTp2+"&SUB_MTL_TP3="+subMtlTp3+"&SUB_MTL_TP4="+subMtlTp4+"&SUB_MTL_TP5="+subMtlTp5+"&SUB_MTL_TP6="+subMtlTp6+"&CLR_SUB_MTL_CD="+bCode+"&column-info=RL_LUS_RT";	
+		var backXmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',backParam);
+		var backCells = backXmlObj.getElementsByTagName("cell");
+		
+		var topNum 	= topCells.item(0).firstChild.nodeValue; //top 실광택값
+		var backNum = backCells.item(0).firstChild.nodeValue; //back 실광택값	
+		
+		var saveDifference = Math.abs(topNum - backNum);
+		
+		if(saveDifference > 20){
+			
+			isClose = true;
+			
+			C10_linkC106000060pop09(tmpTopCode,tmpBackCode,topNum,backNum,saveDifference, function(isClosed){
+				
+				if(isClosed){
+					
+					if(duplicateCclBom()){
+
+					    dhtmlx.confirm({
+							title:"[[ 전체저장 ]]",
+							ok:"전체저장", cancel:"취소",
+							text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
+							callback:function(val){
+								if(val){
+									items[referenceItem].sendGrid(referenceItem,eventName);		
+									return;
+								}
+							}
+						});	
+					}else{
+						alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
+						return;			
+					}
+				
+				}
+				
+			});
+		
+		}else{
+			isClose = true;
+			
+			if(duplicateCclBom()){
+
+			    dhtmlx.confirm({
+					title:"[[ 전체저장 ]]",
+					ok:"전체저장", cancel:"취소",
+					text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
+					callback:function(val){
+						if(val){
+							items[referenceItem].sendGrid(referenceItem,eventName);		
+							return;
+						}
+					}
+				});	
+			}else{
+				alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
+				return;			
+			}		
+			
+		}		
+	}
 	
 }
 

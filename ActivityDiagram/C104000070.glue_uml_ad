@@ -2,7 +2,7 @@
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
   <child xsi:type="Glue:FinalState" id="1" location="294,303" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6"/>
-  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="610,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.5" name="분기">
+  <child xsi:type="Glue:RouterActivity" id="2" location="90,82" size="610,-1" input="//@wire.0" output="//@wire.2 //@wire.3 //@wire.5 //@wire.7" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value=""/>
   </child>
@@ -12,7 +12,7 @@
     <property key="sqlkey" value="C104000070.findQltSts"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="342512" location="477,178" size="135,-1" input="//@wire.3" output="//@wire.4" name="품질설계 상태 변경">
+  <child xsi:type="Glue:DinaActivity" id="342512" location="477,178" size="135,-1" input="//@wire.3 //@wire.7" output="//@wire.4" name="품질설계 상태 변경">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000070.saveQltSts"/>
@@ -44,5 +44,8 @@
   </wire>
   <wire id="14185" guardcondition="success" firstRelativePoint="386,210" lastRelativePoint="313,312">
     <bendpoint weight="0.5" firstDimension="5,118" secondDimension="82,0"/>
+  </wire>
+  <wire id="14186" guardcondition="saveForceQltSts" firstRelativePoint="672,112" lastRelativePoint="612,191">
+    <bendpoint weight="0.5" firstDimension="277,94" secondDimension="128,-2"/>
   </wire>
 </Glue:GlueDiagram>

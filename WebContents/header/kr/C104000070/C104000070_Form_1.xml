@@ -18,7 +18,10 @@
 				<item inputWidth="30" label="현재상태"  labelWidth="52" maxLength="20" name="QLT_DSN_STS_CD" type="input" readonly="true" />
 				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>			
 				<item inputWidth="80" labelAlign="right" labelWidth="10" maxLength="20" name="QLT_DSN_STS_CD_NM" type="input" readonly="true" />
-				<item foreground-color="255,140,50" offset="20" type="newcolumn"/>
+				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+				<item inputWidth="30" labelAlign="right" labelWidth="10" maxLength="20" name="CNT" type="input" readonly="true" />
+				<item foreground-color="255,140,50" offset="36" type="newcolumn"/>	
+				<item command="saveForceQltSts" label="강제저장" name="saveForceQltSts" type="custombutton" value="강제저장" disabled="true"/>		
 			</item>
 		</item>
 	</item>

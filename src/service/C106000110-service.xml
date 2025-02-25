@@ -11,6 +11,11 @@
     <property name="sqlkey" value="C106000110_selNat.select" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="보증서 권한 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000110.selectAuthority" />
+    <property name="dao" value="mesdao" />
+  </activity>
   <activity name="Class 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C106000110.selectClass" />
@@ -24,10 +29,10 @@
   </activity>
   <activity name="파일저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="end" />
-    <property name="insert-sql" value="C106000110.Fileinsert" />
     <property name="dao" value="mesdao" />
-    <property name="update-sql" value="C106000110.Fileinsert" />
+    <property name="insert-sql" value="C106000110.Fileinsert" />
     <property name="isAudit" value="true" />
+    <property name="update-sql" value="C106000110.Fileinsert" />
   </activity>
   <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -45,6 +50,7 @@
     <transition name="cclBomChk" value="CCLBOM체크" />
     <transition name="find" value="예외TB 조회" />
     <transition name="selClass" value="Class 조회" />
+    <transition name="authorityChk" value="보증서 권한 조회" />
   </activity>
   <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="파일저장" />

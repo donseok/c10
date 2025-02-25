@@ -34,6 +34,9 @@ var initLayout =
 //품질설계 상태 변경 조회
 function findQltSts(eventName,formDivObj,referenceItem){
 	
+	//강제저장 비활성화
+	items["C104000070_Form_1"].getDhxForm().disableItem('saveForceQltSts');
+	
 	var findUrl = uiCommon.parameters6("C104000070_Form_1","C104000070_Form_1",eventName);
 	
 	items["C104000070_Form_1"].loadData(findUrl);		 	
@@ -42,6 +45,43 @@ function findQltSts(eventName,formDivObj,referenceItem){
 
 //품질설계 상태 변경 저장
 function saveQltSts(eventName,formDivObj,referenceItem){
+
+	var aForm1 = "C104000070_Form_1";
+	var ordNo = items[aForm1].getDhxForm().getItemValue('ORD_NO'); 
+	var ordLn = items[aForm1].getDhxForm().getItemValue('ORD_LN'); 
+	var qltDsnSts = items[aForm1].getDhxForm().getItemValue('QLT_DSN_STS_CD');
+	var workCnt = items[aForm1].getDhxForm().getItemValue('CNT');
+	
+	if(ordNo == '' || ordLn == ''){
+		dhtmlx.alert('주문번호를 입력하세요.');
+	} else if(qltDsnSts != 'A'){
+		dhtmlx.alert('품질설계 상태가 확정인 건만 확정대기 상태로 변경 가능합니다.');
+	} else if(workCnt > 0){
+		dhtmlx.alert('작업대기 또는 작업중(작업완료) 코일이 포함되어있습니다. \n 설계원과 상의하세요.');
+		items[aForm1].getDhxForm().enableItem('saveForceQltSts');
+	}else {
+
+		dhtmlx.confirm({
+			title:"품질설계상태변경",
+			ok:"확인", cancel:"취소",
+			text:"확정 대기상태로 변경 하시겠습니까?",
+			callback:function(val){
+				 if(val){
+				     items["C104000070_Form_1"].sendForm("handleDataProcess.do","C104000070_Form_1",eventName);
+				     findQltSts('findQltSts','','');
+				 }
+			}
+		});	
+
+// 		items["C104000070_Form_1"].sendForm("handleDataProcess.do","C104000070_Form_1",eventName);	
+// 		findQltSts('findQltSts','','');
+	}
+}
+
+
+
+//품질설계 상태 변경 강제저장
+function saveForceQltSts(eventName,formDivObj,referenceItem){
 
 	var aForm1 = "C104000070_Form_1";
 	var ordNo = items[aForm1].getDhxForm().getItemValue('ORD_NO'); 
@@ -70,6 +110,9 @@ function saveQltSts(eventName,formDivObj,referenceItem){
 // 		findQltSts('findQltSts','','');
 	}
 }
+
+
+
 
 function onFormLoadEvent(){ 
 
