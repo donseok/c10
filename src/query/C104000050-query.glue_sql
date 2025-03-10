@@ -150,6 +150,7 @@ SELECT /* C10 품질설계결과확정 C104000050.select 박재영 */
     AND NVL(A.FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
     AND NVL(A.CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'
     AND NVL(B.MAIN_PROC_CD,'%') LIKE :PROC_CD ||'%'
+    AND NVL(A.ORD_END_TP,' ') LIKE DECODE(:ORD_END_TP,1,'E',' ')||'%'
     AND NVL(A.MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
     AND NVL(A.MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
     AND NVL(A.ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
@@ -589,6 +590,7 @@ SELECT /*+ C10 품질설계결과엑셀변환 C104000050.excel 이돈석 */
     AND NVL(ORD_USG_CD,' ') LIKE :ORD_USG_CD||'%' 
     AND NVL(FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
     AND NVL(CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'    
+    AND NVL(ORD_END_TP,' ') LIKE DECODE(:ORD_END_TP,1,'E',' ')||'%'
     AND NVL(MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
     AND NVL(MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
     AND NVL(ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')
@@ -784,6 +786,7 @@ SELECT /* C10 품질설계결과확정 C104000050.selectBsts 이돈석 */
     AND NVL(A.FNL_CUS_CD,' ') LIKE :CUS_CD||'%' 
     AND NVL(A.CCL_BOM_NO,'%') LIKE  :CCL_BOM_NO ||'%'
     AND NVL(B.MAIN_PROC_CD,'%') LIKE :PROC_CD ||'%'
+    AND NVL(A.ORD_END_TP,' ') LIKE DECODE(:ORD_END_TP,1,'E',' ')||'%'
     AND NVL(A.MO_CVT_ORD_YN,' ') LIKE DECODE(:MO_CVT_ORD_YN,1,'X','')||'%'
     AND NVL(A.MTL_PRD_ORD_YN,' ') LIKE DECODE(:MTL_PRD_ORD_YN,1,'X','')||'%'
     AND NVL(A.ORD_BAK_SND_TP,' ') != DECODE(:QLT_DSN_STS_CD,'B','R','Y')

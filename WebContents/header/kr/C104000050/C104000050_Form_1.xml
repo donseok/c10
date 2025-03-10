@@ -51,13 +51,15 @@
 		<item label="기확정" name="QLT_DSN_STS_CD" type="radio" value="A" position="label-right"/>
 		<item offset="8" type="newcolumn"/>
 		<item label="설계오류" name="QLT_DSN_STS_CD" type="radio" value="E" position="label-right"/>
-		<item offset="20" type="newcolumn"/>
+		<item offset="10" type="newcolumn"/>
+		<item label="종결주문" labelAlign="right" labelWidth="75" name="ORD_END_TP" type="checkbox"/>
+		<item offset="4" type="newcolumn"/>
 		<item label="MO전환" labelAlign="right" labelWidth="75" name="MO_CVT_ORD_YN" type="checkbox"/>
-		<item offset="16" type="newcolumn"/>
+		<item offset="4" type="newcolumn"/>
 		<item label="소재생산주문" labelAlign="right" labelWidth="100" name="MTL_PRD_ORD_YN" type="checkbox"/>
-		<item offset="12" type="newcolumn"/>
+		<item offset="4" type="newcolumn"/>
 		<item label="자동확정" labelAlign="right" labelWidth="100" name="QLT_DSN_CFM_TP" type="checkbox"/>
-		<item offset="12" type="newcolumn"/>
+		<item offset="10" type="newcolumn"/>
 		<item command="excelExport" name="excelExport" type="button" value="엑셀출력"/>
 	</item>
 </items>
