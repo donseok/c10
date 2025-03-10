@@ -620,7 +620,7 @@ VALUES
               'R',
               :SUB_MTL_TP,
               :CLR_SUB_MTL_CD,
-              :CLR_NM,
+              REPLACE(:CLR_NM,'_',' '),
               :PNT_CMP_CD,
               :PNT_CMP_NM,
               :RSN_TP,
@@ -1863,7 +1863,7 @@ VALUES
 			  :ERP_IF_GRP_ID,
 			  :ERP_SEQ_NO,
 			  :CLR_SUB_MTL_CD,
-			  :CLR_NM,
+			  REPLACE(:CLR_NM,'_',' '),
 			  '',
 			  DECODE(:SUB_MTL_TP,'S40',:PNT_FLM_THK,:PTT_FLM_THK_NM),
 			  :SUB_MTL_TP,
@@ -1894,5 +1894,5 @@ SMTL_CLR_NM AS THR_NM
 FROM TB_M30_SMTL_CD 
 WHERE SMTL_KND_TP = 'S33' AND SMTL_CLR_CD = :THR_CD AND ROWNUM = 1
 		 ]]> 
-	 </query>	 
+	 </query>
 </queryMap>
