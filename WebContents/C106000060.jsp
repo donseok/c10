@@ -3984,6 +3984,22 @@ function saveAll(eventName,formDivObj,referenceItem){
 		return;
 	}
 	
+    //chemical coat, 무독성구분 입력체크
+	var gridObj5 = items['C106000060_Grid_5'].getDhxGrid();
+	var chemical_coat  = gridObj5.cellByIndex(1,1).getValue();
+	if(isNull(chemical_coat)){
+		dhtmlx.alert("Chemical Coat를 입력하세요");
+		return;	
+	}
+	
+	//상세색상명 입력체크(2014.11.12 이돈석)
+	var dlt_clr_nm  = gridObj5.cellByIndex(2,1).getValue();
+	if(isNull(dlt_clr_nm)){
+		dhtmlx.alert("상세색상명을 입력하세요");
+		return;	
+	}
+	
+	
 	grid.setCellValue(grid.getRowSelectedId(),gridObj.getColIndexById("ORG_CCL_BOM_NO"),items['C106000060_Form_1'].getItemValue("CCL_BOM_NO"));//기존 CCL_BOM_NO
 	grid.setCellValue(grid.getRowSelectedId(),gridObj.getColIndexById("CUS_CD"),
 			grid2.getDhxGrid().cellById(grid2.getRowSelectedId(),grid2.getDhxGrid().getColIndexById('CUS_CD')).getValue());//최종 수요가 추가
@@ -4193,6 +4209,30 @@ function saveAll(eventName,formDivObj,referenceItem){
 			
 		}		
 	}
+	
+	if(!isClose){
+		
+		//상세색상명 강제 업데이트(Grid_1이 인서트, 업데이트의 몸통임!!)
+		items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),119,gridObj5.cellByIndex(2,1).getValue());
+		
+		if(duplicateCclBom()){
+			dhtmlx.confirm({
+				title:"[[ 전체저장 ]]",
+				ok:"전체저장", cancel:"취소",
+				text:"<span style='color:red;font-size:14px'>CCL-BOM</span>과 <span style='color:red;font-size:14px'>선택된 칼라물성</span>이 <br>함께 저장됩니다.<br><br>저장하시겠습니까?",
+				callback:function(val){
+					if(val){					
+						items[referenceItem].sendGrid(referenceItem,eventName);
+						return;
+					}
+				}
+			});  
+		}else{
+			alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
+			return;			
+		}
+	}
+	
 	
 }
 
