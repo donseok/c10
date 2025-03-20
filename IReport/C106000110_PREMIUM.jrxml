@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="C106000110" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="CCL_BOM_NO" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -139,7 +139,7 @@ ELSE
 END detail_2,
 
 'The Warranty period commences from the date of Shipment or six(6) months from the date of coating by DONGKUK CM - whichever occurs first.' as detail_2_0_1,
-'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will have prior to corrosion to perforation in the natural element.
+'For '||$P{PER_FOR_6}||'('||$P{PER_FOR_19_1}||')years, '||$P{BRD_CMP_2_7}||' will not corrode to the point of perforation in natural environments.
 ' as detail_2_1_0,
 'For '||$P{PE_FL_20}|| '('||$P{PE_FL_1}||') years, '||$P{BRD_CMP_2_3}||' will not peel, flake or otherwise lose adhesion to an extent that is apparent on ordinary outdoor visual observation.
 NOTE : Slight crazing or cracking may occur on roll formed edges or break bends at the time of forming,
