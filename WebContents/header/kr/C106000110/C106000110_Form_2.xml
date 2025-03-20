@@ -73,7 +73,7 @@
 <item offset="3" type="newcolumn"/>
 <item name="BRD_CMP_2_7"     label="2)" type="input" inputWidth="100" />
 <item offset="3" type="newcolumn"/>
-<item name="S1A_3"               label="will have prior to corrosion to perforation in the natural element. " type="label" />
+<item name="S1A_3"               label="will not corrode to the point of perforation in natural environments. " type="label" />
 </item>
 <item offset="10" type="newcolumn"/>
 <item type="block" width="945" >
