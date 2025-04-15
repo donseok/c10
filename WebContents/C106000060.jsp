@@ -3186,107 +3186,210 @@ function extractInitialConsonants(str) {
 }
 
 
-function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
-	var grid = items["C106000060_Grid_1"];
-	var gridObj = items["C106000060_Grid_1"].getDhxGrid();
-	var param= "";	
+// function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
+// 	var grid = items["C106000060_Grid_1"];
+// 	var gridObj = items["C106000060_Grid_1"].getDhxGrid();
+// 	var param= "";	
+// 	var converted = "";
+	
+// 	gridObj.attachEvent("onEditCell", function(stage, rId, cInd, nValue, oValue) {
+// 	    if (stage === 1) {
+// 	        const input = gridObj.editor.obj;
+
+// 	        input.oninput = null;
+// 	        input.oncompositionstart = null;
+// 	        input.oncompositionend = null;
+
+// 	        let isComposing = false;
+
+// 	        input.oncompositionstart = function () {
+// 	            isComposing = true;
+// 	        };
+
+// 	        input.oncompositionend = function () {
+// 	            isComposing = false;
+// 	        };
+
+// 	        input.oninput = function () {
+// 	            if (isComposing) return;
+
+// 	            const original = input.value || '';
+
+// 	            //  영문/숫자만 있는 경우에만 실시간으로 대문자 변환
+// 	            if (/^[a-zA-Z0-9]*$/.test(original)) {
+// 	                input.value = original.toUpperCase();
+// 	            }
+// 	            //  한글이나 특수문자 포함된 경우: 실시간으로 건드리지 않음
+// 	        };
+// 	    }
+
+// 	    if (stage === 2) {
+// 	    const korToEngMap = {
+// 	        'ㅂ': 'q', 'ㅈ': 'w', 'ㄷ': 'e', 'ㄱ': 'r', 'ㅅ': 't',
+// 	        'ㅛ': 'y', 'ㅕ': 'u', 'ㅑ': 'i', 'ㅐ': 'o', 'ㅔ': 'p',
+// 	        'ㅁ': 'a', 'ㄴ': 's', 'ㅇ': 'd', 'ㄹ': 'f', 'ㅎ': 'g',
+// 	        'ㅗ': 'h', 'ㅓ': 'j', 'ㅏ': 'k', 'ㅣ': 'l',
+// 	        'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b',
+// 	        'ㅜ': 'n', 'ㅡ': 'm'
+// 	    };
+
+// 	    const input = nValue || '';
+
+// 	    //  한글 초성만 추출
+// 	    const initials = extractInitialConsonants(input);
+
+// 	    //  초성 기반으로 자판 변환
+// 	    converted = initials.split('').map(function(char) {
+// 	        return korToEngMap[char] || char;
+// 	    }).join('').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+
+// 	    gridObj.cells(rId, cInd).setValue(converted);	         	  	    
+	    
+// 	}
+
+// 	    return true;
+// 	});	
 	
 	
-	gridObj.attachEvent("onEditCell", function(stage, rId, cInd, nValue, oValue) {
-	    if (stage === 1) {
-	        const input = gridObj.editor.obj;
-
-	        input.oninput = null;
-	        input.oncompositionstart = null;
-	        input.oncompositionend = null;
-
-	        let isComposing = false;
-
-	        input.oncompositionstart = function () {
-	            isComposing = true;
-	        };
-
-	        input.oncompositionend = function () {
-	            isComposing = false;
-	        };
-
-	        input.oninput = function () {
-	            if (isComposing) return;
-
-	            const original = input.value || '';
-
-	            //  영문/숫자만 있는 경우에만 실시간으로 대문자 변환
-	            if (/^[a-zA-Z0-9]*$/.test(original)) {
-	                input.value = original.toUpperCase();
-	            }
-	            //  한글이나 특수문자 포함된 경우: 실시간으로 건드리지 않음
-	        };
-	    }
-
-	    if (stage === 2) {
-	    const korToEngMap = {
-	        'ㅂ': 'q', 'ㅈ': 'w', 'ㄷ': 'e', 'ㄱ': 'r', 'ㅅ': 't',
-	        'ㅛ': 'y', 'ㅕ': 'u', 'ㅑ': 'i', 'ㅐ': 'o', 'ㅔ': 'p',
-	        'ㅁ': 'a', 'ㄴ': 's', 'ㅇ': 'd', 'ㄹ': 'f', 'ㅎ': 'g',
-	        'ㅗ': 'h', 'ㅓ': 'j', 'ㅏ': 'k', 'ㅣ': 'l',
-	        'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b',
-	        'ㅜ': 'n', 'ㅡ': 'm'
-	    };
-
-	    const input = nValue || '';
-
-	    //  한글 초성만 추출
-	    const initials = extractInitialConsonants(input);
-
-	    //  초성 기반으로 자판 변환
-	    const converted = initials.split('').map(function(char) {
-	        return korToEngMap[char] || char;
-	    }).join('').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
-
-	    gridObj.cells(rId, cInd).setValue(converted);
-	}
-
-	    return true;
-	});	
-	
-	
-	if(stage==1) { 
-		if(cInd == 0){//CCL BOM NO
+// 	if(stage==1) { 
+// 		if(cInd == 0){//CCL BOM NO
 					
-	        if (gridObj.editor.obj) {
-	            gridObj.editor.obj.onkeyup = null;
+// 	        if (gridObj.editor.obj) {
+// 	            gridObj.editor.obj.onkeyup = null;
 
-	        }
+// 	        }
 
-			var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
-			if( rowStatus!="inserted"){
-				alert("행추가를 한경우에만 CCL BOM NO를 입력하실 수 있습니다.");
-				//gridObj.clearSelection();
-				gridObj.editStop();		
-				return;
-			}
-		}else{
-			return true;
-		}
-	}else if(stage ==2){
-		//CCL BOM테이블에서 조회
-		var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
-		if(rowStatus =="inserted"){
-			if(cInd==0 && !isNull(nValue)){
-				var param= "ServiceName=C106000060-service&colorFind=1&CCL_BOM_NO="+nValue+"&column-info=CCL_BOM_NO";
-				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-				var cells = xmlObj.getElementsByTagName("cell");
-				if(cells.length > 0){						
-					alert("이미 등록된 CCL BOM NO가 있습니다.");
-					grid.setCellByIndexValue(0,0,"");
-					//grid.setUpdated(rId,false,""); 
-					return;					
-				}
-			}
-		}
-	}
-	return true;
+// 			var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
+// 			if( rowStatus!="inserted"){
+// 				alert("행추가를 한경우에만 CCL BOM NO를 입력하실 수 있습니다.");
+// 				//gridObj.clearSelection();
+// 				gridObj.editStop();		
+// 				return;
+// 			}
+// 		}else{
+// 			return true;
+// 		}
+// 	}else if(stage ==2){
+// 		//CCL BOM테이블에서 조회
+// 		var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
+// 		if(rowStatus =="inserted"){
+// 			if(cInd==0 && !isNull(nValue)){
+// 				var param= "ServiceName=C106000060-service&colorFind=1&CCL_BOM_NO="+nValue+"&column-info=CCL_BOM_NO";
+// 				var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+// 				var cells = xmlObj.getElementsByTagName("cell");
+// 				if(cells.length > 0){						
+// 					alert("이미 등록된 CCL BOM NO가 있습니다.");
+// 					grid.setCellByIndexValue(0,0,"");
+// 					//grid.setUpdated(rId,false,""); 
+// 					return;					
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return true;
+// }
+
+function onEditCellEvent1(stage, rId, cInd, nValue, oValue) {
+    var grid = items["C106000060_Grid_1"];
+    var gridObj = items["C106000060_Grid_1"].getDhxGrid();
+
+    if (stage === 1) {
+        if (cInd === 0) {
+            var rowStatus = gridObj.getUserData(rId, "!nativeeditor_status");
+            if (rowStatus !== "inserted") {
+                alert("행추가를 한 경우에만 CCL BOM NO를 입력하실 수 있습니다.");
+                gridObj.editStop();
+                return false;
+            }
+
+            const input = gridObj.editor.obj;
+            let isComposing = false;
+
+            input.oncompositionstart = function () {
+                isComposing = true;
+            };
+            input.oncompositionend = function () {
+                isComposing = false;
+            };
+            input.oninput = function () {
+                if (isComposing) return;
+
+                const original = input.value || '';
+                if (/^[a-zA-Z0-9]*$/.test(original)) {
+                    input.value = original.toUpperCase();
+                }
+            };
+        }
+
+    } else if (stage === 2 && cInd === 0) {
+        var rowStatus = gridObj.getUserData(rId, "!nativeeditor_status");
+        if (rowStatus === "inserted" && !isNull(nValue)) {
+
+            // 변환 작업
+			const korToEngMap = {
+			    'ㄱ': 'r', 'ㄲ': 'r',
+			    'ㄴ': 's',
+			    'ㄷ': 'e', 'ㄸ': 'e',
+			    'ㄹ': 'f',
+			    'ㅁ': 'a',
+			    'ㅂ': 'q', 'ㅃ': 'q',
+			    'ㅅ': 't', 'ㅆ': 't',
+			    'ㅇ': 'd',
+			    'ㅈ': 'w', 'ㅉ': 'w',
+			    'ㅊ': 'c',
+			    'ㅋ': 'z',
+			    'ㅌ': 'x',
+			    'ㅍ': 'v',
+			    'ㅎ': 'g',
+			    'ㅛ': 'y',
+			    'ㅕ': 'u',
+			    'ㅑ': 'i',
+			    'ㅐ': 'o',
+			    'ㅔ': 'p',
+			    'ㅗ': 'h',
+			    'ㅓ': 'j',
+			    'ㅏ': 'k',
+			    'ㅣ': 'l',
+			    'ㅠ': 'b',
+			    'ㅜ': 'n',
+			    'ㅡ': 'm'
+			};
+
+            function extractInitialConsonants(str) {
+                const INITIALS = [ 'ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ' ];
+                return Array.from(str).map(char => {
+                    const code = char.charCodeAt(0);
+                    if (code >= 0xAC00 && code <= 0xD7A3) {
+                        const index = Math.floor((code - 0xAC00) / 588);
+                        return INITIALS[index];
+                    }
+                    return char;
+                }).join('');
+            }
+
+            const initials = extractInitialConsonants(nValue);
+            const converted = initials.split('').map(char => korToEngMap[char] || char).join('').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+
+            // 변환된 값으로 셀에 저장
+            gridObj.cells(rId, cInd).setValue(converted);
+
+            // 중복 확인도 변환된 값을 기준으로 수행
+            const param = "ServiceName=C106000060-service&colorFind=1&CCL_BOM_NO=" + converted + "&column-info=CCL_BOM_NO";
+            const xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do', param);
+            const cells = xmlObj.getElementsByTagName("cell");
+
+            if (cells.length > 0) {
+                alert("이미 등록된 CCL BOM NO가 있습니다.");
+                grid.setCellByIndexValue(0, 0, "");
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
+
+
 
 function onEditCellEvent2(stage,rId,cInd,nValue,oValue){
 	var grid = items["C106000060_Grid_2"];
