@@ -295,7 +295,7 @@ function saveBom(eventName,formDivObj,referenceItem){
 	var tmpTopCode = "";
 	var tmpBackCode = "";
 	var tmpTopRow = "";
-	var tmpBackRow = "";
+	var tmpBackRow = "";	
 	
 	// 저장시 광택차 확인	
 	for(var j=1;j<5;j++){
@@ -2059,8 +2059,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),12,cells.item(0).firstChild.nodeValue);//색상코드4차(전면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),13,cells.item(14).firstChild.nodeValue);//수지타입4(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),14,cells.item(15).firstChild.nodeValue);//광택도코드4(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),15,cells.item(13).firstChild.nodeValue);//광택도4(하한)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),132,cells.item(12).firstChild.nodeValue);//광택도4(상한)										
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),15,cells.item(12).firstChild.nodeValue);//광택도4(하한)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),132,cells.item(13).firstChild.nodeValue);//광택도4(상한)										
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),16,cells.item(4).firstChild.nodeValue);//작업점도4(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),17,cells.item(5).firstChild.nodeValue);//PMT4(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),18,cells.item(6).firstChild.nodeValue);//도막4(전면)
@@ -2079,8 +2079,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),24,cells.item(0).firstChild.nodeValue);//색상코드3차(전면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),25,cells.item(14).firstChild.nodeValue);//수지타입3(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),26,cells.item(15).firstChild.nodeValue);//광택도코드3(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),27,cells.item(13).firstChild.nodeValue);//광택도3(하한)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),133,cells.item(12).firstChild.nodeValue);//광택도3(상한)										
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),27,cells.item(12).firstChild.nodeValue);//광택도3(하한)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),133,cells.item(13).firstChild.nodeValue);//광택도3(상한)										
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),28,cells.item(4).firstChild.nodeValue);//작업점도3(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),29,cells.item(5).firstChild.nodeValue);//PMT3(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),30,cells.item(6).firstChild.nodeValue);//도막3(전면)
@@ -2100,8 +2100,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),36,cells.item(0).firstChild.nodeValue);//색상코드2차(전면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),37,cells.item(14).firstChild.nodeValue);//수지타입2(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),38,cells.item(15).firstChild.nodeValue);//광택도코드2(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),39,cells.item(13).firstChild.nodeValue);//광택도2(하한)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),134,cells.item(12).firstChild.nodeValue);//광택도2(상한)										
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),39,cells.item(12).firstChild.nodeValue);//광택도2(하한)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),134,cells.item(13).firstChild.nodeValue);//광택도2(상한)										
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),40,cells.item(4).firstChild.nodeValue);//작업점도2(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),41,cells.item(5).firstChild.nodeValue);//PMT2(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),42,cells.item(6).firstChild.nodeValue);//도막2(전면)
@@ -2121,8 +2121,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),48,cells.item(0).firstChild.nodeValue);//색상코드1차(전면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),49,cells.item(14).firstChild.nodeValue);//수지타입1(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),50,cells.item(15).firstChild.nodeValue);//광택도코드1(전면)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),51,cells.item(13).firstChild.nodeValue);//광택도1(하한)
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),135,cells.item(12).firstChild.nodeValue);//광택도1(상한)										
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),51,cells.item(12).firstChild.nodeValue);//광택도1(하한)
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),135,cells.item(13).firstChild.nodeValue);//광택도1(상한)										
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),52,cells.item(4).firstChild.nodeValue);//작업점도1(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),53,cells.item(5).firstChild.nodeValue);//PMT1(전면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),54,cells.item(6).firstChild.nodeValue);//도막1(전면)
@@ -2142,8 +2142,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),60,cells.item(0).firstChild.nodeValue);//색상코드1차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),61,cells.item(14).firstChild.nodeValue);//수지타입1차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),62,cells.item(15).firstChild.nodeValue);//광택도코드1차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),63,cells.item(13).firstChild.nodeValue);//광택도1차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),136,cells.item(12).firstChild.nodeValue);//광택도1차(후면)											
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),63,cells.item(12).firstChild.nodeValue);//광택도1차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),136,cells.item(13).firstChild.nodeValue);//광택도1차(후면)											
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),64,cells.item(4).firstChild.nodeValue);//작업점도1차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),65,cells.item(5).firstChild.nodeValue);//PMT1차(후면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),66,cells.item(6).firstChild.nodeValue);//도막1차(후면)	
@@ -2163,8 +2163,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),72,cells.item(0).firstChild.nodeValue);//색상코드2차(후면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),73,cells.item(14).firstChild.nodeValue);//수지타입2차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),74,cells.item(15).firstChild.nodeValue);//광택도코드2차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),75,cells.item(13).firstChild.nodeValue);//광택도2차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),137,cells.item(12).firstChild.nodeValue);//광택도2차(후면)											
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),75,cells.item(12).firstChild.nodeValue);//광택도2차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),137,cells.item(13).firstChild.nodeValue);//광택도2차(후면)											
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),76,cells.item(4).firstChild.nodeValue);//작업점도2차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),77,cells.item(5).firstChild.nodeValue);//PMT2차(후면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),78,cells.item(6).firstChild.nodeValue);//도막2차(후면)	
@@ -2184,8 +2184,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),84,cells.item(0).firstChild.nodeValue);//색상코드3차(후면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),85,cells.item(14).firstChild.nodeValue);//수지타입3차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),86,cells.item(15).firstChild.nodeValue);//광택도코드3차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),87,cells.item(13).firstChild.nodeValue);//광택도3차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),138,cells.item(12).firstChild.nodeValue);//광택도3차(후면)											
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),87,cells.item(12).firstChild.nodeValue);//광택도3차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),138,cells.item(13).firstChild.nodeValue);//광택도3차(후면)											
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),88,cells.item(4).firstChild.nodeValue);//작업점도3차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),89,cells.item(5).firstChild.nodeValue);//PMT3차(후면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),90,cells.item(6).firstChild.nodeValue);//도막3차(후면)	
@@ -2205,8 +2205,8 @@ function onEditCellEvent3(stage,rId,cInd,nValue,oValue){
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),96,cells.item(0).firstChild.nodeValue);//색상코드4차(후면)					
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),97,cells.item(14).firstChild.nodeValue);//수지타입4차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),98,cells.item(15).firstChild.nodeValue);//광택도코드4차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),99,cells.item(13).firstChild.nodeValue);//광택도4차(후면)	
-									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),139,cells.item(12).firstChild.nodeValue);//광택도4차(후면)											
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),99,cells.item(12).firstChild.nodeValue);//광택도4차(후면)	
+									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),139,cells.item(13).firstChild.nodeValue);//광택도4차(후면)											
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),100,cells.item(4).firstChild.nodeValue);//작업점도4차(후면)	
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),101,cells.item(5).firstChild.nodeValue);//PMT4차(후면)
 									items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),102,cells.item(6).firstChild.nodeValue);//도막4차(후면)	
@@ -3165,89 +3165,99 @@ function popSetValue10(rowId,colIndex1,rsnTpQtBrFrnCb,colIndex2,rsnTpQtBrBakCb,c
 	return true;
 }
 
+//초성 추출 함수
+function extractInitialConsonants(str) {
+    const INITIALS = [
+        'ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ',
+        'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ',
+        'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'
+    ];
+
+    return str.split('').map(char => {
+        const code = char.charCodeAt(0);
+        if (code >= 0xAC00 && code <= 0xD7A3) {
+            // 한글 완성형이면 초성 추출
+            const index = Math.floor((code - 0xAC00) / 588);
+            return INITIALS[index];
+        } else {
+            return char;
+        }
+    }).join('');
+}
+
+
 function onEditCellEvent1(stage,rId,cInd,nValue,oValue){
 	var grid = items["C106000060_Grid_1"];
 	var gridObj = items["C106000060_Grid_1"].getDhxGrid();
 	var param= "";	
+	
+	
+	gridObj.attachEvent("onEditCell", function(stage, rId, cInd, nValue, oValue) {
+	    if (stage === 1) {
+	        const input = gridObj.editor.obj;
+
+	        input.oninput = null;
+	        input.oncompositionstart = null;
+	        input.oncompositionend = null;
+
+	        let isComposing = false;
+
+	        input.oncompositionstart = function () {
+	            isComposing = true;
+	        };
+
+	        input.oncompositionend = function () {
+	            isComposing = false;
+	        };
+
+	        input.oninput = function () {
+	            if (isComposing) return;
+
+	            const original = input.value || '';
+
+	            //  영문/숫자만 있는 경우에만 실시간으로 대문자 변환
+	            if (/^[a-zA-Z0-9]*$/.test(original)) {
+	                input.value = original.toUpperCase();
+	            }
+	            //  한글이나 특수문자 포함된 경우: 실시간으로 건드리지 않음
+	        };
+	    }
+
+	    if (stage === 2) {
+	    const korToEngMap = {
+	        'ㅂ': 'q', 'ㅈ': 'w', 'ㄷ': 'e', 'ㄱ': 'r', 'ㅅ': 't',
+	        'ㅛ': 'y', 'ㅕ': 'u', 'ㅑ': 'i', 'ㅐ': 'o', 'ㅔ': 'p',
+	        'ㅁ': 'a', 'ㄴ': 's', 'ㅇ': 'd', 'ㄹ': 'f', 'ㅎ': 'g',
+	        'ㅗ': 'h', 'ㅓ': 'j', 'ㅏ': 'k', 'ㅣ': 'l',
+	        'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b',
+	        'ㅜ': 'n', 'ㅡ': 'm'
+	    };
+
+	    const input = nValue || '';
+
+	    //  한글 초성만 추출
+	    const initials = extractInitialConsonants(input);
+
+	    //  초성 기반으로 자판 변환
+	    const converted = initials.split('').map(function(char) {
+	        return korToEngMap[char] || char;
+	    }).join('').replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+
+	    gridObj.cells(rId, cInd).setValue(converted);
+	}
+
+	    return true;
+	});	
+	
+	
 	if(stage==1) { 
 		if(cInd == 0){//CCL BOM NO
-			
-// 	        if (gridObj.editor.obj) {
-// 	            gridObj.editor.obj.onkeyup = null; 
-// 	        }
-		
+					
 	        if (gridObj.editor.obj) {
 	            gridObj.editor.obj.onkeyup = null;
-// 	            gridObj.editor.obj.oninput = null; // input 이벤트 초기화
-// 	            gridObj.editor.obj.oncompositionstart = null; // IME 시작 초기화
-// 	            gridObj.editor.obj.oncompositionend = null; // IME 종료 초기화
+
 	        }
 
-// 	        var isComposing = false; // IME 입력 상태 확인
-
-// 	        gridObj.editor.obj.oncompositionstart = function() {
-// 	            isComposing = true; // IME 입력 중
-// 	        };
-
-// 	        gridObj.editor.obj.oncompositionend = function() {
-// 	            isComposing = false; // IME 입력 종료
-// 	            applyTransformation(); // IME 종료 시 변환 실행
-// 	        };
-
-// 	        gridObj.editor.obj.oninput = function() {
-// 	            if (!isComposing) {
-// 	                applyTransformation(); // IME 입력 중이 아니면 즉시 변환
-// 	            }
-// 	        };		
-		
-// 			gridObj.editor.obj.oninput = function() {
-// 	        function applyTransformation() {
-			gridObj.editor.obj.onkeyup = function() {
-// 				var valueLength = gridObj.editor.obj.value+'';
-// 				var cellValue = gridObj.editor.obj.value;
-				
-				var inputValue = gridObj.editor.obj.value || ''; 
-				
-// 	            inputValue = inputValue.replace(/[\uAC00-\uD7A3]/g, ''); // 한글 제거				
-				
-				
-// 		        한글을 영문으로 변환 (예: 자판 위치 기준으로 변환)
-		        inputValue = inputValue.split('').map(function(char) {
-		            var korToEngMap = {
-		                'ㅂ': 'q', 'ㅈ': 'w', 'ㄷ': 'e', 'ㄱ': 'r', 'ㅅ': 't',
-		                'ㅛ': 'y', 'ㅕ': 'u', 'ㅑ': 'i', 'ㅐ': 'o', 'ㅔ': 'p',
-		                'ㅁ': 'a', 'ㄴ': 's', 'ㅇ': 'd', 'ㄹ': 'f', 'ㅎ': 'g',
-		                'ㅗ': 'h', 'ㅓ': 'j', 'ㅏ': 'k', 'ㅣ': 'l', 
-		                'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b',
-		                'ㅜ': 'n', 'ㅡ': 'm'
-		            };
-		            return korToEngMap[char] || char;
-		        }).join('').toUpperCase();
-		        
-			    var convertedValue = inputValue.replace(/[^a-zA-Z0-9]/g, '').toUpperCase(); // 대문자로 변환		        
-
-		        // 그리드의 첫 번째 셀의 값을 직접 수정
-// 		        gridObj.cells(rId, cInd).setValue(convertedValue);
-// 		        cellValue = convertedValue;
-				gridObj.editor.obj.value = convertedValue;
-				
-				
-	            // 커서를 입력 필드의 맨 끝으로 이동
-// 	            var length = convertedValue.length;
-// 	            gridObj.editor.obj.setSelectionRange(length, length);				
-				
-// 				if(cellValue.charAt(cellValue - 1) <= 'z' && cellValue.charAt(cellValue.length - 1) >= 'a'){
-// 					gridObj.editor.obj.value = cellValue.toUpperCase();
-// 				}				
-				
-				
-// 				if(!hanCheck(valueLength,'6')){
-// 					alert("6자리만 입력 가능합니다.");
-// 					gridObj.editor.obj.value = "";
-// 					return false;
-// 				}				
-// 			}
-	        }
 			var rowStatus = gridObj.getUserData(rId,"!nativeeditor_status");
 			if( rowStatus!="inserted"){
 				alert("행추가를 한경우에만 CCL BOM NO를 입력하실 수 있습니다.");
