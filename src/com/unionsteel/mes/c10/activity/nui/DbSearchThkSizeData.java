@@ -260,6 +260,7 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
         double wk_gw_frn_llv = 0;
         double wk_gw_bak_llv = 0;
         double wk_gw_tot_llv = 0;
+//        String tmp_thk_tp = C10STR_SPACE;
 
         if ( !DbCommonUtil.isNull( ctx.get( COL_QLT_DSN_MNF_TP ) ) )
         	qlt_dsn_mnf_tp = ctx.get( COL_QLT_DSN_MNF_TP ).toString();
@@ -415,11 +416,49 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
             }
     
             if ( Double.compare( cus_req_rol_thk, 0) == 0 && !ord_thk_tp.equals( NUM3 ) ){
-                // 고객요청압연두께 미지정
+                
+            	//목표도금두께 
+//                param = new PosParameter(); // MD View param
+//                param.setWhereClauseParameter( 0, prd_nm_cd );
+//                param.setWhereClauseParameter( 1, gw_asg_cd );
+//                try
+//                {
+//                    // 결과값 잘 가져오는지 확인
+//                    rowset = dao.find( VI_M00_C10A1061, param ); // 도금량View.select
+//                } catch ( MasterDataException e )
+//                {
+//                    rowset = null;
+//                    ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KK31 );
+//                    ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//                    logger.logError( e.getMessage() );
+//                    return PosBizControlConstants.FAILURE;
+//                }
+//
+//                if ( rowset.count() == 1 )
+//                {
+//                    row = rowset.next();
+//
+//                } else if ( rowset.count() > 1 )
+//                {
+//                    ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KK32 );
+//                    ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//                    logger.logError( ERRMSG_R83 );
+//                    return PosBizControlConstants.FAILURE;
+//                } else
+//                {
+//                    ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KK31 );
+//                    ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//                    logger.logError( ERRMSG_R82 );
+//                    return PosBizControlConstants.FAILURE;
+//                }            	
+            	
+            	
+            	
+            	// 고객요청압연두께 미지정
                 colValue = new String[10];
                 colValue[0] = prd_nm_cd; //품명코드
                 if(spc_avr.length() > 1)
-                    colValue[1] = spc_avr.substring( 0, 2 ); //규격기관
+                	colValue[1] = spc_avr.substring( 0, 2 ); //규격기관
                 colValue[2] = spc_avr; //규격약호
                 colValue[3] = ord_usg_cd; //주문용도
                 colValue[4] = fnl_cus_cd; //최종고객사
@@ -428,6 +467,18 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
                 colValue[7] = gw_asg_cd; //도금량기준
                 colValue[8] = Double.toString( ord_exc_thk ); //주문두께
                 colValue[9] = Double.toString( ord_exc_wth ); //주문폭
+                
+                logger.logDebug( "prd_nm_cd : " + colValue[0] );
+                logger.logDebug( "spc_avr2 : " + colValue[1] );
+                logger.logDebug( "spc_avr : " + colValue[2] );
+                logger.logDebug( "ord_usg_cd : " + colValue[3] );   
+                logger.logDebug( "fnl_cus_cd : " + colValue[4] );   
+                logger.logDebug( "ord_thk_tp : " + colValue[5] );   
+                logger.logDebug( "ord_thk_mng_cd : " + colValue[6] );   
+                logger.logDebug( "gw_asg_cd : " + colValue[7] );   
+                logger.logDebug( "ord_exc_thk : " + colValue[8] );
+                logger.logDebug( "ord_exc_wth : " + colValue[9] );   
+                
     
                 logger.logDebug( "=== check2 ===" );
                 checker = EasyAccess.getPosDecisionChecker( C10B2060, null );
@@ -447,10 +498,20 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
                 
                 if ( result.getRecordCount() == 1 ){
                 	logger.logDebug( "=== check5 ===" );
+//                	tmp_thk_tp = NUM2;
+                	
                 	if ( result.getRuleValueAt( COL_THK_COR_UNT ).equals( UNIT_CRN ) ){
                         if ( ord_thk_tp.equals( NUM2 ) ){
-                            crm_thk = ord_exc_thk - gal_thk_trv + 
-                            Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );
+                        	
+                        	
+                        	// TCT -> BMT로 왔을 경우
+                        	if(ord_thk_mng_cd.equals( NUM5 )){
+                                crm_thk = ord_exc_thk;
+                        	}else{
+                            	//기존
+                                crm_thk = ord_exc_thk - gal_thk_trv + 
+                                Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );                        		
+                        	}
                             
                             //소수점 자리 반올림로직 추가(2013.01.21) 
                             double temp = Math.round(crm_thk*10000);
@@ -466,30 +527,99 @@ public class DbSearchThkSizeData extends PosActivity implements C10NuiConstantsI
                             logger.logDebug( "temp          : " + temp );
                             logger.logDebug( "crm_thk1          : " + crm_thk1 );
                         }else{
-                        	crm_thk = ord_exc_thk + 
-                            Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );
+                        	
+                        	// BMT -> TCT로 왔을 경우
+                        	if(ord_thk_mng_cd.equals( NUM6 )){                        	
+                                crm_thk = ord_exc_thk - gal_thk_trv;
+                        	}else{
+                        		//기존
+                            	crm_thk = ord_exc_thk + 
+                                        Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );		
+                        	}
+                        	
+                        
                         	logger.logDebug( "=== check7 ===" );
+                            logger.logDebug( "ord_exc_thk          : " + ord_exc_thk );
+                            logger.logDebug( "gal_thk_trv          : " + gal_thk_trv );
+                            logger.logDebug( "result.getRuleValueAt( COL_THK_COR_VAL )" + result.getRuleValueAt( COL_THK_COR_VAL ));
+                            logger.logDebug( "Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) )" + Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ));
                             logger.logDebug( "crm_thk          : " + crm_thk );
                         }
                     }else if ( result.getRuleValueAt( COL_THK_COR_UNT ).equals( UNIT_PCN ) ){
+                    	
+                    	
+//                    	if(!ord_thk_tp.equals(tmp_thk_tp)){
+                    	if((ord_thk_tp.equals(NUM2) && ord_thk_mng_cd.equals( NUM6 )) || (ord_thk_tp.equals(NUM1) && ord_thk_mng_cd.equals( NUM5 )) ){                    		
+                            ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KK94 );
+                            ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+                            logger.logError( ERRMSG_R154 );
+                            logger.logDebug( "=== 주문두께구분 불일치 ===" );
+                            return PosBizControlConstants.FAILURE;                    		
+                    	}
+                    	
+                    	
+                    	
                         if ( ord_thk_tp.equals( NUM2 ) ){
+                        	
+                        	// TCT -> BMT
+                        	if(ord_thk_mng_cd.equals( NUM5 )){                          	
+//                        	if(tmp_thk_tp.equals( NUM1 )){
+//                                crm_thk = ord_exc_thk - gal_thk_trv + gal_thk_trv;
+                        	}else{                        	
                             crm_thk = ord_exc_thk - gal_thk_trv + ord_exc_thk * 
                             Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ) / 100;
+                        	}
+                        	
                             logger.logDebug( "=== check8 ===" );
                             logger.logDebug( "crm_thk          : " + crm_thk );
                         }else{
-                        	crm_thk = ord_exc_thk + ord_exc_thk * 
-                            Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ) / 100;
+                        	
+                        	// BMT -> TCT로 왔을 경우
+                        	if(ord_thk_mng_cd.equals( NUM6 )){  
+//                        	if(tmp_thk_tp.equals( NUM2 )){
+//                                crm_thk = ord_exc_thk - gal_thk_trv; 
+                        	}else{
+                            	crm_thk = ord_exc_thk + ord_exc_thk * 
+                                        Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ) / 100;                        	
+                        	}
+
                         	logger.logDebug( "=== check9 ===" );
                             logger.logDebug( "crm_thk          : " + crm_thk );
                         }
                     }else{
+                    	
+//                    	if(!ord_thk_tp.equals(tmp_thk_tp)){
+                    	if((ord_thk_tp.equals(NUM2) && ord_thk_mng_cd.equals( NUM6 )) || (ord_thk_tp.equals(NUM1) && ord_thk_mng_cd.equals( NUM5 )) ){
+                            ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KK94 );
+                            ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+                            logger.logError( ERRMSG_R154 );
+                            logger.logDebug( "=== 주문두께구분 불일치 ===" );
+                            return PosBizControlConstants.FAILURE;                    		
+                    	}
+                    	
                         if ( ord_thk_tp.equals( NUM2 ) ){
-                            crm_thk = Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ) - gal_thk_trv;
+                        	
+                        	// TCT -> BMT로 왔을 경우                 	
+                        	if(ord_thk_mng_cd.equals( NUM5 )){                          	
+//                        	if(tmp_thk_tp.equals( NUM1 )){
+//                                crm_thk = gal_thk_trv - gal_thk_trv;     
+                        	}else{                              	
+                                crm_thk = Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) ) - gal_thk_trv;                        	
+                        	}
+                        	
+
                             logger.logDebug( "=== check10 ===" );
                             logger.logDebug( "crm_thk          : " + crm_thk );
                         }else{
-                            crm_thk = Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );
+                        	
+                        	// BMT -> TCT로 왔을 경우
+                        	if(ord_thk_mng_cd.equals( NUM6 )){                          	
+//                        	if(tmp_thk_tp.equals( NUM2 )){
+//                                crm_thk = - gal_thk_trv;                      	
+                        	}else{                        	
+                                crm_thk = Double.parseDouble( result.getRuleValueAt( COL_THK_COR_VAL ) );                      	
+                        	}
+
                             logger.logDebug( "=== check11 ===" );
                             logger.logDebug( "crm_thk          : " + crm_thk );
                         }
