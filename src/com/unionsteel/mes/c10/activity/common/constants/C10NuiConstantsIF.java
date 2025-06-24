@@ -1094,6 +1094,7 @@ public interface C10NuiConstantsIF {
     public static final String ERRCD_KK91 = "KK91"; // 중간재적용기준 정보가 중복입니다.
     public static final String ERRCD_KK92 = "KK92"; // 코일포장재중량기준 정보가 없습니다.
     public static final String ERRCD_KK93 = "KK93"; // 코일포장재중량기준 정보가 중복입니다.
+    public static final String ERRCD_KK94 = "KK94"; // 주문두께구분이 일치하지 않습니다.
 
     
     
@@ -1493,6 +1494,7 @@ public interface C10NuiConstantsIF {
     public static final String ERRMSG_R151 = "중간재적용기준 정보가 중복입니다."; 
     public static final String ERRMSG_R152 = "포장재중량계산(코일)적용기준 정보가 없습니다.";
     public static final String ERRMSG_R153 = "포장재중량계산(코일)적용기준 정보가 중복입니다.";
+    public static final String ERRMSG_R154 = "주문두께구분이 일치하지 않습니다.";    
     
     public static final String ERRMSG_CF01 = "재질코드 : 값이 누락되었습니다.";
     public static final String ERRMSG_CF02 = "원자재코드 : 값이 누락되었습니다.";
