@@ -226,14 +226,55 @@ function save(eventName,formDivObj,referenceItem){
   		}		
 		
 		//KISS CUTTING건의 경우 통과공정여부를 반드시 확인하라는 경고메시지 띄운다.(2024.10.10 박재행부장요청)
+		//위탁임가공 Y, KISS CUTTING Y일 경우 위탁임가공에서 KISS CUTTING 처리하는 것으로 둘다 Y일 경우에는 해당 팝업을 띄우지 않기로 한다. (2025.03.25 김성일 부장)
 		var kiss_cut_yn = form2.getItemValue("KISS_CUT_YN");
-		if(kiss_cut_yn == "Y"){
+		if(kiss_cut_yn == "Y" && trst_proc_yn != "Y"){
 
 			winObj = new ui.window("popup","KISS CUTTING 주문","0","0","600","500","C104000020POP05.jsp?ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln);
 			winObj.setButtonDisable("park,minmax1");
   		}			
 		
-		if(trst_proc_chk != "Y" && prj_yn != "X" && kiss_cut_yn != "Y")
+		//Sheet 주문, Edge 코드가 M이거나 C이면서 통과공정 코드 72, 77이 모두 없는 경우 설계 확정 팝업 발생 (2025.06.25 김종민 부부장)
+		param= "ServiceName=C104000020-service&POP_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln + "&column-info=SM_POP,SC_POP";
+		xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
+		cells = xmlObj.getElementsByTagName("cell");     
+		
+		var sm_pop = cells.item(0).firstChild.nodeValue;
+		var sc_pop = cells.item(1).firstChild.nodeValue;
+		
+		if(sm_pop == "Y"){
+			dhtmlx.confirm({
+				title:"[[ 설계확정 ]]",
+				ok:"확정", cancel:"취소",
+				text:"Sheet 주문의 Edge 코드가 M(Mill) 입니다. <br>확정하시겠습니까?",
+					callback:function(val){
+						if(val){
+							var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
+							form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
+							return;
+						}
+					}
+			});			
+		}
+			
+		if(sc_pop == "Y"){
+			dhtmlx.confirm({
+				title:"[[ 설계확정 ]]",
+				ok:"확정", cancel:"취소",
+				text:"Sheet 주문의 Edge 코드가 C(Slit-No-ST) 이면서, 통과공정 코드 ‘72’ 또는 ‘77’이 부재합니다.<br>확정하시겠습니까?",
+					callback:function(val){
+						if(val){
+							var param = "ORD_NO=" + ord_no + "&ORD_LN=" + ord_ln;
+							form.sendForm("handleDataProcess.do",'C104000020_Form_1','save',param);
+							return;
+						}
+					}
+			});				
+		}
+		
+		
+		
+		if(trst_proc_chk != "Y" && prj_yn != "X" && kiss_cut_yn != "Y" && sm_pop == "N" && sc_pop == "N")
 		{
 			dhtmlx.confirm({
 				title:"[[ 설계확정 ]]",

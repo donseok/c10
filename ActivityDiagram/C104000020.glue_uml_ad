@@ -2,7 +2,7 @@
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="10" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="66" location="300,25" size="-1,-1" output="//@wire.2"/>
   <child xsi:type="Glue:FinalState" id="67" location="314,293" size="-1,-1" input="//@wire.1 //@wire.4 //@wire.6 //@wire.9 //@wire.21 //@wire.29"/>
-  <child xsi:type="Glue:RouterActivity" id="68" location="20,91" size="1288,-1" input="//@wire.2" output="//@wire.0 //@wire.3 //@wire.5 //@wire.8 //@wire.12 //@wire.13 //@wire.14 //@wire.10 //@wire.11 //@wire.20 //@wire.22 //@wire.28 //@wire.30 //@wire.32" name="분기">
+  <child xsi:type="Glue:RouterActivity" id="68" location="20,91" size="1288,-1" input="//@wire.2" output="//@wire.0 //@wire.3 //@wire.5 //@wire.8 //@wire.12 //@wire.13 //@wire.14 //@wire.10 //@wire.11 //@wire.20 //@wire.22 //@wire.28 //@wire.30 //@wire.32 //@wire.34" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   콤보조회및 폼조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   find는 폼조회, OrdLnFind는 콤보데이터를 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
   </child>
@@ -90,7 +90,7 @@
     <property key="param-count" value="named"/>
     <property key="description" value=""/>
   </child>
-  <child xsi:type="Glue:FinalState" id="264425" location="979,296" size="-1,-1" input="//@wire.15 //@wire.16 //@wire.17 //@wire.19 //@wire.25 //@wire.31 //@wire.33"/>
+  <child xsi:type="Glue:FinalState" id="264425" location="979,296" size="-1,-1" input="//@wire.15 //@wire.16 //@wire.17 //@wire.19 //@wire.25 //@wire.31 //@wire.33 //@wire.35"/>
   <child xsi:type="Glue:DinaActivity" id="264427" location="1189,240" size="120,-1" input="//@wire.18" output="//@wire.19" name="관심주문SMS대상삭제">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
@@ -134,6 +134,12 @@
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000020.PROCselect1"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-통과공정 테이블(TB_C10_QLT_DSN_PROC)의  2CGL공정여부를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
+  <child xsi:type="Glue:InsertActivity" id="490153" location="1124,369" size="84,-1" input="//@wire.34" output="//@wire.35" name="팝업체크">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C104000020.POPselect"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-통과공정 테이블(TB_C10_QLT_DSN_PROC)의  2CGL공정여부를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
   </child>
   <property key="tx1" value="true"/>
@@ -208,4 +214,8 @@
   </wire>
   <wire id="12762" guardcondition="PROC_find1" firstRelativePoint="1026,367" lastRelativePoint="989,315"/>
   <wire id="12763" guardcondition="success" firstRelativePoint="1026,367" lastRelativePoint="989,315"/>
+  <wire id="14867" guardcondition="POP_find" firstRelativePoint="1181,121" lastRelativePoint="1181,369">
+    <bendpoint weight="0.5" firstDimension="517,195" secondDimension="15,-83"/>
+  </wire>
+  <wire id="14868" guardcondition="success" firstRelativePoint="1133,370" lastRelativePoint="989,315"/>
 </Glue:GlueDiagram>

@@ -405,4 +405,50 @@ SELECT *
    AND (MAIN_PROC_CD = '82' OR SUB_PROC_CD1 = '82' OR SUB_PROC_CD2 = '82')
 		 ]]> 
 	 </query>
+	 <query id="C104000020.POPselect" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /* C10 품질설계팝업조건조회 C104000020.POPselect SJS */  
+CASE WHEN SM_POP > 0 THEN 'Y' ELSE 'N' END SM_POP
+, CASE WHEN SC_POP1 = 0 AND SC_POP2 > 0 THEN 'Y' ELSE 'N' END SC_POP
+FROM 
+    (
+    SELECT
+        NVL(SUM(CASE WHEN SM_POP = 'Y' THEN 1 ELSE 0 END), 0) AS SM_POP,
+        NVL(SUM(CASE WHEN SC_POP = 'Y' THEN 1 ELSE 0 END), 0) AS SC_POP1,
+        NVL(SUM(CASE WHEN SC_POP = 'N' THEN 1 ELSE 0 END), 0) AS SC_POP2
+    FROM (
+        SELECT  
+            CASE
+                WHEN PRD_SHP = 'S' 
+                 AND ORD_EDG_ASG_TP = 'M' 
+                THEN 'Y'
+                ELSE 'N'
+            END AS SM_POP,   
+            CASE 
+                WHEN PRD_SHP = 'S' 
+                 AND ORD_EDG_ASG_TP = 'C'  
+                 AND (
+                    NVL(MAIN_PROC_CD, 'X') IN ('72', '77') OR 
+                    NVL(SUB_PROC_CD1, 'X') IN ('72', '77') OR 
+                    NVL(SUB_PROC_CD2, 'X') IN ('72', '77')
+                ) THEN 'Y'            
+                WHEN PRD_SHP = 'S' 
+                 AND ORD_EDG_ASG_TP = 'C'  
+                 AND (
+                    NVL(MAIN_PROC_CD, 'X') NOT IN ('72', '77') OR 
+                    NVL(SUB_PROC_CD1, 'X') NOT IN ('72', '77') OR 
+                    NVL(SUB_PROC_CD2, 'X') NOT IN ('72', '77')
+                ) THEN 'N'             
+                ELSE 'X'
+            END AS SC_POP
+        FROM C10APUSER.TB_C10_QLT_DSN_CMN A
+        LEFT JOIN C10APUSER.TB_C10_QLT_DSN_PROC B
+          ON A.ORD_NO = B.ORD_NO
+         AND A.ORD_LN = B.ORD_LN
+        WHERE A.ORD_NO = :ORD_NO
+          AND A.ORD_LN = :ORD_LN
+    )
+)
+		 ]]> 
+	 </query>	 
 </queryMap>
