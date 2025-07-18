@@ -11,7 +11,7 @@
 	<param>22</param>
 </call>
 <call command="enablePreRendering">
-	<param>19</param>
+	<param>10</param>
 </call>
 <call command="enableStableSorting">
 <param>true</param>
@@ -22,7 +22,7 @@
 <column align="center" clabel="주문행번" dbname="주문행번" id="ORD_LN" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="3">행번</column>
 <column align="center" clabel="품명코드" dbname="품명코드" id="PRD_NM_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">품명</column>
 <column align="center" clabel="제품형태" dbname="제품형태" id="PRD_SHP" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="6">제품유형</column>
-<column align="center" clabel="유통경로" dbname="유통경로 " id="FLOW_CHL" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="5">경로</column>
+<column align="center" clabel="유통경로" dbname="유통경로" id="FLOW_CHL" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="5">경로</column>
 <column align="left" clabel="주문종류" dbname="주문종류" id="ORD_KND" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="14">주문종류</column>
 <column align="left" clabel="최종수요가코드" dbname="최종수요가코드" id="FNL_CUS_CD" sort="sort_str_custom" table="TB_C10_QLT_DSN_CMN" type="ro" width="*">고객사</column>
 <column align="right" clabel="주문환산두께" dbname="주문환산두께" format="0.000" id="ORD_EXC_THK" sort="sort_int_custom" table="TB_C10_QLT_DSN_CMN" type="ron" width="6">두께</column>
@@ -36,73 +36,4 @@
 </settings>
 </head>
 <userdata name="column-info">QLT_DSN_END_DH,ORD_NO,ORD_LN,PRD_NM_CD,PRD_SHP,FLOW_CHL,ORD_KND,FNL_CUS_CD,ORD_EXC_THK,ORD_EXC_WTH,ORD_EXC_LTH,ORD_REP_NO,ORD_REP_LN,ORD_RGS_PRS_ID</userdata>
-<row id="0">
-<cell/>
-</row>
-<row id="1">
-<cell/>
-</row>
-<row id="2">
-<cell/>
-</row>
-<row id="3">
-<cell/>
-</row>
-<row id="4">
-<cell/>
-</row>
-<row id="5">
-<cell/>
-</row>
-<row id="6">
-<cell/>
-</row>
-<row id="7">
-<cell/>
-</row>
-<row id="8">
-<cell/>
-</row>
-<row id="9">
-<cell/>
-</row>
-<row id="10">
-<cell/>
-</row>
-<row id="11">
-<cell/>
-</row>
-<row id="12">
-<cell/>
-</row>
-<row id="13">
-<cell/>
-</row>
-<row id="14">
-<cell/>
-</row>
-<row id="15">
-<cell/>
-</row>
-<row id="16">
-<cell/>
-</row>
-<row id="17">
-<cell/>
-</row>
-<row id="18">
-<cell/>
-</row>
-<row id="19">
-<cell/>
-</row>
-<row id="20">
-<cell/>
-</row>
-<row id="21">
-<cell/>
-</row>
-<row id="22">
-<cell/>
-</row>
 </rows>

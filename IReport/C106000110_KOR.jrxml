@@ -465,10 +465,10 @@ DECODE($P{PRT_RSN},'사전영업용','　',
 				<textFieldExpression><![CDATA[$F{DONGKUKSTEEL}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="406" y="775" width="125" height="41">
+				<reportElement x="399" y="775" width="125" height="41">
 					<printWhenExpression><![CDATA[$P{PRT_RSN}.equals( "WARRANTY발급용" ) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA["ChoiJihun.gif"]]></imageExpression>
+				<imageExpression><![CDATA["leekyuho.gif"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="337" y="749" width="234" height="67"/>

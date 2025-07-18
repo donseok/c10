@@ -20,7 +20,7 @@
 var items = new Array();  //public dhtmlx component array
 var pageConfiguration = '[' + 
       '{"itemType":"form","renderTo":"C104000060_Form_1","xml":".\/header\/kr\/C104000060\/C104000060_Form_1.xml","url":"basicGridData.do","referenceItem":"C104000060_Grid_1","service":"C104000060-service","actionType":"find","security":"true"},' +
-      '{"itemType":"grid","renderTo":"C104000060_Grid_1","xml":".\/header\/kr\/C104000060\/C104000060_Grid_1.xml","rowCnt":"23","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000060_Form_1","service":"C104000060-service","actionType":"save"},' +
+      '{"itemType":"grid","renderTo":"C104000060_Grid_1","xml":".\/header\/kr\/C104000060\/C104000060_Grid_1.xml","rowCnt":"22","vertical":"true","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"true","split":"0","referenceItem":"C104000060_Form_1","service":"C104000060-service","actionType":"save"},' +
       '{"itemType":"messagebox","renderTo":"C104000060_messagebox","xml":".\/header\/kr\/C104000060\/C104000060_messagebox.xml","service":"C104000060-service"}' +
    ']';
 var initConfig = JSON.parse(pageConfiguration);	     
@@ -163,8 +163,8 @@ function onLoadForm(){
 	ui.combo(comboList['FNL_CUS_NAME'],"OrdlnComboData.do"
 	,"ServiceName=C104000060-service&findItem=0&column-info=FNL_CUS_CD,FNL_CUS_NM&QLT_DSN_END_DH_STR="+fromDate+"&QLT_DSN_END_DH_END="+toDate,function(){ 
 	  comboList['FNL_CUS_NAME'].selectOption(0,true,true);
-	  comboList['FNL_CUS_NAME'].readonly(true);
-	  comboList['FNL_CUS_NAME'].DOMelem_input.focus();
+// 	  comboList['FNL_CUS_NAME'].readonly(true);
+// 	  comboList['FNL_CUS_NAME'].DOMelem_input.focus();
 	});
 	
 	// 품명 콤보박스 
@@ -244,8 +244,12 @@ function OnDataChanged(id,value){
 	
 	var comboList = items['C104000060_Form_1'].getMasterCombos();//comboList 객체 생성 구문
 	comboList['FNL_CUS_NAME'].readonly(true,true);//FNL_CUS_NAME : Form에 comboList 배치할 때 지정해 준 NAME
+	
 	ui.combo(comboList['FNL_CUS_NAME'],"OrdlnComboData.do"
-	,"ServiceName=C104000060-service&findItem=0&column-info=FNL_CUS_CD,FNL_CUS_NM&QLT_DSN_END_DH_STR="+fromDate+"&QLT_DSN_END_DH_END="+toDate);
+			,"ServiceName=C104000060-service&findItem=0&column-info=FNL_CUS_CD,FNL_CUS_NM&QLT_DSN_END_DH_STR="+fromDate+"&QLT_DSN_END_DH_END="+toDate,function(){ 
+// 			  comboList['FNL_CUS_NAME'].readonly(true);
+// 			  comboList['FNL_CUS_NAME'].DOMelem_input.focus();
+			});	
 	
 	/*
 	var ORD_NO = items['C104000060_Form_1'].getItemValue("ORD_NO");
