@@ -1153,6 +1153,8 @@ public interface C10NuiConstantsIF {
     public static final String ERRCD_KT34 = "KT34"; // 감량매직체크기준 정보가 중복입니다.
     public static final String ERRCD_KT35 = "KT35"; // 지관발주메시지기준 정보가 중복입니다.
     public static final String ERRCD_KT36 = "KT36"; // PE-FOAM적용메시지기준 정보가 중복입니다.
+    public static final String ERRCD_KT37 = "KT37"; // FH두께설계기준이 없습니다.
+    public static final String ERRCD_KT38 = "KT38"; // FH두께설계기준이 중복입니다.
 
     public static final String ERRCD_TB01 = "TB01"; // Table 반영 에러입니다._품질설계_공통
     public static final String ERRCD_TB02 = "TB02"; // Table 반영 에러입니다._품질설계_성분사양
@@ -1494,7 +1496,9 @@ public interface C10NuiConstantsIF {
     public static final String ERRMSG_R151 = "중간재적용기준 정보가 중복입니다."; 
     public static final String ERRMSG_R152 = "포장재중량계산(코일)적용기준 정보가 없습니다.";
     public static final String ERRMSG_R153 = "포장재중량계산(코일)적용기준 정보가 중복입니다.";
-    public static final String ERRMSG_R154 = "주문두께구분이 일치하지 않습니다.";    
+    public static final String ERRMSG_R154 = "주문두께구분이 일치하지 않습니다.";
+    public static final String ERRMSG_R155 = "FH두께설계기준이 없습니다.";
+    public static final String ERRMSG_R156 = "FH두께설계기준이 중복입니다.";    
     
     public static final String ERRMSG_CF01 = "재질코드 : 값이 누락되었습니다.";
     public static final String ERRMSG_CF02 = "원자재코드 : 값이 누락되었습니다.";
@@ -2728,6 +2732,12 @@ public interface C10NuiConstantsIF {
     public static final String COL_PRD_THK_SPC_RNG_LLV = "PRD_THK_SPC_RNG_LLV";
     /** 제품두께규격범위상한값 */
     public static final String COL_PRD_THK_SPC_RNG_ULV = "PRD_THK_SPC_RNG_ULV";
+    
+    /** 두께규격범위하한값 */
+    public static final String THK_RNG_LLV = "THK_RNG_LLV";
+    /** 두께규격범위상한값 */
+    public static final String THK_RNG_ULV = "THK_RNG_ULV";
+    
 
     /** TB_C10_QLT_DSN_MQL 품질설계 재질 */
     /** 주문번호 */
@@ -3170,6 +3180,8 @@ public interface C10NuiConstantsIF {
     public static final String C10B2260 = "C10B2260";
     /** 품질설계자동확정대상 */
     public static final String C10B2270 = "C10B2270";
+    /** FH두께설계 */
+    public static final String C10B2310 = "C10B2310";
     /** ClassCode1_제품군 */
     public static final String C10B9980 = "C10B9980";
     /** ClassCode2_행선지 */

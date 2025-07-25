@@ -134,21 +134,22 @@
   <activity name="RMT_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
     <transition name="exit" value="PROC_LOOP" />
     <transition name="success" value="SEARCH_MD" />
+    <property name="param0" value="ORD_NO|ORD_NO" />
     <property name="param1" value="ORD_LN|ORD_LN" />
     <property name="param2" value="QLT_DSN_MNF_TP|QLT_DSN_MNF_TP" />
     <property name="param3" value="RMTL_CD|RMTL_CD" />
+    <property name="param20" value="FNL_CUS_CD|FNL_CUS_CD" />
+    <property name="param-count" value="23" />
     <property name="param4" value="PLTCM_THK_TRV|PLTCM_THK_TRV" />
+    <property name="param21" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO" />
     <property name="param5" value="PLTCM_WTH_TRV|PLTCM_WTH_TRV" />
+    <property name="param22" value="CCL_BOM_NO|CCL_BOM_NO" />
     <property name="param6" value="PLTCM_EDG_ASG_TP|PLTCM_EDG_ASG_TP" />
     <property name="param7" value="COR_WTH_TRV|COR_WTH_TRV" />
     <property name="param8" value="PLTCM_SET_THK_TRV|PLTCM_SET_THK_TRV" />
     <property name="param9" value="PLTCM_WTH_SUB_PROC1_TRV|PLTCM_WTH_SUB_PROC1_TRV" />
-    <property name="param20" value="FNL_CUS_CD|FNL_CUS_CD" />
-    <property name="param21" value="CUS_BTH_PAP_NO|CUS_BTH_PAP_NO" />
-    <property name="param22" value="CCL_BOM_NO|CCL_BOM_NO" />
-    <property name="param-count" value="23" />
+    <property name="countName" value="RMT_CD_COUNT" />
     <property name="param10" value="PLTCM_WTH_SUB_PROC2_TRV|PLTCM_WTH_SUB_PROC2_TRV" />
-    <property name="bind-result" value="RMT_SEARCH" />
     <property name="param11" value="EGL_THK_TRV|EGL_THK_TRV" />
     <property name="param12" value="EGL_WTH_TRV|EGL_WTH_TRV" />
     <property name="param13" value="TM_THK_TRV|TM_THK_TRV" />
@@ -158,8 +159,7 @@
     <property name="param17" value="CGL_WTH_TRV|CGL_WTH_TRV" />
     <property name="param18" value="EGL_MAIN_PROC_CD|EGL_MAIN_PROC_CD" />
     <property name="param19" value="CGL_MAIN_PROC_CD|CGL_MAIN_PROC_CD" />
-    <property name="countName" value="RMT_CD_COUNT" />
-    <property name="param0" value="ORD_NO|ORD_NO" />
+    <property name="bind-result" value="RMT_SEARCH" />
   </activity>
   <activity name="PROC_LOOP" class="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop">
     <transition name="exit" value="COMMIT" />
@@ -172,26 +172,27 @@
     <property name="param6" value="ORD_SLIT_GRP_CNT|ORD_SLIT_GRP_CNT|" />
     <property name="param7" value="ORD_MIX_WTH1|ORD_MIX_WTH1" />
     <property name="param8" value="ORD_MIX_WTH2|ORD_MIX_WTH2" />
-    <property name="bind-result" value="RK_SEARCH" />
     <property name="param9" value="ORD_MIX_WTH3|ORD_MIX_WTH3" />
+    <property name="param-count" value="18" />
     <property name="param10" value="ORD_MIX_WTH4|ORD_MIX_WTH4" />
+    <property name="bind-result" value="RK_SEARCH" />
     <property name="param11" value="ORD_MIX_WTH5|ORD_MIX_WTH5" />
     <property name="param12" value="ORD_MIX_WTH6|ORD_MIX_WTH6" />
     <property name="param13" value="ORD_MIX_WTH7|ORD_MIX_WTH7" />
     <property name="param14" value="ORD_MIX_WTH8|ORD_MIX_WTH8" />
     <property name="param15" value="ORD_MIX_WTH9|ORD_MIX_WTH9" />
     <property name="param16" value="ORD_MIX_WTH10|ORD_MIX_WTH10" />
-    <property name="param-count" value="17" />
+    <property name="param17" value="ORD_THK_MNG_CD|ORD_THK_MNG_CD" />
     <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
     <property name="param0" value="ORD_NO|ORD_NO" />
   </activity>
   <activity name="SEARCH_RMT" class="com.posdata.glue.biz.activity.PosSearch">
     <transition name="success" value="RMT_LOOP" />
     <transition name="failure" value="SUBSERVICE_ERR1" />
-    <property name="sqlkey" value="C103100100.select" />
-    <property name="resultkey" value="RMT_SEARCH" />
     <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C103100100.select" />
     <property name="param0" value="ORD_NO" />
+    <property name="resultkey" value="RMT_SEARCH" />
     <property name="param1" value="ORD_LN" />
     <property name="param-count" value="2" />
   </activity>

@@ -152,6 +152,12 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         String fnl_cus_cd = C10STR_SPACE; //최종고객사(2022.5.02)
         String cus_bth_pap_no = C10STR_SPACE;
         String ccl_bom_no = C10STR_SPACE;
+        String ord_thk_mng_cd = C10STR_SPACE;
+        String ord_usg_cd = C10STR_SPACE;
+        String cus_cd = C10STR_SPACE;
+        String fh_thk_llv = C10STR_SPACE;
+        String fh_thk_ulv = C10STR_SPACE;
+        
         
         
         double ord_slit_grp_cnt = 0;
@@ -169,6 +175,7 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         double sem_rmtl_tar_thk_lvl = 0; 
         double sem_rmtl_tar_thk_uvl = 0;
         double sem_rmtl_tar_wth = 0;
+
         
 
         if ( !DbCommonUtil.isNull( ctx.get( COL_PRD_NM_CD ) ) )
@@ -263,6 +270,16 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
         if ( !DbCommonUtil.isNull( ctx.get( COL_CCL_BOM_NO ) ) )
         	ccl_bom_no = ctx.get( COL_CCL_BOM_NO ).toString();
         
+        if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_THK_MNG_CD ) ) )
+        	ord_thk_mng_cd = ctx.get( COL_ORD_THK_MNG_CD ).toString();
+        
+        if ( !DbCommonUtil.isNull( ctx.get( COL_ORD_USG_CD ) ) )
+        	ord_usg_cd = ctx.get( COL_ORD_USG_CD ).toString();
+        
+        if ( !DbCommonUtil.isNull( ctx.get( COL_CUS_CD ) ) )
+        	cus_cd = ctx.get( COL_CUS_CD ).toString();
+        
+        
         pltcm_wth_trv = Double.toString( max_pltcm_wth_trv );
         
         logger.logDebug( "=== RMTL LOG START ===" );
@@ -343,6 +360,9 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
 
                     while( rtiter.hasNext() ){
                         data = rtiter.next();
+                        
+//                        logger.logDebug("data : "+ data.toString() +"         " +  data);
+                        
                         if( data.toString().equals( COL_RMTL_TAR_THK ) ){
                             ctx.put( data.toString(), result.getRuleValueAt( data.toString() ) );
                             logger.logDebug( data.toString() + C10STR_COLON + result.getRuleValueAt( data.toString() ) );
@@ -368,6 +388,11 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                         }
                     }
 
+                    //목표값을 무조건 하한값으로 적용
+//                    ctx.put( COL_RMTL_TAR_THK, rmtl_tar_thk_llv);
+//                    logger.logDebug( data.toString() + C10STR_COLON + result.getRuleValueAt( data.toString() ) );                    
+                    
+                    
                     ctx.put( COL_RMTL_TAR_THK_LVL, rmtl_tar_thk_llv );
                     ctx.put( COL_RMTL_TAR_THK_UVL, rmtl_tar_thk_ulv );
                     logger.logDebug( COL_RMTL_TAR_THK_LVL + C10STR_COLON + rmtl_tar_thk_llv );
@@ -619,11 +644,89 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                                     Double.parseDouble( tcm_wth_shr_qty ) + Double.parseDouble( mrg_wth ) ) );
                 }                    
             }else if(sem_prd_nm_cd.equals( PRD_NM_CD_D )){
-            	ctx.put( COL_RMTL_TAR_THK_LVL, pltcm_thk_trv );
-                ctx.put( COL_RMTL_TAR_THK_UVL, pltcm_thk_trv );
-                ctx.put( COL_RMTL_TAR_THK, pltcm_thk_trv );
-                ctx.put( COL_RMTL_TAR_WTH, pltcm_wth_trv );
+//            	ctx.put( COL_RMTL_TAR_THK_LVL, pltcm_thk_trv );
+//                ctx.put( COL_RMTL_TAR_THK_UVL, pltcm_thk_trv );
+//                ctx.put( COL_RMTL_TAR_THK, pltcm_thk_trv );
+//                ctx.put( COL_RMTL_TAR_WTH, pltcm_wth_trv );
+            	
+            	String[] ordUsgCdPriority = {
+            		    ord_usg_cd,                                      // 1. 그대로
+            		    ord_usg_cd.substring(0, 3) + "***",              // 2. 앞 3자리 + ***
+            		    ord_usg_cd.substring(0, 1) + "*****",            // 3. 앞 1자리 + *****
+            		    "******"                                         // 4. 전체 와일드카드
+            		};
 
+            	String[] cusCdPriority = {
+            		    cus_cd,
+            		    "******"
+            		};      
+            	
+            	boolean found = false;
+
+    	    	for (String usgCd : ordUsgCdPriority) {
+    	    		for (String customerCd : cusCdPriority) {
+
+	                //FH두께설계기준
+	                colValue = new String[5];
+	                colValue[0] = ord_thk_mng_cd; // 두께관리코드
+	                colValue[1] = prd_nm_cd; // 품명 
+	                colValue[2] = usgCd; // 주문용도코드
+	                colValue[3] = customerCd; // 고객사코드
+	                colValue[4] = Double.toString( ord_exc_thk ); // 두께
+	                logger.logError( "FH두께설계기준 두께관리코드  : " + colValue[0]);
+	                logger.logError( "FH두께설계기준 품명  : " + colValue[1]);
+	                logger.logError( "FH두께설계기준 주문용도코드  : " + colValue[2]);
+	                logger.logError( "FH두께설계기준 고객사코드   : " + colValue[3]);
+	                logger.logError( "FH두께설계기준 두께   : " + colValue[4]);
+	                
+	                checker = EasyAccess.getPosDecisionChecker( C10B2310, null );
+	                result = null;
+	                try{
+	                    result = checker.getPosRule( colValue );
+	                } catch ( MasterDataException e ){
+//	                    result = null;
+//	                    ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KT37 );
+//	                    ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//	                    logger.logError( e);
+//	                    logger.logError( e.getMessage() );
+//	                    return PosBizControlConstants.FAILURE;
+	                	logger.logDebug("조합(" + usgCd + ", " + customerCd + ") 데이터 없음, 다음 조합 시도");
+	                    continue;
+	                	
+	                }
+	
+		                if( result != null && result.getRecordCount() == 1 ){
+		                	fh_thk_llv = result.getRuleValueAt( THK_RNG_LLV );
+		                	fh_thk_ulv = result.getRuleValueAt( THK_RNG_ULV );
+		                	logger.logDebug( "FH두깨설계기준 두께하한값  : " + fh_thk_llv);
+		                    logger.logDebug( "FH두깨설계기준 두께상한값  : " + fh_thk_ulv);
+		                    
+			            	ctx.put( COL_RMTL_TAR_THK_LVL, String.valueOf(Double.parseDouble(pltcm_thk_trv) + Double.parseDouble(fh_thk_llv)) );
+			                ctx.put( COL_RMTL_TAR_THK_UVL, String.valueOf(Double.parseDouble(pltcm_thk_trv) + Double.parseDouble(fh_thk_ulv)) );
+			                ctx.put( COL_RMTL_TAR_THK, pltcm_thk_trv );
+			                ctx.put( COL_RMTL_TAR_WTH, pltcm_wth_trv );      
+			                
+			                logger.logDebug("룰 조회 성공: 조합(" + usgCd + ", " + customerCd + ")");
+			                found = true;
+			                break;
+		                    
+		                    
+		                } else if (result != null && result.getRecordCount() > 1) {
+		                    logger.logError("복수 결과 존재 - 조건(" + usgCd + ", " + customerCd + ")");
+		                }
+	                
+	    	    	}
+		    	    if (found) break;
+		    	}
+	    	
+            	
+		    	if (!found) {
+		    	    ctx.put(COL_QLT_DSN_ERR_CD, ERRCD_KT37);
+		    	    ctx.put(C10STR_P_ERR_KEY, C10STR_YES);
+		    	    logger.logError( ERRMSG_R155 );
+		    	    return PosBizControlConstants.FAILURE;
+		    	}
+            	
             }else if(sem_prd_nm_cd.equals( PRD_NM_CD_C )){
             	// 원자재코드 구매CR C코드 해당분(C25, C32, C70, C7B, C7T 5가지) --2019.03.26 JKJ
             	// TM 두께 목표에 하한 : -0.02, 상한 : 0
@@ -671,6 +774,7 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
                 ctx.put( COL_RMTL_TAR_THK_LVL, sem_rmtl_tar_thk_lvl );
                 ctx.put( COL_RMTL_TAR_THK_UVL, sem_rmtl_tar_thk_uvl );
                 ctx.put( COL_RMTL_TAR_THK, cgl_thk_trv );
+//                ctx.put( COL_RMTL_TAR_THK, sem_rmtl_tar_thk_lvl ); //원재료 목표 두께 하한값 지정 
                 
                 sem_rmtl_tar_wth = Double.parseDouble( cgl_wth_trv ) - 1;
                 sem_rmtl_tar_wth = sem_rmtl_tar_wth*10;
