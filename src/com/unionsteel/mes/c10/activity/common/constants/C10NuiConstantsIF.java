@@ -1697,6 +1697,7 @@ public interface C10NuiConstantsIF {
     public static final String ERRMSG_I40 = "[품질설계][현업담당]PE-FOAM적용메시지기준 중복";
     public static final String ERRMSG_I41 = "[품질설계][현업담당]엠보스 1P선택 시 Imprint Roll필수선택";
     public static final String ERRMSG_I42 = "[품질설계][현업담당]엠보스 미선택 시 Imprint Roll선택불가";
+    public static final String ERRMSG_I43 = "[OMS][영업담당]사전 협의 F/H 용도 코드 선택 필요";
 	
     // public static final String ERRMSG_R01 =
     // "테이블에  고객 성분사양 편성정보 데이타가 존재하지 않습니다.";

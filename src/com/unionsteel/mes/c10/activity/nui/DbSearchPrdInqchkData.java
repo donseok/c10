@@ -315,6 +315,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         String IF_GRP_ID_REQ = C10STR_SPACE;
         String ord_coilg_mth = C10STR_SPACE;
         String impt_roll_no = C10STR_SPACE;  //2021.03.30 추가
+        String cus_cd = C10STR_SPACE; //2025.08.05 추가
         //String PAS_PROC_CD = C10STR_SPACE;
         
         // 생산가부I/F 변경
@@ -430,6 +431,8 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
             }else
             	exc_wth = Double.parseDouble( ctx.get( COL_ORD_EXC_WTH ).toString() );
         }
+        if ( !DbCommonUtil.isNull( (String) ctx.get( COL_CUS_CD ) ) )
+            cus_cd = (String) ctx.get( COL_CUS_CD );
  
         //고객사양번호가 Null이면 "*' Set 
         if ( cus_bth_pap_no.equals( C10STR_SPACE ) ){
@@ -734,17 +737,45 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
                     logger.logDebug( "rmtl_cd2 - 차선2            : " + rmtl_cd2.toString());
                     logger.logDebug( "rmtl_cd2 - 차선2            : " + rmtl_cd2.toString().substring(0, 1));
                     
-                    if ( (!rmtl_cd.toString().substring(0, 1).equals("H") && !rmtl_cd.toString().substring(0, 1).equals("M")) && 
-                    	 (rmtl_cd1.toString().substring(0, 1).equals("H") || rmtl_cd1.toString().substring(0, 1).equals("M") || 
-                    	   rmtl_cd2.toString().substring(0, 1).equals("H") || rmtl_cd2.toString().substring(0, 1).equals("M")) ) { //구매반제품 적정, H/C 차선 등록 시 오류
+//                    if ( (!rmtl_cd.toString().substring(0, 1).equals("H") && !rmtl_cd.toString().substring(0, 1).equals("M")) && 
+//                    	 (rmtl_cd1.toString().substring(0, 1).equals("H") || rmtl_cd1.toString().substring(0, 1).equals("M") || 
+//                    	   rmtl_cd2.toString().substring(0, 1).equals("H") || rmtl_cd2.toString().substring(0, 1).equals("M")) ) { //구매반제품 적정, H/C 차선 등록 시 오류
+//                            ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+//                            ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+//                            ctx.put( COL_XMSGS, ERRMSG_I38 );
+//                            ctx.put( COL_ORD_ERR_TXT, ERRMSG_I38 );
+//                            ctx.put( COL_ERR_YN, C10STR_YES );
+//                            logger.logError( ERRMSG_I38 );
+//                            logger.logError("3");
+//                            return PosBizControlConstants.SUCCESS;                    	
+//                    }
+                    
+                    if(rmtl_cd.toString().substring(0, 1).equals("D")){
+                    	if(!rmtl_cd1.toString().substring(0, 1).equals("H") && !rmtl_cd2.toString().substring(0, 1).equals("H")){
                             ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
                             ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
-                            ctx.put( COL_XMSGS, ERRMSG_I38 );
-                            ctx.put( COL_ORD_ERR_TXT, ERRMSG_I38 );
+                            ctx.put( COL_XMSGS, ERRMSG_I43 );
+                            ctx.put( COL_ORD_ERR_TXT, ERRMSG_I43 );
                             ctx.put( COL_ERR_YN, C10STR_YES );
-                            logger.logError( ERRMSG_I38 );
-                            logger.logError("3");
-                            return PosBizControlConstants.SUCCESS;                    	
+                            logger.logError( ERRMSG_I43 );
+                            logger.logError("3-1");
+                            return PosBizControlConstants.SUCCESS;   
+                    	}
+                    }else{
+                    	
+                        if ( (!rmtl_cd.toString().substring(0, 1).equals("H") && !rmtl_cd.toString().substring(0, 1).equals("M")) && 
+                              	 (rmtl_cd1.toString().substring(0, 1).equals("H") || rmtl_cd1.toString().substring(0, 1).equals("M") || 
+                              	   rmtl_cd2.toString().substring(0, 1).equals("H") || rmtl_cd2.toString().substring(0, 1).equals("M")) ) { //구매반제품 적정, H/C 차선 등록 시 오류
+                                      ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                                      ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                                      ctx.put( COL_XMSGS, ERRMSG_I38 );
+                                      ctx.put( COL_ORD_ERR_TXT, ERRMSG_I38 );
+                                      ctx.put( COL_ERR_YN, C10STR_YES );
+                                      logger.logError( ERRMSG_I38 );
+                                      logger.logError("3");
+                                      return PosBizControlConstants.SUCCESS;                    	
+                        }
+                    	
                     }
                     
                     break;
@@ -1751,76 +1782,153 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
         {
        
             // 원자재두께
-            colValue = new String[3];
-            colValue[0] = ctx.get( COL_RMTL_CD ).toString(); // 원자재코드
-            colValue[1] = ctx.get( COL_ROL_TAR_THK ).toString(); // PLTCM두께
-            //colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭 => 이부분 수정이 필요함!!
-            
-            //2023.6.7 김태성부장 요청 원자재 두께 관리 기준 변경.
-            if(ord_edg_asg_tp.equals(NO_SLIT) || ord_edg_asg_tp.equals(COIL_EDGE)) 
-            {
-            	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString() + 20;
-            	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString();  원본
+        	// 원재료코드 적정코드가 D일 경우
+            if(ctx.get( COL_RMTL_CD ).toString().substring(0, 1).equals("D")){
             	
-            	colValue[2] = Double.toString(Double.parseDouble(ctx.get(COL_PLTCM_WTH_TRV).toString())+20);
-            	ctx.put(COL_PLTCM_WTH_TRV, colValue[2]);
             	
-            	logger.logDebug( "C10B1071 + 20mm: " + colValue[2]  );
-            }else{
-            	colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭
-            	logger.logDebug( "C10B1071 : " + colValue[2]  );
-            }
-            
-            
-            checker = EasyAccess.getPosDecisionChecker( C10B1071, null );
-            result = null;
-            try
-            {
-                result = checker.getPosRule( colValue );
-            } catch ( MasterDataException e )
-            {
-                result = null;
-                ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
-                ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
-                ctx.put( COL_XMSGS, ERRMSG_I23 );
-                ctx.put( COL_ORD_ERR_TXT, ERRMSG_I23 );
-                ctx.put( COL_ERR_YN, C10STR_YES );
-                logger.logError( ERRMSG_I23 +" "+ e.getMessage() );
-                logger.logError( "원자재코드         : " + colValue[0]);
-                logger.logError( "PLTCM두께        : " + colValue[1]);
-                logger.logError( "PLTCM폭          : " + colValue[2]);
-                return PosBizControlConstants.SUCCESS;
-            }
-    
-            if ( result.getRecordCount() == 1 )
-            {
-                ctx.put( COL_RMTL_TAR_THK, result.getRuleValueAt( COL_RMTL_TAR_THK ) );
-            } else if ( result.getRecordCount() > 1 )
-            {
+            	String[] ordUsgCdPriority = {
+            		    ord_usg_cd,                                      // 1. 그대로
+            		    ord_usg_cd.substring(0, 3) + "***",              // 2. 앞 3자리 + ***
+            		    ord_usg_cd.substring(0, 1) + "*****",            // 3. 앞 1자리 + *****
+            		    "******"                                         // 4. 전체 와일드카드
+            		};
+
+            	String[] cusCdPriority = {
+            		    cus_cd,
+            		    "******"
+            		};      
+            	
+            	boolean found = false;
+
+    	    	for (String usgCd : ordUsgCdPriority) {
+    	    		for (String customerCd : cusCdPriority) {
+            	
+            	
+            	
+                colValue = new String[5];
+                colValue[0] = ord_thk_mng_cd; // 두께관리코드
+                colValue[1] = prd_nm_cd; // 품명 
+                colValue[2] = usgCd; // 주문용도코드
+                colValue[3] = customerCd; // 고객사코드
+                colValue[4] = Double.toString( ord_exc_thk ); // 두께
+                logger.logError( "FH두께설계기준 두께관리코드  : " + colValue[0]);
+                logger.logError( "FH두께설계기준 품명  : " + colValue[1]);
+                logger.logError( "FH두께설계기준 주문용도코드  : " + colValue[2]);
+                logger.logError( "FH두께설계기준 고객사코드   : " + colValue[3]);
+                logger.logError( "FH두께설계기준 두께   : " + colValue[4]);
                 
-            	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
-                ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
-                ctx.put( COL_XMSGS, ERRMSG_I24 );
-                ctx.put( COL_ORD_ERR_TXT, ERRMSG_I24 );
-                ctx.put( COL_ERR_YN, C10STR_YES );
-                logger.logError( ERRMSG_I24 );
-                logger.logError( "원자재코드         : " + colValue[0]);
-                logger.logError( "PLTCM두께        : " + colValue[1]);
-                logger.logError( "PLTCM폭          : " + colValue[2]);
-                return PosBizControlConstants.SUCCESS;
-            } else
-            {
-                ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
-                ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
-                ctx.put( COL_XMSGS, ERRMSG_I23 );
-                ctx.put( COL_ORD_ERR_TXT, ERRMSG_I23 );
-                ctx.put( COL_ERR_YN, C10STR_YES );
-                logger.logError( ERRMSG_I23 );
-                logger.logError( "원자재코드         : " + colValue[0]);
-                logger.logError( "PLTCM두께        : " + colValue[1]);
-                logger.logError( "PLTCM폭          : " + colValue[2]);
-                return PosBizControlConstants.SUCCESS;
+                
+                checker = EasyAccess.getPosDecisionChecker( C10B2310, null );
+                result = null;
+                try{
+                    result = checker.getPosRule( colValue );
+                } catch ( MasterDataException e ){
+                	logger.logDebug("조합(" + usgCd + ", " + customerCd + ") 데이터 없음, 다음 조합 시도");
+                    continue;
+                	
+                }
+
+	                if( result != null && result.getRecordCount() == 1 ){
+		                ctx.put( COL_RMTL_TAR_THK, crm_thk );
+		                
+		                logger.logDebug("룰 조회 성공: 조합(" + usgCd + ", " + customerCd + ")");
+		                found = true;
+		                break;
+	                    
+	                    
+	                } else if (result != null && result.getRecordCount() > 1) {
+	                    logger.logError("복수 결과 존재 - 조건(" + usgCd + ", " + customerCd + ")");
+	                }
+	                
+    	    	}
+		    	    if (found) break;
+		    	}
+    	
+        	
+		    	if (!found) {
+		    	    ctx.put(COL_QLT_DSN_ERR_CD, ERRCD_KT37);
+		    	    ctx.put(C10STR_P_ERR_KEY, C10STR_YES);
+		    	    logger.logError( ERRMSG_R155 );
+		    	    return PosBizControlConstants.FAILURE;
+		    	}
+                
+            	
+            }else{ //원재료코드 적정코드가 D가 아닐 경우 
+            	
+                colValue = new String[3];
+                colValue[0] = ctx.get( COL_RMTL_CD ).toString(); // 원자재코드
+            	colValue[1] = ctx.get( COL_ROL_TAR_THK ).toString(); // PLTCM두께
+                //colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭 => 이부분 수정이 필요함!!
+                
+                //2023.6.7 김태성부장 요청 원자재 두께 관리 기준 변경.
+                if(ord_edg_asg_tp.equals(NO_SLIT) || ord_edg_asg_tp.equals(COIL_EDGE)) 
+                {
+                	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString() + 20;
+                	//colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString();  원본
+                	
+                	colValue[2] = Double.toString(Double.parseDouble(ctx.get(COL_PLTCM_WTH_TRV).toString())+20);
+                	ctx.put(COL_PLTCM_WTH_TRV, colValue[2]);
+                	
+                	logger.logDebug( "C10B1071 + 20mm: " + colValue[2]  );
+                	
+                }else{
+                	colValue[2] = ctx.get( COL_PLTCM_WTH_TRV ).toString(); // PLTCM폭
+                	logger.logDebug( "C10B1071 : " + colValue[2]  );
+                }
+                
+                
+                checker = EasyAccess.getPosDecisionChecker( C10B1071, null );
+                result = null;
+                try
+                {
+                    result = checker.getPosRule( colValue );
+                } catch ( MasterDataException e )
+                {
+                    result = null;
+                    ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                    ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                    ctx.put( COL_XMSGS, ERRMSG_I23 );
+                    ctx.put( COL_ORD_ERR_TXT, ERRMSG_I23 );
+                    ctx.put( COL_ERR_YN, C10STR_YES );
+                    logger.logError( ERRMSG_I23 +" "+ e.getMessage() );
+                    logger.logError( "원자재코드         : " + colValue[0]);
+                    logger.logError( "PLTCM두께        : " + colValue[1]);
+                    logger.logError( "PLTCM폭          : " + colValue[2]);
+                    return PosBizControlConstants.SUCCESS;
+                }
+        
+                if ( result.getRecordCount() == 1 )
+                {
+                    ctx.put( COL_RMTL_TAR_THK, result.getRuleValueAt( COL_RMTL_TAR_THK ) );
+                } else if ( result.getRecordCount() > 1 )
+                {
+                    
+                	ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                    ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                    ctx.put( COL_XMSGS, ERRMSG_I24 );
+                    ctx.put( COL_ORD_ERR_TXT, ERRMSG_I24 );
+                    ctx.put( COL_ERR_YN, C10STR_YES );
+                    logger.logError( ERRMSG_I24 );
+                    logger.logError( "원자재코드         : " + colValue[0]);
+                    logger.logError( "PLTCM두께        : " + colValue[1]);
+                    logger.logError( "PLTCM폭          : " + colValue[2]);
+                    return PosBizControlConstants.SUCCESS;
+                } else
+                {
+                    ctx.put( COL_XSTAT, QLT_DSN_STS_CD_E );
+                    ctx.put( COL_XSTAT_CALLBACK, C10STR_R );
+                    ctx.put( COL_XMSGS, ERRMSG_I23 );
+                    ctx.put( COL_ORD_ERR_TXT, ERRMSG_I23 );
+                    ctx.put( COL_ERR_YN, C10STR_YES );
+                    logger.logError( ERRMSG_I23 );
+                    logger.logError( "원자재코드         : " + colValue[0]);
+                    logger.logError( "PLTCM두께        : " + colValue[1]);
+                    logger.logError( "PLTCM폭          : " + colValue[2]);
+                    return PosBizControlConstants.SUCCESS;
+                }
+            	
             }
+            
     
             // PLTCM수축량
             colValue = new String[3];
