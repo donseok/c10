@@ -101,6 +101,7 @@ var columnList = "USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,RSN_TP,R
 var tempRowId = "";
 var popCompleteYN    = "N"; //칼라부재료업체 정보 저장 사유 입력여부 
 var popCfmRea			= "";	// C106000050pop01 에서 업체 정보 저장 사유.
+var inOutComboVal = [["1", "내수"], ["2", "수입"]];
 
 function find(eventName,formDivObj,referenceItem){
 	items[referenceItem].clearDataProcess();
@@ -1323,6 +1324,14 @@ function onGrid1LoadFunction(){
 		rsn_tp_qt_br_Combo.readonly(true,true);
 		rsn_tp_qt_br_Combo.setOptionHeight(220);
 		
+		
+	 	//2025.07.18 내수수입구분 그리드 콤보 추가
+	var inOutCombo = gridObj.getColumnCombo(gridObj.getColIndexById('ZFLAG')); 
+		inOutCombo.addOption(inOutComboVal);    
+		inOutCombo.enableOptionAutoPositioning(true);
+		inOutCombo.readonly(true,true);
+		inOutCombo.setOptionHeight(60); 		
+		
 		/*
 		//부재료구분
 		tp_cd_Combo.attachEvent("onSelectionChange", function(){
@@ -1346,6 +1355,8 @@ function onGrid1LoadFunction(){
 		gridObj.attachEvent("onSelectStateChanged", function(id){
 		deteilFind(items['C106000050_Grid_1'].getSelectedRowId());
 	  });		
+		
+		items["C106000050_Grid_1"].getDhxGrid().detachEvent(onXleGrid);		
 
 		//items['C106000050_Grid_1'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent);
 		//items['C106000050_Grid_1'].getDhxGrid().detachEvent(onXleGrid);

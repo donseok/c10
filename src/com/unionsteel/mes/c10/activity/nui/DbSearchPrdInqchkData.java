@@ -1849,7 +1849,7 @@ public class DbSearchPrdInqchkData extends PosActivity implements C10NuiConstant
 		    	    ctx.put(COL_QLT_DSN_ERR_CD, ERRCD_KT37);
 		    	    ctx.put(C10STR_P_ERR_KEY, C10STR_YES);
 		    	    logger.logError( ERRMSG_R155 );
-		    	    return PosBizControlConstants.FAILURE;
+		    	    return PosBizControlConstants.SUCCESS;
 		    	}
                 
             	

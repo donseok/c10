@@ -167,7 +167,8 @@ SELECT /* C10 칼라코드관리- 칼라코드조회 C106000050.colorselect 김�
         NVL(B.FILE_YN,'N')  AS MFILE_YN,
         (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '9' AND ROWNUM = 1) AS PCM_SPEC_FILE1,
         (SELECT IMG_NM FROM C10APUSER.TB_C10_CLR_CD_IMG WHERE CLR_SUB_MTL_CD = A.CLR_SUB_MTL_CD AND PRD_SPC_TP = '0' AND ROWNUM = 1) AS COST_STM_FILE1,
-        A.LAST_UPDATED_OBJECT_ID AS LAST_UPDATED_OBJECT_ID
+        A.LAST_UPDATED_OBJECT_ID AS LAST_UPDATED_OBJECT_ID,
+        DECODE(ZFLAG,'2','2','1') ZFLAG        
   FROM C10APUSER.TB_C10_CLR_CD_MNG A,
        C10APUSER.TB_C10_CLR_CD_IMG_MNG B
  WHERE A.CLR_SUB_MTL_CD = B.CLR_SUB_MTL_CD(+)
@@ -256,6 +257,7 @@ TB_C10_CLR_CD_MNG SET
 	MOD_YN = :MOD_YN,
 	RAL_CD = :RAL_CD,
 	LAMINA_INS_YN = :LAMINA_INS_YN,
+	ZFLAG = :ZFLAG,
 	LAST_UPDATED_OBJECT_TYPE=:ObjectType,  
 	LAST_UPDATED_OBJECT_ID=:ObjectId,      
 	LAST_UPDATE_PROGRAM_ID=:ProgramId,     
@@ -329,6 +331,7 @@ INSERT INTO TB_C10_CLR_CD_MNG/* C10 품질설계 칼라코드관리 C106000050.c
     WTY_YN,
     LAMINA_INS_YN,
     RSN_TP_QT_BR,
+    ZFLAG,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -394,6 +397,7 @@ INSERT INTO TB_C10_CLR_CD_MNG/* C10 품질설계 칼라코드관리 C106000050.c
     :WTY_YN,
     :LAMINA_INS_YN,
     :RSN_TP_QT_BR,
+    :ZFLAG,
     :ObjectType,
     :ObjectId,
     :ProgramId,
@@ -602,6 +606,7 @@ INSERT INTO /* C10 칼라부자재코드전송IF TB_C10_B10S0130.insert 김종�
                  ,PCM_SPEC_FILE1
                  ,COST_STM_FILE1
                  ,RGS_PRS_ID 
+                 ,ZFLAG
                  ,CREATED_OBJECT_TYPE         
                  ,CREATED_OBJECT_ID        
                  ,CREATED_PROGRAM_ID      
@@ -655,7 +660,8 @@ VALUES
               :RSN_TP_QT_BR_NM,
               :PCM_SPEC_FILE1,
               :COST_STM_FILE1,
-              :LAST_UPDATED_OBJECT_ID, 
+              :LAST_UPDATED_OBJECT_ID,
+			  :ZFLAG,
               :ObjectType,
               :ObjectId,
               :ProgramId,
@@ -1280,6 +1286,7 @@ INSERT INTO TB_C10_CLR_CD_MNG_MDF_LOG /* C10 칼라코드로그 C106000050.color
     LAMINA_INS_YN,
     PUR_CHR_CFM,
     RSN_TP_QT_BR,
+    ZFLAG,
     CREATED_OBJECT_TYPE,
     CREATED_OBJECT_ID,
     CREATED_PROGRAM_ID,
@@ -1349,6 +1356,7 @@ SELECT  CLR_SUB_MTL_CD,
         LAMINA_INS_YN,
         PUR_CHR_CFM,
         RSN_TP_QT_BR,
+        :ZFLAG,
         :ObjectType,
         :ObjectId,
         :ProgramId,

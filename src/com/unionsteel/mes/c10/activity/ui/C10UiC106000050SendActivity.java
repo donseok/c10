@@ -118,6 +118,9 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
         String[] PNT_FLM_THK = null;
         String[] LMN_KND_TP = null;
         
+        //2025.07.18 보세공장 관련하여 내수수입구분 FLAG 추가
+        String[] ZFLAG = null;
+        
         int idx = 0;
         int nRELULT = 0;
 		int dmlCnt = 0;
@@ -177,6 +180,9 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
             	//2024.04.26 생산Lamina, 생상UGS필름 전송시 필요 컬럼 추가
             	PNT_FLM_THK = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("PNT_FLM_THK"));
             	LMN_KND_TP = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("LMN_KND_TP"));
+            	
+            	//2025.07.18 내수수입구분 추가
+            	ZFLAG = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("ZFLAG"));
             	
             	param = new PosParameter();
                 param.setNamedParamter( "CLR_SUB_MTL_CD", CLR_SUB_MTL_CD );
@@ -267,6 +273,14 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
                 	param.setNamedParamter( "PNT_FLM_THK", PNT_FLM_THK );
                 	param.setNamedParamter( "LMN_KND_TP", LMN_KND_TP );
                 	
+                	
+                    logger.logDebug("ZFLAG : " + ZFLAG[i] );                 	
+                	//2025.07.18 내수수입구분 추가
+                	if(ZFLAG[i].equals("2")){
+                		param.setNamedParamter( "ZFLAG", "X");
+                	}else{
+                		param.setNamedParamter( "ZFLAG", "");
+                	}                		
                 	
                     param.setAuditAttributes( audit );  
                     
