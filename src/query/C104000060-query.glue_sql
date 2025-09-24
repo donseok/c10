@@ -61,11 +61,11 @@ SELECT '%' AS FNL_CUS_CD,'　' AS FNL_CUS_NM -- '전체'컬럼 생성
 FROM DUAL
 UNION ALL -- 테이블 조합
 SELECT FNL_CUS_CD, --고객사코드
-       (SELECT CD_V_MEANING 
+       REPLACE((SELECT CD_V_MEANING 
           FROM M00APUSER.VI_M00_CODE_ACCESS
          WHERE CD_TP = 'CUS_CD' 
            AND CATEGORY_GROUP_NM = 'SZ0000'
-           AND CD_V = FNL_CUS_CD) FNL_CUS_NM --고객사명
+           AND CD_V = FNL_CUS_CD),'&','&amp;') FNL_CUS_NM --고객사명
   FROM C10APUSER.TB_C10_QLT_DSN_CMN
  WHERE ORD_REP_YN = 'X'
    AND QLT_DSN_CFM_TP = 'A'
