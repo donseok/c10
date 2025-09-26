@@ -1519,7 +1519,7 @@ VALUES
     , :PTT_FLM_THK_CD_NM_MASTER                         --보호필름두께명
     , :PTT_FLM_MQL_CD_NM_MASTER                         --보호필름재질명
     , :UNI_GLS_FLM_CD                                   --UNIGLS필름코드   
-    , :CCL_QLT_MSG_TXT                                  --품질메시지
+    , SUBSTRB(:CCL_QLT_MSG_TXT,1,200)                                 --품질메시지
     , :ObjectType                                       --생성Object유형
     , :ObjectId                                         --생성ObjectID 
     , :ProgramId                                        --생성프로그램ID
@@ -2810,7 +2810,7 @@ VALUES
     , :PTT_FLM_THK_CD_NM_MASTER                         --보호필름두께명
     , :PTT_FLM_MQL_CD_NM_MASTER                         --보호필름재질명
     , :UNI_GLS_FLM_CD                                   --UNIGLS필름코드   
-    , :CCL_QLT_MSG_TXT                                  --품질메시지
+    , SUBSTRB(:CCL_QLT_MSG_TXT,1,200)                                  --품질메시지
     , :ObjectType                                       --생성Object유형
     , :ObjectId                                         --생성ObjectID 
     , :ProgramId                                        --생성프로그램ID
