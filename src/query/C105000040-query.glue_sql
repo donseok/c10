@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C105000040 Page 쿼리파일"> 
+	 <query id="C105000040_selectWarPubHst" desc="보증서 품명 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C105000040   보증서 발행 이력 조회  C105000040_selectWarPubHst */
+	   PDN_CLS_CD
+	 , TO_CHAR(PUB_DH,'YYYY-MM-DD') AS PUB_DH
+	 , (SELECT USER_NAME
+		  FROM M90APUSER.TB_SEC_USER
+		 WHERE USER_NO = A.PUB_EMP_ID
+		   AND ROWNUM = '1') AS PUB_EMP_ID
+	 , PUB_REA
+	 , (SELECT CD_V_MEANING 
+		  FROM M00APUSER.VI_M00_CODE_ACCESS
+		 WHERE CD_TP = 'NAT_CD'
+		   AND CATEGORY_GROUP_NM = 'SZ0000'
+		   AND CD_V = A.NAT_CD) AS NAT_CD
+	 , ORD_NO
+	 , ORD_LN
+	 , ORD_STD
+	 , ORD_PRD
+	 , ORD_THK
+	 , ORD_WTH
+	 , ORD_COT_WGT
+	 , ORD_CLT
+	 , WAR_TRM
+	 , TP_USE
+	 , WAR_CTT1
+	 , WAR_CTT2
+	 , WAR_CTT3
+	 , WAR_CTT4
+	 , WAR_CTT5
+	 , WAR_CTT6
+  FROM C10APUSER.TB_C10_WAR_PUB_HST A
+ WHERE ORD_NO LIKE :ORD_NO || '%'
+   AND ORD_LN LIKE :ORD_LN || '%'
+   AND PUB_DH BETWEEN TO_DATE(:PUB_DH_FR, 'YYYY-MM-DD') AND TO_DATE(:PUB_DH_TO, 'YYYY-MM-DD')
+   AND PDN_CLS_CD LIKE :PUB_GBN || '%'
+ ORDER BY PUB_DH DESC, ORD_NO, ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C105000040.selectOrdLn" desc="주문행번 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C105000030   주문행번 조회  C105000040.selectOrdLn */
+	   ORD_LN
+  FROM C10APUSER.TB_C10_QLT_DSN_CMN
+ WHERE ORD_NO = :ORD_NO
+		 ]]> 
+	 </query>
+</queryMap>

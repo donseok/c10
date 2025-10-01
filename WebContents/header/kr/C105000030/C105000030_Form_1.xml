@@ -1,0 +1,38 @@
+<items>
+<item type="block" width="971">
+<item inputWidth="75" label="주문번호" maxLength="10" name="ORD_NO" type="input" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="-" name="ORD_NO_BT" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item inputWidth="50" maxLength="3" name="ORD_LN" type="combo" style="background-color:#FFFFC0"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="79" label="BRAND" labelAlign="right" labelWidth="65" name="BRAND" type="input"/>
+<item offset="300" type="newcolumn"/>
+<item command="save" label="출력" name="save" type="button" value="발행"/>
+<item offset="5" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+
+<item type="block" width="971">
+<item inputWidth="140" label="국가" labelWidth="52" name="NAT_CD" type="combo"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="80" label="클래스" labelAlign="right" labelWidth="64" name="CLS_CD" type="combo"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="80" label="최종수요가" labelAlign="right" labelWidth="84" maxLength="6" name="CUS_CD" type="hidden"/>
+<item type="newcolumn"/>
+<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="75" label="CCLBOM" labelAlign="right" labelWidth="64" name="CCL_BOM_NO" type="hidden"/>
+<item offset="5" type="newcolumn"/>
+<item inputWidth="75" label="도금부착량" labelAlign="right" labelWidth="84" name="GAA" type="hidden"/>
+<item offset="30" type="newcolumn"/>
+<item inputWidth="140" label="발행사유" name="PUB_REA" type="combo"/>
+<item offset="45" type="newcolumn"/>
+<item label="한글"   name="radio1"  type="radio" value="KOR" position="label-right"/>
+<item offset="1" type="newcolumn"/>
+<item checked="true"  label="영문"  name="radio1"  type="radio" value="ENG" position="label-right"/>
+</item>
+
+
+
+</items>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="274,27" size="-1,-1" output="//@wire.5"/>
+  <child xsi:type="Glue:FinalState" id="1" location="266,339" size="-1,-1" input="//@wire.3 //@wire.7 //@wire.10 //@wire.12 //@wire.14 //@wire.16 //@wire.18"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="-46,103" size="859,-1" input="//@wire.5" output="//@wire.6 //@wire.4 //@wire.8 //@wire.11 //@wire.13 //@wire.15 //@wire.17" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131355" location="82,194" size="107,-1" input="//@wire.4" output="//@wire.3" name="국가조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030_selNat.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="131356" location="206,192" size="107,-1" input="//@wire.6" output="//@wire.7" name="CCLBOM체크">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030_cclBomChk.select"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="255959" location="330,195" size="103,-1" input="//@wire.8" output="//@wire.10" name="Class 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030.selectClass"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="255961" location="459,194" size="103,-1" input="//@wire.11" output="//@wire.12" name="보증서 권한 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030.selectAuthority"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="442976" location="586,195" size="94,-1" input="//@wire.13" output="//@wire.14" name="주문행번 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030.selectOrdLn"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="443017" location="-42,193" size="107,-1" input="//@wire.15" output="//@wire.16" name="품명 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000030_selectPrdNm"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="443018" location="701,194" size="102,-1" input="//@wire.17" output="//@wire.18" name="이력등록">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="insert-sql" value="C105000030.saveWarPubHst"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C105000030.saveWarPubHst"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="10969" guardcondition="success" firstRelativePoint="228,209" lastRelativePoint="289,323"/>
+  <wire id="10970" guardcondition="success" firstRelativePoint="339,323" lastRelativePoint="339,323"/>
+  <wire id="10974" guardcondition="success" firstRelativePoint="346,39" lastRelativePoint="346,103"/>
+  <wire id="10973" guardcondition="success" firstRelativePoint="240,202" lastRelativePoint="393,327">
+    <bendpoint weight="0.5" firstDimension="1,140" secondDimension="-164,-1"/>
+  </wire>
+  <wire id="10968" guardcondition="selNat" firstRelativePoint="128,133" lastRelativePoint="128,194"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="278,36" lastRelativePoint="278,103"/>
+  <wire id="10977" guardcondition="cclBomChk" firstRelativePoint="273,133" lastRelativePoint="273,194"/>
+  <wire id="10978" guardcondition="success" firstRelativePoint="276,224" lastRelativePoint="276,338"/>
+  <wire id="11888" guardcondition="selClass" firstRelativePoint="386,133" lastRelativePoint="386,195"/>
+  <wire id="11889" guardcondition="success" firstRelativePoint="750,207" lastRelativePoint="750,207"/>
+  <wire id="11890" guardcondition="success" firstRelativePoint="392,225" lastRelativePoint="285,348">
+    <bendpoint weight="0.5" firstDimension="11,137" secondDimension="116,-2"/>
+  </wire>
+  <wire id="11892" guardcondition="authorityChk" firstRelativePoint="510,133" lastRelativePoint="510,194"/>
+  <wire id="11893" guardcondition="success" firstRelativePoint="514,224" lastRelativePoint="286,348">
+    <bendpoint weight="0.5" firstDimension="4,139" secondDimension="238,-1"/>
+  </wire>
+  <wire id="14566" guardcondition="OrdLnFind" firstRelativePoint="635,133" lastRelativePoint="635,195"/>
+  <wire id="14567" guardcondition="success" firstRelativePoint="635,225" lastRelativePoint="285,348">
+    <bendpoint weight="0.5" firstDimension="2,140" secondDimension="359,1"/>
+  </wire>
+  <wire id="14568" guardcondition="PrdNmFind" firstRelativePoint="12,133" lastRelativePoint="12,193"/>
+  <wire id="14569" guardcondition="success" firstRelativePoint="13,223" lastRelativePoint="265,348">
+    <bendpoint weight="0.5" firstDimension="2,140" secondDimension="-263,-1"/>
+  </wire>
+  <wire id="14570" guardcondition="save" firstRelativePoint="751,133" lastRelativePoint="751,194"/>
+  <wire id="14571" guardcondition="success" firstRelativePoint="752,224" lastRelativePoint="285,348">
+    <bendpoint weight="0.5" firstDimension="0,141" secondDimension="476,1"/>
+  </wire>
+</Glue:GlueDiagram>

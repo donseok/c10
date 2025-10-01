@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="274,27" size="-1,-1" output="//@wire.3"/>
+  <child xsi:type="Glue:FinalState" id="1" location="266,339" size="-1,-1" input="//@wire.6 //@wire.8"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="72,103" size="430,-1" input="//@wire.3" output="//@wire.7 //@wire.5" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="442976" location="362,198" size="94,-1" input="//@wire.5" output="//@wire.6" name="주문행번 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000040.selectOrdLn"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="443017" location="111,199" size="107,-1" input="//@wire.7" output="//@wire.8" name="이력 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C105000040_selectWarPubHst"/>
+    <property key="description" value=""/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value=""/>
+  <wire id="10969" guardcondition="success" firstRelativePoint="228,209" lastRelativePoint="289,323"/>
+  <wire id="10970" guardcondition="success" firstRelativePoint="339,323" lastRelativePoint="339,323"/>
+  <wire id="10974" guardcondition="success" firstRelativePoint="346,39" lastRelativePoint="346,103"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="278,36" lastRelativePoint="278,103"/>
+  <wire id="11889" guardcondition="success" firstRelativePoint="750,207" lastRelativePoint="750,207"/>
+  <wire id="14566" guardcondition="OrdLnFind" firstRelativePoint="414,133" lastRelativePoint="414,198"/>
+  <wire id="14567" guardcondition="success" firstRelativePoint="413,228" lastRelativePoint="286,348">
+    <bendpoint weight="0.5" firstDimension="4,135" secondDimension="137,-1"/>
+  </wire>
+  <wire id="14568" guardcondition="find" firstRelativePoint="164,133" lastRelativePoint="164,199"/>
+  <wire id="14569" guardcondition="success" firstRelativePoint="164,229" lastRelativePoint="265,348">
+    <bendpoint weight="0.5" firstDimension="0,134" secondDimension="-112,-1"/>
+  </wire>
+</Glue:GlueDiagram>

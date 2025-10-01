@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C105000030-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="국가조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C105000030_selNat.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="보증서 권한 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C105000030.selectAuthority" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="Class 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C105000030.selectClass" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="품명 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C105000030_selectPrdNm" />
+  </activity>
+  <activity name="CCLBOM체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C105000030_cclBomChk.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="cclBomChk" value="CCLBOM체크" />
+    <transition name="selNat" value="국가조회" />
+    <transition name="selClass" value="Class 조회" />
+    <transition name="authorityChk" value="보증서 권한 조회" />
+    <transition name="OrdLnFind" value="주문행번 조회" />
+    <transition name="PrdNmFind" value="품명 조회" />
+    <transition name="save" value="이력등록" />
+  </activity>
+  <activity name="이력등록" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="insert-sql" value="C105000030.saveWarPubHst" />
+    <property name="dao" value="mesdao" />
+    <property name="update-sql" value="C105000030.saveWarPubHst" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="주문행번 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C105000030.selectOrdLn" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+
