@@ -325,6 +325,7 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
         double ord_exc_wth = 0;
         double cegl_exc_wth = 0;
         String rmtl_cd = C10STR_SPACE;
+        String tmp_rmtl_cd = C10STR_SPACE;
         String ord_no = C10STR_SPACE;
         String ord_ln = C10STR_SPACE;
         String prd_nm_cd = C10STR_SPACE;
@@ -472,6 +473,57 @@ public class DbSearchProcSizeData extends PosActivity implements C10NuiConstants
             fnl_cus_cd = (String) ctx.get( COL_FNL_CUS_CD );
         if ( !DbCommonUtil.isNull( (String) ctx.get( COL_CUS_BTH_PAP_NO ) ) )
         	cus_bth_pap_no = (String) ctx.get( COL_CUS_BTH_PAP_NO );
+        
+        
+        // 2025.10.24 APS 수정이 완료될 때까지 임시 조치
+        // 적정이 F/H, 차선이 H/C일 경우 적정 ST폭값에 차선 ST폭값을 업데이트
+        if(qlt_dsn_mnf_tp.equals("1") && rmtl_cd.toString().substring(0,1).equals("D")){
+//        	if(rmtl_cd.equals("D32")){
+//        		rmtl_cd = "H32";
+//        	}else if(rmtl_cd.equals("D36")){
+//        		rmtl_cd = "H36";
+//        	}else if(rmtl_cd.equals("D37")){
+//        		rmtl_cd = "H39";
+//        	}
+        	
+            param = new PosParameter(); // MD View param
+            param.setWhereClauseParameter( 0, ord_no );
+            param.setWhereClauseParameter( 1, ord_ln );
+
+            try
+            {
+                // 결과값 잘 가져오는지 확인
+                rowset = dao.find( SELECT_MNF2, param ); // 칼라제조사양.select
+            } catch ( Exception e )
+            {
+                rowset = null;
+//                ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KP05 );
+//                ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+                logger.logError( e.getMessage() );
+//                return PosBizControlConstants.SUCCESS;
+            }
+            if ( rowset.count() == 0 )
+            {
+//                ctx.put( COL_QLT_DSN_ERR_CD, ERRCD_KP05 );
+//                ctx.put( C10STR_P_ERR_KEY, C10STR_YES );
+//                logger.logError( ERRMSG_R98 );
+//                return PosBizControlConstants.FAILURE;
+            	logger.logError("차선이 없음");
+            } else
+            {
+                row = rowset.next();
+                if ( !DbCommonUtil.isNull( row.getAttribute( COL_RMTL_CD ) ) )
+                	tmp_rmtl_cd = DbCommonUtil.valueOf( row.getAttribute( COL_RMTL_CD ) );
+            }        	
+            
+            logger.logInfo("기존rmtl_cd " + rmtl_cd);
+            if(tmp_rmtl_cd.toString().substring(0,1).equals("H")){
+            	rmtl_cd = tmp_rmtl_cd;
+            	logger.logInfo("변경rmtl_cd " + rmtl_cd);
+            }
+        	
+        }
+        // 2025.10.24 APS 수정이 완료될 때까지 임시 조치 끝
         
 
         if ( !qlt_dsn_mnf_tp.equals("1")  && 

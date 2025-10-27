@@ -46,6 +46,18 @@ AND   ORD_LN = ?
 ORDER BY QLT_DSN_MNF_TP
 		 ]]> 
 	 </query>
+	 <query id="C102100MNF.select2" desc="C102100MNF.select2" fetchSize="10" isNamed="false">
+		 <![CDATA[ 
+select /*+ C10 품질설계결과제조사양조회-차선 C102100MNF.select SJS */ 
+         *
+FROM TB_C10_QLT_DSN_MNF
+WHERE ORD_NO = ?
+AND   ORD_LN = ?
+AND   QLT_DSN_MNF_TP = '2'
+ORDER BY QLT_DSN_MNF_TP
+		 ]]> 
+	 </query>	 
+	 
 	 <query id="C102100MNF.gw_update" desc="C102100MNF.gw_update" fetchSize="10" isNamed="false">
 		 <![CDATA[ 
 update /*+ C10 품질설계결과제조사양도금량수정 C102100MNF.gw_update 박재영*/

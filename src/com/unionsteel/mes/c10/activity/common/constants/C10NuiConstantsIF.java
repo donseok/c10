@@ -3522,6 +3522,7 @@ public interface C10NuiConstantsIF {
     public static final String SELECT_MQL = "C102100MQL.select"; // 품질설계결과재질조회
     public static final String SELECT_DLV = "C102100DLV.select"; // 품질설계결과인수도조회
     public static final String SELECT_MNF = "C102100MNF.select"; // 품질설계결과제조사양조회
+    public static final String SELECT_MNF2 = "C102100MNF.select2"; // 품질설계결과제조사양조회-차선
     public static final String INSERT_MNF = "C102100MNF.insert"; // 품질설계결과제조사양저장
     public static final String INSERT_PROC = "C102100PROC.Insert"; // 품질설계결과통과공정저장(대체공정3개-생산가부,품질설계의뢰시사용)
     public static final String INSERT_PROC2 = "C102100PROC.Insert2"; // 품질설계결과통과공정저장(대체공정6개-대체공정 추가시 사용)
