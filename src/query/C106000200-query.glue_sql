@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000200 Page 쿼리파일"> 
+	 <query id="C106000200.select" desc="C106000200 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT 
+        MO_NO,
+        CCL_BOM_NO,
+        ORD_EXC_THK,
+        ORD_EXC_WTH,
+        (SELECT CD_V_MEANING        
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'PRD_NM_CD'
+          AND CD_V = PRD_NM_CD
+          AND CATEGORY_GROUP_NM = 'SZ0000'
+        ) PRD_NM_CD,
+        SUB_CLS_CD,
+        TO_CHAR(WK_STR_SCH_DH,'YYYY-MM-DD HH24:MI') WK_STR_SCH_DH,
+        CUS_CD,
+        ORD_USG_CD,
+		ORD_NO,
+        ORD_LN
+FROM (
+    SELECT
+        A.MO_NO,
+        B.CCL_BOM_NO,
+        B.ORD_EXC_THK,
+        B.ORD_EXC_WTH,
+        B.PRD_NM_CD,
+        A.SUB_CLS_CD,
+        A.WK_STR_SCH_DH,
+        B.CUS_CD,
+        B.ORD_USG_CD,
+        B.ORD_NO,
+        B.ORD_LN,        
+        ROW_NUMBER() OVER (
+            PARTITION BY A.MO_NO, B.CCL_BOM_NO
+            ORDER BY A.WK_STR_SCH_DH ASC
+        ) AS rn
+    FROM mesapuser.TB_M17_INST_SEQ A
+       , C10apuser.TB_C10_QLT_DSN_CMN B
+    WHERE A.ORD_NO = B.ORD_NO(+)
+      AND A.ORD_LN = B.ORD_LN(+)
+      AND A.PROC_CD = 'A5'
+      AND A.MO_NO LIKE :MO_NO || '%'
+      AND B.CCL_BOM_NO LIKE :CCL_BOM_NO || '%'
+      AND A.WK_STR_SCH_DH > TO_DATE(REPLACE(:STR_SCH_DH,'-'), 'YYYYMMDD')
+      AND A.WK_STR_SCH_DH < TO_DATE(REPLACE(:END_SCH_DH,'-'), 'YYYYMMDD') + 1
+      AND A.WK_END_DH IS NULL
+)
+WHERE rn = 1
+		 ]]> 
+	 </query>
+	 <query id="C106000200.qlt_msg_find" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT CCL_BOM_NO, CCL_QLT_MSG_TXT
+FROM (
+    SELECT CCL_BOM_NO,
+           CCL_QLT_MSG_TXT,
+           ROW_NUMBER() OVER (
+             ORDER BY
+               CASE
+                 WHEN CUS_CD = :CUS_CD
+                  AND ORD_USG_CD = :ORD_USG_CD THEN 1
+
+                 WHEN CUS_CD = :CUS_CD
+                  AND ORD_USG_CD LIKE '______' THEN 2
+
+                 WHEN CUS_CD LIKE '______'
+                  AND ORD_USG_CD = :ORD_USG_CD THEN 3
+
+                 WHEN CUS_CD LIKE '______'
+                  AND ORD_USG_CD LIKE '______' THEN 4
+               END
+           ) rn
+    FROM C10APUSER.TB_C10_CLR_MPR
+    WHERE CCL_BOM_NO = :CCL_BOM_NO
+      AND (
+            (CUS_CD = :CUS_CD AND ORD_USG_CD = :ORD_USG_CD)
+         OR (CUS_CD = :CUS_CD AND ORD_USG_CD LIKE '______')
+         OR (CUS_CD LIKE '______' AND ORD_USG_CD = :ORD_USG_CD)
+         OR (CUS_CD LIKE '______' AND ORD_USG_CD LIKE '______')
+          )
+)
+WHERE rn = 1
+		 ]]> 
+	 </query>
+	 <query id="C106000200.prd_info_find" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT
+(SELECT CD_V_MEANING        
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'CUS_CD'
+          AND CD_V = CUS_CD
+          AND CATEGORY_GROUP_NM = 'SZ0000'
+        ) CUS_CD
+, (SELECT USER_NAME FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = ORD_RGS_PRS_ID) ORD_RGS_PRS_ID
+, (SELECT CD_V_MEANING        
+        FROM M00APUSER.VI_M00_CODE_ACCESS
+        WHERE CD_TP = 'ORD_USG_CD'
+          AND CD_V = ORD_USG_CD
+          AND CATEGORY_GROUP_NM = 'SZ0000'
+        ) ORD_USG_CD
+, HUE_CD_FRN_3COT 
+, HUE_CD_FRN_2COT 
+, HUE_CD_FRN_1COT 
+, HUE_CD_BAK_1COT 
+, HUE_CD_BAK_2COT 
+, ORD_PTT_FLM_WTH  -- 보호필름폭
+, ORD_PTT_FLM_DTL_CD --보호필름상세
+, BAK_MRK
+FROM C10APUSER.TB_C10_QLT_DSN_CMN A
+, C10APUSER.TB_C10_QLT_DSN_CCL_BOM B
+WHERE A.ORD_NO = B.ORD_NO(+)
+AND A.ORD_LN = B.ORD_LN(+)
+AND A.ORD_NO = :ORD_NO
+AND A.ORD_LN = :ORD_LN
+		 ]]> 
+	 </query>
+	 <query id="C106000200.wk_info_find" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT CCL_BOM_NO
+, NVL(MAX(WK_END_DH),'') WK_END_DH
+FROM 
+    (
+    SELECT CCL_BOM_NO      
+          , TO_CHAR(B.WK_END_DH, 'YYYY-MM-DD') AS WK_END_DH
+    FROM   C10APUSER.TB_C10_QLT_DSN_CMN A
+    LEFT JOIN (SELECT ORD_NO, ORD_LN, MAX(WK_END_DH) WK_END_DH, MAX(PDN_PST_DD) PDN_PST_DD FROM MESAPUSER.TB_M47_PRD_ACT_CMN CMN WHERE OP_GRD = '1' GROUP BY ORD_NO, ORD_LN) B ON A.ORD_NO = B.ORD_NO AND A.ORD_LN = B.ORD_LN
+    WHERE  A.CCL_BOM_NO = :CCL_BOM_NO
+    --AND    A.QLT_DSN_INST_DH BETWEEN ADD_MONTHS(SYSDATE, -12) AND SYSDATE+1
+    AND    NVL(A.ORD_END_TP,'N') != 'E'
+    )
+GROUP BY CCL_BOM_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000200.dgt_img_find" desc="" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT IMG_NM
+FROM (
+    SELECT NVL(IMG_NM,'') IMG_NM
+    FROM C10apuser.TB_C10_DGT_PRT_IMG
+    WHERE SUBSTR(DGT_PRT_IMG_NO,1,5) = SUBSTR(:CCL_BOM_NO,1,5)
+      AND PRD_SPC_TP = '5'
+    ORDER BY DGT_PRT_RGS_DH DESC
+)
+WHERE ROWNUM = 1
+		 ]]> 
+	 </query>
+</queryMap>

@@ -1,0 +1,19 @@
+<items>
+<item type="block">
+<item dateFormat="%Y-%m-%d" inputWidth="80" label="작업예정일자" labelAlign="right"  name="STR_SCH_DH" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="0" type="newcolumn"/>
+<item label="~" name="DH_DUR" type="label"/>
+<item offset="0" type="newcolumn"/>
+<item dateFormat="%Y-%m-%d" inputWidth="65" name="END_SCH_DH" type="calendar" style="background-color:#FFFFC0"/>
+<item offset="10" type="newcolumn"/>
+<item command="find" name="find" type="button" value="조회" disabled="true"/>
+<item offset="1" type="newcolumn"/>
+<item command="winClose" name="winClose" type="button" value="닫기"/>
+</item>
+<item type="block">
+<item offset="1" type="newcolumn"/>
+<item inputWidth="80" toCase="upper" label="BOM번호" labelWidth="55" name="CCL_BOM_NO" type="input"/>
+<item offset="10" type="newcolumn"/>
+<item inputWidth="80" toCase="upper" label="MO번호" labelWidth="45" name="MO_NO" type="input"/>
+</item>
+</items>

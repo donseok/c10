@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath"><param>dhtmlx/codebase/imgs/</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+<call command="enableMultiselect"><param>true</param></call>
+<call command="enableValidation"><param>true</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CCL_BOM_NO" sort="str" align="center" dbname="CCL_BOM_NO" width="80" table="TB_C10_QLT_DSN_CMN" type="ahref">BOM번호</column>
+<column id="MO_NO" sort="str" align="center" dbname="MO_NO" width="80" table="TB_C10_QLT_DSN_CMN" type="ahref">MO번호</column>
+<column id="ORD_EXC_THK" sort="str" align="right" dbname="ORD_EXC_THK" width="60" table="TB_C10_QLT_DSN_CMN" type="ro">제품두께</column>
+<column id="ORD_EXC_WTH" sort="str" align="right" dbname="ORD_EXC_WTH" width="60" table="TB_C10_QLT_DSN_CMN" type="ro">제품폭</column>
+<column id="PRD_NM_CD" sort="str" align="center" dbname="LN_SPD" width="60" table="TB_C10_QLT_DSN_CMN" type="ro">품명</column>
+<column id="SUB_CLS_CD" sort="str" align="center" dbname="SUB_CLS_CD" width="120" table="TB_C10_QLT_DSN_CMN" type="ro">SubClass</column>
+<column id="WK_STR_SCH_DH" sort="str" align="center" dbname="WK_END_DH" width="120" table="TB_C10_QLT_DSN_CMN" type="ro">시작예정일시</column>
+<column id="CUS_CD" sort="str" align="center" dbname="SUB_CLS_CD" width="100" hidden="true" table="TB_C10_QLT_DSN_CMN" type="ro">SubClass</column>
+<column id="ORD_USG_CD" sort="str" align="left" dbname="WK_END_DH" width="80" hidden="true" table="TB_C10_QLT_DSN_CMN" type="ro">시작예정일시</column>
+<column id="ORD_NO" sort="str" align="center" dbname="ORD_NO" width="80" hidden="true" table="TB_C10_QLT_DSN_CMN" type="ro">주문번호</column>
+<column id="ORD_LN" sort="str" align="center" dbname="ORD_LN" width="80" hidden="true" table="TB_C10_QLT_DSN_CMN" type="ro">주문행번</column>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">CCL_BOM_NO,MO_NO,ORD_EXC_THK,ORD_EXC_WTH,PRD_NM_CD,SUB_CLS_CD,WK_STR_SCH_DH,CUS_CD,ORD_USG_CD,ORD_NO,ORD_LN</userdata>
+
+</rows>

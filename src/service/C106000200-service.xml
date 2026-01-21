@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000200-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="상세Data" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000200.qlt_msg_find" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000200.select" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="조회" />
+    <transition name="qltMsgFind" value="상세Data" />
+    <transition name="prdInfoFind" value="제품정보 조회" />
+    <transition name="wkInfoFind" value="생산이력 조회" />
+    <transition name="dgtImgFind" value="디지털이미지 조회" />
+  </activity>
+  <activity name="제품정보 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000200.prd_info_find" />
+  </activity>
+  <activity name="생산이력 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000200.wk_info_find" />
+  </activity>
+  <activity name="디지털이미지 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="sqlkey" value="C106000200.dgt_img_find" />
+  </activity>
+</service>
+

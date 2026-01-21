@@ -1,0 +1,32 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableColSpan"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CCL_BOM_NO" sort="str" align="right" dbname="CCL_BOM_NO" width="50" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="WK_SHF_GRP" >CCL_BOM_NO</column>
+<column id="WK_END_DH"  sort="str" align="right" dbname="WK_END_DH" width="50" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="LN_SPD" >WK_END_DH</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info"></userdata>
+<row id="0">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#c0c0c0;">최근 작업 이력</cell>
+<cell align="center" class="form_cell" type="ro" ></cell>
+</row>
+<row id="1">
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">생산완료 일자</cell>
+<cell align="center" id = "WK_END_DH" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="2">
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">생산완료 BOM</cell>
+<cell align="center" id = "CCL_BOM_NO" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+</rows> 

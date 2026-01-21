@@ -1,0 +1,57 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableColSpan"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. --> 
+</afterInit>
+
+<column id="CCL_BOM_NO" maxLength="5,0" sort="str" width="50" align="center" type="img" css="grid_img_fit">디지털프린트 이미지</column>
+<column id="CCL_QLT_MSG_TXT" maxLength="5,0" sort="str" align="center" dbname="WK_SHF_GRP" width="50" table="TB_C10_CCL_BOM" type="ro" clabel="WK_SHF_GRP" >디지털프린트 이미지</column>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info"></userdata>
+<row id="0">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#FFFF00;">디지털프린트 이미지</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#FFFF00;"></cell>
+</row>
+
+<row id="1">
+<cell id = "CCL_BOM_NO" align="center" css="grid_img_fit" type="img" colspan="2" style="background-color:#FFFFFF;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#FFFFFF;"></cell>
+</row>
+
+<row id="2">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">품질메시지</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+</row>
+
+<row id="3">
+<cell align="left" id = "CCL_QLT_MSG_TXT" type="ro" colspan="2" rowspan="4" style="background-color:#ffffff; white-space:normal; word-break:break-all; padding:6px;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="4">
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+
+<row id="5">
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+
+<row id="6">
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+
+
+
+</rows>

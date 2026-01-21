@@ -1,0 +1,90 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setNoHeader"><param>true</param></call>
+<call command="enableColSpan"><param>true</param></call>
+<call command="enableRowspan"><param>true</param></call>
+<call command="setSkin"><param>dhx_skyblue</param></call>
+</beforeInit>
+<afterInit>
+<!-- 가변항목 관련 세팅 시작.-->
+<!-- 가변항목 관련 세팅 끝. -->
+</afterInit>
+<column id="CUS_CD" sort="str" align="right" dbname="HUE_CD_FRN_1COT" width="25" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="HUE_CD_FRN_1COT" ></column>
+<column id="ORD_RGS_PRS_ID" sort="str" align="right" dbname="HUE_CD_BAK_1COT" width="25" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="HUE_CD_BAK_1COT" ></column>
+<column id="ORD_USG_CD" sort="str" align="right" dbname="COATER_TOP_RPM_RT_APR1" width="50" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_RPM_RT_APR1" ></column>
+<column hidden="true" id="HUE_CD_FRN_3COT" sort="str" align="right" dbname="COATER_TOP_RPM_RT_PUR1" width="13" table="TB_C10_QLT_DSN_CMN" type="ro"  clabel="COATER_TOP_RPM_RT_PUR1" ></column>
+<column hidden="true" id="HUE_CD_FRN_2COT" sort="str" align="right" dbname="COATER_TOP_RPM_RT_MTR1" width="13" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_RPM_RT_MTR1" ></column>
+<column hidden="true" id="HUE_CD_FRN_1COT" sort="str" align="right" dbname="COATER_TOP_COT_MTH1" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_COT_MTH1" ></column>
+<column hidden="true" id="HUE_CD_BAK_1COT" sort="str" align="right" dbname="COATER_TOP_RODSHELL_APR1" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_RODSHELL_APR1" ></column>
+<column hidden="true" id="HUE_CD_BAK_2COT" sort="str" align="right" dbname="COATER_TOP_VISCO1" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_VISCO1" ></column>
+<column hidden="true" id="ORD_PTT_FLM_WTH" sort="str" align="right" dbname="COATER_TOP_RODSHELL_PUR1" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_RODSHELL_PUR1" ></column>
+<column hidden="true" id="ORD_PTT_FLM_DTL_CD" sort="str" align="right" dbname="THR_CD_FRN_1COT" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="THR_CD_FRN_1COT" ></column>
+<column hidden="true" id="BAK_MRK" sort="str" align="right" dbname="COATER_TOP_RODSHELL_MTR1" width="20" table="TB_C10_QLT_DSN_CMN" type="ro" clabel="COATER_TOP_RODSHELL_MTR1" ></column>
+
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info"></userdata>
+<row id="0">
+<cell align="center" class="form_cell" type="ro" colspan="3" style="background-color:#c0c0c0;">제품 정보</cell>
+<cell align="center" class="form_cell" type="ro" ></cell>
+<cell align="center" class="form_cell" type="ro" ></cell>
+</row>
+<row id="1">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">고객사</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "CUS_CD" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="2">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">영업사원</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "ORD_RGS_PRS_ID" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="3">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">용도</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "ORD_USG_CD" type="ro" style="background-color:#ffffff; white-space:normal; word-break:break-all; padding:2px;"></cell>
+</row>
+<row id="4">
+<cell align="center" class="form_cell" type="ro" rowspan="3" style="background-color:#E9F9E9;">TOP</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">CLEAR</cell>
+<cell align="center" id = "HUE_CD_FRN_3COT" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="5">
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">BASE</cell>
+<cell align="center" id = "HUE_CD_FRN_2COT" type="ro" style="background-color:#ffffff;"></cell>
+</row> 
+<row id="6">
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">PRIMER</cell>
+<cell align="center" id = "HUE_CD_FRN_1COT" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="7">
+<cell align="center" class="form_cell" type="ro" rowspan="2" style="background-color:#E9F9E9;">BACK</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">1COAT</cell>
+<cell align="center" id = "HUE_CD_BAK_1COT" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="8">
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;">2COAT</cell>
+<cell align="center" id = "HUE_CD_BAK_2COT" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="9">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">보호필름</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "ORD_PTT_FLM_DTL_CD" type="ro" style="background-color:#ffffff;"></cell>
+</row>
+<row id="10">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">보호필름 폭</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "ORD_PTT_FLM_WTH" type="ro" style="background-color:#ffffff;"></cell>
+</row> 
+<row id="11">
+<cell align="center" class="form_cell" type="ro" colspan="2" style="background-color:#E9F9E9;">MARKING</cell>
+<cell align="center" class="form_cell" type="ro" style="background-color:#E9F9E9;"></cell>
+<cell align="center" id = "BAK_MRK" type="ro" style="background-color:#ffffff; white-space:normal; word-break:break-all; padding:2px;"></cell>
+</row> 
+</rows>
