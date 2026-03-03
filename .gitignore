@@ -7,7 +7,9 @@
 /JavaDoc
 .classpath
 .project
-M20.iml
+*.iml
 /.idea
 /doc
-build.properties
+build.propertiesnul
+**/.temp/**
+.serena
