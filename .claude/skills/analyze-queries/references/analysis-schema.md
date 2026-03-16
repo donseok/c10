@@ -21,15 +21,22 @@ Phase 3 SQL 분석과 호환되며, 사전 분석 시 이 스키마를 준수해
   ],
   "columns": [
     {
-      "name": "string (필수) - 컬럼명 또는 표현식 별칭",
+      "name": "string (필수) - 컬럼명 또는 AS 별칭 (예: COIL_NO, TOTAL_WGT)",
       "tableName": "string - 소속 테이블명",
       "tableAlias": "string - SQL에서 사용된 테이블 별칭",
       "dataType": "string - 추정 데이터 타입 (VARCHAR2, NUMBER, DATE 등)",
       "isPrimaryKey": "boolean - PK 여부 (확인 가능한 경우)",
       "isForeignKey": "boolean - FK 여부 (확인 가능한 경우)",
-      "expression": "string - 컬럼이 계산식인 경우 원본 표현식"
+      "expression": "string - DECODE/서브쿼리/연산식 등 표현식 컬럼의 원본 표현식. 단순 컬럼이면 null"
     }
   ],
+  "# columns 추출 규칙 (에이전트 필수 준수)": {
+    "SELECT * 또는 alias.*": "→ 오케스트레이터가 제공한 tableColumns 정보가 있으면 그 컬럼 목록 사용 (audit 컬럼 제외); 정보가 없으면 빈 배열 []",
+    "명시적 컬럼 목록이 있는 SELECT": "→ 전체 추출 (개수 제한 없음)",
+    "INSERT 컬럼목록": "→ 삽입 대상 컬럼 전체 추출 (개수 제한 없음)",
+    "UPDATE SET 컬럼": "→ 수정 대상 컬럼 전체 추출 (개수 제한 없음)",
+    "audit 컬럼 제외 대상": "CREATED_OBJECT_TYPE, CREATED_OBJECT_ID, CREATED_PROGRAM_ID, CREATION_TIMESTAMP, LAST_UPDATED_OBJECT_TYPE, LAST_UPDATED_OBJECT_ID, LAST_UPDATE_PROGRAM_ID, LAST_UPDATE_TIMESTAMP, DATA_END_STATUS, DATA_END_OBJECT_TYPE, DATA_END_OBJECT_ID, DATA_END_PROGRAM_ID, DATA_END_TIMESTAMP, ARCHIVE_COMPLETED_FLAG, ARCHIVED_EMPLOYEE_NUM, ARCHIVED_TIMESTAMP, ARCHIVE_PROGRAM_ID"
+  },
   "joins": [
     {
       "type": "string (필수) - INNER | LEFT | RIGHT | FULL | CROSS",

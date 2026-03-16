@@ -123,6 +123,60 @@ python3 $ORCHESTRATOR classify {queryId1} {queryId2} ...
 - `simple` + `medium` → haiku 서브에이전트에 전달
 - `complex` → sonnet 서브에이전트에 전달 (complex가 없으면 생략)
 
+#### 4a-3. SELECT * 쿼리 DB 컬럼 사전 조회
+
+fetch-batch 결과에서 `SELECT *` 또는 `alias.*` 패턴이 포함된 쿼리를 찾아 해당 테이블의 실제 컬럼을 DB에서 조회한다. 조회된 컬럼 목록은 에이전트 프롬프트에 `tableColumns` 딕셔너리로 전달한다.
+
+**Python으로 SELECT * 쿼리 감지 및 테이블 추출:**
+
+```python
+import re, json
+
+batch = json.load(open('/tmp/batchN.json'))
+select_star_tables = {}  # {queryId: tableName}
+
+for qid, q in batch['queries'].items():
+    sql = q['sql']
+    # SELECT * 또는 alias.* 패턴 감지
+    if re.search(r'SELECT\s+(?:/\*[^*]*\*/)?\s*(?:\w+\.)?\*', sql, re.IGNORECASE):
+        # FROM 절에서 첫 번째 테이블명 추출 (스키마 포함 가능)
+        m = re.search(r'\bFROM\s+([\w.]+)', sql, re.IGNORECASE)
+        if m:
+            select_star_tables[qid] = m.group(1)
+```
+
+**sqlcl MCP로 테이블 컬럼 조회:**
+
+`select_star_tables`에서 유니크한 테이블명 목록을 추출하고, sqlcl MCP로 각 테이블의 컬럼을 조회한다.
+
+```sql
+-- 테이블명에 스키마가 없으면 MESAPUSER 기본
+SELECT COLUMN_NAME, DATA_TYPE, DATA_LENGTH
+FROM ALL_TAB_COLUMNS
+WHERE TABLE_NAME = UPPER('TB_C10_XXX')
+  AND OWNER IN ('MESAPUSER','M00APUSER','EAIAPUSER','C10APUSER')
+  AND COLUMN_NAME NOT IN (
+    'CREATED_OBJECT_TYPE','CREATED_OBJECT_ID','CREATED_PROGRAM_ID','CREATION_TIMESTAMP',
+    'LAST_UPDATED_OBJECT_TYPE','LAST_UPDATED_OBJECT_ID','LAST_UPDATE_PROGRAM_ID','LAST_UPDATE_TIMESTAMP',
+    'DATA_END_STATUS','DATA_END_OBJECT_TYPE','DATA_END_OBJECT_ID','DATA_END_PROGRAM_ID','DATA_END_TIMESTAMP',
+    'ARCHIVE_COMPLETED_FLAG','ARCHIVED_EMPLOYEE_NUM','ARCHIVED_TIMESTAMP','ARCHIVE_PROGRAM_ID'
+  )
+ORDER BY COLUMN_ID
+```
+
+조회 결과를 `tableColumns` 딕셔너리로 구성한다:
+```json
+{
+  "TB_C10_B10R0020": [
+    {"name": "IF_GRP_ID", "dataType": "VARCHAR2"},
+    {"name": "SEQ_NO", "dataType": "NUMBER"},
+    ...
+  ]
+}
+```
+
+`select_star_tables`가 비어 있으면 이 단계를 건너뛴다.
+
 #### 4b. 쿼리 분석 (복잡도별 모델 선택)
 
 [references/analysis-schema.md](references/analysis-schema.md)의 스키마를 준수하여 각 쿼리를 분석한다.
@@ -130,12 +184,71 @@ python3 $ORCHESTRATOR classify {queryId1} {queryId2} ...
 **분석 가이드:**
 1. **queryType 분류**: SQL 문의 첫 키워드로 판단 (SELECT, INSERT, UPDATE, DELETE, MERGE, CALL/{call)
 2. **tables 추출**: FROM, JOIN, INTO, UPDATE, MERGE INTO 절에서 테이블명과 별칭 추출
-3. **columns 추출**: SELECT 절 컬럼, INSERT 컬럼, UPDATE SET 절 컬럼 추출
+3. **columns 추출** (아래 규칙 준수):
+   - `SELECT *` 또는 `SELECT alias.*` 형식 → `tableColumns`에 해당 테이블 정보가 있으면 그 컬럼 목록 사용 (audit 컬럼 제외, 개수 제한 없음); 없으면 빈 배열 `[]`
+   - 명시적 컬럼 목록이 있는 SELECT → 컬럼 전체 추출 (개수 제한 없음)
+   - INSERT INTO (컬럼목록) VALUES → 삽입 대상 컬럼 전체 추출
+   - UPDATE SET → 수정 대상 컬럼 전체 추출
+   - 컬럼 표현식(계산식, 서브쿼리, DECODE 등)은 expression 필드에 원본 표현식 기록
 4. **joins 추출**: JOIN 절 또는 WHERE 절의 조인 조건 추출
-5. **parameters 추출**: `:paramName` 형태의 바인드 변수 추출
+5. **parameters 추출**: `:paramName` 형태의 바인드 변수 추출, `?` 파라미터는 SQL 주석/문맥으로 파라미터명 추론
 6. **businessPurpose**: 테이블명, 컬럼명, 조건을 기반으로 비즈니스 목적 추론 (한글)
 7. **queryLogic**: 주요 조건, 정렬, 집계, 서브쿼리 등 로직 요약
 8. **performanceInfo**: 조인 수, 서브쿼리 깊이, UNION 등으로 복잡도 판단
+
+**에이전트 호출 표준 프롬프트 템플릿** (haiku/sonnet 서브에이전트에 이 형식을 반드시 사용):
+
+```
+{쿼리데이터_파일경로} 파일을 읽어서 각 쿼리를 분석하라.
+
+## 분석 스키마
+
+각 쿼리에 대해 아래 JSON 구조로 분석 결과를 생성한다:
+
+{
+  "queryId": "쿼리 ID",
+  "analysisModel": "haiku 또는 sonnet",
+  "queryType": "SELECT | INSERT | UPDATE | DELETE | MERGE | PROCEDURE",
+  "description": "쿼리 비즈니스 목적 한글 설명",
+  "tables": [
+    {"tableName": "테이블명(스키마 포함)", "alias": "별칭 또는 null", "role": "메인 테이블 | 참조 테이블 | 조인 테이블 | 서브쿼리 테이블", "accessPattern": "FULL SCAN | INDEX SCAN | PK LOOKUP | 조건부 조회"}
+  ],
+  "columns": [
+    {"name": "컬럼명 또는 별칭", "tableName": "소속 테이블명", "tableAlias": "테이블 별칭", "dataType": "VARCHAR2 | NUMBER | DATE 등", "isPrimaryKey": false, "isForeignKey": false, "expression": null}
+  ],
+  "joins": [
+    {"type": "INNER | LEFT | RIGHT", "leftTable": "왼쪽 테이블", "rightTable": "오른쪽 테이블", "condition": "조인 조건"}
+  ],
+  "parameters": [
+    {"name": "파라미터명", "type": "STRING | NUMBER | DATE | LIST", "required": true, "description": "용도"}
+  ],
+  "businessPurpose": "비즈니스 목적 한글 1~3문장",
+  "queryLogic": "쿼리 로직 요약",
+  "performanceInfo": {"queryComplexity": "Simple | Medium | Complex"}
+}
+
+## columns 추출 규칙 (반드시 준수)
+
+- SELECT * 또는 테이블별칭.* → 아래 tableColumns에 해당 테이블이 있으면 그 컬럼 목록 사용; 없으면 빈 배열 []
+- 명시적 컬럼 목록이 있는 SELECT → 컬럼 전체 추출 (개수 제한 없음)
+- INSERT(컬럼목록) → 삽입 대상 컬럼 전체 추출 (개수 제한 없음)
+- UPDATE SET → 수정 대상 컬럼 전체 추출 (개수 제한 없음)
+- DECODE, 서브쿼리, 연산식 등 표현식 컬럼 → expression 필드에 원본 표현식 기록
+
+## DB에서 조회된 테이블 컬럼 정보 (SELECT * 쿼리용, audit 컬럼 제외)
+
+{tableColumns 딕셔너리 JSON - tableColumns가 없으면 이 섹션 생략}
+
+## 출력 형식 (필수 준수)
+
+반드시 아래 형식으로 반환하라 (배열이 아닌 객체):
+{
+  "queryId1": { ...분석결과... },
+  "queryId2": { ...분석결과... }
+}
+
+analysisModel은 반드시 "{haiku 또는 sonnet}". JSON만 반환 (다른 텍스트 없이).
+```
 
 **모델별 서브에이전트 분배:**
 - **haiku 그룹** (simple + medium 쿼리): `Task(model="haiku", subagent_type="general-purpose", ...)` 로 분석
