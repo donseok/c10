@@ -148,10 +148,19 @@ echo '{"missed_key1": {...분석결과...}, "missed_key2": {...분석결과...}}
 #### Step 3-4: cached + missed 결과 통합
 Step 4/6의 sql_analysis.json 생성 시 **cached 분석 결과 + missed 분석 결과를 모두 합쳐서** `queryDetails` 배열에 포함한다. cached 결과를 누락하지 않는다.
 
-### Step 4: 데이터베이스 스키마 추론
-1. **테이블 목록 생성**: 모든 SQL에서 사용된 테이블 수집, 테이블별 역할 및 설명 추론
-2. **컬럼 정보 수집**: 각 테이블별 컬럼 목록, 컬럼 타입 추론, Primary Key 추론
-3. **ER 관계도 구성**: JOIN 조건 기반 관계 추출, 1:N/N:1/N:M 관계 분류, 외래키 관계 추론
+### Step 4: 데이터베이스 스키마 조회
+
+SQL에서 사용된 테이블의 실제 스키마를 queries.db의 table_metadata/table_columns에서 조회한다.
+
+```bash
+python3 $ORCHESTRATOR table-info TABLE1 TABLE2 ...
+```
+
+- **조회된 테이블**: tableComment, 컬럼 목록(타입/PK/코멘트) 그대로 사용
+- **미조회 테이블**: SQL 파싱 기반 추론 (기존 방식 fallback)
+- **ER 관계도**: JOIN 조건 + PK 정보 기반으로 정확한 관계 설정
+
+> **참고**: `fetch-queries` 출력에도 `tableColumns` 필드가 포함되므로, Step 3에서 이미 조회된 메타데이터를 활용할 수 있다. 추가 조회가 필요한 테이블만 `table-info`로 별도 조회한다.
 
 ### Step 5: PL/SQL 호출 감지 및 추가 분석
 

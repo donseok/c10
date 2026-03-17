@@ -123,159 +123,80 @@ python3 $ORCHESTRATOR classify {queryId1} {queryId2} ...
 - `simple` + `medium` → haiku 서브에이전트에 전달
 - `complex` → sonnet 서브에이전트에 전달 (complex가 없으면 생략)
 
-#### 4a-3. SELECT * 쿼리 DB 컬럼 사전 조회
+#### 4b. 서브에이전트에 분석+저장 위임
 
-fetch-batch 결과에서 `SELECT *` 또는 `alias.*` 패턴이 포함된 쿼리를 찾아 해당 테이블의 실제 컬럼을 DB에서 조회한다. 조회된 컬럼 목록은 에이전트 프롬프트에 `tableColumns` 딕셔너리로 전달한다.
+**메인 에이전트는 업무 분배만 담당하고, 분석과 저장은 서브에이전트가 수행한다.**
 
-**Python으로 SELECT * 쿼리 감지 및 테이블 추출:**
+[references/analysis-schema.md](references/analysis-schema.md)의 스키마를 준수한다.
 
-```python
-import re, json
-
-batch = json.load(open('/tmp/batchN.json'))
-select_star_tables = {}  # {queryId: tableName}
-
-for qid, q in batch['queries'].items():
-    sql = q['sql']
-    # SELECT * 또는 alias.* 패턴 감지
-    if re.search(r'SELECT\s+(?:/\*[^*]*\*/)?\s*(?:\w+\.)?\*', sql, re.IGNORECASE):
-        # FROM 절에서 첫 번째 테이블명 추출 (스키마 포함 가능)
-        m = re.search(r'\bFROM\s+([\w.]+)', sql, re.IGNORECASE)
-        if m:
-            select_star_tables[qid] = m.group(1)
-```
-
-**sqlcl MCP로 테이블 컬럼 조회:**
-
-`select_star_tables`에서 유니크한 테이블명 목록을 추출하고, sqlcl MCP로 각 테이블의 컬럼을 조회한다.
-
-```sql
--- 테이블명에 스키마가 없으면 MESAPUSER 기본
-SELECT COLUMN_NAME, DATA_TYPE, DATA_LENGTH
-FROM ALL_TAB_COLUMNS
-WHERE TABLE_NAME = UPPER('TB_C10_XXX')
-  AND OWNER IN ('MESAPUSER','M00APUSER','EAIAPUSER','C10APUSER')
-  AND COLUMN_NAME NOT IN (
-    'CREATED_OBJECT_TYPE','CREATED_OBJECT_ID','CREATED_PROGRAM_ID','CREATION_TIMESTAMP',
-    'LAST_UPDATED_OBJECT_TYPE','LAST_UPDATED_OBJECT_ID','LAST_UPDATE_PROGRAM_ID','LAST_UPDATE_TIMESTAMP',
-    'DATA_END_STATUS','DATA_END_OBJECT_TYPE','DATA_END_OBJECT_ID','DATA_END_PROGRAM_ID','DATA_END_TIMESTAMP',
-    'ARCHIVE_COMPLETED_FLAG','ARCHIVED_EMPLOYEE_NUM','ARCHIVED_TIMESTAMP','ARCHIVE_PROGRAM_ID'
-  )
-ORDER BY COLUMN_ID
-```
-
-조회 결과를 `tableColumns` 딕셔너리로 구성한다:
-```json
-{
-  "TB_C10_B10R0020": [
-    {"name": "IF_GRP_ID", "dataType": "VARCHAR2"},
-    {"name": "SEQ_NO", "dataType": "NUMBER"},
-    ...
-  ]
-}
-```
-
-`select_star_tables`가 비어 있으면 이 단계를 건너뛴다.
-
-#### 4b. 쿼리 분석 (복잡도별 모델 선택)
-
-[references/analysis-schema.md](references/analysis-schema.md)의 스키마를 준수하여 각 쿼리를 분석한다.
-
-**분석 가이드:**
+**분석 가이드 (서브에이전트 프롬프트에 포함):**
 1. **queryType 분류**: SQL 문의 첫 키워드로 판단 (SELECT, INSERT, UPDATE, DELETE, MERGE, CALL/{call)
 2. **tables 추출**: FROM, JOIN, INTO, UPDATE, MERGE INTO 절에서 테이블명과 별칭 추출
-3. **columns 추출** (아래 규칙 준수):
-   - `SELECT *` 또는 `SELECT alias.*` 형식 → `tableColumns`에 해당 테이블 정보가 있으면 그 컬럼 목록 사용 (audit 컬럼 제외, 개수 제한 없음); 없으면 빈 배열 `[]`
-   - 명시적 컬럼 목록이 있는 SELECT → 컬럼 전체 추출 (개수 제한 없음)
-   - INSERT INTO (컬럼목록) VALUES → 삽입 대상 컬럼 전체 추출
-   - UPDATE SET → 수정 대상 컬럼 전체 추출
-   - 컬럼 표현식(계산식, 서브쿼리, DECODE 등)은 expression 필드에 원본 표현식 기록
+3. **columns 추출**: SELECT 절 컬럼, INSERT 컬럼, UPDATE SET 절 컬럼 추출
 4. **joins 추출**: JOIN 절 또는 WHERE 절의 조인 조건 추출
-5. **parameters 추출**: `:paramName` 형태의 바인드 변수 추출, `?` 파라미터는 SQL 주석/문맥으로 파라미터명 추론
+5. **parameters 추출**: `:paramName` 형태의 바인드 변수 추출
 6. **businessPurpose**: 테이블명, 컬럼명, 조건을 기반으로 비즈니스 목적 추론 (한글)
 7. **queryLogic**: 주요 조건, 정렬, 집계, 서브쿼리 등 로직 요약
 8. **performanceInfo**: 조인 수, 서브쿼리 깊이, UNION 등으로 복잡도 판단
+9. **tableColumns 활용** (DB 메타데이터): `fetch-queries`/`fetch-batch` 출력에 `tableColumns` 필드가 포함되면 **실제 DB 메타데이터**를 우선 사용한다:
+   - `dataType` → tableColumns의 실제 타입 사용 (추정 불필요)
+   - `isPrimaryKey` → tableColumns의 `isPk` 값 사용
+   - `SELECT *` → tableColumns에서 audit 제외 컬럼 전체 나열
+   - `tables.role`의 테이블 설명 → `tableComment` 활용
+   - tableColumns에 없는 테이블은 기존 방식(SQL 파싱 기반 추정)으로 fallback
 
-**에이전트 호출 표준 프롬프트 템플릿** (haiku/sonnet 서브에이전트에 이 형식을 반드시 사용):
+**서브에이전트 위임 패턴:**
 
+배치의 쿼리 원문을 `/tmp/query-analysis/batch{N}.json`에 저장한 후, 복잡도 분류 결과에 따라 서브에이전트를 백그라운드로 실행한다.
+
+**Case A: haiku 그룹만 있는 배치**
+- 1개 haiku 서브에이전트: 분석 → save-batch 직접 실행
 ```
-{쿼리데이터_파일경로} 파일을 읽어서 각 쿼리를 분석하라.
-
-## 분석 스키마
-
-각 쿼리에 대해 아래 JSON 구조로 분석 결과를 생성한다:
-
-{
-  "queryId": "쿼리 ID",
-  "analysisModel": "haiku 또는 sonnet",
-  "queryType": "SELECT | INSERT | UPDATE | DELETE | MERGE | PROCEDURE",
-  "description": "쿼리 비즈니스 목적 한글 설명",
-  "tables": [
-    {"tableName": "테이블명(스키마 포함)", "alias": "별칭 또는 null", "role": "메인 테이블 | 참조 테이블 | 조인 테이블 | 서브쿼리 테이블", "accessPattern": "FULL SCAN | INDEX SCAN | PK LOOKUP | 조건부 조회"}
-  ],
-  "columns": [
-    {"name": "컬럼명 또는 별칭", "tableName": "소속 테이블명", "tableAlias": "테이블 별칭", "dataType": "VARCHAR2 | NUMBER | DATE 등", "isPrimaryKey": false, "isForeignKey": false, "expression": null}
-  ],
-  "joins": [
-    {"type": "INNER | LEFT | RIGHT", "leftTable": "왼쪽 테이블", "rightTable": "오른쪽 테이블", "condition": "조인 조건"}
-  ],
-  "parameters": [
-    {"name": "파라미터명", "type": "STRING | NUMBER | DATE | LIST", "required": true, "description": "용도"}
-  ],
-  "businessPurpose": "비즈니스 목적 한글 1~3문장",
-  "queryLogic": "쿼리 로직 요약",
-  "performanceInfo": {"queryComplexity": "Simple | Medium | Complex"}
-}
-
-## columns 추출 규칙 (반드시 준수)
-
-- SELECT * 또는 테이블별칭.* → 아래 tableColumns에 해당 테이블이 있으면 그 컬럼 목록 사용; 없으면 빈 배열 []
-- 명시적 컬럼 목록이 있는 SELECT → 컬럼 전체 추출 (개수 제한 없음)
-- INSERT(컬럼목록) → 삽입 대상 컬럼 전체 추출 (개수 제한 없음)
-- UPDATE SET → 수정 대상 컬럼 전체 추출 (개수 제한 없음)
-- DECODE, 서브쿼리, 연산식 등 표현식 컬럼 → expression 필드에 원본 표현식 기록
-
-## DB에서 조회된 테이블 컬럼 정보 (SELECT * 쿼리용, audit 컬럼 제외)
-
-{tableColumns 딕셔너리 JSON - tableColumns가 없으면 이 섹션 생략}
-
-## 출력 형식 (필수 준수)
-
-반드시 아래 형식으로 반환하라 (배열이 아닌 객체):
-{
-  "queryId1": { ...분석결과... },
-  "queryId2": { ...분석결과... }
-}
-
-analysisModel은 반드시 "{haiku 또는 sonnet}". JSON만 반환 (다른 텍스트 없이).
+Task(model="haiku", run_in_background=true):
+  1. /tmp/query-analysis/batch{N}.json 읽기
+  2. 쿼리 분석 (analysisModel: "haiku")
+  3. echo '{결과JSON}' | python3 $ORCHESTRATOR save-batch {N}
 ```
 
-**모델별 서브에이전트 분배:**
-- **haiku 그룹** (simple + medium 쿼리): `Task(model="haiku", subagent_type="general-purpose", ...)` 로 분석
-  - 프롬프트에 `각 쿼리 분석 결과에 "analysisModel": "haiku" 필드를 반드시 포함할 것` 지시
-- **sonnet 그룹** (complex 쿼리): `Task(model="sonnet", subagent_type="general-purpose", ...)` 로 분석
-  - 프롬프트에 `각 쿼리 분석 결과에 "analysisModel": "sonnet" 필드를 반드시 포함할 것` 지시
-- 두 그룹 모두 있으면 병렬 Task 호출 가능
-- 한 그룹만 있으면 해당 모델의 Task만 호출
+**Case B: sonnet 그룹만 있는 배치**
+- 1개 sonnet 서브에이전트: 분석 → save-batch 직접 실행
+```
+Task(model="sonnet", run_in_background=true):
+  1. /tmp/query-analysis/batch{N}.json 읽기 (해당 쿼리만)
+  2. 쿼리 분석 (analysisModel: "sonnet")
+  3. echo '{결과JSON}' | python3 $ORCHESTRATOR save-batch {N}
+```
 
-분석 결과를 `{queryId: analysisObject, ...}` 형태의 JSON 딕셔너리로 구성한다.
-각 analysisObject에는 `analysisModel` 필드가 포함되어야 한다 (analysis-schema.md 참조).
+**Case C: haiku + sonnet 두 그룹 모두 있는 배치**
+- 2개 서브에이전트를 병렬 실행 (각각 임시 파일에 결과 저장):
+```
+haiku 서브에이전트 (background):
+  1. /tmp/query-analysis/batch{N}.json에서 해당 쿼리만 읽기
+  2. 분석 (analysisModel: "haiku")
+  3. /tmp/query-analysis/batch{N}_haiku.json에 결과 저장
 
-#### 4c. 분석 결과 저장
+sonnet 서브에이전트 (background):
+  1. /tmp/query-analysis/batch{N}.json에서 해당 쿼리만 읽기
+  2. 분석 (analysisModel: "sonnet")
+  3. /tmp/query-analysis/batch{N}_sonnet.json에 결과 저장
+```
+- 두 서브에이전트 모두 완료되면, save 서브에이전트를 실행:
+```
+save 서브에이전트 (haiku, background):
+  1. batch{N}_haiku.json + batch{N}_sonnet.json 병합
+  2. echo '{병합JSON}' | python3 $ORCHESTRATOR save-batch {N}
+```
 
-haiku 결과 + sonnet 결과를 병합하여 저장:
+#### 4c. 진행률 모니터링
 
+메인 에이전트는 서브에이전트 완료 알림을 수신하면 진행률을 확인하고 보고한다:
 ```bash
-echo '{병합된분석결과JSON}' | python3 $ORCHESTRATOR save-batch {batchId}
+python3 $ORCHESTRATOR status
 ```
 
-출력에서 진행률을 확인한다.
-
-#### 4d. 진행률 보고
-
-매 배치 완료 후 진행률을 사용자에게 보고한다:
+매 배치 그룹(5개) 완료 시 사용자에게 보고:
 ```
-[배치 N/M] 완료 (XX.X%) - N개 쿼리 저장 (haiku: X개, sonnet: Y개)
+[배치 N-M] 완료 (XX.X%) - N개 쿼리 저장
 ```
 
 ### Step 5: 최종 통계
@@ -344,22 +265,22 @@ python3 $ORCHESTRATOR classify {missed_key1} {missed_key2} ...
 - `simple` + `medium` → haiku 서브에이전트에 전달
 - `complex` → sonnet 서브에이전트에 전달 (complex가 없으면 생략)
 
-### Step 3: missed 쿼리 분석 (복잡도별 모델 선택)
+### Step 3: missed 쿼리 분석+저장 (서브에이전트 위임)
+
+**메인 에이전트는 업무 분배만 담당하고, 분석과 저장은 서브에이전트가 수행한다.**
 
 [references/analysis-schema.md](references/analysis-schema.md)의 스키마를 준수하여 missed 쿼리만 분석한다.
 분석 가이드는 배치 모드 Step 4b와 동일.
 
-**모델별 서브에이전트 분배:**
-- **haiku 그룹** (simple + medium 쿼리): `Task(model="haiku", subagent_type="general-purpose", ...)` 로 분석
-  - 프롬프트에 `각 쿼리 분석 결과에 "analysisModel": "haiku" 필드를 반드시 포함할 것` 지시
-- **sonnet 그룹** (complex 쿼리): `Task(model="sonnet", subagent_type="general-purpose", ...)` 로 분석
-  - 프롬프트에 `각 쿼리 분석 결과에 "analysisModel": "sonnet" 필드를 반드시 포함할 것` 지시
-- 두 그룹 모두 있으면 병렬 Task 호출 가능
+missed 쿼리의 SQL을 `/tmp/query-analysis/` 디렉토리에 임시 파일로 저장한 후,
+복잡도 분류에 따라 서브에이전트를 실행한다.
 
-### Step 3-2: 분석 결과 저장
+**서브에이전트 위임 패턴:**
+- **haiku 그룹** (simple + medium): `Task(model="haiku", run_in_background=true)` - 분석 + 임시 파일 저장
+- **sonnet 그룹** (complex): `Task(model="sonnet", run_in_background=true)` - 분석 + 임시 파일 저장
+- 두 그룹 모두 있으면 병렬 Task 호출
 
-missed 쿼리의 분석 결과(haiku + sonnet 병합)를 저장한다:
-
+서브에이전트 완료 후, save 서브에이전트를 실행하여 결과를 병합+저장:
 ```bash
 echo '{"missed_key1": {...}, "missed_key2": {...}}' | python3 $ORCHESTRATOR save-queries
 ```
@@ -381,7 +302,7 @@ cached 분석 결과 + 새로 분석된 결과를 합쳐서 최종 결과로 사
 
 ## 실행 정책
 
-- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업(haiku/sonnet 그룹 분석 등)은 반드시 **Task tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
+- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업(haiku/sonnet 그룹 분석 등)은 반드시 **Agent tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
 
 ## 참고
 

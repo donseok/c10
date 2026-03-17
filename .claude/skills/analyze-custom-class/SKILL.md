@@ -34,8 +34,12 @@ description: "특정 Java 클래스 비즈니스 로직 심층 분석. Serena MC
 Bash로 시작 시각 출력: `echo "⏱️ 클래스 분석 시작: $(date '+%H:%M:%S')"`
 
 - 복수 클래스 지정 시 콤마(,)로 분리
-- 클래스명만 지정 시 `src/com/unionsteel/mes/m47/activity/` 하위에서 자동 검색
-- `mcp__serena__find_file`로 파일 존재 확인, 없으면 즉시 종료
+- **파일 경로 지정 시** (예: `src/com/.../Foo.java`): 해당 경로 직접 사용
+- **풀 클래스명 지정 시** (예: `com.unionsteel.mes.c10.activity.ui.Foo`): 패키지 구분자(`.`)를 경로 구분자(`/`)로 변환하여 `src/[변환경로].java`로 검색 (예: `src/com/unionsteel/mes/c10/activity/ui/Foo.java`)
+- **단순 클래스명만 지정 시** (예: `Foo`): `mcp__serena__find_file`로 `src/` 하위 전체에서 `Foo.java` 검색
+- `mcp__serena__find_file`로 파일 존재 확인
+- **파일을 못 찾은 경우 Fallback**: `docs/analysis/service/customClass/.temp/` 하위에서 `*ClassName*_class_analysis.json` 검색. 존재하면 기존 분석 결과를 활용하여 보고서만 재생성 (Serena 분석 생략)
+- 파일도 없고 기존 분석 결과도 없으면 즉시 종료
 
 ### Step 1: Serena MCP 심볼 분석
 
@@ -198,7 +202,7 @@ docs/analysis/service/customClass/
 
 ## 실행 정책
 
-- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업은 반드시 **Task tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
+- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업은 반드시 **Agent tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
 
 ## 주의사항
 

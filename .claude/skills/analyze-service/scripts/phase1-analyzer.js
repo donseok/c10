@@ -13,7 +13,7 @@
  *
  * 출력 디렉토리:
  * - 자동 생성: docs/analysis/service/[ui|nui]/.temp/
- * - ui/nui 판정: SERVICE-ID가 M으로 시작하면 ui, B로 시작하면 nui
+ * - ui/nui 판정: SERVICE-ID가 B로 시작하면 nui, 나머지(M, C 등)는 ui
  * - 생성 검증: 디렉토리 존재 여부 확인 및 오류 처리
  * - 파일 검증: 저장 후 파일 존재 및 크기 확인
  *
@@ -246,7 +246,7 @@ function extractSubServices(activities) {
         subServiceMap[serviceId] = {
           serviceId: serviceId,
           serviceName: serviceName,
-          serviceType: serviceId.startsWith('M') ? 'ui' : 'nui',
+          serviceType: serviceId.startsWith('B') ? 'nui' : 'ui',
           newTransaction: a.properties['new-transacion'] || 'true',
           callers: []
         };
@@ -293,7 +293,7 @@ async function main() {
 
     // 스킵 체크: 출력 파일이 이미 존재하면 건너뛰기
     const forceRun = process.argv.includes('--force');
-    const earlyServiceType = serviceId.startsWith('M') ? 'ui' : 'nui';
+    const earlyServiceType = serviceId.startsWith('B') ? 'nui' : 'ui';
     const earlyOutputPath = path.join('docs', 'analysis', 'service', earlyServiceType, '.temp', `${serviceId}_structure.json`);
     if (!forceRun && fs.existsSync(earlyOutputPath)) {
       console.log(`⏭️ Phase 1 스킵: 이미 존재함 → ${earlyOutputPath}`);
@@ -407,7 +407,7 @@ async function main() {
     }
 
     // 11. structure.json 생성
-    const serviceType = serviceId.startsWith('M') ? 'ui' : 'nui';
+    const serviceType = serviceId.startsWith('B') ? 'nui' : 'ui';
     const structure = {
       serviceInfo: {
         serviceId,
@@ -443,7 +443,7 @@ async function main() {
       subServices: subServices.length > 0 ? subServices : undefined
     };
 
-    // 7. 출력 디렉토리 생성 및 검증 (ui/nui 판정: M→ui, B→nui)
+    // 7. 출력 디렉토리 생성 및 검증 (ui/nui 판정: B→nui, 나머지→ui)
     const outputDir = path.join('docs', 'analysis', 'service', serviceType, '.temp');
     console.log(`📁 출력 디렉토리 확인: ${outputDir}`);
 

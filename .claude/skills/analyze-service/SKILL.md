@@ -25,7 +25,7 @@ function extractProcessCode(serviceId) {
   const num = serviceId.substring(1, 3).toLowerCase();
   return num === '10' ? 'c10' : 'm' + num;
 }
-// 서비스 타입: 'M'으로 시작 → 'ui', 'B'로 시작 → 'nui'
+// 서비스 타입: 'B'로 시작 → 'nui', 나머지(M, C 등) → 'ui'
 ```
 
 - **출력 디렉토리**: `docs/analysis/service/[ui|nui]/.temp/` (중간 JSON), `docs/analysis/service/[ui|nui]/` (최종 문서)
@@ -107,9 +107,10 @@ python3 .claude/skills/analyze-service/scripts/phase2-generator.py [SERVICE-ID] 
 stderr에서 `{"missing": ["com.xxx.ClassName", ...]}` 파싱.
 
 각 누락 클래스에 대해:
-- `fullClassName`에서 단순 클래스명 추출: `fullClassName.split('.')[-1]`
-- Task tool로 커스텀 클래스 분석 실행 (`model="sonnet"`, `subagent_type="general-purpose"`):
-  - 프롬프트에 `/analyze-custom-class [ClassName]` 실행 지시
+- **풀 클래스명을 파일 경로로 변환**: `fullClassName.replace('.', '/') + '.java'` (예: `com.unionsteel.mes.c10.activity.ui.Foo` → `com/unionsteel/mes/c10/activity/ui/Foo.java`)
+- **기존 분석 JSON 확인**: `docs/analysis/service/customClass/.temp/` 하위에서 `*[fullClassName]*_class_analysis.json` 존재 시 → 이미 분석됨, 스킵
+- 미분석 클래스만 Agent tool로 커스텀 클래스 분석 실행 (`model="sonnet"`, `subagent_type="general-purpose"`):
+  - 프롬프트에 `/analyze-custom-class src/[변환된 파일 경로]` 실행 지시 (예: `/analyze-custom-class src/com/unionsteel/mes/c10/activity/ui/Foo.java`)
 - 동일 클래스 중복 제거
 
 #### 3-3. Fast Path 2차 실행
@@ -124,7 +125,7 @@ exit 0 확인. 여전히 exit 2이면 오류 보고 후 중단.
 
 스크립트를 사용할 수 없는 경우 기존 방식으로 진행:
 1. [references/phase2.md](references/phase2.md) 참조하여 정책 전달
-2. Task tool로 `java-legacy-analyzer` subagent 실행 (`model="sonnet"`)
+2. Agent tool로 `java-legacy-analyzer` subagent 실행 (`model="sonnet"`)
 
 완료 후: `echo "✅ Step 3 완료: $(date '+%H:%M:%S')"`
 
@@ -149,7 +150,7 @@ python3 .claude/skills/analyze-service/scripts/phase3-generator.py [SERVICE-ID] 
 stderr에서 `{"missedQueries": [...], "missingPlsql": [...]}` 파싱.
 
 **missedQueries 처리** (쿼리 캐시에 분석 결과 없음):
-- Task tool로 `oracle-sql-analyzer` subagent 실행 (`model="sonnet"`), missed 쿼리만 분석
+- Agent tool로 `oracle-sql-analyzer` subagent 실행 (`model="sonnet"`), missed 쿼리만 분석
 - `orchestrator.py save-queries`로 캐시 저장
 
 **참고**: PL/SQL 미분석 항목은 `analyzed=false`로 JSON에 포함되며, Step 6.5에서 자동 분석됨
@@ -166,7 +167,7 @@ exit 0 확인.
 
 스크립트를 사용할 수 없는 경우 기존 방식으로 진행:
 1. [references/phase3.md](references/phase3.md) 참조
-2. Task tool로 `oracle-sql-analyzer` subagent 실행 (`model="sonnet"`)
+2. Agent tool로 `oracle-sql-analyzer` subagent 실행 (`model="sonnet"`)
 
 완료 후: `echo "✅ Step 4 완료: $(date '+%H:%M:%S')"`
 
@@ -176,9 +177,8 @@ Bash로 시작 시각 출력: `echo "⏱️ Step 5 (Phase 4 UI 분석) 시작: $
 
 **[references/phase4.md](references/phase4.md) 참조**
 
-Task tool로 subagent 실행 (`model="sonnet"`, **`team_name`/`name` 파라미터 절대 불포함**):
+Agent tool로 subagent 실행 (`model="sonnet"`, `subagent_type="general-purpose"`, **`team_name`/`name` 파라미터 절대 불포함**):
 ```
-subagent_type="general-purpose", model="sonnet"
 Phase 4 지침(references/phase4.md)을 따라 [SERVICE-ID] 분석
 ```
 > ⚠️ `team_name`, `name` 파라미터를 포함하면 서브에이전트가 아닌 팀원이 생성되어 규칙 위반이다.
@@ -255,8 +255,8 @@ ORDER BY OWNER, NAME, REFERENCED_NAME;
 
 일괄 조회된 소스 코드를 기반으로, 각 미분석 오브젝트에 대해 분석 보고서를 생성한다.
 
-- **소스 코드가 이미 로드되어 있으므로** Task tool(`model="sonnet"`, `subagent_type="general-purpose"`)로 분석 서브에이전트를 실행하여 보고서를 작성한다
-- 또는 소스가 복잡한 경우 Task tool(`model="sonnet"`, `subagent_type="general-purpose"`)로 `/analyze-plsql [objectName]` 실행 — 이 경우 이미 DB 접속이 되어 있으므로 소스 조회 단계를 건너뜀
+- **소스 코드가 이미 로드되어 있으므로** Agent tool(`model="sonnet"`, `subagent_type="general-purpose"`)로 분석 서브에이전트를 실행하여 보고서를 작성한다
+- 또는 소스가 복잡한 경우 Agent tool(`model="sonnet"`, `subagent_type="general-purpose"`)로 `/analyze-plsql [objectName]` 실행 — 이 경우 이미 DB 접속이 되어 있으므로 소스 조회 단계를 건너뜀
 - **순차 실행 필수** (동일 메시지에서 여러 Skill 동시 호출 금지)
 - 개별 분석 실패 시 경고 출력 후 다음 오브젝트 계속 진행
 - 분석 완료된 보고서: `docs/analysis/dbms/[SCHEMA]/[package|storedProcedure|function]/[NAME]_analysis_report.md`
@@ -309,10 +309,10 @@ Bash로 완료 시각 출력: `echo "⏱️ 전체 분석 완료: $(date '+%H:%M
 
 ## 실행 정책
 
-- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업은 반드시 **Task tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다. **Task tool 호출 시 `team_name`, `name` 파라미터를 절대 포함하지 않는다** — 이 파라미터가 포함되면 서브에이전트가 아닌 팀원이 생성된다. 이 규칙은 재귀 호출(서브서비스 분석, PL/SQL 분석 등) 포함 모든 단계에 적용된다.
+- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업은 반드시 **Agent tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다. **Agent tool 호출 시 `team_name`, `name` 파라미터를 절대 포함하지 않는다** — 이 파라미터가 포함되면 서브에이전트가 아닌 팀원이 생성된다. 이 규칙은 재귀 호출(서브서비스 분석, PL/SQL 분석 등) 포함 모든 단계에 적용된다.
 - **Fast Path 우선**: Phase 2/3은 스크립트(phase2-generator.py, phase3-generator.py)로 먼저 시도. 캐시 히트 시 수 초 내 완료
 - **순차 실행 필수**: Phase 2 → 3 → 4 → 5는 이전 Phase 완료 확인 후 다음 시작
-- **절대로 동일 메시지에서 여러 Task 동시 호출 금지**
+- **절대로 동일 메시지에서 여러 Agent 동시 호출 금지**
 - **Early Termination**: customActivities 비어있으면 Phase 2에서 빈 JSON 생성 후 즉시 종료
 - **중간 JSON 자동 스킵**: Phase 1~4 스크립트가 출력 JSON 존재 시 자동 스킵 (exit 0). 중단된 분석 재실행 시 완료된 Phase는 건너뛰고 미완료 Phase부터 재개. `--force` 옵션으로 중간 JSON 강제 재생성 가능
 - **Phase 5 항상 재생성**: 최종 문서(`_legacy_analysis.md`)는 매 실행마다 새로 생성한다. 중간 JSON이 갱신되었을 수 있고, PL/SQL 분석이 추가되었을 수 있으므로 항상 최신 상태로 작성

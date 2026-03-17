@@ -179,19 +179,19 @@ cmd_poll() {
 
     # Current session 사용률
     local session_pct
-    session_pct=$(echo "${captured}" | grep -A2 "Current session" | grep -oP '\d+(?=% used)' | head -1 || echo "")
+    session_pct=$(echo "${captured}" | grep -A2 "Current session" | sed -n 's/.*[[:space:]]\([0-9][0-9]*\)% used.*/\1/p' | head -1)
 
     # Current session 리셋 시각
     local session_reset
-    session_reset=$(echo "${captured}" | grep -A3 "Current session" | grep -oP 'Resets \K[^(]+' | head -1 | sed 's/[[:space:]]*$//' || echo "")
+    session_reset=$(echo "${captured}" | grep -A3 "Current session" | grep "Resets " | head -1 | sed 's/.*Resets //;s/ *(.*//' | sed 's/[[:space:]]*$//')
 
     # Current week 사용률
     local week_pct
-    week_pct=$(echo "${captured}" | grep -A2 "Current week (all models)" | grep -oP '\d+(?=% used)' | head -1 || echo "")
+    week_pct=$(echo "${captured}" | grep -A2 "Current week" | sed -n 's/.*[[:space:]]\([0-9][0-9]*\)% used.*/\1/p' | head -1)
 
     # Current week 리셋 시각
     local week_reset
-    week_reset=$(echo "${captured}" | grep -A3 "Current week (all models)" | grep -oP 'Resets \K[^(]+' | head -1 | sed 's/[[:space:]]*$//' || echo "")
+    week_reset=$(echo "${captured}" | grep -A3 "Current week" | grep "Resets " | head -1 | sed 's/.*Resets //;s/ *(.*//' | sed 's/[[:space:]]*$//')
 
     # 리셋까지 남은 시간 계산 (session reset 기준)
     local remaining_hours=""
@@ -230,40 +230,47 @@ parse_reset_time() {
     local reset_epoch=""
 
     # 패턴 1: "6pm" 또는 "11am" (오늘)
-    if echo "${reset_str}" | grep -qP '^\d{1,2}(am|pm)$'; then
+    if echo "${reset_str}" | grep -qE '^[0-9]{1,2}(am|pm)$'; then
         local hour
-        hour=$(echo "${reset_str}" | grep -oP '^\d{1,2}')
+        hour=$(echo "${reset_str}" | sed 's/[apm]//g')
         local ampm
-        ampm=$(echo "${reset_str}" | grep -oP '(am|pm)$')
+        ampm=$(echo "${reset_str}" | sed 's/[0-9]//g')
         if [ "${ampm}" = "pm" ] && [ "${hour}" -ne 12 ]; then
             hour=$((hour + 12))
         elif [ "${ampm}" = "am" ] && [ "${hour}" -eq 12 ]; then
             hour=0
         fi
-        reset_epoch=$(date -d "today ${hour}:00" +%s 2>/dev/null || echo "")
+        # macOS date
+        local today_str
+        today_str=$(date '+%Y-%m-%d')
+        reset_epoch=$(date -j -f '%Y-%m-%d %H:%M:%S' "${today_str} ${hour}:00:00" +%s 2>/dev/null || echo "")
         # 이미 지난 시각이면 내일로
         if [ -n "${reset_epoch}" ] && [ "${reset_epoch}" -le "${now_epoch}" ]; then
-            reset_epoch=$(date -d "tomorrow ${hour}:00" +%s 2>/dev/null || echo "")
+            local tomorrow_str
+            tomorrow_str=$(date -j -v+1d '+%Y-%m-%d')
+            reset_epoch=$(date -j -f '%Y-%m-%d %H:%M:%S' "${tomorrow_str} ${hour}:00:00" +%s 2>/dev/null || echo "")
         fi
     fi
 
-    # 패턴 2: "Feb 27, 6pm"
+    # 패턴 2: "Mar 27, 6pm"
     if [ -z "${reset_epoch}" ]; then
-        if echo "${reset_str}" | grep -qP '^[A-Z][a-z]+ \d{1,2}, \d{1,2}(am|pm)$'; then
+        if echo "${reset_str}" | grep -qE '^[A-Z][a-z]+ [0-9]{1,2}, [0-9]{1,2}(am|pm)$'; then
             local month_day
-            month_day=$(echo "${reset_str}" | grep -oP '^[A-Z][a-z]+ \d{1,2}')
+            month_day=$(echo "${reset_str}" | sed 's/,[[:space:]]*[0-9]*[apm]*$//')
             local time_part
-            time_part=$(echo "${reset_str}" | grep -oP '\d{1,2}(am|pm)$')
+            time_part=$(echo "${reset_str}" | sed 's/.*,[[:space:]]*//')
             local hour
-            hour=$(echo "${time_part}" | grep -oP '^\d{1,2}')
+            hour=$(echo "${time_part}" | sed 's/[apm]//g')
             local ampm
-            ampm=$(echo "${time_part}" | grep -oP '(am|pm)$')
+            ampm=$(echo "${time_part}" | sed 's/[0-9]//g')
             if [ "${ampm}" = "pm" ] && [ "${hour}" -ne 12 ]; then
                 hour=$((hour + 12))
             elif [ "${ampm}" = "am" ] && [ "${hour}" -eq 12 ]; then
                 hour=0
             fi
-            reset_epoch=$(date -d "${month_day} ${hour}:00" +%s 2>/dev/null || echo "")
+            local year
+            year=$(date '+%Y')
+            reset_epoch=$(date -j -f '%b %d %Y %H:%M:%S' "${month_day} ${year} ${hour}:00:00" +%s 2>/dev/null || echo "")
         fi
     fi
 

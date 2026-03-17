@@ -20,6 +20,65 @@ from query_cache import QueryCacheDB, DEFAULT_DB_PATH, DEFAULT_QUERY_DIR
 STATE_FILE = os.path.join(QUERY_CACHE_DIR, 'data', 'batch_state.json')
 DEFAULT_BATCH_SIZE = 30
 
+# SQL keywords to exclude when extracting table names
+_SQL_KEYWORDS = {
+    'SELECT', 'SET', 'VALUES', 'WHERE', 'AND', 'OR', 'NOT', 'NULL', 'DUAL',
+    'TABLE', 'INDEX', 'VIEW', 'AS', 'ON', 'IN', 'IS', 'BY', 'ASC', 'DESC',
+    'THEN', 'ELSE', 'END', 'WHEN', 'CASE', 'EXISTS', 'ALL', 'ANY', 'BETWEEN',
+    'LIKE', 'HAVING', 'GROUP', 'ORDER', 'DISTINCT', 'UNION', 'MINUS', 'INTERSECT',
+}
+
+TABLE_PATTERNS = [
+    re.compile(r'\bFROM\s+([A-Z_]\w*(?:\.[A-Z_]\w*)?)', re.IGNORECASE),
+    re.compile(r'\bJOIN\s+([A-Z_]\w*(?:\.[A-Z_]\w*)?)', re.IGNORECASE),
+    re.compile(r'\bINTO\s+([A-Z_]\w*(?:\.[A-Z_]\w*)?)', re.IGNORECASE),
+    re.compile(r'\bUPDATE\s+([A-Z_]\w*(?:\.[A-Z_]\w*)?)', re.IGNORECASE),
+    re.compile(r'\bMERGE\s+INTO\s+([A-Z_]\w*(?:\.[A-Z_]\w*)?)', re.IGNORECASE),
+]
+
+
+def extract_table_names(sql):
+    """Extract table/view names from SQL text."""
+    names = set()
+    for pattern in TABLE_PATTERNS:
+        for m in pattern.finditer(sql):
+            name = m.group(1).upper()
+            names.add(name)
+    # Also extract comma-separated tables in FROM clause
+    for m in re.finditer(
+        r'\bFROM\s+([\w.]+(?:\s+\w+)?(?:\s*,\s*[\w.]+(?:\s+\w+)?)*)',
+        sql, re.IGNORECASE
+    ):
+        for part in m.group(1).split(','):
+            tokens = part.strip().split()
+            if tokens:
+                name = tokens[0].upper()
+                names.add(name)
+    return names - _SQL_KEYWORDS
+
+
+def _enrich_with_table_columns(db, queries_dict):
+    """Extract table names from queries' SQL, look up metadata, return tableColumns dict."""
+    all_table_names = set()
+    for qid, entry in queries_dict.items():
+        sql = entry.get('sql', '') or ''
+        tables = extract_table_names(sql)
+        all_table_names.update(tables)
+
+    if not all_table_names:
+        return {}
+
+    table_info = db.get_table_info(list(all_table_names), exclude_audit=True)
+
+    # Simplify for output: only include tableComment and columns
+    table_columns = {}
+    for key, info in table_info.items():
+        table_columns[key] = {
+            "tableComment": info["tableComment"],
+            "columns": info["columns"],
+        }
+    return table_columns
+
 
 def _count_from_tables(sql_upper):
     """FROM 절에서 테이블 수를 세기 (서브쿼리 괄호 제외)."""
@@ -289,11 +348,16 @@ def cmd_fetch_batch(args):
     db = QueryCacheDB(args.db)
     try:
         queries = db.get_queries(batch['queryIds'])
+
+        # Enrich with table column metadata
+        table_columns = _enrich_with_table_columns(db, queries)
+
         result = {
             'batchId': batch_id,
             'sourceFiles': batch['sourceFiles'],
             'queryCount': len(batch['queryIds']),
             'queries': queries,
+            'tableColumns': table_columns,
         }
         print(json.dumps(result, ensure_ascii=False, indent=2))
     finally:
@@ -409,6 +473,9 @@ def cmd_fetch_queries(args):
             entry['cachedAnalysis'] = cached_analysis
             result_queries[qid] = entry
 
+        # Enrich with table column metadata
+        table_columns = _enrich_with_table_columns(db, result_queries)
+
         result = {
             'queries': result_queries,
             'summary': {
@@ -416,6 +483,7 @@ def cmd_fetch_queries(args):
                 'cached': cached_count,
                 'missed': missed_count,
             },
+            'tableColumns': table_columns,
         }
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
@@ -480,6 +548,18 @@ def cmd_classify(args):
                 'complex': len(groups['complex']),
             }
         }
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    finally:
+        db.close()
+
+
+def cmd_table_info(args):
+    """Look up table metadata and columns from queries.db."""
+    table_names = args.table_names
+    exclude_audit = not args.include_audit
+    db = QueryCacheDB(args.db)
+    try:
+        result = db.get_table_info(table_names, exclude_audit=exclude_audit)
         print(json.dumps(result, ensure_ascii=False, indent=2))
     finally:
         db.close()
@@ -570,6 +650,11 @@ def main():
     p_classify = sub.add_parser('classify', help='Classify queries by SQL complexity')
     p_classify.add_argument('query_ids', nargs='+', help='Query IDs to classify')
 
+    # table-info
+    p_ti = sub.add_parser('table-info', help='Get table metadata and columns')
+    p_ti.add_argument('table_names', nargs='+', help='Table names')
+    p_ti.add_argument('--include-audit', action='store_true', help='Include audit columns')
+
     # status
     sub.add_parser('status', help='Show current progress')
 
@@ -586,6 +671,7 @@ def main():
         'fetch-queries': cmd_fetch_queries,
         'save-queries': cmd_save_queries,
         'classify': cmd_classify,
+        'table-info': cmd_table_info,
         'status': cmd_status,
     }
     handlers[args.command](args)

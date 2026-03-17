@@ -46,6 +46,14 @@ CREATE INDEX IF NOT EXISTS idx_source ON queries(source_file);
 
 
 # --- DB Layer ---
+AUDIT_COLUMNS = [
+    'CREATED_OBJECT_TYPE', 'CREATED_OBJECT_ID', 'CREATED_PROGRAM_ID', 'CREATION_TIMESTAMP',
+    'LAST_UPDATED_OBJECT_TYPE', 'LAST_UPDATED_OBJECT_ID', 'LAST_UPDATE_PROGRAM_ID', 'LAST_UPDATE_TIMESTAMP',
+    'DATA_END_STATUS', 'DATA_END_OBJECT_TYPE', 'DATA_END_OBJECT_ID', 'DATA_END_PROGRAM_ID', 'DATA_END_TIMESTAMP',
+    'ARCHIVE_COMPLETED_FLAG', 'ARCHIVED_EMPLOYEE_NUM', 'ARCHIVED_TIMESTAMP', 'ARCHIVE_PROGRAM_ID',
+]
+
+
 class QueryCacheDB(object):
     def __init__(self, db_path):
         db_dir = os.path.dirname(db_path)
@@ -57,9 +65,121 @@ class QueryCacheDB(object):
         self.conn.executescript(SCHEMA_SQL)
         self.conn.commit()
         self.db_path = db_path
+        self._migrate_audit_flags()
+
+    def _migrate_audit_flags(self):
+        """One-time migration: set is_audit=1 for known audit columns."""
+        try:
+            row = self.conn.execute(
+                "SELECT COUNT(*) AS c FROM table_columns WHERE is_audit = 1"
+            ).fetchone()
+            if row and row["c"] == 0:
+                # Check if table_columns has any rows at all
+                total = self.conn.execute(
+                    "SELECT COUNT(*) AS c FROM table_columns"
+                ).fetchone()["c"]
+                if total > 0:
+                    placeholders = ",".join("?" for _ in AUDIT_COLUMNS)
+                    self.conn.execute(
+                        "UPDATE table_columns SET is_audit = 1 "
+                        "WHERE UPPER(column_name) IN (%s)" % placeholders,
+                        [c.upper() for c in AUDIT_COLUMNS]
+                    )
+                    self.conn.commit()
+        except sqlite3.OperationalError:
+            pass  # table_columns may not exist
 
     def close(self):
         self.conn.close()
+
+    # -- Table metadata --
+    def get_table_info(self, table_names, exclude_audit=True):
+        """Look up table metadata + columns for given table names.
+
+        Accepts plain names (TB_C10_XXX) or schema-qualified (MESAPUSER.TB_C10_XXX).
+        Returns dict keyed by 'SCHEMA.TABLE'.
+        """
+        if not table_names:
+            return {}
+
+        # Separate schema-qualified and plain names
+        qualified = {}  # upper_table -> (schema, table)
+        plain = []
+        for name in table_names:
+            parts = name.split('.', 1)
+            if len(parts) == 2:
+                qualified[name.upper()] = (parts[0].upper(), parts[1].upper())
+            else:
+                plain.append(name.upper())
+
+        result = {}
+
+        # Query for schema-qualified names
+        for key, (schema, tname) in qualified.items():
+            meta_row = self.conn.execute(
+                "SELECT schema_owner, table_name, object_type, table_comment, column_count "
+                "FROM table_metadata WHERE UPPER(schema_owner) = ? AND UPPER(table_name) = ?",
+                (schema, tname)
+            ).fetchone()
+            if meta_row:
+                result_key = "%s.%s" % (meta_row["schema_owner"], meta_row["table_name"])
+                result[result_key] = self._build_table_info(meta_row, exclude_audit)
+
+        # Query for plain names (may match multiple schemas)
+        if plain:
+            placeholders = ",".join("?" for _ in plain)
+            meta_rows = self.conn.execute(
+                "SELECT schema_owner, table_name, object_type, table_comment, column_count "
+                "FROM table_metadata WHERE UPPER(table_name) IN (%s)" % placeholders,
+                plain
+            ).fetchall()
+            for meta_row in meta_rows:
+                result_key = "%s.%s" % (meta_row["schema_owner"], meta_row["table_name"])
+                result[result_key] = self._build_table_info(meta_row, exclude_audit)
+
+        return result
+
+    def _build_table_info(self, meta_row, exclude_audit):
+        """Build table info dict from metadata row + columns."""
+        schema = meta_row["schema_owner"]
+        tname = meta_row["table_name"]
+
+        audit_filter = " AND is_audit = 0" if exclude_audit else ""
+        col_rows = self.conn.execute(
+            "SELECT column_name, column_id, data_type, data_length, data_precision, "
+            "data_scale, nullable, column_comment, is_pk, pk_position "
+            "FROM table_columns WHERE schema_owner = ? AND table_name = ?%s "
+            "ORDER BY column_id" % audit_filter,
+            (schema, tname)
+        ).fetchall()
+
+        columns = []
+        for c in col_rows:
+            # Build readable data type string
+            dt = c["data_type"]
+            if dt in ("VARCHAR2", "CHAR", "NVARCHAR2", "RAW") and c["data_length"]:
+                dt = "%s(%s)" % (dt, c["data_length"])
+            elif dt == "NUMBER" and c["data_precision"]:
+                if c["data_scale"] and int(c["data_scale"]) > 0:
+                    dt = "NUMBER(%s,%s)" % (c["data_precision"], c["data_scale"])
+                else:
+                    dt = "NUMBER(%s)" % c["data_precision"]
+
+            columns.append({
+                "name": c["column_name"],
+                "dataType": dt,
+                "nullable": c["nullable"],
+                "comment": c["column_comment"] or "",
+                "isPk": bool(c["is_pk"]),
+                "pkPosition": c["pk_position"] if c["is_pk"] else None,
+            })
+
+        return {
+            "schemaOwner": schema,
+            "tableName": tname,
+            "tableComment": meta_row["table_comment"] or "",
+            "columns": columns,
+        }
 
     # -- Query lookup --
     def get_query(self, query_id):
@@ -507,6 +627,13 @@ def cmd_invalidate(args, db):
     print(json.dumps({"invalidated": count}, ensure_ascii=False))
 
 
+def cmd_table_info(args, db):
+    table_names = args.table_names
+    exclude_audit = not args.include_audit
+    result = db.get_table_info(table_names, exclude_audit=exclude_audit)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 # --- Entry Point ---
 def main():
     db_path = os.environ.get("DB_PATH", DEFAULT_DB_PATH)
@@ -564,6 +691,11 @@ def main():
     p_inv.add_argument("--below-version", type=int, help="Invalidate below version")
     p_inv.add_argument("--all", action="store_true", help="Invalidate all")
 
+    # table-info
+    p_ti = sub.add_parser("table-info", help="Get table metadata and columns")
+    p_ti.add_argument("table_names", nargs="+", help="Table names (e.g. TB_C10_XXX or MESAPUSER.TB_C10_XXX)")
+    p_ti.add_argument("--include-audit", action="store_true", help="Include audit columns")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -583,6 +715,7 @@ def main():
             "set-analysis-batch": cmd_set_analysis_batch,
             "stats": cmd_stats,
             "invalidate": cmd_invalidate,
+            "table-info": cmd_table_info,
         }
         handlers[args.command](args, db)
     finally:

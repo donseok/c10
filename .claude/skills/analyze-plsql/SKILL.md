@@ -121,7 +121,7 @@ SID: UBMADQ
 
 ## 실행 정책
 
-- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업(재귀 분석, 호출 프로시저 분석 등)은 반드시 **Task tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
+- **팀원 spawn 절대 금지**: 팀모드(tmux)에서 실행되더라도 TeamCreate 등으로 새 팀원을 spawn하지 않는다. 모든 병렬/위임 작업(재귀 분석, 호출 프로시저 분석 등)은 반드시 **Agent tool**의 `subagent_type` 파라미터를 지정하여 서브에이전트로 실행한다.
 
 ## 제한사항
 - 중간 JSON 파일 미생성 (Markdown 보고서만)

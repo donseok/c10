@@ -24,14 +24,14 @@ Phase 3 SQL 분석과 호환되며, 사전 분석 시 이 스키마를 준수해
       "name": "string (필수) - 컬럼명 또는 AS 별칭 (예: COIL_NO, TOTAL_WGT)",
       "tableName": "string - 소속 테이블명",
       "tableAlias": "string - SQL에서 사용된 테이블 별칭",
-      "dataType": "string - 추정 데이터 타입 (VARCHAR2, NUMBER, DATE 등)",
-      "isPrimaryKey": "boolean - PK 여부 (확인 가능한 경우)",
+      "dataType": "string - DB 메타데이터 기반 데이터 타입 (메타데이터 없으면 추정) (VARCHAR2, NUMBER, DATE 등)",
+      "isPrimaryKey": "boolean - PK 여부 (DB 메타데이터 기반, 없으면 추정)",
       "isForeignKey": "boolean - FK 여부 (확인 가능한 경우)",
       "expression": "string - DECODE/서브쿼리/연산식 등 표현식 컬럼의 원본 표현식. 단순 컬럼이면 null"
     }
   ],
   "# columns 추출 규칙 (에이전트 필수 준수)": {
-    "SELECT * 또는 alias.*": "→ 오케스트레이터가 제공한 tableColumns 정보가 있으면 그 컬럼 목록 사용 (audit 컬럼 제외); 정보가 없으면 빈 배열 []",
+    "SELECT * 또는 alias.*": "→ fetch-queries/fetch-batch 출력의 tableColumns 필드에서 해당 테이블의 컬럼 목록 사용 (audit 컬럼 이미 제외됨); tableColumns에 없으면 빈 배열 []",
     "명시적 컬럼 목록이 있는 SELECT": "→ 전체 추출 (개수 제한 없음)",
     "INSERT 컬럼목록": "→ 삽입 대상 컬럼 전체 추출 (개수 제한 없음)",
     "UPDATE SET 컬럼": "→ 수정 대상 컬럼 전체 추출 (개수 제한 없음)",
