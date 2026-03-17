@@ -57,13 +57,19 @@ TARGET="$(cd "$1" 2>/dev/null && pwd)" || {
     exit 1
 }
 
-# 모듈 ID 결정
+# 소스 모듈 ID 결정 (디렉토리명에서 자동 추출)
+SRC_MOD_LOWER="$(basename "$SRC_PROJECT")"
+SRC_MOD_UPPER="$(echo "$SRC_MOD_LOWER" | tr 'a-z' 'A-Z')"
+SRC_MOD_NUM="${SRC_MOD_UPPER:1}"   # 앞글자 제거 (C10→10, M30→30)
+
+# 대상 모듈 ID 결정
 if [[ $# -ge 2 ]]; then
     MOD_UPPER="$2"
 else
     MOD_UPPER="$(basename "$TARGET" | tr 'a-z' 'A-Z')"
 fi
 MOD_LOWER="$(echo "$MOD_UPPER" | tr 'A-Z' 'a-z')"
+MOD_NUM="${MOD_UPPER:1}"   # 앞글자 제거 (M20→20, C10→10)
 
 # === 안전 검사 ===
 if [[ "$SRC_PROJECT" == "$TARGET" ]]; then
@@ -116,9 +122,9 @@ run_cmd "cp .mcp.json → $TARGET/.mcp.json" \
     "cp '$SRC_PROJECT/.mcp.json' '$TARGET/.mcp.json'"
 
 # === 3. CLAUDE.md 복사 + 모듈 ID 치환 ===
-echo -e "\n${CYAN}[3/6] CLAUDE.md 복사 (M17 → $MOD_UPPER, m17 → $MOD_LOWER)${NC}"
-run_cmd "sed M17→$MOD_UPPER, m17→$MOD_LOWER → $TARGET/CLAUDE.md" \
-    "sed -e 's/M17/$MOD_UPPER/g' -e 's/m17/$MOD_LOWER/g' -e 's/B17R/B${MOD_UPPER:1}R/g' '$SRC_PROJECT/CLAUDE.md' > '$TARGET/CLAUDE.md'"
+echo -e "\n${CYAN}[3/6] CLAUDE.md 복사 (${SRC_MOD_UPPER} → ${MOD_UPPER}, ${SRC_MOD_LOWER} → ${MOD_LOWER})${NC}"
+run_cmd "sed ${SRC_MOD_UPPER}→${MOD_UPPER}, ${SRC_MOD_LOWER}→${MOD_LOWER} → $TARGET/CLAUDE.md" \
+    "sed -e 's/${SRC_MOD_UPPER}/${MOD_UPPER}/g' -e 's/${SRC_MOD_LOWER}/${MOD_LOWER}/g' -e 's/B${SRC_MOD_NUM}R/B${MOD_NUM}R/g' '$SRC_PROJECT/CLAUDE.md' > '$TARGET/CLAUDE.md'"
 
 # === 4. docs/ 복사 ===
 echo -e "\n${CYAN}[4/6] docs/ 복사${NC}"
@@ -142,7 +148,7 @@ if [[ -f "$TARGET/.gitignore" ]]; then
     # .iml 항목을 *.iml로 통일
     if grep -q 'M20\.iml' "$TARGET/.gitignore" 2>/dev/null; then
         run_cmd ".gitignore: M20.iml → *.iml 변경" \
-            "sed -i 's/^M20\.iml$/*.iml/' '$TARGET/.gitignore'"
+            "sed -i '' 's/^M20\\.iml\$/*.iml/' '$TARGET/.gitignore' 2>/dev/null || sed -i 's/^M20\\.iml\$/*.iml/' '$TARGET/.gitignore'"
     fi
 else
     run_cmd ".gitignore 파일 없음 - 건너뜀" "true"
@@ -183,7 +189,7 @@ if ! $DRY_RUN; then
     echo -e "  복사된 항목:"
     echo -e "    .claude/    $(find "$TARGET/.claude" -type f 2>/dev/null | wc -l)개 파일"
     echo -e "    .mcp.json   OK"
-    echo -e "    CLAUDE.md   OK (M17→$MOD_UPPER)"
+    echo -e "    CLAUDE.md   OK (${SRC_MOD_UPPER}→${MOD_UPPER})"
     echo -e "    docs/       $(find "$TARGET/docs" -type f 2>/dev/null | wc -l)개 파일"
     echo ""
     echo -e "  queries.db:   $(sqlite3 "$QUERIES_DB" 'SELECT COUNT(*) FROM queries;' 2>/dev/null || echo '?')건"
