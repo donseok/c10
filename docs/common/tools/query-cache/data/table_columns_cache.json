@@ -1,0 +1,2024 @@
+{
+  "TB_C10_ATT_ORD_MNG": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ATT_ORD_RGS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PROC_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ATT_ORD_RGS_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "SMS_SND_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "ATT_RGS_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SCHEDULE_TIME",
+      "dataType": "VARCHAR2"
+    }
+  ],
+  "TB_C10_QLT_DSN_CMN": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_STS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PLNT_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRD_NM_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRD_SHP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "FLOW_CHL",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_KND",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PRD_GRD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_USG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CUS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ACT_CUS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "FNL_CUS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CUS_BTH_PAP_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SPC_OFC",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SPC_AVR",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SPC_YR",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SPC_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SPC_FUL_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SZ",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_EXC_THK",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_EXC_WTH",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_EXC_LTH",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CUS_REQ_DLV_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SCH_DLV_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PTL_STR_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PTL_END_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "GW_ASG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CCL_BOM_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_ORG_PLT_SPC_AVR",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_ROU_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SPNL_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_COILG_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SUR_HND_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SKP_DEG",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_EDG_ASG_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_THK_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_GRA",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WGT_DCS_MTH_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SLV_KND_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "EMBS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PTT_FLM_DTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PTT_FLM_WTH",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PTT_FLM_ADH_LOC_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_WGT_UNT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_SHT_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_SHT_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_UNT_WGT_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_UNT_WGT_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_DLV_ALW_DIF_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_DLV_ALW_DIF_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_LTH_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_LTH_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_STDP_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_STDP_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_STDP_CNT_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_STDP_CNT_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_UNT_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_UNT_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_SML_PAK_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_SML_PAK_MIR",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_UNT_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_PAK_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_COIL_IDIA",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_COIL_ODIA",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_THK_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_THK_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_WTH_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_WTH_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_LTH_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_LTH_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_TOT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_TOT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RSN_TP_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COT_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CUS_REQ_ROL_THK",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_THK_MNG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_WTH_MNG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LTH_MNG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CUS_REQ_CLR_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "URG_MTL_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_RCP_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SHT_LOD_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SLIT_GRP_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH1",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH2",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH3",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH4",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH5",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH6",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH7",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH8",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SLIT_MAX_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TRST_PROC_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "NAT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_SPC_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_PRD_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_PO_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_DST",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_SIZ",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_SPC_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_GAA",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_HUE_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_HUE_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_SPC_MRK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_PRFR_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "BAK_MRK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_MDF_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_CFM_DD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_RGS_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_TEM_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CLS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_CLS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_END_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "QLT_DSN_INST_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "QLT_DSN_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MQL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_GRD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CRM_MNF_STD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PAS_PROC_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ACPT_RT_SPC",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_END_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_END_DD",
+      "dataType": "DATE"
+    },
+    {
+      "name": "ORD_END_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_CFM_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "QLT_DSN_CFM_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_RDSN_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "QLT_RDSN_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_ERR_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_CFM_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_CD1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_CD2",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CRM_MNF_STD_NO1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CRM_MNF_STD_NO2",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_CNL_CAU_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_CNL_DTL_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "THK_COR_UNT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRD_THK_CAL_APL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "APR_INP_BAS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TAG_PO_NO2",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CTR_SHPM_MN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SVC_CRD_PUB_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PAK_MSG_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_TEM_GRP_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_MIX_WTH9",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_MIX_WTH10",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PTT_FLM_NOT_ADH_WS",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PTT_FLM_NOT_ADH_DS",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TAG_PART_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MO_CVT_ORD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PER_TON_LTH",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ORD_BAK_SND_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_BAK_SND_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_BAK_SND_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "ORD_BAK_SND_CAU",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MTL_PRD_ORD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_PAK_MTL_WGT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "QLT_DSN_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_DSN_CFM_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "DSN_ATO_CFM_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "DSN_ATO_CFM_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "DSN_ATO_CFM_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_HLD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LTH_MNG_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LTH_MNG_FROM",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LTH_MNG_TO",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "BORON_ADD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_REP_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_REP_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_REP_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_COP_STP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "WIP_PAK_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "OT_TC_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "DEF_RED_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PPR_RNG_PORD_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PE_FOAM_TXT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ATT_ORD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRT_INKJT_FILE",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "POC_AUTO_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "POC_CGL_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "POC_CCL_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PLTCM_SET_THK_LNK_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRJ_QLT_MNG_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "KISS_CUT_YN",
+      "dataType": "VARCHAR2"
+    }
+  ],
+  "TB_C10_QLT_DSN_DLV": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_SPC_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "THK_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "THK_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WTH_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WTH_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LTH_TLN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LTH_TLN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "HWAV_H",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MWAV_H",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "EWAV_H",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SLR_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RAR_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "DGLN_DIF_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "STPN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TLC",
+      "dataType": "NUMBER"
+    }
+  ],
+  "TB_C10_QLT_DSN_MNF": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_MNF_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CRM_MNF_STD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PLTCM_5STD_WR_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PLTCM_SLV_USE_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ECL_CDR_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ECL_COILG_TS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "FUR_TP_GEN_ANN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HEAT_CYL_NO_GEN_ANN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COR_TM_GEN_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "COIL_TMP_GEN_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_END_TMP_GEN_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "FUR_TP_HC_ANN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HEAT_CYL_NO_HC_ANN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COR_TM_HC_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "COIL_TMP_HC_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_END_TMP_HC_ANN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TM_PASS_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ROU_RA_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ROU_RA_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ROU_PPI_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ROU_PPI_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "ROU_R_MAX_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "HEAT_CYL_NO_2CGL",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HTG_TEM_2CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_TEM_2CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SHK_TM_2CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LN_SPD_2CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "HEAT_CYL_NO_3CGL",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HTG_TEM_3CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_TEM_3CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SHK_TM_3CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LN_SPD_3CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "HEAT_CYL_NO_4CGL",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HTG_TEM_4CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_TEM_4CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SHK_TM_4CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LN_SPD_4CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "HEAT_CYL_NO_5CGL",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HTG_TEM_5CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CLG_TEM_5CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SHK_TM_5CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LN_SPD_5CGL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SPNL_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CGL_LVL_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CGL_SP_ASG_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CGL_SUR_HND_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "EGL_SUR_HND_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_ATT_AMT_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RSN_ATT_AMT_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RSN_ATT_AMT_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_FRN_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_FRN_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_BAK_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_BAK_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_TOT_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_GW_TOT_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PIL_DIR",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "OIL_PNT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRD_THK_RNG_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_THK_RNG_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_WTH_RNG_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_WTH_RNG_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "GAL_THK_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "GAL_THK_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "GAL_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SPC_GAL_THK",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "COR_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "COR_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SLIT_GRP_CNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH1",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH2",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH3",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH4",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH5",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH6",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH7",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH8",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CCL_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CCL_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MID_COR_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MID_COR_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CGL_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "CGL_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "EGL_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "EGL_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TM_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TM_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TM_WTH_SUB_PROC1_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "TM_WTH_SUB_PROC2_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_SET_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_THK_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_THK_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_THK_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_WTH_SUB_PROC1_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_WTH_SUB_PROC2_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PLTCM_EDG_ASG_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COR_EDG_ASG_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRD_LTH_RNG_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_LTH_RNG_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PL_WTH_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PL_WTH_SUB_PROC1_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PL_WTH_SUB_PROC2_TRV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_THK_SPC_RNG_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRD_THK_SPC_RNG_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH9",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MIX_WTH10",
+      "dataType": "NUMBER"
+    }
+  ],
+  "TB_C10_QLT_DSN_PROC": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PROC_SEQ",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MAIN_PROC_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD2",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD3",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD4",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD5",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD6",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SMS_RCV_YN",
+      "dataType": "VARCHAR2"
+    }
+  ],
+  "TB_C10_QLT_DSN_RMT": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_MNF_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_GRD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMTL_TAR_THK",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_WTH",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_THK_LVL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_WTH_LVL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_WTH_UVL",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_THK_LVL_STD",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_THK_UVL_STD",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RMTL_TAR_WTH_STD",
+      "dataType": "NUMBER"
+    }
+  ],
+  "TB_C10_CCL_BOM": [
+    {
+      "name": "CCL_BOM_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CCL_BOM_USE_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COT_MTH",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COL_SUR_HND_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PRT_PTN_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_SUB",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_CHM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_TOT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_TOT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LUS_RT_CD_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_FRN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "DTL_CLR_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_FRN_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_FRN_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_FRN_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_FRN_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_BAK_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_LMN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_FRN_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_BAK_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "HUE_CD_LMN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_1COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_2COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_3COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_FRN_4COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_1COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_2COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_3COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_BAK_4COT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK_LMN",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LUS_RT_CD_FRN_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_FRN_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_FRN_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_FRN_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK_1COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK_2COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK_3COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_BAK_4COT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_LMN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MAIN_PROC_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD2",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_PROC_CD3",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TLP_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CUT_LN_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_DSN_CFM_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RGS_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RGS_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "MDF_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MDF_DH",
+      "dataType": "DATE"
+    }
+  ],
+  "TB_C10_QLT_DSN_MSG1": [
+    {
+      "name": "ORD_NO",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ORD_LN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "QLT_MSG_NM",
+      "dataType": "VARCHAR2"
+    }
+  ],
+  "TB_C10_WAR_NAT_MNG": [
+    {
+      "name": "VER_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CLS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "NAT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "NAT_ENM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "NAT_KNM",
+      "dataType": "VARCHAR2"
+    }
+  ],
+  "VI_M00_CODE_ACCESS": [
+    {
+      "name": "CD_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LANGUAGE_CODE",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "START_ACTIVE_DATE",
+      "dataType": "DATE"
+    },
+    {
+      "name": "CD_TP_MEANING",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CD_V",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CD_V_MEANING",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CATEGORY_GROUP_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CATEGORY_GROUP_EXPLAIN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "APPLICATION_ID",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SECURITY_GROUP_ID",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "RECORD_GBN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MASTER_CODE",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CD_V_INQUIRY_SEQ",
+      "dataType": "NUMBER"
+    }
+  ],
+  "TB_C10_CLR_CD_MNG_MDF_LOG": [
+    {
+      "name": "CLR_SUB_MTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MDF_SEQ",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "MDF_RSN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "SUB_MTL_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_LLV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "LUS_RT_ULV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "WK_VISCO",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_FLM_THK",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PRT_INK_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "NV",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PNT_GRA",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "SLV_GRA",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "THR_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PNT_UNT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "PMT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "QT_L",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "QT_A",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "QT_B",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "STD_CLR_NM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_KND_TP",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_BND_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_BND_THR_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_FLM_THK_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PTT_FLM_LUS_RT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PTT_FLM_THK_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PTT_FLM_MQL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PTT_FLM_SUS_ADH_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PTT_FLM_PRD_ADH_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RMRK",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RGS_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RGS_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "MDF_PRS_ID",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "CLR_MDF_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "CLR_SUB_MTL_CD_OLD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_OLD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LUS_RT_CD_OLD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PNT_FLM_THK_OLD",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "USE_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ERP_SND_DH",
+      "dataType": "DATE"
+    },
+    {
+      "name": "MGR_CLR_SUB_MTL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "MOD_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RAL_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RL_LUS_RT",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "EX_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TP_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "COL_DIF_STD",
+      "dataType": "NUMBER"
+    },
+    {
+      "name": "EX_YN1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_BND_CD1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LMN_BND_THR_CD1",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_QT",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PAT_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "FUNC_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "TTE_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "USE_POS_CD",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "WTY_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "LAMINA_INS_YN",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "PUR_CHR_CFM",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "RSN_TP_QT_BR",
+      "dataType": "VARCHAR2"
+    },
+    {
+      "name": "ZFLAG",
+      "dataType": "VARCHAR2"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420" font-family="'Malgun Gothic','Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-size="13">
+  <defs>
+    <marker id="arrB" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4A90D9"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <!-- 배경 -->
+  <rect x="5" y="5" width="810" height="350" rx="10" fill="#F8F9FC" stroke="#B0B8C8" stroke-width="1.5"/>
+
+  <!-- 헤더 -->
+  <rect x="5" y="5" width="810" height="48" rx="10" fill="#4A90D9"/>
+  <rect x="5" y="35" width="810" height="18" fill="#4A90D9"/>
+  <text x="410" y="36" text-anchor="middle" fill="#FFF" font-size="15" font-weight="bold">/analyze_service [서비스ID] — 통합 오케스트레이터</text>
+
+  <!-- ===== Phase 박스 행 ===== -->
+  <!-- Phase 1 -->
+  <rect x="30" y="75" width="125" height="48" rx="7" fill="#E8EEFF" stroke="#4A90D9" stroke-width="1.2"/>
+  <text x="92" y="95" text-anchor="middle" font-weight="bold" fill="#2C5F9E">Phase 1</text>
+  <text x="92" y="112" text-anchor="middle" fill="#555" font-size="11">구조 파악</text>
+
+  <!-- 화살표 1→2 -->
+  <line x1="158" y1="99" x2="178" y2="99" stroke="#4A90D9" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <!-- Phase 2+2.5 -->
+  <rect x="185" y="75" width="135" height="48" rx="7" fill="#E8EEFF" stroke="#4A90D9" stroke-width="1.2"/>
+  <text x="252" y="95" text-anchor="middle" font-weight="bold" fill="#2C5F9E">Phase 2+2.5</text>
+  <text x="252" y="112" text-anchor="middle" fill="#555" font-size="11">Java 분석</text>
+
+  <!-- 화살표 2→3 -->
+  <line x1="323" y1="99" x2="343" y2="99" stroke="#4A90D9" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <!-- Phase 3 -->
+  <rect x="350" y="75" width="125" height="48" rx="7" fill="#E8EEFF" stroke="#4A90D9" stroke-width="1.2"/>
+  <text x="412" y="95" text-anchor="middle" font-weight="bold" fill="#2C5F9E">Phase 3</text>
+  <text x="412" y="112" text-anchor="middle" fill="#555" font-size="11">SQL 분석</text>
+
+  <!-- 화살표 3→4 -->
+  <line x1="478" y1="99" x2="498" y2="99" stroke="#4A90D9" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <!-- Phase 4 -->
+  <rect x="505" y="75" width="125" height="48" rx="7" fill="#E8EEFF" stroke="#4A90D9" stroke-width="1.2"/>
+  <text x="567" y="95" text-anchor="middle" font-weight="bold" fill="#2C5F9E">Phase 4</text>
+  <text x="567" y="112" text-anchor="middle" fill="#555" font-size="11">UI 분석</text>
+
+  <!-- 화살표 4→5 -->
+  <line x1="633" y1="99" x2="653" y2="99" stroke="#4A90D9" stroke-width="2" marker-end="url(#arrB)"/>
+
+  <!-- Phase 5 -->
+  <rect x="660" y="75" width="125" height="48" rx="7" fill="#D5F5D5" stroke="#43A047" stroke-width="1.5"/>
+  <text x="722" y="95" text-anchor="middle" font-weight="bold" fill="#2E7D32">Phase 5</text>
+  <text x="722" y="112" text-anchor="middle" fill="#555" font-size="11">통합 문서</text>
+
+  <!-- ===== Phase→서브스킬 점선 화살표 ===== -->
+  <line x1="92"  y1="126" x2="92"  y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrG)"/>
+  <line x1="252" y1="126" x2="252" y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrG)"/>
+  <line x1="412" y1="126" x2="412" y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrG)"/>
+  <line x1="567" y1="126" x2="567" y2="175" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrG)"/>
+
+  <!-- ===== 서브스킬 박스 행 ===== -->
+  <!-- 서브서비스 재귀 -->
+  <rect x="30" y="182" width="125" height="65" rx="7" fill="#FFF8E1" stroke="#E6A817" stroke-width="1.2"/>
+  <text x="92" y="202" text-anchor="middle" font-weight="bold" fill="#8B6914" font-size="12">서브서비스</text>
+  <text x="92" y="218" text-anchor="middle" fill="#8B6914" font-size="11">재귀 분석</text>
+  <text x="92" y="237" text-anchor="middle" fill="#A08030" font-size="10">/analyze_service</text>
+
+  <!-- 커스텀 클래스 -->
+  <rect x="185" y="182" width="135" height="65" rx="7" fill="#FFF8E1" stroke="#E6A817" stroke-width="1.2"/>
+  <text x="252" y="202" text-anchor="middle" font-weight="bold" fill="#8B6914" font-size="12">커스텀 클래스</text>
+  <text x="252" y="218" text-anchor="middle" fill="#8B6914" font-size="11">개별 분석</text>
+  <text x="252" y="237" text-anchor="middle" fill="#A08030" font-size="10">/analyze_custom_class</text>
+
+  <!-- PL/SQL + 쿼리 -->
+  <rect x="350" y="182" width="125" height="65" rx="7" fill="#FFF8E1" stroke="#E6A817" stroke-width="1.2"/>
+  <text x="412" y="199" text-anchor="middle" font-weight="bold" fill="#8B6914" font-size="12">PL/SQL 분석</text>
+  <text x="412" y="214" text-anchor="middle" fill="#A08030" font-size="10">/analyze_plsql</text>
+  <line x1="365" y1="222" x2="460" y2="222" stroke="#E6D090" stroke-width="0.8"/>
+  <text x="412" y="235" text-anchor="middle" font-weight="bold" fill="#8B6914" font-size="12">쿼리 캐시</text>
+  <text x="412" y="248" text-anchor="middle" fill="#A08030" font-size="10">/analyze_queries</text>
+
+  <!-- Phase 4 서브에이전트 -->
+  <rect x="505" y="182" width="125" height="65" rx="7" fill="#F3E5F5" stroke="#9C27B0" stroke-width="1"/>
+  <text x="567" y="207" text-anchor="middle" fill="#6A1B9A" font-size="12">general-purpose</text>
+  <text x="567" y="225" text-anchor="middle" fill="#6A1B9A" font-size="12">subagent</text>
+
+  <!-- ===== 범례 ===== -->
+  <rect x="660" y="182" width="135" height="100" rx="6" fill="#FFF" stroke="#CCC" stroke-width="1"/>
+  <text x="727" y="200" text-anchor="middle" font-weight="bold" fill="#666" font-size="11">범례</text>
+  <rect x="672" y="210" width="16" height="10" rx="2" fill="#E8EEFF" stroke="#4A90D9"/>
+  <text x="694" y="219" fill="#555" font-size="10">Phase (스크립트)</text>
+  <rect x="672" y="228" width="16" height="10" rx="2" fill="#FFF8E1" stroke="#E6A817"/>
+  <text x="694" y="237" fill="#555" font-size="10">서브 스킬 (AI)</text>
+  <rect x="672" y="246" width="16" height="10" rx="2" fill="#D5F5D5" stroke="#43A047"/>
+  <text x="694" y="255" fill="#555" font-size="10">최종 산출물</text>
+  <rect x="672" y="264" width="16" height="10" rx="2" fill="#E8EAF6" stroke="#5C6BC0"/>
+  <text x="694" y="273" fill="#555" font-size="10">독립 스킬</text>
+
+  <!-- ===== 독립 스킬: legacy2bpmn ===== -->
+  <rect x="30" y="310" width="340" height="36" rx="7" fill="#E8EAF6" stroke="#5C6BC0" stroke-width="1.2"/>
+  <text x="200" y="333" text-anchor="middle" fill="#303F9F" font-weight="bold" font-size="13">/legacy2bpmn [서비스ID] — 독립 실행 (BPMN 경량 생성)</text>
+</svg>
