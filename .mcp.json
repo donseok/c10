@@ -1,9 +1,0 @@
-  {                                                                                                     
-    "mcpServers": {                                                                                     
-      "sqlcl": {                                                                                        
-        "type": "stdio",                                                                                
-        "command": "/home/jji/project/sqlcl/bin/sql",                                                                               
-        "args": ["-mcp"]                                                                                
-      }                                                                                                 
-    }                                                                                                   
-  }     

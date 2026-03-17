@@ -19,3 +19,4 @@ build.propertiesnul
 *.db-wal
 __pycache__/
 .claude/settings.local.json
+.mcp.json
