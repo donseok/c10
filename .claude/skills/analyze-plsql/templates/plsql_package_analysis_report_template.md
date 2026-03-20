@@ -84,6 +84,7 @@ PL_M30_STOCK_CSM 패키지는 재료 소비(Consumption) 프로세스의 핵심 
     에러/exception: fill:#F00000
     데이터전송: fill:#808000
     시작/종료: fill:#808080
+- ⚠️ 노드 내 줄바꿈은 반드시 `<br/>`을 사용. `\n` 사용 금지.
 -->
 
 ### 메인 프로시저: [MAIN_PROCEDURE_NAME]

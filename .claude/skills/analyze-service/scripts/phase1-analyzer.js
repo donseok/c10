@@ -13,7 +13,7 @@
  *
  * 출력 디렉토리:
  * - 자동 생성: docs/analysis/service/[ui|nui]/.temp/
- * - ui/nui 판정: SERVICE-ID가 B로 시작하면 nui, 나머지(M, C 등)는 ui
+ * - ui/nui 판정: SERVICE-ID가 B로 시작하면 nui, 그 외(M, C10X 등)는 ui
  * - 생성 검증: 디렉토리 존재 여부 확인 및 오류 처리
  * - 파일 검증: 저장 후 파일 존재 및 크기 확인
  *
@@ -291,10 +291,11 @@ async function main() {
       process.exit(1);
     }
 
-    // 스킵 체크: 출력 파일이 이미 존재하면 건너뛰기
+    // 스킵 체크: 출력 파일이 이미 존재하면 건너뛰기 (ui/nui 양쪽 확인)
     const forceRun = process.argv.includes('--force');
-    const earlyServiceType = serviceId.startsWith('B') ? 'nui' : 'ui';
-    const earlyOutputPath = path.join('docs', 'analysis', 'service', earlyServiceType, '.temp', `${serviceId}_structure.json`);
+    const earlyOutputPathUi = path.join('docs', 'analysis', 'service', 'ui', '.temp', `${serviceId}_structure.json`);
+    const earlyOutputPathNui = path.join('docs', 'analysis', 'service', 'nui', '.temp', `${serviceId}_structure.json`);
+    const earlyOutputPath = fs.existsSync(earlyOutputPathUi) ? earlyOutputPathUi : earlyOutputPathNui;
     if (!forceRun && fs.existsSync(earlyOutputPath)) {
       console.log(`⏭️ Phase 1 스킵: 이미 존재함 → ${earlyOutputPath}`);
       console.log('   재생성하려면 --force 옵션을 사용하세요.');
@@ -407,7 +408,15 @@ async function main() {
     }
 
     // 11. structure.json 생성
-    const serviceType = serviceId.startsWith('B') ? 'nui' : 'ui';
+    // 서비스 타입 판정: B로 시작하면 nui, 그 외는 JSP 존재 여부로 판정
+    var serviceType;
+    if (serviceId.startsWith('B')) {
+      serviceType = 'nui';
+    } else {
+      var jspPattern = path.join(legacyRootPath, 'WebContents', serviceId + '*.jsp');
+      var jspFiles = require('child_process').execSync('ls ' + jspPattern + ' 2>/dev/null || true').toString().trim();
+      serviceType = jspFiles.length > 0 ? 'ui' : 'nui';
+    }
     const structure = {
       serviceInfo: {
         serviceId,
@@ -443,7 +452,7 @@ async function main() {
       subServices: subServices.length > 0 ? subServices : undefined
     };
 
-    // 7. 출력 디렉토리 생성 및 검증 (ui/nui 판정: B→nui, 나머지→ui)
+    // 7. 출력 디렉토리 생성 및 검증 (ui/nui 판정: M→ui, B→nui)
     const outputDir = path.join('docs', 'analysis', 'service', serviceType, '.temp');
     console.log(`📁 출력 디렉토리 확인: ${outputDir}`);
 

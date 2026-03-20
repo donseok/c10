@@ -12,6 +12,40 @@
 
 ---
 
+## Step 0.5: 기존 분석 문서 검색
+
+NAME으로부터 예상 파일명 `{NAME}_analysis_report.md`를 생성하여 순차 검색한다.
+
+### 0.5-1. 검색 순서
+
+```javascript
+// 1단계: 로컬 프로젝트 내 검색
+const localResults = Glob("docs/analysis/dbms/**/{NAME}_analysis_report.md");
+
+// 2단계: 중앙 저장소 검색
+const centralResults = Glob("/Users/jji/project/mes-workspace/docs-site/dbms/**/{NAME}_analysis_report.md");
+```
+
+### 0.5-2. 검색 결과 처리
+
+**케이스 1: 로컬에 있음** → 사용자에게 확인
+```
+"기존 분석 문서가 로컬에 있습니다: {경로}. 재분석하시겠습니까?"
+```
+- 재분석 거부 → 기존 문서 경로 안내 후 종료
+- 재분석 승인 → Step 1 진행
+
+**케이스 2: 중앙에만 있음** → 사용자에게 확인
+```
+"기존 분석 문서가 중앙 저장소에 있습니다: {경로}. 로컬에 복사하시겠습니까? 또는 재분석하시겠습니까?"
+```
+- 복사 선택 → 로컬 `docs/analysis/dbms/{SCHEMA}/{type}/`으로 복사 후 종료
+- 재분석 선택 → Step 1 진행
+
+**케이스 3: 어디에도 없음** → Step 1 진행
+
+---
+
 ## Step 1: PL/SQL 소스 검색 (DB 직접 조회)
 
 ### 1-1. DB 접속 및 오브젝트 검색
@@ -253,19 +287,24 @@ calledObjects.push({
 
 ### 3.5-1. 재귀 분석 대상 결정
 
+기존 보고서를 **로컬 → 중앙** 순서로 검색한다.
+
 ```javascript
 for (const called of calledObjects) {
-  let reportPath;
-  if (called.type === 'PACKAGE' || called.type === 'PACKAGE BODY') {
-    reportPath = "docs/analysis/dbms/" + called.owner + "/package/" + called.name + "_analysis_report.md";
-  } else if (called.type === 'PROCEDURE') {
-    reportPath = "docs/analysis/dbms/" + called.owner + "/storedProcedure/" + called.name + "_analysis_report.md";
-  } else if (called.type === 'FUNCTION') {
-    reportPath = "docs/analysis/dbms/" + called.owner + "/function/" + called.name + "_analysis_report.md";
-  }
+  const typeDir = (called.type === 'PACKAGE' || called.type === 'PACKAGE BODY') ? 'package'
+                : called.type === 'PROCEDURE' ? 'storedProcedure' : 'function';
+  const fileName = called.name + "_analysis_report.md";
 
-  if (fileExists(reportPath)) {
-    called.reportPath = reportPath;
+  // 1순위: 로컬 프로젝트
+  const localPath = "docs/analysis/dbms/" + called.owner + "/" + typeDir + "/" + fileName;
+  // 2순위: 중앙 저장소
+  const centralPath = "/Users/jji/project/mes-workspace/docs-site/dbms/" + called.owner + "/" + typeDir + "/" + fileName;
+
+  if (fileExists(localPath)) {
+    called.reportPath = localPath;
+    called.alreadyAnalyzed = true;
+  } else if (fileExists(centralPath)) {
+    called.reportPath = centralPath;
     called.alreadyAnalyzed = true;
   } else {
     called.alreadyAnalyzed = false;
@@ -368,6 +407,7 @@ LEFT JOIN table3 t3 ON t2.col = t3.col
 - 메인 프로시저의 플로우차트를 가장 위에 생성
 - 호출되는 서브 프로시저들의 플로우차트를 아래에 순서대로 배치
 - 템플릿 § 2 "워크플로우 다이어그램"의 색상 규칙 적용
+- **노드 내 줄바꿈은 반드시 `<br/>`을 사용한다. `\n`은 사용 금지.**
 
 ---
 
@@ -433,17 +473,21 @@ function getRelativePath(currentReportPath, calledReportPath) {
 > - **참고**: 최대 재귀 깊이(3) 초과로 상세 분석이 생략되었습니다. 별도로 `/analyze-plsql {OBJECT_NAME}` 실행을 권장합니다.
 ```
 
-### 6-4. 파일 쓰기 (타입별 출력 경로)
+### 6-4. 파일 쓰기 (로컬 생성 → 중앙에 복사)
 
 ```javascript
-let outputPath;
-if (TYPE === 'PACKAGE') {
-  outputPath = "docs/analysis/dbms/" + SCHEMA_NAME + "/package/" + OBJECT_NAME + "_analysis_report.md";
-} else if (TYPE === 'PROCEDURE') {
-  outputPath = "docs/analysis/dbms/" + SCHEMA_NAME + "/storedProcedure/" + OBJECT_NAME + "_analysis_report.md";
-} else if (TYPE === 'FUNCTION') {
-  outputPath = "docs/analysis/dbms/" + SCHEMA_NAME + "/function/" + OBJECT_NAME + "_analysis_report.md";
-}
+const typeDir = (TYPE === 'PACKAGE') ? 'package'
+              : (TYPE === 'PROCEDURE') ? 'storedProcedure' : 'function';
+const fileName = OBJECT_NAME + "_analysis_report.md";
+
+// 1. 로컬 프로젝트에 생성 (주 출력)
+const localPath = "docs/analysis/dbms/"
+  + SCHEMA_NAME + "/" + typeDir + "/" + fileName;
+
+// 2. 중앙 저장소에 복사
+const centralPath = "/Users/jji/project/mes-workspace/docs-site/dbms/"
+  + SCHEMA_NAME + "/" + typeDir + "/" + fileName;
 ```
 
 디렉토리 없으면 자동 생성. 파일 이미 존재하면 덮어쓰기 진행.
+**반드시 로컬에 먼저 생성한 후 중앙 저장소에도 복사한다.**

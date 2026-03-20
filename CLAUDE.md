@@ -100,6 +100,24 @@ tmux send-keys -t {paneId} '/clear' && sleep 10 && tmux send-keys -t {paneId} En
 - 초기화 완료 후 SendMessage로 다음 서비스 할당
 - **금지**: SendMessage로 /clear 전송, '/clear' Enter 한 줄 합치기, 이 명령어 생략
 
+## PL/SQL 분석 문서 참조 규칙
+
+PL/SQL 프로시저/함수/패키지 분석 문서는 **중앙 저장소**와 **로컬 복사본** 2단계로 관리한다.
+
+| 위치 | 경로 | 용도 |
+|------|------|------|
+| **중앙** | `/Users/jji/project/mes-workspace/docs-site/dbms/{SCHEMA}/{type}/` | 전체 프로젝트 공유 (단일 원본) |
+| **로컬** | `docs/analysis/dbms/{SCHEMA}/{type}/` | 현재 프로젝트가 사용하는 프로시저 복사본 |
+
+PL/SQL 객체 분석이 필요할 때 다음 순서를 따른다:
+1. **로컬 검색** — `docs/analysis/dbms/` 에서 해당 문서 확인
+2. **중앙 검색** — `/Users/jji/project/mes-workspace/docs-site/dbms/` 에서 확인
+3. **신규 분석** — 1, 2에서 없으면 `/analyze-plsql` 등으로 새로 분석
+4. **중앙 저장** — 분석 결과를 중앙 저장소에 저장
+5. **로컬 복사** — 현재 프로젝트 `docs/analysis/dbms/`에도 복사본 배치
+
+파일명: `{OBJECT_NAME}_analysis_report.md`
+
 ## 커밋 규칙
 
 커밋 메시지는 다음 형식을 따른다:

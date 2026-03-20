@@ -30,6 +30,22 @@ Bash로 시작 시각 출력: `echo "⏱️ PL/SQL 분석 시작: $(date '+%H:%M
 1. Serena MCP 확인 (`mcp__serena__get_current_config`)
 2. NAME 파라미터 검증
 
+### Step 0.5: 기존 분석 문서 검색
+
+NAME으로부터 예상 파일명 `{NAME}_analysis_report.md`를 생성하여 아래 순서로 검색한다.
+
+1. **로컬 검색** — `docs/analysis/dbms/{SCHEMA}/{type}/` (현재 프로젝트)
+2. **중앙 검색** — `/Users/jji/project/mes-workspace/docs-site/dbms/{SCHEMA}/{type}/`
+
+스키마/타입을 모를 수 있으므로 Glob으로 `**/{NAME}_analysis_report.md` 패턴 검색한다.
+
+**발견 시**:
+- 사용자에게 "기존 분석 문서가 있습니다. 재분석하시겠습니까?" 확인
+- **재분석 거부** → 중앙에만 있고 로컬에 없으면 로컬로 복사 후 종료
+- **재분석 승인** → Step 1부터 진행
+
+**미발견 시**: Step 1부터 진행
+
 ### Step 1: PL/SQL 소스 검색 (DB 직접 조회)
 
 Bash: `echo "⏱️ Step 1 (소스 검색) 시작: $(date '+%H:%M:%S')"`
@@ -91,12 +107,14 @@ Bash: `echo "⏱️ Step 6 (보고서 생성) 시작: $(date '+%H:%M:%S')"`
 
 완료 후: `echo "✅ PL/SQL 분석 완료: $(date '+%H:%M:%S')"`
 
-**출력 경로**:
-| 타입 | 경로 |
-|------|------|
-| PACKAGE | `docs/analysis/dbms/{SCHEMA}/package/{NAME}_analysis_report.md` |
-| PROCEDURE | `docs/analysis/dbms/{SCHEMA}/storedProcedure/{NAME}_analysis_report.md` |
-| FUNCTION | `docs/analysis/dbms/{SCHEMA}/function/{NAME}_analysis_report.md` |
+**출력 경로** (로컬 생성 → 중앙에 복사):
+
+| 순서 | 위치 | 경로 |
+|------|------|------|
+| 1 | **로컬** (주 출력) | `docs/analysis/dbms/{SCHEMA}/{type}/{NAME}_analysis_report.md` |
+| 2 | **중앙** (복사) | `/Users/jji/project/mes-workspace/docs-site/dbms/{SCHEMA}/{type}/{NAME}_analysis_report.md` |
+
+`{type}`: `package`, `storedProcedure`, `function`
 
 ## DB 접속 정보
 

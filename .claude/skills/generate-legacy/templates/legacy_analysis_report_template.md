@@ -65,6 +65,7 @@ flowchart TD
     에러/exception: fill:#F00000
     데이터전송: fill:#808000
     시작/종료: fill:#808080
+- ⚠️ 노드 내 줄바꿈은 반드시 `<br/>`을 사용. `\n` 사용 금지.
 - ⚠️ 단순 조회(find 계열) 묶음 규칙:
     Router에서 분기하는 단순 조회(find로 시작, 단일 Activity로 끝나는 것)는
     개별 노드로 나열하지 않고 하나의 subgraph로 묶어서 표현할 것.
