@@ -20,7 +20,7 @@
     <property key="class" value="com.unionsteel.mes.c10.activity.nui.DbQualDesignLoop"/>
     <property key="bind-result" value="RK_SEARCH"/>
     <property key="countName" value="QLT_DSN_STS_CD_COUNT"/>
-    <property key="param-count" value="141"/>
+    <property key="param-count" value="145"/>
     <property key="param0" value="IF_GRP_ID|IF_GRP_ID"/>
     <property key="param1" value="SEQ_NO|SEQ_NO"/>
     <property key="param2" value="XSEQ|XSEQ"/>
@@ -162,6 +162,10 @@
     <property key="param138" value="POC_CCL_YN|POC_CCL_YN"/>
     <property key="param139" value="PRJ_QLT_MNG_YN|PRJ_QLT_MNG_YN"/>
     <property key="param140" value="KISS_CUT_YN|KISS_CUT_YN"/>
+    <property key="param141" value="SUB_PTL_THK|SUB_PTL_THK"/>
+    <property key="param142" value="SUB_PTL_WTH|SUB_PTL_WTH"/>
+    <property key="param143" value="SUB_PTL_LTH|SUB_PTL_LTH"/>
+    <property key="param144" value="SUB_PTL_YN|SUB_PTL_YN"/>
     <property key="description" value="이 Activity는 PI처리상태='J'인 품질설계요청정보를&#xD;&#xA;인터페이스그룹아이디, 인터페이스 SEQ, PI Sequence Key Value에 기준값에 따라 1건씩 read하는 Activity이다.&#xD;&#xA;&#xD;&#xA;1. 서비스간 정보 Interface를 위해 PosContext에 항목변수를 관리한다.&#xD;&#xA;   - 처리 서비스가 Batch job임을 구분(BATCH_JOB=true)&#xD;&#xA;   - 처리대상 주문 행번 건수를 관리&#xD;&#xA;      . 처리 건수관리 변수의 값이 null인 경우 이전 서비스의 Result set건수를 &#xD;&#xA;        읽어 값을 Setting&#xD;&#xA;      . 처리 건수가 0이 아닌 경우 transition='success', &#xD;&#xA;                         0인 경우 'exit'로 Set하고 종료한다.&#xD;&#xA;2. 처리대상 항목을 저장변수에 등록한다.&#xD;&#xA;3. 후속 서비스에서 사용하는 변수를 초기화하여 등록한다.&#xD;&#xA;   . 자동검토결과 Check 변수(P_AUTO_RESULT= 'N‘)&#xD;&#xA;   . 오류발생여부 Check 변수(P_ERR_KEY= 'N‘)&#xD;&#xA;   . 오류 logging변수 Space처리      &#xD;&#xA;4. 처리대상 건수를 1건 차감한다."/>
   </child>
   <child xsi:type="Glue:Activity" id="50091" location="268,10" size="107,-1" input="//@wire.1" output="//@wire.9" name="COMMIT">
@@ -176,7 +180,7 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="130"/>
+    <property key="param-count" value="134"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="C102100CMN.insert"/>
     <property key="param0" value="ORD_NO"/>
@@ -309,6 +313,10 @@
     <property key="param127" value="POC_CCL_YN"/>
     <property key="param128" value="PRJ_QLT_MNG_YN"/>
     <property key="param129" value="KISS_CUT_YN"/>
+    <property key="param130" value="SUB_PTL_THK"/>
+    <property key="param131" value="SUB_PTL_WTH"/>
+    <property key="param132" value="SUB_PTL_LTH"/>
+    <property key="param133" value="SUB_PTL_YN"/>
     <property key="description" value="이 Activity는 품질설계의뢰정보를 품질설계결과-공통테이블에 &#xD;&#xA;등록하는 Activity이다. (설계대상여부를 'Y', 품질설계상태를 'I'로 등록)"/>
   </child>
   <child xsi:type="Glue:ModifyActivity" id="50994" location="722,373" size="124,-1" input="//@wire.6 //@wire.8 //@wire.20 //@wire.21" output="//@wire.4" name="MODIFY_IF">
@@ -376,7 +384,7 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="116"/>
+    <property key="param-count" value="120"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="C102100CMNA.insert"/>
     <property key="param0" value="ORD_NO"/>
@@ -495,6 +503,10 @@
     <property key="param113" value="MTL_PRD_ORD_YN"/>
     <property key="param114" value="PRJ_QLT_MNG_YN"/>
     <property key="param115" value="KISS_CUT_YN"/>
+    <property key="param116" value="SUB_PTL_THK"/>
+    <property key="param117" value="SUB_PTL_WTH"/>
+    <property key="param118" value="SUB_PTL_LTH"/>
+    <property key="param119" value="SUB_PTL_YN"/>
     <property key="description" value="이 Activity는 품질설계의뢰정보를 품질설계결과-공통테이블에 &#xD;&#xA;등록하는 Activity이다. (설계대상여부를 'N', 품질설계상태를'A'로 등록)"/>
   </child>
   <child xsi:type="Glue:Activity" id="155609" location="427,129" size="132,-1" input="//@wire.15" output="//@wire.16 //@wire.18" name="ROUTER_ORD_NO">
@@ -957,7 +969,7 @@
     <property key="class" value="com.posdata.glue.biz.activity.PosInsert"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
-    <property key="param-count" value="130"/>
+    <property key="param-count" value="134"/>
     <property key="resultkey" value="RK_RESULT"/>
     <property key="sqlkey" value="C102100CMN.insert"/>
     <property key="param0" value="ORD_NO"/>
@@ -1090,6 +1102,10 @@
     <property key="param127" value="POC_CCL_YN"/>
     <property key="param128" value="PRJ_QLT_MNG_YN"/>
     <property key="param129" value="KISS_CUT_YN"/>
+    <property key="param130" value="SUB_PTL_THK"/>
+    <property key="param131" value="SUB_PTL_WTH"/>
+    <property key="param132" value="SUB_PTL_LTH"/>
+    <property key="param133" value="SUB_PTL_YN"/>
     <property key="description" value="이 Activity는 품질설계의뢰정보를 품질설계결과-공통테이블에 &#xD;&#xA;등록하는 Activity이다. (설계대상여부를 'Y', 품질설계상태를 'I'로 등록)"/>
   </child>
   <property key="tx1" value="true"/>

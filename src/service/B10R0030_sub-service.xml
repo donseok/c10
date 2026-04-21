@@ -112,7 +112,7 @@
     <property name="param48" value="ORD_STDP_LLV" />
     <property name="param99" value="TAG_HUE_FRN" />
     <property name="param49" value="ORD_STDP_ULV" />
-    <property name="param-count" value="116" />
+    <property name="param-count" value="120" />
     <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
     <property name="param111" value="TAG_PART_NO" />
     <property name="param112" value="MO_CVT_ORD_YN" />
@@ -121,9 +121,13 @@
     <property name="param50" value="ORD_STDP_CNT_LLV" />
     <property name="param115" value="KISS_CUT_YN" />
     <property name="param51" value="ORD_STDP_CNT_ULV" />
+    <property name="param116" value="SUB_PTL_THK" />
     <property name="param52" value="ORD_PAK_UNT_WGT" />
+    <property name="param117" value="SUB_PTL_WTH" />
     <property name="param53" value="ORD_SML_PAK_WGT" />
+    <property name="param118" value="SUB_PTL_LTH" />
     <property name="param54" value="ORD_SML_PAK_MIR" />
+    <property name="param119" value="SUB_PTL_YN" />
     <property name="param55" value="ORD_UNT_WGT" />
     <property name="param56" value="ORD_PAK_MTH" />
     <property name="param57" value="ORD_COIL_IDIA" />
@@ -250,6 +254,10 @@
     <property name="param29" value="CUS_REQ_DLV_DD|CUS_REQ_DLV_DD" />
     <property name="countName" value="QLT_DSN_STS_CD_COUNT" />
     <property name="param140" value="KISS_CUT_YN|KISS_CUT_YN" />
+    <property name="param141" value="SUB_PTL_THK|SUB_PTL_THK" />
+    <property name="param142" value="SUB_PTL_WTH|SUB_PTL_WTH" />
+    <property name="param143" value="SUB_PTL_LTH|SUB_PTL_LTH" />
+    <property name="param144" value="SUB_PTL_YN|SUB_PTL_YN" />
     <property name="param80" value="URG_MTL_TP|URG_MTL_TP" />
     <property name="param30" value="ORD_SCH_DLV_DD|ORD_SCH_DLV_DD" />
     <property name="param81" value="ORD_RCP_DD|ORD_RCP_DD" />
@@ -300,7 +308,7 @@
     <property name="param48" value="ORD_PTT_FLM_ADH_LOC_CD|ORD_PTT_FLM_ADH_LOC_CD" />
     <property name="param99" value="BAK_MRK|BAK_MRK" />
     <property name="param49" value="ORD_WGT_UNT|ORD_WGT_UNT" />
-    <property name="param-count" value="141" />
+    <property name="param-count" value="145" />
     <property name="param110" value="TAG_HUE_FRN|TAG_HUE_FRN" />
     <property name="param111" value="TAG_HUE_BAK|TAG_HUE_BAK" />
     <property name="bind-result" value="RK_SEARCH" />
@@ -454,7 +462,7 @@
     <property name="param48" value="ORD_STDP_LLV" />
     <property name="param99" value="TAG_HUE_FRN" />
     <property name="param49" value="ORD_STDP_ULV" />
-    <property name="param-count" value="130" />
+    <property name="param-count" value="134" />
     <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
     <property name="param111" value="TAG_PART_NO" />
     <property name="param112" value="MO_CVT_ORD_YN" />
@@ -514,9 +522,13 @@
     <property name="param4" value="PRD_SHP" />
     <property name="param5" value="FLOW_CHL" />
     <property name="param6" value="ORD_KND" />
+    <property name="param130" value="SUB_PTL_THK" />
     <property name="param7" value="ORD_USG_CD" />
+    <property name="param131" value="SUB_PTL_WTH" />
     <property name="param8" value="CUS_CD" />
+    <property name="param132" value="SUB_PTL_LTH" />
     <property name="param9" value="ACT_CUS_CD" />
+    <property name="param133" value="SUB_PTL_YN" />
     <property name="param70" value="ORD_RCP_DD" />
     <property name="param20" value="GW_ASG_CD" />
     <property name="param71" value="ORD_SHT_LOD_MTH" />
@@ -817,7 +829,7 @@
     <property name="param48" value="ORD_STDP_LLV" />
     <property name="param99" value="TAG_HUE_FRN" />
     <property name="param49" value="ORD_STDP_ULV" />
-    <property name="param-count" value="130" />
+    <property name="param-count" value="134" />
     <property name="param110" value="PTT_FLM_NOT_ADH_DS" />
     <property name="param111" value="TAG_PART_NO" />
     <property name="param112" value="MO_CVT_ORD_YN" />
@@ -877,9 +889,13 @@
     <property name="param4" value="PRD_SHP" />
     <property name="param5" value="FLOW_CHL" />
     <property name="param6" value="ORD_KND" />
+    <property name="param130" value="SUB_PTL_THK" />
     <property name="param7" value="ORD_USG_CD" />
+    <property name="param131" value="SUB_PTL_WTH" />
     <property name="param8" value="CUS_CD" />
+    <property name="param132" value="SUB_PTL_LTH" />
     <property name="param9" value="ACT_CUS_CD" />
+    <property name="param133" value="SUB_PTL_YN" />
     <property name="param70" value="ORD_RCP_DD" />
     <property name="param20" value="GW_ASG_CD" />
     <property name="param71" value="ORD_SHT_LOD_MTH" />
