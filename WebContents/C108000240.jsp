@@ -394,8 +394,8 @@
 
 				winObj.getDhxWindow().attachEvent("onClose", function(win){
 					this.hide();
+					find('find','C108000240_Form_1','C108000240_Grid_1');
 					return true;
-					//winObj.unload();
 				});
 // 			}else{
 // 				dhtmlx.alert("권한이 없습니다");
