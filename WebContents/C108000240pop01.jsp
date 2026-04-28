@@ -366,11 +366,11 @@ if(DEV_ID == null || DEV_ID == ""){
                     if (_v.indexOf(' : ') > -1) form1.setItemValue(_codeFields[_ci], _v.split(' : ')[0]);
                 }
 
-                // undefined → 공백 처리
-                var _undFields = ['RAL_CD','PNT_FLM_THK','DEV_ETC','NAT_CD','CCL_BOM_NO'];
+                // undefined/null/공백 처리 (모든 폼 필드)
+                var _undFields = ['RAL_CD','PNT_FLM_THK','DEV_ETC','NAT_CD','CCL_BOM_NO','LUS_RT_CD'];
                 for (var _ui = 0; _ui < _undFields.length; _ui++) {
                     var _uv = form1.getItemValue(_undFields[_ui]);
-                    if (_uv === undefined || _uv === null || _uv === 'undefined') form1.setItemValue(_undFields[_ui], '');
+                    if (_uv === undefined || _uv === null || _uv === 'undefined' || String(_uv) === 'undefined') form1.setItemValue(_undFields[_ui], '');
                 }
 
                 // 최종 저장
@@ -2530,7 +2530,8 @@ function onFormLoadFunction(formDivObj){
                                     dhtmlx.alert("개발이 중단되었습니다.");
 
                                 } else {
-                                    //             parent.find('find', 'C108000240_Form_1', 'C108000240_Grid_1');
+                                    // 저장 성공 → 부모 화면 자동 조회 + 창 닫기
+                                    try { parent.find('find', 'C108000240_Form_1', 'C108000240_Grid_1'); } catch(e) {}
                                     winClose();
                                 }
                                 lastSaveAction = '';

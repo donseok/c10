@@ -46,7 +46,7 @@ public class C108000240pop01AppSaveEtc extends PosActivity {
 			int dmlCnt = 0;
 
 			// 특이사항 저장 (Form_1에서 DEV_ETC 입력이 제거되어 null일 수 있음)
-			if (DEV_ETC != null && DEV_ETC.length > 0 && DEV_ETC[0] != null && !DEV_ETC[0].isEmpty()) {
+			if (DEV_ETC != null && DEV_ETC.length > 0 && DEV_ETC[0] != null && !DEV_ETC[0].isEmpty() && !"undefined".equals(DEV_ETC[0])) {
 				PosParameter param = new PosParameter();
 				param.setValueParamter("DEV_ID", DEV_ID[0]);
 				param.setValueParamter("REG_CHR_ID", REG_CHR_ID[0]);
