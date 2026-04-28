@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C108000240 Page 쿼리파일"> 
+	 <query id="C108000240.select" desc="C108000240 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240 칼라 개발 관리 조회 C108000240.select SJS */
+SUBSTR(DEV_ID,1,8) || '-' || SUBSTR(DEV_ID,9) AS DEV_ID
+, (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+   WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000'
+   AND CD_V = NVL(
+       (SELECT A.DEPT_CD FROM C10APUSER.TB_C10_CLR_DEV_APRV A
+               WHERE A.DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
+               AND NVL(A.APRV_STATUS,'0') NOT IN ('2','3')
+               AND A.DEV_PRG_CD = (SELECT MIN(B.DEV_PRG_CD) FROM C10APUSER.TB_C10_CLR_DEV_APRV B
+                                   WHERE B.DEV_ID = A.DEV_ID AND NVL(B.APRV_STATUS,'0') NOT IN ('2','3')
+                                   AND B.DEV_PRG_CD IN ('1','3','4','5','6','7'))
+               AND ROWNUM = 1),
+       (SELECT A.DEPT_CD FROM C10APUSER.TB_C10_CLR_DEV_APRV A
+               WHERE A.DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
+               AND A.APRV_STATUS = '2'
+               AND A.DEV_PRG_CD = (SELECT MAX(B.DEV_PRG_CD) FROM C10APUSER.TB_C10_CLR_DEV_APRV B
+                                   WHERE B.DEV_ID = A.DEV_ID AND B.APRV_STATUS = '2'
+                                   AND B.DEV_PRG_CD IN ('1','3','4','5','6','7'))
+               AND ROWNUM = 1)
+   )) AS APRV_DEPT_NM
+, (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = DEV_CHR_DEPT) AS DEV_CHR_DEPT_NM
+, (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = DEV_CHR_ID) AS DEV_CHR_NM
+, CASE
+    WHEN DEV_PRG_CD = '8' THEN '개발중단'
+    WHEN EXISTS (SELECT 1 FROM C10APUSER.TB_C10_CLR_DEV_APRV
+                 WHERE DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID AND APRV_STATUS = '3'
+                 AND DEV_PRG_CD IN ('1','2','3','4','5','6'))
+    THEN (SELECT DECODE(MIN(DEV_PRG_CD), '1','개발접수', '2','분석/개발', '3','시편승인', '4','사양승인', '5','BOM등록', '6','개발완료대기', '7','개발완료')
+          FROM C10APUSER.TB_C10_CLR_DEV_APRV
+          WHERE DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID AND APRV_STATUS = '3'
+          AND DEV_PRG_CD IN ('1','2','3','4','5','6','7')) || '(반려)'
+    ELSE NVL(
+        (SELECT DECODE(MIN(DEV_PRG_CD), '1','개발접수', '3','시편승인', '4','사양승인', '5','BOM등록', '6','개발완료대기', '7','개발완료')
+         FROM C10APUSER.TB_C10_CLR_DEV_APRV
+         WHERE DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
+         AND NVL(APRV_STATUS, '0') NOT IN ('2', '3')
+         AND DEV_PRG_CD IN ('1','3','4','5','6','7')),
+        '개발완료')
+  END AS DEV_PRG_CD
+, DEV_SBJ
+, DECODE(FNL_CUS_CD, NULL, NULL, FNL_CUS_CD || ' : ' || (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'CUS_CD'
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = FNL_CUS_CD)) AS FNL_CUS_CD
+, DECODE(CUS_CD, NULL, NULL, CUS_CD || ' : ' || (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'CUS_CD'
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = CUS_CD)) AS CUS_CD
+, (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'ORD_USG_CD'
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = ORD_USG_CD) AS ORD_USG_CD
+, (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'PRD_NM_CD'
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = PRD_NM_CD) AS PRD_NM_CD
+, (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'RSN_TP'
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = RSN_TP) AS RSN_TP
+, (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'COT_TP'
+    AND   CATEGORY_GROUP_NM = 'AP0000'
+    AND   CD_V = COT_TP) AS COT_TP
+, (SELECT CD_V_MEANING
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'GW_ASG_CD'
+    AND   CATEGORY_GROUP_NM = 'SG0000'
+    AND   CD_V = GW_ASG_CD) AS GW_ASG_CD
+, SUBSTR(DEV_REQ_DD,1,4) || '-' || SUBSTR(DEV_REQ_DD,5,2) || '-' || SUBSTR(DEV_REQ_DD,7,2) AS DEV_REQ_DD
+, SUBSTR(DEV_END_DD,1,4) || '-' || SUBSTR(DEV_END_DD,5,2) || '-' || SUBSTR(DEV_END_DD,7,2) AS DEV_END_DD
+, TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') AS LAST_UPDATE_DD
+FROM C10APUSER.TB_C10_CLR_DEV_MNG
+WHERE DEV_REQ_DD BETWEEN REPLACE(:DEV_REQ_DD_START,'-','') AND REPLACE(:DEV_REQ_DD_END,'-','')
+AND (:DEV_PRG_CD IS NULL OR :DEV_PRG_CD = '%' OR DEV_PRG_CD = :DEV_PRG_CD)
+AND (:PRD_NM_CD IS NULL OR :PRD_NM_CD = '%' OR PRD_NM_CD = :PRD_NM_CD)
+AND (:RSN_TP IS NULL OR :RSN_TP = '&' OR RSN_TP = :RSN_TP)
+AND (:COT_TP IS NULL OR :COT_TP = '%' OR COT_TP = :COT_TP)
+AND (:CUS_CD IS NULL OR CUS_CD LIKE '%' || :CUS_CD || '%')
+AND (:FNL_CUS_CD IS NULL OR FNL_CUS_CD LIKE '%' || :FNL_CUS_CD || '%')
+AND (:DEV_CHR_DEPT IS NULL OR DEV_CHR_DEPT LIKE '%' || :DEV_CHR_DEPT || '%')
+AND (:RAL_CD IS NULL OR RAL_CD LIKE '%' || :RAL_CD || '%')
+AND (:DEV_CHR_ID IS NULL OR DEV_CHR_ID LIKE '%' || :DEV_CHR_ID || '%' OR EXISTS (SELECT 1 FROM M90APUSER.TB_SEC_USER WHERE USER_NO = DEV_CHR_ID AND USER_NAME LIKE '%' || :DEV_CHR_ID || '%'))
+AND (:DEV_ID IS NULL OR DEV_ID LIKE '%' || REPLACE(:DEV_ID,'-','') || '%')
+AND (:APRV_DEPT_CD IS NULL OR (DEV_PRG_CD NOT IN ('8') AND EXISTS (
+    SELECT 1 FROM C10APUSER.TB_C10_CLR_DEV_APRV A
+    WHERE A.DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
+    AND A.DEPT_CD LIKE '%' || :APRV_DEPT_CD || '%'
+    AND NVL(A.APRV_STATUS, '0') NOT IN ('2', '3')
+    AND A.DEV_PRG_CD = (
+        SELECT MIN(B.DEV_PRG_CD)
+        FROM C10APUSER.TB_C10_CLR_DEV_APRV B
+        WHERE B.DEV_ID = A.DEV_ID
+        AND NVL(B.APRV_STATUS, '0') NOT IN ('2', '3')
+        AND B.DEV_PRG_CD IN ('1','3','4','5','6')
+    )
+)))
+ORDER BY DEV_REQ_DD DESC, DEV_ID DESC
+		 ]]> 
+	 </query>
+	 <query id="C108000240_Grid_1.insert" desc="M" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240 시험분석 의뢰   C108000240_Grid_1.insert  SJS */
+INTO MESAPUSER.TB_M20_TST_ANL_RSL
+(
+TST_ANL_REQ_NO
+, TST_ANL_INP_ID
+, TST_ANL_INP_DH
+, TST_ANL_HRB
+, TST_ANL_ERI
+, TST_ANL_YP
+, TST_ANL_TS
+, TST_ANL_EL
+, TST_ANL_BG
+, TST_ANL_ZN_TOP_WS
+, TST_ANL_ZN_TOP_CS
+, TST_ANL_ZN_TOP_DS
+, TST_ANL_ZN_TOP_AVG
+, TST_ANL_ZN_BAK_WS
+, TST_ANL_ZN_BAK_CS
+, TST_ANL_ZN_BAK_DS
+, TST_ANL_ZN_BAK_AVG
+, TST_ANL_PRD_THK
+, TST_ANL_GAL_THK
+, TST_ANL_CR_CCT
+, TST_ANL_ETC_TST
+, TST_ANL_INP_CMT 
+, CREATED_OBJECT_TYPE
+, CREATED_OBJECT_ID
+, CREATED_PROGRAM_ID
+, CREATION_TIMESTAMP
+, LAST_UPDATED_OBJECT_TYPE
+, LAST_UPDATED_OBJECT_ID
+, LAST_UPDATE_PROGRAM_ID
+, LAST_UPDATE_TIMESTAMP
+
+) VALUES
+(
+:TST_ANL_REQ_NO
+, :TST_ANL_INP_ID
+, :TST_ANL_INP_DH
+, :TST_ANL_HRB
+, :TST_ANL_ERI
+, :TST_ANL_YP
+, :TST_ANL_TS
+, :TST_ANL_EL
+, :TST_ANL_BG
+, :TST_ANL_ZN_TOP_WS
+, :TST_ANL_ZN_TOP_CS
+, :TST_ANL_ZN_TOP_DS
+, :TST_ANL_ZN_TOP_AVG
+, :TST_ANL_ZN_BAK_WS
+, :TST_ANL_ZN_BAK_CS
+, :TST_ANL_ZN_BAK_DS
+, :TST_ANL_ZN_BAK_AVG
+, :TST_ANL_PRD_THK
+, :TST_ANL_GAL_THK
+, :TST_ANL_CR_CCT
+, :TST_ANL_ETC_TST
+, :TST_ANL_INP_CMT 
+, :ObjectType
+, :ObjectId
+, :ProgramId
+, :Timestamp
+, :ObjectType
+, :ObjectId
+, :ProgramId
+, :Timestamp
+)
+		 ]]> 
+	 </query>
+	 <query id="C108000240.sms.insert" desc="시험분석의뢰 완료 알림 메시지" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240 시험분석의뢰 완료 SMS발송  C108000240.sms1.insert  SJS */ 
+  INTO EAIAPUSER.TB_M90_SMS (
+       IF_GRP_ID
+     , SEQ_NO  
+     , SEQNO
+     , XSTAT                     
+     , XDATE                     
+     , XTIME                     
+     , INTIME                    
+     , REQTIME    
+       ---------------------------------
+     , RECVNAME                  
+     , CALLPHONE       
+     , SENDNAME                  
+     , REQPHONE  
+       ---------------------------------
+     , SUBJECT
+     , MSG          
+       ---------------------------------
+     , RESULT                    
+     , KIND                      
+     , SYSCODE
+       ---------------------------------
+     , CREATED_OBJECT_TYPE       
+     , CREATED_OBJECT_ID         
+     , CREATED_PROGRAM_ID        
+     , CREATION_TIMESTAMP        
+     , LAST_UPDATED_OBJECT_TYPE  
+     , LAST_UPDATED_OBJECT_ID    
+     , LAST_UPDATE_PROGRAM_ID    
+     , LAST_UPDATE_TIMESTAMP
+       ---------------------------------
+     , BIZTYPE
+     , YELLOWID_KEY
+     , TEMPLATECODE
+     , RESEND
+   )
+SELECT 
+       TO_CHAR(SYSTIMESTAMP, 'YYYYMMDDHH24MISSFF3') AS IF_GRP_ID
+     , EAIAPUSER.SQ_M90_SMS.NEXTVAL AS SEQ_NO
+     , 700000000 + TO_NUMBER( TO_CHAR( SYSDATE, 'yy' ) ) * 1000000 + EAIAPUSER.SQ_M90_SMS2.NEXTVAL AS SEQNO
+     , 'R' AS XSTAT
+     , TO_CHAR(SYSDATE, 'YYYYMMDD') AS XDATE
+     , TO_CHAR(SYSDATE, 'HH24MISS') AS XTIME
+     , TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') AS INTIME
+     , '00000000000000' AS REQTIME
+       ---------------------------------
+     , :RECEIVE_USER_NAME
+     , REPLACE(:PHN_NO,'-','')
+     , 'MES'
+     , '0222220114'
+       ---------------------------------
+     , '시험분석의뢰 완료'     
+     , '[MES 알림] 시험/분석의뢰 시험완료'||CHR(10)||CHR(10)||
+       '시험이 완료되었습니다. 시험결과를 확인해주세요.'||CHR(10)||
+       '결과확인 경로 : MES > 품질판정 > 샘플관리 > 시험/분석의뢰'||CHR(10)||CHR(10)||
+		'의뢰번호 : '||:TST_ANL_REQ_NO||CHR(10)||
+		'의뢰명 : '||:TST_ANL_SBJ||CHR(10)||
+		'의뢰자 : '||:TST_ANL_REQ_ID||CHR(10)||
+		'분석요망일 : '||:TST_LMT_DD
+       ---------------------------------
+     , '0' AS RESULT
+     , 'T' AS KIND
+     , 'UMES' AS SYSCODE
+       ---------------------------------
+     , :ObjectType AS CREATED_OBJECT_TYPE
+     , :ObjectId AS CREATED_OBJECT_ID
+     , :ProgramId AS CREATED_PROGRAM_ID
+     , :Timestamp AS CREATION_TIMESTAMP
+     , :ObjectType AS LAST_UPDATED_OBJECT_TYPE
+     , :ObjectId AS LAST_UPDATED_OBJECT_ID
+     , :ProgramId AS LAST_UPDATE_PROGRAM_ID
+     , :Timestamp AS LAST_UPDATE_TIMESTAMP
+       ---------------------------------
+     , 'at' AS BIZTYPE
+     , '1915d4111be77a18ffd7c5f0bdba383278a9ffc0' AS YELLOWID_KEY
+     , 'UNI_QA_06' AS TEMPLATECODE
+     , 'Y' AS RESEND
+FROM DUAL
+		 ]]> 
+	 </query>
+	 <query id="C108000240.send.update" desc="M" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE  /*+ C108000240 시험분석의뢰 완료 전송일 업데이트 C108000240.send.update  SJS */
+MESAPUSER.TB_M20_TST_ANL
+SET TST_SMS_SND_DH = SYSDATE
+, LAST_UPDATED_OBJECT_TYPE = :ObjectType
+, LAST_UPDATED_OBJECT_ID   = :ObjectId
+, LAST_UPDATE_PROGRAM_ID   = :ProgramId
+, LAST_UPDATE_TIMESTAMP    = :Timestamp
+WHERE TST_ANL_REQ_NO = :TST_ANL_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000240.delete" desc="M" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+DELETE  /*+ C108000240 시험분석의뢰 의뢰 삭제 C108000240.delete  SJS */
+FROM MESAPUSER.TB_M20_TST_ANL
+WHERE TST_ANL_REQ_NO = :TST_ANL_REQ_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000240.update" desc="M" fetchSize="10" isNamed="true">
+		 <![CDATA[ 
+UPDATE  /*+ C108000240 시험분석의뢰 비고 업데이트 C108000240.update  SJS */
+MESAPUSER.TB_M20_TST_ANL
+SET TST_NOTE = :TST_NOTE
+, LAST_UPDATED_OBJECT_TYPE = :ObjectType
+, LAST_UPDATED_OBJECT_ID   = :ObjectId
+, LAST_UPDATE_PROGRAM_ID   = :ProgramId
+, LAST_UPDATE_TIMESTAMP    = :Timestamp
+WHERE TST_ANL_REQ_NO = :TST_ANL_REQ_NO
+		 ]]> 
+	 </query>
+</queryMap>

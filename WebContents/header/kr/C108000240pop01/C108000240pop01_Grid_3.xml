@@ -1,0 +1,32 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+</beforeInit>
+<afterInit>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+</afterInit>
+<column align="center" id="FILE_TP" index="1" sort="str" type="ro" width="15">구분</column>
+<column align="left" id="IMG_NM" index="2" type="ahref_idx" width="*">파일명</column>
+<column align="center" id="RGS_PRS_NM" index="3" sort="str" type="ro" width="15">작성자</column>
+<column align="center" id="RGS_DD" index="4" sort="str" type="ro" width="15">등록일</column>
+<column align="center" hidden="true" id="IMG_ADR" index="5" sort="str" type="ro"/>
+<column align="center" hidden="true" id="SEQ_NO" index="6" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CHK_IMG_NM" index="7" sort="str" type="ro"/>
+<column align="center" hidden="true" id="DEL_FLAG" index="8" sort="str" type="ro"/>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">FILE_TP,IMG_NM,RGS_PRS_NM,RGS_DD,IMG_ADR,SEQ_NO,CHK_IMG_NM,DEL_FLAG</userdata>
+</rows>

@@ -135,7 +135,7 @@ public class C10FileUpload5 extends PosActivity {
 
 			} else if ("08".equals(img_rgs_flag)) {
 				/* 미사용
-				if ("1".equals(prdSpcTp)) { 
+				if ("1".equals(prdSpcTp)) {
 					//제품이미지인 경우 (prdSpcTp 값 : 1)
 					queryStr = C10ConstantsIF.C106000140POP01_INSERT;
 					delQueryStr = C10ConstantsIF.C106000140POP01_DELETE;
@@ -147,6 +147,11 @@ public class C10FileUpload5 extends PosActivity {
 					upQueryStr = C10ConstantsIF.C106000140POP02_UPDATE;
 				}
 				*/
+			} else if ("09".equals(img_rgs_flag)) {
+				//칼라개발의뢰 첨부파일 (IMG_RGS_FLAG 값 : 09)
+				queryStr    = C10ConstantsIF.C108000240POP02_INSERT;
+				delQueryStr = C10ConstantsIF.C108000240POP02_DELETE;
+				upQueryStr  = C10ConstantsIF.C108000240POP02_UPDATE;
 			}
 
 			logger.logDebug("delete_flag : " + delete_flag);

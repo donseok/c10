@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C108000240pop01 Page 쿼리파일"> 
+	 <query id="C108000240pop01.select" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT   /*+ C108000240pop01 칼라 개발 관리 조회 C108000240pop01.SELECT SJS */
+SUBSTR(DEV_ID,1,8) || '-' || SUBSTR(DEV_ID,9) AS DEV_ID
+, DEV_PRG_CD 
+, DEV_SBJ
+, DECODE(FNL_CUS_CD, NULL, NULL, FNL_CUS_CD || ' : ' || (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'CUS_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = FNL_CUS_CD)) AS FNL_CUS_CD
+, DECODE(CUS_CD, NULL, NULL, CUS_CD || ' : ' || (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'CUS_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = CUS_CD)) AS CUS_CD
+, DECODE(ORD_USG_CD, NULL, NULL, ORD_USG_CD || ' : ' || (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'ORD_USG_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = ORD_USG_CD)) AS ORD_USG_CD
+, PRD_NM_CD
+, GW_ASG_CD
+, RSN_TP
+, COT_TP
+, SUBSTR(DEV_REQ_DD,1,4) || '-' || SUBSTR(DEV_REQ_DD,5,2) || '-' || SUBSTR(DEV_REQ_DD,7,2) AS DEV_REQ_DD
+, SUBSTR(DEV_END_DD,1,4) || '-' || SUBSTR(DEV_END_DD,5,2) || '-' || SUBSTR(DEV_END_DD,7,2) AS DEV_END_DD
+, TO_CHAR(LAST_UPDATE_TIMESTAMP,'YYYY-MM-DD') AS LAST_UPDATE_DD
+, DEV_CHR_DEPT
+, (SELECT CD_V_MEANING 
+    FROM M00APUSER.VI_M00_CODE_ACCESS
+     WHERE CD_TP = 'DEPT_CD'         
+    AND   CATEGORY_GROUP_NM = 'SZ0000'
+    AND   CD_V = DEV_CHR_DEPT) AS DEV_CHR_DEPT_NM
+, DEV_CHR_ID 
+, (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = DEV_CHR_ID) AS DEV_CHR_NM
+, CLR_NM
+, RAL_CD
+, DECODE(NAT_CD, NULL, NULL, NAT_CD || ' : ' || (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'NAT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = NAT_CD)) AS NAT_CD
+, PNT_FLM_THK
+, MTL_GRT 
+, PTT_FLM
+, CCL_BOM_NO
+, LUS_RT_CD
+, PNT_FLM_GRT
+, DEV_ETC 
+FROM C10APUSER.TB_C10_CLR_DEV_MNG
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findMaxNo" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 칼라 개발 관리 개발번호 조회  C108000240pop01.findMaxNo SJS */ 
+	TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(NVL(SUBSTR(MAX(DEV_ID), 9, 4), 0)+1, 4, '0') AS DEV_ID
+ FROM C10APUSER.TB_C10_CLR_DEV_ETC
+ WHERE SUBSTR(DEV_ID, 1, 8) = TO_CHAR(SYSDATE, 'YYYYMMDD')
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.upsert" desc="가" isNamed="true">
+		 <![CDATA[ 
+MERGE /*+ C108000240pop01  칼라 개발 의뢰 등록  C108000240pop01_FORM_1.upsert  SJS */ 
+INTO C10APUSER.TB_C10_CLR_DEV_MNG DEV
+USING (
+    SELECT :DEV_ID AS DEV_ID
+	  FROM DUAL
+) TMP
+ON (DEV.DEV_ID = TMP.DEV_ID)
+WHEN MATCHED THEN
+    UPDATE SET
+         DEV.DEV_PRG_CD    = '1'
+        , DEV_SBJ          = :DEV_SBJ
+        , DEV_END_DD       = REPLACE(:DEV_END_DD,'-','')
+        , DEV_CHR_DEPT	   = (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :DEV_CHR_ID)
+        , DEV_CHR_ID       = :DEV_CHR_ID
+        , BF_CHR_ID        = :BF_CHR_ID
+        , FNL_CUS_CD       = :FNL_CUS_CD
+        , CUS_CD           = :CUS_CD
+        , CLR_NM           = :CLR_NM
+        , ORD_USG_CD       = :ORD_USG_CD
+        , PRD_NM_CD        = :PRD_NM_CD
+        , GW_ASG_CD        = :GW_ASG_CD
+        , RSN_TP           = :RSN_TP
+        , COT_TP           = :COT_TP
+        , RAL_CD           = :RAL_CD
+        , PNT_FLM_THK      = :PNT_FLM_THK
+        , MTL_GRT          = :MTL_GRT
+        , NAT_CD           = :NAT_CD
+        , PTT_FLM          = :PTT_FLM
+        , CCL_BOM_NO       = :CCL_BOM_NO
+        , LUS_RT_CD        = :LUS_RT_CD
+        , PNT_FLM_GRT      = :PNT_FLM_GRT
+        , DEV_ETC          = :DEV_ETC 
+        , DEV.LAST_UPDATED_OBJECT_TYPE = :ObjectType
+        , DEV.LAST_UPDATED_OBJECT_ID   = :ObjectId
+        , DEV.LAST_UPDATE_PROGRAM_ID   = :ProgramId
+        , DEV.LAST_UPDATE_TIMESTAMP    = :Timestamp
+WHEN NOT MATCHED THEN
+    INSERT (
+        DEV_ID
+        , DEV_PRG_CD
+        , DEV_SBJ
+        , DEV_REQ_DD
+        , DEV_END_DD
+        , DEV_CHR_DEPT
+        , DEV_CHR_ID
+        , BF_CHR_ID
+        , FNL_CUS_CD
+        , CUS_CD
+        , CLR_NM
+        , ORD_USG_CD
+        , PRD_NM_CD
+        , GW_ASG_CD
+        , RSN_TP
+        , COT_TP
+        , RAL_CD
+        , PNT_FLM_THK
+        , MTL_GRT
+        , NAT_CD
+        , PTT_FLM
+        , CCL_BOM_NO
+        , LUS_RT_CD
+        , PNT_FLM_GRT
+        , DEV_ETC 
+        , CREATED_OBJECT_TYPE
+        , CREATED_OBJECT_ID
+        , CREATED_PROGRAM_ID
+        , CREATION_TIMESTAMP
+        , LAST_UPDATED_OBJECT_TYPE
+        , LAST_UPDATED_OBJECT_ID
+        , LAST_UPDATE_PROGRAM_ID
+        , LAST_UPDATE_TIMESTAMP
+    )
+    VALUES (
+        :DEV_ID
+        , '1'
+        , :DEV_SBJ
+        , TO_CHAR(SYSDATE, 'YYYYMMDD')
+        , REPLACE(:DEV_END_DD,'-','')
+        , (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :DEV_CHR_ID)
+        , :DEV_CHR_ID
+        , :BF_CHR_ID
+        , :FNL_CUS_CD
+        , :CUS_CD
+        , :CLR_NM
+        , :ORD_USG_CD
+        , :PRD_NM_CD
+        , :GW_ASG_CD
+        , :RSN_TP
+        , :COT_TP
+        , :RAL_CD
+        , :PNT_FLM_THK
+        , :MTL_GRT
+        , :NAT_CD
+        , :PTT_FLM
+        , :CCL_BOM_NO
+        , :LUS_RT_CD
+        , :PNT_FLM_GRT
+        , :DEV_ETC            
+        , :ObjectType
+        , :ObjectId
+        , :ProgramId
+        , :Timestamp
+        , :ObjectType
+        , :ObjectId
+        , :ProgramId
+        , :Timestamp
+    )
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.insertEtc" desc="가" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240pop01 칼라개발관리 특이사항 저장 C108000240pop01.insertEtc SJS */ 
+INTO C10APUSER.TB_C10_CLR_DEV_ETC
+(
+DEV_ID
+, SEQ
+, REG_DD
+, REG_CHR_DEPT
+, REG_CHR_ID
+, DEV_ETC
+, CREATED_OBJECT_TYPE
+, CREATED_OBJECT_ID
+, CREATED_PROGRAM_ID
+, CREATION_TIMESTAMP
+, LAST_UPDATED_OBJECT_TYPE
+, LAST_UPDATED_OBJECT_ID
+, LAST_UPDATE_PROGRAM_ID
+, LAST_UPDATE_TIMESTAMP
+)
+VALUES
+(
+:DEV_ID
+, (SELECT NVL(MAX(SEQ),0)+1 FROM C10APUSER.TB_C10_CLR_DEV_ETC WHERE DEV_ID = :DEV_ID)
+, TO_CHAR(SYSDATE,'YYYYMMDD')
+, (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :REG_CHR_ID)
+, :REG_CHR_ID
+, :DEV_ETC
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findEtc" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 칼라 개발 관리 특이사항 조회  C108000240pop01.findEtc SJS */
+DEV_ID
+, SEQ
+, SUBSTR(REG_DD,1,4) || '-' || SUBSTR(REG_DD,5,2) || '-' || SUBSTR(REG_DD,7,2) REG_DD
+, (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = REG_CHR_DEPT) REG_CHR_DEPT
+, (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = REG_CHR_ID) REG_CHR_ID
+, DEV_ETC
+, REG_CHR_ID REG_CHR_ID_RAW
+, NVL(DEL_FLAG,'N') DEL_FLAG
+FROM C10APUSER.TB_C10_CLR_DEV_ETC
+WHERE DEV_ID = :DEV_ID
+ORDER BY SEQ DESC
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateEtc" desc="특이사항 내용 수정" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 특이사항 수정 C108000240pop01.updateEtc SJS */
+C10APUSER.TB_C10_CLR_DEV_ETC
+SET DEV_ETC = :DEV_ETC
+  , LAST_UPDATED_OBJECT_TYPE = :OBJECTTYPE
+  , LAST_UPDATED_OBJECT_ID = :OBJECTID
+  , LAST_UPDATE_PROGRAM_ID = :PROGRAMID
+  , LAST_UPDATE_TIMESTAMP = :TIMESTAMP
+WHERE DEV_ID = :DEV_ID
+AND SEQ = :SEQ
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.softDeleteEtc" desc="특이사항 소프트 삭제" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 특이사항 삭제 C108000240pop01.softDeleteEtc SJS */
+C10APUSER.TB_C10_CLR_DEV_ETC
+SET DEL_FLAG = 'Y'
+  , LAST_UPDATED_OBJECT_TYPE = :OBJECTTYPE
+  , LAST_UPDATED_OBJECT_ID = :OBJECTID
+  , LAST_UPDATE_PROGRAM_ID = :PROGRAMID
+  , LAST_UPDATE_TIMESTAMP = :TIMESTAMP
+WHERE DEV_ID = :DEV_ID
+AND SEQ = :SEQ
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findDept" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 칼라 개발 관리 결재 부서 조회 C108000240pop01.findDept SJS */  
+CD_V AS DEPT_CD, CD_V_MEANING AS DEPT_NM
+FROM M00APUSER.VI_M00_CODE_ACCESS
+WHERE CD_TP = 'DEPT_CD'  
+AND CATEGORY_GROUP_NM = 'SZ0000'
+AND SUBSTR(CD_V,1,4) in ('5010','6000')
+AND CD_V != '50106465'
+AND EXISTS (SELECT 1 FROM M90APUSER.TB_M90_EMP_INF WHERE DEPT_CD = CD_V)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findDeptUser" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 칼라 개발 관리 결재 담당자 조회 C108000240pop01.findUser SJS */  
+USER_NO, USER_NAME
+FROM M90APUSER.TB_M90_EMP_INF
+WHERE DEPT_CD = :DEPT_CD
+AND CMP_RGN_DATE IS NULL
+AND EXISTS (SELECT 1 FROM TB_SEC_USER WHERE USER_NO = USER_NO)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.insertAprvDept" desc="가" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240pop01 칼라개발관리 결재부서 저장 C108000240pop01.insertAprvDept SJS */
+INTO C10APUSER.TB_C10_CLR_DEV_APRV
+(
+APRV_ID
+, DEV_ID
+, DEV_PRG_CD
+, DEPT_CD
+, APRV_USER
+, APRV_STATUS
+, APRV_DT
+, OPINION
+, CREATED_OBJECT_TYPE
+, CREATED_OBJECT_ID
+, CREATED_PROGRAM_ID
+, CREATION_TIMESTAMP
+, LAST_UPDATED_OBJECT_TYPE
+, LAST_UPDATED_OBJECT_ID
+, LAST_UPDATE_PROGRAM_ID
+, LAST_UPDATE_TIMESTAMP
+)
+VALUES
+(
+SEQ_CLR_DEV_APRV.NEXTVAL
+, :DEV_ID
+, :DEV_PRG_CD
+, :DEPT_CD
+, :APRV_USER
+, '1'
+, ''
+, :OPINION
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.insertAprvAutoApprove" desc="개발접수 자동 승인 INSERT" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240pop01 칼라개발관리 개발접수 자동승인 C108000240pop01.insertAprvAutoApprove SJS */
+INTO C10APUSER.TB_C10_CLR_DEV_APRV
+(
+APRV_ID
+, DEV_ID
+, DEV_PRG_CD
+, DEPT_CD
+, APRV_USER
+, APRV_STATUS
+, APRV_DT
+, OPINION
+, CREATED_OBJECT_TYPE
+, CREATED_OBJECT_ID
+, CREATED_PROGRAM_ID
+, CREATION_TIMESTAMP
+, LAST_UPDATED_OBJECT_TYPE
+, LAST_UPDATED_OBJECT_ID
+, LAST_UPDATE_PROGRAM_ID
+, LAST_UPDATE_TIMESTAMP
+)
+VALUES
+(
+SEQ_CLR_DEV_APRV.NEXTVAL
+, :DEV_ID
+, :DEV_PRG_CD
+, :DEPT_CD
+, :APRV_USER
+, '2'
+, TO_CHAR(SYSDATE, 'YYYYMMDD')
+, :OPINION
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+, :OBJECTTYPE
+, :OBJECTID
+, :PROGRAMID
+, :TIMESTAMP
+)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findAprv" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240POP01 칼라 개발 관리 결재리스트 조회 C108000240POP01.FINDAPRV SJS */
+APRV_ID
+, DEV_ID
+, DEV_PRG_CD
+, DEPT_CD
+, APRV_USER
+, APRV_STATUS
+, CASE WHEN APRV_DT IS NOT NULL AND LENGTH(APRV_DT) = 8 THEN SUBSTR(APRV_DT,1,4) || '-' || SUBSTR(APRV_DT,5,2) || '-' || SUBSTR(APRV_DT,7,2) ELSE APRV_DT END AS APRV_DT
+, OPINION 
+, DECODE(DEV_PRG_CD,'1','개발접수','2','분석/개발','3','시편승인','4','사양승인','5','BOM등록','6','개발완료대기','7','개발완료','8','개발중단')DEV_PRG_NM
+, DECODE(APRV_STATUS,'1','요청','2','완료','3','중단')APRV_STATUS_NM
+, (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+   WHERE CD_TP = 'DEPT_CD'  
+	 AND CATEGORY_GROUP_NM = 'SZ0000'
+	 AND SUBSTR(CD_V,1,4) in ('5010','6000')
+	 AND CD_V != '50106465'
+	 AND CD_V = DEPT_CD) AS DEPT_NM
+, (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = APRV_USER) AS APRV_USER_NM
+FROM C10APUSER.TB_C10_CLR_DEV_APRV
+WHERE DEV_ID = :DEV_ID
+ORDER BY DEV_PRG_CD
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateAprvStatus" desc="결재 처리 (승인/반려)" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 결재 처리 C108000240pop01.updateAprvStatus SJS */
+C10APUSER.TB_C10_CLR_DEV_APRV
+SET APRV_STATUS = :APRV_RESULT
+  , APRV_USER = :AGR_USER_ID
+  , APRV_DT = TO_CHAR(SYSDATE, 'YYYYMMDD')
+  , OPINION = :OPINION_TEXT
+  , LAST_UPDATED_OBJECT_TYPE = :OBJECTTYPE
+  , LAST_UPDATED_OBJECT_ID = :OBJECTID
+  , LAST_UPDATE_PROGRAM_ID = :PROGRAMID
+  , LAST_UPDATE_TIMESTAMP = :TIMESTAMP
+WHERE DEV_ID = :DEV_ID
+AND DEV_PRG_CD = :AGR_STEP_CD
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findDeptInfo" desc="가" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240POP01 칼라 개발 관리 담당자 부서 조회  C108000240POP01.FINDDEPTINFO SJS */ 
+DEPT_CD
+, (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = DEPT_CD) DEPT_NM
+FROM M90APUSER.TB_M90_EMP_INF
+WHERE USER_NO = :USER_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.saveAprv" desc="가" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라 개발 관리 결재 C108000240pop01.saveAprv SJS */
+ C10APUSER.TB_C10_CLR_DEV_APRV
+ SET APRV_STATUS = :APRV_RESULT
+ , APRV_USER = :AGR_USER_ID
+ , APRV_DT = TO_CHAR(SYSDATE, 'YYYYMMDD')
+ , OPINION = :OPINION_TEXT
+ , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+ , LAST_UPDATED_OBJECT_ID = :ObjectId
+ , LAST_UPDATE_PROGRAM_ID = :ProgramId
+ , LAST_UPDATE_TIMESTAMP = :Timestamp
+ WHERE DEV_ID = :DEV_ID
+ AND DEV_PRG_CD = :AGR_STEP_CD
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findUser" desc="사용자 검색" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 담당자 변경 사용자 검색 C108000240pop01.findUser SJS */
+USER_NO, USER_NAME, DEPT_CD,
+  (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+   WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = DEPT_CD) DEPT_NM
+FROM M90APUSER.TB_M90_EMP_INF
+WHERE CMP_RGN_DATE IS NULL
+AND (USER_NO LIKE '%' || :SEARCH_KEY || '%' OR USER_NAME LIKE '%' || :SEARCH_KEY || '%')
+AND EXISTS (SELECT 1 FROM M90APUSER.TB_SEC_USER B WHERE B.USER_NO = TB_M90_EMP_INF.USER_NO)
+ORDER BY USER_NAME
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateDevChr" desc="담당자 변경" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라 개발 관리 담당자 변경 C108000240pop01.updateDevChr SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET DEV_CHR_ID = :NEW_CHR_ID
+  , DEV_CHR_DEPT = (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :NEW_CHR_ID)
+  , BF_CHR_ID = :BF_CHR_ID
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.insertDevStop" desc="개발 중단 결재 레코드 INSERT" isNamed="true">
+		 <![CDATA[ 
+INSERT /*+ C108000240pop01 칼라개발관리 개발중단 저장 C108000240pop01.insertDevStop SJS */
+INTO C10APUSER.TB_C10_CLR_DEV_APRV
+(
+APRV_ID
+, DEV_ID
+, DEV_PRG_CD
+, DEPT_CD
+, APRV_USER
+, APRV_STATUS
+, APRV_DT
+, OPINION
+, CREATED_OBJECT_TYPE
+, CREATED_OBJECT_ID
+, CREATED_PROGRAM_ID
+, CREATION_TIMESTAMP
+, LAST_UPDATED_OBJECT_TYPE
+, LAST_UPDATED_OBJECT_ID
+, LAST_UPDATE_PROGRAM_ID
+, LAST_UPDATE_TIMESTAMP
+)
+VALUES
+(
+SEQ_CLR_DEV_APRV.NEXTVAL
+, :DEV_ID
+, '7'
+, (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :AGR_USER_ID)
+, :AGR_USER_ID
+, '3'
+, TO_CHAR(SYSDATE,'YYYYMMDD')
+, :OPINION_TEXT
+, :ObjectType
+, :ObjectId
+, :ProgramId
+, :Timestamp
+, :ObjectType
+, :ObjectId
+, :ProgramId
+, :Timestamp
+)
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateDevStop" desc="개발 중단 상태 UPDATE" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 개발중단 상태변경 C108000240pop01.updateDevStop SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET DEV_PRG_CD = '8'
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateAprvDeptCd" desc="처리담당부서 변경" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 처리담당부서 변경 C108000240pop01.updateAprvDeptCd SJS */
+C10APUSER.TB_C10_CLR_DEV_APRV
+SET DEPT_CD = :DEPT_CD
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+AND DEV_PRG_CD = :DEV_PRG_CD
+AND NVL(APRV_STATUS, '0') != '2'
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateLastTs" desc="메인 테이블 최종업데이트일시 갱신" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 최종업데이트 갱신 C108000240pop01.updateLastTs SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.autoApproveComplete" desc="개발완료 자동 승인" isNamed="true">
+		 <![CDATA[
+UPDATE /*+ C108000240pop01 개발완료 자동 승인 C108000240pop01.autoApproveComplete SJS */
+C10APUSER.TB_C10_CLR_DEV_APRV
+SET APRV_STATUS = '2'
+  , APRV_USER = :APRV_USER
+  , DEPT_CD = (SELECT DEPT_CD FROM M90APUSER.TB_M90_EMP_INF WHERE USER_NO = :APRV_USER)
+  , APRV_DT = TO_CHAR(SYSDATE, 'YYYYMMDD')
+  , OPINION = '개발완료대기 승인자에 의한 자동 승인'
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+AND DEV_PRG_CD = '7'
+AND NVL(APRV_STATUS, '0') NOT IN ('2', '3')
+		 ]]>
+	 </query>
+	 <query id="C108000240pop01.updateDevPrg" desc="결재 시 개발진도 및 최종업데이트일시 갱신" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 칼라개발관리 개발진도 갱신 C108000240pop01.updateDevPrg SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET DEV_PRG_CD = :AGR_STEP_CD
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findBom" desc="CCL-BOM 검색 (4자리 이상)" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 CCL-BOM 검색 C108000240pop01.findBom SJS */
+CCL_BOM_NO
+FROM C10APUSER.TB_C10_CCL_BOM
+WHERE UPPER(CCL_BOM_NO) LIKE '%' || UPPER(:CCL_BOM_NO) || '%'
+AND CCL_BOM_USE_YN = 'Y'
+ORDER BY CCL_BOM_NO
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateCclBom" desc="CCL_BOM_NO 업데이트" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 CCL_BOM_NO 업데이트 C108000240pop01.updateCclBom SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET CCL_BOM_NO = :CCL_BOM_NO
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.autoApproveAnalysis" desc="분석/개발 자동 승인" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 분석/개발 자동 승인 C108000240pop01.autoApproveAnalysis SJS */
+C10APUSER.TB_C10_CLR_DEV_APRV
+SET APRV_STATUS = '2'
+  , APRV_USER = '-'
+  , APRV_DT = TO_CHAR(SYSDATE, 'YYYYMMDD')
+  , OPINION = '시편승인 담당자에게 문의'
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+AND DEV_PRG_CD = '2'
+AND NVL(APRV_STATUS, '0') NOT IN ('2', '3')
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.updateDevPrgByMax" desc="결재 상태 기준 DEV_PRG_CD 갱신" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C108000240pop01 DEV_PRG_CD MAX 갱신 C108000240pop01.updateDevPrgByMax SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET DEV_PRG_CD = NVL((
+    SELECT MAX(DEV_PRG_CD)
+    FROM C10APUSER.TB_C10_CLR_DEV_APRV
+    WHERE DEV_ID = :DEV_ID
+    AND APRV_STATUS = '2'
+    AND DEV_PRG_CD IN ('1','2','3','4','5','6','7')
+), '1')
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+		 ]]> 
+	 </query>
+	 <query id="C108000240pop01.findFile" desc="첨부파일 목록 조회" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C108000240pop01 칼라개발의뢰 첨부파일 조회 C108000240pop01.findFile SJS */
+FILE_TP, IMG_NM,
+       (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = A.RGS_PRS_ID) RGS_PRS_NM,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD') RGS_DD,
+       IMG_ADR, SEQ_NO, IMG_NM CHK_IMG_NM,
+       NVL(A.DEL_FLAG, 'N') DEL_FLAG
+FROM C10APUSER.TB_C10_CLR_DEV_FILE A
+WHERE DEV_ID = :DEV_ID
+ORDER BY SEQ_NO
+		 ]]> 
+	 </query>
+</queryMap>

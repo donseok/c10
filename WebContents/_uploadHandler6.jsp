@@ -50,7 +50,7 @@ if (!isMultipart) {
         	if("IMG_RGS_FLAG_ID2".equals(f_field_name))	IMG_RGS_FLAG_ID2 = fitem.getString();
         	if("IMG_RGS_FLAG_ID3".equals(f_field_name))	IMG_RGS_FLAG_ID3 = fitem.getString();
         	if("IMG_RGS_FLAG_ID4".equals(f_field_name))	IMG_RGS_FLAG_ID4 = fitem.getString();
-        	if("PRD_SPC_TP".equals(f_field_name))	    PRD_SPC_TP       = fitem.getString();
+        	if("PRD_SPC_TP".equals(f_field_name))	    PRD_SPC_TP       = fitem.getString("UTF-8");
 		}
 	}
 
@@ -68,9 +68,11 @@ if (!isMultipart) {
 		FILE_ADDR = "/APP/WAS/FILES/C10/06" ;
 	else if("07".equals(IMG_RGS_FLAG))  
 		FILE_ADDR = "/APP/WAS/FILES/C10/07" ;
-	else if("08".equals(IMG_RGS_FLAG))  
+	else if("08".equals(IMG_RGS_FLAG))
 		FILE_ADDR = "/APP/WAS/FILES/C10/08" ;
-	
+	else if("09".equals(IMG_RGS_FLAG))
+		FILE_ADDR = "/APP/WAS/FILES/C10/09" ;
+
 	// Process the uploaded items
 	Iterator iter = items.iterator();	
 	while (iter.hasNext()) {

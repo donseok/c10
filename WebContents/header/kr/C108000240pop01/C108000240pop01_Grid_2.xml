@@ -1,0 +1,36 @@
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath">
+				<param>dhtmlx/codebase/imgs/</param>
+			</call>
+			<call command="setSkin">
+				<param>dhx_skyblue</param>
+			</call>
+			<call command="enableMultiselect">
+				<param>true</param>
+			</call>
+		</beforeInit>
+		<afterInit>
+			<call command="setDateFormat">
+				<param>%Y-%m-%d</param>
+			</call>
+			<call command="enableEditEvents">
+				<param>true</param>
+				<param>true</param>
+				<param>false</param>
+			</call>
+		</afterInit>
+		<column align="center" id="REG_DD" index="1" sort="str" type="ro" width="12">등록일자</column>
+		<column align="center" id="REG_CHR_DEPT" index="2" sort="str" type="ro" width="13" color="FFFFC0">소속</column>
+		<column align="center" id="REG_CHR_ID" index="3" sort="str" type="ro" width="10">담당자</column>
+		<column align="left" id="DEV_ETC" index="4" sort="str" type="ed" width="65">내용</column>
+		<column align="center" id="SEQ" index="5" sort="str" type="ro" width="0">SEQ</column>
+		<column align="center" id="REG_CHR_ID_RAW" index="6" sort="str" type="ro" width="0">작성자ID</column>
+		<column align="center" id="DEL_FLAG" index="7" sort="str" type="ro" width="0">삭제여부</column>
+		<settings>
+			<colwidth>%</colwidth>
+		</settings>
+	</head>
+	<userdata name="column-info">REG_DD,REG_CHR_DEPT,REG_CHR_ID,DEV_ETC,SEQ,REG_CHR_ID_RAW,DEL_FLAG</userdata>
+</rows>

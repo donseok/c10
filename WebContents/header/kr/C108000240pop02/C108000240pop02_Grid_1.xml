@@ -1,0 +1,55 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableMultiselect">
+<param>true</param>
+</call>
+<call command="enableValidation">
+<param>true</param>
+</call>
+<call command="setColValidators">
+<param>NotEmpty</param>
+</call>
+</beforeInit>
+<afterInit>
+<call command="setDateFormat">
+<param>%Y-%m-%d</param>
+</call>
+</afterInit>
+<column align="center" id="SEQ_NO" index="1" sort="str" type="ro" width="10">순번</column>
+<column align="center" id="FILE_TP" index="2" sort="str" type="ro" width="15">구분</column>
+<column align="left" id="IMG_NM" index="3" type="ahref_idx" width="*">파일명</column>
+<column align="center" id="RGS_DH" index="4" type="ro" width="20">등록일자</column>
+<column align="center" id="RGS_PRS_NM" index="5" type="ro" width="16">등록자</column>
+<column align="center" id="DEL_IMG" index="6" type="ro" width="8">삭제</column>
+<column align="center" hidden="true" id="DEV_ID" index="7" sort="str" type="ro"/>
+<column align="center" hidden="true" id="IMG_ADR" index="8" sort="str" type="ro"/>
+<column align="center" hidden="true" id="CHK_IMG_NM" index="9" sort="str" type="ro"/>
+<settings>
+<colwidth>%</colwidth>
+</settings>
+</head>
+<userdata name="column-info">SEQ_NO,FILE_TP,IMG_NM,RGS_DH,RGS_PRS_NM,DEL_IMG,DEV_ID,IMG_ADR,CHK_IMG_NM</userdata>
+<row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+<row id="1">
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+<cell></cell>
+</row>
+</rows>

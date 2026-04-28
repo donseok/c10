@@ -1,0 +1,100 @@
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath">
+			<param>./dhtmlx/codebase/imgs/</param>
+			</call>
+			<call command="setSkin">
+			<param>dhx_skyblue</param>
+			</call>
+			<call command="enableMultiselect">
+			<param>true</param>
+			</call>
+			<call command="enableValidation">
+			<param>true</param>
+			</call>
+			<call command="enableRowspan">
+			<param>true</param>
+			</call>
+			<call command="enableColSpan">
+			<param>true</param>
+			</call>
+			<call command="setNoHeader">
+			<param>true</param>
+			</call>
+			<call command="enableAlterCss">
+			<param>even</param>
+			<param>uneven</param>
+			</call>
+			<call command="enableMarkedCells">
+			<param>true</param>
+			</call>
+			<call command="setDateFormat">
+			<param>%Y-%m-%d</param>
+			</call>
+			<call command="enableSmartRendering">
+				<param>true</param>
+			</call>
+			<call command="setAwaitedRowHeight">
+				<param>22</param>
+			</call>
+			<call command="enableMultiline">
+				<param>true</param>
+			</call>
+		</beforeInit>
+		<afterInit>
+			<call command="enableEditEvents">
+				<param>true</param>
+				<param>true</param>
+				<param>false</param>
+			</call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>
+		<column align="right" id="SEQ_NO" index="1" sort="str" table="TB_M20_JDG_PRD" type="ro" width="50" color="FFFFFF"></column>
+		<column align="center" id="PROC_CD" index="2" sort="str" table="TB_M20_JDG_PRD" type="ro" width="50" color="FFFFFF">#cspan</column>
+		<settings>
+			<colwidth>%</colwidth>
+		</settings>
+	</head>
+	<userdata name="column-info">SEQ_NO,PROC_CD</userdata>
+<row id="0">
+<cell class="form_cell" colspan="2" style="color:blue;font-weight:bold;text-align:center;">구분</cell>
+<cell class="form_cell"/>
+</row>
+<row id="1">
+<cell class="form_cell" rowspan="3"  style="color:blue;font-weight:bold;text-align:center;">시험내역</cell>
+<cell class="form_cell"  style="color:blue;font-weight:bold;">제품명</cell>
+</row>
+<row id="2">
+<cell class="form_cell"/>
+<cell class="form_cell"  style="color:blue;font-weight:bold;">시험항목</cell>
+</row>
+<row id="3">
+<cell class="form_cell"/>
+<cell class="form_cell" style="color:blue;font-weight:bold;">시험부위</cell>
+</row>
+<row id="4">
+<cell class="form_cell" rowspan="5"  style="color:blue;font-weight:bold;text-align:center;">시험샘플이력<br/>(제품이력)</cell>
+<cell class="form_cell" style="color:blue;font-weight:bold;">Maker(타사)</cell>
+</row>
+<row id="5">
+<cell class="form_cell"/>
+<cell class="form_cell" style="color:blue;font-weight:bold;">COIL ID</cell>
+</row>
+<row id="6">
+<cell class="form_cell"/>
+<cell class="form_cell" style="color:blue;font-weight:bold;">SIZE</cell>
+</row>
+<row id="7">
+<cell class="form_cell"/>
+<cell class="form_cell" style="color:blue;font-weight:bold;">부착량</cell>
+</row>
+<row id="8">
+<cell class="form_cell"/>
+<cell class="form_cell" style="color:blue;font-weight:bold;">재질</cell>
+</row>
+<row id="9">
+<cell class="form_cell" colspan="2" style="color:blue;font-weight:bold;text-align:center;">기타사항</cell>
+<cell class="form_cell"/>
+</row>
+</rows>

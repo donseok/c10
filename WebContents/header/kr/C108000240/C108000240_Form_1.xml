@@ -1,0 +1,50 @@
+<items>
+	<item background-color="255,128,128" type="block">
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="제품군" name="PRD_NM_CD" type="combo" />
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item inputWidth="100" labelAlign="right" label="도료타입" name="RSN_TP" type="combo" />
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="수요가" name="CUS_CD" type="input" />
+		<item type="newcolumn"/>
+		<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="영업팀" name="DEV_CHR_DEPT" type="input" />
+		<item type="newcolumn"/>
+		<item format="serchIcon_DEV_CHR_DEPT" name="template" type="template" value="search"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" labelAlign="right" label="처리담당부서" name="APRV_DEPT_CD" type="input" />
+		<item type="newcolumn"/>
+		<item format="serchIcon_APRV_DEPT_CD" name="template" type="template" value="search"/>
+		<item foreground-color="255,140,50" offset="15" type="newcolumn"/>
+		<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="70" label="등록일자" name="DEV_REQ_DD_START" readonly="true" type="calendar" style="background-color:#FFFFC0" />
+		<item offset="0" type="newcolumn"/>
+		<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="70" label="~" name="DEV_REQ_DD_END" readonly="true" type="calendar" style="background-color:#FFFFC0" />
+		<item foreground-color="255,140,50" offset="100" type="newcolumn"/>
+		<item command="clearGridSelection" label="신규등록" name="clearGridSelection" type="linkbutton" value="신규등록"/>
+		<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		<item command="find" label="조회" name="find" type="button" value="조회"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item command="winClose" label="닫기" name="winClose" type="button" value="닫기"/>
+	</item>
+	<item background-color="255,128,128" type="block">
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="개발진도" name="DEV_PRG_CD" type="combo" />
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item inputWidth="100" labelAlign="right" label="코팅타입" name="COT_TP" type="combo" />
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="최종고객사" name="FNL_CUS_CD" type="input" />
+		<item type="newcolumn"/>
+		<item format="serchIcon_FNL_CUS_CD" name="template" type="template" value="search"/>
+		<item foreground-color="255,140,50" offset="5" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="영업담당자" name="DEV_CHR_ID" type="input" />
+		<item foreground-color="255,140,50" offset="25" type="newcolumn"/>
+		<item labelWidth="100" inputWidth="100" labelAlign="right" label="RAL CODE" name="RAL_CD" type="input" />
+		<item foreground-color="255,140,50" offset="17" type="newcolumn"/>
+		<item labelWidth="70" inputWidth="100" labelAlign="right" label="개발번호" name="DEV_ID" type="input" />
+		<item name="H_CUS_CD" type="hidden" value="" />
+		<item name="H_FNL_CUS_CD" type="hidden" value="" />
+		<item name="H_DEV_CHR_DEPT" type="hidden" value="" />
+		<item name="H_APRV_DEPT_CD" type="hidden" value="" />
+	</item>
+</items>

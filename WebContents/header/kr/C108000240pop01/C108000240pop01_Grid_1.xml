@@ -1,0 +1,140 @@
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath">
+				<param>dhtmlx/codebase/imgs/</param>
+			</call>
+			<call command="setSkin">
+				<param>dhx_skyblue</param>
+			</call>
+			<call command="enableMultiselect">
+				<param>false</param>
+			</call>
+		</beforeInit>
+		<afterInit>
+			<call command="setDateFormat">
+				<param>%Y-%m-%d</param>
+			</call>
+			<call command="setNoHeader">
+				<param>false</param>
+			</call>
+			<call command="enableEditEvents">
+				<param>true</param>
+				<param>true</param>
+				<param>false</param>
+			</call>
+		</afterInit>
+		<column align="center"  id="DEV_PRG_NM"  type="ro"      width="12">개발진도</column>
+		<column align="center"  id="APRV_STATUS_NM"   type="ro"      width="12">상태</column>
+		<column align="center"  id="DEPT_NM"  type="combo_v" width="20">처리담당부서</column>
+		<column align="center"  id="APRV_USER_NM"   type="ro"      width="12">결재자</column>
+		<column align="center"  id="APRV_DT"       type="ro"      width="12">처리일자</column>
+		<column align="center"  id="OPINION"   type="ro"      width="32">의견</column>
+		<!-- 숨김 컬럼: 로직용 -->
+		<column align="center" hidden="true" id="DEV_PRG_CD"  type="ro" width="0">단계코드</column>
+		<column align="center" hidden="true" id="DEPT_CD" type="ro" width="0">부서코드</column>
+		<column align="center" hidden="true" id="APRV_USER"  type="ro" width="0">결재자ID</column>
+<!-- 		<column align="center" hidden="true" id="AGR_YN"       type="ro" width="0">결재여부</column> -->
+		<column align="center" hidden="true" id="APRV_STATUS" type="ro" width="18">상태</column>
+		<settings>
+			<colwidth>%</colwidth>
+		</settings>
+	</head>
+	<userdata name="column-info">DEV_PRG_NM,APRV_STATUS_NM,DEPT_NM,APRV_USER_NM,APRV_DT,OPINION,DEV_PRG_CD,DEPT_CD,APRV_USER,APRV_STATUS</userdata>
+	<row id="step_1">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">개발접수</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>1</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_2">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">분석/개발</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>2</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_3">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">시편승인</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>3</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_4">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">사양승인</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>4</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_5">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">BOM등록</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>5</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_6">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">개발완료대기</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>6</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_7">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">개발완료</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>7</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+	<row id="step_8">
+		<cell style="color:#CC0000; font-weight:bold; text-align:center;">개발중단</cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell style="text-align:center;"></cell>
+		<cell>8</cell>
+		<cell></cell>
+		<cell></cell>
+		<cell></cell>
+	</row>
+</rows>

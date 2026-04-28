@@ -49,18 +49,22 @@ else if("05".equals(IMG_RGS_FLAG))
 	FILE_ADDR = "/APP/WAS/FILES/C10/05" ;
 else if("06".equals(IMG_RGS_FLAG))  
 	FILE_ADDR = "/APP/WAS/FILES/C10/06" ;
-else if("07".equals(IMG_RGS_FLAG))  
+else if("07".equals(IMG_RGS_FLAG))
 	FILE_ADDR = "/APP/WAS/FILES/C10/07" ;
+else if("09".equals(IMG_RGS_FLAG))
+	FILE_ADDR = "/APP/WAS/FILES/C10/09" ;
+
+String SOFT_DELETE = request.getParameter("SOFT_DELETE");
 
 try{
-	File file = new File(FILE_ADDR , FILE_NAME);
-	
-	if(file.exists()){
-		file.delete();
+	// 소프트 삭제가 아닌 경우에만 실제 파일 삭제
+	if (!"Y".equals(SOFT_DELETE)) {
+		File file = new File(FILE_ADDR , FILE_NAME);
+		if(file.exists()){
+			file.delete();
+		}
 	}
-	
 
-	
 	PosContext ctx = new PosContext();
 	ctx.put("IMG_RGS_FLAG"		, IMG_RGS_FLAG);  //06
 	ctx.put("IMG_RGS_FLAG_ID"	, IMG_RGS_FLAG_ID);  //W4720

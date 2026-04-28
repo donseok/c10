@@ -104,7 +104,30 @@ public class C10ConstantsIF
     public static final String C106000050POP07_DELETE 	= "C106000050pop07.delete";
     public static final String C106000050POP07_UPDATE   = "C106000050pop07.update";
     
-    
+    public static final String C108000240POP01_ETC_INSERT   = "C108000240pop01.insertEtc";
+    public static final String C108000240POP01_FIND_DEPT   = "C108000240pop01.findDept";
+    public static final String C108000240POP01_INSERT_APRV_DEPT = "C108000240pop01.insertAprvDept";
+    public static final String C108000240POP01_INSERT_DEV_STOP = "C108000240pop01.insertDevStop";
+    public static final String C108000240POP01_UPDATE_DEV_STOP = "C108000240pop01.updateDevStop";
+    public static final String C108000240POP01_ETC_UPDATE   = "C108000240pop01.updateEtc";
+    public static final String C108000240POP01_ETC_DELETE   = "C108000240pop01.softDeleteEtc";
+    public static final String C108000240POP01_SAVE_APRV    = "C108000240pop01.saveAprv";
+    public static final String C108000240POP01_UPDATE_DEV_PRG = "C108000240pop01.updateDevPrg";
+    public static final String C108000240POP01_UPDATE_APRV_DEPT_CD = "C108000240pop01.updateAprvDeptCd";
+    public static final String C108000240POP01_UPDATE_LAST_TS = "C108000240pop01.updateLastTs";
+    public static final String C108000240POP01_FIND_BOM = "C108000240pop01.findBom";
+    public static final String C108000240POP01_UPDATE_CCL_BOM = "C108000240pop01.updateCclBom";
+    public static final String C108000240POP01_AUTO_APPROVE_ANALYSIS = "C108000240pop01.autoApproveAnalysis";
+    public static final String C108000240POP01_UPDATE_DEV_PRG_BY_MAX = "C108000240pop01.updateDevPrgByMax";
+    public static final String C108000240POP01_UPDATE_DEV_CHR = "C108000240pop01.updateDevChr";
+    public static final String C108000240POP01_INSERT_APRV_AUTO = "C108000240pop01.insertAprvAutoApprove";
+    public static final String C108000240POP01_AUTO_APPROVE_COMPLETE = "C108000240pop01.autoApproveComplete";
+
+    public static final String C108000240POP02_INSERT 	= "C108000240pop02.insert";
+    public static final String C108000240POP02_DELETE 	= "C108000240pop02.delete";
+    public static final String C108000240POP02_UPDATE   = "C108000240pop02.update";
+
+
     // service name
     public static final java.lang.String C104000050_SERVICE = "C104000050-service";
 

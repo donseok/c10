@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C108000240pop01-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="특이사항 신규저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C108000240pop01.insertEtc" />
+    <property name="isAudit" value="true" />
+    <property name="update-sql" value="C108000240pop01.insertEtc" />
+  </activity>
+  <activity name="부서변경" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01DeptChange">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="승인담당자정보" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findDeptUser" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="특이사항 수정" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="update-sql" value="C108000240pop01.updateEtc" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="특이사항 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findEtc" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="칼라 개발 의뢰" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="승인 &amp; 특이사항 저장" />
+    <property name="dao" value="mesdao" />
+    <property name="insert-sql" value="C108000240pop01.upsert" />
+    <property name="isAudit" value="true" />
+    <property name="update-sql" value="C108000240pop01.upsert" />
+  </activity>
+  <activity name="승인 &amp; 특이사항 저장" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01AppSaveEtc">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="결재자 정보 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findAprv" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="담당자 변경" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01ChangeUser">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="결재부서 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findDept" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="칼라개발번호 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findMaxNo" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="담당자 검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findUser" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="save" value="칼라 개발 의뢰" />
+    <transition name="find" value="조회" />
+    <transition name="maxNo" value="칼라개발번호 조회" />
+    <transition name="findEtc" value="특이사항 조회" />
+    <transition name="findDeptUser" value="승인담당자정보" />
+    <transition name="findDept" value="결재부서 조회" />
+    <transition name="saveEtc" value="특이사항 저장" />
+    <transition name="findAprv" value="결재자 정보 조회" />
+    <transition name="findDeptInfo" value="담당자 부서 조회" />
+    <transition name="approval" value="결재" />
+    <transition name="saveDevStop" value="개발 중단 처리" />
+    <transition name="findFile" value="파일목록 조회" />
+    <transition name="findUser" value="담당자 검색" />
+    <transition name="changeUser" value="담당자 변경" />
+    <transition name="saveAprv" value="결재" />
+    <transition name="saveDeptChange" value="부서변경" />
+    <transition name="findBom" value="BOM 검색" />
+    <transition name="insertEtcRow" value="특이사항 신규저장" />
+    <transition name="updateEtc" value="특이사항 수정" />
+    <transition name="softDeleteEtc" value="특이사항 삭제" />
+    <transition name="changeBom" value="BOM변경" />
+  </activity>
+  <activity name="BOM변경" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01BomChange">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="BOM 검색" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findBom" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="특이사항 삭제" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="update-sql" value="C108000240pop01.softDeleteEtc" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="개발 중단 처리" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01DevStop">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="특이사항 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
+    <transition name="success" value="end" />
+    <property name="update-sql" value="C108000240pop01.insertEtc" />
+    <property name="isAudit" value="true" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="담당자 부서 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findDeptInfo" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="파일목록 조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C108000240pop01.findFile" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="결재" class="com.unionsteel.mes.c10.activity.ui.C108000240pop01Approval">
+    <transition name="success" value="end" />
+    <property name="isAudit" value="true" />
+  </activity>
+</service>
+

@@ -1,0 +1,8 @@
+<items>
+	<item label="첨부파일" type="fieldset" width="974" offsetLeft="">
+		<item type="block" width="970">
+			<item type="button" name="BTN_ATTACH" value="첨부" width="80"/>
+			<item type="button" name="BTN_DOWNLOAD_ALL" value="전체다운로드" width="100"/>
+		</item>
+	</item>
+</items>

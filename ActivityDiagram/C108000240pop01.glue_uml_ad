@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="269,30" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="319,380" size="-1,-1" input="//@wire.3 //@wire.5 //@wire.7 //@wire.9 //@wire.12 //@wire.15 //@wire.17 //@wire.19 //@wire.21 //@wire.23 //@wire.25 //@wire.34 //@wire.36 //@wire.38 //@wire.40 //@wire.42 //@wire.44"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="36,82" size="1311,-1" input="//@wire.0" output="//@wire.1 //@wire.2 //@wire.4 //@wire.6 //@wire.8 //@wire.11 //@wire.14 //@wire.18 //@wire.20 //@wire.22 //@wire.24 //@wire.26 //@wire.27 //@wire.30 //@wire.32 //@wire.33 //@wire.35 //@wire.37 //@wire.39 //@wire.41 //@wire.43" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="265291" location="294,204" size="91,-1" input="//@wire.1" output="//@wire.16" name="칼라 개발 의뢰">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="insert-sql" value="C108000240pop01.upsert"/>
+    <property key="isAudit" value="true"/>
+    <property key="update-sql" value="C108000240pop01.upsert"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="265553" location="61,211" size="84,-1" input="//@wire.2" output="//@wire.3" name="조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.select"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="489732" location="165,203" size="107,-1" input="//@wire.4" output="//@wire.5" name="칼라개발번호 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findMaxNo"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - ajax로 입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를 조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="490601" location="556,207" size="84,-1" input="//@wire.6" output="//@wire.7" name="특이사항 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findEtc"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="491363" location="760,216" size="96,-1" input="//@wire.8" output="//@wire.9" name="승인담당자정보">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findDeptUser"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="492347" location="882,218" size="96,-1" input="//@wire.11" output="//@wire.12" name="결재부서 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findDept"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="494965" location="437,239" size="91,-1" input="//@wire.14" output="//@wire.15" name="특이사항 저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000240pop01.insertEtc"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495042" location="267,288" size="151,-1" input="//@wire.16" output="//@wire.17" name="승인 &amp; 특이사항 저장">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01AppSaveEtc"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="승인, 반려 처리 및 SMS발송&#xD;&#xA;&#xD;&#xA;prg_cd = 5 반려&#xD;&#xA;prg_cd = 4 최총합의&#xD;&#xA;prg_cd = 1,2,3 합의"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495108" location="653,217" size="96,-1" input="//@wire.18" output="//@wire.19" name="결재자 정보 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findAprv"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495109" location="991,220" size="96,-1" input="//@wire.20" output="//@wire.21" name="담당자 부서 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findDeptInfo"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   이 Activity는 칼라시편제작관리 테이블(TB_C10_CLR_SMP)의 칼라시편제작관리 정보를 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - 조회 필수 항목 사항 :  칼라시편의뢰번호&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음&#xD;&#xA;"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495241" location="494,275" size="91,-1" input="//@wire.22 //@wire.32" output="//@wire.23" name="결재">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01Approval"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="결재 처리 및 개발진도 갱신"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495300" location="600,288" size="120,-1" input="//@wire.24" output="//@wire.25" name="개발 중단 처리">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01DevStop"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="개발 중단 처리&#xD;&#xA;- TB_C10_CLR_DEV_APRV INSERT (step_7)&#xD;&#xA;- TB_C10_CLR_DEV_MNG UPDATE (DEV_PRG_CD='7')"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495400" location="1084,275" size="96,-1" input="//@wire.26" output="//@wire.31" name="파일목록 조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findFile"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495401" location="1250,276" size="96,-1" input="//@wire.30" output="//@wire.29" name="담당자 변경">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01ChangeUser"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="담당자 변경 (같은 팀 소속)"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495403" location="1159,221" size="96,-1" input="//@wire.27" output="//@wire.28" name="담당자 검색">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findUser"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495500" location="750,340" size="91,-1" input="//@wire.33" output="//@wire.34" name="부서변경">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01DeptChange"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="처리담당부서 변경 (미결재 단계만)"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495600" location="900,340" size="91,-1" input="//@wire.35" output="//@wire.36" name="BOM 검색">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C108000240pop01.findBom"/>
+    <property key="description" value="CCL-BOM 검색 (4자리 이상)"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495700" location="200,400" size="120,-1" input="//@wire.37" output="//@wire.38" name="특이사항 신규저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="insert-sql" value="C108000240pop01.insertEtc"/>
+    <property key="update-sql" value="C108000240pop01.insertEtc"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="특이사항 인라인 신규 저장"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495701" location="350,400" size="120,-1" input="//@wire.39" output="//@wire.40" name="특이사항 수정">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000240pop01.updateEtc"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="특이사항 인라인 수정"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="495702" location="500,400" size="120,-1" input="//@wire.41" output="//@wire.42" name="특이사항 삭제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
+    <property key="dao" value="mesdao"/>
+    <property key="update-sql" value="C108000240pop01.softDeleteEtc"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="특이사항 소프트 삭제"/>
+  </child>
+  <child xsi:type="Glue:Activity" id="495800" location="650,440" size="91,-1" input="//@wire.43" output="//@wire.44" name="BOM변경">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C108000240pop01BomChange"/>
+    <property key="isAudit" value="true"/>
+    <property key="description" value="CCL-BOM 변경 + 특이사항 이력"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="495405" location="1202,398" size="-1,-1" input="//@wire.28 //@wire.29 //@wire.31"/>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 제조가부검토이력을 조회,등록,수정,삭제하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  Form data 조회 테이블 =>TB_C10_INQ_HST(생산가부검토결과)&#xD;&#xA;  - 조회조건 :  Inquiry번호"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="269,50" lastRelativePoint="269,82"/>
+  <wire id="5" guardcondition="save" firstRelativePoint="340,112" lastRelativePoint="340,204"/>
+  <wire id="13952" guardcondition="find" firstRelativePoint="113,112" lastRelativePoint="113,211"/>
+  <wire id="13953" guardcondition="success" firstRelativePoint="107,241" lastRelativePoint="318,389">
+    <bendpoint weight="0.5" firstDimension="4,162" secondDimension="-222,-2"/>
+  </wire>
+  <wire id="14852" guardcondition="maxNo" firstRelativePoint="218,112" lastRelativePoint="218,203">
+    <bendpoint weight="0.5" firstDimension="-315,88" secondDimension="0,-33"/>
+  </wire>
+  <wire id="14853" guardcondition="success" firstRelativePoint="219,233" lastRelativePoint="319,384">
+    <bendpoint weight="0.5" firstDimension="1,106" secondDimension="-110,-66"/>
+  </wire>
+  <wire id="14869" guardcondition="findEtc" firstRelativePoint="370,234" lastRelativePoint="429,276">
+    <bendpoint weight="0.5" firstDimension="65,63" secondDimension="0,-62"/>
+  </wire>
+  <wire id="14870" guardcondition="success" firstRelativePoint="601,237" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="3,166" secondDimension="272,-2"/>
+    <bendpoint weight="0.5" firstDimension="4,168" secondDimension="121,0"/>
+  </wire>
+  <wire id="14873" guardcondition="findDeptUser" firstRelativePoint="931,112" lastRelativePoint="931,218">
+    <bendpoint weight="0.5" firstDimension="334,61" secondDimension="-18,-73"/>
+  </wire>
+  <wire id="14874" guardcondition="success" firstRelativePoint="799,246" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="-3,157" secondDimension="470,-2"/>
+  </wire>
+  <wire id="14882" guardcondition="success" firstRelativePoint="613,355" lastRelativePoint="613,355"/>
+  <wire id="14888" guardcondition="findDept" firstRelativePoint="329,318" lastRelativePoint="329,379">
+    <bendpoint weight="0.5" firstDimension="398,69" secondDimension="1,-67"/>
+  </wire>
+  <wire id="14889" guardcondition="success" firstRelativePoint="932,248" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="2,154" secondDimension="603,-3"/>
+  </wire>
+  <wire id="14902" guardcondition="success" firstRelativePoint="669,218" lastRelativePoint="669,218"/>
+  <wire id="14911" guardcondition="saveEtc" firstRelativePoint="469,112" lastRelativePoint="469,276">
+    <bendpoint weight="0.5" firstDimension="-64,154" secondDimension="10,-40"/>
+  </wire>
+  <wire id="14912" guardcondition="success" firstRelativePoint="480,269" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="-2,137" secondDimension="151,1"/>
+  </wire>
+  <wire id="14913" guardcondition="success" firstRelativePoint="339,234" lastRelativePoint="339,288"/>
+  <wire id="14914" guardcondition="success" firstRelativePoint="329,318" lastRelativePoint="329,379"/>
+  <wire id="14915" guardcondition="findAprv" firstRelativePoint="698,112" lastRelativePoint="698,217">
+    <bendpoint weight="0.5" firstDimension="116,83" secondDimension="-3,-52"/>
+  </wire>
+  <wire id="14916" guardcondition="success" firstRelativePoint="706,247" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="5,156" secondDimension="377,-2"/>
+  </wire>
+  <wire id="14917" guardcondition="findDeptInfo" firstRelativePoint="1027,112" lastRelativePoint="1027,220">
+    <bendpoint weight="0.5" firstDimension="445,73" secondDimension="-12,-65"/>
+  </wire>
+  <wire id="14918" guardcondition="success" firstRelativePoint="1035,250" lastRelativePoint="338,389">
+    <bendpoint weight="0.5" firstDimension="-4,152" secondDimension="706,-3"/>
+  </wire>
+  <wire id="14921" guardcondition="approval" firstRelativePoint="506,305" lastRelativePoint="329,379"/>
+  <wire id="14922" guardcondition="success" firstRelativePoint="506,305" lastRelativePoint="329,379"/>
+  <wire id="24" guardcondition="saveDevStop" firstRelativePoint="660,112" lastRelativePoint="660,288"/>
+  <wire id="25" guardcondition="success" firstRelativePoint="660,318" lastRelativePoint="338,389"/>
+  <wire id="26" guardcondition="findFile" firstRelativePoint="1140,112" lastRelativePoint="1140,220"/>
+  <wire id="14923" guardcondition="findUser" firstRelativePoint="1165,305" lastRelativePoint="1212,397"/>
+  <wire id="14924" guardcondition="success" firstRelativePoint="1212,251" lastRelativePoint="1212,397"/>
+  <wire id="14925" guardcondition="success" firstRelativePoint="1265,306" lastRelativePoint="1212,397"/>
+  <wire id="14926" guardcondition="changeUser" firstRelativePoint="1210,112" lastRelativePoint="1210,221"/>
+  <wire id="14927" guardcondition="success" firstRelativePoint="1165,305" lastRelativePoint="1212,397"/>
+  <wire id="32" guardcondition="saveAprv" firstRelativePoint="540,112" lastRelativePoint="540,275"/>
+  <wire id="33" guardcondition="saveDeptChange" firstRelativePoint="795,112" lastRelativePoint="795,340"/>
+  <wire id="34" guardcondition="success" firstRelativePoint="795,370" lastRelativePoint="338,389"/>
+  <wire id="35" guardcondition="findBom" firstRelativePoint="945,112" lastRelativePoint="945,340"/>
+  <wire id="36" guardcondition="success" firstRelativePoint="945,370" lastRelativePoint="338,389"/>
+  <wire id="37" guardcondition="insertEtcRow" firstRelativePoint="260,112" lastRelativePoint="260,400"/>
+  <wire id="38" guardcondition="success" firstRelativePoint="260,430" lastRelativePoint="338,389"/>
+  <wire id="39" guardcondition="updateEtc" firstRelativePoint="410,112" lastRelativePoint="410,400"/>
+  <wire id="40" guardcondition="success" firstRelativePoint="410,430" lastRelativePoint="338,389"/>
+  <wire id="41" guardcondition="softDeleteEtc" firstRelativePoint="560,112" lastRelativePoint="560,400"/>
+  <wire id="42" guardcondition="success" firstRelativePoint="560,430" lastRelativePoint="338,389"/>
+  <wire id="43" guardcondition="changeBom" firstRelativePoint="695,112" lastRelativePoint="695,440"/>
+  <wire id="44" guardcondition="success" firstRelativePoint="695,470" lastRelativePoint="338,389"/>
+</Glue:GlueDiagram>

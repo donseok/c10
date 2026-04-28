@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryMap desc="C108000240pop02 Page 쿼리파일">
+	 <query id="C108000240pop02.select" desc="C108000240pop02 첨부파일 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[
+SELECT /* C108000240pop02 칼라개발의뢰 첨부파일 조회   C108000240pop02.select  SJS  */
+       DEV_ID,
+       SEQ_NO,
+       FILE_TP,
+       DECODE(IMG_RGS_TP, '2', '모바일', 'PC') IMG_RGS_TP,
+       IMG_ADR,
+       IMG_NM,
+       TO_CHAR(RGS_DH, 'YYYY-MM-DD') RGS_DH,
+       (SELECT USER_NAME FROM M90APUSER.TB_SEC_USER WHERE USER_NO = A.RGS_PRS_ID) RGS_PRS_NM,
+       IMG_NM CHK_IMG_NM
+FROM C10APUSER.TB_C10_CLR_DEV_FILE A
+WHERE DEV_ID = :DEV_ID
+ORDER BY SEQ_NO
+		 ]]>
+	 </query>
+	 <query id="C108000240pop02.insert" desc="칼라개발의뢰 첨부파일 업로드" isNamed="true">
+		 <![CDATA[
+INSERT /* C108000240pop02   칼라개발의뢰 첨부파일 업로드  C108000240pop02.insert  SJS  */
+INTO C10APUSER.TB_C10_CLR_DEV_FILE (
+    DEV_ID,
+    SEQ_NO,
+    FILE_TP,
+    IMG_RGS_TP,
+    IMG_ADR,
+    IMG_NM,
+    RGS_DH,
+    RGS_PRS_ID,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP)
+VALUES (
+    :IMG_RGS_FLAG_ID,
+    (SELECT NVL(MAX(SEQ_NO),0)+1 FROM C10APUSER.TB_C10_CLR_DEV_FILE WHERE DEV_ID = :IMG_RGS_FLAG_ID),
+    :PRD_SPC_TP,
+    :IMG_RGS_TP,
+    :FILE_ADDR,
+    :FILE_NAME,
+    SYSDATE,
+    :ObjectId,
+    'C',
+    :ObjectId,
+    'C108000240pop02',
+    SYSTIMESTAMP,
+    'C',
+    :ObjectId,
+    'C108000240pop02',
+    SYSTIMESTAMP)
+		 ]]>
+	 </query>
+	 <query id="C108000240pop02.delete" desc="칼라개발의뢰 첨부파일 소프트삭제" isNamed="true">
+		 <![CDATA[
+UPDATE  /* C108000240pop02   칼라개발의뢰 첨부파일 소프트삭제  C108000240pop02.delete  SJS  */
+C10APUSER.TB_C10_CLR_DEV_FILE
+SET DEL_FLAG = 'Y'
+  , LAST_UPDATE_TIMESTAMP = SYSTIMESTAMP
+WHERE DEV_ID = :IMG_RGS_FLAG_ID
+AND SEQ_NO = :SEQ
+		 ]]>
+	 </query>
+	 <query id="C108000240pop02.update" desc="칼라개발의뢰 첨부파일 등록여부 더미" isNamed="true">
+		 <![CDATA[
+UPDATE  /* C108000240pop02   칼라개발의뢰 첨부파일 더미 업데이트  C108000240pop02.update  SJS  */
+C10APUSER.TB_C10_CLR_DEV_FILE
+SET LAST_UPDATE_TIMESTAMP = SYSTIMESTAMP
+WHERE DEV_ID = :IMG_RGS_FLAG_ID
+AND SEQ_NO = (SELECT MAX(SEQ_NO) FROM C10APUSER.TB_C10_CLR_DEV_FILE WHERE DEV_ID = :IMG_RGS_FLAG_ID)
+		 ]]>
+	 </query>
+</queryMap>

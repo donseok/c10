@@ -1,0 +1,121 @@
+<items>
+	<item type="block" width="996">
+		<item label="접수담당자" type="fieldset" width="330" offsetLeft="">
+<!-- 			<item foreground-color="255,140,50" offset="10" type="newcolumn"/> -->
+<!-- 			<item labelWidth="70" inputWidth="75" label="접수담당자" name="TST_ANL_REQ_NO" type="input" readonly="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>												 -->
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="50" inputWidth="100" label="담당팀" name="DEV_CHR_DEPT_NM" type="input" readonly="true" labelAlign="right" maxLength="15" value="" style="background-color:#E8E8E8"/>
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="50" inputWidth="60" label="담당자" name="DEV_CHR_NM" type="input" readonly="true" labelAlign="right" maxLength="15" value="" style="background-color:#E8E8E8"/>
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+		</item>	
+		<item offset="270" type="newcolumn" />
+<!-- 			<item command="approval" label="Display Name" name="approval" type="button" value="승인" /> -->
+<!-- 			<item offset="5" type="newcolumn" />			 -->
+<!-- 			<item command="sendback" label="Display Name" name="sendback" type="button" value="반려" /> -->
+<!-- 			<item offset="50" type="newcolumn" />			 -->
+<!-- 			<item offset="5" type="newcolumn" /> -->
+			<item command="printDivPopup" label="접수담당자 변경" name="printDivPopup" type="button" value="접수담당자 변경" />
+ 			<item offset="5" type="newcolumn" />
+			<item command="save" label="Display Name" name="save" type="button" value="저장" />
+			<item offset="5" type="newcolumn" />
+			<item command="winClose" name="winClose" type="button" value="닫기" />
+	</item>	
+	<item label="의뢰내용" type="fieldset" width="974" offsetLeft="">
+		<item type="block" width="970">
+			<item labelWidth="70" inputWidth="200" label="개발번호" name="DEV_ID" type="input" readonly="true" labelAlign="right" value="" style="background-color:#E8E8E8"/>
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="512" label="의뢰명" name="DEV_SBJ" type="input" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="180" label="수요가" name="CUS_CD" type="input" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item type="newcolumn"/>
+			<item format="serchIcon_CUS_CD" name="template" type="template" value="search"/>
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="512" label="색상명" name="CLR_NM" type="input" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>			
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="180" label="최종고객사" name="FNL_CUS_CD" type="input" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item type="newcolumn"/>
+			<item format="serchIcon_FNL_CUS_CD" name="template" type="template" value="search"/>			
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="190" label="용도" name="ORD_USG_CD" type="input" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item type="newcolumn"/>
+			<item format="serchIcon_ORD_USG_CD" name="template" type="template" value="search"/>
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="190" label="사용국가" name="NAT_CD" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			<item type="newcolumn"/>
+			<item format="serchIcon_NAT_CD" name="template" type="template" value="search"/>
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item type="block" width="970">
+				<item labelWidth="70" inputWidth="200" label="개발접수" name="DEV_REQ_DD" type="input" readonly="true" labelAlign="right" value="" style="background-color:#E8E8E8"/>
+				<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+				<item labelWidth="70" inputWidth="210" label="제품군" name="PRD_NM_CD" type="combo" required="true" labelAlign="right" style="background-color:#FFFFC0"/>
+				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+				<item labelWidth="70" inputWidth="210" label="도금량" name="GW_ASG_CD" type="combo" required="true" labelAlign="right" style="background-color:#FFFFC0"/>
+			</item>									
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="200" label="완료목표" name="DEV_END_DD" type="calendar" required="true" readonly="true" dateFormat="%Y-%m-%d" labelAlign="right" maxLength="10" value="" style="background-color:#FFFFC0"/>
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="210" label="도료타입" name="RSN_TP" type="combo" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>						
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="210" label="보호필름" name="PTT_FLM" type="combo" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>									
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="200" label="업데이트" name="LAST_UPDATE_TIMESTAMP" type="input" readonly="true" labelAlign="right" value="" style="background-color:#E8E8E8"/>
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="210" label="코팅타입" name="COT_TP" type="combo" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>						
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="170" label="CCL-BOM" name="CCL_BOM_NO" type="input" readonly="true" labelAlign="right" value="" style="background-color:#E8E8E8"/>
+			<item type="newcolumn"/>
+			<item format="bomChangeBtn" name="template" type="template" value=""/>
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item type="block" width="970">
+			    <item labelWidth="70" inputWidth="200" label="RAL CODE" name="RAL_CD" type="input" labelAlign="right" style="background-color:#FFFFC0"/>
+    			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+				<item labelWidth="70" inputWidth="210" label="도막두께" name="PNT_FLM_THK" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>						
+				<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+				<item labelWidth="70" inputWidth="210" label="광택도" name="LUS_RT_CD" type="combo" labelAlign="right" value="" style="background-color:#FFFFC0"/>
+			</item>
+<!-- 			<item labelWidth="70" inputWidth="200" label="RAL CODE" name="TST_LMT_DD" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/> -->
+<!-- 			<item foreground-color="255,140,50" offset="50" type="newcolumn"/> -->
+<!-- 			<item labelWidth="70" inputWidth="210" label="도막두께" name="TST_ANL_SBJ" type="input" labelAlign="right" value="" style="background-color:#FFFFC0"/>						 -->
+<!-- 			<item foreground-color="255,140,50" offset="10" type="newcolumn"/> -->
+<!-- 			<item labelWidth="70" inputWidth="210" label="광택도" name="TST_ANL_SBJ" type="combo" labelAlign="right" value="" style="background-color:#FFFFC0"/>									 -->
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="200" label="   " name="TST_LMT_DD" type="input" readonly="true" labelAlign="right" maxLength="10" value="" style="background-color:#E8E8E8"/>
+			<item foreground-color="255,140,50" offset="50" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="210" label="소재보증" name="MTL_GRT" type="combo" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>						
+			<item foreground-color="255,140,50" offset="10" type="newcolumn"/>
+			<item labelWidth="70" inputWidth="210" label="도막보증" name="PNT_FLM_GRT" type="combo" required="true" labelAlign="right" value="" style="background-color:#FFFFC0"/>									
+			<item foreground-color="255,140,50" offset="0" type="newcolumn"/>				
+			<item labelWidth="70" inputWidth="840" inputHeight="60" label="특이사항" name="DEV_ETC" type="input" labelAlign="right" rows="3" maxLength="200" style="background-color:#FFFFC0"/>
+<!--		<item type="newcolumn"/> -->
+<!--		<item command="saveEtc" label="저장" type="button" name="saveEtc" value="저장"/> -->
+<!-- 			<item command="saveEtc" label="저장" name="saveEtc" type="button" value="저장" /> -->
+<!-- 			<item foreground-color="255,140,50" offset="50" type="newcolumn"/> -->			
+			<item inputWidth="10" label="DEV_CHR_ID" maxLength="10" name="DEV_CHR_ID" id="DEV_CHR_ID" readonly="true" type="hidden" labelAlign="right" />
+			<item inputWidth="10" label="BF_CHR_ID" maxLength="10" name="BF_CHR_ID" id="BF_CHR_ID" readonly="true" type="hidden" labelAlign="right" />
+			<item inputWidth="10" label="REG_CHR_ID" maxLength="10" name="REG_CHR_ID" id="REG_CHR_ID" readonly="true" type="hidden" labelAlign="right" />
+			<item name="NEW_CHR_ID" type="hidden" value="" />
+			<item name="AGR_STEP_CD" type="hidden" value="" />
+			<item name="AGR_USER_ID" type="hidden" value="" />
+			<item name="OPINION_TEXT" type="hidden" value="" />
+			<item name="APRV_RESULT" type="hidden" value="" />
+			<item name="DEPT_CD_1" type="hidden" value="" />
+			<item name="DEPT_CD_2" type="hidden" value="" />
+			<item name="DEPT_CD_3" type="hidden" value="" />
+			<item name="DEPT_CD_4" type="hidden" value="" />
+			<item name="DEPT_CD_5" type="hidden" value="" />
+			<item name="DEPT_CD_6" type="hidden" value="" />
+			<item name="DEPT_CD_7" type="hidden" value="" />
+			<item name="DEV_CHR_DEPT" type="hidden" value="" />
+			<item name="DEV_PRG_CD" type="hidden" value="" />
+			<item name="EXT_BOM_NO" type="hidden" value="" />
+			<item name="EXT_DCR_DEV_NO" type="hidden" value="" />
+			<item name="EXT_POST_ATT" type="hidden" value="" />
+			<item name="BF_CHR_NM" type="hidden" value="" />
+			<item name="NEW_CHR_NM" type="hidden" value="" />
+			<item name="NEW_BOM_NO" type="hidden" value="" />
+			<item name="BF_BOM_NO" type="hidden" value="" />
+			<item name="BOM_CHG_REASON" type="hidden" value="" />
+		</item>		
+	</item>
+</items>

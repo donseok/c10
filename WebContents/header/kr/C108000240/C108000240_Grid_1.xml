@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+	<head>
+		<beforeInit>
+			<call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+			<call command="setSkin"><param>dhx_skyblue</param></call>
+			<call command="enableMultiselect"><param>true</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="setNoHeader"><param>false</param></call>
+			<call command="enableValidation"><param>true</param></call>
+			<call command="enableSmartRendering"><param>true</param></call>
+		</beforeInit>
+		<afterInit>
+			<!-- 가변항목 관련 세팅 시작. -->
+			<call command="setDateFormat"><param>%Y-%m-%d</param></call>
+			<call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+			<!-- 가변항목 관련 세팅 끝. -->
+		</afterInit>
+		<column align="center"  id="DEV_PRG_CD" index="1" sort="str" type="ro" 	width="100">개발진도</column>
+		<column align="center"  id="DEV_ID" index="2" sort="str"  type="ro" width="100">개발번호</column>
+		<column align="center"  id="APRV_DEPT_NM" index="3" sort="str" type="ro" width="100">처리담당부서</column>
+		<column align="center"  id="DEV_CHR_DEPT_NM" index="4" sort="str" type="ro" width="100">영업팀</column>
+		<column align="center"  id="DEV_CHR_NM" index="4" sort="str" type="ro" width="80">영업담당자</column>
+		<column align="left"  id="DEV_SBJ" index="5" sort="str" type="ro" width="250" >개발건명</column>
+		<column align="left"  id="FNL_CUS_CD" index="4" sort="str" type="ro" width="200" >최종고객사</column>
+		<column align="left"  id="CUS_CD" index="5" sort="str" type="ro" width="200" >수요가</column>
+		<column align="left"  id="ORD_USG_CD" index="6" sort="str" type="ro" width="200" >용도</column>
+		<column align="center"  id="PRD_NM_CD" index="7" sort="str" type="ro" width="80" >제품군</column>
+		<column align="center"  id="GW_ASG_CD" index="8" sort="str" type="ro" width="80" >도금량</column>
+		<column align="center"  id="RSN_TP" index="9" sort="str" type="ro" width="120" >도료타입</column>
+		<column align="center"  id="COT_TP" index="10" sort="str" type="ro" width="100" >코팅타입</column>
+		<column align="center"  id="DEV_REQ_DD" index="11" sort="str" type="ro" width="90" >개발접수일</column>
+		<column align="center"  id="DEV_END_DD" index="12" sort="str" type="ro" width="90" >완료목표일</column>
+		<column align="center"  id="LAST_UPDATE_DD" index="13" sort="str" type="ro" width="90" >최근업데이트</column>
+<!-- 		<column align="center"  id="TST_ANL_REQ_USER_ID" hidden="true" index="1" sort="str" type="ro" 	width="80" ><![CDATA[#cspan]]></column> -->
+<!-- 		<column align="center"  id="TST_EMER_YN" hidden="true" index="1" sort="str" type="ro" 	width="80" ><![CDATA[#cspan]]></column> -->
+<!-- 		<column align="center"  id="TST_ANL_INP_CMT" index="1" sort="str" type="ro" 	width="80">3.의뢰자</column> -->
+<!-- 		<column align="center"  id="" index="1" sort="str" type="ro" 	width="80">4.시험실 담당자</column> -->
+		<settings><colwidth><![CDATA[px]]></colwidth></settings>
+	</head>
+	<userdata name="column-info">DEV_PRG_CD,DEV_ID,APRV_DEPT_NM,DEV_CHR_DEPT_NM,DEV_CHR_NM,DEV_SBJ,FNL_CUS_CD,CUS_CD,ORD_USG_CD,PRD_NM_CD,GW_ASG_CD,RSN_TP,COT_TP,DEV_REQ_DD,DEV_END_DD,LAST_UPDATE_DD</userdata>
+</rows>
