@@ -704,8 +704,20 @@ public class DbSearchRmtSizeData extends PosActivity implements C10NuiConstantsI
 			            	ctx.put( COL_RMTL_TAR_THK_LVL, String.valueOf(Double.parseDouble(pltcm_thk_trv) + Double.parseDouble(fh_thk_llv)) );
 			                ctx.put( COL_RMTL_TAR_THK_UVL, String.valueOf(Double.parseDouble(pltcm_thk_trv) + Double.parseDouble(fh_thk_ulv)) );
 			                ctx.put( COL_RMTL_TAR_THK, pltcm_thk_trv );
-			                ctx.put( COL_RMTL_TAR_WTH, pltcm_wth_trv );      
-			                
+			                // 2026.04.28 - 원재료 적정 FH(QLT_DSN_MNF_TP='1')이면서 RMTL_CD가 D로 시작할 경우 RMTL_TAR_WTH = RMTL_TAR_WTH - 3
+			                // 차선 FH(QLT_DSN_MNF_TP != '1')인 경우에는 원값 유지
+			                String mnfTp = "";
+			                if ( !DbCommonUtil.isNull( ctx.get( COL_QLT_DSN_MNF_TP ) ) ) {
+			                    mnfTp = ctx.get( COL_QLT_DSN_MNF_TP ).toString();
+			                }
+			                if ( "1".equals(mnfTp) && rmtl_cd.startsWith("D") ) {
+			                    logger.logDebug( "RMTL_TAR_WTH (기존목표폭) : " + pltcm_wth_trv );
+			                    ctx.put( COL_RMTL_TAR_WTH, Double.parseDouble(pltcm_wth_trv) - 3 );
+			                    logger.logDebug( "RMTL_TAR_WTH (적정 FH -3) : " + (Double.parseDouble(pltcm_wth_trv) - 3) );
+			                } else {
+			                    ctx.put( COL_RMTL_TAR_WTH, pltcm_wth_trv );
+			                }
+
 			                logger.logDebug("룰 조회 성공: 조합(" + usgCd + ", " + customerCd + ")");
 			                found = true;
 			                break;
