@@ -7,7 +7,7 @@
 <call command="enableValidation"><param>true</param></call>
 <call command="setNoHeader"><param>false</param></call>
 <call command="attachHeader">
-<param>#rspan,#rspan,#rspan,폭,길이</param>
+<param>#rspan,#rspan,#rspan,두께,폭,길이,폭,길이</param>
 </call>
 <call command="enableSmartRendering">
 	<param>true</param>
@@ -20,17 +20,23 @@
 <!-- 가변항목 관련 세팅 시작.-->
 <!-- 가변항목 관련 세팅 끝. -->
 </afterInit>
-<column id="EMBS_CD" index="1" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">엠보스무늬</column>
-<column id="ORD_SHT_LOD_MTH" index="2" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">SHEET적치방법</column>
-<column id="OIL_PNT_CD" index="3" sort="int" width="23" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">방청유</column>
-<column id="SKID_WTH" index="4" sort="int" width="16" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[SKID]]></column>
-<column id="SKID_LTH" index="5" sort="int" width="*" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
+<column id="EMBS_CD" index="1" sort="int" width="20" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">엠보스무늬</column>
+<column id="ORD_SHT_LOD_MTH" index="2" sort="int" width="20" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">SHEET적치방법</column>
+<column id="OIL_PNT_CD" index="3" sort="int" width="20" align="center" table="TB_C10_QLT_DSN_MNF" type="ro">방청유</column>
+<column id="SUB_PTL_THK" index="4" sort="int" width="7" align="center" table="TB_C10_QLT_DSN_CMN" type="ro"><![CDATA[SHL 작업 SIZE]]></column>
+<column id="SUB_PTL_WTH" index="5" sort="int" width="7" align="center" table="TB_C10_QLT_DSN_CMN" type="ro"><![CDATA[#cspan]]></column>
+<column id="SUB_PTL_LTH" index="6" sort="int" width="7" align="center" table="TB_C10_QLT_DSN_CMN" type="ro"><![CDATA[#cspan]]></column>
+<column id="SKID_WTH" index="7" sort="int" width="8" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[SKID]]></column>
+<column id="SKID_LTH" index="8" sort="int" width="*" align="center" table="TB_C10_QLT_DSN_MNF" type="ro"><![CDATA[#cspan]]></column>
 <settings>
 <colwidth><![CDATA[%]]></colwidth>
 </settings>
 </head>
-<userdata name="column-info">EMBS_CD,ORD_SHT_LOD_MTH,OIL_PNT_CD,SKID_WTH,SKID_LTH</userdata>
+<userdata name="column-info">EMBS_CD,ORD_SHT_LOD_MTH,OIL_PNT_CD,SUB_PTL_THK,SUB_PTL_WTH,SUB_PTL_LTH,SKID_WTH,SKID_LTH</userdata>
 <row id="0">
+<cell></cell>
+<cell></cell>
+<cell></cell>
 <cell></cell>
 <cell></cell>
 <cell></cell>
