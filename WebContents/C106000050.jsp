@@ -25,7 +25,9 @@
         userNo = (String) user.getUserInfo("USER_NO");
         userName = (String) user.getUserInfo("USER_NAME");
     }
-%>        
+    // C106000190 OCR 등록 화면에서 넘어온 OCR_NO (있으면 그리드에 행 자동 추가)
+    String URL_OCR_NO = request.getParameter("OCR_NO") != null ? request.getParameter("OCR_NO") : "";
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -49,6 +51,7 @@ visibility : hidden;
 <script type="text/javascript">
 //<![CDATA[
 var items = new Array();  //public dhtmlx component array
+var URL_OCR_NO = "<%= URL_OCR_NO %>";
 // var pageConfiguration = '[' + 
 //       '{"itemType":"form","renderTo":"C106000050_Form_1","xml":".\/header\/kr\/C106000050\/C106000050_Form_1.xml","url":"basicGridData.do","referenceItem":"C106000050_Grid_1","service":"C106000050-service","actionType":"find","security":"true"},' +
 //       '{"itemType":"menu","renderTo":"C106000050_Menu_1","xml":".\/header\/kr\/C106000050\/C106000050_Menu_1.xml","iconImgs":".\/dhtmlx\/codebase\/imgs\/","referenceItem":"C106000050_Grid_1","service":"C106000050-service"},' +
@@ -728,7 +731,30 @@ function send(eventName,formDivObj,referenceItem){
 	var grid = items['C106000050_Grid_1'];
 	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
 	var selectedId1 = grid.getSelectedRowId();
-	
+
+	if(isNull(selectedId1)){
+		dhtmlx.alert("전송할 컬러코드를 선택해주세요.");
+		return;
+	}
+
+	// [선차단] ZZZ(대표색상) / ZZ1(조색잉크) / FM(자동생성 조색잉크) → ERP 전송 불가
+	// 도료업체 미등록 체크보다 먼저 수행해서 사용자에게 정확한 차단 사유를 알린다.
+	var _sndIdArr = selectedId1.split(',');
+	for(var _k=0; _k<_sndIdArr.length; _k++){
+		var _v1 = grid.getCellValue(_sndIdArr[_k],1);
+		var _v3 = grid.getCellValue(_sndIdArr[_k],3);
+		var _v1u = !isNull(_v1) ? _v1.toUpperCase() : "";
+		var _v3u = !isNull(_v3) ? _v3.toUpperCase() : "";
+		if(_v3u == "ZZ1" || _v1u.substring(0,2) == "FM"){
+			dhtmlx.alert("조색잉크는 ERP로 전송할 수 없습니다.");
+			return;
+		}
+		if(_v1u.substring(0,3) == "ZZZ" || _v3u.substring(0,3) == "ZZZ"){
+			dhtmlx.alert("대표색상은 ERP로 전송할 수 없습니다.");
+			return;
+		}
+	}
+
 	//도료업체 등록여부 확인 12-07-10 추가
 	//var gridObj2 = items['C106000050_Grid_2'].getDhxGrid();
 	//if(isNull(items['C106000050_Grid_2'].getCellValue(gridObj2.getRowId(0),gridObj2.getColIndexById("CLR_SUB_MTL_CD")))){
@@ -736,13 +762,13 @@ function send(eventName,formDivObj,referenceItem){
 	//	return;
 	//}
 	var clrcd = grid.getCellValue(selectedId1,gridObj.getColIndexById("CLR_SUB_MTL_CD"));
-	
-	var param= "ServiceName=C106000050-service&compAjaxFind=1&CLR_SUB_MTL_CD="+clrcd+"&column-info=CLR_SUB_MTL_CD";				
+
+	var param= "ServiceName=C106000050-service&compAjaxFind=1&CLR_SUB_MTL_CD="+clrcd+"&column-info=CLR_SUB_MTL_CD";
 	var xmlObj = uiCommon.ajaxLoadData('c10AjaxData.do',param);
-	var cells = xmlObj.getElementsByTagName("cell"); 
-	if(cells.length <= 0){					
+	var cells = xmlObj.getElementsByTagName("cell");
+	if(cells.length <= 0){
 		dhtmlx.alert("해당 컬러코드의 도료업체 등록 후 전송하세요.");
-		return;										
+		return;
 	}
 	
 	
@@ -777,9 +803,17 @@ function send(eventName,formDivObj,referenceItem){
 				return;			
 			}
 
-			if((!isNull(grid.getCellValue(rowIdArray[i],1))) &&( grid.getCellValue(rowIdArray[i],1).substring(0,3).toUpperCase() == "ZZZ" || grid.getCellValue(rowIdArray[i],3).substring(0,3).toUpperCase() == "ZZZ")){
-				dhtmlx.alert("선택한 행의 컬러코드값이나 부재료구분값이 ZZZ인 경우 전송할 수 없습니다.");
-				return;
+			if(!isNull(grid.getCellValue(rowIdArray[i],1))){
+				var _v1u = grid.getCellValue(rowIdArray[i],1).toUpperCase();
+				var _v3u = !isNull(grid.getCellValue(rowIdArray[i],3)) ? grid.getCellValue(rowIdArray[i],3).toUpperCase() : "";
+				if(_v3u == "ZZ1" || _v1u.substring(0,2) == "FM"){
+					dhtmlx.alert("조색잉크는 ERP로 전송할 수 없습니다.");
+					return;
+				}
+				if(_v1u.substring(0,3) == "ZZZ" || _v3u.substring(0,3) == "ZZZ"){
+					dhtmlx.alert("대표색상은 ERP로 전송할 수 없습니다.");
+					return;
+				}
 			}
 			
 			if(byteCount(grid.getCellValue(rowIdArray[i],2)) > 40){
@@ -1356,10 +1390,118 @@ function onGrid1LoadFunction(){
 		deteilFind(items['C106000050_Grid_1'].getSelectedRowId());
 	  });		
 		
-		items["C106000050_Grid_1"].getDhxGrid().detachEvent(onXleGrid);		
+		items["C106000050_Grid_1"].getDhxGrid().detachEvent(onXleGrid);
 
 		//items['C106000050_Grid_1'].onAfterUpdateFinishEvent(onGridAfterUpdateFinishEvent);
 		//items['C106000050_Grid_1'].getDhxGrid().detachEvent(onXleGrid);
+
+		// C106000190 OCR 등록에서 넘어온 경우 — Grid_1에 행 자동 추가
+		if (URL_OCR_NO && URL_OCR_NO.length > 0) {
+			addRowFromOcr(URL_OCR_NO);
+		}
+}
+
+// =============================================================================
+// C106000190 OCR 등록 → C106000050 자동 행 추가 (저장은 사용자 액션)
+// =============================================================================
+function addRowFromOcr(ocrNo) {
+	// uiCommon.ajaxLoadData 는 sync XML 반환 함수(callback 미지원)라
+	// _c10OcrDetail.jsp (JSON) 를 fetch 로 호출한다.
+	fetch("./_c10OcrDetail.jsp?ocrNo=" + encodeURIComponent(ocrNo))
+	.then(function(r){ return r.json(); })
+	.then(function(d){
+		if (!d || !d.success) {
+			dhtmlx.alert("OCR_NO=" + ocrNo + " 데이터를 찾을 수 없습니다. ("
+				+ (d && d.message ? d.message : "응답 없음") + ")");
+			return;
+		}
+		var clrCd = (d.OCR_CODE || "").toUpperCase();
+
+		var grid = items['C106000050_Grid_1'].getDhxGrid();
+		var newRowId = "ocr_" + ocrNo + "_" + (new Date()).getTime();
+
+		// 새 행을 그리드 맨 위에 추가 (status=inserted 로 표시)
+		grid.addRow(newRowId, "", 0);
+		grid.selectRowById(newRowId, false, true, true);
+
+		// 자동 매핑 — 그대로 채울 수 있는 값
+		setCell(newRowId, "USE_YN",         "1");
+		setCell(newRowId, "CLR_SUB_MTL_CD", clrCd);
+		setCell(newRowId, "CLR_NM",         d.OCR_COLOR || "");
+		setCell(newRowId, "NV",             numStr(d.OCR_NV));
+		setCell(newRowId, "QT_L",           numStr(d.OCR_L));
+		setCell(newRowId, "QT_A",           numStr(d.OCR_A));
+		setCell(newRowId, "QT_B",           numStr(d.OCR_B));
+		setCell(newRowId, "PNT_GRA",        numStr(d.OCR_SG));
+		setCell(newRowId, "RL_LUS_RT",      numStr(d.OCR_GLOSS));
+		setCell(newRowId, "WK_VISCO",       numStr(d.OCR_VIS));
+		setCell(newRowId, "WTY_YN",         (d.OCR_DURABILITY === "Y" ? "1" : ""));
+		// 구매수지: OCR TYPE(예: Z2)이 RSN_TP 마스터 코드와 1:1 일치하므로 자동 매핑
+		// (RSN_TP_NM 은 콤보가 코드 → 이름 자동 렌더 → 별도 setCell 불필요)
+		setCell(newRowId, "RSN_TP",         d.OCR_TYPE || "");
+		// 품질수지(RSN_TP_QT / RSN_TP_QT_BR)는 OCR raw 텍스트가 마스터 코드와 불일치(부분일치)이므로
+		// 자동 매핑하지 않고 사용자가 콤보에서 선택. OCR 원본은 RMRK 비고에 표시해 참고.
+
+		// 도막두께 = 1C+2C+3C 합산
+		var thk = numAdd(d.OCR_DFT_1C, d.OCR_DFT_2C, d.OCR_DFT_3C);
+		if (thk !== null) setCell(newRowId, "PNT_FLM_THK", thk.toString());
+
+		// 매핑 어려운 항목은 비고에 텍스트로
+		var memo = "[OCR] ";
+		// 품질수지 원본 텍스트 (RSN_TP_QT/_BR 콤보 선택 시 참고용)
+		if (d.OCR_QT_TYPE)      memo += "품질수지(OCR)=" + d.OCR_QT_TYPE + " / ";
+		if (d.OCR_MAKER)        memo += "MAKER=" + d.OCR_MAKER + " / ";
+		if (d.OCR_END_USER)     memo += "END_USER=" + d.OCR_END_USER + " / ";
+		if (d.OCR_MUNSELL)      memo += "MUNSELL=" + d.OCR_MUNSELL + " / ";
+		if (d.OCR_DELTA_E)      memo += "ΔE=" + d.OCR_DELTA_E + " / ";
+		if (d.OCR_PRIMER)       memo += "PRIMER=" + d.OCR_PRIMER + " / ";
+		if (d.OCR_DFT_1C || d.OCR_DFT_2C || d.OCR_DFT_3C) {
+			memo += "D.F.T 1C=" + (d.OCR_DFT_1C||"") + "μ /2C=" + (d.OCR_DFT_2C||"") + "μ /3C=" + (d.OCR_DFT_3C||"") + "μ / ";
+		}
+		if (d.OCR_UNFIXED_NO)   memo += "UNFIXED=" + d.OCR_UNFIXED_NO + " / ";
+		if (d.OCR_WORK_DT)      memo += "WORK=" + fmtDt(d.OCR_WORK_DT) + " / ";
+		if (d.OCR_APPROVED_DT)  memo += "APPROVED=" + fmtDt(d.OCR_APPROVED_DT) + " / ";
+		if (d.OCR_DISUSED_DT)   memo += "DISUSED=" + fmtDt(d.OCR_DISUSED_DT) + " / ";
+		if (d.OCR_MEMO)         memo += "MEMO=" + d.OCR_MEMO;
+		setCell(newRowId, "RMRK", memo);
+
+		// inserted 상태로 마크 (저장 대상)
+		items['C106000050_Grid_1'].setUpdated(newRowId, true, "inserted");
+
+		dhtmlx.message({
+			type:"info",
+			text:"OCR(" + ocrNo + ") 데이터로 신규 행을 추가했습니다. 검토 후 저장 버튼을 눌러주세요.",
+			expire:5000
+		});
+	})
+	.catch(function(e){
+		dhtmlx.alert("OCR 데이터 조회 오류: " + e);
+	});
+
+	function setCell(rowId, colId, val) {
+		var grid = items['C106000050_Grid_1'].getDhxGrid();
+		var idx  = grid.getColIndexById(colId);
+		if (idx < 0 || val === undefined || val === null) return;
+		items['C106000050_Grid_1'].setCellValue(rowId, idx, val);
+	}
+	function numStr(v) {
+		if (v === null || v === undefined || v === "") return "";
+		return v.toString();
+	}
+	function numAdd() {
+		var sum = 0, any = false;
+		for (var i = 0; i < arguments.length; i++) {
+			var v = arguments[i];
+			if (v === null || v === undefined || v === "") continue;
+			var n = parseFloat(v);
+			if (!isNaN(n)) { sum += n; any = true; }
+		}
+		return any ? sum : null;
+	}
+	function fmtDt(yyyymmdd) {
+		if (!yyyymmdd || yyyymmdd.length < 8) return yyyymmdd || "";
+		return yyyymmdd.substring(0,4) + "-" + yyyymmdd.substring(4,6) + "-" + yyyymmdd.substring(6,8);
+	}
 }
 function onGrid2LoadFunction(){
 	var gridObj = items['C106000050_Grid_2'].getDhxGrid();	
@@ -1922,10 +2064,15 @@ function onEditCellEvent(stage, rId, cInd, nValue, oValue){
 		
 		if(rowStatus !=""){
 			if(cInd==1 && !isNull(nValue)){
-			  
+
 				if(grid.getCellValue(rId,1).length < 5){
 			    	dhtmlx.alert("컬러코드는 5자리만 입력가능합니다.");
 			    return;
+				}
+				if(grid.getCellValue(rId,1).toUpperCase().substring(0,2) == "FM"){
+					dhtmlx.alert("FM으로 시작하는 컬러코드는 자동 채번 전용입니다. 다른 코드를 입력해주세요.");
+					grid.setCellValue(rId,1,"");
+					return;
 				}
 				var comboValue = sub_mtl_tp_Combo.getSelectedValue();
 				var param= "ServiceName=C106000050-service&colorAjaxFind=1&CLR_SUB_MTL_CD="+nValue+"&SUB_MTL_TP="+comboValue+"&column-info=CLR_SUB_MTL_CD";				

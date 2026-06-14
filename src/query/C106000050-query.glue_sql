@@ -985,6 +985,7 @@ SELECT
    AND NVL(RSN_TP,'%') LIKE '%' || :RSN_TP_SH ||'%'
    AND NVL(LUS_RT_CD,'%') LIKE '%' || :LUS_RT_CD_SH ||'%'
    AND NVL(PRT_INK_TP,'%') LIKE '%' || :PRT_INK_TP_SH ||'%'
+   AND NVL(SUB_MTL_TP,'X') NOT IN ('ZZZ','ZZ1') --대표색상/FM자동생성 코드는 ERP 송신 대상 제외
    AND LAST_UPDATE_TIMESTAMP > NVL(ERP_SND_DH,TO_DATE('19000101000000', 'YYYYMMDD HH24MISS')))
 WHERE SND_LST ='Y'
 		 ]]> 
@@ -1897,10 +1898,70 @@ WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
 	 </query>
 	 <query id="C106000050.thinAjaxFind" desc="C106000050.thinAjaxFind" fetchSize="10" isNamed="true">
 		 <![CDATA[ 
-SELECT /*+ C10 칼라코드관리- 시너코드AJAX조회 C106000050.thinAjaxFind SJS */  
+SELECT /*+ C10 칼라코드관리- 시너코드AJAX조회 C106000050.thinAjaxFind SJS */
 SMTL_CLR_NM AS THR_NM
-FROM TB_M30_SMTL_CD 
+FROM TB_M30_SMTL_CD
 WHERE SMTL_KND_TP = 'S33' AND SMTL_CLR_CD = :THR_CD AND ROWNUM = 1
+		 ]]> 
+	 </query>
+	 <query id="C106000050.fmSeqSelect" desc="FM 자동채번 LAST_NO 조회(FOR UPDATE 행잠금)" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 칼라코드 FM자동채번 SELECT FOR UPDATE */
+       CD_TP, LAST_NO
+  FROM C10APUSER.TB_C10_CLR_CD_SEQ
+ WHERE CD_TP = :CD_TP
+ FOR UPDATE
+		 ]]> 
+	 </query>
+	 <query id="C106000050.fmSeqUpdate" desc="FM 자동채번 LAST_NO 갱신" isNamed="true">
+		 <![CDATA[ 
+UPDATE /*+ C10 칼라코드 FM자동채번 UPDATE */
+       C10APUSER.TB_C10_CLR_CD_SEQ
+   SET LAST_NO                = :LAST_NO,
+       LAST_UPDATE_TIMESTAMP  = SYSTIMESTAMP,
+       LAST_UPDATED_OBJECT_ID = :ObjectId
+ WHERE CD_TP = :CD_TP
+		 ]]> 
+	 </query>
+	 <query id="C106000050.fmAutoInsert" desc="FM 자동생성 칼라코드 INSERT (SUB_MTL_TP=ZZ1)" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_CD_MNG /*+ C10 칼라코드 FM자동생성 INSERT */ (
+    CLR_SUB_MTL_CD,
+    CLR_NM,
+    SUB_MTL_TP,
+    USE_YN,
+    RGS_PRS_ID,
+    RGS_DH,
+    MDF_PRS_ID,
+    CLR_MDF_DH,
+    MGR_CLR_SUB_MTL_CD,
+    CREATED_OBJECT_TYPE,
+    CREATED_OBJECT_ID,
+    CREATED_PROGRAM_ID,
+    CREATION_TIMESTAMP,
+    LAST_UPDATED_OBJECT_TYPE,
+    LAST_UPDATED_OBJECT_ID,
+    LAST_UPDATE_PROGRAM_ID,
+    LAST_UPDATE_TIMESTAMP
+) VALUES (
+    :CLR_SUB_MTL_CD,
+    :CLR_NM,
+    'ZZ1',
+    'Y',
+    :ObjectId,
+    SYSDATE,
+    :ObjectId,
+    SYSDATE,
+    :PARENT_CLR_CD,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp,
+    :ObjectType,
+    :ObjectId,
+    :ProgramId,
+    :Timestamp
+)
 		 ]]> 
 	 </query>
 </queryMap>

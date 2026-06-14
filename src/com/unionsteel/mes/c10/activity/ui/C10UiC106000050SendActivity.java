@@ -183,7 +183,19 @@ public class C10UiC106000050SendActivity extends DhtmlxActivity
             	
             	//2025.07.18 내수수입구분 추가
             	ZFLAG = (String[]) ctx.get(idsValue[i].concat(C10ConstantsIF.UNDERBAR).concat("ZFLAG"));
-            	
+
+            	// [서버측 송신 가드] ZZZ/ZZ1/FM 자동생성 코드는 ERP/FMES 송신 제외 (JSP 가드 우회 방지)
+            	String _curClr = (CLR_SUB_MTL_CD != null && CLR_SUB_MTL_CD.length > 0 && CLR_SUB_MTL_CD[0] != null)
+            			? CLR_SUB_MTL_CD[0].toUpperCase() : "";
+            	String _curSub = (SUB_MTL_TP != null && SUB_MTL_TP.length > 0 && SUB_MTL_TP[0] != null)
+            			? SUB_MTL_TP[0].toUpperCase() : "";
+            	if ( _curClr.startsWith("ZZZ") || _curClr.startsWith("FM")
+            			|| "ZZZ".equals(_curSub) || "ZZ1".equals(_curSub) ) {
+            		logger.logInfo("[ERP송신가드] 송신 제외 rowId=" + idsValue[i]
+            				+ ", CLR_SUB_MTL_CD=" + _curClr + ", SUB_MTL_TP=" + _curSub);
+            		continue;
+            	}
+
             	param = new PosParameter();
                 param.setNamedParamter( "CLR_SUB_MTL_CD", CLR_SUB_MTL_CD );
                 param.setWhereClauseParameter( 0, CLR_SUB_MTL_CD );

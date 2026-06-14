@@ -8,7 +8,7 @@
     <property name="update-sql" value="C106000050.cclbomupdate" />
   </activity>
   <activity name="customInsert" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
-    <transition name="success" value="칼라코드 정보수정 로깅" />
+    <transition name="success" value="FM자동생성" />
     <property name="insert-sql" value="C106000050.colorinsert" />
     <property name="dao" value="mesdao" />
     <property name="update-sql" value="C106000050.colorupdate" />
@@ -17,8 +17,8 @@
   </activity>
   <activity name="thinAjaxFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C106000050.thinAjaxFind" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="파일저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="Loop Router" />
@@ -49,6 +49,10 @@
     <property name="insert-sql" value="C106000050.clrMngMdf_log" />
     <property name="isAudit" value="true" />
     <property name="update-sql" value="C106000050.clrMngMdf_log" />
+  </activity>
+  <activity name="FM자동생성" class="com.unionsteel.mes.c10.activity.ui.C10UiC106000050AutoGenFmActivity">
+    <transition name="success" value="칼라코드 정보수정 로깅" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="엑셀출력" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />

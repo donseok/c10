@@ -43,6 +43,11 @@ public class C10ConstantsIF
     public static final java.lang.String IFB10S0150_INSERT = "IFB10S0150.insert";
     public static final java.lang.String IFB10S0150_CHECK = "IFB10S0150.check";
     public static final java.lang.String C106000050_erp_snd_update = "C106000050.erp_snd_update";
+    // FM 자동 채번 (S40/S49 신규 등록 시 ZZ1 + FMxxx 자동 생성)
+    public static final java.lang.String C106000050_FM_SEQ_SELECT  = "C106000050.fmSeqSelect";
+    public static final java.lang.String C106000050_FM_SEQ_UPDATE  = "C106000050.fmSeqUpdate";
+    public static final java.lang.String C106000050_FM_AUTO_INSERT = "C106000050.fmAutoInsert";
+    public static final java.lang.String C106000050_CLR_LOG_INSERT = "C106000050.clrMngMdf_log";
     public static final String C106000080POP01_INSERT 	= "C106000080pop01.insert";
     public static final String C106000080POP01_DELETE 	= "C106000080pop01.delete";
     public static final String C106000080POP01_UPDATE   = "C106000080pop01.update";
