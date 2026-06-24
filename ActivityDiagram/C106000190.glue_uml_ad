@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="0" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="0" location="450,26" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:FinalState" id="1" location="450,290" size="-1,-1" input="//@wire.1 //@wire.2 //@wire.3 //@wire.4 //@wire.5"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="100,82" size="800,-1" input="//@wire.0" output="//@wire.6 //@wire.7 //@wire.8 //@wire.9 //@wire.10" name="분기">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   actionType(eventName)을 기준으로 OCR 등록 화면의 분기를 처리하는 Router&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   - find       : 처리 이력 그리드 조회&#xD;&#xA;   - detailFind : OCR 단건 조회 (Form_2 채우기 / C106000050 자동매핑)&#xD;&#xA;   - save       : 사용자 확정값 UPDATE (PROC_STS_CD='CFM')&#xD;&#xA;   - dupCheck   : 칼라부자재코드 중복 체크 (C106000050로 보내기 전 검증)&#xD;&#xA;   - delete     : 이력 삭제&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   서버 프록시 _c10OcrProxyHandler.jsp 가 OCR 추출 INSERT 를 직접 처리하므로 이 Service에는 INSERT 액티비티가 없다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="10" location="40,180" size="140,-1" input="//@wire.6" output="//@wire.1" name="이력조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000190.C106000190_Grid_1.select"/>
+    <property key="description" value="이 Activity는 TB_C10_CLR_STD_OCR 처리 이력을 그리드(Grid_1)에 조회하는 Activity 이다.&#xD;&#xA;조회 조건 : 등록일자(MDF_DH_STR/END), 처리상태(PROC_STS_CD), CODE(OCR_CODE)"/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="11" location="200,180" size="140,-1" input="//@wire.7" output="//@wire.2" name="단건조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000190.detail.select"/>
+    <property key="description" value="OCR_NO 1건의 OCR 추출/확정값을 조회한다. Form_2(추출결과 편집폼) 채우기와 C106000050 자동 행 추가에서 동일 쿼리를 사용한다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="12" location="360,180" size="140,-1" input="//@wire.8" output="//@wire.3" name="확정저장">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000190.detail.update"/>
+    <property key="isAudit" value="true"/>
+    <property key="tx-name" value="tx1"/>
+    <property key="description" value="사용자가 Form_2에서 수정한 OCR 확정값을 TB_C10_CLR_STD_OCR에 UPDATE 한다.&#xD;&#xA;UPDATE 시 PROC_STS_CD = 'CFM' 으로 변경된다."/>
+  </child>
+  <child xsi:type="Glue:SearchActivity" id="13" location="520,180" size="140,-1" input="//@wire.9" output="//@wire.4" name="중복체크">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000190.dup.check"/>
+    <property key="description" value="C106000050(칼라코드 관리)로 행을 보내기 전, TB_C10_CLR_CD_MNG 에 동일 CLR_SUB_MTL_CD 가 이미 존재하는지 COUNT로 확인한다.&#xD;&#xA;CNT > 0 이면 클라이언트에서 alert 후 차단한다."/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="14" location="680,180" size="140,-1" input="//@wire.10" output="//@wire.5" name="삭제">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormDelete"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000190.detail.delete"/>
+    <property key="isAudit" value="true"/>
+    <property key="tx-name" value="tx1"/>
+    <property key="description" value="OCR 처리 이력을 OCR_NO 단위로 삭제한다."/>
+  </child>
+  <property key="tx1" value="true"/>
+  <property key="description" value="1. Service Definition&#xD;&#xA;칼라표준 견본 OCR 등록(C106000190) 화면의 Service.&#xD;&#xA;OCR 결과 INSERT는 서버 프록시(_c10OcrProxyHandler.jsp)에서 처리하며, 본 Service는 조회/수정/삭제/중복체크 흐름을 담당한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;- 사용 테이블 : TB_C10_CLR_STD_OCR (OCR 처리 이력), TB_C10_CLR_CD_MNG (중복 체크용 read)&#xD;&#xA;- 시퀀스      : SQ_C10_CLR_STD_OCR&#xD;&#xA;- 외부 API    : Upstage information-extraction (서버 프록시 경유)"/>
+  <wire id="0" guardcondition="success" firstRelativePoint="468,40" lastRelativePoint="468,80"/>
+  <wire id="1" guardcondition="success" firstRelativePoint="110,210" lastRelativePoint="466,300"/>
+  <wire id="2" guardcondition="success" firstRelativePoint="270,210" lastRelativePoint="466,300"/>
+  <wire id="3" guardcondition="success" firstRelativePoint="430,210" lastRelativePoint="466,300"/>
+  <wire id="4" guardcondition="success" firstRelativePoint="590,210" lastRelativePoint="466,300"/>
+  <wire id="5" guardcondition="success" firstRelativePoint="750,210" lastRelativePoint="466,300"/>
+  <wire id="6" guardcondition="find" firstRelativePoint="160,112" lastRelativePoint="110,178"/>
+  <wire id="7" guardcondition="detailFind" firstRelativePoint="320,112" lastRelativePoint="270,178"/>
+  <wire id="8" guardcondition="save" firstRelativePoint="500,112" lastRelativePoint="430,178"/>
+  <wire id="9" guardcondition="dupCheck" firstRelativePoint="640,112" lastRelativePoint="590,178"/>
+  <wire id="10" guardcondition="delete" firstRelativePoint="800,112" lastRelativePoint="750,178"/>
+</Glue:GlueDiagram>

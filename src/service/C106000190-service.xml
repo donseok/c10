@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C106000190-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="이력조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000190.C106000190_Grid_1.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="이력조회" />
+    <transition name="detailFind" value="단건조회" />
+    <transition name="save" value="확정저장" />
+    <transition name="dupCheck" value="중복체크" />
+    <transition name="delete" value="삭제" />
+  </activity>
+  <activity name="확정저장" class="com.poscoict.glue.biz.dhtmlx.form.FormUpdate">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="tx-name" value="tx1" />
+    <property name="sqlkey" value="C106000190.detail.update" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="단건조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000190.detail.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="삭제" class="com.poscoict.glue.biz.dhtmlx.form.FormDelete">
+    <transition name="success" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="tx-name" value="tx1" />
+    <property name="sqlkey" value="C106000190.detail.delete" />
+    <property name="isAudit" value="true" />
+  </activity>
+  <activity name="중복체크" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000190.dup.check" />
+    <property name="dao" value="mesdao" />
+  </activity>
+</service>
+

@@ -43,7 +43,7 @@ var pageConfiguration = '[' +
    ']';
 var initConfig = JSON.parse(pageConfiguration);	     
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
-var columnList = "CLR_SMP_REQ_NO,CLR_WK_STS_NM,SAL_CHR_REQ_DH,CUS_CD_TXT,CUS_REQ_HUE_TXT,RSN_TP_TXT,SAL_CHR_PRS_ID,DSN_CHR_PRS_ID,DEV_PNT_CMP_CD_NM,PNT_CMP_DLV_NM,PNT_CMP_DLV_HP,PNT_CMP_DLV_EXP_DH,PNT_CMP_DLV_DH,IVC_NO,SMPL_DLV_CMP_NM";
+var columnList = "CLR_SMP_REQ_NO,CLR_SMP_RCP_NO,CUS_REQ_HUE_TXT,RSN_TP_TXT,RSN_ANL_REQ_YN,SMP_SND_YN,PNT_FLM_THK_TXT,SMP_LUS_YN,LUS_RT_CD,CLR_USE_NM,SAL_CHR_PRS_ID,CUS_CD_TXT,USE_REG_TXT,PRD_NM_CD,PRD_TP_YN,SAL_CHR_REQ_DH,SAL_CHR_RGN_DH,CLR_SMP_RMK,DEV_PNT_CMP_CD,DEV_PNT_CMP_CD_NM,RSN_TP,CLR_SMP_DEV_REQ_DH,CLR_SMP_DEV_LMT_DH,CLR_SMP_DEV_END_DH,CLR_SMP_DEV_SND_DH,SMP_SND_INF,DSN_CHR_RGN_YN,HUE_CD,CCL_BOM_NO,CCL_BOM_RGS_DH,CLR_TP,CLR_TP_NM,SIM_HUE_PRG_YN,DSN_CHR_PRS_ID,CLR_SMP_DSN_RMK,SMP_PRC_MAN,MGR_CAL,COL_CFM_ACT_YN,PRJ_DEV_CD";
 //form find button item event function (requred)
 function find(eventName,formDivObj,referenceItem){
     var formObj = items['C106000010_Form_1'].getDhxForm();

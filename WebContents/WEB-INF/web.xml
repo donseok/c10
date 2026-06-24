@@ -2,6 +2,21 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
     <description>Empty web.xml file for Web Application</description>
+
+    <!-- ===== C106000190 Upstage OCR 프록시 설정 ===== -->
+    <context-param>
+        <param-name>c10.upstage.apiKey</param-name>
+        <param-value>up_CIKEc6hkYCJsLmwNyO0bi7bqMjJSv</param-value>
+    </context-param>
+    <context-param>
+        <param-name>c10.upstage.apiUrl</param-name>
+        <param-value>https://api.upstage.ai/v1/document-digitization</param-value>
+    </context-param>
+    <context-param>
+        <param-name>c10.upstage.uploadDir</param-name>
+        <param-value>/APP/WAS/FILES/C10/clr_std_ocr/</param-value>
+    </context-param>
+
 	<filter>
 		<filter-name>Set Character Encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

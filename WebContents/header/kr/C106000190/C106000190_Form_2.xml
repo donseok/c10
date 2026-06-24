@@ -1,0 +1,45 @@
+<items>
+    <item type="block" width="640">
+        <item type="settings" position="label-right" labelWidth="100" inputWidth="100" offsetLeft="5"/>
+
+        <item type="newcolumn" offset="5"/>
+        <item type="hidden"   name="OCR_NO"/>
+        <item type="hidden"   name="PROC_STS_CD"/>
+
+        <item type="input"    name="OCR_CODE"        label="CODE"           inputWidth="120"/>
+        <item type="input"    name="OCR_TYPE"        label="TYPE"           inputWidth="180"/>
+        <item type="input"    name="OCR_MUNSELL"     label="MUNSELL"        inputWidth="180"/>
+        <item type="input"    name="OCR_GLOSS"       label="GLOSS(%)"       inputWidth="100"/>
+        <item type="input"    name="OCR_PRIMER"      label="PRIMER"         inputWidth="180"/>
+        <item type="input"    name="OCR_DFT_1C"      label="DFT 1C(μm)"     inputWidth="80"/>
+        <item type="input"    name="OCR_DFT_2C"      label="DFT 2C(μm)"     inputWidth="80"/>
+        <item type="input"    name="OCR_DFT_3C"      label="DFT 3C(μm)"     inputWidth="80"/>
+        <item type="input"    name="OCR_COLOR"       label="COLOR"          inputWidth="180"/>
+        <item type="input"    name="OCR_UNFIXED_NO"  label="Unfixed No."    inputWidth="180"/>
+        <item type="input"    name="OCR_DELTA_E"     label="ΔE"             inputWidth="100"/>
+        <item type="input"    name="OCR_NV"          label="N.V(%)"         inputWidth="100"/>
+        <item type="input"    name="OCR_L"           label="L"              inputWidth="100"/>
+        <item type="input"    name="OCR_A"           label="a"              inputWidth="100"/>
+        <item type="input"    name="OCR_B"           label="b"              inputWidth="100"/>
+        <item type="input"    name="OCR_SG"          label="S.G"            inputWidth="100"/>
+        <item type="input"    name="OCR_VIS"         label="V.I.S(Sec)"     inputWidth="100"/>
+        <item type="input"    name="OCR_MAKER"       label="MAKER"          inputWidth="180"/>
+
+        <item type="input"    name="OCR_WORK_DT"     label="WORK DATE"      inputWidth="120"/>
+        <item type="input"    name="OCR_APPROVED_DT" label="APPROVED DATE"  inputWidth="120"/>
+        <item type="input"    name="OCR_DISUSED_DT"  label="DISUSED DATE"   inputWidth="120"/>
+        <item type="input"    name="OCR_END_USER"    label="END USER"       inputWidth="180"/>
+
+        <item type="combo"    name="OCR_DURABILITY"  label="DURABILITY"     width="120">
+            <option value=""  text=""/>
+            <option value="Y" text="Y"/>
+            <option value="N" text="N"/>
+        </item>
+        <item type="input"    name="OCR_MEMO"        label="MEMO"           inputWidth="320"/>
+
+        <item type="newcolumn" offset="20"/>
+        <item command="saveCurrent"    name="btn_save" type="button" value="중간 저장" offsetTop="5"/>
+        <item type="newcolumn" offset="10"/>
+        <item command="sendToColorMng" name="btn_send" type="button" value="칼라코드 관리로 보내기"/>
+    </item>
+</items>

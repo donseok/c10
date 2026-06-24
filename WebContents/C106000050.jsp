@@ -1428,6 +1428,8 @@ function addRowFromOcr(ocrNo) {
 		setCell(newRowId, "USE_YN",         "1");
 		setCell(newRowId, "CLR_SUB_MTL_CD", clrCd);
 		setCell(newRowId, "CLR_NM",         d.OCR_COLOR || "");
+		// 표준색상명(STD_CLR_NM): MUNSELL 표기(예: "7.7R 3.4/4.1")
+		setCell(newRowId, "STD_CLR_NM",     d.OCR_MUNSELL || "");
 		setCell(newRowId, "NV",             numStr(d.OCR_NV));
 		setCell(newRowId, "QT_L",           numStr(d.OCR_L));
 		setCell(newRowId, "QT_A",           numStr(d.OCR_A));
@@ -1436,34 +1438,29 @@ function addRowFromOcr(ocrNo) {
 		setCell(newRowId, "RL_LUS_RT",      numStr(d.OCR_GLOSS));
 		setCell(newRowId, "WK_VISCO",       numStr(d.OCR_VIS));
 		setCell(newRowId, "WTY_YN",         (d.OCR_DURABILITY === "Y" ? "1" : ""));
+		// 용재비중(SLV_GRA): 칼라표준에 명시되지 않는 값. 현업 기준 0.93 고정 적용.
+		setCell(newRowId, "SLV_GRA",        "0.93");
 		// 구매수지: OCR TYPE(예: Z2)이 RSN_TP 마스터 코드와 1:1 일치하므로 자동 매핑
 		// (RSN_TP_NM 은 콤보가 코드 → 이름 자동 렌더 → 별도 setCell 불필요)
 		setCell(newRowId, "RSN_TP",         d.OCR_TYPE || "");
 		// 품질수지(RSN_TP_QT / RSN_TP_QT_BR)는 OCR raw 텍스트가 마스터 코드와 불일치(부분일치)이므로
 		// 자동 매핑하지 않고 사용자가 콤보에서 선택. OCR 원본은 RMRK 비고에 표시해 참고.
 
-		// 도막두께 = 1C+2C+3C 합산
-		var thk = numAdd(d.OCR_DFT_1C, d.OCR_DFT_2C, d.OCR_DFT_3C);
+		// 도막두께(PNT_FLM_THK) — 마지막 코팅 단계 기준:
+		//   3C 값 존재 → 1C + 2C + 3C 합산
+		//   3C 없고 2C 존재 → 2C 값만
+		//   1C 만 존재 → 1C 값만
+		var has1C = !(d.OCR_DFT_1C === null || d.OCR_DFT_1C === undefined || d.OCR_DFT_1C === "");
+		var has2C = !(d.OCR_DFT_2C === null || d.OCR_DFT_2C === undefined || d.OCR_DFT_2C === "");
+		var has3C = !(d.OCR_DFT_3C === null || d.OCR_DFT_3C === undefined || d.OCR_DFT_3C === "");
+		var thk = null;
+		if (has3C)       thk = numAdd(d.OCR_DFT_1C, d.OCR_DFT_2C, d.OCR_DFT_3C);
+		else if (has2C)  thk = numAdd(d.OCR_DFT_2C);
+		else if (has1C)  thk = numAdd(d.OCR_DFT_1C);
 		if (thk !== null) setCell(newRowId, "PNT_FLM_THK", thk.toString());
 
-		// 매핑 어려운 항목은 비고에 텍스트로
-		var memo = "[OCR] ";
-		// 품질수지 원본 텍스트 (RSN_TP_QT/_BR 콤보 선택 시 참고용)
-		if (d.OCR_QT_TYPE)      memo += "품질수지(OCR)=" + d.OCR_QT_TYPE + " / ";
-		if (d.OCR_MAKER)        memo += "MAKER=" + d.OCR_MAKER + " / ";
-		if (d.OCR_END_USER)     memo += "END_USER=" + d.OCR_END_USER + " / ";
-		if (d.OCR_MUNSELL)      memo += "MUNSELL=" + d.OCR_MUNSELL + " / ";
-		if (d.OCR_DELTA_E)      memo += "ΔE=" + d.OCR_DELTA_E + " / ";
-		if (d.OCR_PRIMER)       memo += "PRIMER=" + d.OCR_PRIMER + " / ";
-		if (d.OCR_DFT_1C || d.OCR_DFT_2C || d.OCR_DFT_3C) {
-			memo += "D.F.T 1C=" + (d.OCR_DFT_1C||"") + "μ /2C=" + (d.OCR_DFT_2C||"") + "μ /3C=" + (d.OCR_DFT_3C||"") + "μ / ";
-		}
-		if (d.OCR_UNFIXED_NO)   memo += "UNFIXED=" + d.OCR_UNFIXED_NO + " / ";
-		if (d.OCR_WORK_DT)      memo += "WORK=" + fmtDt(d.OCR_WORK_DT) + " / ";
-		if (d.OCR_APPROVED_DT)  memo += "APPROVED=" + fmtDt(d.OCR_APPROVED_DT) + " / ";
-		if (d.OCR_DISUSED_DT)   memo += "DISUSED=" + fmtDt(d.OCR_DISUSED_DT) + " / ";
-		if (d.OCR_MEMO)         memo += "MEMO=" + d.OCR_MEMO;
-		setCell(newRowId, "RMRK", memo);
+		// 비고(RMRK): Unfixed No. 값만 기록 (라벨/다른 항목 모두 제외)
+		setCell(newRowId, "RMRK", d.OCR_UNFIXED_NO || "");
 
 		// inserted 상태로 마크 (저장 대상)
 		items['C106000050_Grid_1'].setUpdated(newRowId, true, "inserted");

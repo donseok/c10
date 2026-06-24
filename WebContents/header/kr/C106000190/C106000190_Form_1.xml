@@ -1,0 +1,28 @@
+<items>
+    <item type="block" width="1300">
+        <item offset="5" type="newcolumn"/>
+        <item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="80"
+              label="등록일자" labelWidth="60" name="MDF_DH_STR" type="calendar" />
+        <item offset="0" type="newcolumn"/>
+        <item label="~" name="MDF_DH_DUR" type="label"/>
+        <item offset="0" type="newcolumn"/>
+        <item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="80"
+              name="MDF_DH_END" type="calendar" />
+        <item offset="10" type="newcolumn"/>
+        <item label="처리상태" labelWidth="55" name="PROC_STS_CD" type="combo" width="120">
+            <option value="all" text="전체"/>
+            <option value="B"   text="확정대기"/>
+            <option value="A"   text="확정"/>
+            <option value="C"   text="등록완료"/>
+            <option value="E"   text="오류"/>
+        </item>
+        <item offset="10" type="newcolumn"/>
+        <item inputWidth="80" label="CODE" labelWidth="40" name="OCR_CODE" type="input"/>
+        <item offset="20" type="newcolumn"/>
+        <item command="openOcrUpload" name="btn_ocr_upload" type="button" value="이미지 업로드 + OCR 추출"/>
+        <item offset="5" type="newcolumn"/>
+        <item command="find" name="find" type="button" value="조회" disabled="true"/>
+        <item offset="5" type="newcolumn"/>
+        <item command="winClose" name="winClose" type="button" value="닫기"/>
+    </item>
+</items>

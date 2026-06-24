@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rows>
+<head>
+<beforeInit>
+    <call command="setImagePath"><param>./dhtmlx/codebase/imgs/</param></call>
+    <call command="setSkin"><param>dhx_skyblue</param></call>
+    <call command="enableSmartRendering"><param>true</param></call>
+    <call command="enableStableSorting"><param>true</param></call>
+    <call command="setAwaitedRowHeight"><param>22</param></call>
+</beforeInit>
+<afterInit>
+    <call command="enableEditEvents"><param>true</param><param>true</param><param>false</param></call>
+</afterInit>
+    <column align="center"  id="OCR_NO"        sort="sort_int_custom" type="ro"  width="60"  table="TB_C10_CLR_STD_OCR">No.</column>
+    <column align="center"  id="PROC_STS_CD"   sort="sort_str_custom" type="ro"  width="60"  hidden="true">상태CD</column>
+    <column align="center"  id="PROC_STS_NM"   sort="sort_str_custom" type="ro"  width="80">상태</column>
+    <column align="left"    id="IMG_FILE_NM"   sort="sort_str_custom" type="ro"  width="220">파일명</column>
+    <column align="left"    id="IMG_FILE_PATH" sort="sort_str_custom" type="ro"  width="0"   hidden="true">경로</column>
+    <column align="center"  id="OCR_CODE"      sort="sort_str_custom" type="ro"  width="80">CODE</column>
+    <column align="center"  id="OCR_TYPE"      sort="sort_str_custom" type="ro"  width="100">TYPE</column>
+    <column align="center"  id="OCR_COLOR"     sort="sort_str_custom" type="ro"  width="100">COLOR</column>
+    <column align="right"   id="OCR_GLOSS"     sort="sort_int_custom" type="ron" width="70" format="000.00">GLOSS</column>
+    <column align="right"   id="OCR_NV"        sort="sort_int_custom" type="ron" width="70" format="000.00">N.V</column>
+    <column align="right"   id="OCR_L"         sort="sort_int_custom" type="ron" width="70" format="000.0000">L</column>
+    <column align="right"   id="OCR_A"         sort="sort_int_custom" type="ron" width="70" format="000.0000">a</column>
+    <column align="right"   id="OCR_B"         sort="sort_int_custom" type="ron" width="70" format="000.0000">b</column>
+    <column align="right"   id="OCR_SG"        sort="sort_int_custom" type="ron" width="70" format="000.0000">S.G</column>
+    <column align="center"  id="OCR_MAKER"     sort="sort_str_custom" type="ro"  width="100">MAKER</column>
+    <column align="center"  id="CLR_SUB_MTL_CD" sort="sort_str_custom" type="ro" width="80" table="TB_C10_CLR_STD_OCR">등록컬러코드</column>
+    <column align="center"  id="RGS_PRS_ID"    sort="sort_str_custom" type="ro"  width="80">등록자</column>
+    <column align="center"  id="RGS_PRS_NM"    sort="sort_str_custom" type="ro"  width="100">등록자명</column>
+    <column align="center"  id="RGS_DH"        sort="sort_str_custom" type="ro"  width="120">등록일시</column>
+    <column align="center"  id="MDF_DH"        sort="sort_str_custom" type="ro"  width="120">수정일시</column>
+<settings><colwidth>px</colwidth></settings>
+</head>
+<userdata name="column-info">OCR_NO,PROC_STS_CD,PROC_STS_NM,IMG_FILE_NM,IMG_FILE_PATH,OCR_CODE,OCR_TYPE,OCR_COLOR,OCR_GLOSS,OCR_NV,OCR_L,OCR_A,OCR_B,OCR_SG,OCR_MAKER,CLR_SUB_MTL_CD,RGS_PRS_ID,RGS_PRS_NM,RGS_DH,MDF_DH</userdata>
+</rows>

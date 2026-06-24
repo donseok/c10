@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C106000190 칼라표준 견본 OCR 등록 쿼리"> 
+	 <query id="C106000190.C106000190_Grid_1.select" desc="OCR 처리 이력 조회" fetchSize="50" isNamed="true">
+		 <![CDATA[ 
+SELECT A.OCR_NO
+             , A.PROC_STS_CD
+             , DECODE(A.PROC_STS_CD,
+                      'A',   '확정',
+                      'B',   '확정대기',
+                      'C',   '등록완료',
+                      'E',   '오류',
+                      'EXT', '확정대기',
+                      'CFM', '확정',
+                      'SAV', '등록완료',
+                      'ERR', '오류',
+                      A.PROC_STS_CD) AS PROC_STS_NM
+             , A.IMG_FILE_NM
+             , A.IMG_FILE_PATH
+             , A.CLR_SUB_MTL_CD
+             , A.OCR_CODE
+             , A.OCR_TYPE
+             , A.OCR_COLOR
+             , A.OCR_GLOSS
+             , A.OCR_NV
+             , A.OCR_L
+             , A.OCR_A
+             , A.OCR_B
+             , A.OCR_SG
+             , A.OCR_MAKER
+             , A.CREATED_OBJECT_ID                                 AS RGS_PRS_ID
+             , (SELECT EMP_NM FROM M90APUSER.TB_M90_EMP_INF
+                 WHERE EMP_ID = A.CREATED_OBJECT_ID
+                   AND ROWNUM = 1)                                  AS RGS_PRS_NM
+             , TO_CHAR(A.CREATION_TIMESTAMP, 'YYYY-MM-DD HH24:MI') AS RGS_DH
+             , TO_CHAR(A.LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI') AS MDF_DH
+          FROM TB_C10_CLR_STD_OCR A
+         WHERE 1 = 1
+           AND A.CREATION_TIMESTAMP
+               BETWEEN TO_DATE(REPLACE(:MDF_DH_STR, '-', ''), 'YYYYMMDD')
+                   AND TO_DATE(REPLACE(:MDF_DH_END, '-', ''), 'YYYYMMDD') + 0.99999
+           AND (:PROC_STS_CD IS NULL
+                OR :PROC_STS_CD = 'all'
+                OR A.PROC_STS_CD = :PROC_STS_CD)
+           AND (:OCR_CODE IS NULL OR A.OCR_CODE LIKE :OCR_CODE || '%')
+         ORDER BY A.OCR_NO DESC
+		 ]]> 
+	 </query>
+	 <query id="C106000190.detail.select" desc="OCR 단건 조회" isNamed="true">
+		 <![CDATA[ 
+SELECT A.OCR_NO
+             , A.PROC_STS_CD
+             , A.IMG_FILE_NM
+             , A.IMG_FILE_PATH
+             , A.CLR_SUB_MTL_CD
+             , A.OCR_CODE
+             , A.OCR_TYPE
+             , A.OCR_QT_TYPE
+             , A.OCR_MUNSELL
+             , A.OCR_GLOSS
+             , A.OCR_PRIMER
+             , A.OCR_DFT_1C
+             , A.OCR_DFT_2C
+             , A.OCR_DFT_3C
+             , A.OCR_COLOR
+             , A.OCR_UNFIXED_NO
+             , A.OCR_DELTA_E
+             , A.OCR_NV
+             , A.OCR_L
+             , A.OCR_A
+             , A.OCR_B
+             , A.OCR_SG
+             , A.OCR_VIS
+             , A.OCR_MAKER
+             , A.OCR_WORK_DT
+             , A.OCR_APPROVED_DT
+             , A.OCR_DISUSED_DT
+             , A.OCR_END_USER
+             , A.OCR_DURABILITY
+             , A.OCR_MEMO
+             , A.OCR_CHARGER
+             , A.OCR_M2_DE
+             , A.OCR_M2_DL
+             , A.OCR_M2_DA
+             , A.OCR_M2_DB
+             , A.OCR_P2_DE
+             , A.OCR_P2_DL
+             , A.OCR_P2_DA
+             , A.OCR_P2_DB
+          FROM TB_C10_CLR_STD_OCR A
+         WHERE A.OCR_NO = :OCR_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000190.detail.update" desc="OCR 추출값 사용자 수정 저장" isNamed="true">
+		 <![CDATA[ 
+UPDATE TB_C10_CLR_STD_OCR
+           SET PROC_STS_CD               = 'A'
+             , OCR_CODE                  = :OCR_CODE
+             , OCR_TYPE                  = :OCR_TYPE
+             , OCR_QT_TYPE               = :OCR_QT_TYPE
+             , OCR_MUNSELL               = :OCR_MUNSELL
+             , OCR_GLOSS                 = :OCR_GLOSS
+             , OCR_PRIMER                = :OCR_PRIMER
+             , OCR_DFT_1C                = :OCR_DFT_1C
+             , OCR_DFT_2C                = :OCR_DFT_2C
+             , OCR_DFT_3C                = :OCR_DFT_3C
+             , OCR_COLOR                 = :OCR_COLOR
+             , OCR_UNFIXED_NO            = :OCR_UNFIXED_NO
+             , OCR_DELTA_E               = :OCR_DELTA_E
+             , OCR_NV                    = :OCR_NV
+             , OCR_L                     = :OCR_L
+             , OCR_A                     = :OCR_A
+             , OCR_B                     = :OCR_B
+             , OCR_SG                    = :OCR_SG
+             , OCR_VIS                   = :OCR_VIS
+             , OCR_MAKER                 = :OCR_MAKER
+             , OCR_WORK_DT               = :OCR_WORK_DT
+             , OCR_APPROVED_DT           = :OCR_APPROVED_DT
+             , OCR_DISUSED_DT            = :OCR_DISUSED_DT
+             , OCR_END_USER              = :OCR_END_USER
+             , OCR_DURABILITY            = :OCR_DURABILITY
+             , OCR_MEMO                  = :OCR_MEMO
+             , OCR_CHARGER               = :OCR_CHARGER
+             , OCR_M2_DE                 = :OCR_M2_DE
+             , OCR_M2_DL                 = :OCR_M2_DL
+             , OCR_M2_DA                 = :OCR_M2_DA
+             , OCR_M2_DB                 = :OCR_M2_DB
+             , OCR_P2_DE                 = :OCR_P2_DE
+             , OCR_P2_DL                 = :OCR_P2_DL
+             , OCR_P2_DA                 = :OCR_P2_DA
+             , OCR_P2_DB                 = :OCR_P2_DB
+             , LAST_UPDATED_OBJECT_TYPE  = :ObjectType
+             , LAST_UPDATED_OBJECT_ID    = :ObjectId
+             , LAST_UPDATE_PROGRAM_ID    = :ProgramId
+             , LAST_UPDATE_TIMESTAMP     = :Timestamp
+         WHERE OCR_NO = :OCR_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000190.detail.delete" desc="OCR 이력 삭제" isNamed="true">
+		 <![CDATA[ 
+DELETE FROM TB_C10_CLR_STD_OCR
+         WHERE OCR_NO = :OCR_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000190.detail.insert" desc="OCR 추출 결과 등록" isNamed="true">
+		 <![CDATA[ 
+INSERT INTO TB_C10_CLR_STD_OCR (
+            OCR_NO
+          , PROC_STS_CD
+          , IMG_FILE_NM
+          , IMG_FILE_PATH
+          , IMG_FILE_SIZE
+          , IMG_FILE_EXT
+          , OCR_CODE
+          , OCR_TYPE
+          , OCR_QT_TYPE
+          , OCR_MUNSELL
+          , OCR_GLOSS
+          , OCR_PRIMER
+          , OCR_DFT_1C
+          , OCR_DFT_2C
+          , OCR_DFT_3C
+          , OCR_COLOR
+          , OCR_UNFIXED_NO
+          , OCR_DELTA_E
+          , OCR_NV
+          , OCR_L
+          , OCR_A
+          , OCR_B
+          , OCR_SG
+          , OCR_VIS
+          , OCR_MAKER
+          , OCR_WORK_DT
+          , OCR_APPROVED_DT
+          , OCR_DISUSED_DT
+          , OCR_END_USER
+          , OCR_DURABILITY
+          , OCR_MEMO
+          , OCR_CHARGER
+          , OCR_M2_DE
+          , OCR_M2_DL
+          , OCR_M2_DA
+          , OCR_M2_DB
+          , OCR_P2_DE
+          , OCR_P2_DL
+          , OCR_P2_DA
+          , OCR_P2_DB
+          , CREATED_OBJECT_TYPE
+          , CREATED_OBJECT_ID
+          , CREATED_PROGRAM_ID
+          , CREATION_TIMESTAMP
+        ) VALUES (
+            :OCR_NO
+          , 'B'
+          , :IMG_FILE_NM
+          , :IMG_FILE_PATH
+          , :IMG_FILE_SIZE
+          , :IMG_FILE_EXT
+          , :OCR_CODE
+          , :OCR_TYPE
+          , :OCR_QT_TYPE
+          , :OCR_MUNSELL
+          , :OCR_GLOSS
+          , :OCR_PRIMER
+          , :OCR_DFT_1C
+          , :OCR_DFT_2C
+          , :OCR_DFT_3C
+          , :OCR_COLOR
+          , :OCR_UNFIXED_NO
+          , :OCR_DELTA_E
+          , :OCR_NV
+          , :OCR_L
+          , :OCR_A
+          , :OCR_B
+          , :OCR_SG
+          , :OCR_VIS
+          , :OCR_MAKER
+          , :OCR_WORK_DT
+          , :OCR_APPROVED_DT
+          , :OCR_DISUSED_DT
+          , :OCR_END_USER
+          , :OCR_DURABILITY
+          , :OCR_MEMO
+          , :OCR_CHARGER
+          , :OCR_M2_DE
+          , :OCR_M2_DL
+          , :OCR_M2_DA
+          , :OCR_M2_DB
+          , :OCR_P2_DE
+          , :OCR_P2_DL
+          , :OCR_P2_DA
+          , :OCR_P2_DB
+          , :ObjectType
+          , :ObjectId
+          , :ProgramId
+          , SYSDATE
+        )
+		 ]]> 
+	 </query>
+	 <query id="C106000190.detail.updateRawJson" desc="OCR 원본 JSON 저장" isNamed="true">
+		 <![CDATA[ 
+UPDATE TB_C10_CLR_STD_OCR
+           SET OCR_RAW_JSON = :OCR_RAW_JSON
+         WHERE OCR_NO = :OCR_NO
+		 ]]> 
+	 </query>
+	 <query id="C106000190.dup.check" desc="칼라부자재코드 중복 체크" isNamed="true">
+		 <![CDATA[ 
+SELECT COUNT(1) AS CNT
+          FROM TB_C10_CLR_CD_MNG
+         WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]> 
+	 </query>
+</queryMap>
