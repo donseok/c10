@@ -1417,11 +1417,12 @@ function addRowFromOcr(ocrNo) {
 		}
 		var clrCd = (d.OCR_CODE || "").toUpperCase();
 
+		// 일반 "행추가" 버튼과 동일한 초기화 경로를 사용해야
+		// combo_v 컬럼(PRT_INK_TP 등) 이 콤보 첫 옵션 label 로 자동 세팅되는 dhtmlx 버그를 회피할 수 있음.
+		items['C106000050_Grid_1'].addRow();
 		var grid = items['C106000050_Grid_1'].getDhxGrid();
-		var newRowId = "ocr_" + ocrNo + "_" + (new Date()).getTime();
-
-		// 새 행을 그리드 맨 위에 추가 (status=inserted 로 표시)
-		grid.addRow(newRowId, "", 0);
+		grid.setCellExcellType(grid.getRowId(0), 1, "ed"); // 컬러코드 셀 편집형으로 (기존 행추가 흐름과 동일)
+		var newRowId = grid.getRowId(0);
 		grid.selectRowById(newRowId, false, true, true);
 
 		// 자동 매핑 — 그대로 채울 수 있는 값
@@ -1573,7 +1574,17 @@ function onGridAfterUpdateFinishEvent(){
 	var grid_cnt = gridObj.getRowsNum();
 	for(var i=0; i< grid_cnt; i++){
 		var rowID = gridObj.getRowId(i);
-        items['C106000050_Grid_1'].setUpdated(rowID,false,""); 
+        items['C106000050_Grid_1'].setUpdated(rowID,false,"");
+	}
+	// OCR(C106000190) 진입 흐름은 검색 조건이 비어 있어 find() 가 전체 스캔 → 4~11초 지연.
+	// 화면에는 방금 저장한 행만 유지하고 재조회는 스킵한다.
+	if (typeof URL_OCR_NO !== 'undefined' && URL_OCR_NO && URL_OCR_NO.length > 0) {
+		dhtmlx.message({
+			type:"info",
+			text:"저장이 완료되었습니다. 상세 조회가 필요하면 좌측 상단 검색 조건으로 조회해주세요.",
+			expire:5000
+		});
+		return;
 	}
 	//var findUrl = uiCommon.parameters('C106000050_Form_1','C106000050_Grid_1','find');
   //items['C106000050_Grid_1'].loadData(findUrl);

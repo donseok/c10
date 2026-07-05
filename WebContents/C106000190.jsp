@@ -21,7 +21,21 @@
         background:#fafafa; border:1px solid #ccc; text-align:center; overflow:hidden;
     }
     #ocr_image_box img {
-        width:100%; height:100%; object-fit:contain;
+        position:absolute; left:50%; top:50%;
+        transform-origin:center center;
+        transition:transform 0.15s ease;
+        max-width:none; max-height:none;
+    }
+    #ocr_image_box .ocr-thumb-toolbar {
+        position:absolute; top:6px; right:6px; z-index:5;
+        display:flex; gap:4px;
+    }
+    #ocr_image_box .ocr-thumb-toolbar button {
+        padding:4px 10px; font-size:12px; cursor:pointer;
+        background:rgba(255,255,255,0.92); border:1px solid #999; border-radius:3px;
+    }
+    #ocr_image_box .ocr-thumb-toolbar button:hover {
+        background:#fff;
     }
     #ocr_label_box {
         position:absolute; left:888px; top:36px; width:640px; height:700px;
@@ -973,19 +987,59 @@ function _normDateStr(s) {
     return '';
 }
 
-// 이미지 미리보기 (클릭 시 전체화면 확대/축소 뷰어 열림)
+// 미리보기 이미지 현재 회전값 (0/90/180/270) — 확대 뷰어로 그대로 전달됨
+var _ocrThumbRotate = 0;
+
+// 이미지 미리보기 (썸네일 상태에서도 ±90° 회전 가능, 클릭 시 전체화면 확대 뷰어)
 function showOcrImage(ocrNo) {
+    _ocrThumbRotate = 0;
     var box = document.getElementById("ocr_image_box");
     var url = "./_c10OcrImage.jsp?ocrNo=" + encodeURIComponent(ocrNo) + "&_t=" + (new Date()).getTime();
-    box.innerHTML = "<img id='ocr_thumb_img' src='" + url + "' alt='OCR 원본' style='cursor:zoom-in;' title='클릭하면 확대보기'/>";
+    box.innerHTML =
+        "<div class='ocr-thumb-toolbar'>" +
+        "  <button type='button' id='ocr_thumb_rot_l' title='왼쪽 90° 회전'>⟲ 90°</button>" +
+        "  <button type='button' id='ocr_thumb_rot_r' title='오른쪽 90° 회전'>⟳ 90°</button>" +
+        "</div>" +
+        "<img id='ocr_thumb_img' src='" + url + "' alt='OCR 원본' style='cursor:zoom-in;' title='클릭하면 확대보기'/>";
+
     var thumb = document.getElementById("ocr_thumb_img");
     if (thumb) {
-        thumb.onclick = function() { openOcrImageViewer(url); };
+        thumb.onclick = function() { openOcrImageViewer(url, _ocrThumbRotate); };
+        thumb.onload  = _applyOcrThumbRotate;   // 이미지 로드 완료 후 첫 렌더
     }
+    document.getElementById("ocr_thumb_rot_l").onclick = function() {
+        _ocrThumbRotate = (_ocrThumbRotate + 270) % 360;
+        _applyOcrThumbRotate();
+    };
+    document.getElementById("ocr_thumb_rot_r").onclick = function() {
+        _ocrThumbRotate = (_ocrThumbRotate + 90) % 360;
+        _applyOcrThumbRotate();
+    };
 }
 
-// 전체화면 이미지 뷰어 (휠 zoom + 드래그 이동 + ESC/클릭 닫기)
-function openOcrImageViewer(imgUrl) {
+// 썸네일 이미지에 현재 회전값 반영.
+// 90/270° 회전 시 이미지의 width/height 축이 뒤바뀌므로 컨테이너에 맞게 scale 재계산.
+function _applyOcrThumbRotate() {
+    var thumb = document.getElementById("ocr_thumb_img");
+    var box   = document.getElementById("ocr_image_box");
+    if (!thumb || !box || !thumb.naturalWidth) return;
+
+    var boxW = box.clientWidth, boxH = box.clientHeight;
+    var nW = thumb.naturalWidth, nH = thumb.naturalHeight;
+
+    var scale = (_ocrThumbRotate % 180 === 0)
+        ? Math.min(boxW / nW, boxH / nH)   // 0/180°: 원본 축 그대로
+        : Math.min(boxW / nH, boxH / nW);  // 90/270°: 축 뒤바뀜
+
+    thumb.style.width  = nW + "px";
+    thumb.style.height = nH + "px";
+    thumb.style.transform = "translate(-50%,-50%) rotate(" + _ocrThumbRotate + "deg) scale(" + scale + ")";
+}
+
+// 전체화면 이미지 뷰어 (휠 zoom + 드래그 이동 + 회전 ±90° + ESC/클릭 닫기)
+//   단축키: ←/→ 회전, ESC 닫기
+//   initRotate: 썸네일에서 이미 회전한 상태(0/90/180/270)를 유지한 채 열기 위한 초기값
+function openOcrImageViewer(imgUrl, initRotate) {
     var old = document.getElementById("ocrImgViewerOverlay");
     if (old) old.parentNode.removeChild(old);
 
@@ -998,22 +1052,52 @@ function openOcrImageViewer(imgUrl) {
     var img = document.createElement("img");
     img.src = imgUrl;
     img.style.cssText = "max-width:90%;max-height:90%;"
-        + "transform:translate(0px,0px) scale(1);"
+        + "transform:translate(0px,0px) rotate(" + (initRotate || 0) + "deg) scale(1);"
         + "transition:transform 0.1s ease;cursor:grab;user-select:none;background:#fff;";
 
-    var scale = 1, posX = 0, posY = 0;
+    var scale = 1, posX = 0, posY = 0, rotate = (initRotate || 0);
     var isDragging = false, startX = 0, startY = 0;
 
     function updateTransform() {
-        img.style.transform = "translate(" + posX + "px," + posY + "px) scale(" + scale + ")";
+        img.style.transform = "translate(" + posX + "px," + posY + "px) "
+                            + "rotate(" + rotate + "deg) "
+                            + "scale(" + scale + ")";
+    }
+    function rotateBy(delta) {
+        rotate = (rotate + delta + 360) % 360;
+        posX = 0; posY = 0;  // 회전 후 중앙 정렬
+        updateTransform();
     }
     function closeViewer() {
-        document.removeEventListener("keydown", escHandler);
+        document.removeEventListener("keydown", keyHandler);
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
     }
-    function escHandler(e) { if (e.key === "Escape") closeViewer(); }
+    function keyHandler(e) {
+        if (e.key === "Escape")          closeViewer();
+        else if (e.key === "ArrowLeft")  rotateBy(-90);
+        else if (e.key === "ArrowRight") rotateBy(+90);
+    }
 
     overlay.appendChild(img);
+
+    // 우측 상단 툴바 (회전 ±90° + 닫기)
+    var toolbar = document.createElement("div");
+    toolbar.style.cssText = "position:absolute;top:20px;right:20px;z-index:100000;"
+        + "display:flex;gap:8px;";
+    function mkBtn(label, title, onClick) {
+        var b = document.createElement("button");
+        b.textContent = label;
+        b.title = title;
+        b.style.cssText = "padding:8px 14px;font-size:14px;cursor:pointer;"
+            + "background:#fff;border:1px solid #ccc;border-radius:4px;";
+        b.onclick = function(e) { e.stopPropagation(); onClick(); };
+        return b;
+    }
+    toolbar.appendChild(mkBtn("⟲ 90°", "왼쪽 회전 (←)",   function(){ rotateBy(-90); }));
+    toolbar.appendChild(mkBtn("⟳ 90°", "오른쪽 회전 (→)", function(){ rotateBy(+90); }));
+    toolbar.appendChild(mkBtn("✕",     "닫기 (ESC)",      closeViewer));
+    overlay.appendChild(toolbar);
+
     document.body.appendChild(overlay);
 
     overlay.onclick = closeViewer;
@@ -1045,7 +1129,7 @@ function openOcrImageViewer(imgUrl) {
         img.style.cursor = "grab";
         img.style.transition = "transform 0.1s ease";
     });
-    document.addEventListener("keydown", escHandler);
+    document.addEventListener("keydown", keyHandler);
 }
 
 function showProgress(on, stageText) {
