@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryMap desc="C104000020CHG_HST">
+	 <query id="C104000020CHG_HST.maxSeq" desc="변경이력 SEQ MAX 조회" fetchSize="10" isNamed="true">
+		 <![CDATA[
+SELECT /*+ C10 변경이력 SEQ MAX C104000020CHG_HST.maxSeq */
+       NVL(MAX(SEQ), 0) AS MAX_SEQ
+  FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST
+ WHERE ORD_NO = :ORD_NO
+   AND ORD_LN = :ORD_LN
+		 ]]>
+	 </query>
+	 <query id="C104000020CHG_HST.insert" desc="변경이력 컬럼단위 INSERT" fetchSize="10" isNamed="true">
+		 <![CDATA[
+INSERT /*+ C10 변경이력 컬럼단위 C104000020CHG_HST.insert */
+  INTO C10APUSER.TB_C10_QLT_DSN_CHG_HST
+       (
+         ORD_NO
+       , ORD_LN
+       , SEQ
+       , CHG_TXT
+       , TARGET_TABLE_NM
+       , TARGET_PK_INFO
+       , DML_TYPE
+       , COLUMN_NM
+       , OLD_VAL
+       , NEW_VAL
+       , CREATED_OBJECT_TYPE
+       , CREATED_OBJECT_ID
+       , CREATED_PROGRAM_ID
+       , CREATION_TIMESTAMP
+       , LAST_UPDATED_OBJECT_TYPE
+       , LAST_UPDATED_OBJECT_ID
+       , LAST_UPDATE_PROGRAM_ID
+       , LAST_UPDATE_TIMESTAMP
+       )
+VALUES
+       (
+         :ORD_NO
+       , :ORD_LN
+       , :SEQ
+       , :CHG_TXT
+       , :TARGET_TABLE_NM
+       , :TARGET_PK_INFO
+       , :DML_TYPE
+       , :COLUMN_NM
+       , SUBSTRB(:OLD_VAL, 1, 4000)
+       , SUBSTRB(:NEW_VAL, 1, 4000)
+       , :ObjectType
+       , :ObjectId
+       , :ProgramId
+       , :Timestamp
+       , :ObjectType
+       , :ObjectId
+       , :ProgramId
+       , :Timestamp
+       )
+		 ]]>
+	 </query>
+</queryMap>

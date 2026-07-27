@@ -297,22 +297,8 @@ public class C104000020TAB08ProcActivity extends PosActivity implements C10NuiCo
                 }
             }
             
-            if(!sORD_NO.equals( C10STR_SPACE ) && !sORD_LN.equals( C10STR_SPACE ))
-            {
-                param = new PosParameter();
-                param.setNamedParamter( COL_ORD_NO, sORD_NO );
-                param.setNamedParamter( COL_ORD_LN, sORD_LN );
-                param.setNamedParamter( C10ConstantsIF.OBJECT_TYPE, 
-                        (String) ctx.get( C10ConstantsIF.OBJECT_TYPE ) );
-                param.setNamedParamter( C10ConstantsIF.OBJECT_ID, 
-                        (String) ctx.get( C10ConstantsIF.OBJECT_ID ) );
-                param.setNamedParamter( C10ConstantsIF.PROGRAM_ID, 
-                        (String) ctx.get( C10ConstantsIF.PROGRAM_ID ) );
-                param.setNamedParamter( C10ConstantsIF.TIMESTAMP, 
-                        ctx.get(C10ConstantsIF.TIMESTAMP));
-
-                nRELULT = mesdao.insert( INSERT_HST, param );               
-            }
+            // 통과공정 변경이력 마커 적재 제거 — 통과공정 이력은 INSERT_PROC_HST(별도 테이블)에서 관리.
+            // 변경이력 팝업(C104000020POP_HST)에서는 OLD/NEW 디테일 없는 마커가 노이즈로 보여 제외함.
             this.commitTransaction( C10ConstantsIF.TX1 );
             logger.logError( "커밋" );
             return PosBizControlConstants.SUCCESS;

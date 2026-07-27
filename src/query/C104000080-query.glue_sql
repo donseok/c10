@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryMap desc="C104000080 품질설계결과 변경이력 분석">
+
+	<query id="C104000080.select" desc="품질설계결과 변경이력 - 기간/화면탭/항목 조건 조회" fetchSize="500" isNamed="true">
+		<![CDATA[
+SELECT /*+ C10 품질설계결과 변경이력 분석 C104000080.select */
+       T.SEQ
+     , T.ORD_NO
+     , T.ORD_LN
+     , T.CHG_TXT
+     , CASE
+         WHEN T.CHG_TXT = 'C104000020TAB01' THEN '공통'
+         WHEN T.CHG_TXT = 'C104000020TAB02' THEN '성분'
+         WHEN T.CHG_TXT = 'C104000020TAB03' THEN '재질'
+         WHEN T.CHG_TXT = 'C104000020TAB04' THEN '인수도'
+         WHEN T.CHG_TXT = 'C104000020TAB05' THEN '용융도금-제조표준'
+         WHEN T.CHG_TXT = 'C104000020TAB06' THEN '전기도금-제조표준'
+         WHEN T.CHG_TXT = 'C104000020TAB07' THEN '칼라제조사양'
+         WHEN T.CHG_TXT = 'C104000020TAB08' THEN '통과공정'
+         WHEN T.CHG_TXT = 'C104000020TAB09' THEN '후공정-제조표준'
+         ELSE T.CHG_TXT
+       END AS CHG_TXT_NM
+     , T.TARGET_TABLE_NM
+     , T.TARGET_PK_INFO
+     , T.DML_TYPE
+     , T.COLUMN_NM
+     , NVL((SELECT MAX(C.COMMENTS)
+              FROM ALL_COL_COMMENTS C
+             WHERE C.OWNER = 'C10APUSER'
+               AND C.TABLE_NAME = T.TARGET_TABLE_NM
+               AND C.COLUMN_NAME = T.COLUMN_NM
+               AND C.COMMENTS IS NOT NULL)
+          , T.COLUMN_NM) AS COLUMN_COMMENT
+     , T.OLD_VAL
+     , T.NEW_VAL
+     , T.LAST_UPDATED_OBJECT_ID
+     , NVL((SELECT U.USER_NAME
+              FROM M90APUSER.TB_SEC_USER U
+             WHERE U.USER_NO = T.LAST_UPDATED_OBJECT_ID)
+          , T.LAST_UPDATED_OBJECT_ID) AS LAST_UPDATED_USER_NM
+     , TO_CHAR(T.LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS LAST_UPDATE_TIMESTAMP
+  FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST T
+ WHERE T.LAST_UPDATE_TIMESTAMP >= TO_DATE(REPLACE(:START_DATE,'-',''), 'YYYYMMDD')
+   AND T.LAST_UPDATE_TIMESTAMP <  TO_DATE(REPLACE(:END_DATE,'-',''), 'YYYYMMDD') + 1
+   AND ( NVL(:CHG_TXT,'all') = 'all' OR T.CHG_TXT = :CHG_TXT )
+   AND ( NVL(:COLUMN_NM,'all') = 'all' OR T.COLUMN_NM = :COLUMN_NM )
+ ORDER BY T.LAST_UPDATE_TIMESTAMP DESC, T.SEQ DESC
+		]]>
+	</query>
+
+	<query id="C104000080pop01.select" desc="항목 LOV - 변경이력에 등장한 컬럼 전체 (단순 distinct, 기간/빈도 무관)" fetchSize="2000" isNamed="true">
+		<![CDATA[
+SELECT /*+ 항목 LOV C104000080pop01.select */
+       D.COLUMN_NM
+     , NVL(C.COMMENTS, D.COLUMN_NM) AS COLUMN_COMMENT
+     , D.TARGET_TABLE_NM
+  FROM (SELECT DISTINCT TARGET_TABLE_NM, COLUMN_NM
+          FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST) D
+     , ALL_COL_COMMENTS C
+ WHERE C.OWNER(+)       = 'C10APUSER'
+   AND C.TABLE_NAME(+)  = D.TARGET_TABLE_NM
+   AND C.COLUMN_NAME(+) = D.COLUMN_NM
+   AND ( :SRCH IS NULL
+         OR :SRCH = ''
+         OR UPPER(D.COLUMN_NM) LIKE '%' || UPPER(:SRCH) || '%'
+         OR C.COMMENTS         LIKE '%' || :SRCH || '%' )
+ ORDER BY 2
+		]]>
+	</query>
+
+</queryMap>

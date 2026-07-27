@@ -87,14 +87,19 @@ function save(eventName,formDivObj,referenceItem){
 		    row_status1 = row_status;
 		//alert("row_status1:" + row_status1);
 		//proc_seq_max = proc_seq;
-		
+
 		if(proc_seq == "")
 			break;
-			
-		for(var k=0; k< gridObj.getRowsNum(); k++){		
+
+		//삭제된 row는 중복체크 대상에서 제외 (2026.07.06 서재섭)
+		if(row_status == "deleted")
+			continue;
+
+		for(var k=0; k< gridObj.getRowsNum(); k++){
 			ord_seq = gridObj.cellByIndex(k,0).getValue();
+			var k_status = gridObj.getUserData(gridObj.getRowId(k),"!nativeeditor_status");
 			//alert("ord_seq:" + ord_seq);
-			if(i != k){
+			if(i != k && k_status != "deleted"){
 				if(ord_seq == proc_seq){
 					dhtmlx.alert("순번 중복이 있습니다!");
 					return;
@@ -451,11 +456,34 @@ function remove(referenceItem){
 	var param1= "ServiceName=C104000020TAB08-service&STS_find=1&ORD_NO=" + ord_no + "&ORD_LN=" + comboList.getSelectedValue() + "&column-info=ORD_NO";
 	var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 	var cells1 = xmlObj1.getElementsByTagName("cell");
-	if(cells1.length > 0){						
+	if(cells1.length > 0){
 		dhtmlx.alert("확정된 주문입니다!");
-		return;					
+		return;
 	}else{
     	items[referenceItem].removeRow();
+    	resequenceProcSeq(referenceItem);
+	}
+}
+//삭제 후 남은 통과공정의 순번(PROC_SEQ)을 1..N으로 재정렬 (2026.07.06 서재섭)
+function resequenceProcSeq(referenceItem){
+	var grid = items[referenceItem];
+	var gridObj = grid.getDhxGrid();
+	var newSeq = 1;
+	for(var i=0; i< gridObj.getRowsNum(); i++){
+		var rowId = gridObj.getRowId(i);
+		var rowStatus = gridObj.getUserData(rowId, "!nativeeditor_status");
+		if(rowStatus == "deleted"){
+			continue;
+		}
+		var mainProc = gridObj.cellByIndex(i,1).getValue();
+		var currentSeq = gridObj.cellByIndex(i,0).getValue();
+		if(mainProc == "" && currentSeq == ""){
+			continue;
+		}
+		if(String(currentSeq) != String(newSeq)){
+			gridObj.cellByIndex(i,0).setValue(newSeq);
+		}
+		newSeq++;
 	}
 }
 //menu rows clipboard copy event function
@@ -598,7 +626,7 @@ function onFormLoadEvent1(){
 		var xmlObj1 = uiCommon.ajaxLoadData('c10AjaxData.do',param1);
 		var cells1 = xmlObj1.getElementsByTagName("cell");
 		var form1 =  items['C104000020TAB08_Form_1'];
-		var pas_proc_no = cells1.item(0).firstChild.nodeValue;
+		var pas_proc_no = (cells1.length > 0 && cells1.item(0).firstChild) ? cells1.item(0).firstChild.nodeValue : "";
 		
 		form1.setItemValue("PAS_PROC_NO",pas_proc_no);
 	}	

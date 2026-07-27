@@ -1,110 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="1" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="8" location="282,31" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:RouterActivity" id="9" location="42,99" size="973,-1" input="//@wire.0" output="//@wire.1 //@wire.7 //@wire.3 //@wire.6 //@wire.9 //@wire.10 //@wire.15 //@wire.17" name="분기">
+  <child xsi:type="Glue:RouterActivity" id="9" location="42,99" size="973,-1" input="//@wire.0" output="//@wire.1 //@wire.7 //@wire.3 //@wire.5 //@wire.11 //@wire.15 //@wire.19 //@wire.23" name="분기">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;   조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   분기는 find 만 있다&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
+    <property key="description" value="조회/저장 분기 (find, CMN_find, STS_find, save, MSG_save, MSG_sync, KWD_save, BOM_kwdsync)"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="10" location="45,174" size="86,-1" input="//@wire.1" output="//@wire.2" name="조회">
+  <child xsi:type="Glue:DinaActivity" id="10" location="24,173" size="86,-1" input="//@wire.1" output="//@wire.2" name="조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000020TAB07.select"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-칼라제조사양 테이블(TB_C10_QLT_DSN_CCL_BOM)의  품질설계결과-칼라제조사양을 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+    <property key="description" value="품질설계-칼라제조사양 조회"/>
   </child>
-  <child xsi:type="Glue:FinalState" id="11" location="306,324" size="-1,-1" input="//@wire.2 //@wire.4 //@wire.5 //@wire.8 //@wire.12 //@wire.14 //@wire.16 //@wire.18"/>
-  <child xsi:type="Glue:DinaActivity" id="12" location="124,213" size="86,-1" input="//@wire.3" output="//@wire.4" name="공통 조회">
+  <child xsi:type="Glue:FinalState" id="11" location="436,525" size="-1,-1" input="//@wire.2 //@wire.4 //@wire.6 //@wire.9 //@wire.10 //@wire.13 //@wire.14 //@wire.18 //@wire.21 //@wire.22 //@wire.24"/>
+  <child xsi:type="Glue:DinaActivity" id="12" location="95,233" size="86,-1" input="//@wire.3" output="//@wire.4" name="공통 조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000020TAB07.CMNselect"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-칼라제조사양 테이블(TB_C10_QLT_DSN_CCL_BOM)의  품질설계결과-칼라제조사양을 조회 하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+    <property key="description" value="공통 조회"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="13" location="203,174" size="86,-1" input="//@wire.6" output="//@wire.5" name="상태 조회">
+  <child xsi:type="Glue:DinaActivity" id="13" location="175,178" size="86,-1" input="//@wire.5" output="//@wire.6" name="상태 조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000020TAB07.STSselect"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;  이 Activity는 품질설계-공통 테이블(TB_C10_QLT_DSN_CMN)의  품질설계상태를  확인하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면 필수 입력 사항 : 주문번호, 주문행번 입력 받아 조회한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+    <property key="description" value="상태 조회"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="156758" location="316,173" size="93,-1" input="//@wire.7" output="//@wire.8" name="저장">
+  <child xsi:type="Glue:DinaActivity" id="300700" location="249,224" size="120,-1" input="//@wire.7" output="//@wire.8 //@wire.9" name="이력기록(저장)">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity"/>
+    <property key="dao" value="mesdao"/>
+    <property key="screenId" value="C104000020"/>
+    <property key="tabId" value="TAB07"/>
+    <property key="targetTable" value="TB_C10_QLT_DSN_MNF"/>
+    <property key="pkColumns" value="ORD_NO,ORD_LN"/>
+    <property key="trackColumns" value="CCL_THK_TRV,CCL_WTH_TRV"/>
+    <property key="description" value="MNF 저장 직전 OLD/NEW 비교 → 변경이력 적재"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156758" location="260,303" size="93,-1" input="//@wire.8" output="//@wire.10" name="저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.MNFupdate"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계메세지테이블(TB_C10_QLT_DSN_MSG)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호의 품질메세지를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+    <property key="description" value="MNF 업데이트"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="156759" location="422,174" size="89,-1" input="//@wire.9" output="//@wire.14" name="MSG 저장">
+  <child xsi:type="Glue:DinaActivity" id="300701" location="370,185" size="120,-1" input="//@wire.11" output="//@wire.12 //@wire.13" name="이력기록(MSG)">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity"/>
+    <property key="dao" value="mesdao"/>
+    <property key="screenId" value="C104000020"/>
+    <property key="tabId" value="TAB07"/>
+    <property key="targetTable" value="TB_C10_QLT_DSN_CCL_BOM"/>
+    <property key="pkColumns" value="ORD_NO,ORD_LN"/>
+    <property key="trackColumns" value="CCL_QLT_MSG_TXT"/>
+    <property key="description" value="MSG 저장 직전 OLD/NEW 비교 → 변경이력 적재"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156759" location="380,291" size="89,-1" input="//@wire.12" output="//@wire.14" name="MSG 저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CCLupdate"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계메세지테이블(TB_C10_QLT_DSN_MSG)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호의 품질메세지를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+    <property key="description" value="CCL_BOM MSG 업데이트"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="156761" location="519,178" size="105,-1" input="//@wire.10" output="//@wire.11" name="BOM MSG UPD">
+  <child xsi:type="Glue:DinaActivity" id="156761" location="582,188" size="105,-1" input="//@wire.15" output="//@wire.16" name="BOM MSG UPD">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CCLBOMupdate"/>
-    <property key="description" value=""/>
+    <property key="description" value="BOM MSG 동기화"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="225330" location="520,240" size="100,-1" input="//@wire.11" output="//@wire.13" name="칼라물성 전송">
+  <child xsi:type="Glue:DinaActivity" id="225330" location="585,257" size="100,-1" input="//@wire.16" output="//@wire.17" name="칼라물성 전송">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="eaidao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CCLMPRinsert"/>
-    <property key="description" value=""/>
+    <property key="description" value="칼라물성 전송"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="265981" location="527,302" size="94,-1" input="//@wire.13" output="//@wire.12" name="물성_I_Log">
+  <child xsi:type="Glue:DinaActivity" id="265981" location="590,337" size="94,-1" input="//@wire.17" output="//@wire.18" name="물성_I_Log">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CLR_MPR_MDF_LOG_Inst"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  행추가된 칼라물성정보를 TB_C10_CLR_MPR(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
+    <property key="description" value="칼라물성 I/F 로그"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="265982" location="645,175" size="89,-1" input="//@wire.15" output="//@wire.18" name="KWD 저장">
+  <child xsi:type="Glue:DinaActivity" id="300702" location="732,224" size="120,-1" input="//@wire.19" output="//@wire.20 //@wire.21" name="이력기록(KWD)">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity"/>
+    <property key="dao" value="mesdao"/>
+    <property key="screenId" value="C104000020"/>
+    <property key="tabId" value="TAB07"/>
+    <property key="targetTable" value="TB_C10_QLT_DSN_CCL_BOM"/>
+    <property key="pkColumns" value="ORD_NO,ORD_LN"/>
+    <property key="trackColumns" value="KEY_WRD1,KEY_WRD2,KEY_WRD3,KEY_WRD4"/>
+    <property key="description" value="KWD 저장 직전 OLD/NEW 비교 → 변경이력 적재"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="265982" location="754,334" size="89,-1" input="//@wire.20" output="//@wire.22" name="KWD 저장">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CCLupdate1"/>
-    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계메세지테이블(TB_C10_QLT_DSN_MSG)에 선택한 주문번호의 Data를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 선택한 주문번호의 품질메세지를 업데이트 한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음  "/>
+    <property key="description" value="CCL_BOM KWD 업데이트"/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="265983" location="777,176" size="105,-1" input="//@wire.17" output="//@wire.16" name="BOM KWD UPD">
+  <child xsi:type="Glue:DinaActivity" id="265983" location="859,178" size="105,-1" input="//@wire.23" output="//@wire.24" name="BOM KWD UPD">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="isAudit" value="true"/>
     <property key="sqlkey" value="C104000020TAB07.CCLBOMKWDupdate"/>
-    <property key="description" value=""/>
+    <property key="description" value="BOM KWD 동기화"/>
   </child>
   <property key="tx1" value="true"/>
   <property key="tx2" value="true"/>
-  <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계결과-칼라제조사양을 조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;그리드 항목조회&#xD;&#xA;  -   TB_C10_QLT_DSN_CCL_BOM(품질설계 - 칼라제조사양)&#xD;&#xA;  - 조회조건 품질설계결과Main에서 입력된 주문번호, 주문행번 대하여&#xD;&#xA;    품질설계-칼라제조사양 항목을 조회한다."/>
+  <property key="description" value="품질설계결과-칼라제조사양 Service. save/MSG_save/KWD_save 흐름에 ChgHstActivity 적용"/>
   <wire id="11" guardcondition="success" firstRelativePoint="284,51" lastRelativePoint="284,99"/>
-  <wire id="12" guardcondition="find" firstRelativePoint="80,129" lastRelativePoint="80,173"/>
-  <wire id="13" guardcondition="success" firstRelativePoint="62,193" lastRelativePoint="283,288">
-    <bendpoint weight="0.5" firstDimension="-26,110" secondDimension="-232,-1"/>
+  <wire id="12" guardcondition="find" firstRelativePoint="64,129" lastRelativePoint="64,173">
+    <bendpoint weight="0.5" firstDimension="-464,40" secondDimension="-3,-34"/>
   </wire>
-  <wire id="14" guardcondition="CMN_find" firstRelativePoint="167,129" lastRelativePoint="167,213"/>
-  <wire id="15" guardcondition="success" firstRelativePoint="168,243" lastRelativePoint="283,287">
-    <bendpoint weight="0.5" firstDimension="1,39" secondDimension="-126,-22"/>
+  <wire id="13" guardcondition="success" firstRelativePoint="64,203" lastRelativePoint="435,534">
+    <bendpoint weight="0.5" firstDimension="-3,349" secondDimension="-382,2"/>
   </wire>
-  <wire id="16" guardcondition="success" firstRelativePoint="245,193" lastRelativePoint="289,431">
-    <bendpoint weight="0.5" firstDimension="-1,141" secondDimension="-48,-122"/>
+  <wire id="14" guardcondition="CMN_find" firstRelativePoint="139,129" lastRelativePoint="139,233">
+    <bendpoint weight="0.5" firstDimension="-389,66" secondDimension="1,-68"/>
   </wire>
-  <wire id="17" guardcondition="STS_find" firstRelativePoint="261,129" lastRelativePoint="261,163"/>
-  <wire id="9117" guardcondition="save" firstRelativePoint="355,129" lastRelativePoint="355,174"/>
-  <wire id="9118" guardcondition="success" firstRelativePoint="324,204" lastRelativePoint="293,430"/>
-  <wire id="9119" guardcondition="MSG_save" firstRelativePoint="472,129" lastRelativePoint="472,170"/>
-  <wire id="9129" guardcondition="MSG_sync" firstRelativePoint="577,129" lastRelativePoint="577,178"/>
-  <wire id="10971" guardcondition="success" firstRelativePoint="570,202" lastRelativePoint="570,272"/>
-  <wire id="10972" guardcondition="success" firstRelativePoint="554,324" lastRelativePoint="325,334">
-    <bendpoint weight="0.5" firstDimension="-19,60" secondDimension="238,35"/>
+  <wire id="15" guardcondition="success" firstRelativePoint="142,263" lastRelativePoint="435,534">
+    <bendpoint weight="0.5" firstDimension="4,288" secondDimension="-304,1"/>
   </wire>
-  <wire id="12680" guardcondition="success" firstRelativePoint="553,259" lastRelativePoint="553,294"/>
-  <wire id="12681" guardcondition="success" firstRelativePoint="474,204" lastRelativePoint="325,333">
-    <bendpoint weight="0.5" firstDimension="8,133" secondDimension="158,-12"/>
+  <wire id="17" guardcondition="STS_find" firstRelativePoint="218,129" lastRelativePoint="218,178">
+    <bendpoint weight="0.5" firstDimension="-310,40" secondDimension="0,-39"/>
   </wire>
-  <wire id="12682" guardcondition="KWD_save" firstRelativePoint="705,129" lastRelativePoint="705,175"/>
-  <wire id="12685" guardcondition="success" firstRelativePoint="701,272" lastRelativePoint="325,335">
-    <bendpoint weight="0.5" firstDimension="3,151" secondDimension="385,74"/>
+  <wire id="16" guardcondition="success" firstRelativePoint="218,208" lastRelativePoint="435,534">
+    <bendpoint weight="0.5" firstDimension="0,341" secondDimension="-228,-1"/>
   </wire>
-  <wire id="12686" guardcondition="BOM_kwdsync" firstRelativePoint="655,204" lastRelativePoint="316,323"/>
-  <wire id="12687" guardcondition="success" firstRelativePoint="655,204" lastRelativePoint="316,323"/>
+  <wire id="9117" guardcondition="save" firstRelativePoint="312,129" lastRelativePoint="312,224">
+    <bendpoint weight="0.5" firstDimension="-216,65" secondDimension="3,-60"/>
+  </wire>
+  <wire id="9118" guardcondition="success" firstRelativePoint="303,254" lastRelativePoint="303,303">
+    <bendpoint weight="0.5" firstDimension="-6,39" secondDimension="-3,-40"/>
+  </wire>
+  <wire id="9120" guardcondition="failure" firstRelativePoint="354,254" lastRelativePoint="435,534">
+    <bendpoint weight="0.5" firstDimension="55,294" secondDimension="-82,-2"/>
+  </wire>
+  <wire id="9121" guardcondition="success" firstRelativePoint="293,333" lastRelativePoint="435,534">
+    <bendpoint weight="0.5" firstDimension="-13,216" secondDimension="-153,-1"/>
+  </wire>
+  <wire id="9119" guardcondition="MSG_save" firstRelativePoint="436,129" lastRelativePoint="436,185">
+    <bendpoint weight="0.5" firstDimension="-92,59" secondDimension="6,-27"/>
+  </wire>
+  <wire id="9122" guardcondition="success" firstRelativePoint="424,215" lastRelativePoint="424,291">
+    <bendpoint weight="0.5" firstDimension="-6,71" secondDimension="0,-35"/>
+  </wire>
+  <wire id="9123" guardcondition="failure" firstRelativePoint="475,215" lastRelativePoint="446,524">
+    <bendpoint weight="0.5" firstDimension="55,113" secondDimension="39,-222"/>
+  </wire>
+  <wire id="9124" guardcondition="success" firstRelativePoint="424,321" lastRelativePoint="444,524">
+    <bendpoint weight="0.5" firstDimension="0,119" secondDimension="-22,-110"/>
+  </wire>
+  <wire id="9129" guardcondition="MSG_sync" firstRelativePoint="637,129" lastRelativePoint="637,188">
+    <bendpoint weight="0.5" firstDimension="109,59" secondDimension="3,-30"/>
+  </wire>
+  <wire id="10971" guardcondition="success" firstRelativePoint="637,218" lastRelativePoint="637,257">
+    <bendpoint weight="0.5" firstDimension="3,44" secondDimension="2,-25"/>
+  </wire>
+  <wire id="12680" guardcondition="success" firstRelativePoint="635,287" lastRelativePoint="635,337">
+    <bendpoint weight="0.5" firstDimension="0,50" secondDimension="-2,-30"/>
+  </wire>
+  <wire id="10972" guardcondition="success" firstRelativePoint="629,367" lastRelativePoint="455,534">
+    <bendpoint weight="0.5" firstDimension="-8,180" secondDimension="183,-3"/>
+  </wire>
+  <wire id="12682" guardcondition="KWD_save" firstRelativePoint="797,129" lastRelativePoint="797,224">
+    <bendpoint weight="0.5" firstDimension="269,77" secondDimension="5,-48"/>
+  </wire>
+  <wire id="12683" guardcondition="success" firstRelativePoint="801,254" lastRelativePoint="801,334">
+    <bendpoint weight="0.5" firstDimension="9,59" secondDimension="3,-51"/>
+  </wire>
+  <wire id="12684" guardcondition="failure" firstRelativePoint="747,254" lastRelativePoint="455,534">
+    <bendpoint weight="0.5" firstDimension="-154,293" secondDimension="192,-3"/>
+  </wire>
+  <wire id="12685" guardcondition="success" firstRelativePoint="800,364" lastRelativePoint="455,534">
+    <bendpoint weight="0.5" firstDimension="2,182" secondDimension="354,-4"/>
+  </wire>
+  <wire id="12686" guardcondition="BOM_kwdsync" firstRelativePoint="913,129" lastRelativePoint="913,178">
+    <bendpoint weight="0.5" firstDimension="385,48" secondDimension="2,-31"/>
+  </wire>
+  <wire id="12687" guardcondition="success" firstRelativePoint="914,208" lastRelativePoint="455,534">
+    <bendpoint weight="0.5" firstDimension="3,336" secondDimension="468,-6"/>
+  </wire>
 </Glue:GlueDiagram>

@@ -1,0 +1,30 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableSmartRendering">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+</afterInit>
+<column align="left"   id="COLUMN_COMMENT"  index="1" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="340">항목</column>
+<column align="left"   id="COLUMN_NM"       index="2" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="280">컬럼명</column>
+<column align="left"   id="TARGET_TABLE_NM" index="3" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="0" hidden="true">변경테이블</column>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">COLUMN_COMMENT,COLUMN_NM,TARGET_TABLE_NM</userdata>
+</rows>

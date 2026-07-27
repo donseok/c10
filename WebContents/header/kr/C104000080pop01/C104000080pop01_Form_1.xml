@@ -1,0 +1,10 @@
+<items>
+	<item type="block" width="760">
+		<item offset="5" type="newcolumn"/>
+		<item inputWidth="280" label="항목명 검색" labelAlign="right" labelWidth="80" maxLength="100" name="SRCH" type="input"/>
+		<item offset="10" type="newcolumn"/>
+		<item command="find" name="find" type="button" value="검색"/>
+		<item offset="10" type="newcolumn"/>
+		<item command="winClose" name="winClose" type="button" value="닫기"/>
+	</item>
+</items>

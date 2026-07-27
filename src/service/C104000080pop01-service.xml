@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="C104000080pop01-service" initial="분기">
+  <transaction-manager id="tx1" commit="true" />
+  <activity name="LOV조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000080pop01.select" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
+    <transition name="find" value="LOV조회" />
+  </activity>
+</service>

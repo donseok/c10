@@ -1,0 +1,11 @@
+<items>
+	<item type="block" width="800">
+		<item type="input" name="ORD_NO" label="주문번호/행번" inputWidth="90" readonly="true"/>
+		<item type="newcolumn" offset="4"/>
+		<item type="input" name="ORD_LN" inputWidth="40" readonly="true"/>
+		<item type="newcolumn" offset="10"/>
+		<item type="button" name="winClose" value="닫기" command="winClose"/>
+		<item type="newcolumn" offset="430"/>
+		<item type="button" name="find" value="조회" command="find"/>
+	</item>
+</items>

@@ -106,7 +106,29 @@ function tag_popup(){
    return true;
    //winObj.unload();
  });
- 
+
+}
+
+function chghst_popup(){
+ var form = items['C104000020_Form_1'];
+ var comboList = form.getDhxForm().getCombo("ORD_LN");
+ if(isNull(form.getItemValue("ORD_NO"))){
+  dhtmlx.alert("주문번호를 입력해주세요.");
+  form.setItemFocus("ORD_NO");
+  return;
+ }else if(isNull(comboList.getSelectedValue())){
+  dhtmlx.alert("주문행번를 선택해주세요.");
+  comboList.DOMelem_input.focus();
+  return;
+ }
+
+ winObj = new ui.window("popup","품질설계결과 변경이력","0","0","1000","570","C104000020POP_HST.jsp?ORD_NO="+form.getItemValue("ORD_NO")+"&ORD_LN="+comboList.getSelectedValue());
+ winObj.setButtonDisable("park,minmax1");
+ winObj.setModal();
+ winObj.getDhxWindow().attachEvent("onClose", function(win){
+   this.hide();
+   return true;
+ });
 }
 
 

@@ -2,26 +2,42 @@
 <service name="C104000020TAB09-service" initial="분기">
   <transaction-manager id="tx1" commit="true" />
   <activity name="포장메세지수정" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="이력저장" />
+    <transition name="success" value="end" />
     <transition name="failure" value="end" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB09.PKG_MSGupdate" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력기록(후공정)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="후공정 save" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="trackColumns" value="SLIT_GRP_CNT,MIX_WTH1,MIX_WTH2,MIX_WTH3,MIX_WTH4,MIX_WTH5,MIX_WTH6,MIX_WTH7,MIX_WTH8,MIX_WTH9,MIX_WTH10,COR_EDG_ASG_TP,PRD_WTH_RNG_LLV,PRD_WTH_RNG_ULV" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_MNF" />
+    <property name="screenId" value="C104000020" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="comboColumns" value="COR_EDG_ASG_TP" />
+    <property name="tabId" value="TAB09" />
+  </activity>
+  <activity name="이력기록(1T2C)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="1T2C save" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="trackColumns" value="OT_TC_YN" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_CMN" />
+    <property name="screenId" value="C104000020" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="comboColumns" value="OT_TC_YN" />
+    <property name="tabId" value="TAB09" />
   </activity>
   <activity name="확정주문" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C104000020TAB09.STSselect" />
     <property name="dao" value="mesdao" />
   </activity>
-  <activity name="이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="end" />
-    <property name="isAudit" value="true" />
-    <property name="sqlkey" value="C104000020TAB09.CHG_HSTinsert" />
-    <property name="dao" value="mesdao" />
-  </activity>
   <activity name="메세지 save" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
     <transition name="failure" value="end" />
-    <transition name="success" value="이력저장" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB09.MSGupdate" />
     <property name="dao" value="mesdao" />
@@ -29,15 +45,36 @@
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="MNF_find" value="제조표준조회" />
     <transition name="MSG_find" value="메세지조회" />
-    <transition name="PKG_save" value="포장메세지수정" />
     <transition name="STS_find" value="확정주문" />
-    <transition name="MSG_save" value="메세지 save" />
-    <transition name="COR_save" value="후공정 save" />
+    <transition name="PKG_save" value="이력기록(포장메세지)" />
+    <transition name="MSG_save" value="이력기록(메세지)" />
+    <transition name="COR_save" value="이력기록(후공정)" />
+  </activity>
+  <activity name="이력기록(메세지)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="메세지 save" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="screenId" value="C104000020" />
+    <property name="tabId" value="TAB09" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_MSG1" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="trackColumns" value="QLT_MSG_NM" />
   </activity>
   <activity name="메세지조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C104000020TAB09_MSG.select" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력기록(포장메세지)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="포장메세지수정" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="trackColumns" value="PAK_MSG_CD" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_CMN" />
+    <property name="screenId" value="C104000020" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="comboColumns" value="PAK_MSG_CD" />
+    <property name="tabId" value="TAB09" />
   </activity>
   <activity name="제조표준조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -45,14 +82,14 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="1T2C save" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="이력저장" />
+    <transition name="success" value="end" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB09.CMN.OT_TC_YN_update" />
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="후공정 save" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="이력기록(1T2C)" />
     <transition name="failure" value="end" />
-    <transition name="success" value="1T2C save" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB09.MNFupdate" />
     <property name="dao" value="mesdao" />

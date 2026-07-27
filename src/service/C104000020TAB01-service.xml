@@ -9,7 +9,7 @@
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="find" value="조회" />
-    <transition name="save" value="텍스트수정" />
+    <transition name="save" value="이력기록(텍스트)" />
   </activity>
   <activity name="텍스트수정" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="복사금지전송" />
@@ -21,6 +21,17 @@
     <property name="update-sql" value="C104000020TAB01.interFace" />
     <property name="isAudit" value="true" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력기록(텍스트)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="failure" value="end" />
+    <transition name="success" value="텍스트수정" />
+    <property name="dao" value="mesdao" />
+    <property name="trackColumns" value="ORD_SPC_TXT,BAK_MRK,PPR_RNG_PORD_TXT,ORD_COP_STP,WIP_PAK_MTH" />
+    <property name="ynColumns" value="ORD_COP_STP" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_CMN" />
+    <property name="screenId" value="C104000020" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="tabId" value="TAB01" />
   </activity>
 </service>
 

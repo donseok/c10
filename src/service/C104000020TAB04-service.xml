@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service name="C104000020TAB04-service" initial="분기">
   <transaction-manager id="tx1" commit="true" />
-  <activity name="확정주문" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
-    <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000020TAB04.STSselect" />
-  </activity>
-  <activity name="이력저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="end" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000020TAB04.CHG_HSTinsert" />
-    <property name="isAudit" value="true" />
-  </activity>
-  <activity name="인수도 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="이력저장" />
+  <activity name="이력기록(범위)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="범위저장" />
     <transition name="failure" value="end" />
     <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000020TAB04.update" />
+    <property name="screenId" value="C104000020" />
+    <property name="tabId" value="TAB04" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_MNF" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="trackColumns" value="PRD_THK_RNG_LLV,PRD_THK_RNG_ULV,PRD_WTH_RNG_LLV,PRD_WTH_RNG_ULV,PRD_LTH_RNG_LLV,PRD_LTH_RNG_ULV,PRD_THK_SPC_RNG_LLV,PRD_THK_SPC_RNG_ULV" />
+  </activity>
+  <activity name="확정주문" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C104000020TAB04.STSselect" />
+    <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="인수도 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
+    <transition name="success" value="end" />
+    <transition name="failure" value="end" />
     <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB04.update" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
     <property name="sqlkey" value="C104000020TAB04.select" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="이력기록(인수도)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="인수도 저장" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="trackColumns" value="THK_TLN_LLV,THK_TLN_ULV,WTH_TLN_LLV,WTH_TLN_ULV,LTH_TLN_LLV,LTH_TLN_ULV,HWAV_H,MWAV_H,EWAV_H,SLR_ULV,RAR_ULV,DGLN_DIF_ULV,STPN,TLC" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_DLV" />
+    <property name="screenId" value="C104000020" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="whereExtra" value="QLT_DSN_SPC_TP='4'" />
+    <property name="tabId" value="TAB04" />
+  </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="ajaxFind" value="제조사양조회" />
     <transition name="find" value="조회" />
-    <transition name="DLV_save" value="인수도 저장" />
-    <transition name="RNG_save" value="범위저장" />
+    <transition name="DLV_save" value="이력기록(인수도)" />
     <transition name="STS_find" value="확정주문" />
+    <transition name="RNG_save" value="이력기록(범위)" />
   </activity>
   <activity name="제조사양조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -37,11 +52,11 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="범위저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
-    <transition name="success" value="이력저장" />
+    <transition name="success" value="end" />
     <transition name="failure" value="end" />
-    <property name="dao" value="mesdao" />
-    <property name="sqlkey" value="C104000020TAB04.RNGupdate" />
     <property name="isAudit" value="true" />
+    <property name="sqlkey" value="C104000020TAB04.RNGupdate" />
+    <property name="dao" value="mesdao" />
   </activity>
 </service>
 

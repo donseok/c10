@@ -7,11 +7,31 @@
     <property name="sqlkey" value="C104000020TAB07.CMNselect" />
     <property name="dao" value="mesdao" />
   </activity>
+  <activity name="이력기록(MSG)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="MSG 저장" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="screenId" value="C104000020" />
+    <property name="tabId" value="TAB07" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_CCL_BOM" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="trackColumns" value="CCL_QLT_MSG_TXT" />
+  </activity>
   <activity name="MSG 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="end" />
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB07.CCLupdate" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력기록(KWD)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="KWD 저장" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="screenId" value="C104000020" />
+    <property name="tabId" value="TAB07" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_CCL_BOM" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="trackColumns" value="KEY_WRD1,KEY_WRD2,KEY_WRD3,KEY_WRD4" />
   </activity>
   <activity name="KWD 저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="end" />
@@ -38,12 +58,12 @@
   </activity>
   <activity name="분기" class="com.posdata.glue.biz.activity.PosDefaultRouter">
     <transition name="find" value="조회" />
-    <transition name="save" value="저장" />
+    <transition name="save" value="이력기록(저장)" />
     <transition name="CMN_find" value="공통 조회" />
     <transition name="STS_find" value="상태 조회" />
-    <transition name="MSG_save" value="MSG 저장" />
+    <transition name="MSG_save" value="이력기록(MSG)" />
     <transition name="MSG_sync" value="BOM MSG UPD" />
-    <transition name="KWD_save" value="KWD 저장" />
+    <transition name="KWD_save" value="이력기록(KWD)" />
     <transition name="BOM_kwdsync" value="BOM KWD UPD" />
   </activity>
   <activity name="BOM KWD UPD" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
@@ -51,6 +71,16 @@
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C104000020TAB07.CCLBOMKWDupdate" />
     <property name="dao" value="mesdao" />
+  </activity>
+  <activity name="이력기록(저장)" class="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity">
+    <transition name="success" value="저장" />
+    <transition name="failure" value="end" />
+    <property name="dao" value="mesdao" />
+    <property name="screenId" value="C104000020" />
+    <property name="tabId" value="TAB07" />
+    <property name="targetTable" value="TB_C10_QLT_DSN_MNF" />
+    <property name="pkColumns" value="ORD_NO,ORD_LN" />
+    <property name="trackColumns" value="CCL_THK_TRV,CCL_WTH_TRV" />
   </activity>
   <activity name="저장" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="end" />
@@ -70,4 +100,3 @@
     <property name="dao" value="mesdao" />
   </activity>
 </service>
-

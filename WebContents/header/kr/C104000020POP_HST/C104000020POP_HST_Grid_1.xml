@@ -1,0 +1,40 @@
+<rows>
+<head>
+<beforeInit>
+<call command="setImagePath">
+<param>dhtmlx/codebase/imgs/</param>
+</call>
+<call command="setSkin">
+<param>dhx_skyblue</param>
+</call>
+<call command="enableSmartRendering">
+<param>true</param>
+</call>
+<call command="setAwaitedRowHeight">
+<param>22</param>
+</call>
+</beforeInit>
+<afterInit>
+<call command="setDateFormat">
+<param>%Y-%m-%d %H:%i:%s</param>
+</call>
+<call command="setNoHeader">
+<param>false</param>
+</call>
+</afterInit>
+<column align="center" id="LAST_UPDATE_TIMESTAMP" index="1" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="140">수정일시</column>
+<column align="center" id="LAST_UPDATED_USER_NM" index="2" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="70">수정자</column>
+<column align="center" id="CHG_TXT" index="3" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="115">화면/탭</column>
+<column align="center" id="SEQ" index="4" sort="int" table="TB_C10_QLT_DSN_CHG_HST" type="ron" width="50">SEQ</column>
+<column align="center" id="TARGET_TABLE_NM" index="5" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="0" hidden="true">변경테이블</column>
+<column align="left" id="TARGET_PK_INFO" index="6" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="0" hidden="true">PK정보</column>
+<column align="center" id="DML_TYPE" index="7" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="0" hidden="true">DML</column>
+<column align="left" id="COLUMN_COMMENT" index="8" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="200">항목</column>
+<column align="left" id="OLD_VAL" index="9" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="180">이전값</column>
+<column align="left" id="NEW_VAL" index="10" sort="str" table="TB_C10_QLT_DSN_CHG_HST" type="ro" width="180">변경값</column>
+<settings>
+<colwidth>px</colwidth>
+</settings>
+</head>
+<userdata name="column-info">LAST_UPDATE_TIMESTAMP,LAST_UPDATED_USER_NM,CHG_TXT,SEQ,TARGET_TABLE_NM,TARGET_PK_INFO,DML_TYPE,COLUMN_COMMENT,OLD_VAL,NEW_VAL</userdata>
+</rows>

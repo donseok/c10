@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<queryMap desc="C104000020POP_HST 변경이력 조회"> 
+	 <query id="C104000020POP_HST.select" desc="C10 품질설계결과 변경이력 조회" fetchSize="500" isNamed="true">
+		 <![CDATA[ 
+SELECT /*+ C10 품질설계결과 변경이력 조회 C104000020POP_HST.select */
+       T.SEQ
+     , CASE
+         WHEN T.CHG_TXT = 'C104000020TAB01' THEN '공통'
+         WHEN T.CHG_TXT = 'C104000020TAB02' THEN '성분'
+         WHEN T.CHG_TXT = 'C104000020TAB03' THEN '재질'
+         WHEN T.CHG_TXT = 'C104000020TAB04' THEN '인수도'
+         WHEN T.CHG_TXT = 'C104000020TAB05' THEN '용융도금-제조표준'
+         WHEN T.CHG_TXT = 'C104000020TAB06' THEN '전기도금-제조표준'
+         WHEN T.CHG_TXT = 'C104000020TAB07' THEN '칼라제조사양'
+         WHEN T.CHG_TXT = 'C104000020TAB08' THEN '통과공정'
+         WHEN T.CHG_TXT = 'C104000020TAB09' THEN '후공정-제조표준'
+         ELSE T.CHG_TXT
+       END AS CHG_TXT
+     , T.TARGET_TABLE_NM
+     , T.TARGET_PK_INFO
+     , T.DML_TYPE
+     , T.COLUMN_NM
+     , NVL((SELECT MAX(C.COMMENTS)
+              FROM ALL_COL_COMMENTS C
+             WHERE C.OWNER = 'C10APUSER'
+               AND C.TABLE_NAME = T.TARGET_TABLE_NM
+               AND C.COLUMN_NAME = T.COLUMN_NM
+               AND C.COMMENTS IS NOT NULL)
+          , T.COLUMN_NM) AS COLUMN_COMMENT
+     , T.OLD_VAL
+     , T.NEW_VAL
+     , T.LAST_UPDATED_OBJECT_ID
+     , NVL((SELECT U.USER_NAME
+              FROM M90APUSER.TB_SEC_USER U
+             WHERE U.USER_NO = T.LAST_UPDATED_OBJECT_ID)
+          , T.LAST_UPDATED_OBJECT_ID) AS LAST_UPDATED_USER_NM
+     , TO_CHAR(T.LAST_UPDATE_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS LAST_UPDATE_TIMESTAMP
+  FROM C10APUSER.TB_C10_QLT_DSN_CHG_HST T
+ WHERE T.ORD_NO = :ORD_NO
+   AND T.ORD_LN = :ORD_LN
+ ORDER BY T.SEQ DESC
+		 ]]> 
+	 </query>
+</queryMap>

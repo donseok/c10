@@ -5,27 +5,29 @@
 <item label="-" name="ORD_NO_BT" type="label"/>
 <item offset="0" type="newcolumn"/>
 <item inputWidth="50" maxLength="3" name="ORD_LN" type="combo" style="background-color:#FFFFC0"/>
-<item offset="5" type="newcolumn"/>
+<item offset="3" type="newcolumn"/>
 <item inputWidth="20" labelAlign="right" readonly="true" label="위탁주문" style = "font-weight:bold; color:red; text-align:center" name="TRST_PROC_YN" type="input"/>
-<item offset="5" type="newcolumn"/>
+<item offset="3" type="newcolumn"/>
 <item command="holdy" label="holdy" name="holdy" type="custombutton" value="보류"/>
 <item offset="3" type="newcolumn"/>
 <item command="holdn" label="holdn" name="holdn" type="custombutton" value="보류해제"/>
-<item offset="5" type="newcolumn"/>
+<item offset="3" type="newcolumn"/>
 <item inputWidth="20" labelAlign="right" readonly="true" label="관심주문" style = "font-weight:bold; color:red; text-align:center" name="ATT_ORD_YN" type="input"/>
-<item offset="3" type="newcolumn"/>
+<item offset="1" type="newcolumn"/>
 <item command="atty" label="atty" name="atty" type="custombutton" value="등록"/>
-<item offset="3" type="newcolumn"/>
+<item offset="1" type="newcolumn"/>
 <item command="attn" label="attn" name="attn" type="custombutton" value="관심해제"/>
-<item offset="3" type="newcolumn"/>
+<item offset="1" type="newcolumn"/>
 <item command="tag_popup" name="tag_popup" type="custombutton" value="Tag조회" disabled="true"/>
-<item offset="3" type="newcolumn"/>
+<item offset="0" type="newcolumn"/>
+<item command="chghst_popup" name="chghst_popup" type="custombutton" value="변경이력"/>
+<item offset="0" type="newcolumn"/>
 <item command="custom_call" label="Display Name" name="custom_call" type="linkbutton" value="품질협정서" style = "font-weight:bold; color:green; text-align:center"/>
 <item offset="3" type="newcolumn"/>
 <item command="save" label="save" name="save" type="custombutton" value="설계확정" disabled="true"/>
-<item offset="3" type="newcolumn"/>
-<item command="find" label="find" name="find" type="button" value="조회" disabled="true"/>
-<item offset="3" type="newcolumn"/>
-<item command="winClose" label="winClose" name="winClose" type="button" value="닫기"/>
+<item offset="1" type="newcolumn"/>
+<item command="find" label="find" name="find" type="button" value="조회" disabled="true" inputWidth="40"/>
+<item offset="1" type="newcolumn"/>
+<item command="winClose" label="winClose" name="winClose" type="custombutton" value="닫기"/>
 </item>
 </items>

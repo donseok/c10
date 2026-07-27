@@ -108,6 +108,9 @@
 	<action path="C104000020POP01" type="com.posdata.glue.web.control.PosStrutsAction">
 	  <forward name="success" path="/C104000020POP01.jsp"/>
 	</action>
+	<action path="C104000020POP_HST" type="com.posdata.glue.web.control.PosStrutsAction">
+	  <forward name="success" path="/C104000020POP_HST.jsp"/>
+	</action>
 	<action path="/fileUpload" type="com.posdata.glue.web.control.PosStrutsAction">
       <forward name="success" path="/_fileInfoHandler.jsp"/>
     </action>

@@ -1,0 +1,21 @@
+<items>
+	<item type="block" width="1240">
+		<item offset="5" type="newcolumn"/>
+		<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="80" label="수정일자" labelAlign="right" labelWidth="60" name="START_DATE" readonly="true" type="calendar"/>
+		<item offset="0" type="newcolumn"/>
+		<item className="my_calendar" dateFormat="%Y-%m-%d" inputWidth="80" label="~" labelAlign="center" labelWidth="15" name="END_DATE" readonly="true" type="calendar"/>
+		<item offset="15" type="newcolumn"/>
+		<item inputWidth="170" label="화면/탭" labelAlign="right" labelWidth="55" name="CHG_TXT" type="combo"/>
+		<item offset="15" type="newcolumn"/>
+		<item inputWidth="180" label="항목" labelAlign="right" labelWidth="40" name="COLUMN_NM_NM" readonly="true" type="input" value="전체"/>
+		<item name="COLUMN_NM" type="hidden" value="all"/>
+		<item offset="3" type="newcolumn"/>
+		<item command="searchItem" name="searchItem" type="button" value="찾기"/>
+		<item offset="3" type="newcolumn"/>
+		<item command="clearItem" name="clearItem" type="button" value="초기화"/>
+		<item offset="15" type="newcolumn"/>
+		<item command="find" name="find" type="button" value="조회"/>
+		<item offset="5" type="newcolumn"/>
+		<item command="excelExport" name="excelExport" type="button" value="엑셀출력"/>
+	</item>
+</items>

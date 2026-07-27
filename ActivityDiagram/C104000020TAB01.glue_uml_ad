@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="1" location="20,20" size="100,100">
-  <child xsi:type="Glue:FinalState" id="72" location="326,468" size="-1,-1" input="//@wire.2 //@wire.4"/>
-  <child xsi:type="Glue:SearchActivity" id="73" location="231,213" size="90,-1" input="//@wire.1" output="//@wire.2" name="조회">
+  <child xsi:type="Glue:FinalState" id="72" location="326,468" size="-1,-1" input="//@wire.2 //@wire.4 //@wire.7"/>
+  <child xsi:type="Glue:SearchActivity" id="73" location="226,257" size="90,-1" input="//@wire.1" output="//@wire.2" name="조회">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C104000020TAB01.select"/>
@@ -12,13 +12,24 @@
     <property key="description" value="1. Activity Definition&#xD;&#xA;   조회시 분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;   분기는 find 만 있다&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음                                        "/>
   </child>
   <child xsi:type="Glue:InitialState" id="80" location="294,46" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:DinaActivity" id="156962" location="371,226" size="100,-1" input="//@wire.3" output="//@wire.5" name="텍스트수정">
+  <child xsi:type="Glue:DinaActivity" id="300001" location="364,222" size="130,-1" input="//@wire.3" output="//@wire.7 //@wire.6" name="이력기록(텍스트)">
+    <property key="class" value="com.unionsteel.mes.c10.activity.ui.C104000020ChgHstActivity"/>
+    <property key="dao" value="mesdao"/>
+    <property key="screenId" value="C104000020"/>
+    <property key="tabId" value="TAB01"/>
+    <property key="targetTable" value="TB_C10_QLT_DSN_CMN"/>
+    <property key="pkColumns" value="ORD_NO,ORD_LN"/>
+    <property key="trackColumns" value="ORD_SPC_TXT,BAK_MRK,PPR_RNG_PORD_TXT,ORD_COP_STP,WIP_PAK_MTH"/>
+    <property key="ynColumns" value="ORD_COP_STP"/>
+    <property key="description" value="저장 직전 OLD 값을 SELECT하여 NEW와 비교, 변경된 컬럼만 TB_C10_QLT_DSN_CHG_HST에 적재"/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="156962" location="377,299" size="100,-1" input="//@wire.6" output="//@wire.5" name="텍스트수정">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="update-sql" value="C104000020TAB01.update"/>
     <property key="description" value="&#xD;&#xA;1. Activity Definition&#xD;&#xA;   - 이 Activity는 품질설계텍스트를 업데이트하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;     - 화면에서 입력한  주문번호, 주문번호의 품질설계텍스트를 업데이트한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;"/>
   </child>
-  <child xsi:type="Glue:InsertActivity" id="156975" location="363,374" size="117,-1" input="//@wire.5" output="//@wire.4" name="복사금지전송">
+  <child xsi:type="Glue:InsertActivity" id="156975" location="372,401" size="117,-1" input="//@wire.5" output="//@wire.4" name="복사금지전송">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.grid.GridSave"/>
     <property key="dao" value="mesdao"/>
     <property key="update-sql" value="C104000020TAB01.interFace"/>
@@ -29,17 +40,20 @@
   <property key="tx2" value="true"/>
   <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계결과-공통을 조회하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;폼 항목조회&#xD;&#xA;  - TB_C10_QLT_DSN_CMN(품질설계결과 - 공통)&#xD;&#xA;  - 조회조건 품질설계결과Main에서 입력된 주문번호, 주문행번&#xD;&#xA;"/>
   <wire id="59" guardcondition="success" firstRelativePoint="304,65" lastRelativePoint="304,126"/>
-  <wire id="60" guardcondition="find" firstRelativePoint="305,156" lastRelativePoint="305,213">
-    <bendpoint weight="0.5" firstDimension="1,37" secondDimension="-2,-50"/>
+  <wire id="60" guardcondition="find" firstRelativePoint="270,156" lastRelativePoint="270,257">
+    <bendpoint weight="0.5" firstDimension="-68,71" secondDimension="-1,-60"/>
   </wire>
-  <wire id="61" guardcondition="success" firstRelativePoint="276,243" lastRelativePoint="339,306">
-    <bendpoint weight="0.5" firstDimension="0,79" secondDimension="-74,0"/>
+  <wire id="61" guardcondition="success" firstRelativePoint="270,287" lastRelativePoint="325,477">
+    <bendpoint weight="0.5" firstDimension="-1,206" secondDimension="-66,0"/>
   </wire>
-  <wire id="9354" guardcondition="save" firstRelativePoint="410,156" lastRelativePoint="410,211">
-    <bendpoint weight="0.5" firstDimension="72,43" secondDimension="-13,-42"/>
+  <wire id="9354" guardcondition="save" firstRelativePoint="410,156" lastRelativePoint="410,170"/>
+  <wire id="9363" guardcondition="success" firstRelativePoint="419,431" lastRelativePoint="345,477">
+    <bendpoint weight="0.5" firstDimension="-11,54" secondDimension="83,-8"/>
+    <bendpoint weight="0.5" firstDimension="-11,62" secondDimension="83,0"/>
   </wire>
-  <wire id="9363" guardcondition="success" firstRelativePoint="415,404" lastRelativePoint="344,474">
-    <bendpoint weight="0.5" firstDimension="-6,60" secondDimension="79,-29"/>
+  <wire id="13872" guardcondition="success" firstRelativePoint="423,329" lastRelativePoint="423,401"/>
+  <wire id="13873" guardcondition="success" firstRelativePoint="422,252" lastRelativePoint="422,299"/>
+  <wire id="13874" guardcondition="failure" firstRelativePoint="379,252" lastRelativePoint="334,467">
+    <bendpoint weight="0.5" firstDimension="-95,93" secondDimension="-2,-148"/>
   </wire>
-  <wire id="13872" guardcondition="success" firstRelativePoint="422,256" lastRelativePoint="422,374"/>
 </Glue:GlueDiagram>
