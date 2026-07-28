@@ -17,6 +17,8 @@
 <item command="save" label="Display Name" name="save" type="button" value="저장" disabled="true"/>
 <item offset="5" type="newcolumn"/>
 <item command="winClose" name="winClose" type="button" value="닫기"/>
+<item offset="5" type="newcolumn"/>
+<item command="exceptListPop" name="exceptListPop" type="custombutton" value="원가내역서 첨부 예외 조항" width="180"/>
 </item>
 <item type="block">
 <item foreground-color="255,140,50" inputWidth="138" label="TYPE구분" name="TP_CD" type="combo"/>

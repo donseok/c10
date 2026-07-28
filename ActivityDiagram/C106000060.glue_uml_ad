@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="3" location="20,20" size="100,100">
   <child xsi:type="Glue:InitialState" id="5" location="526,136" size="-1,-1" output="//@wire.0"/>
-  <child xsi:type="Glue:FinalState" id="6" location="540,528" size="-1,-1" input="//@wire.3 //@wire.5 //@wire.7 //@wire.9 //@wire.12 //@wire.13 //@wire.18 //@wire.20 //@wire.22 //@wire.31 //@wire.39 //@wire.41 //@wire.43 //@wire.45 //@wire.49 //@wire.55"/>
-  <child xsi:type="Glue:RouterActivity" id="7" location="28,218" size="1625,-1" input="//@wire.0" output="//@wire.8 //@wire.11 //@wire.6 //@wire.2 //@wire.16 //@wire.17 //@wire.19 //@wire.4 //@wire.10 //@wire.21 //@wire.24 //@wire.38 //@wire.40 //@wire.42 //@wire.44 //@wire.56" name="Event_Router">
+  <child xsi:type="Glue:FinalState" id="6" location="540,528" size="-1,-1" input="//@wire.3 //@wire.5 //@wire.7 //@wire.9 //@wire.12 //@wire.13 //@wire.18 //@wire.20 //@wire.22 //@wire.31 //@wire.39 //@wire.41 //@wire.43 //@wire.45 //@wire.49 //@wire.55 //@wire.63"/>
+  <child xsi:type="Glue:RouterActivity" id="7" location="28,218" size="1625,-1" input="//@wire.0" output="//@wire.8 //@wire.11 //@wire.6 //@wire.2 //@wire.16 //@wire.17 //@wire.19 //@wire.4 //@wire.10 //@wire.21 //@wire.24 //@wire.38 //@wire.40 //@wire.42 //@wire.44 //@wire.56 //@wire.62" name="Event_Router">
     <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   분기 하는 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;send            : CCL-BOM 정보 및 칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)&#xD;&#xA;                  ,TB_C10_B10S0110(CCL-BOM)정보를 전송 INSERT:칼라물성, UPDATE:CCL-BOM&#xD;&#xA;&#xD;&#xA;colorAjaxFind   : ajax로 입력한 칼라물성정보가 칼라물성정보테이블(TB_C10_CLR_CD_MNG)에 있는지 여부를&#xD;&#xA;                  조회 및 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;colorFind       : 선택한 CCL-BOM NO에 해당하는 칼라물성정보를 조회한다.&#xD;&#xA;detailFind      : 선택한 CCL-BOM NO에 해당하는 고객사 및 주문용도 테이블(TB_C10_CLR_MPR)에서 조회한다.&#xD;&#xA;find            : 검색조건에 해당하는 CCL-BOM 정보를 조회한다.&#xD;&#xA;                  필수조건 : CCL-BOM NO&#xD;&#xA;&#x9;&#x9;  선택조건 : 수지타입,도장방식,광택도코드&#xD;&#xA;&#xD;&#xA;confirmSave     : CCL-BOM NO의 확정처리한다.&#xD;&#xA;                  - TB_C10_CCL_BOM테이블의 CCL_BOM_USE_YN 항목을 UPDATE한다.&#xD;&#xA;&#xD;&#xA;save1           : 선택한 CCL-BOM NO의 컬러물설정보를 TB_C10_CLR_MPR에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;save            : 변경 또는 행추가한 CCL-BOM 정보를 TB_C10_CCL_BOM에 수정,삭제,저장한다.&#xD;&#xA;&#xD;&#xA;cusCdFind       : 컬러물성정보 수정/신규입력시 입력한 고객사 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;ordUsgCdFind    : 컬러물성정보 수정/신규입력시 입력한 주문용도 정보의 유무를 판다하여 리턴한다.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;   없음       "/>
   </child>
@@ -50,7 +50,7 @@
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.PosIFGroupID"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  Service 수행 중에 사용될 IF_GRP_ID 클래스 호출 및 변수를 받아오는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - IF  송신시 사용되는  IF_GRP_ID를 신규생성하는 클래스이다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                 &#xD;&#xA;&#xD;&#xA;"/>
   </child>
-  <child xsi:type="Glue:RouterActivity" id="131242" location="60,384" size="217,-1" input="//@wire.14 //@wire.37" output="//@wire.15 //@wire.13" name="LoopRouter">
+  <child xsi:type="Glue:RouterActivity" id="131242" location="60,384" size="217,-1" input="//@wire.14 //@wire.37" output="//@wire.13 //@wire.15" name="LoopRouter">
     <property key="class" value="com.unionsteel.mes.c10.activity.ui.LoopRouter"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;&#x9;- 이 Activity는 화면그리드의 선택된 Row 수만큼 Loop를 돌리는 공통 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;&#x9;- 목적 : 그리드의 선택된 Row수만큼 LOOP&#xD;&#xA;&#x9;- 조건 : -&#xD;&#xA;&#x9;- 분기 :&#xD;&#xA;&#x9;&#x9;- INSERT :  칼라물성정보중 선택된 ROW&#xD;&#xA;&#x9;&#x9;- UPDATE : CCL-BOM 정보중 선택된  ROW&#x9;"/>
   </child>
@@ -61,7 +61,7 @@
     <property key="sqlkey" value="C106000060.interFaceColor"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)에 저장하는 Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 선택한 CCL-BOM NO에 해당하는  칼라물성정보중에 선택한 칼라물성정보를 Interface테이블 TB_C10_B10S0120(칼라물성)&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="131245" location="164,596" size="95,-1" input="//@wire.52" output="//@wire.36" name="CCL-BOM전송">
+  <child xsi:type="Glue:DinaActivity" id="131245" location="166,660" size="95,-1" input="//@wire.52" output="//@wire.36" name="CCL-BOM전송">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormInsert"/>
     <property key="dao" value="eaidao"/>
     <property key="isAudit" value="true"/>
@@ -135,7 +135,7 @@
     <property key="sqlkey" value="C106000060.interFaceColorDel"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는  칼라물성정보를 삭제하기전 ERP전송일시가 있을경우  Interface테이블 TB_C10_B10S0120(칼라물성)에 저장하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 기 전송된 칼라물성정보에 대해서는 삭제하기전 삭제여부 &quot;Y&quot; 를 입력하여 인터페이스테이블에 저장한다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                    &#xD;&#xA;    "/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="157045" location="129,656" size="122,-1" input="//@wire.36" output="//@wire.37" name="ERP전송일Update">
+  <child xsi:type="Glue:DinaActivity" id="157045" location="129,730" size="122,-1" input="//@wire.36" output="//@wire.37" name="ERP전송일Update">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormUpdate"/>
     <property key="dao" value="mesdao"/>
     <property key="sqlkey" value="C106000060.ccl_snd_update"/>
@@ -186,14 +186,14 @@
     <property key="sqlkey" value="C106000060.tru_tst_Insert"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;   - 이 Activity는 CCL-BOM NO의 확정처리하는  Activity이다&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  -  CCL-BOM번호의 1~5자리가 처음 등록되는 코드일때 신뢰성시험 대상재Table에 Insert처리&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음                        "/>
   </child>
-  <child xsi:type="Glue:DinaActivity" id="265292" location="163,469" size="107,-1" input="//@wire.15" output="//@wire.51" name="공정별담당자">
+  <child xsi:type="Glue:DinaActivity" id="265292" location="165,521" size="107,-1" input="//@wire.15" output="//@wire.51" name="공정별담당자">
     <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
     <property key="dao" value="mesdao"/>
     <property key="resultkey" value="RK_C10A2200"/>
     <property key="sqlkey" value="C106000060.c10A2200Select"/>
     <property key="description" value="1. Activity Definition&#xD;&#xA;  - 이 Activity는  입력한 공정에 따른 공정별사용자정보VIEW(M00APUSER.VI_M00_C10A2200)를 조회하는 Activity이다.&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 입력한 주공정의 정보가 공정별사용자정보VIEW(M00APUSER.VI_M00_C10A2200)에 있는지 Data를 가지고 와서 화면에 매핑시킨다.&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;  -  없음"/>
   </child>
-  <child xsi:type="Glue:Activity" id="265969" location="166,537" size="93,-1" input="//@wire.51" output="//@wire.52" name="공정담당자편집">
+  <child xsi:type="Glue:Activity" id="265969" location="166,594" size="93,-1" input="//@wire.51" output="//@wire.52" name="공정담당자편집">
     <property key="class" value="com.unionsteel.mes.c10.activity.ui.C10UiC106000060InsertActivity"/>
     <property key="description" value=""/>
   </child>
@@ -236,6 +236,12 @@
     <property key="sqlkey" value="C106000060.clr_snd_update"/>
     <property key="description" value=""/>
   </child>
+  <child xsi:type="Glue:DinaActivity" id="500001" location="223,297" size="80,-1" input="//@wire.62" output="//@wire.63" name="pbCheck">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000060.pbCheck"/>
+    <property key="description" value="1. Activity Definition&#xD;&#xA;   - 7CCL(A7) 공정에서 TOP 1Coat/2Coat 컬러코드의 Pb값 누락 여부 확인 Activity&#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - 저장 전 클라이언트가 AJAX 호출. CLR_SUB_MTL_CD로 SUB_MTL_TP, PB값 조회&#xD;&#xA;  - Primer(S32)/PCM도료(S31)인데 PB가 NULL 또는 0이면 저장 차단&#xD;&#xA;&#xD;&#xA;3. Reference&#xD;&#xA;    없음"/>
+  </child>
   <property key="tx1" value="true"/>
   <property key="tx2" value="true"/>
   <property key="description" value="1. Service Definition&#xD;&#xA;이 Service는 품질설계 CCL BOM정보를 조회 및 관리하는 Service이다.&#x9;&#x9;    &#xD;&#xA;&#xD;&#xA;2. Detail Description&#xD;&#xA;  - CCL-BOM 정보 및 칼라물성정보를 신규저장,수정,삭제하고&#xD;&#xA;    CCL-BOM 정보 및 칼라물성정보를 품질설계 Interface테이블에 &#xD;&#xA;    전송하는 Sevice이다.&#xD;&#xA;"/>
@@ -269,7 +275,7 @@
     <bendpoint weight="0.5" firstDimension="132,139" secondDimension="-250,0"/>
   </wire>
   <wire id="8426" guardcondition="success" firstRelativePoint="164,354" lastRelativePoint="164,383"/>
-  <wire id="8427" guardcondition="UPDATE" firstRelativePoint="254,414" lastRelativePoint="284,568">
+  <wire id="8427" guardcondition="UPDATE" firstRelativePoint="202,414" lastRelativePoint="202,521">
     <bendpoint weight="0.5" firstDimension="32,66" secondDimension="-13,-66"/>
   </wire>
   <wire id="8430" guardcondition="send" firstRelativePoint="171,248" lastRelativePoint="171,324"/>
@@ -308,7 +314,7 @@
   </wire>
   <wire id="9365" guardcondition="success" firstRelativePoint="831,710" lastRelativePoint="831,691"/>
   <wire id="9366" guardcondition="success" firstRelativePoint="776,710" lastRelativePoint="776,691"/>
-  <wire id="9367" guardcondition="success" firstRelativePoint="227,604" lastRelativePoint="227,656"/>
+  <wire id="9367" guardcondition="success" firstRelativePoint="218,690" lastRelativePoint="218,730"/>
   <wire id="9368" guardcondition="success" firstRelativePoint="180,577" lastRelativePoint="160,414">
     <bendpoint weight="0.5" firstDimension="-49,-37" secondDimension="-8,156"/>
   </wire>
@@ -337,8 +343,8 @@
     <bendpoint weight="0.5" firstDimension="30,96" secondDimension="542,1"/>
   </wire>
   <wire id="12675" guardcondition="success" firstRelativePoint="1046,361" lastRelativePoint="1046,386"/>
-  <wire id="12676" guardcondition="success" firstRelativePoint="239,499" lastRelativePoint="260,540"/>
-  <wire id="12678" guardcondition="success" firstRelativePoint="244,567" lastRelativePoint="244,596"/>
+  <wire id="12676" guardcondition="success" firstRelativePoint="216,551" lastRelativePoint="216,594"/>
+  <wire id="12678" guardcondition="success" firstRelativePoint="220,624" lastRelativePoint="220,660"/>
   <wire id="12679" guardcondition="success" firstRelativePoint="242,469" lastRelativePoint="242,469"/>
   <wire id="14599" guardcondition="success" firstRelativePoint="1839,608" lastRelativePoint="1839,608"/>
   <wire id="14634" guardcondition="success" firstRelativePoint="1659,822" lastRelativePoint="550,547"/>
@@ -350,4 +356,10 @@
   <wire id="14650" guardcondition="success" firstRelativePoint="1782,495" lastRelativePoint="1782,595"/>
   <wire id="14656" guardcondition="success" firstRelativePoint="1758,625" lastRelativePoint="1758,705"/>
   <wire id="14658" guardcondition="success" firstRelativePoint="1728,735" lastRelativePoint="1728,817"/>
+  <wire id="500002" guardcondition="pbCheck" firstRelativePoint="262,248" lastRelativePoint="262,297">
+    <bendpoint weight="0.5" firstDimension="-578,58" secondDimension="-1,-21"/>
+  </wire>
+  <wire id="500003" guardcondition="success" firstRelativePoint="288,327" lastRelativePoint="539,537">
+    <bendpoint weight="0.5" firstDimension="34,226" secondDimension="-253,0"/>
+  </wire>
 </Glue:GlueDiagram>

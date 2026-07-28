@@ -33,8 +33,8 @@
   </activity>
   <activity name="칼라물성 전송2" class="com.poscoict.glue.biz.dhtmlx.grid.GridSave">
     <transition name="success" value="ERP전송일시UPDATE2" />
-    <property name="insert-sql" value="C106000060.interFaceColor2" />
     <property name="dao" value="eaidao" />
+    <property name="insert-sql" value="C106000060.interFaceColor2" />
   </activity>
   <activity name="colorDetailFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -46,6 +46,11 @@
     <property name="isAudit" value="true" />
     <property name="sqlkey" value="C106000060.interFaceColor" />
     <property name="dao" value="eaidao" />
+  </activity>
+  <activity name="pbCheck" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000060.pbCheck" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="colNmFind" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
     <transition name="success" value="end" />
@@ -109,6 +114,7 @@
     <transition name="excelExport" value="엑셀출력" />
     <transition name="colNm" value="colNmFind" />
     <transition name="saveAll" value="신뢰성 시험등록2" />
+    <transition name="pbCheck" value="pbCheck" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <transaction-manager id="tx2" commit="true" />
@@ -142,16 +148,16 @@
     <property name="dao" value="mesdao" />
   </activity>
   <activity name="LoopRouter" class="com.unionsteel.mes.c10.activity.ui.LoopRouter">
-    <transition name="UPDATE" value="공정별담당자" />
     <transition name="endLoop" value="end" />
+    <transition name="UPDATE" value="공정별담당자" />
   </activity>
   <activity name="IF_GRP_ID생성2" class="com.poscoict.glue.biz.dhtmlx.PosIFGroupID">
     <transition name="success" value="LoopRouter2" />
   </activity>
   <activity name="ERP전송일시UPDATE2" class="com.poscoict.glue.biz.dhtmlx.grid.GridUpdate">
     <transition name="success" value="물성_IU_Log2" />
-    <property name="dao" value="mesdao" />
     <property name="sqlkey" value="C106000060.clr_snd_update" />
+    <property name="dao" value="mesdao" />
   </activity>
   <activity name="물성_D_Log" class="com.poscoict.glue.biz.dhtmlx.form.FormInsert">
     <transition name="success" value="LoopRouter2" />

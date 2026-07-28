@@ -102,9 +102,47 @@ var initLayout =
 var gridContextMenuConfig = {"xml":"./dhtmlx/data/contextmenu.xml","iconImgs":window.dhx_globalImgPath};
 var columnList = "USE_YN,CLR_SUB_MTL_CD,CLR_NM,SUB_MTL_TP,SUB_MTL_TP_NM,RSN_TP,RSN_TP_NM,LUS_RT_CD,LUS_RT_NM,LUS_RT_LLV,LUS_RT_ULV,RL_LUS_RT,WK_VISCO,PNT_FLM_THK,PRT_INK_TP,PRT_INK_TP_NM,NV,PNT_GRA,SLV_GRA,THR_CD,PNT_UNT,PMT,QT_L,QT_A,QT_B,STD_CLR_NM,LMN_KND_TP,LMN_KND_TP_NM,LMN_BND_CD,LMN_BND_THR_CD,LMN_BND_CD1,LMN_BND_THR_CD1,LMN_FLM_THK_CD,LMN_FLM_THK_CD_NM,PTT_FLM_LUS_RT_CD,PTT_FLM_LUS_RT_NM,PTT_FLM_THK_CD,PTT_FLM_THK_NM,PTT_FLM_MQL_CD,PTT_FLM_MQL_NM,PTT_FLM_SUS_ADH_CD,PTT_FLM_SUS_ADH_NM,PTT_FLM_PRD_ADH_CD,PTT_FLM_PRD_ADH_NM,RMRK,RGS_PRS_ID,RGS_DH,MDF_PRS_ID,CLR_MDF_DH,MGR_CLR_SUB_MTL_CD,CLR_SUB_MTL_CD_OLD,RSN_TP_OLD,LUS_RT_CD_OLD,PNT_FLM_THK_OLD,CMP_USE_YN,PNT_CMP_CD,PNT_CMP_NM,NV,PNT_GRA,SLV_GRA,PNT_UNT,LAMINA_INS_YN";
 var tempRowId = "";
-var popCompleteYN    = "N"; //칼라부재료업체 정보 저장 사유 입력여부 
+var popCompleteYN    = "N"; //칼라부재료업체 정보 저장 사유 입력여부
 var popCfmRea			= "";	// C106000050pop01 에서 업체 정보 저장 사유.
 var inOutComboVal = [["1", "내수"], ["2", "수입"]];
+
+// 원가내역서 첨부 예외 조합 캐시 (RSN_TP-RSN_TP_QT_BR 을 key로 하는 map, USE_YN='Y' 만 적재).
+// 페이지 최초 로드 시 loadRsnExceptPairs() 로 채워지고, send() 검증에서 참조.
+// 관리자가 DB에서 값을 변경한 경우 브라우저 새로고침(F5) 시 최신값 반영.
+var _rsnExceptPairs = {};
+
+function loadRsnExceptPairs(){
+	try {
+		// column-info 순서와 아래 파싱 인덱스가 일치해야 함 (0=RSN_TP, 1=RSN_TP_QT_BR)
+		var _param = "ServiceName=C106000050-service&exceptFind=1&column-info=RSN_TP,RSN_TP_QT_BR";
+		var _xml   = uiCommon.ajaxLoadData('c10AjaxData.do', _param);
+		if(_xml == null) return;
+		var _newMap = {};
+		var _rows = _xml.getElementsByTagName("row");
+		if(_rows && _rows.length > 0){
+			for(var _i=0; _i<_rows.length; _i++){
+				var _cells = _rows[_i].getElementsByTagName("cell");
+				if(_cells.length < 2) continue;
+				var _p = (_cells[0].firstChild ? _cells[0].firstChild.nodeValue : "");
+				var _q = (_cells[1].firstChild ? _cells[1].firstChild.nodeValue : "");
+				if(isNull(_p) || isNull(_q)) continue;
+				_newMap[_p.toUpperCase() + "-" + _q.toUpperCase()] = 1;
+			}
+		}
+		_rsnExceptPairs = _newMap;
+	} catch(e) { /* 조회 실패 시 캐시 유지 */ }
+}
+
+// 원가내역서 첨부 예외 조항 팝업 오픈
+function exceptListPop(){
+	winObj = new ui.window("popup","원가내역서 첨부 예외 조항","0","0","720","520","C106000050pop09.jsp");
+	winObj.setButtonDisable("park,minmax1");
+	winObj.setModal();
+	winObj.getDhxWindow().attachEvent("onClose", function(win){
+		this.hide();
+		return true;
+	});
+}
 
 function find(eventName,formDivObj,referenceItem){
 	items[referenceItem].clearDataProcess();
@@ -828,11 +866,32 @@ function send(eventName,formDivObj,referenceItem){
 			
 			if(byteCount(grid.getCellValue(rowIdArray[i],83)) > 40){
 				dhtmlx.alert("선택한 행의 품질수지타입의 <br>글자수가 초과하였습니다. <br><br>40byte 이하로 입력해주세요. <br> 현재 : "+byteCount(grid.getCellValue(rowIdArray[i],83))+" byte");
-				return;			
-			}	
-			
-			
-			grid.setUpdated(rowIdArray[i],true,"updated"); 
+				return;
+			}
+
+			// 부재료구분이 S31(PCM도료)/S32(Primer)/S34(Ink)/S35(Clear) 인 경우에만,
+			// 구매수지타입 vs 품질수지타입 상이 시 원가내역서(MFILE_YN='Y') 필수.
+			// 예외 조합은 TB_C10_CLR_EXCEPT (C10APUSER) 에 등록되며, 페이지 로드 시 _rsnExceptPairs 로 캐싱.
+			var _subMtlTp  = grid.getCellValue(rowIdArray[i], gridObj.getColIndexById("SUB_MTL_TP"));
+			_subMtlTp = !isNull(_subMtlTp) ? _subMtlTp.toUpperCase() : "";
+			if(_subMtlTp == "S31" || _subMtlTp == "S32" || _subMtlTp == "S34" || _subMtlTp == "S35"){
+				var _rsnTp     = grid.getCellValue(rowIdArray[i], gridObj.getColIndexById("RSN_TP"));
+				var _rsnTpQtBr = grid.getCellValue(rowIdArray[i], gridObj.getColIndexById("RSN_TP_QT_BR"));
+				var _mfileCell = grid.getCellValue(rowIdArray[i], gridObj.getColIndexById("MFILE_YN"));
+				_rsnTp     = !isNull(_rsnTp)     ? _rsnTp.toUpperCase()     : "";
+				_rsnTpQtBr = !isNull(_rsnTpQtBr) ? _rsnTpQtBr.toUpperCase() : "";
+				// _gridC10Data.jsp 가 MFILE_YN='Y' 를 <img src=save.gif ...> 로,
+				// 'N' 을 save_dis.gif 로 렌더링하므로 셀값에서 save.gif 존재 여부로 판정
+				var _hasCostFile = (!isNull(_mfileCell) && _mfileCell.indexOf("save.gif") !== -1);
+				if(_rsnTp != _rsnTpQtBr){
+					if(_rsnExceptPairs[_rsnTp + "-" + _rsnTpQtBr] !== 1 && !_hasCostFile){
+						dhtmlx.alert("원가내역서가 누락되어, 전송할 수 없습니다.");
+						return;
+					}
+				}
+			}
+
+			grid.setUpdated(rowIdArray[i],true,"updated");
 		}	 
 		dhtmlx.confirm({
 			title:"[[ 확인 ]]",
@@ -938,12 +997,15 @@ function findMessage(referenceItem){
 	
   	return true;
 }
-function onFormLoadFunction(){ 
+function onFormLoadFunction(){
 	var formObj = items['C106000050_Form_1'].getDhxForm();
 	var grid = items['C106000050_Grid_1'];
-	
+
 	var gridObj = items['C106000050_Grid_1'].getDhxGrid();
 	var gridObjRowCnt = gridObj.getRowsNum();
+
+	// 원가내역서 첨부 예외 조합 캐시 로드 (send 검증에서 사용)
+	loadRsnExceptPairs();
 
 
 	var comboList = items['C106000050_Form_1'].getMasterCombos();
@@ -1059,31 +1121,31 @@ function onFormLoadFunction(){
 			}
 			*/
 			if(!isNull(comboValue) && (comboValue == "S31" || comboValue == "S32" || comboValue == "S35" || comboValue == "ZZZ" || comboValue == "S41")){	//필름용 도료추가 (2023.07.25)
-				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62,88",false);
 				grid.setColumnHiddenFlag("37,39,40,41,42,43,44,46,48,50,52,73",true); //완료!! (0)
 			}else if(!isNull(comboValue) && (comboValue == "S33")){	 //Thinner 완료!! (0)
 				grid.setColumnHiddenFlag("1,2,3,6,8,25,54,55,56,58,59,60,61,62",false);
-				grid.setColumnHiddenFlag("10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+				grid.setColumnHiddenFlag("10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S37")){	//도장기타 완료!!
 				grid.setColumnHiddenFlag("1,2,3,21,22,23,25,26,54,55,56,57,58,59,60,61,62",false);
-				grid.setColumnHiddenFlag("4,5,6,8,10,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73",true); 
+				grid.setColumnHiddenFlag("4,5,6,8,10,11,12,14,15,16,18,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,73,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S34")){	//Ink 완료!!
 				grid.setColumnHiddenFlag("1,2,3,6,8,18,30,31,32,33,34,35,36,54,55,56,57,58,59,60,61,62",false);
-				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,24,25,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52,73",true); 
+				grid.setColumnHiddenFlag("5,10,11,12,13,14,15,16,23,24,25,26,27,28,29,30,37,39,40,41,42,43,44,45,48,50,52,73,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S36")){	//보호필름 완료!!  (0)
 				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
-				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
+				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S39" || comboValue == "S49")){	//UGS필름  이돈석 수정(2013.07.23 UGS필름 추가)  완료!!  (0) -> 생산용 USG필름 추가!! (2023.03.03)
 				grid.setColumnHiddenFlag("1,2,3,25,40,46,48,49,52,53,54,55,56",false);
-				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73",true);  
+				grid.setColumnHiddenFlag("5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,73,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S38")){	//구매Lamina  완료!!   (0)
 				grid.setColumnHiddenFlag("1,2,3,18,23,26,27,37,39,40,41,42,43,44,55,56,57,58,59,60,61,62,73",false);
-				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54",true);  
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54,88",true);
 			}else if(!isNull(comboValue) && (comboValue == "S40")){	//생산Lamina  완료!!   (0)
 				grid.setColumnHiddenFlag("1,2,3,18,23,26,27,37,39,40,41,42,43,44,55,56,57,58,59,60,61,62,73",false);
-				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54",true);  
+				grid.setColumnHiddenFlag("5,6,8,10,11,12,13,14,15,16,17,19,20,21,22,24,25,28,29,30,31,32,33,34,35,36,37,39,45,46,47,48,49,50,51,52,53,54,88",true);
 			}else{
-				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,61,62,73",false);
+				grid.setColumnHiddenFlag("1,2,3,5,6,8,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,48,50,52,54,55,56,57,58,59,60,61,62,73,88",false);
 			}
 		});  
 			

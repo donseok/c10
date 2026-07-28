@@ -101,6 +101,12 @@
     <transition name="find3" value="UGS Total Find" />
     <transition name="sendChk" value="칼라코드 FMES 송신이력 확인" />
     <transition name="thinAjaxFind" value="thinAjaxFind" />
+    <transition name="exceptFind" value="원가내역서예외조합조회" />
+  </activity>
+  <activity name="원가내역서예외조합조회" class="com.poscoict.glue.biz.dhtmlx.form.FormSearch">
+    <transition name="success" value="end" />
+    <property name="sqlkey" value="C106000050.exceptSelect" />
+    <property name="dao" value="mesdao" />
   </activity>
   <transaction-manager id="tx1" commit="true" />
   <transaction-manager id="tx2" commit="true" />

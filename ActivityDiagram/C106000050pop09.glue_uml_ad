@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Glue:GlueDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Glue="http://www.glueframework.com/activitydiagram/" id="2" location="20,20" size="100,100">
+  <child xsi:type="Glue:InitialState" id="1" location="228,81" size="-1,-1" output="//@wire.0"/>
+  <child xsi:type="Glue:RouterActivity" id="2" location="137,146" size="425,-1" input="//@wire.0" output="//@wire.1" name="Event_Router">
+    <property key="class" value="com.posdata.glue.biz.activity.PosDefaultRouter"/>
+    <property key="description" value=""/>
+  </child>
+  <child xsi:type="Glue:DinaActivity" id="3" location="200,260" size="230,-1" input="//@wire.1" output="//@wire.2" name="예외조합조회">
+    <property key="class" value="com.poscoict.glue.biz.dhtmlx.form.FormSearch"/>
+    <property key="dao" value="mesdao"/>
+    <property key="sqlkey" value="C106000050pop09.select"/>
+    <property key="description" value="원가내역서 첨부 예외 조합(TB_C10_CLR_EXCEPT) 조회"/>
+  </child>
+  <child xsi:type="Glue:FinalState" id="4" location="311,388" size="-1,-1" input="//@wire.2"/>
+  <property key="description" value=""/>
+  <wire id="10" guardcondition="success" firstRelativePoint="239,100" lastRelativePoint="239,146"/>
+  <wire id="11" guardcondition="find" firstRelativePoint="315,176" lastRelativePoint="315,260"/>
+  <wire id="12" guardcondition="success" firstRelativePoint="315,290" lastRelativePoint="315,388"/>
+</Glue:GlueDiagram>

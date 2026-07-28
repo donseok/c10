@@ -230,6 +230,14 @@ function saveBom(eventName,formDivObj,referenceItem){
 	}
 	*/
 	
+	if(cclBomNo5 != hueCdFrn){
+		//grid.setCellValue(grid.getRowSelectedId(),7,cclBomNo5);
+		//grid.setUpdated(grid.getRowSelectedId(),true,"updated");
+		dhtmlx.alert("CCL-BOM : <span style='color:red;font-size:14px;'>" + cclBomNo5 + "</span>와  <br> 대표색상코드 : <span style='color:red;font-size:14px;'>" + hueCdFrn + "</span>가 동일하지 않습니다!");
+		return;
+	}
+	
+	
     //칼라물성 입력체크
 	/*
     var gridObj2 = items['C106000060_Grid_2'].getDhxGrid();
@@ -289,8 +297,75 @@ function saveBom(eventName,formDivObj,referenceItem){
 		dhtmlx.alert("Chemical Coat와 무독성구분 불일치");
 		return;
 	}
-	
-	
+
+	// === 7CCL(A7) 공정 시 TOP 1Coat/2Coat의 Primer(S32)/PCM도료(S31) Pb값 누락 경고 ===
+	// 누락되어도 저장은 가능(사용자 확인 후 진행). window._pbCheckBypass=true 이면 이미 확인함.
+	if(!window._pbCheckBypass){
+		var _grid5Wrap = items['C106000060_Grid_5'];
+		var _readProc = function(rIdx){
+			var v = _grid5Wrap.getCellByIndexValue(rIdx, 5);
+			if(isNull(v) || v === "") v = gridObj5.cellByIndex(rIdx, 5).getValue();
+			return isNull(v) ? "" : String(v).replace(/\s+/g,"").toUpperCase();
+		};
+		var mainProcCd = _readProc(2);
+		var subProcCd1 = _readProc(3);
+		var subProcCd2 = _readProc(4);
+		var subProcCd3 = _readProc(5);
+		console.log("[Pb체크] 공정코드 → main:'"+mainProcCd+"' sub1:'"+subProcCd1+"' sub2:'"+subProcCd2+"' sub3:'"+subProcCd3+"'");
+		var _isA7 = function(v){ return v === "A7"; };
+		if(_isA7(mainProcCd) || _isA7(subProcCd1) || _isA7(subProcCd2) || _isA7(subProcCd3)){
+			var _pbTargets = [
+				{ pos: "전면 1Coat", colId: "HUE_CD_FRN_1COT" },
+				{ pos: "전면 2Coat", colId: "HUE_CD_FRN_2COT" }
+			];
+			var _pbMissing = [];
+			var _selRowId = grid.getRowSelectedId();
+			for(var _pi=0; _pi<_pbTargets.length; _pi++){
+				var _t = _pbTargets[_pi];
+				var _colIdx = gridObj.getColIndexById(_t.colId);
+				if(_colIdx < 0){ console.log("[Pb체크] 컬럼 없음: "+_t.colId); continue; }
+				var _hueCd = grid.getCellValue(_selRowId, _colIdx);
+				console.log("[Pb체크] "+_t.pos+" HUE_CD="+_hueCd);
+				if(isNull(_hueCd) || _hueCd === "") continue;
+				var _pbParam = "ServiceName=C106000060-service&pbCheck=1&CLR_SUB_MTL_CD="+encodeURIComponent(_hueCd)+"&column-info=SUB_MTL_TP,PB";
+				var _pbXml = uiCommon.ajaxLoadData('c10AjaxData.do', _pbParam);
+				var _pbCells = _pbXml.getElementsByTagName("cell");
+				console.log("[Pb체크] AJAX cells.length="+_pbCells.length);
+				if(_pbCells.length < 2) continue;
+				var _subMtlTp = _pbCells.item(0).firstChild ? _pbCells.item(0).firstChild.nodeValue : "";
+				var _pbVal    = _pbCells.item(1).firstChild ? _pbCells.item(1).firstChild.nodeValue : "";
+				console.log("[Pb체크] "+_hueCd+" → SUB_MTL_TP='"+_subMtlTp+"' PB='"+_pbVal+"'");
+				if((_subMtlTp === "S31" || _subMtlTp === "S32") && (isNull(_pbVal) || _pbVal === "" || Number(_pbVal) === 0)){
+					_pbMissing.push({ pos: _t.pos, cd: _hueCd });
+				}
+			}
+			console.log("[Pb체크] 누락 건수="+_pbMissing.length);
+			if(_pbMissing.length > 0){
+				var _msg = "<b style='color:#c00;'>Pb값이 누락되었습니다.</b><br><br>";
+				for(var _mi=0; _mi<_pbMissing.length; _mi++){
+					_msg += "&nbsp;&nbsp;• " + _pbMissing[_mi].pos
+					     + " : <span style='color:#c00;font-weight:bold;'>"
+					     + _pbMissing[_mi].cd + "</span><br>";
+				}
+				_msg += "<br>칼라코드관리(C106000050)에서 해당 칼라코드의 Pb값을 등록할 수 있습니다.<br><br>";
+				_msg += "<b>그래도 저장하시겠습니까?</b>";
+				dhtmlx.confirm({
+					title:"[[ Pb값 누락 확인 ]]",
+					ok:"확인", cancel:"취소",
+					text:_msg,
+					callback:function(val){
+						if(val){
+							window._pbCheckBypass = true;
+							try { saveBom(eventName, formDivObj, referenceItem); }
+							finally { window._pbCheckBypass = false; }
+						}
+					}
+				});
+				return;
+			}
+		}
+	}
+
 	var grid3 = items['C106000060_Grid_3'];
 	var tmpTopCode = "";
 	var tmpBackCode = "";
@@ -361,51 +436,59 @@ function saveBom(eventName,formDivObj,referenceItem){
 			isClose = true;
 			
 			C10_linkC106000060pop09(tmpTopCode,tmpBackCode,topNum,backNum,saveDifference, function(isClosed){
-				
+
 				if(isClosed){
-					
+
 					if(duplicateCclBom()){
-						dhtmlx.confirm({
-							title:"[[ 확인 ]]",
-							ok:"확인", cancel:"취소",
-							text:"저장 하시겠습니까?",
-							callback:function(val){
-								if(val){					
-									items[referenceItem].sendGrid(referenceItem,eventName);
-									return;
+						if(window._pbCheckBypass){
+							items[referenceItem].sendGrid(referenceItem,eventName);
+						}else{
+							dhtmlx.confirm({
+								title:"[[ 확인 ]]",
+								ok:"확인", cancel:"취소",
+								text:"저장 하시겠습니까?",
+								callback:function(val){
+									if(val){
+										items[referenceItem].sendGrid(referenceItem,eventName);
+										return;
+									}
 								}
-							}
-						});  
+							});
+						}
 					}else{
 						alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
-						return;			
+						return;
 					}
-				
+
 				}
-				
+
 			});
 		
 		}else{
 			isClose = true;
-			
+
 			if(duplicateCclBom()){
-				dhtmlx.confirm({
-					title:"[[ 확인 ]]",
-					ok:"확인", cancel:"취소",
-					text:"저장 하시겠습니까?",
-					callback:function(val){
-						if(val){					
-							items[referenceItem].sendGrid(referenceItem,eventName);
-							return;
+				if(window._pbCheckBypass){
+					items[referenceItem].sendGrid(referenceItem,eventName);
+				}else{
+					dhtmlx.confirm({
+						title:"[[ 확인 ]]",
+						ok:"확인", cancel:"취소",
+						text:"저장 하시겠습니까?",
+						callback:function(val){
+							if(val){
+								items[referenceItem].sendGrid(referenceItem,eventName);
+								return;
+							}
 						}
-					}
-				});  
+					});
+				}
 			}else{
 				alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
-				return;			
-			}			
-			
-		}		
+				return;
+			}
+
+		}
 
 	}
 	
@@ -413,22 +496,26 @@ function saveBom(eventName,formDivObj,referenceItem){
 	items['C106000060_Grid_1'].setCellValue(grid.getRowSelectedId(),119,gridObj5.cellByIndex(2,1).getValue());
 	
 	if(!isClose){
-		
+
 		if(duplicateCclBom()){
-			dhtmlx.confirm({
-				title:"[[ 확인 ]]",
-				ok:"확인", cancel:"취소",
-				text:"저장 하시겠습니까?",
-				callback:function(val){
-					if(val){					
-						items[referenceItem].sendGrid(referenceItem,eventName);
-						return;
+			if(window._pbCheckBypass){
+				items[referenceItem].sendGrid(referenceItem,eventName);
+			}else{
+				dhtmlx.confirm({
+					title:"[[ 확인 ]]",
+					ok:"확인", cancel:"취소",
+					text:"저장 하시겠습니까?",
+					callback:function(val){
+						if(val){
+							items[referenceItem].sendGrid(referenceItem,eventName);
+							return;
+						}
 					}
-				}
-			});  
+				});
+			}
 		}else{
 			alert("중복되는 CCL-BOM NO가 있습니다. 확인해주세요.");
-			return;			
+			return;
 		}
 	}
 }

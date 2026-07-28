@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryMap desc="C106000050pop09 원가내역서 첨부 예외 조합 조회 팝업 쿼리">
+	 <query id="C106000050pop09.select" desc="원가내역서 첨부 예외 조합 조회" fetchSize="100" isNamed="true">
+		 <![CDATA[
+SELECT /* C106000050pop09 예외조합조회 C106000050pop09.select SJS */
+       RSN_TP,
+       (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP='RSN_TP' AND CATEGORY_GROUP_NM='SZ0000' AND CD_V=A.RSN_TP) AS RSN_TP_NM,
+       RSN_TP_QT_BR,
+       (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS
+         WHERE CD_TP='RSN_TP_QT_BR' AND CATEGORY_GROUP_NM='SZ0000' AND CD_V=A.RSN_TP_QT_BR) AS RSN_TP_QT_BR_NM,
+       USE_YN,
+       RMRK,
+       RGS_PRS_ID,
+       TO_CHAR(RGS_DH,'YYYY-MM-DD HH24:MI:SS') AS RGS_DH
+  FROM C10APUSER.TB_C10_CLR_EXCEPT A
+ WHERE USE_YN='Y'
+ ORDER BY RSN_TP, RSN_TP_QT_BR
+		 ]]>
+	 </query>
+</queryMap>

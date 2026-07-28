@@ -1345,10 +1345,20 @@ TO_CHAR(ERP_SND_DH,'YYYYMMDD') ERP_SND_DH,  -- ERP전송일자
 RL_LUS_RT, -- 실광택값
 DECODE(TP_CD,'2','V','') TP_CD -- Type유형
 FROM TB_C10_CLR_CD_MNG
-WHERE (SUB_MTL_TP = :SUB_MTL_TP1 OR SUB_MTL_TP = :SUB_MTL_TP2 OR SUB_MTL_TP = :SUB_MTL_TP3 
+WHERE (SUB_MTL_TP = :SUB_MTL_TP1 OR SUB_MTL_TP = :SUB_MTL_TP2 OR SUB_MTL_TP = :SUB_MTL_TP3
        OR SUB_MTL_TP = :SUB_MTL_TP4 OR SUB_MTL_TP = :SUB_MTL_TP5 OR SUB_MTL_TP = :SUB_MTL_TP6 OR SUB_MTL_TP = :SUB_MTL_TP7)
 AND CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
-		 ]]> 
+		 ]]>
+	 </query>
+	 <query id="C106000060.pbCheck" desc="C106000060.pbCheck - 7CCL Primer/PCM Pb값 확인" fetchSize="10" isNamed="true">
+		 <![CDATA[
+SELECT /* C10 CCL-BOM관리 - Pb값 누락 체크 C106000060.pbCheck */
+       CLR_SUB_MTL_CD,
+       SUB_MTL_TP,
+       PB
+  FROM C10APUSER.TB_C10_CLR_CD_MNG
+ WHERE CLR_SUB_MTL_CD = :CLR_SUB_MTL_CD
+		 ]]>
 	 </query>
 	 <query id="C106000060.colorInfoInsert" desc="C106000060.colorInfoInsert" fetchSize="10" isNamed="true">
 		 <![CDATA[ 

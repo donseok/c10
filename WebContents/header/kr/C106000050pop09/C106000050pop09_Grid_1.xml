@@ -1,0 +1,28 @@
+<rows>
+<head>
+	<beforeInit>
+		<call command="setImagePath"><param><![CDATA[dhtmlx/codebase/imgs/]]></param></call>
+		<call command="setSkin"><param><![CDATA[dhx_skyblue]]></param></call>
+		<call command="enableMultiselect"><param>false</param></call>
+		<call command="enableValidation"><param>true</param></call>
+		<call command="setAwaitedRowHeight"><param>22</param></call>
+	</beforeInit>
+	<afterInit>
+		<call command="enableStableSorting"><param>true</param></call>
+		<call command="setDateFormat"><param><![CDATA[%Y-%m-%d 00:00:00]]></param></call>
+		<call command="setNoHeader"><param>false</param></call>
+		<call command="enableEditEvents"><param>false</param><param>false</param><param>false</param></call>
+		<call command="setEditable"><param>false</param></call>
+	</afterInit>
+	<column id="RSN_TP"          sort="str"  align="center" type="ro" width="110">구매수지타입</column>
+	<column id="RSN_TP_NM"       sort="str"  align="left"   type="ro" width="220">구매수지타입명</column>
+	<column id="RSN_TP_QT_BR"    sort="str"  align="center" type="ro" width="110">품질수지타입</column>
+	<column id="RSN_TP_QT_BR_NM" sort="str"  align="left"   type="ro" width="*"  >품질수지타입명</column>
+	<column id="RMRK"            sort="str"  align="left"   type="ro" width="*"   hidden="true">비고</column>
+	<column id="RGS_PRS_ID"      sort="str"  align="center" type="ro" width="100" hidden="true">등록자</column>
+	<column id="RGS_DH"          sort="str"  align="center" type="ro" width="150" hidden="true">등록일시</column>
+	<column id="USE_YN"          sort="str"  align="center" type="ro" width="60"  hidden="true">사용여부</column>
+<settings><colwidth><![CDATA[px]]></colwidth></settings>
+</head>
+<userdata name="column-info">RSN_TP,RSN_TP_NM,RSN_TP_QT_BR,RSN_TP_QT_BR_NM,RMRK,RGS_PRS_ID,RGS_DH,USE_YN</userdata>
+</rows>
