@@ -12,14 +12,14 @@ SUBSTR(DEV_ID,1,8) || '-' || SUBSTR(DEV_ID,9) AS DEV_ID
                AND NVL(A.APRV_STATUS,'0') NOT IN ('2','3')
                AND A.DEV_PRG_CD = (SELECT MIN(B.DEV_PRG_CD) FROM C10APUSER.TB_C10_CLR_DEV_APRV B
                                    WHERE B.DEV_ID = A.DEV_ID AND NVL(B.APRV_STATUS,'0') NOT IN ('2','3')
-                                   AND B.DEV_PRG_CD IN ('1','3','4','5','6','7'))
+                                   AND B.DEV_PRG_CD IN ('1','2','3','4','5','6','7'))
                AND ROWNUM = 1),
        (SELECT A.DEPT_CD FROM C10APUSER.TB_C10_CLR_DEV_APRV A
                WHERE A.DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
                AND A.APRV_STATUS = '2'
                AND A.DEV_PRG_CD = (SELECT MAX(B.DEV_PRG_CD) FROM C10APUSER.TB_C10_CLR_DEV_APRV B
                                    WHERE B.DEV_ID = A.DEV_ID AND B.APRV_STATUS = '2'
-                                   AND B.DEV_PRG_CD IN ('1','3','4','5','6','7'))
+                                   AND B.DEV_PRG_CD IN ('1','2','3','4','5','6','7'))
                AND ROWNUM = 1)
    )) AS APRV_DEPT_NM
 , (SELECT CD_V_MEANING FROM M00APUSER.VI_M00_CODE_ACCESS WHERE CD_TP = 'DEPT_CD' AND CATEGORY_GROUP_NM = 'SZ0000' AND CD_V = DEV_CHR_DEPT) AS DEV_CHR_DEPT_NM
@@ -34,11 +34,11 @@ SUBSTR(DEV_ID,1,8) || '-' || SUBSTR(DEV_ID,9) AS DEV_ID
           WHERE DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID AND APRV_STATUS = '3'
           AND DEV_PRG_CD IN ('1','2','3','4','5','6','7')) || '(반려)'
     ELSE NVL(
-        (SELECT DECODE(MIN(DEV_PRG_CD), '1','개발접수', '3','시편승인', '4','사양승인', '5','BOM등록', '6','개발완료대기', '7','개발완료')
+        (SELECT DECODE(MIN(DEV_PRG_CD), '1','개발접수', '2','분석/개발', '3','시편승인', '4','사양승인', '5','BOM등록', '6','개발완료대기', '7','개발완료')
          FROM C10APUSER.TB_C10_CLR_DEV_APRV
          WHERE DEV_ID = TB_C10_CLR_DEV_MNG.DEV_ID
          AND NVL(APRV_STATUS, '0') NOT IN ('2', '3')
-         AND DEV_PRG_CD IN ('1','3','4','5','6','7')),
+         AND DEV_PRG_CD IN ('1','2','3','4','5','6','7')),
         '개발완료')
   END AS DEV_PRG_CD
 , DEV_SBJ
@@ -102,7 +102,7 @@ AND (:APRV_DEPT_CD IS NULL OR (DEV_PRG_CD NOT IN ('8') AND EXISTS (
         FROM C10APUSER.TB_C10_CLR_DEV_APRV B
         WHERE B.DEV_ID = A.DEV_ID
         AND NVL(B.APRV_STATUS, '0') NOT IN ('2', '3')
-        AND B.DEV_PRG_CD IN ('1','3','4','5','6')
+        AND B.DEV_PRG_CD IN ('1','2','3','4','5','6','7')
     )
 )))
 ORDER BY DEV_REQ_DD DESC, DEV_ID DESC

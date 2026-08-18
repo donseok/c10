@@ -600,7 +600,13 @@
 		    var gridObj = items['C108000240_Grid_1'].getDhxGrid();
 		    gridObj.clearSelection();
 		    tstReq();
-		}		
+		}
+
+		function openManual() {
+		    window.open("color_dev_manual.jsp",
+		        "C108000240_manual",
+		        "width=1100,height=800,scrollbars=yes,resizable=yes");
+		}
 		
 		function dateAdd(date, addDay) {
 			 

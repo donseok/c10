@@ -159,7 +159,7 @@ var Grid_1 = {"itemType":"grid","renderTo":"C108000240pop01_Grid_1","xml":".\/he
 var Grid_2 = {"itemType":"grid","renderTo":"C108000240pop01_Grid_2","xml":".\/header\/kr\/C108000240pop01\/C108000240pop01_Grid_2.xml","rowCnt":"0","vertical":"false","url":"handleDataProcess.do","contextmenu":"true","borderline":"true","pageset":"false","split":"0","referenceItem":"C108000240pop01_Grid_2","service":"C108000240pop01-service","actionType":"save"};
 var Grid_3 = {"itemType":"grid","renderTo":"C108000240pop01_Grid_3","xml":".\/header\/kr\/C108000240pop01\/C108000240pop01_Grid_3.xml","rowCnt":"0","vertical":"false","url":"gridC10Data.do","contextmenu":"false","borderline":"true","pageset":"false","split":"0","referenceItem":"C108000240pop01_Grid_3","service":"C108000240pop01-service","actionType":"save"};
 
-Grid_1.header = "*개발진도 및 결재관리";
+Grid_1.header = "*개발진도 및 확정관리";
 // Grid_1.arrow = true;
 
 Grid_2.header = "*특이사항";
@@ -392,7 +392,7 @@ function saveEtc(eventName, formDivObj, referenceItem) {
 
 
 
-// ===== 결재 처리 함수 (병렬 결재) =====
+// ===== 확정 처리 함수 (병렬 확정) =====
 var _approvalModal = null;
 var lastApprovalStepCd = null;
 
@@ -569,7 +569,7 @@ function approval(eventName, formDivObj, referenceItem) {
     var form1   = items['C108000240pop01_Form_1'];
 
     if (!DEV_ID) {
-        dhtmlx.alert("저장 후 결재할 수 있습니다.");
+        dhtmlx.alert("저장 후 확정할 수 있습니다.");
         return;
     }
 
@@ -585,12 +585,10 @@ function approval(eventName, formDivObj, referenceItem) {
 
     var stepNmMap = {'1':'개발접수','2':'분석/개발','3':'시편승인','4':'사양승인','5':'BOM등록','6':'개발완료대기','7':'개발완료'};
 
-    // 순차결재: 현재 결재 대기 단계 자동 탐색
-    // 순서: 개발접수(1) → 시편승인(3) → 사양승인(4) → BOM등록(5) → 개발완료(6)
-    // 분석/개발(2)은 시편승인 시 자동 처리
-    // 순서: 개발접수(1) → 시편승인(3) → 사양승인(4) → BOM등록(5) → 개발완료대기(6)
-    // 분석/개발(2)은 시편승인 시 자동, 개발완료(7)는 개발완료대기 시 자동
-    var _seqOrder = ['1','3','4','5','6'];
+    // 순차확정: 현재 확정 대기 단계 자동 탐색
+    // 순서: 개발접수(1) → 분석/개발(2) → 시편승인(3) → 사양승인(4) → BOM등록(5) → 개발완료대기(6)
+    // 개발완료(7)는 개발완료대기 시 자동
+    var _seqOrder = ['1','2','3','4','5','6'];
     var selectedRowId = null;
     var currentStepCd = null;
     var currentStepNm = null;
@@ -600,8 +598,8 @@ function approval(eventName, formDivObj, referenceItem) {
         var _rowId = 'step_' + _seqOrder[_sq];
         var _status = gridObj.cells(_rowId, aprvStatusIdx).getValue();
         if (_status === '3') {
-            // 반려된 단계 → 이후 결재 진행 불가
-            dhtmlx.alert("[" + stepNmMap[_seqOrder[_sq]] + "] 단계가 반려되었습니다. 더 이상 결재를 진행할 수 없습니다.");
+            // 반려된 단계 → 이후 확정 진행 불가
+            dhtmlx.alert("[" + stepNmMap[_seqOrder[_sq]] + "] 단계가 반려되었습니다. 더 이상 확정을 진행할 수 없습니다.");
             return;
         }
         if (_status !== '2') {
@@ -614,7 +612,7 @@ function approval(eventName, formDivObj, referenceItem) {
     }
 
     if (!selectedRowId) {
-        dhtmlx.alert("모든 단계의 결재가 완료되었습니다.");
+        dhtmlx.alert("모든 단계의 확정이 완료되었습니다.");
         return;
     }
 
@@ -630,7 +628,7 @@ function approval(eventName, formDivObj, referenceItem) {
     var myUserNo = '<%=userNo%>';
 
     if (myDeptCd !== currentDeptCd) {
-        dhtmlx.alert("현재 단계의 처리담당부서(" + currentDeptCd + ")와 소속부서가 다릅니다.\n결재할 수 없습니다.");
+        dhtmlx.alert("현재 단계의 처리담당부서(" + currentDeptCd + ")와 소속부서가 다릅니다.\n확정할 수 없습니다.");
         return;
     }
 
@@ -655,7 +653,7 @@ function approval(eventName, formDivObj, referenceItem) {
         extraHtml = '<div style="margin-bottom:10px;border-top:1px solid #ddd;padding-top:10px;">'
                   + '<div style="font-size:12px;font-weight:bold;margin-bottom:4px;">도료사 개발번호 <span style="color:red;">(승인 시 필수)</span></div>'
                   + '<input type="text" id="aprvDcrDevNo" maxlength="50" placeholder="도료사 개발번호를 입력하세요" style="width:100%;box-sizing:border-box;padding:3px;font-size:12px;" />'
-                  + '<div style="font-size:11px;color:#888;margin-top:4px;">※ 승인 시 특이사항에 자동 기록되며, 분석/개발 단계가 자동 승인됩니다.</div>'
+                  + '<div style="font-size:11px;color:#888;margin-top:4px;">※ 승인 시 특이사항에 자동 기록됩니다.</div>'
                   + '</div>';
     } else if (currentStepCd === '4') {
         // 사양승인: 제품사양서 파일 확인 + 사후첨부 체크박스
@@ -676,7 +674,7 @@ function approval(eventName, formDivObj, referenceItem) {
     modal.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);z-index:9999;display:flex;align-items:center;justify-content:center;";
     modal.innerHTML =
         '<div style="background:#fff;width:460px;padding:16px;border:1px solid #93AFBA;box-shadow:3px 3px 10px rgba(0,0,0,0.3);max-height:90%;overflow:auto;">' +
-        '<div style="font-weight:bold;margin-bottom:12px;font-size:20px;">[' + currentStepNm + '] 결재</div>' +
+        '<div style="font-weight:bold;margin-bottom:12px;font-size:20px;">[' + currentStepNm + '] 확정</div>' +
         '<div style="margin-bottom:10px;">' +
         '  <label style="margin-right:20px;cursor:pointer;"><input type="radio" name="aprvAction" value="2" checked /> 승인</label>' +
         '  <label style="cursor:pointer;"><input type="radio" name="aprvAction" value="3" /> 반려</label>' +
@@ -722,6 +720,11 @@ function approval(eventName, formDivObj, referenceItem) {
             return;
         }
 
+        if (aprvResult === '3' && currentStepCd === '1') {
+            dhtmlx.alert("개발접수 단계는 반려할 수 없습니다.");
+            return;
+        }
+
         // 승인 시 단계별 추가 검증
         var extBomNo = '';
         var extDcrDevNo = '';
@@ -752,9 +755,15 @@ function approval(eventName, formDivObj, referenceItem) {
         }
 
         var actionNm = (aprvResult === '2') ? '승인' : '반려';
+        var confirmText = "[" + currentStepNm + "] 단계를 " + actionNm + "하시겠습니까?";
+        if (aprvResult === '3') {
+            var _prevStepCd = String(parseInt(currentStepCd, 10) - 1);
+            var _prevStepNm = stepNmMap[_prevStepCd] || '';
+            confirmText = confirmText + "\n(" + _prevStepNm + " 단계로 되돌아갑니다. 반려 사유는 특이사항에 기록됩니다.)";
+        }
         dhtmlx.confirm({
             ok: "확인", cancel: "취소",
-            text: "[" + currentStepNm + "] 단계를 " + actionNm + "하시겠습니까?",
+            text: confirmText,
             callback: function(val) {
                 if (val) {
                     lastApprovalRowId  = selectedRowId;
@@ -788,7 +797,7 @@ function approval(eventName, formDivObj, referenceItem) {
         if (focusEl) focusEl.focus();
     }, 50);
 }
-// ===== 결재 처리 함수 끝 =====
+// ===== 확정 처리 함수 끝 =====
 
 // ===== 개발 중단 함수 =====
 var _devStopModal = null;
@@ -828,7 +837,7 @@ function devStop(eventName, formDivObj, referenceItem) {
         }
     }
     if (allCompleted) {
-        dhtmlx.alert("모든 결재가 완료된 의뢰는 중단할 수 없습니다.");
+        dhtmlx.alert("모든 확정이 완료된 의뢰는 중단할 수 없습니다.");
         return;
     }
 
@@ -1162,14 +1171,14 @@ function onGrid1LoadFunction() {
     // XLE 이벤트 해제
     try { items['C108000240pop01_Grid_1'].getDhxGrid().detachEvent(_onXLE1); } catch(e2) {}
 }
-// ===== Grid_1 헤더에 결재/반려 버튼 삽입 =====
+// ===== Grid_1 헤더에 확정/반려 버튼 삽입 =====
 function injectApprovalButton() {
     try {
         var allDivs = document.getElementsByTagName('div');
         var hdrEl = null;
         for (var i = 0; i < allDivs.length; i++) {
             var d = allDivs[i];
-            if (d.innerHTML && d.innerHTML.indexOf('개발진도 및 결재관리') > -1 && !d.querySelector('table')) {
+            if (d.innerHTML && d.innerHTML.indexOf('개발진도 및 확정관리') > -1 && !d.querySelector('table')) {
                 if (!hdrEl || d.innerHTML.length < hdrEl.innerHTML.length) {
                     hdrEl = d;
                 }
@@ -1187,7 +1196,7 @@ function injectApprovalButton() {
         btnSpan.innerHTML = '<button onclick="approval(\'approval\',\'C108000240pop01_Form_1\',\'C108000240pop01_Grid_1\')" '
             + 'style="' + _btnBlue + 'margin-right:4px;"'
             + ' onmouseover="this.style.background=\'#B8D0EC\'" onmouseout="this.style.background=\'#D6E4F5\'">'
-            + '결재/반려</button>'
+            + '확정/반려</button>'
             + '<button onclick="devStop(\'devStop\',\'C108000240pop01_Form_1\',\'C108000240pop01_Grid_1\')" '
             + 'style="' + _btnRed + 'margin-right:4px;"'
             + ' onmouseover="this.style.background=\'#ECC0C0\'" onmouseout="this.style.background=\'#F5D6D6\'">'
@@ -1199,7 +1208,7 @@ function injectApprovalButton() {
         hdrEl.appendChild(btnSpan);
     } catch(e) { console.error("[injectApprovalButton] error:", e); }
 }
-// ===== Grid_1 헤더에 결재/반려 버튼 삽입 끝 =====
+// ===== Grid_1 헤더에 확정/반려 버튼 삽입 끝 =====
 
 // ===== Grid_1 로드 완료 후 처리담당부서 콤보 초기화 끝 =====
 
@@ -1268,7 +1277,7 @@ function changeDept() {
     modal.innerHTML =
         '<div style="background:#fff;width:500px;padding:16px;border:1px solid #93AFBA;box-shadow:3px 3px 10px rgba(0,0,0,0.3);">' +
         '<div style="font-weight:bold;margin-bottom:12px;font-size:14px;">처리담당부서 변경</div>' +
-        '<div style="font-size:11px;color:#888;margin-bottom:8px;">결재 완료된 단계는 변경할 수 없습니다.</div>' +
+        '<div style="font-size:11px;color:#888;margin-bottom:8px;">확정 완료된 단계는 변경할 수 없습니다.</div>' +
         '<table style="width:100%;border-collapse:collapse;font-size:12px;">' +
         '<thead><tr style="background:#f0f0f0;">' +
         '<th style="padding:5px 8px;border:1px solid #ccc;width:90px;">단계</th>' +
@@ -1587,9 +1596,10 @@ function onFormLoadFunction(formDivObj){
 					if (_gv && _gt.indexOf('GIX') === -1) _gwOpts.push([_gv, _gt]);
 				}
 			}
-			// 공백(도금없음) + 20g/㎡ 하드코딩 추가
+			// 공백(도금없음) + 20g/㎡ + 150g/㎡ 하드코딩 추가
 			_gwOpts.push(['A', '없음']);
 			_gwOpts.push(['B', '20 g/㎡']);
+			_gwOpts.push(['C', '150 g/㎡']);
 			_gwOpts.sort(function(a, b) {
 				var na = parseInt((a[1].match(/\d+/) || ['0'])[0], 10);
 				var nb = parseInt((b[1].match(/\d+/) || ['0'])[0], 10);
@@ -1714,7 +1724,7 @@ function onFormLoadFunction(formDivObj){
 		}
 		} catch(e) { console.error("[FormLoad] find AJAX error:", e); }
 
-		// Grid_1 로드 완료 후 결재 데이터 반영
+		// Grid_1 로드 완료 후 확정 데이터 반영
 		(function _waitGrid() {
 			var g1 = items['C108000240pop01_Grid_1'];
 			var gridObj = g1 ? g1.getDhxGrid() : null;
@@ -1765,7 +1775,7 @@ function onFormLoadFunction(formDivObj){
 	    	}
 	    	console.log("findAprv 로드 완료, 건수:", aprvCells.length / colsPerRow);
 
-	    	// 결재 상태별 행 스타일링
+	    	// 확정 상태별 행 스타일링
 	    	applyAprvRowStyles();
 		})();
 
@@ -1945,7 +1955,7 @@ function onFormLoadFunction(formDivObj){
                                   var userChk = gridObj.cells2(rowNum-1, 3).getValue();     
                             
                             */
-                            //현재 담당자만 결재가능하도록 , 임시 주석 처리 
+                            //현재 담당자만 확정 가능하도록 , 임시 주석 처리
                             //         dhtmlx.alert("현재 단계에서 "+agrComment+"할 담당자가 아닙니다.");
                             //         return;
                             //     }    
@@ -2387,7 +2397,7 @@ function onFormLoadFunction(formDivObj){
                             function onAfterUpdateFinishEvent() {
 
                                 if (lastSaveAction === 'saveAprv') {
-                                    // 결재 완료 후 그리드 행 업데이트
+                                    // 확정 완료 후 그리드 행 업데이트
                                     var gridObj  = items['C108000240pop01_Grid_1'].getDhxGrid();
                                     var form1    = items['C108000240pop01_Form_1'];
                                     var myUserNm = '<%=userName%>';
@@ -2399,25 +2409,30 @@ function onFormLoadFunction(formDivObj){
 
                                     var isApprove = (lastApprovalResult === '2');
                                     var savedOpinion = form1.getItemValue("OPINION_TEXT") || '';
-                                    if (lastApprovalRowId) {
-                                        gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_STATUS")).setValue(lastApprovalResult);
-                                        gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_STATUS_NM")).setValue(isApprove ? "완료" : "중단");
+                                    if (isApprove && lastApprovalRowId) {
+                                        // 승인: 현재 단계에 승인 정보 반영
+                                        gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_STATUS")).setValue("2");
+                                        gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_STATUS_NM")).setValue("완료");
                                         gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_USER_NM")).setValue(myUserNm);
                                         gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_USER")).setValue(myUserNo);
                                         gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("APRV_DT")).setValue(todayStr);
                                         gridObj.cells(lastApprovalRowId, gridObj.getColIndexById("OPINION")).setValue(savedOpinion);
-                                    }
+                                    } else if (!isApprove && lastApprovalStepCd) {
+                                        // 반려: 현재 단계는 그대로, 이전 단계 상태 리셋
+                                        var _prevStepCd = String(parseInt(lastApprovalStepCd, 10) - 1);
+                                        var _prevRowId  = 'step_' + _prevStepCd;
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("APRV_STATUS")).setValue("1");
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("APRV_STATUS_NM")).setValue("요청");
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("APRV_USER_NM")).setValue("");
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("APRV_USER")).setValue("");
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("APRV_DT")).setValue("");
+                                        gridObj.cells(_prevRowId, gridObj.getColIndexById("OPINION")).setValue("");
 
-                                    // 시편승인(3) 승인 시 분석/개발(2) 자동 승인 UI 반영
-                                    if (isApprove && lastApprovalStepCd === '3') {
-                                        var step2AprvStatus = gridObj.cells("step_2", gridObj.getColIndexById("APRV_STATUS")).getValue();
-                                        if (step2AprvStatus !== '2' && step2AprvStatus !== '3') {
-                                            gridObj.cells("step_2", gridObj.getColIndexById("APRV_STATUS")).setValue("2");
-                                            gridObj.cells("step_2", gridObj.getColIndexById("APRV_STATUS_NM")).setValue("완료");
-                                            gridObj.cells("step_2", gridObj.getColIndexById("APRV_USER_NM")).setValue("-");
-                                            gridObj.cells("step_2", gridObj.getColIndexById("APRV_USER")).setValue("-");
-                                            gridObj.cells("step_2", gridObj.getColIndexById("APRV_DT")).setValue(todayStr);
-                                            gridObj.cells("step_2", gridObj.getColIndexById("OPINION")).setValue("시편승인 담당자에게 문의");
+                                        // BOM등록(5)이 미승인 상태이면 CCL_BOM_NO 클리어 (백엔드와 동기화)
+                                        var _step5Status = gridObj.cells("step_5", gridObj.getColIndexById("APRV_STATUS")).getValue();
+                                        if (_step5Status !== '2') {
+                                            form1.setItemValue("CCL_BOM_NO", "");
+                                            try { _updateBomChgBtn(); } catch(e) {}
                                         }
                                     }
 
@@ -2445,13 +2460,13 @@ function onFormLoadFunction(formDivObj){
                                         _updateBomChgBtn();
                                     }
 
-                                    var _needEtcReload = (isApprove && lastApprovalStepCd === '3');
+                                    var _needEtcReload = (isApprove && lastApprovalStepCd === '3') || !isApprove;
                                     lastApprovalRowId  = null;
                                     lastApprovalResult = null;
                                     lastApprovalStepCd = null;
                                     applyAprvRowStyles();
                                     dhtmlx.alert({
-                                        text: isApprove ? "결재되었습니다." : "반려되었습니다.",
+                                        text: isApprove ? "확정되었습니다." : "반려되었습니다.",
                                         callback: function() {
                                             if (_needEtcReload) {
                                                 try { reloadEtcGrid(); } catch(e) {}
@@ -3260,7 +3275,7 @@ function applyEtcTooltip() {
     } catch(e) {}
 }
 
-// ===== 결재 그리드 행 상태별 스타일링 =====
+// ===== 확정 그리드 행 상태별 스타일링 =====
 function applyAprvRowStyles() {
     try {
         var gridObj = items['C108000240pop01_Grid_1'].getDhxGrid();
@@ -3269,11 +3284,11 @@ function applyAprvRowStyles() {
         var devPrgCd = form1.getItemValue("DEV_PRG_CD");
         var isDevStop = (devPrgCd === '8');
 
-        // 순차결재 순서 (분석/개발은 시편승인 시 자동)
-        var seqOrder = ['1','3','4','5','6'];
+        // 순차확정 순서
+        var seqOrder = ['1','2','3','4','5','6'];
         var allSteps = ["step_1","step_2","step_3","step_4","step_5","step_6","step_7"];
 
-        // 현재 결재 대기 단계 찾기
+        // 현재 확정 대기 단계 찾기
         var currentStepRowId = null;
         for (var s = 0; s < seqOrder.length; s++) {
             var _rowId = 'step_' + seqOrder[s];
@@ -3289,15 +3304,15 @@ function applyAprvRowStyles() {
             var status = gridObj.cells(rowId, aprvStatusIdx).getValue();
 
             if (isDevStop && (status === '2' || status === '3')) {
-                // 개발중단: 기존 결재 행 취소선 + 회색
+                // 개발중단: 기존 확정 행 취소선 + 회색
                 gridObj.setRowTextStyle(rowId, "text-decoration:line-through;color:#999;");
                 gridObj.setRowColor(rowId, "#f5f5f5");
             } else if (status === '2') {
-                // 결재 완료: 기본 스타일
+                // 확정 완료: 기본 스타일
                 gridObj.setRowTextStyle(rowId, "");
                 gridObj.setRowColor(rowId, "");
             } else if (rowId === currentStepRowId) {
-                // 현재 결재 대기: 노란 하이라이트
+                // 현재 확정 대기: 노란 하이라이트
                 gridObj.setRowTextStyle(rowId, "font-weight:bold;");
                 gridObj.setRowColor(rowId, "#FFE699");
             } else {
@@ -3317,7 +3332,7 @@ function applyAprvRowStyles() {
         }
     } catch(e) { console.error("[applyAprvRowStyles] error:", e); }
 }
-// ===== 결재 그리드 행 상태별 스타일링 끝 =====
+// ===== 확정 그리드 행 상태별 스타일링 끝 =====
 
 function injectEtcButtons() {
     try {

@@ -127,6 +127,8 @@ public class C10ConstantsIF
     public static final String C108000240POP01_UPDATE_DEV_CHR = "C108000240pop01.updateDevChr";
     public static final String C108000240POP01_INSERT_APRV_AUTO = "C108000240pop01.insertAprvAutoApprove";
     public static final String C108000240POP01_AUTO_APPROVE_COMPLETE = "C108000240pop01.autoApproveComplete";
+    public static final String C108000240POP01_RESET_PREV_STEP = "C108000240pop01.resetPrevStep";
+    public static final String C108000240POP01_CLEAR_CCL_BOM_IF_STEP5_UNAPPROVED = "C108000240pop01.clearCclBomIfStep5Unapproved";
 
     public static final String C108000240POP02_INSERT 	= "C108000240pop02.insert";
     public static final String C108000240POP02_DELETE 	= "C108000240pop02.delete";

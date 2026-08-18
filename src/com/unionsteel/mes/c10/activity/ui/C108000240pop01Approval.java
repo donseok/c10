@@ -2,15 +2,22 @@
  * Copyright(c) 2011 UNIONSTEEL
  * @FileName : C108000240pop01Approval.java
  * Change history
- * @LastModifyDate : 2026. 04. 10
+ * @LastModifyDate : 2026. 07. 06
  * @LastModifier : SJS
- * @LastVersion : 1.1
+ * @LastVersion : 1.2
  * 1.0 2026. 04. 09 SJS 최초 생성
  * 1.1 2026. 04. 10 SJS 병렬 결재 변경, 단계별 분기 처리
  *                     - 시편승인(3): 특이사항 INSERT + 분석/개발(2) 자동 승인
  *                     - 사양승인(4): (클라이언트 검증)
  *                     - BOM등록(5): CCL_BOM_NO UPDATE
  *                     - DEV_PRG_CD는 결재된 최대 단계 기준으로 갱신
+ * 1.2 2026. 07. 06 SJS 분석/개발(2) 단계 결재 도입
+ *                     - 시편승인(3) 승인 시 분석/개발(2) 자동 승인 제거
+ *                     - 분석/개발(2)도 처리담당부서 부서원이 개별 결재
+ * 1.3 2026. 07. 06 SJS 반려 로직 변경 (이전 단계 리셋 + 특이사항 기록)
+ *                     - 반려 시 현재 단계는 그대로 두고 이전 단계 APRV_STATUS를 '1'로 리셋
+ *                     - 반려 사유를 특이사항(TB_C10_CLR_DEV_ETC)에 자동 기록
+ * 1.4 2026. 08. 06 SJS 반려 시 BOM등록(5) 미승인 상태이면 CCL_BOM_NO 클리어
  * ==============================================================================
  */
 package com.unionsteel.mes.c10.activity.ui;
@@ -23,17 +30,41 @@ import com.posdata.glue.dao.vo.PosParameter;
 import com.unionsteel.mes.c10.activity.common.C10ConstantsIF;
 
 /**
- * 칼라개발관리 결재 처리 (병렬 결재)
- * - TB_C10_CLR_DEV_APRV 결재 상태 UPDATE
+ * 칼라개발관리 확정 처리 (순차 확정)
+ * - TB_C10_CLR_DEV_APRV 확정 상태 UPDATE
  * - 승인 시:
- *   · TB_C10_CLR_DEV_MNG DEV_PRG_CD 갱신 (결재된 최대 단계 기준)
- *   · 시편승인(3): 특이사항 INSERT(도료사 개발번호) + 분석/개발(2) 자동 승인
+ *   · 현재 단계 APRV_STATUS = '2'
+ *   · TB_C10_CLR_DEV_MNG DEV_PRG_CD 갱신 (승인된 최대 단계 기준)
+ *   · 시편승인(3): 특이사항 INSERT(도료사 개발번호)
  *   · BOM등록(5): CCL_BOM_NO UPDATE
+ *   · 개발완료대기(6): 개발완료(7) 자동 승인
+ * - 반려 시:
+ *   · 현재 단계는 그대로 두고 이전 단계 APRV_STATUS를 '1'로 리셋
+ *   · 반려 사유를 특이사항에 자동 기록: [반려] {현재단계} → {이전단계}: {사유}
+ *   · TB_C10_CLR_DEV_MNG DEV_PRG_CD 갱신 (승인된 최대 단계 기준)
+ *   · BOM등록(5)이 미승인 상태이면 CCL_BOM_NO 클리어
  *
  * @author SJS
- * @version 1.1
+ * @version 1.4
  */
 public class C108000240pop01Approval extends PosActivity {
+
+	private static final String[] STEP_NAMES = new String[] {
+		"", "개발접수", "분석/개발", "시편승인", "사양승인", "BOM등록", "개발완료대기", "개발완료", "개발중단"
+	};
+
+	private static String getStepName(String stepCd) {
+		try {
+			int idx = Integer.parseInt(stepCd);
+			if (idx >= 1 && idx < STEP_NAMES.length) {
+				return STEP_NAMES[idx];
+			}
+		} catch (NumberFormatException e) {
+			// ignore
+		}
+		return stepCd;
+	}
+
 	@Override
 	public String runActivity(PosContext ctx) {
 		String result = PosBizControlConstants.SUCCESS;
@@ -69,32 +100,31 @@ public class C108000240pop01Approval extends PosActivity {
 
 			int dmlCnt = 0;
 
-			// 1) 결재 테이블 상태 UPDATE
-			PosParameter aprvParam = new PosParameter();
-			aprvParam.setValueParamter("DEV_ID", devId);
-			aprvParam.setValueParamter("AGR_STEP_CD", stepCd);
-			aprvParam.setValueParamter("AGR_USER_ID", userId);
-			aprvParam.setValueParamter("OPINION_TEXT", opinion);
-			aprvParam.setValueParamter("APRV_RESULT", aprvResult);
-			aprvParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
-			aprvParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
-			aprvParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
-			aprvParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
-
 			logger.logDebug("###C108000240pop01Approval### DEV_ID:" + devId
 					+ ", AGR_STEP_CD:" + stepCd
 					+ ", APRV_RESULT:" + aprvResult);
 
-			dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_SAVE_APRV, aprvParam);
-			if (dmlCnt < 0) {
-				this.rollbackTransaction("tx1");
-				return PosBizControlConstants.FAILURE;
-			}
-
-			// 2) 승인인 경우 단계별 추가 처리
 			if ("2".equals(aprvResult)) {
+				// ========== 승인 ==========
+				// 1) 현재 단계 상태 UPDATE
+				PosParameter aprvParam = new PosParameter();
+				aprvParam.setValueParamter("DEV_ID", devId);
+				aprvParam.setValueParamter("AGR_STEP_CD", stepCd);
+				aprvParam.setValueParamter("AGR_USER_ID", userId);
+				aprvParam.setValueParamter("OPINION_TEXT", opinion);
+				aprvParam.setValueParamter("APRV_RESULT", aprvResult);
+				aprvParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+				aprvParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+				aprvParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+				aprvParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
 
-				// 2-1) BOM등록(5): CCL_BOM_NO UPDATE
+				dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_SAVE_APRV, aprvParam);
+				if (dmlCnt < 0) {
+					this.rollbackTransaction("tx1");
+					return PosBizControlConstants.FAILURE;
+				}
+
+				// 2) BOM등록(5): CCL_BOM_NO UPDATE
 				if ("5".equals(stepCd) && bomNo != null && !bomNo.isEmpty()) {
 					PosParameter bomParam = new PosParameter();
 					bomParam.setValueParamter("DEV_ID", devId);
@@ -112,44 +142,26 @@ public class C108000240pop01Approval extends PosActivity {
 					logger.logDebug("###C108000240pop01Approval### CCL_BOM_NO updated: " + bomNo);
 				}
 
-				// 2-2) 시편승인(3): 특이사항 INSERT + 분석/개발(2) 자동 승인
-				if ("3".equals(stepCd)) {
-					// 특이사항에 도료사 개발번호 기록
-					if (dcrDevNo != null && !dcrDevNo.isEmpty()) {
-						PosParameter etcParam = new PosParameter();
-						etcParam.setValueParamter("DEV_ID", devId);
-						etcParam.setValueParamter("REG_CHR_ID", userId);
-						etcParam.setValueParamter("DEV_ETC", "도료사 개발번호 : " + dcrDevNo);
-						etcParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
-						etcParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
-						etcParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
-						etcParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+				// 3) 시편승인(3): 특이사항 INSERT (도료사 개발번호)
+				if ("3".equals(stepCd) && dcrDevNo != null && !dcrDevNo.isEmpty()) {
+					PosParameter etcParam = new PosParameter();
+					etcParam.setValueParamter("DEV_ID", devId);
+					etcParam.setValueParamter("REG_CHR_ID", userId);
+					etcParam.setValueParamter("DEV_ETC", "도료사 개발번호 : " + dcrDevNo);
+					etcParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+					etcParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+					etcParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+					etcParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
 
-						dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_ETC_INSERT, etcParam);
-						if (dmlCnt < 0) {
-							this.rollbackTransaction("tx1");
-							return PosBizControlConstants.FAILURE;
-						}
-						logger.logDebug("###C108000240pop01Approval### ETC inserted: 도료사 개발번호 : " + dcrDevNo);
-					}
-
-					// 분석/개발(2) 자동 승인 (이미 승인/반려된 경우 건너뜀)
-					PosParameter autoParam = new PosParameter();
-					autoParam.setValueParamter("DEV_ID", devId);
-					autoParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
-					autoParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
-					autoParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
-					autoParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
-
-					int autoCnt = dao.update(C10ConstantsIF.C108000240POP01_AUTO_APPROVE_ANALYSIS, autoParam);
-					if (autoCnt < 0) {
+					dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_ETC_INSERT, etcParam);
+					if (dmlCnt < 0) {
 						this.rollbackTransaction("tx1");
 						return PosBizControlConstants.FAILURE;
 					}
-					logger.logDebug("###C108000240pop01Approval### 분석/개발 자동 승인: " + autoCnt + " rows");
+					logger.logDebug("###C108000240pop01Approval### ETC inserted: 도료사 개발번호 : " + dcrDevNo);
 				}
 
-				// 2-3) 개발완료대기(6) 승인 시 개발완료(7) 자동 승인
+				// 4) 개발완료대기(6): 개발완료(7) 자동 승인
 				if ("6".equals(stepCd)) {
 					PosParameter complParam = new PosParameter();
 					complParam.setValueParamter("DEV_ID", devId);
@@ -167,35 +179,92 @@ public class C108000240pop01Approval extends PosActivity {
 					logger.logDebug("###C108000240pop01Approval### 개발완료 자동 승인: " + complCnt + " rows");
 				}
 
-				// 2-4) 메인 테이블 DEV_PRG_CD 갱신 (결재된 최대 단계 기준)
-				PosParameter prgParam = new PosParameter();
-				prgParam.setValueParamter("DEV_ID", devId);
-				prgParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
-				prgParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
-				prgParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
-				prgParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+			} else {
+				// ========== 반려 ==========
+				// 이전 단계 유효성 검사 (개발접수(1)는 반려 불가)
+				int stepNum;
+				try {
+					stepNum = Integer.parseInt(stepCd);
+				} catch (NumberFormatException e) {
+					this.rollbackTransaction("tx1");
+					return PosBizControlConstants.FAILURE;
+				}
+				if (stepNum <= 1) {
+					logger.logDebug("###C108000240pop01Approval### 개발접수 단계는 반려할 수 없습니다.");
+					this.rollbackTransaction("tx1");
+					return PosBizControlConstants.FAILURE;
+				}
+				String prevStepCd = String.valueOf(stepNum - 1);
 
-				dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_UPDATE_DEV_PRG_BY_MAX, prgParam);
+				// 1) 이전 단계 리셋 (APRV_STATUS='1', 승인자/일자/의견 clear)
+				PosParameter prevParam = new PosParameter();
+				prevParam.setValueParamter("DEV_ID", devId);
+				prevParam.setValueParamter("PREV_STEP_CD", prevStepCd);
+				prevParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+				prevParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+				prevParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+				prevParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+
+				dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_RESET_PREV_STEP, prevParam);
 				if (dmlCnt < 0) {
 					this.rollbackTransaction("tx1");
 					return PosBizControlConstants.FAILURE;
 				}
-				logger.logDebug("###C108000240pop01Approval### DEV_PRG_CD updated by MAX");
-			} else {
-				// 반려 시에도 LAST_UPDATE_TIMESTAMP는 갱신
-				PosParameter tsParam = new PosParameter();
-				tsParam.setValueParamter("DEV_ID", devId);
-				tsParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
-				tsParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
-				tsParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
-				tsParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+				logger.logDebug("###C108000240pop01Approval### 이전 단계(" + prevStepCd + ") 리셋: " + dmlCnt + " rows");
 
-				dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_UPDATE_LAST_TS, tsParam);
+				// 2) 반려 사유를 특이사항에 기록
+				String rejectNote = "[반려] " + getStepName(stepCd) + " → " + getStepName(prevStepCd);
+				if (opinion != null && !opinion.isEmpty()) {
+					rejectNote = rejectNote + " : " + opinion;
+				}
+				PosParameter etcParam = new PosParameter();
+				etcParam.setValueParamter("DEV_ID", devId);
+				etcParam.setValueParamter("REG_CHR_ID", userId);
+				etcParam.setValueParamter("DEV_ETC", rejectNote);
+				etcParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+				etcParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+				etcParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+				etcParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+
+				dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_ETC_INSERT, etcParam);
 				if (dmlCnt < 0) {
 					this.rollbackTransaction("tx1");
 					return PosBizControlConstants.FAILURE;
+				}
+				logger.logDebug("###C108000240pop01Approval### 반려 특이사항 INSERT: " + rejectNote);
+
+				// 3) BOM등록(5) 미승인 상태이면 CCL_BOM_NO 클리어
+				PosParameter bomClearParam = new PosParameter();
+				bomClearParam.setValueParamter("DEV_ID", devId);
+				bomClearParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+				bomClearParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+				bomClearParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+				bomClearParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+
+				int bomClearCnt = dao.update(C10ConstantsIF.C108000240POP01_CLEAR_CCL_BOM_IF_STEP5_UNAPPROVED, bomClearParam);
+				if (bomClearCnt < 0) {
+					this.rollbackTransaction("tx1");
+					return PosBizControlConstants.FAILURE;
+				}
+				if (bomClearCnt > 0) {
+					logger.logDebug("###C108000240pop01Approval### CCL_BOM_NO cleared (BOM등록 미승인)");
 				}
 			}
+
+			// 메인 테이블 DEV_PRG_CD 갱신 (승인된 최대 단계 기준)
+			PosParameter prgParam = new PosParameter();
+			prgParam.setValueParamter("DEV_ID", devId);
+			prgParam.setNamedParamter("ObjectType", ctx.get(C10ConstantsIF.OBJECT_TYPE));
+			prgParam.setNamedParamter("ObjectId", ctx.get(C10ConstantsIF.OBJECT_ID));
+			prgParam.setNamedParamter("ProgramId", ctx.get(C10ConstantsIF.PROGRAM_ID));
+			prgParam.setNamedParamter("Timestamp", ctx.get(C10ConstantsIF.TIMESTAMP));
+
+			dmlCnt = dao.update(C10ConstantsIF.C108000240POP01_UPDATE_DEV_PRG_BY_MAX, prgParam);
+			if (dmlCnt < 0) {
+				this.rollbackTransaction("tx1");
+				return PosBizControlConstants.FAILURE;
+			}
+			logger.logDebug("###C108000240pop01Approval### DEV_PRG_CD updated by MAX");
 
 			this.commitTransaction("tx1");
 

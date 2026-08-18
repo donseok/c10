@@ -27,14 +27,14 @@
 		<column align="center"  id="DEV_PRG_NM"  type="ro"      width="12">개발진도</column>
 		<column align="center"  id="APRV_STATUS_NM"   type="ro"      width="12">상태</column>
 		<column align="center"  id="DEPT_NM"  type="combo_v" width="20">처리담당부서</column>
-		<column align="center"  id="APRV_USER_NM"   type="ro"      width="12">결재자</column>
+		<column align="center"  id="APRV_USER_NM"   type="ro"      width="12">확정자</column>
 		<column align="center"  id="APRV_DT"       type="ro"      width="12">처리일자</column>
 		<column align="center"  id="OPINION"   type="ro"      width="32">의견</column>
 		<!-- 숨김 컬럼: 로직용 -->
 		<column align="center" hidden="true" id="DEV_PRG_CD"  type="ro" width="0">단계코드</column>
 		<column align="center" hidden="true" id="DEPT_CD" type="ro" width="0">부서코드</column>
-		<column align="center" hidden="true" id="APRV_USER"  type="ro" width="0">결재자ID</column>
-<!-- 		<column align="center" hidden="true" id="AGR_YN"       type="ro" width="0">결재여부</column> -->
+		<column align="center" hidden="true" id="APRV_USER"  type="ro" width="0">확정자ID</column>
+<!-- 		<column align="center" hidden="true" id="AGR_YN"       type="ro" width="0">확정여부</column> -->
 		<column align="center" hidden="true" id="APRV_STATUS" type="ro" width="18">상태</column>
 		<settings>
 			<colwidth>%</colwidth>

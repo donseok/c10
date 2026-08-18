@@ -209,8 +209,8 @@ DEV_ID
 , NVL(DEL_FLAG,'N') DEL_FLAG
 FROM C10APUSER.TB_C10_CLR_DEV_ETC
 WHERE DEV_ID = :DEV_ID
-ORDER BY SEQ DESC
-		 ]]> 
+ORDER BY TO_NUMBER(SEQ) DESC
+		 ]]>
 	 </query>
 	 <query id="C108000240pop01.updateEtc" desc="특이사항 내용 수정" isNamed="true">
 		 <![CDATA[ 
@@ -572,7 +572,7 @@ WHERE DEV_ID = :DEV_ID
 		 ]]> 
 	 </query>
 	 <query id="C108000240pop01.autoApproveAnalysis" desc="분석/개발 자동 승인" isNamed="true">
-		 <![CDATA[ 
+		 <![CDATA[
 UPDATE /*+ C108000240pop01 분석/개발 자동 승인 C108000240pop01.autoApproveAnalysis SJS */
 C10APUSER.TB_C10_CLR_DEV_APRV
 SET APRV_STATUS = '2'
@@ -586,10 +586,26 @@ SET APRV_STATUS = '2'
 WHERE DEV_ID = :DEV_ID
 AND DEV_PRG_CD = '2'
 AND NVL(APRV_STATUS, '0') NOT IN ('2', '3')
-		 ]]> 
+		 ]]>
+	 </query>
+	 <query id="C108000240pop01.resetPrevStep" desc="반려 시 이전 단계 확정 리셋" isNamed="true">
+		 <![CDATA[
+UPDATE /*+ C108000240pop01 반려 이전 단계 리셋 C108000240pop01.resetPrevStep SJS */
+C10APUSER.TB_C10_CLR_DEV_APRV
+SET APRV_STATUS = '1'
+  , APRV_USER = NULL
+  , APRV_DT = NULL
+  , OPINION = NULL
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+AND DEV_PRG_CD = :PREV_STEP_CD
+		 ]]>
 	 </query>
 	 <query id="C108000240pop01.updateDevPrgByMax" desc="결재 상태 기준 DEV_PRG_CD 갱신" isNamed="true">
-		 <![CDATA[ 
+		 <![CDATA[
 UPDATE /*+ C108000240pop01 DEV_PRG_CD MAX 갱신 C108000240pop01.updateDevPrgByMax SJS */
 C10APUSER.TB_C10_CLR_DEV_MNG
 SET DEV_PRG_CD = NVL((
@@ -604,7 +620,26 @@ SET DEV_PRG_CD = NVL((
   , LAST_UPDATE_PROGRAM_ID = :ProgramId
   , LAST_UPDATE_TIMESTAMP = :Timestamp
 WHERE DEV_ID = :DEV_ID
-		 ]]> 
+		 ]]>
+	 </query>
+	 <query id="C108000240pop01.clearCclBomIfStep5Unapproved" desc="BOM등록(5) 미승인 시 CCL_BOM_NO 클리어" isNamed="true">
+		 <![CDATA[
+UPDATE /*+ C108000240pop01 CCL_BOM_NO 클리어 C108000240pop01.clearCclBomIfStep5Unapproved SJS */
+C10APUSER.TB_C10_CLR_DEV_MNG
+SET CCL_BOM_NO = NULL
+  , LAST_UPDATED_OBJECT_TYPE = :ObjectType
+  , LAST_UPDATED_OBJECT_ID = :ObjectId
+  , LAST_UPDATE_PROGRAM_ID = :ProgramId
+  , LAST_UPDATE_TIMESTAMP = :Timestamp
+WHERE DEV_ID = :DEV_ID
+AND CCL_BOM_NO IS NOT NULL
+AND NOT EXISTS (
+    SELECT 1 FROM C10APUSER.TB_C10_CLR_DEV_APRV
+    WHERE DEV_ID = :DEV_ID
+    AND DEV_PRG_CD = '5'
+    AND APRV_STATUS = '2'
+)
+		 ]]>
 	 </query>
 	 <query id="C108000240pop01.findFile" desc="첨부파일 목록 조회" isNamed="true">
 		 <![CDATA[ 
