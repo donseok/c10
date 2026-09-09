@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>성분설계 쉽게 이해하기</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">:root{color-scheme:light;--ink:#17324d;--teal:#007f86;--muted:#516579;--line:#d6e0e8;--paper:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#edf2f5}
+body{max-width:1120px;margin:0 auto;padding:56px 64px 90px;background:var(--paper);color:var(--ink);font:17px/1.85 'Apple SD Gothic Neo','Noto Sans CJK KR','Malgun Gothic',sans-serif;overflow-wrap:break-word}
+header#title-block-header{border-top:7px solid var(--teal);padding:30px 0 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.title{font-size:38px;line-height:1.3;letter-spacing:-.03em;margin:0 0 20px;border:0;padding:0}
+.subtitle{font-size:21px;color:var(--muted);margin:8px 0}.date{color:var(--muted);font-size:14px}
+h1,h2,h3{line-height:1.5;letter-spacing:-.02em;break-after:avoid;page-break-after:avoid}
+h1{font-size:28px;margin:54px 0 22px;border-top:2px solid var(--line);padding-top:25px}
+h2{font-size:26px;margin:50px 0 22px;padding-bottom:10px;border-bottom:2px solid var(--teal)}
+h3{font-size:21px;margin:30px 0 15px}
+p{margin:15px 0}strong{font-weight:700;color:#102c44}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+nav#TOC{background:#f3f7fa;padding:24px 28px;margin:30px 0 42px;border-left:4px solid var(--teal)}
+nav#TOC>h2{border:0;font-size:21px;margin:0 0 10px;padding:0}
+nav#TOC ul{margin:0;padding-left:21px}nav#TOC li{margin:7px 0}nav#TOC a{text-decoration:none}
+figure{margin:25px 0 30px;break-inside:avoid;page-break-inside:avoid}
+figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto}
+figcaption{font-size:14px;line-height:1.6;color:var(--muted);margin-top:9px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;table-layout:auto;margin:24px 0 28px;font-size:15px;line-height:1.65}
+thead{display:table-header-group;background:#eaf3f5}
+th{font-weight:700;text-align:left;color:var(--ink);border-bottom:2px solid #b6cbd6}
+th,td{padding:13px 14px;vertical-align:middle;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+tr:nth-child(even) td{background:#f8fafb}tr{break-inside:avoid;page-break-inside:avoid}
+td p{margin:0}code{font:0.86em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef2f5;padding:2px 4px;border-radius:3px;overflow-wrap:anywhere}
+.numeric-examples,.source-index{table-layout:fixed}
+.numeric-examples td:nth-last-child(-n+2),.source-index td:first-child{white-space:nowrap;overflow-wrap:normal}
+blockquote{background:#eef8f8;border-left:4px solid var(--teal);margin:24px 0;padding:10px 22px;font-size:18px}
+li{padding-left:4px;margin:14px 0}ol,ul{padding-left:26px}p,li{orphans:3;widows:3}
+#width-explorer{margin:26px 0 34px;padding:26px;background:#f3f8f9;border:1px solid #b6cbd6;border-radius:12px;break-inside:avoid}
+.reader-shortcuts{padding:18px 22px;background:#eef8f8;border-radius:8px}.reader-shortcuts div{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:10px}.reader-shortcuts a{font-size:15px}
+.explorer-top{display:grid;grid-template-columns:1.3fr 1fr;gap:25px;align-items:start}
+.explorer-top label{font-weight:700;display:block}.explorer-top p{margin:0}.explorer-top small{font-size:14px;color:#516579}
+#width-scenario{display:block;margin-top:10px;width:100%;min-height:48px;padding:10px;border:1px solid #8fa7b3;background:white;border-radius:5px;font-family:inherit;font-size:16px;line-height:1.5;color:#17324d}
+#width-scenario:focus-visible{outline:3px solid #007f86;outline-offset:3px}
+.explorer-steps{display:flex;gap:24px;list-style:none;padding:0;margin:30px 0}
+.explorer-steps li{position:relative;flex:1;min-width:0;margin:0;padding:16px 12px;background:#fff;border-top:4px solid #007f86;border-radius:4px;line-height:1.5}
+.explorer-steps li:last-child{background:#e2f1f0}.explorer-steps li+li:before{content:'→';position:absolute;left:-23px;top:50px;color:#007f86;font-size:22px}
+.explorer-steps span,.explorer-steps strong,.explorer-steps small{display:block}.explorer-steps span{font-size:15px;font-weight:700}.explorer-steps strong{font-size:29px;color:#007f86;margin:10px 0}.explorer-steps small{font-size:13px;color:#516579}
+.explorer-result{font-size:23px;font-weight:700;color:#005f67}.explorer-note{font-size:13px;color:#516579;border-top:1px solid #c7d8df;padding-top:14px}
+@media(max-width:700px){#width-explorer{padding:18px}.explorer-top{grid-template-columns:1fr;gap:18px}.explorer-steps{display:grid;grid-template-columns:1fr;gap:25px}.explorer-steps li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:5px}.explorer-steps small{grid-column:1/-1}.explorer-steps strong{margin:0}.explorer-steps li+li:before{content:'↓';top:-28px;left:50%}.explorer-result{font-size:20px}}
+@media print{#width-explorer{display:none}}
+@media(max-width:700px){body{padding:25px 20px;font-size:16px}.title{font-size:29px}h1{font-size:25px}h2{font-size:23px}h3{font-size:20px}table{font-size:13px}td,th{padding:10px 7px}nav#TOC{padding:17px}figure{margin-left:-8px;margin-right:-8px}}
+@page{size:A4;margin:16mm 15mm 18mm;
+@bottom-left{content:'C10 · 성분·재질·인수도 설계';font:8pt 'Apple SD Gothic Neo',sans-serif;color:#516579}
+@bottom-right{content:counter(page) ' / ' counter(pages);font:8pt sans-serif;color:#516579}
+}
+@media print{
+html,body{background:#fff}body{max-width:none;padding:0;margin:0;font-size:10.3pt;line-height:1.7}
+header#title-block-header{margin:0 0 16pt;padding:20pt 0}.title{font-size:27pt}.subtitle{font-size:14pt}.date{font-size:10pt}
+nav#TOC{margin:18pt 0 25pt;padding:14pt 18pt;font-size:10pt}nav#TOC li{margin:4pt 0}
+h1{font-size:20pt;margin:28pt 0 13pt;padding-top:15pt}h2{font-size:18pt;margin:26pt 0 13pt}h3{font-size:13pt;margin:18pt 0 9pt}
+p{margin:9pt 0}li{margin:8pt 0}table{font-size:8.7pt;margin:14pt 0 17pt;line-height:1.5}th,td{padding:7pt 7pt}.keep-table{break-inside:avoid;page-break-inside:avoid}
+figure{margin:15pt 0 18pt}figure img{max-height:205mm;object-fit:contain}figcaption{font-size:8pt;margin-top:6pt}
+blockquote{font-size:11pt;padding:7pt 12pt;margin:14pt 0}
+a{color:#14515b;text-decoration:none}code{font-size:.8em}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.spec-explorer{padding:24px;background:#eef7f8;border:1px solid #b7c8d5;border-radius:12px}.spec-explorer select{display:block;width:100%;padding:12px;font:inherit;margin:12px 0;color:#17324d;background:white}.spec-explorer output{display:block;font-size:23px;font-weight:700}.spec-explorer .why{margin-bottom:0}@media print{.spec-explorer{display:none}}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">성분설계 쉽게 이해하기</h1>
+<p class="subtitle">주문 입력에서 보증사양·최종 저장값까지 —
+그림·예제·코드로 읽는 C10</p>
+<p class="date">분석 기준: 저장소 소스 · 2026-09-09</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">읽는 순서</h2>
+<ul>
+<li><a href="#세-설계는-어디에-쓰이나요" id="toc-세-설계는-어디에-쓰이나요">세 설계는 어디에 쓰이나요?</a></li>
+<li><a href="#그림으로-먼저-이해하기-성분의-허용범위를-정합니다" id="toc-그림으로-먼저-이해하기-성분의-허용범위를-정합니다">그림으로 먼저
+이해하기: 성분의 허용범위를 정합니다</a></li>
+<li><a href="#입력값은-어떻게-기준을-찾아가나요" id="toc-입력값은-어떻게-기준을-찾아가나요">입력값은 어떻게 기준을
+찾아가나요?</a></li>
+<li><a href="#실제-비교를-한-줄씩-따라가기" id="toc-실제-비교를-한-줄씩-따라가기">실제 비교를 한 줄씩
+따라가기</a></li>
+<li><a href="#빈값0충돌은-어떻게-읽나요" id="toc-빈값0충돌은-어떻게-읽나요">빈값·0·충돌은 어떻게 읽나요?</a></li>
+<li><a href="#예제-선택으로-비교하기" id="toc-예제-선택으로-비교하기">예제 선택으로 비교하기</a></li>
+<li><a href="#코드저장-구조와-오류-찾기" id="toc-코드저장-구조와-오류-찾기">코드·저장 구조와 오류 찾기</a></li>
+<li><a href="#실제-주문을-확인하는-순서" id="toc-실제-주문을-확인하는-순서">실제 주문을 확인하는 순서</a></li>
+<li><a href="#함께-읽기" id="toc-함께-읽기">함께 읽기</a></li>
+<li><a href="#소스-근거-찾아보기" id="toc-소스-근거-찾아보기">소스 근거
+찾아보기</a></li>
+</ul>
+</nav>
+<h1 id="세-설계는-어디에-쓰이나요">세 설계는 어디에 쓰이나요?</h1>
+<p>성분설계는 <strong>무엇이 얼마나 들어 있는 강재를 허용할지</strong>,
+재질설계는 <strong>어떤 강도·연신율·시험조건을 요구할지</strong>,
+인수도설계는 <strong>납품 제품의 치수와 형상을 어디까지
+허용할지</strong>를 정합니다. 여기서 설계값은 검사 실측값이 아니라,
+주문별로 편성하는 요구 사양입니다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>쉽게 말하면</th>
+<th>대표 결과</th>
+<th>저장 테이블 끝 이름</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>성분</td>
+<td>성분별 허용 함량</td>
+<td>C·Si·Mn 등의 하한/상한</td>
+<td>CHM</td>
+</tr>
+<tr>
+<td>재질</td>
+<td>성능과 시험 요구</td>
+<td>TS·YP·연신율·시험 지시</td>
+<td>MQL</td>
+</tr>
+<tr>
+<td>인수도</td>
+<td>납품 치수·형상 허용</td>
+<td>두께·폭·길이 공차, 형상값</td>
+<td>DLV</td>
+</tr>
+</tbody>
+</table>
+<p><code>QLT_DSN_SPC_TP</code>는 <strong>1 고객 / 2 규격 / 3 사내 / 4
+보증</strong>입니다. 폭설계에서 보았던 적정·차선 구분
+<code>QLT_DSN_MNF_TP</code>와 별개입니다. 이 세 사양은
+주문번호·주문행·사양구분으로 저장하며, 적정·차선 원자재마다 같은
+방식으로 별도 행을 만드는 구조가 아닙니다.</p>
+<p>메인 서비스의 실행 순서는 <strong>설계 Key → 규격 → 고객 → 사내 →
+보증 성분 → 보증 재질 → 보증 인수도 → 제조·원자재·치수 설계 → 타당성
+검사</strong>입니다. 사양구분 숫자 순서와 실행 순서를 혼동하지 마세요.
+사내 단계는 성분·재질을 다루며 인수도에는 이 클래스의 사내 분기가
+없습니다.</p>
+<blockquote>
+<p>이 문서는 현재 저장소의 Java·서비스 XML·SQL을 분석했습니다. 예제
+숫자와 문자 코드 A/B/C는 설명용 가상값입니다. 운영 MD(기준정보)의 실제
+행, 계산식 실행 결과, DB 저장 결과를 조회한 문서는 아닙니다.</p>
+</blockquote>
+<figure>
+<img role="img" aria-label="세 설계의 공통 위치와 후속 처리." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDYwMiIgcm9sZT0iaW1nIj48dGl0bGU+7KO866y4IO2VnCDqsbTsl5DshJwg7IS4IOyiheulmOydmCDrs7Tspp3sgqzslpHsnbQg66eM65Ok7Ja07KeA64qUIOychOy5mDwvdGl0bGU+PGRlc2M+4pGgIOyjvOusuOqzvCDshKTqs4QgS2V5OiDqt5zqsqnslb3tmLjCt+q3nOqyqeyXsOuPhMK36rOg6rCd7IKs7JaR67KI7Zi4wrftkojrqoXCt+yerOyniOy9lOuTnMK37ZmY7IKw7LmY7IiYIOykgOu5hCAvIOKRoSDsgqzslpHrs4Qg6riw7KSAIOyhsO2ajDog6rec6rKpIDIg4oaSIOqzoOqwnSAxIOKGkiDsgqzrgrQgMyAo7IKs64K064qUIOyEseu2hMK37J6s7KeIKSAvIOKRoiDso7zrrLjrs4Qg67O07Kad7IKs7JaRIDQg7IOd7ISxOiDshLHrtoQ6IOuylOychCDruYTqtZAgLyDsnqzsp4g6IOuylOychCArIOyngOyLnCAvIOyduOyImOuPhDog6rO17LCo67OEIOyEoO2DnSAvIOKRoyDsoJzsobDCt+y5mOyImCDshKTqs4Qg67CPIO2bhOyGjSDqsoDsgqw6IOyduOyImOuPhCDqs7XssKjripQg7LmY7IiY7ISk6rOE7JeQIOyXsOqysCAvIOyerOyniOydgCDtm4Tsho0g7IiY7KCVIOqyveuhnOuPhCDtmZXsnbg8L2Rlc2M+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNjAyIiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMCIgeT0iNDYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiPuyjvOusuCDtlZwg6rG07JeQ7IScIOyEuCDsooXrpZjsnZgg67O07Kad7IKs7JaR7J20IOunjOuTpOyWtOyngOuKlCDsnITsuZg8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjgwIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMTE0IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7ikaAg7KO866y46rO8IOyEpOqzhCBLZXk8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjE0NyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+6rec6rKp7JW97Zi4wrfqt5zqsqnsl7Drj4TCt+qzoOqwneyCrOyWkeuyiO2YuMK37ZKI66qFwrfsnqzsp4jsvZTrk5zCt+2ZmOyCsOy5mOyImCDspIDruYQ8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxOTEiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDdmODYiPuKGkzwvdGV4dD48cmVjdCB4PSIzMCIgeT0iMTkzIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMjI3IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7ikaEg7IKs7JaR67OEIOq4sOykgCDsobDtmow8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjI2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+6rec6rKpIDIg4oaSIOqzoOqwnSAxIOKGkiDsgqzrgrQgMyAo7IKs64K064qUIOyEseu2hMK37J6s7KeIKTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjMwNCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSIzMDYiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSIzNDAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPuKRoiDso7zrrLjrs4Qg67O07Kad7IKs7JaRIDQg7IOd7ISxPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIzNzMiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPuyEseu2hDog67KU7JyEIOu5hOq1kCAvIOyerOyniDog67KU7JyEICsg7KeA7IucIC8g7J247IiY64+EOiDqs7XssKjrs4Qg7ISg7YOdPC90ZXh0Pjx0ZXh0IHg9IjUzNSIgeT0iNDE3IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMDA3Zjg2Ij7ihpM8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjQxOSIgd2lkdGg9IjEwNDAiIGhlaWdodD0iODgiIHJ4PSIxMCIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTAiIHk9IjQ1MyIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCI+4pGjIOygnOyhsMK37LmY7IiYIOyEpOqzhCDrsI8g7ZuE7IaNIOqygOyCrDwvdGV4dD48dGV4dCB4PSI1MCIgeT0iNDg2IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj7snbjsiJjrj4Qg6rO17LCo64qUIOy5mOyImOyEpOqzhOyXkCDsl7DqsrAgLyDsnqzsp4jsnYAg7ZuE7IaNIOyImOyglSDqsr3roZzrj4Qg7ZmV7J24PC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1ODQiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM1MTY1NzkiPuq3vOqxsDogQzEwMjEwMDAwMC1zZXJ2aWNlLnhtbCDCtyDsiKvsnpAgMX4064qUIOyCrOyWkeq1rOu2hOyeheuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPg==" alt="세 설계의 공통 위치와 후속 처리." />
+<figcaption aria-hidden="true">세 설계의 공통 위치와 후속
+처리.</figcaption>
+</figure>
+<h1 id="그림으로-먼저-이해하기-성분의-허용범위를-정합니다">그림으로 먼저
+이해하기: 성분의 허용범위를 정합니다</h1>
+<p>예를 들어 고객이 “탄소는 0.03~0.10”, 규격은 “0.02~0.12”, 사내는
+“0.04~0.09”를 요구한다고 해봅시다. 세 조건을 함께 만족하는 범위는
+<strong>0.04~0.09</strong>입니다. 탄소 투입량이나 배합 비율을 계산하는
+단계가 아니라, 성분별 요구 하한·상한을 정하는 단계입니다.</p>
+<figure>
+<img role="img" aria-label="탄소의 세 요구 범위와 보증범위. 모든 값은 가상입니다." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDUzNiIgcm9sZT0iaW1nIj48dGl0bGU+7YOE7IaMIEM6IO2VmO2VnOydgCDsmKzrnbzqsIDqs6Ag7IOB7ZWc7J2AIOuCtOugpOqwkeuLiOuLpDwvdGl0bGU+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNTM2IiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMCIgeT0iNDUiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiPu2DhOyGjCBDOiDtlZjtlZzsnYAg7Jis65286rCA6rOgIOyDge2VnOydgCDrgrTroKTqsJHri4jri6Q8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj7qsIDroZwg66eJ64yA64qUIO2XiOyaqeuQmOuKlCDrspTsnITsnoXri4jri6QuIOuniOyngOuniSDtlonsl5DshJwg7ZWo6ruYIO2XiOyaqeuQmOuKlCDqtazqsITsnYQg7J297Iq164uI64ukLjwvdGV4dD48dGV4dCB4PSIzMCIgeT0iMTUwIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIj7qt5zqsqk8L3RleHQ+PGxpbmUgeDE9IjI4MCIgeTE9IjE0MCIgeDI9Ijk5MCIgeTI9IjE0MCIgc3Ryb2tlPSIjZDZlMGU4Ii8+PHJlY3QgeD0iMzgxLjQyODU3MTQyODU3MTQ0IiB5PSIxMjAiIHdpZHRoPSI1MDcuMTQyODU3MTQyODU3IiBoZWlnaHQ9IjM2IiByeD0iMTAiIGZpbGw9IiNkOGU2ZWUiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjI4MCIgeT0iMTg1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj4wLjAyIH4gMC4xMiAo7ZWo65+JIOyYiOyLnCk8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjI0NCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCI+6rOg6rCdPC90ZXh0PjxsaW5lIHgxPSIyODAiIHkxPSIyMzQiIHgyPSI5OTAiIHkyPSIyMzQiIHN0cm9rZT0iI2Q2ZTBlOCIvPjxyZWN0IHg9IjQzMi4xNDI4NTcxNDI4NTcxIiB5PSIyMTQiIHdpZHRoPSIzNTUuMCIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjZDhlNmVlIiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSIyODAiIHk9IjI3OSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+MC4wMyB+IDAuMSAo7ZWo65+JIOyYiOyLnCk8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjMzOCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCI+7IKs64K0PC90ZXh0PjxsaW5lIHgxPSIyODAiIHkxPSIzMjgiIHgyPSI5OTAiIHkyPSIzMjgiIHN0cm9rZT0iI2Q2ZTBlOCIvPjxyZWN0IHg9IjQ4Mi44NTcxNDI4NTcxNDI4MyIgeT0iMzA4IiB3aWR0aD0iMjUzLjU3MTQyODU3MTQyODUiIGhlaWdodD0iMzYiIHJ4PSIxMCIgZmlsbD0iI2Q4ZTZlZSIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iMjgwIiB5PSIzNzMiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPjAuMDQgfiAwLjA5ICjtlajrn4kg7JiI7IucKTwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNDMyIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIj7rs7Tspp08L3RleHQ+PGxpbmUgeDE9IjI4MCIgeTE9IjQyMiIgeDI9Ijk5MCIgeTI9IjQyMiIgc3Ryb2tlPSIjZDZlMGU4Ii8+PHJlY3QgeD0iNDgyLjg1NzE0Mjg1NzE0MjgzIiB5PSI0MDIiIHdpZHRoPSIyNTMuNTcxNDI4NTcxNDI4NSIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjYTRkYmQ0IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSIyODAiIHk9IjQ2NyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+MC4wNCB+IDAuMDkgKO2VqOufiSDsmIjsi5wpPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1MjQiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNzMyNGQiPuqwgOyDgSDsmIjsoJwgwrcgMCDrmJDripQg67mI6rCS7J20IOyeiOuKlCDqsr3smrDsl5DripQg67OE64+EIOyymOumrCDqt5zsuZnsnYQg7ZmV7J247ZWY7IS47JqULjwvdGV4dD48L2c+PC9zdmc+" alt="탄소의 세 요구 범위와 보증범위. 모든 값은 가상입니다." />
+<figcaption aria-hidden="true">탄소의 세 요구 범위와 보증범위. 모든 값은
+가상입니다.</figcaption>
+</figure>
+<p>하한은 “이 값 이상이어야 한다”이므로 큰 값을, 상한은 “이 값 이하여야
+한다”이므로 작은 값을 고릅니다. 평균을 내지 않습니다. 다만 코드의 0·빈값
+처리 때문에 모든 경우를 수학적 교집합으로 설명할 수는 없습니다.</p>
+<h1 id="입력값은-어떻게-기준을-찾아가나요">입력값은 어떻게 기준을
+찾아가나요?</h1>
+<figure>
+<img role="img" aria-label="조회 키가 기준정보를 선택하고, 조회 결과가 주문별 성분사양으로 저장됩니다." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDYwMiIgcm9sZT0iaW1nIj48dGl0bGU+7YOE7IaMIEPsnZgg67O07Kad67KU7JyE66W8IOunjOuTpOq4sOq5jOyngDwvdGl0bGU+PGRlc2M+6rec6rKpIOyhsO2ajDog6rec6rKp7JW97Zi4ICsg6rec6rKp7Jew64+EICsg7KO866y47ZmY7IKw65GQ6ruYIOKGkiBDMTBCMTAxMSAvIOqzoOqwnSDsobDtmow6IOqzoOqwneyCrOyWkeuyiO2YuCDihpIgVklfTTAwX0MxMEExMDIxICjqs6DqsJ0g7ISx67aE7ZaJ7J2AIOyXhuydhCDsiJgg7J6I7J2MKSAvIOyCrOuCtCDsobDtmow6IO2SiOuqhSArIOyerOyniOy9lOuTnCArIOyjvOusuO2ZmOyCsOuRkOq7mCDihpIgQzEwQjEwMzEgLyDrs7Tspp0g7Y647ISxOiDqs6DqsJ3qsJLsl5DshJwg7Iuc7J6RIOKGkiDqt5zqsqkg67mE6rWQIOKGkiDsgqzrgrTqsJLsnbQg7J6I7Jy866m0IOy2lOqwgCDruYTqtZA8L2Rlc2M+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNjAyIiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMCIgeT0iNDYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiPu2DhOyGjCBD7J2YIOuztOymneuylOychOulvCDrp4zrk6TquLDquYzsp4A8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjgwIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMTE0IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7qt5zqsqkg7KGw7ZqMPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxNDciIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPuq3nOqyqeyVve2YuCArIOq3nOqyqeyXsOuPhCArIOyjvOusuO2ZmOyCsOuRkOq7mCDihpIgQzEwQjEwMTE8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxOTEiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDdmODYiPuKGkzwvdGV4dD48cmVjdCB4PSIzMCIgeT0iMTkzIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMjI3IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7qs6DqsJ0g7KGw7ZqMPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPuqzoOqwneyCrOyWkeuyiO2YuCDihpIgVklfTTAwX0MxMEExMDIxICjqs6DqsJ0g7ISx67aE7ZaJ7J2AIOyXhuydhCDsiJgg7J6I7J2MKTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjMwNCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSIzMDYiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSIzNDAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPuyCrOuCtCDsobDtmow8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjM3MyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+7ZKI66qFICsg7J6s7KeI7L2U65OcICsg7KO866y47ZmY7IKw65GQ6ruYIOKGkiBDMTBCMTAzMTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjQxNyIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSI0MTkiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSI0NTMiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPuuztOymnSDtjrjshLE8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjQ4NiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+6rOg6rCd6rCS7JeQ7IScIOyLnOyekSDihpIg6rec6rKpIOu5hOq1kCDihpIg7IKs64K06rCS7J20IOyeiOycvOuptCDstpTqsIAg67mE6rWQPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1ODQiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM1MTY1NzkiPuyEpOuqheyaqSDrj4Tsi50gwrcg7Iir7J6Q64qUIOyatOyYgSDquLDspIDqsJLsnbQg7JWE64uZ64uI64ukLjwvdGV4dD48L2c+PC9zdmc+" alt="조회 키가 기준정보를 선택하고, 조회 결과가 주문별 성분사양으로 저장됩니다." />
+<figcaption aria-hidden="true">조회 키가 기준정보를 선택하고, 조회
+결과가 주문별 성분사양으로 저장됩니다.</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>사양</th>
+<th>조회처</th>
+<th>입력 키</th>
+<th>결과 처리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고객 1</td>
+<td>VI_M00_C10A1021</td>
+<td>CUS_BTH_PAP_NO</td>
+<td>1행이면 복사, 0행이면 false로 해당 하위 서비스 종료</td>
+</tr>
+<tr>
+<td>규격 2</td>
+<td>C10B1011</td>
+<td>SPC_AVR, SPC_YR, ORD_EXC_THK</td>
+<td>정확히 1개 기준을 요구</td>
+</tr>
+<tr>
+<td>사내 3</td>
+<td>C10B1031</td>
+<td>PRD_NM_CD, MQL_CD, ORD_EXC_THK</td>
+<td>정확히 1개 기준을 요구</td>
+</tr>
+<tr>
+<td>보증 4</td>
+<td>C102100CHM.select</td>
+<td>ORD_NO, ORD_LN, 사양구분</td>
+<td>고객 → 규격 → 사내 순서로 비교</td>
+</tr>
+</tbody>
+</table>
+<p>고객사양번호가 없으면 바깥 고객 서비스에서 성분·재질 조회를
+건너뜁니다. 번호가 있어도 고객 성분 조회 결과가 0행이면 이 성분 하위
+서비스는 저장 없이 끝납니다. 보증 편성에서는 <strong>규격행이 반드시
+있어야 하며</strong>, 고객행·사내행은 있을 때 반영합니다. 다만 “보증
+단계에서 사내행 생략 가능”과 “앞선 사내 기준 조회 실패가 정상”은 서로
+다른 이야기입니다.</p>
+<h1 id="실제-비교를-한-줄씩-따라가기">실제 비교를 한 줄씩 따라가기</h1>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th style="text-align: right;">C 하한</th>
+<th style="text-align: right;">C 상한</th>
+<th>선택 이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고객으로 시작</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.10</td>
+<td>고객행 값을 작업 문맥에 복사</td>
+</tr>
+<tr>
+<td>규격 0.02~0.12 비교</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.10</td>
+<td>max(0.03,0.02), min(0.10,0.12)</td>
+</tr>
+<tr>
+<td>사내 0.04~0.09 비교</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.09</td>
+<td>사내 요구가 양쪽을 더 좁힘</td>
+</tr>
+<tr>
+<td>보증행 저장</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.09</td>
+<td>사양구분 4로 INSERT</td>
+</tr>
+</tbody>
+</table>
+<p>숫자가 비어 있지 않고 0도 아닐 때: <strong>보증 하한 = max(고객,
+규격, 사내 하한)</strong>, <strong>보증 상한 = min(고객, 규격, 사내
+상한)</strong>입니다. 각 항목을 따로 비교하므로 탄소 하한은 사내, 탄소
+상한은 고객 등 출처가 달라도 됩니다.</p>
+<figure>
+<img role="img" aria-label="26개 결과값은 같은 방식으로 각 원소별 독립 편성됩니다." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDYwMiIgcm9sZT0iaW1nIj48dGl0bGU+7JuQ7IaM66eI64ukIOuPheumveyggeyduCDrkZAg6rCc7J2YIOqyveqzhOulvCDrp4zrk63ri4jri6Q8L3RpdGxlPjxkZXNjPkM6IO2DhOyGjDogQ19MTFYg4oaQIOqwgOyepSDtgbAg7Jyg7ZqoIO2VmO2VnCAvIENfVUxWIOKGkCDqsIDsnqUg7J6R7J2AIOycoO2aqCDsg4HtlZwgLyBTaTog6rec7IaMIMK3IE1uOiDrp53qsIQ6IOuPmeydvO2VnCDruYTqtZDrpbwg6rCBIOybkOyGjOuzhOuhnCDrsJjrs7UgLyDrgpjrqLjsp4AgMTDqsJwg7JuQ7IaMOiBQwrdTwrdDcsK3TmnCt0N1wrdBbMK3VGnCt05iwrdWwrdO64+EIOqwgeqwgSDruYTqtZAgLyDqsrDqs7w6IDEz6rCcIOybkOyGjCDDlyDtlZjtlZzCt+yDge2VnCA9IDI26rCcIOyEseu2hOqwki4g7JuQ7IaMIOqwhCDtlansgrDCt+2Pieq3oOydgCDsl4bsnYw8L2Rlc2M+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNjAyIiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMCIgeT0iNDYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiPuybkOyGjOuniOuLpCDrj4Xrpr3soIHsnbgg65GQIOqwnOydmCDqsr3qs4Trpbwg66eM65Ot64uI64ukPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSI4MCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iODgiIHJ4PSIxMCIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTAiIHk9IjExNCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCI+Qzog7YOE7IaMPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxNDciIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPkNfTExWIOKGkCDqsIDsnqUg7YGwIOycoO2aqCDtlZjtlZwgLyBDX1VMViDihpAg6rCA7J6lIOyekeydgCDsnKDtmqgg7IOB7ZWcPC90ZXh0Pjx0ZXh0IHg9IjUzNSIgeT0iMTkxIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMDA3Zjg2Ij7ihpM8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjE5MyIgd2lkdGg9IjEwNDAiIGhlaWdodD0iODgiIHJ4PSIxMCIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTAiIHk9IjIyNyIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCI+U2k6IOq3nOyGjCDCtyBNbjog66ed6rCEPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIyNjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPuuPmeydvO2VnCDruYTqtZDrpbwg6rCBIOybkOyGjOuzhOuhnCDrsJjrs7U8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIzMDQiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDdmODYiPuKGkzwvdGV4dD48cmVjdCB4PSIzMCIgeT0iMzA2IiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMzQwIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7rgpjrqLjsp4AgMTDqsJwg7JuQ7IaMPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIzNzMiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPlDCt1PCt0NywrdOacK3Q3XCt0FswrdUacK3TmLCt1bCt07rj4Qg6rCB6rCBIOu5hOq1kDwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjQxNyIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSI0MTkiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSI0NTMiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPuqysOqzvDwvdGV4dD48dGV4dCB4PSI1MCIgeT0iNDg2IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj4xM+qwnCDsm5Dshowgw5cg7ZWY7ZWcwrfsg4HtlZwgPSAyNuqwnCDshLHrtoTqsJIuIOybkOyGjCDqsIQg7ZWp7IKwwrftj4nqt6DsnYAg7JeG7J2MPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1ODQiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM1MTY1NzkiPuyEpOuqheyaqSDrj4Tsi50gwrcg7Iir7J6Q64qUIOyatOyYgSDquLDspIDqsJLsnbQg7JWE64uZ64uI64ukLjwvdGV4dD48L2c+PC9zdmc+" alt="26개 결과값은 같은 방식으로 각 원소별 독립 편성됩니다." />
+<figcaption aria-hidden="true">26개 결과값은 같은 방식으로 각 원소별
+독립 편성됩니다.</figcaption>
+</figure>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>원소</th>
+<th>기호</th>
+<th>원소</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>탄소</td>
+<td>Si</td>
+<td>규소</td>
+</tr>
+<tr>
+<td>Mn</td>
+<td>망간</td>
+<td>P</td>
+<td>인</td>
+</tr>
+<tr>
+<td>S</td>
+<td>황</td>
+<td>Cr</td>
+<td>크롬</td>
+</tr>
+<tr>
+<td>Ni</td>
+<td>니켈</td>
+<td>Cu</td>
+<td>구리</td>
+</tr>
+<tr>
+<td>Al</td>
+<td>알루미늄</td>
+<td>Ti</td>
+<td>티타늄</td>
+</tr>
+<tr>
+<td>Nb</td>
+<td>니오븀</td>
+<td>V</td>
+<td>바나듐</td>
+</tr>
+<tr>
+<td>N</td>
+<td>질소</td>
+<td>LLV / ULV</td>
+<td>하한 / 상한</td>
+</tr>
+</tbody>
+</table>
+<p>함량 단위와 자릿수는 실제 MD·화면 정의와 함께 확인해야 합니다. 이
+클래스는 단위 변환이나 13개 원소 총합 100% 검사를 하지 않습니다.</p>
+<h1 id="빈값0충돌은-어떻게-읽나요">빈값·0·충돌은 어떻게 읽나요?</h1>
+<figure>
+<img role="img" aria-label="공통 비교 함수는 양쪽이 숫자일 때 0을 비교 후보에서 제외합니다." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDQ4OSIgcm9sZT0iaW1nIj48dGl0bGU+67mI6rCS6rO8IDDsnYAg65iR6rCZ7J2AIOyIq+yekCDqsr3qs4TroZwg7Leo6riJ65CY7KeAIOyViuyKteuLiOuLpDwvdGl0bGU+PGRlc2M+67mI6rCS6rO8IOyIq+yekCDruYTqtZA6IG51bUNvbXBhcmUobnVsbCwgMC4xMCwgZmFsc2UpIOKGkiAwLjEwIC8gMOqzvCDsiKvsnpAg67mE6rWQOiBudW1Db21wYXJlKDAsIDAuMTAsIGZhbHNlKSDihpIgMC4xMCAo7LWc7Iaf6rCSIDDsnbQg7JWE64uYKSAvIOuRmCDri6QgMCDrmJDripQg7ZWc7Kq966eMIDA6IDDqs7wgMOydgCAwIC8gbnVsbOqzvCAw7J2AIDAg4oaSIOuqqOuToCAw7J2EIG51bGzroZwg67CU6r6464qUIO2VqOyImOuPhCDslYTri5g8L2Rlc2M+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNDg5IiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzMCIgeT0iNDYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiPuu5iOqwkuqzvCAw7J2AIOuYkeqwmeydgCDsiKvsnpAg6rK96rOE66GcIOy3qOq4ieuQmOyngCDslYrsirXri4jri6Q8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjgwIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMTE0IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7ruYjqsJLqs7wg7Iir7J6QIOu5hOq1kDwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTQ3IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj5udW1Db21wYXJlKG51bGwsIDAuMTAsIGZhbHNlKSDihpIgMC4xMDwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjE5MSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSIxOTMiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSIyMjciIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPjDqs7wg7Iir7J6QIOu5hOq1kDwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMjYwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj5udW1Db21wYXJlKDAsIDAuMTAsIGZhbHNlKSDihpIgMC4xMCAo7LWc7Iaf6rCSIDDsnbQg7JWE64uYKTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjMwNCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSIzMDYiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSIzNDAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPuuRmCDri6QgMCDrmJDripQg7ZWc7Kq966eMIDA8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjM3MyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+MOqzvCAw7J2AIDAgLyBudWxs6rO8IDDsnYAgMCDihpIg66qo65OgIDDsnYQgbnVsbOuhnCDrsJTqvrjripQg7ZWo7IiY64+EIOyVhOuLmDwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNDcxIiBmb250LXNpemU9IjE5IiBmaWxsPSIjNTE2NTc5Ij7shKTrqoXsmqkg64+E7IudIMK3IOyIq+yekOuKlCDsmrTsmIEg6riw7KSA6rCS7J20IOyVhOuLmeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPg==" alt="공통 비교 함수는 양쪽이 숫자일 때 0을 비교 후보에서 제외합니다." />
+<figcaption aria-hidden="true">공통 비교 함수는 양쪽이 숫자일 때 0을
+비교 후보에서 제외합니다.</figcaption>
+</figure>
+<p><code>numCompare(Object,Object,mode)</code>는 먼저 빈값을 검사합니다.
+두 번째가 비면 첫 번째를, 첫 번째가 비면 두 번째를 반환합니다. 둘 다
+있으면 0을 제외한 뒤 큰 값/작은 값을 선택합니다. 따라서 0을 엄격한
+상한으로 사용하려는 경우 코드 해석에 주의해야 합니다.</p>
+<figure>
+<img role="img" aria-label="빈 교집합 사례. 계산값 생성과 유효성 판정은 별도입니다." src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTAwIDYwMiIgcm9sZT0iaW1nIj48dGl0bGU+67KU7JyE66W8IOyige2YlOuKlOuNsCDqsrnsuZjripQg67aA67aE7J20IOyXhuycvOuptD88L3RpdGxlPjxkZXNjPuqzoOqwnSDsmpTqtaw6IO2DhOyGjCDtlZjtlZwgMC4xMiAvIOyDge2VnCAwLjE4IC8g6rec6rKpIOyalOq1rDog7YOE7IaMIO2VmO2VnCAwLjAyIC8g7IOB7ZWcIDAuMTAgLyDtjrjshLEg6rKw6rO8OiDtlZjtlZwgMC4xMiAvIOyDge2VnCAwLjEwIOKGkiDtlZjtlZzsnbQg7IOB7ZWc67O064ukIO2BvCAvIO2VtOyEnTog6rCA64ql7ZWcIO2VqOufieydtCDsl4bsnYwuIO2OuOyEsSDtgbTrnpjsiqTripQg6rCS7J2EIOygleugrO2VmOqxsOuCmCDsnpDrj5kg7YOA7ZiR7ZWY7KeAIOyViuydjDwvZGVzYz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI2MDIiIGZpbGw9IndoaXRlIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjMwIiB5PSI0NiIgZm9udC1zaXplPSIzMCIgZmlsbD0iIzE3MzI0ZCI+67KU7JyE66W8IOyige2YlOuKlOuNsCDqsrnsuZjripQg67aA67aE7J20IOyXhuycvOuptD88L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjgwIiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iMTE0IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7qs6DqsJ0g7JqU6rWsPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxNDciIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiPu2DhOyGjCDtlZjtlZwgMC4xMiAvIOyDge2VnCAwLjE4PC90ZXh0Pjx0ZXh0IHg9IjUzNSIgeT0iMTkxIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMDA3Zjg2Ij7ihpM8L3RleHQ+PHJlY3QgeD0iMzAiIHk9IjE5MyIgd2lkdGg9IjEwNDAiIGhlaWdodD0iODgiIHJ4PSIxMCIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTAiIHk9IjIyNyIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCI+6rec6rKpIOyalOq1rDwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMjYwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRkIj7tg4Tshowg7ZWY7ZWcIDAuMDIgLyDsg4HtlZwgMC4xMDwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjMwNCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzAwN2Y4NiI+4oaTPC90ZXh0PjxyZWN0IHg9IjMwIiB5PSIzMDYiIHdpZHRoPSIxMDQwIiBoZWlnaHQ9Ijg4IiByeD0iMTAiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjUwIiB5PSIzNDAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiPu2OuOyEsSDqsrDqs7w8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjM3MyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+7ZWY7ZWcIDAuMTIgLyDsg4HtlZwgMC4xMCDihpIg7ZWY7ZWc7J20IOyDge2VnOuztOuLpCDtgbw8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSI0MTciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMwMDdmODYiPuKGkzwvdGV4dD48cmVjdCB4PSIzMCIgeT0iNDE5IiB3aWR0aD0iMTA0MCIgaGVpZ2h0PSI4OCIgcng9IjEwIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1MCIgeT0iNDUzIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIj7tlbTshJ08L3RleHQ+PHRleHQgeD0iNTAiIHk9IjQ4NiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0ZCI+6rCA64ql7ZWcIO2VqOufieydtCDsl4bsnYwuIO2OuOyEsSDtgbTrnpjsiqTripQg6rCS7J2EIOygleugrO2VmOqxsOuCmCDsnpDrj5kg7YOA7ZiR7ZWY7KeAIOyViuydjDwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNTg0IiBmb250LXNpemU9IjE5IiBmaWxsPSIjNTE2NTc5Ij7shKTrqoXsmqkg64+E7IudIMK3IOyIq+yekOuKlCDsmrTsmIEg6riw7KSA6rCS7J20IOyVhOuLmeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPg==" alt="빈 교집합 사례. 계산값 생성과 유효성 판정은 별도입니다." />
+<figcaption aria-hidden="true">빈 교집합 사례. 계산값 생성과 유효성
+판정은 별도입니다.</figcaption>
+</figure>
+<p><code>DbSearchChemData</code> 자체에는 최종 하한 &gt; 상한을 자동으로
+뒤집거나 범위를 완화하는 처리가 없습니다. 뒤의
+<code>DbSearchDsnValidData</code>가 성분 범위 및 규격·고객과 보증의
+관계를 검사하지만, 실제 오류 검출은 검사 구현과 데이터 조건을 함께
+확인해야 합니다.</p>
+<h1 id="예제-선택으로-비교하기">예제 선택으로 비교하기</h1>
+<section class="spec-explorer" aria-label="설명용 예제 비교"><label for="spec-scenario">예제를 선택하면 결과와 이유가 바뀝니다.</label><select id="spec-scenario"></select><output id="spec-result" aria-live="polite"></output><p class="why" id="spec-why"></p><small>가상값으로 구성한 코드 규칙 설명입니다. 운영 MD 조회·실제 서비스 실행 기능은 아닙니다.</small></section>
+<h1 id="코드저장-구조와-오류-찾기">코드·저장 구조와 오류 찾기</h1>
+<p>성분 결과는 <code>TB_C10_QLT_DSN_CHM</code>에 저장됩니다.
+<code>C102100CHM.select</code>는 주문번호·주문행·사양구분으로 성분값만
+읽습니다. 보증 서비스 <code>C102100130</code>은 성분 26개를 초기화하고
+편성 클래스를 실행한 뒤 <code>C102100CHM.insert</code>로 보증행을
+등록합니다.</p>
+<table>
+<thead>
+<tr>
+<th>확인 지점</th>
+<th>대표 코드</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고객 조회 중복</td>
+<td>KC11</td>
+<td>고객 성분이 2행 이상</td>
+</tr>
+<tr>
+<td>규격 조회</td>
+<td>KS02 / KS12</td>
+<td>기준 없음·조회 문제 / 중복</td>
+</tr>
+<tr>
+<td>사내 조회</td>
+<td>KN01 / KN11</td>
+<td>기준 0건 / 중복</td>
+</tr>
+<tr>
+<td>보증 편성</td>
+<td>KS22</td>
+<td>규격 성분 결과행 없음</td>
+</tr>
+<tr>
+<td>저장 실패</td>
+<td>TB02</td>
+<td>보증 성분 INSERT 실패 경로</td>
+</tr>
+</tbody>
+</table>
+<p>오류코드 이름만으로 원인을 단정하지 마세요. 예를 들어 사내 조회의
+필수 입력 누락에는 코드상 KS11이 사용되기도 합니다. 서비스 단계·입력
+키·오류 메시지를 같이 확인해야 합니다.</p>
+<h1 id="실제-주문을-확인하는-순서">실제 주문을 확인하는 순서</h1>
+<ol type="1">
+<li>주문번호와 주문행으로 대상 한 건을 고정합니다.</li>
+<li>공통정보에서 규격약호·연도·고객사양번호·품명·재질코드·주문환산치수를
+확인합니다.</li>
+<li>아래 기준정보의 조회 키와 일치하는 MD 행을 확인합니다. 실제 임계값은
+이 MD에 있습니다.</li>
+<li>결과 테이블의 사양구분 1·2·3·4를 나란히 봅니다. 인수도에는 이 경로의
+3번 사양이 없습니다.</li>
+<li>한 항목씩 보증값의 출처를 추적합니다. 빈값과 0을 구별하고, 재질은
+후속 수정 여부도 확인합니다.</li>
+<li>설계 오류 로그와 상태, 최종 저장값을 함께 봅니다. 이 문서의 계산
+예제가 실제 서비스의 정상 완료를 보장하지는 않습니다.</li>
+</ol>
+<h1 id="함께-읽기">함께 읽기</h1>
+<ul>
+<li><a href="성분설계_쉽게이해하기.html">성분설계 분석서</a></li>
+<li><a href="재질설계_쉽게이해하기.html">재질설계 분석서</a></li>
+<li><a href="인수도설계_쉽게이해하기.html">인수도설계 분석서</a></li>
+<li><a href="적정_차선_원자재_폭설계_쉽게이해하기.html">적정·차선 원자재
+폭설계 분석서</a></li>
+</ul>
+<h1 id="소스-근거-찾아보기">소스 근거 찾아보기</h1>
+<p>행 번호는 분석 시점 기준입니다. 파일을 열어 클래스명·조건문·SQL
+ID로도 찾을 수 있습니다.</p>
+<ul>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/com/unionsteel/mes/c10/activity/nui/DbSearchChemData.java">성분
+조회·보증 편성: 99~491행</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/service/C102100130-service.xml">보증 성분
+서비스</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/query/C102100CHM-query.glue_sql">성분
+INSERT·SELECT</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/service/C102100000-service.xml">전체 실행
+순서</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/service/C102100030-service.xml">고객사양 분기와
+인수도 연결</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/com/unionsteel/mes/c10/activity/common/DbCommonUtil.java">공통
+비교: numCompare 219~249행</a></li>
+<li><a href="https://github.com/donseok/c10/blob/dev/src/com/unionsteel/mes/c10/activity/nui/DbSearchDsnValidData.java">후속
+검사 및 상태 처리; 재질 갱신 2558·2605·2655행</a></li>
+</ul>
+<script>const guideKind="chem";</script><script>// Fixed explanatory cases, deliberately separate from production service execution.
+const cases={
+chem:[
+ ['세 사양 모두 있음','C 보증 0.04 ~ 0.09','고객 0.03~0.10, 규격 0.02~0.12, 사내 0.04~0.09. 하한은 큰 값, 상한은 작은 값입니다.'],
+ ['고객·사내행 없음','C 보증 0.02 ~ 0.12','보증 단계에 규격행만 남아 있으면 그 값을 적용합니다. 앞선 사내 조회 실패의 정상 여부와는 별개입니다.'],
+ ['상한 0과 0.10 비교','상한 0.10','두 값이 있으면 numCompare는 0을 제외합니다. 엄격한 상한 0으로 해석하지 않습니다.'],
+ ['범위 충돌','하한 0.12 > 상한 0.10','고객 0.12~0.18, 규격 0.02~0.10. 편성은 이 결과를 만들며 자동으로 범위를 뒤집지 않습니다.']
+],
+mech:[
+ ['TS 보증 편성 직후','TS 300 ~ 390 MPa','고객 280~400, 규격 270~410, 사내 300~390의 비교 결과입니다. 후속 고객값 수정 전입니다.'],
+ ['후속 고객값 수정 실행','TS 280 ~ 400 MPa','해당 상태 처리에서 cs_update가 실행되면 고객행의 non-null TS가 보증행을 덮어씁니다.'],
+ ['시편 채취 길이','길이 80 유지','고객 80, 규격 100, 사내 120. 이 항목은 숫자 최대·최소 비교가 아니라 고객 우선입니다.'],
+ ['후속 수정에서 고객 상한 0','TS 상한 0 적용','SQL NVL은 0을 null로 취급하지 않습니다. 초기 편성의 numCompare와 다릅니다.']
+],
+deli:[
+ ['두께: 고객 한쪽만 있음','[빈값, +2] 유지','고객 [빈값,+2], 규격 [−2,+3]. 고객 양쪽이 모두 빈 경우에만 규격 쌍을 적용합니다.'],
+ ['일반 폭: 고객 쌍 있음','[−3, +4] 유지','E/C/D 외 품명에서 고객 [−3,+4], 규격 [−2,+3]. 더 넓은 고객 공차도 편성 단계에서는 유지합니다.'],
+ ['E/C/D 폭: 양쪽 유효값','[−1, +2] → 999 ~ 1,002mm','주문폭 1,000, 고객 [−1,+2], 규격 [−2,+3]. 하한 큰 유효값, 상한 작은 값을 적용합니다.'],
+ ['E/C/D 폭: 고객 [0,0]','[−2, 0] → 998 ~ 1,000mm','규격 [−2,+3]. 하한 비교는 0 제외, 상한 Math.min은 0 포함입니다.'],
+ ['형상: 고객 직선도 상한 있음','상한 5 유지','고객 5, 규격 3. 형상은 항목별 고객 우선이며 작은 값 비교가 아닙니다.']
+]};
+const select=document.getElementById('spec-scenario');
+cases[guideKind].forEach((c,i)=>{const o=document.createElement('option');o.value=i;o.textContent=c[0];select.append(o);});
+function show(){const c=cases[guideKind][Number(select.value)];document.getElementById('spec-result').textContent=c[1];document.getElementById('spec-why').textContent=c[2];}
+select.addEventListener('change',show);show();
+</script></body>
+</html>

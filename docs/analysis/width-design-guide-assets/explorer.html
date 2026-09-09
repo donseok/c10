@@ -1,0 +1,24 @@
+<section id="width-explorer" aria-label="제품폭에서 원자재폭까지 경로 비교">
+  <div class="explorer-top">
+    <label for="width-scenario">비교할 소재 경로
+      <select id="width-scenario">
+        <option value="hot">적정 열연 · GI · Edge S</option>
+        <option value="hot-alt">차선 열연 · 다른 수축·마진 기준</option>
+        <option value="gal">차선 구매 GI · 공정폭 복사 가정</option>
+        <option value="fh-main">적정 F/H · 입력 D* · 기준 성공</option>
+        <option value="fh-alt">차선 F/H · 기준 성공</option>
+        <option value="edge">일반 열연 GI · Edge C/N 최종 분기</option>
+      </select>
+    </label>
+    <p>출발 제품목표폭 <strong>1,002 mm</strong><br><small>제품폭여유는 이미 포함되어 있습니다.</small></p>
+  </div>
+  <ol class="explorer-steps" id="width-steps">
+    <li><span>제품목표폭</span><strong>1,002</strong><small>여기에서 출발</small></li>
+    <li><span>도금 목표폭</span><strong>1,006</strong><small>+ 정전수축 1 + 마진 3</small></li>
+    <li><span>압연 목표폭</span><strong>1,008</strong><small>+ 도금수축 2</small></li>
+    <li><span>원자재 목표폭</span><strong>1,016</strong><small>+ 압연수축 3 + 마진 5</small></li>
+  </ol>
+  <p class="explorer-result" id="width-result" aria-live="polite">원자재 <strong>1,016 mm</strong> · 제품목표폭 대비 <strong>+14 mm</strong></p>
+  <p id="width-explanation">제품 1,002 → 도금 1,006 → 압연 1,008 → 열연 원자재 1,016. 수축·마진을 거슬러 더하는 기본 예제입니다.</p>
+  <p class="explorer-note">설명용 고정값 · 대체공정 없음 · 운영 업무기준 조회 없음. Edge C/N 선택은 앞 단계 폭을 고정한 최종 산식 비교입니다.</p>
+</section>

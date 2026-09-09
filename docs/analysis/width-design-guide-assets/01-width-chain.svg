@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="790" viewBox="0 0 1100 790" role="img" aria-labelledby="title desc"><title id="title">주문폭에서 원자재폭까지</title><desc id="desc">주문폭 1000, 제품폭 1002, CGL폭 1006, PLTCM폭 1008, 원자재폭 1016. PL/ST폭은 별도 1011.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="790" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="31" fill="#17324d" font-weight="700">완제품에서 원자재 쪽으로 필요한 폭을 거슬러 계산합니다</text>
+<text x="35" y="86" font-size="22" fill="#516579" font-weight="400">설명용 GI · Slit Edge · 중간재 미적용 · 대체공정 없음 / 단위 mm</text>
+<rect x="35" y="118" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="57" y="156" font-size="25" fill="#17324d" font-weight="700">주문폭</text>
+<text x="440" y="176" font-size="38" fill="#007f86" font-weight="700">1,000</text>
+<text x="650" y="171" font-size="23" fill="#17324d" font-weight="400">고객 주문값</text>
+<path d="M540 215V233" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="236" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="57" y="274" font-size="25" fill="#17324d" font-weight="700">제품·정전 목표폭</text>
+<text x="440" y="294" font-size="38" fill="#007f86" font-weight="700">1,002</text>
+<text x="650" y="289" font-size="23" fill="#17324d" font-weight="400">제품폭여유 +2</text>
+<path d="M540 333V351" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="354" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="57" y="392" font-size="25" fill="#17324d" font-weight="700">CGL 목표폭</text>
+<text x="440" y="412" font-size="38" fill="#007f86" font-weight="700">1,006</text>
+<text x="650" y="407" font-size="23" fill="#17324d" font-weight="400">정전수축 +1, 정전마진 +3</text>
+<path d="M540 451V469" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="472" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="57" y="510" font-size="25" fill="#17324d" font-weight="700">PLTCM 목표폭</text>
+<text x="440" y="530" font-size="38" fill="#007f86" font-weight="700">1,008</text>
+<text x="650" y="525" font-size="23" fill="#17324d" font-weight="400">CGL수축 +2</text>
+<path d="M540 569V587" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="590" width="1030" height="94" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="57" y="628" font-size="25" fill="#17324d" font-weight="700">원자재 목표폭</text>
+<text x="440" y="648" font-size="38" fill="#007f86" font-weight="700">1,016</text>
+<text x="650" y="643" font-size="23" fill="#17324d" font-weight="400">PLTCM수축 +3, 원자재마진 +5</text>
+<text x="35" y="755" font-size="24" fill="#17324d" font-weight="700">PL/ST 목표폭은 별도로 1,011입니다. 원자재 목표폭 1,016과 구별합니다.</text></g></svg>

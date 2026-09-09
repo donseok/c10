@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="958" viewBox="0 0 1100 958" role="img" aria-labelledby="title desc"><title id="title">구매 단계별 제품폭에서 원자재폭 결정</title><desc id="desc">제품1002에서 도금1006 압연1008을 얻고 열연은1016 구매도금차선은1005 적정FH는1005 차선FH는1008.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="958" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="30" fill="#17324d" font-weight="700">어느 단계의 소재를 사느냐가 마지막 산식을 바꿉니다</text>
+<text x="35" y="88" font-size="22" fill="#516579" font-weight="400">같은 제품목표 1,002를 사용하는 설명용 GI 비교 · 대체공정 없음</text>
+<rect x="35" y="123" width="1030" height="105" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="160" font-size="26" fill="#17324d" font-weight="700">공통으로 읽을 공정 목표</text><text x="55" y="198" font-size="22" fill="#17324d" font-weight="400">제품 1,002 → 정전수축 1 + 마진 3 → 도금 1,006 → 도금수축 2 → 압연 1,008</text>
+<rect x="35" y="265" width="1030" height="118" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="302" font-size="25" fill="#17324d" font-weight="700">열연을 사서 압연·도금</text>
+<text x="58" y="348" font-size="24" fill="#17324d" font-weight="400">압연폭 1,008 + 수축 3 + 마진 5</text>
+<text x="887" y="339" font-size="34" fill="#007f86" font-weight="700">1,016</text>
+<rect x="35" y="408" width="1030" height="118" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="58" y="445" font-size="25" fill="#17324d" font-weight="700">차선 구매 도금재 G*</text>
+<text x="58" y="491" font-size="24" fill="#17324d" font-weight="400">도금폭 1,006 − 코드 차감 1</text>
+<text x="887" y="482" font-size="34" fill="#007f86" font-weight="700">1,005</text>
+<rect x="35" y="551" width="1030" height="118" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="588" font-size="25" fill="#17324d" font-weight="700">적정 구매 F/H D*</text>
+<text x="58" y="634" font-size="24" fill="#17324d" font-weight="400">압연폭 1,008 − 적정 차감 3</text>
+<text x="887" y="625" font-size="34" fill="#007f86" font-weight="700">1,005</text>
+<rect x="35" y="694" width="1030" height="118" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="58" y="731" font-size="25" fill="#17324d" font-weight="700">차선 구매 F/H D*</text>
+<text x="58" y="777" font-size="24" fill="#17324d" font-weight="400">압연폭 1,008 그대로 사용</text>
+<text x="887" y="768" font-size="34" fill="#007f86" font-weight="700">1,008</text>
+<text x="35" y="877" font-size="21" fill="#17324d" font-weight="400">차선 구매반제품의 공정폭 복사가 정상 적용되고, F/H 두께기준 조회가 성공한 가정입니다.</text>
+<text x="35" y="919" font-size="22" fill="#17324d" font-weight="700">−1 / −3은 코드의 폭 지정 규칙입니다. 물리적 수축의 역산이라고 해석하지 않습니다.</text></g></svg>

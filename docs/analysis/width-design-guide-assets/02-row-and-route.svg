@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="582" viewBox="0 0 1100 582" role="img" aria-labelledby="title desc"><title id="title">제조구분과 대체공정 구별</title><desc id="desc">적정1과 차선2의 각 행 안에 주공정과 대체공정1,2가 있고 각 행의 최대 PLTCM폭을 계산한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="582" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="30" fill="#17324d" font-weight="700">적정·차선은 행이고, 주공정·대체공정은 그 행 안의 경로입니다</text>
+<text x="35" y="87" font-size="22" fill="#516579" font-weight="400">아래 숫자는 구조 설명용 PLTCM 목표폭입니다. 단위 mm.</text>
+<text x="35" y="144" font-size="23" fill="#17324d" font-weight="700">제조사양 행</text>
+<text x="245" y="144" font-size="23" fill="#17324d" font-weight="700">주공정</text>
+<text x="430" y="144" font-size="23" fill="#17324d" font-weight="700">대체공정 1</text>
+<text x="625" y="144" font-size="23" fill="#17324d" font-weight="700">대체공정 2</text>
+<text x="810" y="144" font-size="21" fill="#17324d" font-weight="700">원자재 계산용 최대폭</text>
+<rect x="35" y="175" width="1030" height="108" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="238" font-size="27" fill="#17324d" font-weight="500">적정 1</text>
+<text x="250" y="238" font-size="32" fill="#17324d" font-weight="500">1,008</text>
+<text x="435" y="238" font-size="32" fill="#17324d" font-weight="500">1,012</text>
+<text x="630" y="238" font-size="32" fill="#17324d" font-weight="500">1,010</text>
+<text x="875" y="238" font-size="32" fill="#007f86" font-weight="700">1,012</text>
+<path d="M747 228H837" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="315" width="1030" height="108" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="55" y="378" font-size="27" fill="#17324d" font-weight="500">차선1 (2)</text>
+<text x="250" y="378" font-size="32" fill="#17324d" font-weight="500">1,009</text>
+<text x="435" y="378" font-size="32" fill="#17324d" font-weight="500">1,014</text>
+<text x="630" y="378" font-size="32" fill="#17324d" font-weight="500">1,011</text>
+<text x="875" y="378" font-size="32" fill="#007f86" font-weight="700">1,014</text>
+<path d="M747 368H837" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="35" y="502" font-size="23" fill="#17324d" font-weight="400">각 행 안에서 PLTCM 폭 3개를 비교합니다. 적정과 차선을 합쳐 비교하지 않습니다.</text>
+<text x="35" y="544" font-size="23" fill="#17324d" font-weight="400">구매반제품 차선은 공정폭을 복사해도, 마지막 원자재폭은 소재 종류에 따라 계산합니다.</text></g></svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="716" viewBox="0 0 1100 716" role="img" aria-labelledby="title desc"><title id="title">생산 방향과 폭설계 방향</title><desc id="desc">생산은 열연 원자재에서 제품으로, 폭설계는 제품목표1002에서 도금1006 압연1008 원자재1016으로 거슬러 진행한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="716" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="31" fill="#17324d" font-weight="700">만드는 순서와 폭을 설계하는 순서는 반대입니다</text>
+<text x="35" y="88" font-size="22" fill="#516579" font-weight="400">설명용 GI · 수치는 설계 목표 · 단위 mm</text>
+<rect x="35" y="135" width="220" height="138" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="172" font-size="26" fill="#17324d" font-weight="700">열연 원자재</text><text x="55" y="210" font-size="22" fill="#17324d" font-weight="400">1,016</text>
+<path d="M259 202H298" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="305" y="135" width="220" height="138" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="325" y="172" font-size="26" fill="#17324d" font-weight="700">압연 후</text><text x="325" y="210" font-size="22" fill="#17324d" font-weight="400">1,008</text>
+<path d="M529 202H568" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="135" width="220" height="138" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="595" y="172" font-size="26" fill="#17324d" font-weight="700">도금 후</text><text x="595" y="210" font-size="22" fill="#17324d" font-weight="400">1,006</text>
+<path d="M799 202H838" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="845" y="135" width="220" height="138" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="865" y="172" font-size="26" fill="#17324d" font-weight="700">제품 목표</text><text x="865" y="210" font-size="22" fill="#17324d" font-weight="400">1,002</text>
+<text x="35" y="316" font-size="25" fill="#17324d" font-weight="700">생산 방향 → 원자재를 가공하여 제품을 만듭니다</text>
+<rect x="35" y="365" width="1030" height="213" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="408" font-size="28" fill="#17324d" font-weight="700">폭설계는 제품 목표 1,002에서 출발</text>
+<text x="62" y="463" font-size="23" fill="#17324d" font-weight="400">원자재</text>
+<text x="62" y="518" font-size="35" fill="#007f86" font-weight="700">1,016</text>
+<path d="M302 492H241" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="326" y="463" font-size="23" fill="#17324d" font-weight="400">압연 목표</text>
+<text x="326" y="518" font-size="35" fill="#007f86" font-weight="700">1,008</text>
+<path d="M566 492H505" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="590" y="463" font-size="23" fill="#17324d" font-weight="400">도금 목표</text>
+<text x="590" y="518" font-size="35" fill="#007f86" font-weight="700">1,006</text>
+<path d="M830 492H769" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="854" y="463" font-size="23" fill="#17324d" font-weight="400">제품 목표</text>
+<text x="854" y="518" font-size="35" fill="#007f86" font-weight="700">1,002</text>
+<text x="35" y="631" font-size="24" fill="#17324d" font-weight="700">← 제품에서 필요한 폭을 정한 뒤, 앞 공정에 필요한 폭을 역산합니다.</text>
+<text x="35" y="679" font-size="21" fill="#516579" font-weight="400">그림은 목표값의 연결입니다. 실제 설비 배치나 실측 폭 감소를 재현한 도면은 아닙니다.</text></g></svg>
