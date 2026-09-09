@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="972" viewBox="0 0 1100 972" role="img" aria-labelledby="title desc"><title id="title">재단선2조의 제품폭에서 원자재폭까지</title><desc id="desc">제품목표602와CCL수축1을 두조로펼쳐1206 정전수축1마진3으로CGL1210 CGL수축2로PLTCM1212 수축3마진5로원자재1220.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="972" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="29" fill="#17324d" font-weight="700">재단선 2조라면 한 조의 폭을 두 조로 펼치는 단계가 있습니다</text>
+<text x="35" y="88" font-size="21" fill="#516579" font-weight="400">설명용 도금칼라 · 재단선 Y · Slit 2조 · 정전 통과 · Edge S · 열연 일반</text>
+<rect x="35" y="127" width="1030" height="108" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="164" font-size="26" fill="#17324d" font-weight="700">주문폭 1,200 / 조합폭1 600 / 제품폭여유 2</text><text x="55" y="202" font-size="22" fill="#17324d" font-weight="400">제품목표 P = 600 + 2 = 602  →  CCL 목표폭도 602</text>
+<path d="M550 239V278" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="298" width="495" height="126" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="55" y="335" font-size="26" fill="#17324d" font-weight="700">한 조: 602 + CCL수축 1</text><text x="55" y="373" font-size="22" fill="#17324d" font-weight="400">필요폭 603</text>
+<rect x="570" y="298" width="495" height="126" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="590" y="335" font-size="26" fill="#17324d" font-weight="700">한 조: 602 + CCL수축 1</text><text x="590" y="373" font-size="22" fill="#17324d" font-weight="400">필요폭 603</text>
+<text x="35" y="463" font-size="29" fill="#007f86" font-weight="700">중간정전 목표폭 = (602 + 1) × 2 = 1,206</text>
+<rect x="35" y="502" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="536" font-size="22" fill="#17324d" font-weight="700">중간정전 → CGL</text>
+<text x="58" y="574" font-size="24" fill="#17324d" font-weight="400">1,206 + 정전수축1 + 마진3</text>
+<text x="878" y="565" font-size="34" fill="#007f86" font-weight="700">1,210</text>
+<rect x="35" y="616" width="1030" height="94" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="650" font-size="22" fill="#17324d" font-weight="700">CGL → PLTCM</text>
+<text x="58" y="688" font-size="24" fill="#17324d" font-weight="400">1,210 + CGL수축2</text>
+<text x="878" y="679" font-size="34" fill="#007f86" font-weight="700">1,212</text>
+<rect x="35" y="730" width="1030" height="94" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="58" y="764" font-size="22" fill="#17324d" font-weight="700">PLTCM → 원자재</text>
+<text x="58" y="802" font-size="24" fill="#17324d" font-weight="400">1,212 + PLTCM수축3 + 마진5</text>
+<text x="878" y="793" font-size="34" fill="#007f86" font-weight="700">1,220</text>
+<text x="35" y="893" font-size="22" fill="#17324d" font-weight="700">제품목표 602는 이 분기에서 한 조 기준입니다. 원자재는 두 조를 준비하는 폭이 됩니다.</text>
+<text x="35" y="935" font-size="20" fill="#516579" font-weight="400">위 산식은 현행 재단선 Y·2조 특례입니다. 서로 다른 두 조의 폭을 재배치하는 최적화가 아닙니다.</text></g></svg>

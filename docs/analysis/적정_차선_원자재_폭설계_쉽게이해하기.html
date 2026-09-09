@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-09-09" />
+  <title>적정·차선 원자재 폭설계, 주문 한 건으로 이해하기</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">:root{color-scheme:light;--ink:#17324d;--teal:#007f86;--muted:#516579;--line:#d6e0e8;--paper:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#edf2f5}
+body{max-width:1120px;margin:0 auto;padding:56px 64px 90px;background:var(--paper);color:var(--ink);font:17px/1.85 'Apple SD Gothic Neo','Noto Sans CJK KR','Malgun Gothic',sans-serif;overflow-wrap:break-word}
+header#title-block-header{border-top:7px solid var(--teal);padding:30px 0 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.title{font-size:38px;line-height:1.3;letter-spacing:-.03em;margin:0 0 20px;border:0;padding:0}
+.subtitle{font-size:21px;color:var(--muted);margin:8px 0}.date{color:var(--muted);font-size:14px}
+h1,h2,h3{line-height:1.5;letter-spacing:-.02em;break-after:avoid;page-break-after:avoid}
+h1{font-size:28px;margin:54px 0 22px;border-top:2px solid var(--line);padding-top:25px}
+h2{font-size:26px;margin:50px 0 22px;padding-bottom:10px;border-bottom:2px solid var(--teal)}
+h3{font-size:21px;margin:30px 0 15px}
+p{margin:15px 0}strong{font-weight:700;color:#102c44}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+nav#TOC{background:#f3f7fa;padding:24px 28px;margin:30px 0 42px;border-left:4px solid var(--teal)}
+nav#TOC>h2{border:0;font-size:21px;margin:0 0 10px;padding:0}
+nav#TOC ul{margin:0;padding-left:21px}nav#TOC li{margin:7px 0}nav#TOC a{text-decoration:none}
+figure{margin:25px 0 30px;break-inside:avoid;page-break-inside:avoid}
+figure img{display:block;width:100%;max-width:100%;height:auto;margin:0 auto}
+figcaption{font-size:14px;line-height:1.6;color:var(--muted);margin-top:9px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;table-layout:auto;margin:24px 0 28px;font-size:15px;line-height:1.65}
+thead{display:table-header-group;background:#eaf3f5}
+th{font-weight:700;text-align:left;color:var(--ink);border-bottom:2px solid #b6cbd6}
+th,td{padding:13px 14px;vertical-align:middle;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+tr:nth-child(even) td{background:#f8fafb}tr{break-inside:avoid;page-break-inside:avoid}
+td p{margin:0}code{font:0.86em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef2f5;padding:2px 4px;border-radius:3px;overflow-wrap:anywhere}
+.numeric-examples,.source-index{table-layout:fixed}
+.numeric-examples td:nth-last-child(-n+2),.source-index td:first-child{white-space:nowrap;overflow-wrap:normal}
+blockquote{background:#eef8f8;border-left:4px solid var(--teal);margin:24px 0;padding:10px 22px;font-size:18px}
+li{padding-left:4px;margin:14px 0}ol,ul{padding-left:26px}p,li{orphans:3;widows:3}
+#width-explorer{margin:26px 0 34px;padding:26px;background:#f3f8f9;border:1px solid #b6cbd6;border-radius:12px;break-inside:avoid}
+.reader-shortcuts{padding:18px 22px;background:#eef8f8;border-radius:8px}.reader-shortcuts div{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:10px}.reader-shortcuts a{font-size:15px}
+.explorer-top{display:grid;grid-template-columns:1.3fr 1fr;gap:25px;align-items:start}
+.explorer-top label{font-weight:700;display:block}.explorer-top p{margin:0}.explorer-top small{font-size:14px;color:#516579}
+#width-scenario{display:block;margin-top:10px;width:100%;min-height:48px;padding:10px;border:1px solid #8fa7b3;background:white;border-radius:5px;font-family:inherit;font-size:16px;line-height:1.5;color:#17324d}
+#width-scenario:focus-visible{outline:3px solid #007f86;outline-offset:3px}
+.explorer-steps{display:flex;gap:24px;list-style:none;padding:0;margin:30px 0}
+.explorer-steps li{position:relative;flex:1;min-width:0;margin:0;padding:16px 12px;background:#fff;border-top:4px solid #007f86;border-radius:4px;line-height:1.5}
+.explorer-steps li:last-child{background:#e2f1f0}.explorer-steps li+li:before{content:'→';position:absolute;left:-23px;top:50px;color:#007f86;font-size:22px}
+.explorer-steps span,.explorer-steps strong,.explorer-steps small{display:block}.explorer-steps span{font-size:15px;font-weight:700}.explorer-steps strong{font-size:29px;color:#007f86;margin:10px 0}.explorer-steps small{font-size:13px;color:#516579}
+.explorer-result{font-size:23px;font-weight:700;color:#005f67}.explorer-note{font-size:13px;color:#516579;border-top:1px solid #c7d8df;padding-top:14px}
+@media(max-width:700px){#width-explorer{padding:18px}.explorer-top{grid-template-columns:1fr;gap:18px}.explorer-steps{display:grid;grid-template-columns:1fr;gap:25px}.explorer-steps li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:5px}.explorer-steps small{grid-column:1/-1}.explorer-steps strong{margin:0}.explorer-steps li+li:before{content:'↓';top:-28px;left:50%}.explorer-result{font-size:20px}}
+@media print{#width-explorer{display:none}}
+@media(max-width:700px){body{padding:25px 20px;font-size:16px}.title{font-size:29px}h1{font-size:25px}h2{font-size:23px}h3{font-size:20px}table{font-size:13px}td,th{padding:10px 7px}nav#TOC{padding:17px}figure{margin-left:-8px;margin-right:-8px}}
+@page{size:A4;margin:16mm 15mm 18mm;
+@bottom-left{content:'C10 · 적정·차선 원자재 폭설계';font:8pt 'Apple SD Gothic Neo',sans-serif;color:#516579}
+@bottom-right{content:counter(page) ' / ' counter(pages);font:8pt sans-serif;color:#516579}
+}
+@media print{
+html,body{background:#fff}body{max-width:none;padding:0;margin:0;font-size:10.3pt;line-height:1.7}
+header#title-block-header{margin:0 0 16pt;padding:20pt 0}.title{font-size:27pt}.subtitle{font-size:14pt}.date{font-size:10pt}
+nav#TOC{margin:18pt 0 25pt;padding:14pt 18pt;font-size:10pt}nav#TOC li{margin:4pt 0}
+h1{font-size:20pt;margin:28pt 0 13pt;padding-top:15pt}h2{font-size:18pt;margin:26pt 0 13pt}h3{font-size:13pt;margin:18pt 0 9pt}
+p{margin:9pt 0}li{margin:8pt 0}table{font-size:8.7pt;margin:14pt 0 17pt;line-height:1.5}th,td{padding:7pt 7pt}.keep-table{break-inside:avoid;page-break-inside:avoid}
+figure{margin:15pt 0 18pt}figure img{max-height:205mm;object-fit:contain}figcaption{font-size:8pt;margin-top:6pt}
+blockquote{font-size:11pt;padding:7pt 12pt;margin:14pt 0}
+a{color:#14515b;text-decoration:none}code{font-size:.8em}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">적정·차선 원자재 폭설계, 주문 한 건으로 이해하기</h1>
+<p class="subtitle">c10 실제 코드 분석 · 제품폭부터
+공정폭·원자재폭까지</p>
+<p class="date">2026-09-09</p>
+</header>
+<nav class="reader-shortcuts" aria-label="추천 읽기 경로"><strong>처음 읽는 분은 제품폭 1,002에서 출발해 보세요.</strong><div><a href="#section-02">그림 해설부터 보기</a><a href="#width-explorer">소재별 경로 비교하기</a><a href="#section-12">상세 산식·코드 보기</a></div></nav>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">읽는 순서</h2>
+<ul>
+<li><a href="#section-01" id="toc-section-01">읽기 전에: 이 문서는
+무엇을 설명하나?</a></li>
+<li><a href="#section-02" id="toc-section-02">그림으로 먼저 이해하기:
+제품폭에서 원자재폭까지</a>
+<ul>
+<li><a href="#section-03" id="toc-section-03">가. 먼저 ‘가공 순서’와
+‘계산 순서’를 반대로 읽는다</a></li>
+<li><a href="#section-04" id="toc-section-04">나. 제품폭 1,002에 왜
+14mm를 더할까?</a></li>
+<li><a href="#section-05" id="toc-section-05">다. ‘수축’과 ‘마진’을
+양쪽에 두 번 더하지 않는다</a></li>
+<li><a href="#section-06" id="toc-section-06">라. 구매 소재를 바꾸면
+어느 폭에서 계산을 마칠까?</a></li>
+<li><a href="#section-08" id="toc-section-08">마. Edge 조건이 C/N이면
+마지막 덧셈이 달라진다</a></li>
+<li><a href="#section-09" id="toc-section-09">바. 대체공정이 여러 개면
+폭을 더하지 않고 가장 큰 폭을 고른다</a></li>
+<li><a href="#section-10" id="toc-section-10">사. 제품폭이 한 조
+기준이면 먼저 두 조 폭으로 펼친다</a></li>
+</ul></li>
+<li><a href="#section-12" id="toc-section-12">코드와 연결해서 읽는 상세
+분석</a>
+<ul>
+<li><a href="#section-13" id="toc-section-13">1. 먼저 ‘폭’이라는 이름의
+값을 구별하자</a></li>
+<li><a href="#section-16" id="toc-section-16">2. 적정과 차선은 어디까지
+따로 계산하나?</a></li>
+<li><a href="#section-19" id="toc-section-19">3. 제품목표폭: Slit와
+폭여유부터 계산한다</a></li>
+<li><a href="#section-23" id="toc-section-23">4. 공정폭: 공정에서 줄어들
+폭을 거슬러 더한다</a></li>
+<li><a href="#section-27" id="toc-section-27">5. PL/ST 목표폭과 원자재
+목표폭은 별도로 계산한다</a></li>
+<li><a href="#section-30" id="toc-section-30">6. 원자재 종류와 Edge로
+마지막 산식을 선택한다</a></li>
+<li><a href="#section-35" id="toc-section-35">7. 주문 한 건을
+적정·차선으로 비교해 보자</a></li>
+<li><a href="#section-40" id="toc-section-40">8. 화면·저장값은 어떤
+경로로 만들어지나?</a></li>
+<li><a href="#section-44" id="toc-section-44">9. 정상 공식만으로
+설명하면 안 되는 현행 예외</a></li>
+<li><a href="#section-50" id="toc-section-50">10. 실제 주문의 적정·차선
+폭 차이는 이 순서로 추적한다</a></li>
+</ul></li>
+<li><a href="#section-51" id="toc-section-51">부록 A. 업무기준과 정확한
+조회 입력</a>
+<ul>
+<li><a href="#section-52" id="toc-section-52">A.1 폭설계 기준표</a></li>
+<li><a href="#section-53" id="toc-section-53">A.2 두께 분석서와 이어서
+볼 부분</a></li>
+</ul></li>
+<li><a href="#section-54" id="toc-section-54">부록 B. 오류를 읽는 간단한
+사전</a></li>
+<li><a href="#section-55" id="toc-section-55">부록 C. 기존 주석을 읽을
+때 주의할 설명</a></li>
+<li><a href="#section-56" id="toc-section-56">부록 D. 코드 근거와 재현
+범위</a>
+<ul>
+<li><a href="#section-57" id="toc-section-57">D.1 핵심 코드
+위치</a></li>
+<li><a href="#section-58" id="toc-section-58">D.2 확인한 것과 운영
+확인이 필요한 것</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="section-01">읽기 전에: 이 문서는 무엇을 설명하나?</h1>
+<p><strong>폭설계는 완제품에 필요한 폭을 출발점으로 삼아, 공정에서
+줄어드는 폭과 마진을 반영해 원자재 목표폭을 정하는 과정입니다.</strong>
+다만 적정·차선의 원자재 종류, Edge, Slit, 대체공정에 따라 계산 경로가
+달라집니다. ‘주문폭에 일정한 여유를 더한다’는 공식 하나로는 설명할 수
+없습니다.</p>
+<p>사용자가 제시한 <a href="PLTCM_압연SET_쉽게이해하기.html">PLTCM 압연 SET
+해설서</a>의 구성과 표현 방식을 참고해, 용어 → 분기 → 계산 예제 → 예외 →
+코드 근거 순서로 작성했습니다. 처음 읽는 분은 앞의 <strong>‘그림으로
+먼저 이해하기’</strong>에서 제품폭을 기준으로 흐름을 익히고, 실제 주문의
+차이를 조사하는 분은 뒤의 <strong>상세 분석 1~10장과 부록</strong>을
+함께 읽으면 됩니다. 이번 보완에서는 제품폭 출발 그림 8개와 소재 경로
+선택 예제를 추가했습니다.</p>
+<p>분석 기준은 <strong>2026-09-09 현재 이 작업 폴더의 Java·서비스
+XML·SQL·화면 소스</strong>입니다. 운영 배포본이나 운영 DB의 업무기준
+행은 조회하지 않았습니다. 모든 숫자 예제와 원자재별 수축·마진 값은
+<strong>설명용 가정</strong>이며 실적이나 표준값이 아닙니다. 단위는 별도
+표시가 없으면 mm입니다. 기존 두께 분석서와 실행 코드는 수정하지
+않았습니다.</p>
+<h1 id="section-02">그림으로 먼저 이해하기: 제품폭에서 원자재폭까지</h1>
+<p><strong>처음 읽는 분은 이 부분부터 보세요.</strong> 아래에서는
+코드명을 잠시 내려놓고, <strong>제품목표폭 1,002mm를 만들기 위해 어느
+폭의 소재를 준비하는지</strong>를 따라갑니다. 이후 본문 1~10장은 이
+그림의 정확한 조건·코드 근거를 설명합니다.</p>
+<p>여기서 제품폭은 고객이 주문서에 적은 폭과 구별됩니다.
+<strong>제품목표폭은 주문폭·조합폭에 제품폭여유를 반영한
+설계값</strong>입니다. 예를 들어 일반 1폭 주문의 주문폭 1,000에 여유 2를
+더하면 제품목표폭은 1,002입니다. <strong>이제부터 1,002에서 출발하므로
+제품폭여유 2를 다시 더하지 않습니다.</strong> Slit·재단선이 있으면
+제품목표폭의 출발 단위부터 달라질 수 있으며, 입문 그림 H에서 따로
+살펴봅니다.</p>
+<h2 id="section-03">가. 먼저 ‘가공 순서’와 ‘계산 순서’를 반대로
+읽는다</h2>
+<p>열연 소재를 사서 압연하고 도금한 뒤 제품을 만드는 경우, 생산은
+<strong>원자재 → 압연 → 도금 → 제품</strong> 방향으로 진행됩니다.
+폭설계는 제품에서 필요한 폭을 먼저 알고 있으므로 그 순서를 거슬러
+계산합니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 A. 생산은 원자재에서 제품으로, 폭설계는 제품에서 원자재로 거슬러 간다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcxNiIgdmlld0JveD0iMCAwIDExMDAgNzE2IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7IOd7IKwIOuwqe2WpeqzvCDtj63shKTqs4Qg67Cp7ZalPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+7IOd7IKw7J2AIOyXtOyXsCDsm5DsnpDsnqzsl5DshJwg7KCc7ZKI7Jy866GcLCDtj63shKTqs4TripQg7KCc7ZKI66qp7ZGcMTAwMuyXkOyEnCDrj4TquIgxMDA2IOyVleyXsDEwMDgg7JuQ7J6Q7J6sMTAxNuycvOuhnCDqsbDsiqzrn6wg7KeE7ZaJ7ZWc64ukLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzAwN2Y4NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI3MTYiIGZpbGw9IiNmZmYiLz48ZyBmb250LWZhbWlseT0iQXBwbGUgU0QgR290aGljIE5lbywgTm90byBTYW5zIENKSyBLUiwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjMxIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7rp4zrk5zripQg7Iic7ISc7JmAIO2PreydhCDshKTqs4TtlZjripQg7Iic7ISc64qUIOuwmOuMgOyeheuLiOuLpDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7shKTrqoXsmqkgR0kgwrcg7IiY7LmY64qUIOyEpOqzhCDrqqntkZwgwrcg64uo7JyEIG1tPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTM1IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjEzOCIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1NSIgeT0iMTcyIiBmb250LXNpemU9IjI2IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sl7Tsl7Ag7JuQ7J6Q7J6sPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMDE2PC90ZXh0Pgo8cGF0aCBkPSJNMjU5IDIwMkgyOTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIzMDUiIHk9IjEzNSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMzgiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iMzI1IiB5PSIxNzIiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyVleyXsCDtm4Q8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMDA4PC90ZXh0Pgo8cGF0aCBkPSJNNTI5IDIwMkg1NjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSI1NzUiIHk9IjEzNSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMzgiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTk1IiB5PSIxNzIiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuuPhOq4iCDtm4Q8L3RleHQ+PHRleHQgeD0iNTk1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMDA2PC90ZXh0Pgo8cGF0aCBkPSJNNzk5IDIwMkg4MzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSI4NDUiIHk9IjEzNSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMzgiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iODY1IiB5PSIxNzIiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuygnO2SiCDrqqntkZw8L3RleHQ+PHRleHQgeD0iODY1IiB5PSIyMTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMDAyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMzE2IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sg53sgrAg67Cp7ZalIOKGkiDsm5DsnpDsnqzrpbwg6rCA6rO17ZWY7JesIOygnO2SiOydhCDrp4zrk63ri4jri6Q8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIzNjUiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjIxMyIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjQwOCIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7Y+t7ISk6rOE64qUIOygnO2SiCDrqqntkZwgMSwwMDLsl5DshJwg7Lac67CcPC90ZXh0Pgo8dGV4dCB4PSI2MiIgeT0iNDYzIiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7sm5DsnpDsnqw8L3RleHQ+Cjx0ZXh0IHg9IjYyIiB5PSI1MTgiIGZvbnQtc2l6ZT0iMzUiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDE2PC90ZXh0Pgo8cGF0aCBkPSJNMzAyIDQ5MkgyNDEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIzMjYiIHk9IjQ2MyIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7JWV7JewIOuqqe2RnDwvdGV4dD4KPHRleHQgeD0iMzI2IiB5PSI1MTgiIGZvbnQtc2l6ZT0iMzUiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA4PC90ZXh0Pgo8cGF0aCBkPSJNNTY2IDQ5Mkg1MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI1OTAiIHk9IjQ2MyIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+64+E6riIIOuqqe2RnDwvdGV4dD4KPHRleHQgeD0iNTkwIiB5PSI1MTgiIGZvbnQtc2l6ZT0iMzUiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA2PC90ZXh0Pgo8cGF0aCBkPSJNODMwIDQ5Mkg3NjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI4NTQiIHk9IjQ2MyIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7KCc7ZKIIOuqqe2RnDwvdGV4dD4KPHRleHQgeD0iODU0IiB5PSI1MTgiIGZvbnQtc2l6ZT0iMzUiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDAyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjMxIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7ihpAg7KCc7ZKI7JeQ7IScIO2VhOyalO2VnCDtj63snYQg7KCV7ZWcIOuSpCwg7JWeIOqzteygleyXkCDtlYTsmpTtlZwg7Y+t7J2EIOyXreyCsO2VqeuLiOuLpC48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2NzkiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuq3uOumvOydgCDrqqntkZzqsJLsnZgg7Jew6rKw7J6F64uI64ukLiDsi6TsoJwg7ISk67mEIOuwsOy5mOuCmCDsi6TsuKEg7Y+tIOqwkOyGjOulvCDsnqztmITtlZwg64+E66m07J2AIOyVhOuLmeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPgo=" alt="입문 그림 A. 생산은 원자재에서 제품으로, 폭설계는 제품에서 원자재로 거슬러 간다" />
+<figcaption aria-hidden="true">입문 그림 A. 생산은 원자재에서 제품으로,
+폭설계는 제품에서 원자재로 거슬러 간다</figcaption>
+</figure>
+<p><strong>제품목표폭 1,002 → 도금 목표폭 1,006 → 압연 목표폭 1,008 →
+원자재 목표폭 1,016.</strong> 이것이 앞으로 반복해서 볼 기준 예제입니다.
+GI는 용융도금 제품, CGL은 그 도금 공정, PLTCM은 산세·냉간압연 공정을
+가리킵니다. 그림의 ‘도금 목표’는 CGL폭, ‘압연 목표’는 PLTCM폭입니다.</p>
+<p>이 연결은 폭설계 값을 설명하기 위한 단순화입니다. 실제 공정 목록
+전체나 실측 폭 변화 그래프는 아닙니다. 수축·마진은 모두 설명용
+조회값으로 가정했습니다. [근거 S1~S3]</p>
+<h2 id="section-04">나. 제품폭 1,002에 왜 14mm를 더할까?</h2>
+<p>아래 예제는 <strong>GI, Edge S, 정전 통과, 대체공정 없음, 중간재
+미적용 열연 원자재</strong>입니다. 정전은 여기서는 제품 쪽 후공정으로
+읽으면 됩니다. 각 단계의 실제 통과 여부는 통과공정 코드를
+확인합니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 B. 제품목표폭 1,002에 수축 보완 6과 마진 8을 더해 원자재폭 1,016을 구한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijk1NyIgdmlld0JveD0iMCAwIDExMDAgOTU3IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KCc7ZKI7Y+tIOuMgOu5hCDstpTqsIAxNG1t7J2YIOq1rOyEsTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuygnO2SiOuqqe2RnDEwMDLsl5Ag7KCV7KCE7IiY7LaVMSDsoJXsoITrp4jsp4QzIOuPhOq4iOyImOy2lTIg7JWV7Jew7IiY7LaVMyDsm5DsnpDsnqzrp4jsp4Q166W8IOuNlO2VtDEwMTYuIOy2lOqwgOufieydgDZtbeyImOy2leqzvDhtbeuniOynhC48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iOTU3IiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIzMSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCc7ZKI7Y+tIDEsMDAy7JeQIOy2lOqwgOuhnCDtlYTsmpTtlZwgMTRtbeulvCDtjrzss5Ag67O066m0PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuyEpOuqheyaqSBHSSDCtyBFZGdlIFMgwrcg7KCV7KCEIO2GteqzvCDCtyDrjIDssrTqs7XsoJUg7JeG7J2MIMK3IOykkeqwhOyerCDrr7jsoIHsmqk8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIxMTciIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjkxIiByeD0iMTIiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSI1NyIgeT0iMTUzIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7stpzrsJzsoJDsnYAg7J2066+4IO2PreyXrOycoOqwgCDtj6ztlajrkJwg7KCc7ZKI66qp7ZGc7Y+tPC90ZXh0Pgo8dGV4dCB4PSI4MTAiIHk9IjE3NCIgZm9udC1zaXplPSIzOSIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIyNTAiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuy2lOqwgCDtj63snZgg6rWs7ISxICDilIAgIOyyreuhnTog7IiY7LaVIOuztOyZhCAvIO2Zqe2GoDog6riw7KSAIOuniOynhDwvdGV4dD4KPHJlY3QgeD0iNjAiIHk9IjI4NyIgd2lkdGg9IjY4IiBoZWlnaHQ9IjY3IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9Ijc4IiB5PSIzMzEiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPisxPC90ZXh0Pgo8cmVjdCB4PSIxMjgiIHk9IjI4NyIgd2lkdGg9IjIwNCIgaGVpZ2h0PSI2NyIgZmlsbD0iI2JkNzQxZCIvPgo8dGV4dCB4PSIyMTQiIHk9IjMzMSIgZm9udC1zaXplPSIyNSIgZmlsbD0iI2ZmZiIgZm9udC13ZWlnaHQ9IjcwMCI+KzM8L3RleHQ+CjxyZWN0IHg9IjMzMiIgeT0iMjg3IiB3aWR0aD0iMTM2IiBoZWlnaHQ9IjY3IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9IjM4NCIgeT0iMzMxIiBmb250LXNpemU9IjI1IiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iNzAwIj4rMjwvdGV4dD4KPHJlY3QgeD0iNDY4IiB5PSIyODciIHdpZHRoPSIyMDQiIGhlaWdodD0iNjciIGZpbGw9IiMxNjgyOGIiLz4KPHRleHQgeD0iNTU0IiB5PSIzMzEiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPiszPC90ZXh0Pgo8cmVjdCB4PSI2NzIiIHk9IjI4NyIgd2lkdGg9IjM0MCIgaGVpZ2h0PSI2NyIgZmlsbD0iI2JkNzQxZCIvPgo8dGV4dCB4PSI4MjYiIHk9IjMzMSIgZm9udC1zaXplPSIyNSIgZmlsbD0iI2ZmZiIgZm9udC13ZWlnaHQ9IjcwMCI+KzU8L3RleHQ+Cjx0ZXh0IHg9IjYwIiB5PSIzODgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPjA8L3RleHQ+Cjx0ZXh0IHg9Ijk4MCIgeT0iMzg4IiBmb250LXNpemU9IjE5IiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj4xNG1tPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNDI1IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI3OSIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTciIHk9IjQ3MyIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+64+E6riIIOuqqe2RnO2PrTwvdGV4dD4KPHRleHQgeD0iNDAwIiB5PSI0NzMiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMDAyICsgMSArIDM8L3RleHQ+Cjx0ZXh0IHg9Ijg4MCIgeT0iNDc0IiBmb250LXNpemU9IjMxIiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwNjwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjUyMyIgd2lkdGg9IjEwMzAiIGhlaWdodD0iNzkiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU3IiB5PSI1NzEiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyVleyXsCDrqqntkZztj608L3RleHQ+Cjx0ZXh0IHg9IjQwMCIgeT0iNTcxIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj4xLDAwNiArIDI8L3RleHQ+Cjx0ZXh0IHg9Ijg4MCIgeT0iNTcyIiBmb250LXNpemU9IjMxIiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwODwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjYyMSIgd2lkdGg9IjEwMzAiIGhlaWdodD0iNzkiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU3IiB5PSI2NjkiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuybkOyekOyerCDrqqntkZztj608L3RleHQ+Cjx0ZXh0IHg9IjQwMCIgeT0iNjY5IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj4xLDAwOCArIDMgKyA1PC90ZXh0Pgo8dGV4dCB4PSI4ODAiIHk9IjY3MCIgZm9udC1zaXplPSIzMSIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMTY8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NzAiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyImOy2lSDrs7TsmYQgMSsyKzMgPSA2bW0gIC8gIOuniOynhCAzKzUgPSA4bW0gIC8gIO2VqeqzhCArMTRtbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjgxMiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzUxNjU3OSIgZm9udC13ZWlnaHQ9IjQwMCI+7IOJIOunieuMgOuKlCDigJzstpTqsIAgMTRtbeKAneunjCDsi6TsoJwg67mE7Jyo66GcIO2RnOyLnO2WiOyKteuLiOuLpC4g7KCc7ZKI7Y+tIDEsMDAy64qUIOyDneuete2WiOyKteuLiOuLpC48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuqwgSDsiJjsuZjripQg7JeF66y06riw7KSAIOyhsO2ajCDqsrDqs7zrnbzripQg6rCA7KCV7J6F64uI64ukLiDtj60g7JaR7Kq97JeQIOqwgeqwgSDrjZTtlZjripQg6rCS7J20IOyVhOuLmeuLiOuLpC48L3RleHQ+CjxyZWN0IHg9IjQwIiB5PSI5MTIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgZmlsbD0iIzE2ODI4YiIvPgo8dGV4dCB4PSI2MSIgeT0iOTI1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJXsoIQg7IiY7LaVICsxPC90ZXh0Pgo8cmVjdCB4PSIyNTAiIHk9IjkxMiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBmaWxsPSIjYmQ3NDFkIi8+Cjx0ZXh0IHg9IjI3MSIgeT0iOTI1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJXsoIQg66eI7KeEICszPC90ZXh0Pgo8cmVjdCB4PSI0NjAiIHk9IjkxMiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9IjQ4MSIgeT0iOTI1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7rj4TquIgg7IiY7LaVICsyPC90ZXh0Pgo8cmVjdCB4PSI2NzAiIHk9IjkxMiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9IjY5MSIgeT0iOTI1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7slZXsl7Ag7IiY7LaVICszPC90ZXh0Pgo8cmVjdCB4PSI4ODAiIHk9IjkxMiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE0IiBmaWxsPSIjYmQ3NDFkIi8+Cjx0ZXh0IHg9IjkwMSIgeT0iOTI1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7sm5DsnpDsnqwg66eI7KeEICs1PC90ZXh0PjwvZz48L3N2Zz4K" alt="입문 그림 B. 제품목표폭 1,002에 수축 보완 6과 마진 8을 더해 원자재폭 1,016을 구한다" />
+<figcaption aria-hidden="true">입문 그림 B. 제품목표폭 1,002에 수축 보완
+6과 마진 8을 더해 원자재폭 1,016을 구한다</figcaption>
+</figure>
+<figure>
+<img role="img" aria-label="입문 그림 C. 같은 제품폭 1,002를 기준으로 도금폭은 4, 압연폭은 6, 원자재폭은 14만큼 더 필요하다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjgyNSIgdmlld0JveD0iMCAwIDExMDAgODI1IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KCc7ZKI7Y+tIOq4sOykgCDriITsoIEg7LaU6rCA7Y+tIOu5hOq1kDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuqzte2GteygnO2SiO2PrTEwMDLrpbzstpXslb3tlZjqs6Ag7LaU6rCA7Y+t66eM64+Z7J287LaV7LKZ7Jy866Gc67O07J2464ukLiDrj4TquIg0IOyVleyXsDYg7JuQ7J6Q7J6sMTTrp4ztgbzstpTqsIDtlZjsl6wxMDA2IDEwMDggMTAxNi48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iODI1IiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIzMCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCc7ZKI7Y+t7J2YIOuBneydhCDquLDspIDsnLzroZwg7LaU6rCAIO2PreydtCDsjJPsnbTripQg66qo7Iq17J2EIOu0heuLiOuLpDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7qs7XthrUg7KCc7ZKI7Y+tIDEsMDAy64qUIOy2leyVvSDtkZzsi5wgLyDsmKTrpbjsqr0g7LaU6rCAIO2PreunjCDqsJnsnYAg7LaV7LKZIC8g64uo7JyEIG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM4IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7soJztkojrqqntkZw8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIxNTMiIHdpZHRoPSIzMDUiIGhlaWdodD0iNjgiIGZpbGw9IiNlNWVjZjEiLz4KPHRleHQgeD0iNzUiIHk9IjE5NSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+6rO17Ya1IOygnO2SiO2PrSAxLDAwMjwvdGV4dD4KPHRleHQgeD0iOTQ2IiB5PSIxOTYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDAyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMjY0IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7rj4TquIgg66qp7ZGcPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMjc5IiB3aWR0aD0iMzA1IiBoZWlnaHQ9IjY4IiBmaWxsPSIjZTVlY2YxIi8+Cjx0ZXh0IHg9Ijc1IiB5PSIzMjEiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuqzte2GtSDsoJztkojtj60gMSwwMDI8L3RleHQ+CjxyZWN0IHg9IjM0MCIgeT0iMjc5IiB3aWR0aD0iNDAiIGhlaWdodD0iNjgiIGZpbGw9IiMxNjgyOGIiLz4KPHRleHQgeD0iMzQ2IiB5PSIzMjIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPisxPC90ZXh0Pgo8cmVjdCB4PSIzODAiIHk9IjI3OSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2OCIgZmlsbD0iI2JkNzQxZCIvPgo8dGV4dCB4PSI0MjYiIHk9IjMyMiIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2ZmZiIgZm9udC13ZWlnaHQ9IjcwMCI+KzM8L3RleHQ+Cjx0ZXh0IHg9Ijk0NiIgeT0iMzIyIiBmb250LXNpemU9IjMwIiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwNjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjM5MCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7JWV7JewIOuqqe2RnDwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjQwNSIgd2lkdGg9IjMwNSIgaGVpZ2h0PSI2OCIgZmlsbD0iI2U1ZWNmMSIvPgo8dGV4dCB4PSI3NSIgeT0iNDQ3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7qs7XthrUg7KCc7ZKI7Y+tIDEsMDAyPC90ZXh0Pgo8cmVjdCB4PSIzNDAiIHk9IjQwNSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjY4IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9IjM0NiIgeT0iNDQ4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iNzAwIj4rMTwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI0MDUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNjgiIGZpbGw9IiNiZDc0MWQiLz4KPHRleHQgeD0iNDI2IiB5PSI0NDgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPiszPC90ZXh0Pgo8cmVjdCB4PSI1MDAiIHk9IjQwNSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjY4IiBmaWxsPSIjMTY4MjhiIi8+Cjx0ZXh0IHg9IjUyNiIgeT0iNDQ4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iNzAwIj4rMjwvdGV4dD4KPHRleHQgeD0iOTQ2IiB5PSI0NDgiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTE2IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sm5DsnpDsnqwg66qp7ZGcPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNTMxIiB3aWR0aD0iMzA1IiBoZWlnaHQ9IjY4IiBmaWxsPSIjZTVlY2YxIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI1NzMiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuqzte2GtSDsoJztkojtj60gMSwwMDI8L3RleHQ+CjxyZWN0IHg9IjM0MCIgeT0iNTMxIiB3aWR0aD0iNDAiIGhlaWdodD0iNjgiIGZpbGw9IiMxNjgyOGIiLz4KPHRleHQgeD0iMzQ2IiB5PSI1NzQiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPisxPC90ZXh0Pgo8cmVjdCB4PSIzODAiIHk9IjUzMSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2OCIgZmlsbD0iI2JkNzQxZCIvPgo8dGV4dCB4PSI0MjYiIHk9IjU3NCIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2ZmZiIgZm9udC13ZWlnaHQ9IjcwMCI+KzM8L3RleHQ+CjxyZWN0IHg9IjUwMCIgeT0iNTMxIiB3aWR0aD0iODAiIGhlaWdodD0iNjgiIGZpbGw9IiMxNjgyOGIiLz4KPHRleHQgeD0iNTI2IiB5PSI1NzQiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiNmZmYiIGZvbnQtd2VpZ2h0PSI3MDAiPisyPC90ZXh0Pgo8cmVjdCB4PSI1ODAiIHk9IjUzMSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2OCIgZmlsbD0iIzE2ODI4YiIvPgo8dGV4dCB4PSI2MjYiIHk9IjU3NCIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2ZmZiIgZm9udC13ZWlnaHQ9IjcwMCI+KzM8L3RleHQ+CjxyZWN0IHg9IjcwMCIgeT0iNTMxIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjY4IiBmaWxsPSIjYmQ3NDFkIi8+Cjx0ZXh0IHg9Ijc4NiIgeT0iNTc0IiBmb250LXNpemU9IjIyIiBmaWxsPSIjZmZmIiBmb250LXdlaWdodD0iNzAwIj4rNTwvdGV4dD4KPHRleHQgeD0iOTQ2IiB5PSI1NzQiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDE2PC90ZXh0Pgo8cGF0aCBkPSJNMzQwIDEyNkwzNDAgNjI2IiBzdHJva2U9IiM1MTY1NzkiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI2NzkiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuy2leyVve2VnCDqs7XthrXtj608L3RleHQ+CjxwYXRoIGQ9Ik0zNDAgNjQ0TDM0MCA2NTQiIHN0cm9rZT0iI2I3YzhkNSIgc3Ryb2tlLXdpZHRoPSIyIiAvPgo8dGV4dCB4PSIzMzAiIHk9IjY4NCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzUxNjU3OSIgZm9udC13ZWlnaHQ9IjQwMCI+MDwvdGV4dD4KPHBhdGggZD0iTTUwMCA2NDRMNTAwIDY1NCIgc3Ryb2tlPSIjYjdjOGQ1IiBzdHJva2Utd2lkdGg9IjIiIC8+Cjx0ZXh0IHg9IjQ5MCIgeT0iNjg0IiBmb250LXNpemU9IjIxIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj40PC90ZXh0Pgo8cGF0aCBkPSJNNTgwIDY0NEw1ODAgNjU0IiBzdHJva2U9IiNiN2M4ZDUiIHN0cm9rZS13aWR0aD0iMiIgLz4KPHRleHQgeD0iNTcwIiB5PSI2ODQiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPjY8L3RleHQ+CjxwYXRoIGQ9Ik05MDAgNjQ0TDkwMCA2NTQiIHN0cm9rZT0iI2I3YzhkNSIgc3Ryb2tlLXdpZHRoPSIyIiAvPgo8dGV4dCB4PSI4OTAiIHk9IjY4NCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzUxNjU3OSIgZm9udC13ZWlnaHQ9IjQwMCI+MTQ8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3MzgiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuygnO2SiO2PreyXkCDrjZTtlbTsp4Qg7Y+tOiDrj4TquIggKzQgLyDslZXsl7AgKzYgLyDsm5DsnpDsnqwgKzE0PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzgxIiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7tj63snYQg67mE6rWQ7ZWY64qUIOuPhOyLneyeheuLiOuLpC4g7KKM7JqwIOyXrOycoCDrsLDrtoTsnbTrgpgg7Iuk7KCcIOygiOuLqCDsnITsuZjrpbwg64KY7YOA64K07KeAIOyViuyKteuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPgo=" alt="입문 그림 C. 같은 제품폭 1,002를 기준으로 도금폭은 4, 압연폭은 6, 원자재폭은 14만큼 더 필요하다" />
+<figcaption aria-hidden="true">입문 그림 C. 같은 제품폭 1,002를 기준으로
+도금폭은 4, 압연폭은 6, 원자재폭은 14만큼 더 필요하다</figcaption>
+</figure>
+<p>회색은 모든 단계에 공통인 제품폭, 오른쪽 색 부분은 추가로 필요한
+폭입니다. 공통폭은 축약했으며 <strong>추가 폭만 동일 축척</strong>으로
+그렸습니다. 따라서 좁은 여유가 제품 전체에서 차지하는 실제 비율로 읽지
+않습니다.</p>
+<p>읽는 순서는 세 번의 덧셈입니다.</p>
+<ol type="1">
+<li><strong>제품에서 도금 쪽으로:</strong> 1,002에 정전수축 1과 정전마진
+3을 더해 <strong>도금 목표폭 1,006</strong>을 준비합니다.</li>
+<li><strong>도금에서 압연 쪽으로:</strong> 1,006에 도금수축 2를 더해
+<strong>압연 목표폭 1,008</strong>을 준비합니다.</li>
+<li><strong>압연에서 열연 원자재 쪽으로:</strong> 1,008에 압연수축 3과
+원자재마진 5를 더해 <strong>원자재 목표폭 1,016</strong>을
+정합니다.</li>
+</ol>
+<blockquote>
+<p><strong>제품목표폭 1,002 + 수축 보완(1+2+3) + 마진(3+5) = 원자재
+목표폭 1,016</strong></p>
+</blockquote>
+<p>이 식을 모든 제품의 공통식으로 쓰지는 않습니다. <strong>지금 선택한
+일반 열연 GI 사례</strong>에서는 이렇게 펼칠 수 있다는 뜻입니다. 구매
+소재·Edge·대체공정·Slit 조건이 달라지면 뒤의 그림처럼 경로가 바뀝니다.
+[근거 S2: 1255~1288행, S3: 641~644행]</p>
+<h2 id="section-05">다. ‘수축’과 ‘마진’을 양쪽에 두 번 더하지
+않는다</h2>
+<p>수축량은 뒤 공정에 필요한 폭을 확보하기 위해 보완하는 값이고, 마진은
+별도의 업무기준이 지정하는 추가 폭입니다. 둘 다 폭을 늘리는 항으로
+쓰이지만 <strong>조회하는 기준과 의미가 다릅니다.</strong></p>
+<figure>
+<img role="img" aria-label="입문 그림 D. 필요한 압연폭 1,008에 수축 보완 3과 원자재마진 5를 각각 한 번 더한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcxMCIgdmlld0JveD0iMCAwIDExMDAgNzEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7IiY7LaV65+J6rO8IOuniOynhOydmCDssKjsnbQ8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj7siJjstpXrs7TsmYQz6rO8IOybkOyekOyerOuniOynhDXripQg67OE6rCcIOq4sOykgOqwki4g7JWV7Jew7Y+tMTAwOOyXkCDqsIHqsIEg7ZWcIOuyiCDrjZTtlbQxMDE2LiDsoozsmrAg6rCB6rCBIOqwgOyCsO2VmOuKlCDtlbTshJ3snYAg7ZWY7KeAIOyViuuKlOuLpC48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNzEwIiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIzMSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7IiY7LaV65+J6rO8IOuniOynhOydgCDrkZgg64ukIOuNlO2VmOyngOunjCDrnLvsnbQg64uk66aF64uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuq3uOumvOydgCDqsJzrhZAg7ISk66qF7Jqp7J6F64uI64ukLiDssqDtjJAg64uo66m0wrfsoIjri6gg7JyE7LmYwrfsoozsmrAg67aE67Cw66W8IOucu+2VmOyngCDslYrsirXri4jri6QuPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTMwIiB3aWR0aD0iNDk1IiBoZWlnaHQ9IjI1MCIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1NSIgeT0iMTY3IiBmb250LXNpemU9IjI2IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7siJjstpXrn4kgPSDspITslrTrk6Qg7Y+t7J2EIOuztOyZhDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMjA1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7slZXsl7Ag65Kk7JeQIO2PrSAxLDAwOOydtCDtlYTsmpTtlZjqs6A8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjIzNiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7Y+t7IiY7LaVIOq4sOykgOydtCAz7J20652866m0LDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMjY3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7slZ7sqr3sl5DripQgMSwwMDggKyAz7J2EIOykgOu5hO2VqeuLiOuLpC48L3RleHQ+CjxyZWN0IHg9IjU3MCIgeT0iMTMwIiB3aWR0aD0iNDk1IiBoZWlnaHQ9IjI1MCIgcng9IjEyIiBmaWxsPSIjZmZmNGU3IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1OTAiIHk9IjE2NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+66eI7KeEID0g6riw7KSA7J20IOyalOq1rO2VmOuKlCDstpTqsIAg7Y+tPC90ZXh0Pjx0ZXh0IHg9IjU5MCIgeT0iMjA1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7qsJnsnYAg7JuQ7J6Q7J6s7JeQIOuniOynhCDquLDspIDsnbQgNeydtOuptCw8L3RleHQ+PHRleHQgeD0iNTkwIiB5PSIyMzYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyImOy2leydhCDrs7TsmYTtlZwg7Y+t7JeQIDXrpbwg642U7ZWp64uI64ukLjwvdGV4dD48dGV4dCB4PSI1OTAiIHk9IjI2NyIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+66eI7KeE7J2YIO2BrOq4sOuKlCDquLDspIAg7KGw7ZqMIOqysOqzvOyeheuLiOuLpC48L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI0MzIiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjEzMSIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTkiIHk9IjQ3OSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7ZWE7JqU7ZWcIOyVleyXsO2PrTwvdGV4dD4KPHRleHQgeD0iMzUzIiB5PSI0NzkiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNjgyOGIiIGZvbnQtd2VpZ2h0PSI3MDAiPuyImOy2lSDrs7TsmYQ8L3RleHQ+Cjx0ZXh0IHg9IjYyOCIgeT0iNDc5IiBmb250LXNpemU9IjI0IiBmaWxsPSIjYmQ3NDFkIiBmb250LXdlaWdodD0iNzAwIj7sm5DsnpDsnqwg66eI7KeEPC90ZXh0Pgo8dGV4dCB4PSI4ODIiIHk9IjQ3OSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7JuQ7J6Q7J6s7Y+tPC90ZXh0Pgo8dGV4dCB4PSI1OSIgeT0iNTI5IiBmb250LXNpemU9IjMzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj4xLDAwODwvdGV4dD4KPHRleHQgeD0iMjgzIiB5PSI1MjkiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPis8L3RleHQ+Cjx0ZXh0IHg9IjQxMCIgeT0iNTI5IiBmb250LXNpemU9IjMzIiBmaWxsPSIjMTY4MjhiIiBmb250LXdlaWdodD0iNzAwIj4zPC90ZXh0Pgo8dGV4dCB4PSI1NTAiIHk9IjUyOSIgZm9udC1zaXplPSIzMCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+KzwvdGV4dD4KPHRleHQgeD0iNjkwIiB5PSI1MjkiIGZvbnQtc2l6ZT0iMzMiIGZpbGw9IiNiZDc0MWQiIGZvbnQtd2VpZ2h0PSI3MDAiPjU8L3RleHQ+Cjx0ZXh0IHg9IjgxOSIgeT0iNTI5IiBmb250LXNpemU9IjMwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj49PC90ZXh0Pgo8dGV4dCB4PSI4ODMiIHk9IjUyOSIgZm9udC1zaXplPSIzMyIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMTY8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2MjEiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuq4sOykgOqwkiAz6rO8IDXripQg6rCBIOyCsOyLneyXkCDtlZwg67KI7JSpIOuNlO2VqeuLiOuLpC4g7J6E7J2Y66GcIMOXMuulvCDtlZjsp4Ag7JWK7Iq164uI64ukLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY2OSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7Iuk7KCcIOy9lOuTnOqwgCDrkZAg67Cw66W8IO2VmOuKlCDqsr3smrDripQg7J6s64uo7ISgIFnCt1NsaXQgMuyhsCDqsJnsnYAg66qF7Iuc65CcIOuzhOuPhCDrtoTquLDsnoXri4jri6QuPC90ZXh0PjwvZz48L3N2Zz4K" alt="입문 그림 D. 필요한 압연폭 1,008에 수축 보완 3과 원자재마진 5를 각각 한 번 더한다" />
+<figcaption aria-hidden="true">입문 그림 D. 필요한 압연폭 1,008에 수축
+보완 3과 원자재마진 5를 각각 한 번 더한다</figcaption>
+</figure>
+<p>코드가 폭수축 3을 더한다고 해서 ‘왼쪽 3 + 오른쪽 3’으로 6을 더하면 안
+됩니다. <strong>산식에는 조회한 값이 한 번씩 들어갑니다.</strong> 좌우에
+얼마를 배분하는지는 이 폭설계 산식만으로 설명할 수 없습니다. 또한 마진
+전부가 특정 공정에서 실제로 잘려 나간 실적이라는 뜻도 아닙니다. [근거
+S3: 413~479, 641~644행]</p>
+<h2 id="section-06">라. 구매 소재를 바꾸면 어느 폭에서 계산을
+마칠까?</h2>
+<p>열연을 사는 경우와 이미 압연·도금된 소재를 사는 경우는 필요한
+원자재의 단계가 다릅니다. 그래서 같은 제품을 만들더라도 마지막에 사용할
+기준폭이 달라집니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 E. 제품 1,002에서 출발하되, 열연은 압연폭에 수축·마진을 더하고 구매 도금재는 도금폭에서 차감한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijk1OCIgdmlld0JveD0iMCAwIDExMDAgOTU4IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+6rWs66ekIOuLqOqzhOuzhCDsoJztkojtj63sl5DshJwg7JuQ7J6Q7J6s7Y+tIOqysOyglTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuygnO2SiDEwMDLsl5DshJwg64+E6riIMTAwNiDslZXsl7AxMDA47J2EIOyWu+qzoCDsl7Tsl7DsnYAxMDE2IOq1rOunpOuPhOq4iOywqOyEoOydgDEwMDUg7KCB7KCVRkjripQxMDA1IOywqOyEoEZI64qUMTAwOC48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iOTU4IiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIzMCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7Ja064qQIOuLqOqzhOydmCDshozsnqzrpbwg7IKs64qQ64OQ6rCAIOuniOyngOuniSDsgrDsi53snYQg67CU6r+J64uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuqwmeydgCDsoJztkojrqqntkZwgMSwwMDLrpbwg7IKs7Jqp7ZWY64qUIOyEpOuqheyaqSBHSSDruYTqtZAgwrcg64yA7LK06rO17KCVIOyXhuydjDwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjEyMyIgd2lkdGg9IjEwMzAiIGhlaWdodD0iMTA1IiByeD0iMTIiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSIxNjAiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuqzte2GteycvOuhnCDsnb3snYQg6rO17KCVIOuqqe2RnDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMTk4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJztkoggMSwwMDIg4oaSIOygleyghOyImOy2lSAxICsg66eI7KeEIDMg4oaSIOuPhOq4iCAxLDAwNiDihpIg64+E6riI7IiY7LaVIDIg4oaSIOyVleyXsCAxLDAwODwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjI2NSIgd2lkdGg9IjEwMzAiIGhlaWdodD0iMTE4IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSI1OCIgeT0iMzAyIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sl7Tsl7DsnYQg7IKs7IScIOyVleyXsMK364+E6riIPC90ZXh0Pgo8dGV4dCB4PSI1OCIgeT0iMzQ4IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7slZXsl7Dtj60gMSwwMDggKyDsiJjstpUgMyArIOuniOynhCA1PC90ZXh0Pgo8dGV4dCB4PSI4ODciIHk9IjMzOSIgZm9udC1zaXplPSIzNCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMTY8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI0MDgiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjExOCIgcng9IjEyIiBmaWxsPSIjZmZmNGU3IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjQ0NSIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7LCo7ISgIOq1rOunpCDrj4TquIjsnqwgRyo8L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI0OTEiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuuPhOq4iO2PrSAxLDAwNiDiiJIg7L2U65OcIOywqOqwkCAxPC90ZXh0Pgo8dGV4dCB4PSI4ODciIHk9IjQ4MiIgZm9udC1zaXplPSIzNCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDU8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI1NTEiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjExOCIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjU4OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCB7KCVIOq1rOunpCBGL0ggRCo8L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI2MzQiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyVleyXsO2PrSAxLDAwOCDiiJIg7KCB7KCVIOywqOqwkCAzPC90ZXh0Pgo8dGV4dCB4PSI4ODciIHk9IjYyNSIgZm9udC1zaXplPSIzNCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDU8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI2OTQiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjExOCIgcng9IjEyIiBmaWxsPSIjZmZmNGU3IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjczMSIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7LCo7ISgIOq1rOunpCBGL0ggRCo8L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI3NzciIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyVleyXsO2PrSAxLDAwOCDqt7jrjIDroZwg7IKs7JqpPC90ZXh0Pgo8dGV4dCB4PSI4ODciIHk9Ijc2OCIgZm9udC1zaXplPSIzNCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NzciIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuywqOyEoCDqtazrp6TrsJjsoJztkojsnZgg6rO17KCV7Y+tIOuzteyCrOqwgCDsoJXsg4Eg7KCB7Jqp65CY6rOgLCBGL0gg65GQ6ruY6riw7KSAIOyhsO2ajOqwgCDshLHqs7XtlZwg6rCA7KCV7J6F64uI64ukLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkxOSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+4oiSMSAvIOKIkjPsnYAg7L2U65Oc7J2YIO2PrSDsp4DsoJUg6rec7LmZ7J6F64uI64ukLiDrrLzrpqzsoIEg7IiY7LaV7J2YIOyXreyCsOydtOudvOqzoCDtlbTshJ3tlZjsp4Ag7JWK7Iq164uI64ukLjwvdGV4dD48L2c+PC9zdmc+Cg==" alt="입문 그림 E. 제품 1,002에서 출발하되, 열연은 압연폭에 수축·마진을 더하고 구매 도금재는 도금폭에서 차감한다" />
+<figcaption aria-hidden="true">입문 그림 E. 제품 1,002에서 출발하되,
+열연은 압연폭에 수축·마진을 더하고 구매 도금재는 도금폭에서
+차감한다</figcaption>
+</figure>
+<p><strong>구매 도금재 차선 1,005가 열연 적정 1,016보다 좁은
+이유</strong>는 ‘차선이라 폭을 줄이는 것’이 아닙니다. 열연은 압연 이전에
+필요한 폭을 계산하고, 구매 도금재는 이미 도금 단계에 있는 소재의 폭을
+지정하기 때문입니다. 다만 <strong>−1이나 −3이라는 숫자 자체는 현행
+코드의 지정 규칙</strong>이며, 물리적으로 그만큼 수축하거나 늘어난다는
+해석은 하지 않습니다.</p>
+<p>이 그림에서 구매반제품 차선은 적정의 공정폭을 정상적으로 복사했다고
+가정합니다. F/H(Full Hard, 압연 후 경질 소재)는 두께기준 조회가 성공한
+경우입니다. <strong>적정 입력 원자재가 <code>D*</code>이면 압연
+최대폭−3, 차선 F/H는 그 최대폭 그대로</strong>입니다. 구매 CR(냉연)
+<code>C*</code>은 별도로 TM 주공정 목표폭−3을 사용하며, 원문 6.3절에
+반올림까지 정리했습니다. [근거 S1~S5, S10]</p>
+<h3 id="section-07">같은 제품폭으로 경로를 직접 바꿔 보기</h3>
+<p>아래에서 소재 경로를 바꾸면 제품목표폭에서 원자재폭까지의 단계와
+차이를 바로 비교할 수 있습니다. <strong>모든 선택지는 기준값을 고정한
+설명용 예제</strong>이며, 운영 주문의 업무기준을 조회하는 계산기는
+아닙니다. JavaScript가 꺼져 있거나 Markdown으로 읽는 경우에는 입문 그림
+E와 본문 7장의 표를 이용하세요.</p>
+<section id="width-explorer" aria-label="제품폭에서 원자재폭까지 경로 비교">
+  <div class="explorer-top">
+    <label for="width-scenario">비교할 소재 경로
+      <select id="width-scenario">
+        <option value="hot">적정 열연 · GI · Edge S</option>
+        <option value="hot-alt">차선 열연 · 다른 수축·마진 기준</option>
+        <option value="gal">차선 구매 GI · 공정폭 복사 가정</option>
+        <option value="fh-main">적정 F/H · 입력 D* · 기준 성공</option>
+        <option value="fh-alt">차선 F/H · 기준 성공</option>
+        <option value="edge">일반 열연 GI · Edge C/N 최종 분기</option>
+      </select>
+    </label>
+    <p>출발 제품목표폭 <strong>1,002 mm</strong><br><small>제품폭여유는 이미 포함되어 있습니다.</small></p>
+  </div>
+  <ol class="explorer-steps" id="width-steps">
+    <li><span>제품목표폭</span><strong>1,002</strong><small>여기에서 출발</small></li>
+    <li><span>도금 목표폭</span><strong>1,006</strong><small>+ 정전수축 1 + 마진 3</small></li>
+    <li><span>압연 목표폭</span><strong>1,008</strong><small>+ 도금수축 2</small></li>
+    <li><span>원자재 목표폭</span><strong>1,016</strong><small>+ 압연수축 3 + 마진 5</small></li>
+  </ol>
+  <p class="explorer-result" id="width-result" aria-live="polite">원자재 <strong>1,016 mm</strong> · 제품목표폭 대비 <strong>+14 mm</strong></p>
+  <p id="width-explanation">제품 1,002 → 도금 1,006 → 압연 1,008 → 열연 원자재 1,016. 수축·마진을 거슬러 더하는 기본 예제입니다.</p>
+  <p class="explorer-note">설명용 고정값 · 대체공정 없음 · 운영 업무기준 조회 없음. Edge C/N 선택은 앞 단계 폭을 고정한 최종 산식 비교입니다.</p>
+</section>
+
+<h2 id="section-08">마. Edge 조건이 C/N이면 마지막 덧셈이 달라진다</h2>
+<p>Edge는 주문의 가장자리 처리 구분입니다. S=Slit, M=Mill, C=Coil Edge,
+N=No Slit입니다. <strong>아래는 중간재 미적용 일반 열연 경로에서 마지막
+분기만 비교</strong>한 것입니다. 구매 CR·도금재·F/H의 별도 산식에 이
+표를 겹쳐 적용하지 않습니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 F. 앞 단계 폭을 고정했을 때 Edge에 따라 1,016·1,008·1,002 중 다른 산식을 사용한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijk2MCIgdmlld0JveD0iMCAwIDExMDAgOTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RWRnZeuzhCDstZzsooUg7Y+t6rO8IOyhsO2ajOyaqTIw7J2YIOq1rOuzhDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuykkeqwhOyerOuvuOyggeyaqSBQMTAwMiBNMTAwOCDqs6DsoJXsi5wgUy9N7J2AMTAxNiBD64qUMTAwOCBO64+E6riI7J2AMTAwOCBO6re47Jm4MTAwMi4gKzIw7J2A65GQ6ruY7KGw7ZqM7KGw6rG0LjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzAwN2Y4NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI5NjAiIGZpbGw9IiNmZmYiLz48ZyBmb250LWZhbWlseT0iQXBwbGUgU0QgR290aGljIE5lbywgTm90byBTYW5zIENKSyBLUiwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjMwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sl7Tsl7Ag7J2867CYIOqyveuhnOuKlCDrp4jsp4Drp4nsl5AgRWRnZSDsobDqsbTsnYQg7ZmV7J247ZWp64uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuyVniDri6jqs4Qg6rCS7J2EIOqzoOygle2VnCDsgrDsi50g67mE6rWQOiDsoJztkoggUD0xLDAwMiAvIOy1nOuMgCBQTFRDTSBNPTEsMDA4PC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTIyIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NyIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1NSIgeT0iMTU5IiBmb250LXNpemU9IjI2IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7spJHqsITsnqzqsIAg7KCB7Jqp65CY7KeAIOyViuydgCDsnbzrsJgg7Je07JewIOqyveuhnDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMTk3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7slYTrnpjripQgQy9OL1MvTeydmCDstZzsooUg67aE6riwIOu5hOq1kOyeheuLiOuLpC4g7Iuk7KCcIEVkZ2Ug67OA6rK9IOyLnCDslZ4g64uo6rOE64+EIOuLpOyLnCDsobDtmoztlanri4jri6QuPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMjU2IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDMiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU4IiB5PSIyOTUiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPlMgLyBNPC90ZXh0Pgo8dGV4dCB4PSI1OCIgeT0iMzM0IiBmb250LXNpemU9IjIxIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj5TbGl0IC8gTWlsbDwvdGV4dD4KPHRleHQgeD0iNDE1IiB5PSIzMTUiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPk0gKyDsiJjstpUzICsg66eI7KeENTwvdGV4dD4KPHRleHQgeD0iODgwIiB5PSIzMTciIGZvbnQtc2l6ZT0iMzMiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDE2PC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMzc5IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDMiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU4IiB5PSI0MTgiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPkM8L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI0NTciIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPkNvaWwgRWRnZTwvdGV4dD4KPHRleHQgeD0iNDE1IiB5PSI0MzgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPk0g6re464yA66GcIOuwmOyYrOumvDwvdGV4dD4KPHRleHQgeD0iODgwIiB5PSI0NDAiIGZvbnQtc2l6ZT0iMzMiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA4PC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNTAyIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDMiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU4IiB5PSI1NDEiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPk4gwrcg64+E6riI6rOEIO2SiOuqhTwvdGV4dD4KPHRleHQgeD0iNTgiIHk9IjU4MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzUxNjU3OSIgZm9udC13ZWlnaHQ9IjQwMCI+Tm8gU2xpdCDCtyBHSS9FR0kg65OxPC90ZXh0Pgo8dGV4dCB4PSI0MTUiIHk9IjU2MSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+TSDqt7jrjIDroZwg67CY7Jis66a8PC90ZXh0Pgo8dGV4dCB4PSI4ODAiIHk9IjU2MyIgZm9udC1zaXplPSIzMyIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDg8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI2MjUiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjEwMyIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjY2NCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+TiDCtyDqt7gg7Jm4IO2SiOuqhTwvdGV4dD4KPHRleHQgeD0iNTgiIHk9IjcwMyIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzUxNjU3OSIgZm9udC13ZWlnaHQ9IjQwMCI+Tm8gU2xpdCDCtyBDUiDrk7E8L3RleHQ+Cjx0ZXh0IHg9IjQxNSIgeT0iNjg0IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJztkojrqqntkZwgUCDrsJjsmKzrprw8L3RleHQ+Cjx0ZXh0IHg9Ijg4MCIgeT0iNjg2IiBmb250LXNpemU9IjMzIiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwMjwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9Ijc5MCIgd2lkdGg9IjEwMzAiIGhlaWdodD0iMTM2IiByeD0iMTIiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSI4MjciIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPkMvTuyXkOyEnCDrk7HsnqXtlZjripQgKzIw7J2AIOKAnOuRkOq7mCDquLDspIDsnYQg7LC+64qUIOyhsO2ajO2PreKAnTwvdGV4dD48dGV4dCB4PSI1NSIgeT0iODY1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7sobDtmoztj60gMSwwMDggKyAyMCA9IDEsMDI4ICDihpIgIOuRkOq7mOq4sOykgCDqsoDsg4nsl5Ag7IKs7JqpPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI4OTYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuy1nOyihSDsm5DsnpDsnqztj60g7Lm47JeQIDEsMDI47J2EIOuEo+uKlCDsgrDsi53snbQg7JWE64uZ64uI64ukLjwvdGV4dD48L2c+PC9zdmc+Cg==" alt="입문 그림 F. 앞 단계 폭을 고정했을 때 Edge에 따라 1,016·1,008·1,002 중 다른 산식을 사용한다" />
+<figcaption aria-hidden="true">입문 그림 F. 앞 단계 폭을 고정했을 때
+Edge에 따라 1,016·1,008·1,002 중 다른 산식을 사용한다</figcaption>
+</figure>
+<p>GI 같은 도금계 제품에서 C/N이면 마지막 단계의 수축·마진을 더하지 않고
+최대 PLTCM폭을 반올림합니다. N이라도 CR 등 다른 품명은 제품목표폭을
+사용하는 분기가 있습니다. <strong>실제 Edge를 바꾸어 재설계하면 앞
+단계의 마진과 공정폭도 바뀔 수 있으므로</strong>, 이 그림을 실제 주문의
+Edge 변경 결과로 그대로 사용하지는 않습니다.</p>
+<p>또한 <strong>‘+20mm’는 원자재두께 기준을 찾는
+조회조건</strong>입니다. 폭이 1,008일 때 1,028로 두께기준을 찾더라도,
+원자재폭에 20을 직접 더하여 저장하는 공식은 아닙니다. [근거 S3: 324~337,
+501~644행]</p>
+<h2 id="section-09">바. 대체공정이 여러 개면 폭을 더하지 않고 가장 큰
+폭을 고른다</h2>
+<p>앞의 설명은 대체공정이 없었습니다. 대체공정이 있으면 같은 제품폭에서
+출발하더라도 공정별 수축기준에 따라 필요한 압연폭이 달라질 수
+있습니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 G. 제품폭에서 갈라진 주공정·대체공정의 최대 PLTCM폭 1,012를 택한 뒤 수축·마진을 다시 조회한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijg0MiIgdmlld0JveD0iMCAwIDExMDAgODQyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+64yA7LK06rO17KCVIOy1nOuMgO2PrSDshKDtg508L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj7rj4TquIjrqqntkZwxMDA27JeQ7IScIOyjvDEwMDgg64yA7LK0MTAxMiAxMDEwIOqzhOyCsC4g7LWc64yAMTAxMuuhnCDsiJjstpU0IOuniOynhDUg7J6s7KGw7ZqM7ZWY7JesMTAyMS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iODQyIiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyOSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+64yA7LK06rO17KCV7J20IOyeiOycvOuptCwg7JuQ7J6Q7J6sIO2VnCDtj63snLzroZwg7Ja064qQIOqyveuhnOulvCDspIDruYTtlaDquYw/PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPu2VnCDsoJzsobDqtazrtoQg7JWI7JeQ7IScIOu5hOq1kO2VqeuLiOuLpC4g7KCc7ZKI66qp7ZGcIDEsMDAyIC8gQ0dMIOuqqe2RnCAxLDAwNiDqs6DsoJUg6rCA7KCVLjwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjEzMCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSIxOTYiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjE2NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KO86rO17KCVPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIyMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuuPhOq4iO2PrSAxLDAwNjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMjM2IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7rj4TquIjsiJjstpUgKzI8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjI2NyIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+UExUQ03tj60gMSwwMDg8L3RleHQ+CjxyZWN0IHg9IjM4NSIgeT0iMTMwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjE5NiIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI0MDUiIHk9IjE2NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+64yA7LK06rO17KCVIDE8L3RleHQ+PHRleHQgeD0iNDA1IiB5PSIyMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuuPhOq4iO2PrSAxLDAwNjwvdGV4dD48dGV4dCB4PSI0MDUiIHk9IjIzNiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+64+E6riI7IiY7LaVICs2PC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMjY3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5QTFRDTe2PrSAxLDAxMjwvdGV4dD4KPHJlY3QgeD0iNzM1IiB5PSIxMzAiIHdpZHRoPSIzMzAiIGhlaWdodD0iMTk2IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9Ijc1NSIgeT0iMTY3IiBmb250LXNpemU9IjI2IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7rjIDssrTqs7XsoJUgMjwvdGV4dD48dGV4dCB4PSI3NTUiIHk9IjIwNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+64+E6riI7Y+tIDEsMDA2PC90ZXh0Pjx0ZXh0IHg9Ijc1NSIgeT0iMjM2IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7rj4TquIjsiJjstpUgKzQ8L3RleHQ+PHRleHQgeD0iNzU1IiB5PSIyNjciIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPlBMVENN7Y+tIDEsMDEwPC90ZXh0Pgo8cGF0aCBkPSJNMjAwIDMzMFYzNzdINTM1VjQxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik01NTAgMzMwVjQxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik05MDAgMzMwVjM3N0g1NjVWNDEyIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzUiIHk9IjQzMiIgd2lkdGg9IjEwMzAiIGhlaWdodD0iMTEyIiByeD0iMTIiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSI0NjkiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuy1nOuMgCBQTFRDTe2PrSA9IG1heCgxLDAwOCwgMSwwMTIsIDEsMDEwKSA9IDEsMDEyPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI1MDciIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyEoO2Dne2VmOuKlCDqsoPsnYAg7KCA7J6lIFBMVENN7Y+t7J6F64uI64ukLiDsoIHsoJXCt+ywqOyEoOydmCDtj63snYQg7ZWc642wIOuqqOycvOyngCDslYrsirXri4jri6QuPC90ZXh0Pgo8cGF0aCBkPSJNNTUwIDU0OFY1ODkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIzNSIgeT0iNjA4IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMzkiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjY0NSIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7ISg7YOd7Y+tIDEsMDEy7JeQ7IScIOybkOyekOyerCDquLDspIDsnYQg64uk7IucIOyhsO2ajDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNjgzIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5QTFRDTeyImOy2lSA0ICsg7JuQ7J6Q7J6s66eI7KeEIDUg6rCA7KCVPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI3MTQiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuybkOyekOyerO2PrSA9IDEsMDEyICsgNCArIDUgPSAxLDAyMTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjgwMCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDggKyAxLDAxMiArIDEsMDEw7Jy866GcIO2VqeyCsO2VmOyngCDslYrsirXri4jri6QuIOqwgOyepSDrhJPsnYAgUExUQ00g66qp7ZGc66W8IOyEoO2Dne2VqeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPgo=" alt="입문 그림 G. 제품폭에서 갈라진 주공정·대체공정의 최대 PLTCM폭 1,012를 택한 뒤 수축·마진을 다시 조회한다" />
+<figcaption aria-hidden="true">입문 그림 G. 제품폭에서 갈라진
+주공정·대체공정의 최대 PLTCM폭 1,012를 택한 뒤 수축·마진을 다시
+조회한다</figcaption>
+</figure>
+<p>원자재는 1,008·1,012·1,010을 합산한 폭이 아닙니다. <strong>그 행의
+저장 PLTCM폭 중 최대인 1,012를 골라</strong>, 그 폭에 맞는 수축·마진
+기준을 다시 조회합니다. 예제에서 수축 4, 마진 5가 조회되면 최종 폭은
+<strong>1,021</strong>입니다.</p>
+<p>이 비교는 적정 행 안에서 한 번, 차선 행 안에서 다시 한 번
+이루어집니다. <strong>원자재 후보인 적정·차선과 설비 경로인
+주·대체공정은 다른 축</strong>입니다. PL/ST 목표폭의 최대값 제한도 다른
+계산이며, 본문 5장에서 구별합니다. [근거 S2, S3: 256~283, 413~449행]</p>
+<h2 id="section-10">사. 제품폭이 한 조 기준이면 먼저 두 조 폭으로
+펼친다</h2>
+<p>재단선 Y·Slit 2조에서는 제품목표폭 602가 한 조 기준으로 계산되는
+특례가 있습니다. 이때 원자재는 두 조를 준비하는 폭이므로 ‘602에 조금
+더한 값’을 예상하면 크게 어긋납니다.</p>
+<figure>
+<img role="img" aria-label="입문 그림 H. 한 조 제품목표폭 602에서 두 조 1,206으로 펼친 뒤 공정 여유를 더해 원자재 1,220을 정한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijk3MiIgdmlld0JveD0iMCAwIDExMDAgOTcyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7J6s64uo7ISgMuyhsOydmCDsoJztkojtj63sl5DshJwg7JuQ7J6Q7J6s7Y+t6rmM7KeAPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+7KCc7ZKI66qp7ZGcNjAy7JmAQ0NM7IiY7LaVMeydhCDrkZDsobDroZztjrzss5AxMjA2IOygleyghOyImOy2lTHrp4jsp4Qz7Jy866GcQ0dMMTIxMCBDR0zsiJjstpUy66GcUExUQ00xMjEyIOyImOy2lTPrp4jsp4Q166Gc7JuQ7J6Q7J6sMTIyMC48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iOTcyIiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyOSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7J6s64uo7ISgIDLsobDrnbzrqbQg7ZWcIOyhsOydmCDtj63snYQg65GQIOyhsOuhnCDtjrzsuZjripQg64uo6rOE6rCAIOyeiOyKteuLiOuLpDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4IiBmb250LXNpemU9IjIxIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7shKTrqoXsmqkg64+E6riI7Lm86528IMK3IOyerOuLqOyEoCBZIMK3IFNsaXQgMuyhsCDCtyDsoJXsoIQg7Ya16rO8IMK3IEVkZ2UgUyDCtyDsl7Tsl7Ag7J2867CYPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTI3IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDgiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjE2NCIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KO866y47Y+tIDEsMjAwIC8g7KGw7ZWp7Y+tMSA2MDAgLyDsoJztkojtj63sl6zsnKAgMjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMjAyIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJztkojrqqntkZwgUCA9IDYwMCArIDIgPSA2MDIgIOKGkiAgQ0NMIOuqqe2RnO2PreuPhCA2MDI8L3RleHQ+CjxwYXRoIGQ9Ik01NTAgMjM5VjI3OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9IjM1IiB5PSIyOTgiIHdpZHRoPSI0OTUiIGhlaWdodD0iMTI2IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSIzMzUiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPu2VnCDsobA6IDYwMiArIENDTOyImOy2lSAxPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIzNzMiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPu2VhOyalO2PrSA2MDM8L3RleHQ+CjxyZWN0IHg9IjU3MCIgeT0iMjk4IiB3aWR0aD0iNDk1IiBoZWlnaHQ9IjEyNiIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1OTAiIHk9IjMzNSIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7ZWcIOyhsDogNjAyICsgQ0NM7IiY7LaVIDE8L3RleHQ+PHRleHQgeD0iNTkwIiB5PSIzNzMiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPu2VhOyalO2PrSA2MDM8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NjMiIGZvbnQtc2l6ZT0iMjkiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPuykkeqwhOygleyghCDrqqntkZztj60gPSAoNjAyICsgMSkgw5cgMiA9IDEsMjA2PC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNTAyIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NCIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9IjUzNiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KSR6rCE7KCV7KCEIOKGkiBDR0w8L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI1NzQiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMjA2ICsg7KCV7KCE7IiY7LaVMSArIOuniOynhDM8L3RleHQ+Cjx0ZXh0IHg9Ijg3OCIgeT0iNTY1IiBmb250LXNpemU9IjM0IiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDIxMDwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjYxNiIgd2lkdGg9IjEwMzAiIGhlaWdodD0iOTQiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU4IiB5PSI2NTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPkNHTCDihpIgUExUQ008L3RleHQ+Cjx0ZXh0IHg9IjU4IiB5PSI2ODgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPjEsMjEwICsgQ0dM7IiY7LaVMjwvdGV4dD4KPHRleHQgeD0iODc4IiB5PSI2NzkiIGZvbnQtc2l6ZT0iMzQiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMjEyPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNzMwIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NCIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTgiIHk9Ijc2NCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+UExUQ00g4oaSIOybkOyekOyerDwvdGV4dD4KPHRleHQgeD0iNTgiIHk9IjgwMiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+MSwyMTIgKyBQTFRDTeyImOy2lTMgKyDrp4jsp4Q1PC90ZXh0Pgo8dGV4dCB4PSI4NzgiIHk9Ijc5MyIgZm9udC1zaXplPSIzNCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwyMjA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4OTMiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuygnO2SiOuqqe2RnCA2MDLripQg7J20IOu2hOq4sOyXkOyEnCDtlZwg7KGwIOq4sOykgOyeheuLiOuLpC4g7JuQ7J6Q7J6s64qUIOuRkCDsobDrpbwg7KSA67mE7ZWY64qUIO2PreydtCDrkKnri4jri6QuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTM1IiBmb250LXNpemU9IjIwIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7snIQg7IKw7Iud7J2AIO2YhO2WiSDsnqzri6jshKAgWcK3MuyhsCDtirnroYDsnoXri4jri6QuIOyEnOuhnCDri6Trpbgg65GQIOyhsOydmCDtj63snYQg7J6s67Cw7LmY7ZWY64qUIOy1nOygge2ZlOqwgCDslYTri5nri4jri6QuPC90ZXh0PjwvZz48L3N2Zz4K" alt="입문 그림 H. 한 조 제품목표폭 602에서 두 조 1,206으로 펼친 뒤 공정 여유를 더해 원자재 1,220을 정한다" />
+<figcaption aria-hidden="true">입문 그림 H. 한 조 제품목표폭 602에서 두
+조 1,206으로 펼친 뒤 공정 여유를 더해 원자재 1,220을 정한다</figcaption>
+</figure>
+<p><strong>602 → (602+1)×2=1,206 → 1,210 → 1,212 → 1,220</strong>
+순서입니다. 두 배가 되는 위치는 중간정전 목표폭을 만드는 단계입니다.
+이후의 수축·마진을 모두 무조건 두 배로 만드는 규칙이 아닙니다. 또한 일반
+Slit는 조합폭1~10을 합산하며, 이 재단선 Y·2조 특례와 산식이 다릅니다.
+[근거 S1: 343~395, 512~558행, S2: 1204~1288행, S3: 641~644행]</p>
+<h3 id="section-11">그림을 읽고 나서 실제 주문에 대입할 네 가지</h3>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>먼저 정할 것</th>
+<th>이 질문에 답하면 다음 산식이 정해진다</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>제품폭의 단위</td>
+<td>이미 여유가 포함된 목표폭인가? 한 조 폭인가, 조합폭 합인가?</td>
+</tr>
+<tr>
+<td>구매 소재의 단계</td>
+<td>열연인가, F/H인가, 구매 CR인가, 구매 도금재인가?</td>
+</tr>
+<tr>
+<td>공정 경로</td>
+<td>도금·정전·CCL을 거치는가? 대체공정의 최대 PLTCM폭은 얼마인가?</td>
+</tr>
+<tr>
+<td>마지막 분기</td>
+<td>Edge C/N 특례인가? F/H 적정 −3인가? 소재별 −1/−3과 반올림은
+무엇인가?</td>
+</tr>
+</tbody>
+</table>
+<p>아래 상세 분석에서는 이 네 질문을 실제 필드·업무기준·저장 경로와
+연결합니다. 운영 기준값과 일치하는 최종 숫자를 얻으려면 본문 10장의
+추적표에 주문별 조회 결과를 채워야 합니다.</p>
+<h1 id="section-12">코드와 연결해서 읽는 상세 분석</h1>
+<h2 id="section-13">1. 먼저 ‘폭’이라는 이름의 값을 구별하자</h2>
+<h3 id="section-14">1.1 주문폭, 공정폭, 원자재폭은 서로 다른 값이다</h3>
+<p>설명용 GI 주문폭이 <strong>1,000</strong>이라도 제품목표폭은
+<strong>1,002</strong>, PLTCM 목표폭은 <strong>1,008</strong>, 원자재
+목표폭은 <strong>1,016</strong>이 될 수 있습니다. 아래 그림은
+정전·도금·압연 과정에서 필요한 여유를 거슬러 더하는 예입니다. [근거
+S1~S3]</p>
+<figure>
+<img role="img" aria-label="그림 1. 설명용 GI 주문의 폭설계: 주문폭 1,000에서 원자재 목표폭 1,016까지" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijc5MCIgdmlld0JveD0iMCAwIDExMDAgNzkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KO866y47Y+t7JeQ7IScIOybkOyekOyerO2Preq5jOyngDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuyjvOusuO2PrSAxMDAwLCDsoJztkojtj60gMTAwMiwgQ0dM7Y+tIDEwMDYsIFBMVENN7Y+tIDEwMDgsIOybkOyekOyerO2PrSAxMDE2LiBQTC9TVO2PreydgCDrs4Trj4QgMTAxMS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMwMDdmODYiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjExMDAiIGhlaWdodD0iNzkwIiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9IkFwcGxlIFNEIEdvdGhpYyBOZW8sIE5vdG8gU2FucyBDSksgS1IsIHNhbnMtc2VyaWYiPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIzMSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7JmE7KCc7ZKI7JeQ7IScIOybkOyekOyerCDsqr3snLzroZwg7ZWE7JqU7ZWcIO2PreydhCDqsbDsiqzrn6wg6rOE7IKw7ZWp64uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuyEpOuqheyaqSBHSSDCtyBTbGl0IEVkZ2Ugwrcg7KSR6rCE7J6sIOuvuOyggeyaqSDCtyDrjIDssrTqs7XsoJUg7JeG7J2MIC8g64uo7JyEIG1tPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTE4IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NCIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTciIHk9IjE1NiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KO866y47Y+tPC90ZXh0Pgo8dGV4dCB4PSI0NDAiIHk9IjE3NiIgZm9udC1zaXplPSIzOCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDA8L3RleHQ+Cjx0ZXh0IHg9IjY1MCIgeT0iMTcxIiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7qs6DqsJ0g7KO866y46rCSPC90ZXh0Pgo8cGF0aCBkPSJNNTQwIDIxNVYyMzMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIzNSIgeT0iMjM2IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NCIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTciIHk9IjI3NCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCc7ZKIwrfsoJXsoIQg66qp7ZGc7Y+tPC90ZXh0Pgo8dGV4dCB4PSI0NDAiIHk9IjI5NCIgZm9udC1zaXplPSIzOCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDI8L3RleHQ+Cjx0ZXh0IHg9IjY1MCIgeT0iMjg5IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJztkojtj63sl6zsnKAgKzI8L3RleHQ+CjxwYXRoIGQ9Ik01NDAgMzMzVjM1MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9IjM1IiB5PSIzNTQiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9Ijk0IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSI1NyIgeT0iMzkyIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj5DR0wg66qp7ZGc7Y+tPC90ZXh0Pgo8dGV4dCB4PSI0NDAiIHk9IjQxMiIgZm9udC1zaXplPSIzOCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDY8L3RleHQ+Cjx0ZXh0IHg9IjY1MCIgeT0iNDA3IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJXsoITsiJjstpUgKzEsIOygleyghOuniOynhCArMzwvdGV4dD4KPHBhdGggZD0iTTU0MCA0NTFWNDY5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzUiIHk9IjQ3MiIgd2lkdGg9IjEwMzAiIGhlaWdodD0iOTQiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU3IiB5PSI1MTAiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPlBMVENNIOuqqe2RnO2PrTwvdGV4dD4KPHRleHQgeD0iNDQwIiB5PSI1MzAiIGZvbnQtc2l6ZT0iMzgiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA4PC90ZXh0Pgo8dGV4dCB4PSI2NTAiIHk9IjUyNSIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+Q0dM7IiY7LaVICsyPC90ZXh0Pgo8cGF0aCBkPSJNNTQwIDU2OVY1ODciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIzNSIgeT0iNTkwIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI5NCIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTciIHk9IjYyOCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7JuQ7J6Q7J6sIOuqqe2RnO2PrTwvdGV4dD4KPHRleHQgeD0iNDQwIiB5PSI2NDgiIGZvbnQtc2l6ZT0iMzgiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDE2PC90ZXh0Pgo8dGV4dCB4PSI2NTAiIHk9IjY0MyIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+UExUQ03siJjstpUgKzMsIOybkOyekOyerOuniOynhCArNTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijc1NSIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+UEwvU1Qg66qp7ZGc7Y+t7J2AIOuzhOuPhOuhnCAxLDAxMeyeheuLiOuLpC4g7JuQ7J6Q7J6sIOuqqe2RnO2PrSAxLDAxNuqzvCDqtazrs4Ttlanri4jri6QuPC90ZXh0PjwvZz48L3N2Zz4K" alt="그림 1. 설명용 GI 주문의 폭설계: 주문폭 1,000에서 원자재 목표폭 1,016까지" />
+<figcaption aria-hidden="true">그림 1. 설명용 GI 주문의 폭설계: 주문폭
+1,000에서 원자재 목표폭 1,016까지</figcaption>
+</figure>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>이름</th>
+<th>쉽게 말하면</th>
+<th>코드에서 찾는 이름</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주문폭</td>
+<td>주문서의 원래 폭</td>
+<td><code>ORD_EXC_WTH</code></td>
+</tr>
+<tr>
+<td>기준적용폭</td>
+<td>Slit·재단선 조건으로 바꾼 기준 조회용 폭</td>
+<td>지역변수 <code>ord_exc_wth</code>, <code>cegl_exc_wth</code> 등.
+단계마다 재계산</td>
+</tr>
+<tr>
+<td>제품·정전 목표폭</td>
+<td>제품폭여유를 포함한 제품 쪽 목표</td>
+<td><code>COR_WTH_TRV</code></td>
+</tr>
+<tr>
+<td>CCL / 중간정전 목표폭</td>
+<td>칼라 공정 및 재단선 조건을 반영한 중간 목표</td>
+<td><code>CCL_WTH_TRV</code>, <code>MID_COR_WTH_TRV</code></td>
+</tr>
+<tr>
+<td>CGL / EGL / TM 목표폭</td>
+<td>도금·조질압연 등의 공정 목표</td>
+<td><code>CGL_WTH_TRV</code>, <code>EGL_WTH_TRV</code>,
+<code>TM_WTH_TRV</code></td>
+</tr>
+<tr>
+<td>PLTCM 목표폭</td>
+<td>각 공정 경로에 필요한 PLTCM 폭</td>
+<td><code>PLTCM_WTH_TRV</code>, <code>PLTCM_WTH_SUB_PROC1_TRV</code>,
+<code>PLTCM_WTH_SUB_PROC2_TRV</code></td>
+</tr>
+<tr>
+<td>PL/ST 목표폭</td>
+<td>PLTCM 수축·ST 보정·상한 제한을 거친 별도 설정값</td>
+<td><code>PL_WTH_TRV</code>, <code>PL_WTH_SUB_PROC1_TRV</code>,
+<code>PL_WTH_SUB_PROC2_TRV</code></td>
+</tr>
+<tr>
+<td>원자재 목표폭</td>
+<td>이 제조사양 행에 최종 지정하는 원자재 폭</td>
+<td><code>RMTL_TAR_WTH</code></td>
+</tr>
+</tbody>
+</table>
+<p>여기의 ‘목표폭’은 설계값입니다. 설비가 실제로 측정한 폭을 의미하지
+않습니다. 또한 <code>PL_WTH_TRV</code>와 <code>RMTL_TAR_WTH</code>는
+산식이 달라서 서로 같아야 하는 값이 아닙니다.</p>
+<h3 id="section-15">1.2 적정·차선과 주공정·대체공정은 다른 구분이다</h3>
+<p><strong>적정·차선은 제조사양의 서로 다른 행</strong>입니다.
+<code>QLT_DSN_MNF_TP=1</code>은 적정, <code>2</code>는 차선1,
+<code>3</code>은 차선2입니다. 본문의 두 행 비교 예제는 적정1과
+차선1(제조구분2)을 사용하며, 일반적인 ‘제조구분≠1’ 분기는 차선2에도
+적용됩니다. 저장 단위는 <strong>주문번호 + 주문행 +
+제조구분</strong>입니다. 원자재 선정 로직이 후보 원자재코드를 등록하고,
+폭설계는 그 행의 원자재와 공정 조건을 이용합니다. 폭이 작다는 이유로 이
+단계에서 적정·차선 순위를 다시 정하는 구조는 아닙니다. 후보는 비어 있지
+않은 코드를 순서대로 넣고 인덱스+1로 번호를 매깁니다. 차선1 입력이 비고
+차선2만 있다면 두 번째 등록 후보가 제조구분2가 될 수 있습니다. [근거 S4,
+S10]</p>
+<p><strong>주공정·대체공정 1·2는 각 행에서 고려하는 공정
+경로</strong>입니다. ‘차선 원자재’와 ‘대체공정 1’을 같은 뜻으로 읽으면
+안 됩니다.</p>
+<figure>
+<img role="img" aria-label="그림 2. 각 적정·차선 행 안에서 주공정·대체공정의 PLTCM폭을 비교한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjU4MiIgdmlld0JveD0iMCAwIDExMDAgNTgyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KCc7KGw6rWs67aE6rO8IOuMgOyytOqzteyglSDqtazrs4Q8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj7soIHsoJUx6rO8IOywqOyEoDLsnZgg6rCBIO2WiSDslYjsl5Ag7KO86rO17KCV6rO8IOuMgOyytOqzteyglTEsMuqwgCDsnojqs6Ag6rCBIO2WieydmCDstZzrjIAgUExUQ03tj63snYQg6rOE7IKw7ZWc64ukLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzAwN2Y4NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI1ODIiIGZpbGw9IiNmZmYiLz48ZyBmb250LWZhbWlseT0iQXBwbGUgU0QgR290aGljIE5lbywgTm90byBTYW5zIENKSyBLUiwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjMwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7soIHsoJXCt+ywqOyEoOydgCDtlonsnbTqs6AsIOyjvOqzteyglcK364yA7LK06rO17KCV7J2AIOq3uCDtlokg7JWI7J2YIOqyveuhnOyeheuLiOuLpDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7slYTrnpgg7Iir7J6Q64qUIOq1rOyhsCDshKTrqoXsmqkgUExUQ00g66qp7ZGc7Y+t7J6F64uI64ukLiDri6jsnIQgbW0uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ0IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7soJzsobDsgqzslpEg7ZaJPC90ZXh0Pgo8dGV4dCB4PSIyNDUiIHk9IjE0NCIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KO86rO17KCVPC90ZXh0Pgo8dGV4dCB4PSI0MzAiIHk9IjE0NCIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+64yA7LK06rO17KCVIDE8L3RleHQ+Cjx0ZXh0IHg9IjYyNSIgeT0iMTQ0IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7rjIDssrTqs7XsoJUgMjwvdGV4dD4KPHRleHQgeD0iODEwIiB5PSIxNDQiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuybkOyekOyerCDqs4TsgrDsmqkg7LWc64yA7Y+tPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTc1IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDgiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU1IiB5PSIyMzgiIGZvbnQtc2l6ZT0iMjciIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI1MDAiPuyggeyglSAxPC90ZXh0Pgo8dGV4dCB4PSIyNTAiIHk9IjIzOCIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjUwMCI+MSwwMDg8L3RleHQ+Cjx0ZXh0IHg9IjQzNSIgeT0iMjM4IiBmb250LXNpemU9IjMyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNTAwIj4xLDAxMjwvdGV4dD4KPHRleHQgeD0iNjMwIiB5PSIyMzgiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI1MDAiPjEsMDEwPC90ZXh0Pgo8dGV4dCB4PSI4NzUiIHk9IjIzOCIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMTI8L3RleHQ+CjxwYXRoIGQ9Ik03NDcgMjI4SDgzNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9IjM1IiB5PSIzMTUiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9IjEwOCIgcng9IjEyIiBmaWxsPSIjZmZmNGU3IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTUiIHk9IjM3OCIgZm9udC1zaXplPSIyNyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjUwMCI+7LCo7ISgMSAoMik8L3RleHQ+Cjx0ZXh0IHg9IjI1MCIgeT0iMzc4IiBmb250LXNpemU9IjMyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNTAwIj4xLDAwOTwvdGV4dD4KPHRleHQgeD0iNDM1IiB5PSIzNzgiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI1MDAiPjEsMDE0PC90ZXh0Pgo8dGV4dCB4PSI2MzAiIHk9IjM3OCIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjUwMCI+MSwwMTE8L3RleHQ+Cjx0ZXh0IHg9Ijg3NSIgeT0iMzc4IiBmb250LXNpemU9IjMyIiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAxNDwvdGV4dD4KPHBhdGggZD0iTTc0NyAzNjhIODM3IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHRleHQgeD0iMzUiIHk9IjUwMiIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+6rCBIO2WiSDslYjsl5DshJwgUExUQ00g7Y+tIDPqsJzrpbwg67mE6rWQ7ZWp64uI64ukLiDsoIHsoJXqs7wg7LCo7ISg7J2EIO2VqeyzkCDruYTqtZDtlZjsp4Ag7JWK7Iq164uI64ukLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjU0NCIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+6rWs66ek67CY7KCc7ZKIIOywqOyEoOydgCDqs7XsoJXtj63snYQg67O17IKs7ZW064+ELCDrp4jsp4Drp4kg7JuQ7J6Q7J6s7Y+t7J2AIOyGjOyerCDsooXrpZjsl5Ag65Sw6528IOqzhOyCsO2VqeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPgo=" alt="그림 2. 각 적정·차선 행 안에서 주공정·대체공정의 PLTCM폭을 비교한다" />
+<figcaption aria-hidden="true">그림 2. 각 적정·차선 행 안에서
+주공정·대체공정의 PLTCM폭을 비교한다</figcaption>
+</figure>
+<p>일반 열연 원자재폭을 계산할 때는 <strong>해당 행의 PLTCM 폭 3개 중
+최대폭</strong>을 택합니다. 적정의 폭과 차선의 폭을 합쳐 최대값을 구하는
+것이 아닙니다. 구매 CR·도금 중간재는 뒤에서 설명하는 TM·CGL·EGL 폭
+산식을 사용합니다. [근거 S3: 256~283, 742~814행]</p>
+<h2 id="section-16">2. 적정과 차선은 어디까지 따로 계산하나?</h2>
+<h3 id="section-17">2.1 전체 자동설계의 순서</h3>
+<p>서비스 연결은 다음 순서입니다. 앞 단계가 만든 제조사양 값을 다음
+단계가 다시 조회합니다. [근거 S4]</p>
+<ol type="1">
+<li><strong>원자재·제조사양을 선정한다.</strong> 적정·차선 행과
+원자재코드를 준비합니다.</li>
+<li><strong>두께·압연 SET을 계산한다 — C103100070.</strong> 폭수축
+기준을 찾을 때 쓸 SET·출측두께가 만들어집니다.</li>
+<li><strong>제품폭을 계산한다 — C103100080 /
+DbSearchWthSizeData.</strong> 제품폭여유, Slit, CCL폭, 중간정전폭을
+정합니다.</li>
+<li><strong>공정별 폭을 계산한다 — C103100090 /
+DbSearchProcSizeData.</strong> CGL·EGL·TM·PLTCM·PL/ST 목표폭을
+정합니다.</li>
+<li><strong>원자재폭을 계산한다 — C103100100 /
+DbSearchRmtSizeData.</strong> 원자재 종류와 Edge에 따라 최종 폭을
+정합니다.</li>
+</ol>
+<h3 id="section-18">2.2 구매반제품 차선에는 ‘앞 단계 복사’가 있다</h3>
+<p>제품폭·공정폭 클래스는 다음 조건에서 <code>SEM_RMTL_YN=Y</code>로
+반환합니다.</p>
+<blockquote>
+<p><strong>제조구분 ≠ 1 AND 원자재 첫 글자가 H/M 아님 AND 최종품명이 5/7
+아님</strong></p>
+</blockquote>
+<p>해당 서비스는 이 플래그를 보고 <code>WTHupdate1</code>,
+<code>PROCupdate1</code>로 <strong>같은 주문의 적정(1) 행에서 해당
+설계값들을 복사</strong>합니다. 두께 단계에도 같은 형태의 복사 경로가
+있습니다. 여기서 H/M은 코드가 열연 일반 경로로 취급하는 원자재
+접두어이며, 최종품명 코드와는 별도입니다. [근거 S1: 246~251행, S2:
+529~534행, S5]</p>
+<p><strong>그 다음 원자재 Size 단계는 차선 행에서도 실행합니다.</strong>
+따라서 앞의 제품폭·공정폭이 같아도 차선이 구매 CR이면
+<code>TM폭−3</code>, 구매 도금재이면 <code>CGL/EGL폭−1</code> 같은 별도
+원자재폭이 나옵니다. ‘차선은 적정의 원자재폭까지 모두 복사한다’고
+이해하면 틀립니다.</p>
+<figure>
+<img role="img" aria-label="그림 3. 적정·열연 차선의 계산 경로와 구매반제품 차선의 복사 경로" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijg5NSIgdmlld0JveD0iMCAwIDExMDAgODk1IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KCB7KCV6rO8IOywqOyEoOydmCDshKTqs4Qg6rK966GcPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+6rWs66ek67CY7KCc7ZKIIOywqOyEoOydgCDsoJztkojtj63qs7wg6rO17KCV7Y+t7J2EIOuzteyCrO2VmOuQmCDsm5DsnpDsnqwgU2l6ZeulvCDsi6TtlontlZzri6QuIOybkOyekOyerCDshozsnqzrs4TroZwg66eI7KeA66eJIOyCsOyLneydtCDri6TrpbTri6QuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMDA3Zjg2Ii8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMTAwIiBoZWlnaHQ9Ijg5NSIgZmlsbD0iI2ZmZiIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBOb3RvIFNhbnMgQ0pLIEtSLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMzEiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuuovOyggCDsm5DsnpDsnqzqsIAg7Ja064qQIOqzhOyCsCDqsr3roZzrpbwg7YOA64qU7KeAIO2ZleyduO2VqeuLiOuLpDwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9Ijk1IiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDUiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjEzMiIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCc7KGw6rWs67aEOiDsoIHsoJUoMSkgwrcg7LCo7ISgMSgyKSDCtyDssKjshKAyKDMpPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIxNzAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyjvOusuOuyiO2YuCArIOyjvOusuO2WiSArIOygnOyhsOq1rOu2hOycvOuhnCDtlZwg7ZaJ7J2EIO2Kueygle2VqeuLiOuLpC48L3RleHQ+CjxwYXRoIGQ9Ik01NTAgMjAzVjI0MiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDA3Zjg2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxyZWN0IHg9IjM1IiB5PSIyNTMiIHdpZHRoPSI0OTUiIGhlaWdodD0iMTgwIiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSIyOTAiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyggeyglSDrmJDripQg7Je07JewIEgvTSDssKjshKA8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjMyOCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7KCc7ZKI7Y+twrfqs7XsoJXtj60g6rOE7IKwIOyLpO2WiTwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMzU5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7tkojrqoUgNS8364+EIOuzhOuPhCDsmIjsmbjroZwg6rOE7IKwPC90ZXh0Pgo8cmVjdCB4PSI1NzAiIHk9IjI1MyIgd2lkdGg9IjQ5NSIgaGVpZ2h0PSIxODAiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTkwIiB5PSIyOTAiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuq1rOunpOuwmOygnO2SiCDssKjshKA8L3RleHQ+PHRleHQgeD0iNTkwIiB5PSIzMjgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuygnOyhsOq1rOu2hCDiiaAgMSwg7JuQ7J6Q7J6sIEgvTSDslYTri5g8L3RleHQ+PHRleHQgeD0iNTkwIiB5PSIzNTkiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPu2SiOuqhSA1Lzcg7KCc7Jm4PC90ZXh0Pjx0ZXh0IHg9IjU5MCIgeT0iMzkwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7soJztkojtj63Ct+qzteygle2PreydgCDsoIHsoJXsl5DshJwg67O17IKsPC90ZXh0Pgo8cGF0aCBkPSJNMjgzIDQzNlY0ODciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNODE3IDQzNlY0ODciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN2Y4NiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cmVjdCB4PSIzNSIgeT0iNTAwIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxMDYiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjUzNyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7JuQ7J6Q7J6sIFNpemUg64uo6rOE64qUIOqwgSDtlonsl5DshJwg7Iuk7ZaJPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI1NzUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPkMxMEIyMjMwIOykkeqwhOyerCDsoIHsmqkg7Jes67aA7JmAIOybkOyekOyerCDssqsg6riA7J6Q66GcIOuniOyngOuniSDsgrDsi53snYQg7ISg7YOd7ZWp64uI64ukLjwvdGV4dD4KPHBhdGggZD0iTTU1MCA2MDlWNjQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzUiIHk9IjY2MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxNDciIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjY5NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7Je07JewIOydvOuwmCDqsr3roZw8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjczNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7LWc64yAIFBMVENN7Y+tPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI3NjYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPisg7IiY7LaVICsg66eI7KeEPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI3OTciIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPkVkZ2UgQy9O7J2AIOuzhOuPhCDsgrDsi508L3RleHQ+CjxyZWN0IHg9IjM5MCIgeT0iNjYwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE0NyIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI0MTAiIHk9IjY5NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+6rWs66ekwrfspJHqsITsnqwg6rK966GcPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iNzM1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5EOiDstZzrjIAgUExUQ03tj608L3RleHQ+PHRleHQgeD0iNDEwIiB5PSI3NjYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPkM6IFRN7Y+tIOKIkiAzPC90ZXh0Pjx0ZXh0IHg9IjQxMCIgeT0iNzk3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7rj4TquIjsnqw6IENHTC9FR0ztj60g4oiSIDE8L3RleHQ+CjxyZWN0IHg9Ijc0NSIgeT0iNjYwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE0NyIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI3NjUiIHk9IjY5NyIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7ZKI66qFIDUvNzwvdGV4dD48dGV4dCB4PSI3NjUiIHk9IjczNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7KCc7ZKI66qp7ZGc7Y+tIOuwmOyYrOumvDwvdGV4dD48dGV4dCB4PSI3NjUiIHk9Ijc2NiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7JWM66Oo66+464qE7Lm86528PC90ZXh0Pjx0ZXh0IHg9Ijc2NSIgeT0iNzk3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7siqTthYzsnbjroIjsiqTsubzrnbw8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NTUiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyggeyglSBEKiBGL0jripQg7KGw6rG0IOy2qeyhsSDsi5wg7LWc64yAIFBMVENN7Y+t7JeQ7IScIDNtbeulvCDruo3ri4jri6QuPC90ZXh0PjwvZz48L3N2Zz4K" alt="그림 3. 적정·열연 차선의 계산 경로와 구매반제품 차선의 복사 경로" />
+<figcaption aria-hidden="true">그림 3. 적정·열연 차선의 계산 경로와
+구매반제품 차선의 복사 경로</figcaption>
+</figure>
+<p><strong>현재 연결의 주의점:</strong> 위 그림은 클래스의 분기 조건을
+나타냅니다. 실제 <code>C103100080-service</code>의 제조사양 루프에는
+<code>RMTL_CD</code> 전달 항목이 없습니다. 제품폭 단계는 공유 Context에
+남아 있는 원자재코드를 읽을 수 있어, 현재 행의 코드로 정확히 분기한다고
+보장할 수 없습니다. 공정폭 단계(090)는 현재 행의 <code>RMTL_CD</code>를
+명시적으로 전달합니다. 이 차이는 9.1절에서 설명합니다. [근거 S4, S8]</p>
+<h2 id="section-19">3. 제품목표폭: Slit와 폭여유부터 계산한다</h2>
+<h3 id="section-20">3.1 폭여유와 폭공차는 용도가 다르다</h3>
+<p><code>C10A1070</code> 제품폭여유 기준은
+<strong>주문폭관리코드</strong>로 조회하며, 결과 <code>MRG_WTH</code>가
+제품폭여유입니다. 정확히 1건이어야 하고 0건은 KT03, 중복은 KT13입니다.
+이 절에서 폭여유를 <code>e</code>, 원래 주문폭을 <code>W</code>, Slit
+조수를 <code>n</code>, 조합폭 1~10의 합을 <code>ΣMix</code>라고
+하겠습니다. [근거 S1: 303~335행]</p>
+<p>제품폭 보증범위는 별도로 <strong>원래 주문폭 W + 인수도폭공차
+하한/상한</strong>입니다. 제품목표폭에 공차를 더하는 산식이 아닙니다.
+[근거 S1: 338~342행]</p>
+<h3 id="section-21">3.2 현재 실행 코드는 조합폭 합산을 사용한다</h3>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>먼저 만족한 조건</th>
+<th>기준적용폭 B</th>
+<th>제품목표폭 P = COR_WTH_TRV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>재단선 Y, n=2, W=조합폭1</td>
+<td>W</td>
+<td>B + e</td>
+</tr>
+<tr>
+<td>재단선 Y, n=2, W≠조합폭1</td>
+<td>조합폭1</td>
+<td>B + e</td>
+</tr>
+<tr>
+<td>위 두 조건이 아니고 n&gt;0</td>
+<td>ΣMix</td>
+<td>B + e×n</td>
+</tr>
+<tr>
+<td>그 외</td>
+<td>W</td>
+<td>W + e</td>
+</tr>
+</tbody>
+</table>
+<p>예를 들어 일반 Slit 2조, 조합폭이 600과 400, 폭여유가 2이면
+<strong>600+400+2×2=1,004</strong>입니다. 각 제조사양 조합폭도 원래
+조합폭이 양수이면 2씩 더해 602와 402로 저장합니다. [근거 S1:
+343~440행]</p>
+<figure>
+<img role="img" aria-label="그림 4. 일반 Slit의 조합폭 합산과 재단선 Y·2조의 특례" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyOCIgdmlld0JveD0iMCAwIDExMDAgNzI4IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+7KGw7ZWp7Y+t6rO8IOyerOuLqOyEoCAy7KGwIO2KueuhgDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPuydvOuwmCBTbGl07J2AIDYwMOqzvCA0MDDsl5Ag7KGw64u5IOyXrOycoDLrpbwg642U7ZW0MTAwNC4g7J6s64uo7ISgWSAy7KGwIO2KueuhgOuKlDYwMuulvCDqtaztlZwg65KkIOyImOy2lTHsnYQg642U7ZWY6rOgIOuRkOuwsO2VmOyXrDEyMDYuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMDA3Zjg2Ii8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyOCIgZmlsbD0iI2ZmZiIvPjxnIGZvbnQtZmFtaWx5PSJBcHBsZSBTRCBHb3RoaWMgTmVvLCBOb3RvIFNhbnMgQ0pLIEtSLCBzYW5zLXNlcmlmIj48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMzEiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPlNsaXQg7KGw7IiY6rCAIOyeiOycvOuptCDsobDtlantj63snYQg66i87KCAIO2ZleyduO2VqeuLiOuLpDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijg4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjNTE2NTc5IiBmb250LXdlaWdodD0iNDAwIj7shKTrqoXsmqkg7Y+t7Jes7JygIDJtbSAvIOuCmOuouOyngCDsobDtlantj63snYAgMCAvIOyerOuLqOyEoCAy7KGwIO2KueuhgOuKlCDslYTrnpgg67OE64+EPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTI1IiB3aWR0aD0iNjE4IiBoZWlnaHQ9IjExNSIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHJlY3QgeD0iNjUzIiB5PSIxMjUiIHdpZHRoPSI0MTIiIGhlaWdodD0iMTE1IiByeD0iMTIiIGZpbGw9IiNmZmY0ZTciIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSIyMzUiIHk9IjE5NSIgZm9udC1zaXplPSIzMCIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KGw7ZWp7Y+tIDEgPSA2MDA8L3RleHQ+Cjx0ZXh0IHg9IjcxNSIgeT0iMTk1IiBmb250LXNpemU9IjMwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sobDtlantj60gMiA9IDQwMDwvdGV4dD4KPHBhdGggZD0iTTU1MCAyNDVWMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzUiIHk9IjI5NCIgd2lkdGg9IjEwMzAiIGhlaWdodD0iMTI0IiByeD0iMTIiIGZpbGw9IiNlZWY3ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPjx0ZXh0IHg9IjU1IiB5PSIzMzEiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuydvOuwmCBTbGl0IDLsobAg4oaSIOygnO2SiOuqqe2RnO2PrSAxLDAwNDwvdGV4dD48dGV4dCB4PSI1NSIgeT0iMzY5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj42MDAgKyA0MDAgKyAoMiDDlyAyKSA9IDEsMDA0PC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI0MDAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyjvOusuO2PreyXkCDsobDsiJjrpbwg6rOx7ZWY64qUIOqzvOqxsCDso7zshJ3rs7Tri6QsIO2YhOyerCDsobDtlantj60g7ZWp7IKwIOy9lOuTnOulvCDsmrDshKDtlanri4jri6QuPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNDUzIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSIxODQiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjQ5MCIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7J6s64uo7ISgIFkgwrcgMuyhsCDCtyDso7zrrLjtj60gMSwyMDAgwrcg7KGw7ZWp7Y+tIDEgPSA2MDA8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjUyOCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7KCc7ZKI66qp7ZGc7Y+tID0gNjAwICsgMiA9IDYwMjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNTU5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5DQ0zsiJjstpUgMSDqsIDsoJUg4oaSIOykkeqwhOygleyghCDrqqntkZztj60gPSAoNjAyICsgMSkgw5cgMiA9IDEsMjA2PC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI1OTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuydtCDtirnroYDripQg7KGw7ZWp7Y+tIDHsnYQg7IKs7Jqp7ZWp64uI64ukLiDsobDtlantj60gMSsy66GcIOuwlOq+uOyWtCDqs4TsgrDtlZjsp4Ag7JWK7Iq164uI64ukLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY4OSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+7KCc7ZKI7Y+tIOuztOymneuylOychOuKlCDsm5Drnpgg7KO866y47Y+tICsg7J247IiY64+E6rO17LCo7J6F64uI64ukLiDsnbQg66qp7ZGc7Y+tIO2VqeyCsOqzvCDrs4Trj4TsnoXri4jri6QuPC90ZXh0PjwvZz48L3N2Zz4K" alt="그림 4. 일반 Slit의 조합폭 합산과 재단선 Y·2조의 특례" />
+<figcaption aria-hidden="true">그림 4. 일반 Slit의 조합폭 합산과 재단선
+Y·2조의 특례</figcaption>
+</figure>
+<p>파일 상단 설명과 주석 처리된 옛 계산에는 ‘주문폭×조수’가 나오지만,
+<strong>현재 실행되는 일반 Slit 분기는 조합폭 1~10의 합</strong>입니다.
+조수만 있고 조합폭이 모두 0이라면 코드상 목표폭이 <code>e×n</code>만
+남을 수 있습니다. 입력을 검증할 때 조수와 조합폭을 함께 확인해야 하는
+이유입니다.</p>
+<h3 id="section-22">3.3 칼라 제품은 CCL폭과 중간정전폭을 추가로
+만든다</h3>
+<p>칼라 품명 1~9는 칼라 제조사양에서 재단선유무를 읽습니다.
+<code>C10B1079</code>의 정전폭마진을 <code>m</code>,
+<code>C10B1078</code>의 CCL폭수축량을 <code>c</code>라고 하면 다음과
+같습니다. [근거 S1: 254~300, 446~568행]</p>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>조건</th>
+<th>CCL 목표폭</th>
+<th>중간정전 목표폭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>재단선 Y, n=2</td>
+<td>P</td>
+<td>(P+c)×2</td>
+</tr>
+<tr>
+<td>재단선 Y, n≠2</td>
+<td>P</td>
+<td>P+c</td>
+</tr>
+<tr>
+<td>재단선 Y 아님</td>
+<td>P+m</td>
+<td>이 단계에서는 초기값 0</td>
+</tr>
+</tbody>
+</table>
+<p>재단선 Y·2조, W=1,200, 조합폭1=600, e=2, c=1이면 제품목표폭은
+<strong>602</strong>, 중간정전 목표폭은
+<strong>(602+1)×2=1,206</strong>입니다. 이 특례에서 조합폭 2를 다시
+합산하지 않습니다.</p>
+<p>정전마진 <code>m</code>의 조회조건은 Edge, 품명, 제품형태, 코팅방식,
+수지구분전면, <strong>주문두께</strong>, CCL-BOM, 주문스팽글입니다.
+CCL수축 <code>c</code>는 품명, 재질, <strong>PLTCM SET두께</strong>,
+기준적용폭으로 조회합니다. 같은 ‘여유’라는 표현을 쓰더라도 조회표와
+조건이 서로 다릅니다.</p>
+<h2 id="section-23">4. 공정폭: 공정에서 줄어들 폭을 거슬러 더한다</h2>
+<h3 id="section-24">4.1 먼저 통과공정과 수축기준을 읽는다</h3>
+<p>통과공정의 주공정코드가 <code>8</code>로 시작하면 CGL,
+<code>9</code>로 시작하면 EGL로 읽고, 각 대체공정 1·2도 함께 읽습니다.
+주공정코드가 <code>6</code> 또는 <code>7</code>로 시작하는 행이 있으면
+정전 통과 플래그를 켭니다. <strong>정전수축(C10B1077)은 이 플래그가 있을
+때만 조회</strong>하고, CCL수축(C10B1078)은 칼라 품명1~9에서 조회합니다.
+재단선 Y는 중간정전 통과 조건으로 사용합니다. [근거 S2: 574~680행]</p>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>기호</th>
+<th>뜻</th>
+<th>조회 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m</td>
+<td>정전폭마진</td>
+<td>C10B1079</td>
+</tr>
+<tr>
+<td>s정전</td>
+<td>정전폭수축</td>
+<td>C10B1077</td>
+</tr>
+<tr>
+<td>sCCL</td>
+<td>CCL폭수축</td>
+<td>C10B1078</td>
+</tr>
+<tr>
+<td>sCGLᵢ</td>
+<td>주공정 또는 대체공정 i의 CGL폭수축</td>
+<td>C10B1075</td>
+</tr>
+<tr>
+<td>sEGLᵢ</td>
+<td>주공정 또는 대체공정 i의 EGL폭수축</td>
+<td>C10B1076</td>
+</tr>
+<tr>
+<td>sTCMᵢ</td>
+<td>경로 i의 PLTCM폭수축</td>
+<td>C10B1074</td>
+</tr>
+</tbody>
+</table>
+<p>수축량은 여기서 계산하는 물리 모델의 결과가 아니라 <strong>업무기준
+조회 결과</strong>입니다. 일반적인 양수 수축량은 앞 공정 폭에
+더해집니다. 구체적인 수축 수치는 실제 기준 행을 봐야 합니다.</p>
+<h3 id="section-25">4.2 품명별 공정 목표폭</h3>
+<p>아래에서 <code>P=제품목표폭</code>, <code>C=CCL목표폭</code>,
+<code>I=중간정전목표폭</code>,
+<code>i=주공정·대체공정 경로</code>입니다. 수축을 조회하지 않는
+조건에서는 해당 지역변수가 초기값 0인 경우가 있습니다. [근거 S2:
+731~1337행]</p>
+<table>
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>최종품명 그룹</th>
+<th>공정 목표폭</th>
+<th>PLTCM 목표폭 Xᵢ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GI계열 G/K/J/L/V/W</td>
+<td>CGL = P+s정전+m</td>
+<td>CGL+sCGLᵢ</td>
+</tr>
+<tr>
+<td>EGI·ZnNi E/N</td>
+<td>EGL = P+s정전+m</td>
+<td>EGL+sEGLᵢ, TM도 같은 경로별 폭</td>
+</tr>
+<tr>
+<td>GI계열 칼라 3/4/6/9, 재단선 Y</td>
+<td>CGL = I+s정전+m</td>
+<td>CGL+sCGLᵢ</td>
+</tr>
+<tr>
+<td>GI계열 칼라 3/4/6/9, 재단선 Y 아님</td>
+<td>CGL = C+sCCL</td>
+<td>CGL+sCGLᵢ</td>
+</tr>
+<tr>
+<td>EGI계열 칼라 2/8, 재단선 Y</td>
+<td>EGL = I+s정전+m</td>
+<td>EGL+sEGLᵢ, TM도 같은 경로별 폭</td>
+</tr>
+<tr>
+<td>EGI계열 칼라 2/8, 재단선 Y 아님</td>
+<td>EGL = C+sCCL</td>
+<td>EGL+sEGLᵢ, TM도 같은 경로별 폭</td>
+</tr>
+<tr>
+<td>CR칼라 1, 재단선 Y</td>
+<td>TM = I+m</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>CR칼라 1, 재단선 Y 아님</td>
+<td>TM = C+sCCL</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>CR C, Edge S/C</td>
+<td>TM = P+m+s정전</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>CR C, Edge S/C 외</td>
+<td>TM = P+s정전</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>F/H D, P/O A/B</td>
+<td>별도의 TM·도금폭을 거치지 않음</td>
+<td>P</td>
+</tr>
+</tbody>
+</table>
+<p>품명 5/7(알루미늄칼라·스테인레스칼라)은 이 표의 일반 PLTCM 목표폭
+계산과 후속 PLTCM 공차·수축 블록에서 제외됩니다. 원자재폭은 제품목표폭을
+반올림하는 별도 경로입니다. 그 외 품명이 위 산식에 해당하지 않으면 PLTCM
+폭이 초기값 0으로 남을 가능성이 있으므로, 임의로 가장 비슷한 그룹의
+공식을 대입하지 않습니다.</p>
+<h3 id="section-26">4.3 같은 주문이라도 기준에 넘기는 폭은 다를 수
+있다</h3>
+<p><code>C10B1078</code> CCL수축과 <code>C10B1077</code> 정전수축은
+공정폭 단계의 <code>ord_exc_wth</code>를, <code>C10B1075/1076</code>
+CGL/EGL수축은 <code>cegl_exc_wth</code>를 사용합니다. 재단선 Y·2조에서
+두 값이 달라질 수 있습니다. [근거 S2: 584~629행]</p>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>조건</th>
+<th>CCL·정전 조회폭</th>
+<th>CGL·EGL 조회폭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>재단선 Y, n=2, W=조합폭1</td>
+<td>W</td>
+<td>W×2</td>
+</tr>
+<tr>
+<td>재단선 Y, n=2, W≠조합폭1</td>
+<td>조합폭1</td>
+<td>원래 W</td>
+</tr>
+<tr>
+<td>그 외 n&gt;0</td>
+<td>ΣMix</td>
+<td>ΣMix</td>
+</tr>
+<tr>
+<td>그 외</td>
+<td>W</td>
+<td>W</td>
+</tr>
+</tbody>
+</table>
+<p>이 조회폭에는 제품폭여유를 임의로 더하지 않습니다. 한편
+<strong>C10B1074는 계산된 PLTCM 목표폭</strong>을 입력으로 받습니다.
+모두 ‘폭’이라는 이름이지만 입력 단계가 다릅니다.</p>
+<h2 id="section-27">5. PL/ST 목표폭과 원자재 목표폭은 별도로
+계산한다</h2>
+<h3 id="section-28">5.1 PL/ST에는 수축·ST 보정·상한 제한이 있다</h3>
+<p>공정폭 단계에서 경로별 PLTCM 목표폭 <code>Xᵢ</code>를 계산한 뒤,
+<code>C10B1074</code>를 <strong>원자재코드 + PLTCM 출측두께 +
+Xᵢ</strong>로 조회하여 수축량 <code>sᵢ</code>를 구합니다. 여기서 두께는
+SET이 아니라 <code>PLTCM_THK_TRV</code>입니다. [근거 S2:
+1447~1608행]</p>
+<p>PL/ST 계산을 다음처럼 읽을 수 있습니다.</p>
+<blockquote>
+<p><strong>기준상한 B = max(X주+s주, X대체1+s대체1,
+X대체2+s대체2)</strong><br />
+<strong>PL/ST 목표폭ᵢ = round(min(B, Xᵢ+sᵢ+ST보정ᵢ))</strong></p>
+</blockquote>
+<p>기준상한은 설비의 고정 최대폭이 아니라 <strong>이 주문 행의 경로별
+계산값에서 얻은 최대값</strong>입니다. ST보정은 <code>C10B2191</code>
+조회 결과입니다. 원자재폭의 <code>C10B1073</code> 마진과 다른 값입니다.
+실제 코드는 대체공정·0값 관련 조건을 두고 각 값을 처리합니다. [근거 S2:
+1488~1622행]</p>
+<p>대체공정이 없고 <code>X=1,008</code>, 수축=3, ST보정=+2이면
+기준상한은 1,011이므로 <strong>PL/ST는 1,013이 아니라
+1,011</strong>입니다. 양수 보정을 더해도 기준상한에서 제한될 수
+있습니다.</p>
+<figure>
+<img role="img" aria-label="그림 5. PL/ST는 수축합의 최대값으로 제한하고, 원자재는 PLTCM 최대폭을 선택한 뒤 다시 조회한다" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjY2MCIgdmlld0JveD0iMCAwIDExMDAgNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UEwvU1TsmYAg7JuQ7J6Q7J6s7Y+t7J2YIOy1nOuMgOqwkiDsl7DsgrAg67mE6rWQPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UEwvU1TripQg7Y+t7IiY7LaVIO2VqeydmCDstZzrjIDqsJLsnYQgY2Fw7Jy866GcIOyTtOuLpC4g7JuQ7J6Q7J6s64qUIFBMVENN7Y+tIOy1nOuMgOulvCDrqLzsoIAg7ISg7YOd7ZWY6rOgIOyImOy2leydhCDri6Tsi5wg7KGw7ZqM7ZWc64ukLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzAwN2Y4NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI2NjAiIGZpbGw9IiNmZmYiLz48ZyBmb250LWZhbWlseT0iQXBwbGUgU0QgR290aGljIE5lbywgTm90byBTYW5zIENKSyBLUiwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI5IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7sm5DsnpDsnqztj63snYAgUEwvU1Qg66qp7ZGc7Y+t7JeQIOuniOynhOydhCDrjZTtlZwg6rCS6rO8IOuLpOulvCDsiJgg7J6I7Iq164uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODkiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuyEpOuqheyaqTogUExUQ00g7Y+tIDEsMDA4IC8gMSwwMTIsIFBMVENN7IiY7LaVIDMgLyA0LCBTVOuztOyglSArMiAvICsyPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iMTI2IiB3aWR0aD0iNDk1IiBoZWlnaHQ9IjE0NCIgcng9IjEyIiBmaWxsPSIjZWVmN2Y4IiBzdHJva2U9IiNiN2M4ZDUiLz48dGV4dCB4PSI1NSIgeT0iMTYzIiBmb250LXNpemU9IjI2IiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj5QTC9TVCDqs4TsgrDsnZgg7IOB7ZWcID0gMSwwMTY8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjIwMSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+bWF4KDEsMDA4KzMsIDEsMDEyKzQpPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIyMzIiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuKGkiDsiJjstpXsnYQg642U7ZWcIOuSpCDstZzrjIDqsJLsnYQg6rOg66aEPC90ZXh0Pgo8cmVjdCB4PSI1NzAiIHk9IjEyNiIgd2lkdGg9IjQ5NSIgaGVpZ2h0PSIxNDQiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTkwIiB5PSIxNjMiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuybkOyekOyerCDqs4TsgrDsnZgg6riw7KSA7Y+tID0gMSwwMTI8L3RleHQ+PHRleHQgeD0iNTkwIiB5PSIyMDEiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPm1heCgxLDAwOCwgMSwwMTIpPC90ZXh0Pjx0ZXh0IHg9IjU5MCIgeT0iMjMyIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7ihpIgUExUQ03tj63rp4wg66i87KCAIOu5hOq1kO2VqDwvdGV4dD4KPHBhdGggZD0iTTI4MCAyNzNWMzE4IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTgxNSAyNzNWMzE4IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdmODYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHJlY3QgeD0iMzUiIHk9IjMzMiIgd2lkdGg9IjQ5NSIgaGVpZ2h0PSIxODUiIHJ4PSIxMiIgZmlsbD0iI2VlZjdmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTUiIHk9IjM2OSIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+7KCA7J6lIFBML1NUIOuqqe2RnO2PrTwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNDA3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7so7zqs7XsoJU6IG1pbigxLDAxNiwgMSwwMTErMik8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjQzOCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+PSAxLDAxMzwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNDY5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7rjIDssrQgMTogbWluKDEsMDE2LCAxLDAxNisyKTwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNTAwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj49IDEsMDE2PC90ZXh0Pgo8cmVjdCB4PSI1NzAiIHk9IjMzMiIgd2lkdGg9IjQ5NSIgaGVpZ2h0PSIxODUiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+PHRleHQgeD0iNTkwIiB5PSIzNjkiIGZvbnQtc2l6ZT0iMjYiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuybkOyekOyerCDrqqntkZztj608L3RleHQ+PHRleHQgeD0iNTkwIiB5PSI0MDciIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI0MDAiPuyEoO2Dne2PrSAxLDAxMuuhnCDsiJjstpXquLDspIAg7J6s7KGw7ZqMPC90ZXh0Pjx0ZXh0IHg9IjU5MCIgeT0iNDM4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7siJjstpUgNCwg66eI7KeEIDUg6rCA7KCVPC90ZXh0Pjx0ZXh0IHg9IjU5MCIgeT0iNDY5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj4xLDAxMiArIDQgKyA1ID0gMSwwMjE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1NzkiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPlNU67O07KCV7J2AIOybkOyekOyerO2PrSDsgrDsi53sl5Ag7KeB7KCRIOuTpOyWtOqwgOyngCDslYrsirXri4jri6QuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjIyIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7sm5DsnpDsnqztj63snYAg4oCc7LWc64yAIFBML1NU7Y+tICsg66eI7KeE4oCd7Jy866GcIOqzhOyCsO2VmOyngCDslYrsirXri4jri6QuIOqwgSDsobDtmowg7J6F66Cl7J2EIO2ZleyduO2VqeuLiOuLpC48L3RleHQ+PC9nPjwvc3ZnPgo=" alt="그림 5. PL/ST는 수축합의 최대값으로 제한하고, 원자재는 PLTCM 최대폭을 선택한 뒤 다시 조회한다" />
+<figcaption aria-hidden="true">그림 5. PL/ST는 수축합의 최대값으로
+제한하고, 원자재는 PLTCM 최대폭을 선택한 뒤 다시 조회한다</figcaption>
+</figure>
+<p><strong>반올림 시점도 구별합니다.</strong> 공정폭 클래스는 Xᵢ를 소수
+그대로 사용해 수축 조회·PL/ST 상한을 계산한 뒤, PL/ST와 PLTCM 목표폭을
+각각 정수 mm로 반올림해 저장합니다. TM·CGL·EGL 목표폭은 이 단계에서 정수
+반올림하지 않습니다. 따라서 원자재 단계가 읽는 PLTCM폭은 이미 반올림된
+값입니다. [근거 S2: 1600~1636행]</p>
+<h3 id="section-29">5.2 원자재 단계는 PLTCM 최대폭을 먼저 고른다</h3>
+<p>원자재 단계의 <code>M</code>은 <strong>max(저장된 PLTCM 주공정폭,
+대체1폭, 대체2폭)</strong>입니다. <code>PL_WTH_TRV</code> 최대값을 읽는
+것이 아닙니다. 일반 열연 경로는 이 <code>M</code>으로 <strong>C10B1074를
+다시 조회</strong>하고, 원자재두께를 이용해 <strong>C10B1073 원자재
+마진</strong>도 조회합니다. [근거 S3: 256~283, 322~480행]</p>
+<p><code>max(폭+수축)</code>과 <code>max(폭)에서 수축 재조회</code>는
+같은 연산이 아닙니다. 최대폭을 가진 경로와 폭+수축이 가장 큰 경로가 다를
+수 있기 때문입니다. ST보정값도 원자재폭 산식에 직접 들어가지
+않습니다.</p>
+<p>예를 들어 공정 계산의 X=1,008.4, PLTCM수축=0.2, ST보정=0이면 PL/ST는
+round(1,008.6)=<strong>1,009</strong>, 저장 PLTCM폭은
+round(1,008.4)=<strong>1,008</strong>입니다. 원자재 단계가 M=1,008로
+재조회하여 수축 0.2, 마진 0을 받으면 최종 원자재폭은
+round(1,008.2)=<strong>1,008</strong>입니다. 저장 전 X를 끝까지 사용하면
+결과가 달라집니다. 이 예는 연산 순서 설명이며 업무적으로 적합한
+기준값이라는 뜻은 아닙니다.</p>
+<h2 id="section-30">6. 원자재 종류와 Edge로 마지막 산식을 선택한다</h2>
+<h3 id="section-31">6.1 중간재 적용기준을 먼저 확인한다</h3>
+<p>품명 5/7 외에는 <code>C10B2230</code>을 품명, 주문두께, 적용 주문폭,
+최종고객사, 고객사양번호, CCL-BOM으로 조회합니다. 1건이면
+<code>SEM_PRD_NM_CD</code>를 중간재 종류로 쓰고 Context의 원자재코드 첫
+글자를 바꿉니다. 중복은 KK91이며, 0건은 중간재 미적용으로 계속 진행할 수
+있습니다. 원래 입력 원자재가 H/M이 아니면 <strong>그 원자재 첫
+글자</strong>를 중간재 종류로 사용합니다. [근거 S3: 288~318행]</p>
+<p>따라서 아래의 ‘열연 일반’은 <strong>입력 원자재 H/M이면서 중간재 적용
+결과가 없는 경로</strong>를 뜻합니다. 원자재코드만 H로 보인다고 항상
+일반 가산공식에 들어가는 것은 아닙니다.</p>
+<h3 id="section-32">6.2 열연 일반 경로: Edge를 보고 결정한다</h3>
+<p><code>M=해당 행의 최대 PLTCM폭</code>, <code>P=제품목표폭</code>,
+<code>s=최대폭 M으로 재조회한 PLTCM수축</code>,
+<code>a=C10B1073 마진</code>입니다.</p>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>주문 Edge</th>
+<th>추가 품명 조건</th>
+<th>최종 원자재 목표폭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C — Coil Edge</td>
+<td>전체</td>
+<td>round(M)</td>
+</tr>
+<tr>
+<td>N — No Slit</td>
+<td>G/K/J/L/V/W/3/4/6/9, E/2/N/8</td>
+<td>round(M)</td>
+</tr>
+<tr>
+<td>N — No Slit</td>
+<td>위 품명 외</td>
+<td>round(P)</td>
+</tr>
+<tr>
+<td>그 외 — 정상 코드에서는 S 또는 M</td>
+<td>전체</td>
+<td>round(M+s+a)</td>
+</tr>
+</tbody>
+</table>
+<p>여기서 Edge <code>M</code>과 원자재코드의 첫 글자 <code>M</code>은
+서로 다른 필드입니다. <code>round</code>는 Java
+<code>Math.round</code>이며, 위 경로의 결과는 정수 mm입니다. [근거 S3:
+501~644행]</p>
+<p><strong>C/N이면 수축·마진을 마지막에 더하지 않는다고 해서 기준 조회도
+생략하는 것은 아닙니다.</strong> 일반 경로에서는 앞서 C10B1071(두께),
+C10B1074(수축), C10B1073(마진)를 조회합니다. 이 조회가 실패하면 최종 C/N
+분기까지 도달하지 못할 수 있습니다.</p>
+<h3 id="section-33">6.3 구매·중간재: 구매하는 공정 단계의 폭을
+사용한다</h3>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>중간재 종류 / 최종품명 조건</th>
+<th>원자재 목표폭</th>
+<th>반올림</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D — F/H, 입력 원자재 <code>D*</code>, 적정 1</td>
+<td>M−3</td>
+<td>이 분기에는 반올림 없음</td>
+</tr>
+<tr>
+<td>D — F/H, 위 조건 외</td>
+<td>M</td>
+<td>이 분기에는 반올림 없음</td>
+</tr>
+<tr>
+<td>C — 구매 CR, 최종품명 E</td>
+<td>TM 주공정 목표폭−3</td>
+<td>정수 mm</td>
+</tr>
+<tr>
+<td>C — 구매 CR, 최종품명 E 외</td>
+<td>TM 주공정 목표폭−3</td>
+<td>소수 1자리</td>
+</tr>
+<tr>
+<td>G/L/V/W — 구매 GI·GL 계열</td>
+<td>CGL 목표폭−1</td>
+<td>소수 1자리</td>
+</tr>
+<tr>
+<td>E/N — 구매 EGI·ZnNi 계열</td>
+<td>EGL 목표폭−1</td>
+<td>소수 1자리</td>
+</tr>
+<tr>
+<td>최종품명 5/7</td>
+<td>P</td>
+<td>정수 mm</td>
+</tr>
+</tbody>
+</table>
+<p>구매 CR·도금재 산식에는 위 열연 일반 경로의 Edge별 분기가 없습니다.
+<strong>TM 대체폭의 최대값을 구매 CR 산식에 쓰는 것도 아닙니다.</strong>
+이 코드는 <code>TM_WTH_TRV</code>를 사용합니다. 구현된 중간재 종류는
+표의 D/C/G/L/V/W/E/N이며, 다른 접두어까지 같은 공식을 적용한다고 확장할
+수 없습니다. [근거 S3: 484~488, 646~814행]</p>
+<figure>
+<img role="img" aria-label="그림 6. 적정·차선 F/H와 구매 CR·도금재의 원자재폭 비교 예제" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyNSIgdmlld0JveD0iMCAwIDExMDAgNzI1IiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+6rWs66ekIOyGjOyerOuzhCDsm5DsnpDsnqztj60g7JiI7KCcPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+7KCB7KCVRkggLTPqs7wg7LCo7ISgRkgg7Jyg7KeALCDqtazrp6RDUiBUTS0zLCDqtazrp6Trj4TquIjsnqwgQ0dML0VHTC0xIOuwjyDrsJjsmKzrprzsnZgg7LCo7J20LjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzAwN2Y4NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI3MjUiIGZpbGw9IiNmZmYiLz48ZyBmb250LWZhbWlseT0iQXBwbGUgU0QgR290aGljIE5lbywgTm90byBTYW5zIENKSyBLUiwgc2Fucy1zZXJpZiI+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjMwIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7qsJnsnYAg7KO866y47J20652864+EIOq1rOunpO2VmOuKlCDshozsnqzsl5Ag65Sw6528IOy2nOuwnCDtj63snbQg67CU64Cd64uI64ukPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODgiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiM1MTY1NzkiIGZvbnQtd2VpZ2h0PSI0MDAiPuqwgSDtlonsnYAg64+F66a9IOyEpOuqheyaqSDsmIjsoJzsnoXri4jri6QuIOyEnOuhnCDqsJnsnYAg7KO866y47J2YIOyLpOyggeydhCDrnLvtlZjsp4Ag7JWK7Iq164uI64ukLjwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjEyMSIgd2lkdGg9IjEwMzAiIGhlaWdodD0iNzgiIHJ4PSIxMiIgZmlsbD0iI2ZmZjRlNyIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU1IiB5PSIxNjciIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuyggeyglSBGL0ggwrcgRCo8L3RleHQ+Cjx0ZXh0IHg9IjM5MCIgeT0iMTY3IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7stZzrjIAgUExUQ00gMSwwMDgg4oiSIDM8L3RleHQ+Cjx0ZXh0IHg9IjkwNSIgeT0iMTY4IiBmb250LXNpemU9IjI4IiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwNTwvdGV4dD4KPHJlY3QgeD0iMzUiIHk9IjIxOCIgd2lkdGg9IjEwMzAiIGhlaWdodD0iNzgiIHJ4PSIxMiIgZmlsbD0iI2YyZjVmOCIgc3Ryb2tlPSIjYjdjOGQ1Ii8+Cjx0ZXh0IHg9IjU1IiB5PSIyNjQiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxNzMyNGQiIGZvbnQtd2VpZ2h0PSI3MDAiPuywqOyEoCBGL0ggwrcgRCo8L3RleHQ+Cjx0ZXh0IHg9IjM5MCIgeT0iMjY0IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7stZzrjIAgUExUQ00gMSwwMDgg6re464yA66GcPC90ZXh0Pgo8dGV4dCB4PSI5MDUiIHk9IjI2NSIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDg8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIzMTUiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9Ijc4IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSI1NSIgeT0iMzYxIiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7qtazrp6QgQ1IgwrcgQyo8L3RleHQ+Cjx0ZXh0IHg9IjM5MCIgeT0iMzYxIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5UTSAxLDAwOC4yNCDiiJIgMyDihpIg7IaM7IiYIDHsnpDrpqw8L3RleHQ+Cjx0ZXh0IHg9IjkwNSIgeT0iMzYyIiBmb250LXNpemU9IjI4IiBmaWxsPSIjMDA3Zjg2IiBmb250LXdlaWdodD0iNzAwIj4xLDAwNS4yPC90ZXh0Pgo8cmVjdCB4PSIzNSIgeT0iNDEyIiB3aWR0aD0iMTAzMCIgaGVpZ2h0PSI3OCIgcng9IjEyIiBmaWxsPSIjZjJmNWY4IiBzdHJva2U9IiNiN2M4ZDUiLz4KPHRleHQgeD0iNTUiIHk9IjQ1OCIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjcwMCI+6rWs66ekIEdJIOqzhOyXtCDCtyBHL0wvVi9XPC90ZXh0Pgo8dGV4dCB4PSIzOTAiIHk9IjQ1OCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+Q0dMIDEsMDA2LjI0IOKIkiAxIOKGkiDshozsiJggMeyekOumrDwvdGV4dD4KPHRleHQgeD0iOTA1IiB5PSI0NTkiIGZvbnQtc2l6ZT0iMjgiIGZpbGw9IiMwMDdmODYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEsMDA1LjI8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSI1MDkiIHdpZHRoPSIxMDMwIiBoZWlnaHQ9Ijc4IiByeD0iMTIiIGZpbGw9IiNmMmY1ZjgiIHN0cm9rZT0iI2I3YzhkNSIvPgo8dGV4dCB4PSI1NSIgeT0iNTU1IiBmb250LXNpemU9IjIzIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNzAwIj7qtazrp6QgRUdJIOqzhOyXtCDCtyBFL048L3RleHQ+Cjx0ZXh0IHg9IjM5MCIgeT0iNTU1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj5FR0wgMSwwMDYuMjQg4oiSIDEg4oaSIOyGjOyImCAx7J6Q66asPC90ZXh0Pgo8dGV4dCB4PSI5MDUiIHk9IjU1NiIgZm9udC1zaXplPSIyOCIgZmlsbD0iIzAwN2Y4NiIgZm9udC13ZWlnaHQ9IjcwMCI+MSwwMDUuMjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY0NyIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE3MzI0ZCIgZm9udC13ZWlnaHQ9IjQwMCI+Ri9I64qUIOuRkOq7mOq4sOykgCBDMTBCMjMxMCDsobDtmozqsIAg7ISx6rO17ZW07JW8IO2PreuPhCDsp4DsoJXrkKnri4jri6QuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjg5IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTczMjRkIiBmb250LXdlaWdodD0iNDAwIj7qtazrp6QgQ1Lsl5DshJwg7LWc7KKF7ZKI66qFIEXsnbgg6rK97Jqw7JeQ64qUIOyGjOyImCAx7J6Q66asIOuMgOyLoCDsoJXsiJggbW3roZwg67CY7Jis66a87ZWp64uI64ukLjwvdGV4dD48L2c+PC9zdmc+Cg==" alt="그림 6. 적정·차선 F/H와 구매 CR·도금재의 원자재폭 비교 예제" />
+<figcaption aria-hidden="true">그림 6. 적정·차선 F/H와 구매 CR·도금재의
+원자재폭 비교 예제</figcaption>
+</figure>
+<p>F/H의 폭 지정은 <strong>C10B2310 F/H 두께기준이 성공한 블록
+안</strong>에 있습니다. 두께기준을 찾지 못하면 KT37로 실패하므로, 폭
+산식 자체가 단순하더라도 두께기준을 먼저 확인해야 합니다.</p>
+<h3 id="section-34">6.4 적정 F/H의 −3과 구매 CR의 −3은 다른 분기다</h3>
+<p>현재 소스에는 <strong>2026-04-28 적정 F/H 폭 −3mm</strong> 처리가
+있습니다. 정확한 조건은 F/H 중간재 분기에서 C10B2310 조회가 성공하고,
+제조구분이 1이며, <strong>클래스 시작 시 읽은 지역변수 원자재코드가 D로
+시작하는 경우</strong>입니다. 차선 F/H는 같은 분기에서 원값 M을
+유지합니다. [근거 S3: 698~718행]</p>
+<p>예를 들어 M=1,008이면 적정 <code>D*</code>는 <strong>1,005</strong>,
+차선 <code>D*</code>는 <strong>1,008</strong>입니다. ‘모든 F/H
+원자재폭은 PLTCM폭과 같다’는 과거 설명으로는 현행 적정 결과를 설명할 수
+없습니다.</p>
+<p>또한 C10B2230이 Context의 <code>H*</code>를 <code>D*</code>로
+바꾸어도 지역변수 <code>rmtl_cd</code>는 <code>H*</code>로 남습니다. 이
+경우 F/H 분기에는 들어가면서 <strong>적정 −3 조건은 만족하지 않을 수
+있습니다.</strong> 저장된 코드만 보지 말고 입력코드와 중간재 적용 결과를
+함께 추적해야 합니다.</p>
+<h2 id="section-35">7. 주문 한 건을 적정·차선으로 비교해 보자</h2>
+<h3 id="section-36">7.1 적정 <code>H*</code>와 차선 <code>H*</code>:
+기준 결과가 다르면 최종 폭도 다르다</h3>
+<p>다음은 <strong>GI G, 주문폭 1,000, Slit조수 0, Edge S, 정전 통과,
+중간재 미적용, 대체공정 없음</strong>이라는 설명용 사례입니다. 두 행
+모두 필요한 업무기준이 정상적으로 조회된다고 가정합니다. 두께값도 이미
+설계되어 있으며, 수축량·마진은 아래 값으로 조회됐다고 가정합니다.</p>
+<table>
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>단계</th>
+<th>적정 1 — 열연 후보 A</th>
+<th>차선1(2) — 열연 후보 B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>제품폭여유</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>제품목표폭</td>
+<td>1,000+2 = <strong>1,002</strong></td>
+<td><strong>1,002</strong></td>
+</tr>
+<tr>
+<td>정전수축 / 정전마진</td>
+<td>1 / 3</td>
+<td>1 / 3</td>
+</tr>
+<tr>
+<td>CGL 목표폭</td>
+<td>1,002+1+3 = <strong>1,006</strong></td>
+<td><strong>1,006</strong></td>
+</tr>
+<tr>
+<td>CGL수축</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>PLTCM 목표폭 M</td>
+<td>1,006+2 = <strong>1,008</strong></td>
+<td>1,006+4 = <strong>1,010</strong></td>
+</tr>
+<tr>
+<td>C10B1074 PLTCM수축</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>ST보정</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>PL/ST 목표폭</td>
+<td>round(1,008+3) = <strong>1,011</strong></td>
+<td>round(1,010+5) = <strong>1,015</strong></td>
+</tr>
+<tr>
+<td>C10B1073 원자재마진</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>최종 원자재폭</td>
+<td>round(1,008+3+5) = <strong>1,016</strong></td>
+<td>round(1,010+5+7) = <strong>1,022</strong></td>
+</tr>
+</tbody>
+</table>
+<p>원자재코드는 CGL/EGL수축·PLTCM수축·원자재마진 등의 조회 입력입니다.
+따라서 주문폭이 같아도 기준이 다르면 적정·차선 폭이 달라질 수 있습니다.
+반대로 같은 결과가 조회되면 두 폭이 같을 수 있으며, <strong>차선이
+반드시 더 넓어야 하는 규칙은 이 산식에 없습니다.</strong></p>
+<h3 id="section-37">7.2 차선이 구매 도금재이면 마지막 산식이 바뀐다</h3>
+<p>위 주문의 차선이 구매 GI 계열 <code>G*</code>이고, 제품·공정폭 복사
+경로가 정상 적용되어 적정의 <strong>CGL 목표폭 1,006</strong>을
+가져왔다고 가정하겠습니다.</p>
+<p>그 차선의 원자재폭은 <strong>round(10×(1,006−1))/10 =
+1,005</strong>입니다. 열연 적정의 1,016과 비교하면 더 작지만, 구매하는
+소재가 이미 도금 단계에 있기 때문에 입력하는 공정폭과 산식 자체가
+다릅니다. 적정·차선의 폭 차이를 곧바로 설계 오류라고 단정할 수
+없습니다.</p>
+<h3 id="section-38">7.3 Edge C/N과 +20의 위치</h3>
+<p>일반 열연 GI에서 M=1,008이라고 할 때 Edge S라면 예제처럼
+<code>1,008+3+5=1,016</code>이지만, <strong>Edge C 또는 N의 최종 산식은
+round(M)=1,008</strong>입니다. 이는 중간값 M을 고정한 산식 비교이며,
+실제 Edge 변경 재설계에서는 앞 단계 마진·목표폭도 달라질 수
+있습니다.</p>
+<p>같은 C/N 경로에서 원자재두께 룰 <strong>C10B1071에 전달하는 조회폭은
+M+20=1,028</strong>입니다. 이 1,028을 원자재 목표폭으로 저장하는 것이
+아닙니다. C10B1074와 C10B1073의 폭 입력은 다시 M=1,008입니다. [근거 S3:
+324~337, 413~449행]</p>
+<h3 id="section-39">7.4 원자재 최대폭 선택과 ST 상한을 구분하는
+반례</h3>
+<p>두 경로의 PLTCM폭이 1,008 / 1,012이고 수축이 10 / 1이라고 가정하면,
+PL/ST 기준상한은 <strong>max(1,018,1,013)=1,018</strong>입니다. 원자재
+단계는 먼저 PLTCM 최대폭 <strong>1,012</strong>를 택합니다. 이 폭에서
+수축 1, 마진 5가 조회되면 원자재폭은
+<strong>1,012+1+5=1,018</strong>입니다.</p>
+<p>‘최대 PL/ST폭+마진’으로 계산하면 1,018+5=1,023이 되어 현행과
+다릅니다. 이 차이 때문에 어느 최대값을 선택했는지 기록해야 합니다.</p>
+<h2 id="section-40">8. 화면·저장값은 어떤 경로로 만들어지나?</h2>
+<h3 id="section-41">8.1 자동설계 결과의 저장 위치</h3>
+<p><strong>제품폭·공정폭은 <code>TB_C10_QLT_DSN_MNF</code>, 원자재
+목표폭은 <code>TB_C10_QLT_DSN_RMT</code>에 저장합니다.</strong> 원자재
+단계는 두 테이블을 주문번호·주문행·제조구분으로 조인해 동일 후보의
+공정폭을 가져옵니다. 각 UPDATE도 이 세 키로 행을 구분합니다. [근거 S5,
+S10]</p>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>단계</th>
+<th>저장 SQL</th>
+<th>주요 값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>제품폭 자동계산</td>
+<td><code>C102100MNF.WTHupdate</code></td>
+<td>제품폭범위, 조합폭, COR/CCL/MID_COR 목표폭</td>
+</tr>
+<tr>
+<td>구매반제품 차선 제품폭 복사</td>
+<td><code>WTHupdate1</code></td>
+<td>적정1의 해당 제품폭 항목 복사</td>
+</tr>
+<tr>
+<td>공정 Size 자동계산</td>
+<td><code>PROCupdate</code></td>
+<td>CGL/EGL/TM/PLTCM/PL 및 대체공정 폭</td>
+</tr>
+<tr>
+<td>구매반제품 차선 공정 Size 복사</td>
+<td><code>PROCupdate1</code></td>
+<td>적정1의 해당 공정 Size 항목 복사</td>
+</tr>
+<tr>
+<td>원자재 Size</td>
+<td><code>C102100RMTL.update</code></td>
+<td>원자재코드, 목표두께, 목표폭 등</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-42">8.2 제품폭범위와 원자재폭 상·하한을 혼동하지
+않는다</h3>
+<p>제품폭범위는 3장의 <code>주문폭+인수도공차</code>로 계산합니다. 반면
+<strong>DbSearchRmtSizeData에는 원자재 목표폭 상·하한을 새로 산출하는
+대입문이 없습니다.</strong> <code>RMTL_TAR_WTH_LVL/UVL</code> 컬럼과 SQL
+전달 항목이 존재한다는 사실만으로 <code>목표폭±공차</code>가
+자동계산된다고 볼 수 없습니다. 이 분석의 주된 결과값은
+<code>RMTL_TAR_WTH</code>입니다. [근거 S3, S4, S5]</p>
+<h3 id="section-43">8.3 자동계산·수동수정·반복복사는 구별한다</h3>
+<p>품질설계결과의 TAB05·TAB06 및 연계 화면 저장 경로는 화면에서 받은
+제조사양 값을 DB에 반영합니다. 이 직접 저장 경로를 C103100080→090→100의
+전체 재설계와 동일하게 볼 수 없습니다. 원자재폭도 자동 산식 이외에 화면
+저장·복사 이력을 함께 확인해야 합니다. [근거 S6]</p>
+<p>TAB05·TAB06의 원자재폭 편집에서는 기준폭보다 작거나 기준폭+25를
+초과하면 붉게 표시합니다. 이때 기준폭은
+<code>NVL(RMTL_TAR_WTH_STD,RMTL_TAR_WTH)</code>입니다. <strong>이 표시
+범위는 화면 경고 기준이며 자동 원자재폭의 상·하한 산식이
+아닙니다.</strong> 화면에 보이는 <code>PL폭−PLTCM폭</code>이나 BigData
+폭수축 예측 조회값도 위 자동설계 산식의 입력과 구별합니다. [근거 S6]</p>
+<p>반복주문 복사 경로는 참조 주문의 제조사양·원자재사양을 복사합니다.
+반면 재설계는 제조사양을 초기화·재생성하는 경로이므로, 바뀐 업무기준이나
+코드가 반영되어 기존 폭과 달라질 수 있습니다. 현재 값이 어떤 경로로
+만들어졌는지를 먼저 확인합니다. [근거 S7]</p>
+<h2 id="section-44">9. 정상 공식만으로 설명하면 안 되는 현행 예외</h2>
+<h3 id="section-45">9.1 제품폭 단계에 현재 행의 원자재코드 전달이 빠져
+있다</h3>
+<p><code>C103100080-service.xml</code>의 <code>MNF_LOOP</code>는
+주문번호, 주문행, 제조구분, SET두께 <strong>4개만</strong> Context에
+넣습니다. <code>RMTL_CD</code>가 없습니다.
+<code>DbQualDesignLoop</code>는 설정된 매핑 항목을 복사할 뿐, 조회행의
+모든 컬럼을 자동으로 Context에 펼치지 않습니다. [근거 S4: 080 4~13행,
+S8: 141~148행]</p>
+<p>그런데 <code>DbSearchWthSizeData</code>는 Context의
+<code>RMTL_CD</code>로 구매반제품 차선 여부를 판단합니다. 따라서
+<strong>조건문의 원자재코드가 현재 제조사양 행의 코드인지 별도 확인이
+필요합니다.</strong> 이전 단계나 앞선 처리의 값이 남아 있으면 제품폭
+단계의 계산/복사 선택이 달라질 수 있습니다. 090 단계는 현재 행의
+원자재코드를 전달하므로 두 단계가 서로 다른 선택을 할 가능성도
+있습니다.</p>
+<p>이것은 소스에서 확인한 전달 누락입니다. 특정 운영 주문에서 실제로
+오설계가 발생했다고 검증한 결과는 아닙니다. 운영 로그에서
+<code>RMTL_CD</code>, <code>QLT_DSN_MNF_TP</code>,
+<code>SEM_RMTL_YN</code>을 같이 확인해야 합니다.</p>
+<h3 id="section-46">9.2 적정 F/H의 공정폭은 차선 <code>H*</code> 코드로
+계산할 수 있다</h3>
+<p>공정폭 클래스에는 <strong>2025-10-24, APS 수정 완료까지 임시
+조치</strong>라는 주석이 있습니다. 적정1의 입력 원자재가
+<code>D*</code>이면 제조구분2(차선1)를 조회하고, 그 원자재가
+<code>H*</code>이면 <strong>지역변수 원자재코드를 차선 <code>H*</code>로
+치환</strong>하여 후속 폭 계산에 사용합니다. 조건은 <code>H*</code>이며
+<code>M*</code>까지 포함하지 않습니다. [근거 S2: 478~526행]</p>
+<p>이 코드는 차선의 저장된 ST폭 숫자를 직접 복사하는 SQL이 아니라,
+<strong>차선 코드를 넣어 기준을 다시 조회하는 방식</strong>입니다.
+Context/DB의 적정 원자재코드를 여기서 <code>H*</code>로 영구 변경하는
+대입은 없습니다. 이후 원자재 Size 단계의 적정 <code>D*</code> −3mm와는
+별도 동작입니다.</p>
+<p>차선이 없거나 조회 예외가 나면 <code>rowset.count()</code>·빈 코드
+<code>substring(0,1)</code>을 안전하게 처리하지 못할 가능성도 있습니다.
+‘차선이 없으면 항상 적정 D 기준으로 정상 진행한다’고 보장해서는 안
+됩니다.</p>
+<h3 id="section-47">9.3 ST 보정기준은 CGL과 EGL의 입력 개수가
+다르다</h3>
+<p><code>C10B2191</code> 호출은 CGL에서 <strong>품명·폭관리코드·공정코드
+3개</strong>, EGL에서 <strong>폭관리코드·공정코드 2개</strong>를
+넘깁니다. 동일 룰 ID라고 입력을 하나로 통일해 설명할 수 없습니다. 이
+조회는 주요 수축기준과 달리 <code>RecordCount==1</code> 검사를 명시하지
+않고 결과를 읽으며, <code>MasterDataException</code>은 로그만 남기는
+경로입니다. 실제 기준 정의와 매칭 결과를 확인해야 합니다. [근거 S2:
+875~889, 1077~1091행]</p>
+<p>EGL계 품명 E/2/N/8은 공정폭 단계에서도 C10B2230을 조회합니다. 정확히
+1건이면 <strong>지역변수의 EGL 주공정코드를 92로 바꾼 뒤</strong>
+EGL수축과 ST보정 기준을 조회합니다. 대체공정코드는 그대로입니다. 이
+호출의 폭은 <code>cegl_exc_wth</code>이고, 원자재 단계의 C10B2230
+조회폭은 Slit 조합폭 합/원래 주문폭이므로 재단선 특례에서 서로 다를 수
+있습니다. 중복은 KK91로 실패합니다. [근거 S2: 1006~1035행]</p>
+<h3 id="section-48">9.4 기준 조회 실패와 계산·저장 성공은 별개다</h3>
+<p>주공정 CGL/EGL수축 기준 미조회·중복은 즉시 실패를 반환하지만,
+<strong>대체공정 수축 조회 일부는 오류 플래그를 설정한 뒤 계속
+계산합니다.</strong> 초기값 0인 수축량으로 후속 값이 만들어질 수
+있으므로 숫자 존재만으로 정상 설계라고 판단하지 않습니다. [근거 S2:
+886~1018, 1093~1201행]</p>
+<p>F/H 두께기준 C10B2310은 용도 4단계와 고객사 2단계의 우선순위를
+시도하여 처음 정확히 1건이 나온 조합을 사용합니다. 어떤 조합에서 중복이
+나와도 다음 조합을 계속 시도하며, 끝까지 못 찾으면 KT37입니다. ‘모든
+기준은 미조회/중복 즉시 실패’라는 한 가지 규칙으로 설명할 수 없습니다.
+[근거 S3: 652~739행]</p>
+<h3 id="section-49">9.5 정합성검사는 차선의 폭까지 모두 보장하지
+않는다</h3>
+<p>제조사양 검사는 제조구분으로 정렬한 조회 결과의 <strong>첫 행을 한
+번</strong> 검사합니다. 정상 구성에서는 적정1입니다. 원자재 검사도 별도
+조회의 첫 행을 한 번 읽습니다. 그 원자재 조회 SQL에는 ORDER BY가 없어
+어느 후보가 첫 행인지도 보장되지 않습니다. 차선까지 순회하는 검사가
+아닙니다. 제조사양 검사에서 품명 5/7은 제외됩니다. [근거 S9]</p>
+<p>제품폭범위 누락·역전은 CF09/CF10, PLTCM폭 NULL은 CF72, 원자재 목표폭
+NULL은 CF30 등으로 검사합니다. <strong>원자재폭 상·하한 검사는 주석
+처리</strong>되어 있습니다. 또한 원자재 목표폭의 NULL 검사만 통과했다고
+양수·업무 적합성까지 보장되는 것은 아닙니다.</p>
+<h2 id="section-50">10. 실제 주문의 적정·차선 폭 차이는 이 순서로
+추적한다</h2>
+<ol type="1">
+<li><strong>두 행을 분리한다.</strong> 주문번호·주문행·제조구분1/2, 각
+원자재코드를 적습니다. 주공정·대체공정 구분도 별도로 기록합니다.</li>
+<li><strong>생성 경로를 확인한다.</strong> 자동설계, 구매반제품 차선
+복사, 반복주문 복사, 수동수정 이력을 구별합니다.</li>
+<li><strong>제품폭을 재현한다.</strong> 원래 주문폭, 폭관리코드, 폭여유,
+Slit조수, 조합폭1~10, 재단선, CCL-BOM을 확인합니다.</li>
+<li><strong>기준에 넘긴 폭과 두께를 적는다.</strong>
+<code>ord_exc_wth</code>와 <code>cegl_exc_wth</code>, SET과 출측두께를
+구별합니다.</li>
+<li><strong>공정별 수축과 ST보정을 적는다.</strong>
+정전·CCL·CGL/EGL·PLTCM의 선택한 기준 행과 결과를 확인하고, PL/ST 상한
+처리도 재현합니다.</li>
+<li><strong>원자재 마지막 분기를 고른다.</strong> C10B2230 적용 여부,
+입력 원자재코드, 변환된 코드, Edge, F/H 적정 −3을 확인합니다.</li>
+<li><strong>저장·오류와 대조한다.</strong> 현재 행의
+<code>RMTL_TAR_WTH</code> 및 설계오류를 확인합니다. 080의 Context
+원자재코드 누락 가능성도 점검합니다.</li>
+</ol>
+<table class="keep-table">
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>확인 항목</th>
+<th>적정 1에 기록할 값</th>
+<th>차선1(2)에 기록할 값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대상</td>
+<td>주문번호 / 주문행 / 제조구분</td>
+<td>주문번호 / 주문행 / 제조구분</td>
+</tr>
+<tr>
+<td>소재·경로</td>
+<td>입력 원자재 / C10B2230 결과 / 저장 원자재 / 계산·복사</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>제품폭</td>
+<td>W / 조합폭 합 / n / e / P / 재단선</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>두께 조회 입력</td>
+<td>SET / 출측 / 원자재 목표두께</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>공정폭</td>
+<td>CCL / 중간정전 / CGL / EGL / TM</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>경로별 폭</td>
+<td>PLTCM 주·대체1·대체2 / PL/ST 주·대체1·대체2</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>원자재 계산</td>
+<td>M / Edge / 수축 / 마진 / 소재별 차감 / 반올림</td>
+<td>동일 항목</td>
+</tr>
+<tr>
+<td>최종 대조</td>
+<td>계산폭 / DB 목표폭 / 오류 / 수정이력</td>
+<td>동일 항목</td>
+</tr>
+</tbody>
+</table>
+<h1 id="section-51">부록 A. 업무기준과 정확한 조회 입력</h1>
+<h2 id="section-52">A.1 폭설계 기준표</h2>
+<p>조회 입력의 순서까지 코드에 맞춰 적었습니다. 같은 룰이라도 호출
+위치에 따라 폭 입력이 달라집니다. [근거 S1~S3]</p>
+<table>
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>기준 ID</th>
+<th>역할</th>
+<th>코드가 넘기는 조건 순서</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C10A1070</td>
+<td>제품폭여유 View</td>
+<td>주문폭관리코드</td>
+<td>MRG_WTH</td>
+</tr>
+<tr>
+<td>C10B1079</td>
+<td>정전폭마진</td>
+<td>Edge, 품명, 제품형태, 코팅방식, 수지전면, 주문두께, CCL-BOM,
+스팽글</td>
+<td>MRG_WTH</td>
+</tr>
+<tr>
+<td>C10B1078</td>
+<td>CCL폭수축</td>
+<td>품명, 재질, SET두께, 기준적용폭</td>
+<td>CCL_WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B1077</td>
+<td>정전폭수축</td>
+<td>품명, 재질, SET두께, 기준적용폭</td>
+<td>WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B1075</td>
+<td>CGL폭수축</td>
+<td>공정, 품명, 재질, 원자재코드, SET두께, CGL/EGL 조회폭</td>
+<td>GAL_WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B1076</td>
+<td>EGL폭수축</td>
+<td>공정, 품명, 재질, 원자재코드, SET두께, CGL/EGL 조회폭</td>
+<td>EGL_WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B2191 — CGL 호출</td>
+<td>ST폭보정</td>
+<td>품명, 폭관리코드, 공정</td>
+<td>WTH_COR_VAL</td>
+</tr>
+<tr>
+<td>C10B2191 — EGL 호출</td>
+<td>ST폭보정</td>
+<td>폭관리코드, 공정</td>
+<td>WTH_COR_VAL</td>
+</tr>
+<tr>
+<td>C10B1074 — 공정 단계</td>
+<td>PLTCM폭수축</td>
+<td>원자재코드, <strong>출측두께</strong>, 경로별 PLTCM폭</td>
+<td>TCM_WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B1074 — 원자재 단계</td>
+<td>PLTCM폭수축 재조회</td>
+<td>원자재코드, <strong>출측두께</strong>, <strong>최대 PLTCM폭
+M</strong></td>
+<td>TCM_WTH_SHR_QTY</td>
+</tr>
+<tr>
+<td>C10B1073</td>
+<td>원자재 마진</td>
+<td>원자재코드, <strong>원자재 목표두께</strong>, M, 최종고객사</td>
+<td>MRG_WTH</td>
+</tr>
+<tr>
+<td>C10B2230 — EGL 공정 단계</td>
+<td>주공정 조회코드 변경</td>
+<td>품명, 주문두께, CGL/EGL 조회폭, 최종고객사, 고객사양번호,
+CCL-BOM</td>
+<td>1건이면 EGL 주공정 조회코드 92</td>
+</tr>
+<tr>
+<td>C10B2230 — 원자재 단계</td>
+<td>중간재 적용</td>
+<td>품명, 주문두께, 적용 주문폭, 최종고객사, 고객사양번호, CCL-BOM</td>
+<td>SEM_PRD_NM_CD</td>
+</tr>
+<tr>
+<td>C10B1071</td>
+<td>일반 원자재두께</td>
+<td>원자재코드, <strong>SET두께</strong>, M (Edge C/N만 +20)</td>
+<td>원자재 목표두께·후보두께</td>
+</tr>
+<tr>
+<td>C10B2310</td>
+<td>F/H 두께기준</td>
+<td>두께관리코드, <strong>최종품명</strong>, 용도 우선순위값, 고객사
+우선순위값, 주문두께</td>
+<td>THK_RNG_LLV/ULV; 성공 시 F/H 폭도 지정</td>
+</tr>
+</tbody>
+</table>
+<p>원자재 단계의 C10B2230 조회폭은 <code>DbSearchRmtSizeData</code>
+초반에서 <strong>Slit조수&gt;0이면 조합폭1~10 합, 아니면 원래
+주문폭</strong>으로 구성합니다. 제품폭·공정폭 단계의 재단선 Y·2조 특례와
+동일한 지역변수를 공유하는 것이 아닙니다. [근거 S3: 208~241행]</p>
+<p>기준 관리 화면은 제품폭여유가 <strong>C107000020 tab07</strong>,
+원자재두께·마진·수축 등은 <strong>C107000030 tab08~15</strong>에
+연결됩니다. 차례대로 tab08=1071, tab09=1073, tab10=1074, tab11=1075,
+tab12=1076, tab13=1078, tab14=1077, tab15=1079입니다. Rule 관리 SQL은
+<code>TB_M00_RULES010/040</code>의 유효 기준과 조건
+연산자·최소/최대·결과값을 조회합니다. 구간 끝점 포함 여부나 마진 수치를
+Java만 보고 단정할 수 없습니다. [근거 S11]</p>
+<h2 id="section-53">A.2 두께 분석서와 이어서 볼 부분</h2>
+<p>폭수축 기준 중 <strong>CCL·정전·CGL·EGL은 SET두께</strong>,
+<strong>PLTCM수축은 출측두께</strong>를 씁니다. <code>C10B1073</code>
+마진은 다시 <strong>원자재 목표두께</strong>를 사용합니다. 따라서 ‘폭
+기준 조회에는 두께 하나만 넣으면 된다’고 볼 수 없습니다.</p>
+<p>두께가 달라지면 구간 기준이 바뀌어 폭수축이나 원자재 마진이 달라질 수
+있습니다. 반대로 원자재두께 기준은 계산된 PLTCM폭 M을 입력으로 받습니다.
+앞의 PLTCM폭을 정한 뒤 원자재두께와 마진을 조회하는 <strong>순차
+계산</strong>이며, 이 세 클래스에 수렴할 때까지 폭·두께를 반복
+최적화하는 루프는 없습니다.</p>
+<h1 id="section-54">부록 B. 오류를 읽는 간단한 사전</h1>
+<table>
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>오류</th>
+<th>의미</th>
+<th>먼저 확인할 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KP05</td>
+<td>칼라 제조사양 조회 실패·없음</td>
+<td>주문의 CCL-BOM·칼라사양</td>
+</tr>
+<tr>
+<td>KT03 / KT13</td>
+<td>제품폭여유 없음 / 중복</td>
+<td>C10A1070, 폭관리코드</td>
+</tr>
+<tr>
+<td>KT28 / KT29</td>
+<td>정전마진 없음 / 중복</td>
+<td>C10B1079 조건 8개</td>
+</tr>
+<tr>
+<td>KT26 / KT27</td>
+<td>CCL수축 없음 / 중복</td>
+<td>C10B1078, SET, 적용폭</td>
+</tr>
+<tr>
+<td>KT24 / KT25</td>
+<td>정전수축 없음 / 중복</td>
+<td>C10B1077, 정전 통과·중간정전</td>
+</tr>
+<tr>
+<td>KT20 / KT21</td>
+<td>CGL수축 없음 / 중복</td>
+<td>C10B1075, 원자재·공정·SET·폭</td>
+</tr>
+<tr>
+<td>KT22 / KT23</td>
+<td>EGL수축 없음 / 중복</td>
+<td>C10B1076, 원자재·공정·SET·폭</td>
+</tr>
+<tr>
+<td>KT04 / KT14</td>
+<td>PLTCM수축 없음 / 중복</td>
+<td>C10B1074, <strong>출측두께</strong>·선택폭</td>
+</tr>
+<tr>
+<td>KT05 / KT15</td>
+<td>원자재 마진 없음 / 중복</td>
+<td>C10B1073, <strong>원자재 목표두께</strong>·최종고객사</td>
+</tr>
+<tr>
+<td>KT06 / KT11</td>
+<td>원자재두께 없음 / 중복</td>
+<td>C10B1071, C/N 조회폭 +20</td>
+</tr>
+<tr>
+<td>KK91</td>
+<td>중간재 적용 중복</td>
+<td>C10B2230</td>
+</tr>
+<tr>
+<td>KT37</td>
+<td>F/H 두께기준을 끝까지 못 찾음</td>
+<td>C10B2310, 용도·고객사 우선순위</td>
+</tr>
+<tr>
+<td>CF09 / CF10</td>
+<td>제품폭 하한·상한 누락 또는 역전</td>
+<td>제품폭범위·공차</td>
+</tr>
+<tr>
+<td>CF72 / CF30</td>
+<td>PLTCM폭 / 원자재 목표폭 누락</td>
+<td>앞 단계 실패·복사 원본·현재 행</td>
+</tr>
+</tbody>
+</table>
+<p>오류가 어떤 단계에서 났는지 같이 봅니다. 예를 들어 KT04는 공정폭
+단계의 경로별 폭에서 발생했을 수도 있고, 원자재 단계의 최대폭 재조회에서
+발생했을 수도 있습니다.</p>
+<h1 id="section-55">부록 C. 기존 주석을 읽을 때 주의할 설명</h1>
+<table>
+<colgroup>
+<col style="width: 0%" />
+<col style="width: 0%" />
+</colgroup>
+<thead>
+<tr>
+<th>혼동할 수 있는 설명</th>
+<th>현재 실행 코드에 맞춘 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>일반 Slit는 주문폭×조수</td>
+<td>현재는 조합폭1~10 합. 재단선 Y·2조는 별도 특례</td>
+</tr>
+<tr>
+<td>차선은 적정 원자재폭까지 복사</td>
+<td>제품·공정 항목 복사 후 원자재 Size 별도 실행</td>
+</tr>
+<tr>
+<td>적정·차선과 주·대체공정은 같은 구분</td>
+<td>서로 다른 축. 제조행 안에서 공정 경로별 폭을 비교</td>
+</tr>
+<tr>
+<td>원자재폭은 PL/ST폭+마진</td>
+<td>일반 경로는 최대 PLTCM폭을 고른 뒤 수축·마진 재조회</td>
+</tr>
+<tr>
+<td>C/N은 원자재폭에 +20</td>
+<td>+20은 C10B1071 두께기준 조회폭에만 적용</td>
+</tr>
+<tr>
+<td>구매 CR 주석의 +10 요청을 그대로 적용</td>
+<td>실제 실행식은 TM폭−3. E품명은 정수, 그 외 소수1자리 반올림</td>
+</tr>
+<tr>
+<td>F/H는 적정·차선 모두 최대 PLTCM폭</td>
+<td>적정 입력 <code>D*</code>는 C10B2310 성공 시 −3, 차선은 유지</td>
+</tr>
+<tr>
+<td>원자재폭 상하한도 자동으로 산출</td>
+<td>컬럼·SQL은 있으나 해당 클래스에 신규 산식 대입 없음</td>
+</tr>
+<tr>
+<td>클래스 주석의 이름만 보고 조회두께 선택</td>
+<td>SET / 출측 / 원자재두께를 실제 colValue 대입 기준으로 구분</td>
+</tr>
+</tbody>
+</table>
+<h1 id="section-56">부록 D. 코드 근거와 재현 범위</h1>
+<h2 id="section-57">D.1 핵심 코드 위치</h2>
+<p>행 번호는 현재 로컬 소스 기준입니다. 코드 파일을 수정하면 달라질 수
+있습니다.</p>
+<table class="source-index">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 40%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr>
+<th>ID</th>
+<th>파일</th>
+<th>확인한 부분</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchWthSizeData.java">DbSearchWthSizeData.java</a></td>
+<td>195~251 입력·차선분기, 254~335 칼라·폭여유, 338~440 Slit·제품폭,
+446~568 정전마진·CCL·중간정전</td>
+</tr>
+<tr>
+<td>S2</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchProcSizeData.java">DbSearchProcSizeData.java</a></td>
+<td>478~534 적정F/H 치환·차선분기, 584~680 조회폭·통과공정, 688~1201
+마진·수축·ST기준, 1203~1337 공정폭, 1447~1641 PLTCM수축·상한·저장
+Context</td>
+</tr>
+<tr>
+<td>S3</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchRmtSizeData.java">DbSearchRmtSizeData.java</a></td>
+<td>208~283 조회폭·최대폭, 288~318 중간재, 322~480 두께·수축·마진,
+484~644 Edge, 646~739 F/H, 742~814 구매 CR·도금재</td>
+</tr>
+<tr>
+<td>S4</td>
+<td><a href="../../src/service/C102100000-service.xml">C102100000-service.xml</a>,
+<a href="../../src/service/C103100070-service.xml">C103100070-service.xml</a>,
+<a href="../../src/service/C103100080-service.xml">080-service.xml</a>,
+<a href="../../src/service/C103100090-service.xml">090-service.xml</a>,
+<a href="../../src/service/C103100100-service.xml">100-service.xml</a></td>
+<td>설계 순서, 제조사양 루프 매핑, 차선 계산·복사 라우팅, 원자재
+UPDATE</td>
+</tr>
+<tr>
+<td>S5</td>
+<td><a href="../../src/query/C102100MNF-query.glue_sql">C102100MNF-query.glue_sql</a></td>
+<td>select 정렬, WTHupdate/1, PROCupdate/1, 제조구분별 저장</td>
+</tr>
+<tr>
+<td>S6</td>
+<td><a href="../../WebContents/C104000020TAB05.jsp">C104000020TAB05.jsp</a>, <a href="../../WebContents/C104000020TAB06.jsp">TAB06.jsp</a>, <a href="../../src/service/C104000020TAB05-service.xml">TAB05-service.xml</a>,
+<a href="../../src/query/C104000020TAB05-query.glue_sql">TAB05-query.glue_sql</a>,
+<a href="../../src/service/C104000020TAB06-service.xml">TAB06-service.xml</a>,
+<a href="../../src/query/C104000020TAB06-query.glue_sql">TAB06-query.glue_sql</a></td>
+<td>화면값 전달·제조사양 직접 저장 경로</td>
+</tr>
+<tr>
+<td>S7</td>
+<td><a href="../../src/service/B10R0030_sub-service.xml">B10R0030_sub-service.xml</a>,
+<a href="../../src/query/C102100170-query.glue_sql">C102100170-query.glue_sql</a>,
+<a href="../../src/query/C102100000-query.glue_sql">C102100000-query.glue_sql</a></td>
+<td>반복주문 제조사양 복사·재설계 초기화</td>
+</tr>
+<tr>
+<td>S8</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbQualDesignLoop.java">DbQualDesignLoop.java</a></td>
+<td>141~148 명시된 param 매핑만 Context에 복사</td>
+</tr>
+<tr>
+<td>S9</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchDsnValidData.java">DbSearchDsnValidData.java</a></td>
+<td>1708~1729 첫 제조행 검사, 1775~1783 제품폭범위, 1812~1814 PLTCM폭,
+2120~2161 첫 원자재행·폭 검사</td>
+</tr>
+<tr>
+<td>S10</td>
+<td><a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchRmtlCdData.java">DbSearchRmtlCdData.java</a>,
+<a href="../../src/com/unionsteel/mes/c10/activity/nui/DbSearchMnfData.java">DbSearchMnfData.java</a>,
+<a href="../../src/query/C103100100-query.glue_sql">C103100100-query.glue_sql</a>,
+<a href="../../src/query/C102100RMTL-query.glue_sql">C102100RMTL-query.glue_sql</a></td>
+<td>RmtlCd 98~108 / Mnf 118~135 후보번호 생성, 100 조회 5~32 RMT·MNF
+동일 후보 조인, RMTL 29~36 무정렬 조회·46~63 원자재폭 저장</td>
+</tr>
+<tr>
+<td>S11</td>
+<td><a href="../../src/query/C107000020tab07-query.glue_sql">C107000020tab07-query.glue_sql</a>,
+<a href="../../src/query/C107000030tab09-query.glue_sql">C107000030tab09-query.glue_sql</a>,
+<a href="../../src/query/C107000030tab10-query.glue_sql">tab10-query.glue_sql</a>,
+<a href="../../src/query/C107000030tab15-query.glue_sql">tab15-query.glue_sql</a></td>
+<td>제품폭여유와 마진·수축 기준 관리 조회의 유효일자·조건·결과 구조</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-58">D.2 확인한 것과 운영 확인이 필요한 것</h2>
+<p><strong>확인한 것:</strong> 로컬 소스의 실제 실행 분기, 기준 조회
+입력, 연산·반올림 순서, 적정·차선 복사와 저장 연결, 제품폭 단계
+원자재코드 전달 누락, 화면 직접 저장 경로, 설명용 예제의 독립 계산
+재현.</p>
+<p><strong>운영에서 확인할 것:</strong> 실제 주문의 유효 업무기준
+행·구간 연산자·수축·마진, 운영 배포본과 로컬 소스의 일치, Context 전달
+누락과 임시 F/H 코드 치환이 실제 주문에 미친 영향, 화면 수정·반복복사
+이력, 후속 시스템이 소비하는 폭 컬럼.</p>
+<p>계산 재현 코드는 <a href="width-design-guide-assets/verify-examples.cjs">verify-examples.cjs</a>,
+문서 빌드 방법은 <a href="width-design-guide-assets/README.md">README.md</a>에 있습니다.
+재현은 코드에서 확인한 산식을 설명용 입력에 적용한 것으로,
+<strong>GLUE/Java 전체 클래스 실행이나 운영 DB와 연결한 주문별 검증은
+아닙니다.</strong></p>
+<script>
+// Offline fixed scenarios grounded in the guide. No live rule lookup or user data.
+(()=>{
+ const root=document.getElementById('width-explorer');
+ if(!root)return;
+ const select=root.querySelector('#width-scenario');
+ const steps=root.querySelector('#width-steps');
+ const output=root.querySelector('#width-result');
+ const explanation=root.querySelector('#width-explanation');
+ const fmt=n=>new Intl.NumberFormat('ko-KR',{maximumFractionDigits:1}).format(n);
+ const scenarios={
+  hot:{g:2,t:3,m:5,end:'hot',note:'제품 1,002 → 도금 1,006 → 압연 1,008 → 열연 원자재 1,016. 수축·마진을 거슬러 더하는 기본 예제입니다.'},
+  'hot-alt':{g:4,t:5,m:7,end:'hot',note:'제품목표폭은 같아도 차선 원자재에 도금수축 4·압연수축 5·원자재마진 7이 조회되었다고 가정하면 1,022가 됩니다. 차선이라는 이름 때문에 넓어지는 것은 아닙니다.'},
+  gal:{g:2,end:'gal',note:'차선 구매 GI는 적정에서 복사한 도금 목표폭 1,006을 기준으로 1을 뺍니다. 압연폭에 열연의 수축·마진을 더하는 경로를 사용하지 않습니다.'},
+  'fh-main':{g:2,end:'fh-main',note:'적정 F/H의 입력 원자재코드가 D로 시작하고 F/H 두께기준이 성공했다면 최대 압연폭 1,008에서 3을 뺍니다. 이 −3은 현행 코드의 지정 규칙입니다.'},
+  'fh-alt':{g:2,end:'fh-alt',note:'차선 F/H는 공정폭 복사와 F/H 두께기준 조회가 정상이라는 가정에서 압연폭 1,008을 그대로 사용합니다. 적정 F/H의 −3을 적용하지 않습니다.'},
+  edge:{g:2,end:'edge',note:'중간재 미적용 GI의 Edge C/N 최종 분기는 최대 압연폭을 그대로 반올림합니다. 실제 Edge 변경 재설계에서는 앞 단계 기준도 바뀔 수 있습니다. 두께조회용 +20은 여기에 더하지 않습니다.'}
+ };
+ function render(){
+  const cfg=scenarios[select.value],p=1002,cgl=p+1+3,pltcm=Math.round(cgl+cfg.g);
+  const rows=[['제품목표폭',p,'여기에서 출발'],['도금 목표폭',cgl,'+ 정전수축 1 + 마진 3']];
+  let raw;
+  if(cfg.end==='gal'){raw=Math.round((cgl-1)*10)/10;rows.push(['원자재 목표폭',raw,'− 구매 도금재 차감 1']);}
+  else{
+   rows.push(['압연 목표폭',pltcm,`+ 도금수축 ${cfg.g}`]);
+   if(cfg.end==='hot'){raw=Math.round(pltcm+cfg.t+cfg.m);rows.push(['원자재 목표폭',raw,`+ 압연수축 ${cfg.t} + 마진 ${cfg.m}`]);}
+   else if(cfg.end==='fh-main'){raw=pltcm-3;rows.push(['원자재 목표폭',raw,'− 적정 F/H 차감 3']);}
+   else{raw=pltcm;rows.push(['원자재 목표폭',raw,cfg.end==='edge'?'Edge C/N: 최대폭 그대로':'차선 F/H: 최대폭 그대로']);}
+  }
+  steps.replaceChildren();
+  for(const [label,n,reason] of rows){
+   const li=document.createElement('li');
+   for(const [tag,val] of [['span',label],['strong',fmt(n)],['small',reason]]){const e=document.createElement(tag);e.textContent=val;li.append(e);}
+   steps.append(li);
+  }
+  output.textContent=`원자재 ${fmt(raw)} mm · 제품목표폭 대비 ${raw-p>=0?'+':''}${fmt(raw-p)} mm`;
+  output.dataset.raw=String(raw);
+  explanation.textContent=cfg.note;
+ }
+ select.addEventListener('change',render);
+ render();
+})();
+
+</script>
+</body>
+</html>

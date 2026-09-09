@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="725" viewBox="0 0 1100 725" role="img" aria-labelledby="title desc"><title id="title">구매 소재별 원자재폭 예제</title><desc id="desc">적정FH -3과 차선FH 유지, 구매CR TM-3, 구매도금재 CGL/EGL-1 및 반올림의 차이.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="725" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="30" fill="#17324d" font-weight="700">같은 주문이라도 구매하는 소재에 따라 출발 폭이 바뀝니다</text>
+<text x="35" y="88" font-size="22" fill="#516579" font-weight="400">각 행은 독립 설명용 예제입니다. 서로 같은 주문의 실적을 뜻하지 않습니다.</text>
+<rect x="35" y="121" width="1030" height="78" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="55" y="167" font-size="23" fill="#17324d" font-weight="700">적정 F/H · D*</text>
+<text x="390" y="167" font-size="22" fill="#17324d" font-weight="400">최대 PLTCM 1,008 − 3</text>
+<text x="905" y="168" font-size="28" fill="#007f86" font-weight="700">1,005</text>
+<rect x="35" y="218" width="1030" height="78" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="264" font-size="23" fill="#17324d" font-weight="700">차선 F/H · D*</text>
+<text x="390" y="264" font-size="22" fill="#17324d" font-weight="400">최대 PLTCM 1,008 그대로</text>
+<text x="905" y="265" font-size="28" fill="#007f86" font-weight="700">1,008</text>
+<rect x="35" y="315" width="1030" height="78" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="361" font-size="23" fill="#17324d" font-weight="700">구매 CR · C*</text>
+<text x="390" y="361" font-size="22" fill="#17324d" font-weight="400">TM 1,008.24 − 3 → 소수 1자리</text>
+<text x="905" y="362" font-size="28" fill="#007f86" font-weight="700">1,005.2</text>
+<rect x="35" y="412" width="1030" height="78" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="458" font-size="23" fill="#17324d" font-weight="700">구매 GI 계열 · G/L/V/W</text>
+<text x="390" y="458" font-size="22" fill="#17324d" font-weight="400">CGL 1,006.24 − 1 → 소수 1자리</text>
+<text x="905" y="459" font-size="28" fill="#007f86" font-weight="700">1,005.2</text>
+<rect x="35" y="509" width="1030" height="78" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="555" font-size="23" fill="#17324d" font-weight="700">구매 EGI 계열 · E/N</text>
+<text x="390" y="555" font-size="22" fill="#17324d" font-weight="400">EGL 1,006.24 − 1 → 소수 1자리</text>
+<text x="905" y="556" font-size="28" fill="#007f86" font-weight="700">1,005.2</text>
+<text x="35" y="647" font-size="23" fill="#17324d" font-weight="400">F/H는 두께기준 C10B2310 조회가 성공해야 폭도 지정됩니다.</text>
+<text x="35" y="689" font-size="22" fill="#17324d" font-weight="400">구매 CR에서 최종품명 E인 경우에는 소수 1자리 대신 정수 mm로 반올림합니다.</text></g></svg>

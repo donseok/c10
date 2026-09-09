@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="960" viewBox="0 0 1100 960" role="img" aria-labelledby="title desc"><title id="title">Edge별 최종 폭과 조회용20의 구별</title><desc id="desc">중간재미적용 P1002 M1008 고정시 S/M은1016 C는1008 N도금은1008 N그외1002. +20은두께조회조건.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="960" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="30" fill="#17324d" font-weight="700">열연 일반 경로는 마지막에 Edge 조건을 확인합니다</text>
+<text x="35" y="88" font-size="22" fill="#516579" font-weight="400">앞 단계 값을 고정한 산식 비교: 제품 P=1,002 / 최대 PLTCM M=1,008</text>
+<rect x="35" y="122" width="1030" height="97" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="159" font-size="26" fill="#17324d" font-weight="700">중간재가 적용되지 않은 일반 열연 경로</text><text x="55" y="197" font-size="22" fill="#17324d" font-weight="400">아래는 C/N/S/M의 최종 분기 비교입니다. 실제 Edge 변경 시 앞 단계도 다시 조회합니다.</text>
+<rect x="35" y="256" width="1030" height="103" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="58" y="295" font-size="25" fill="#17324d" font-weight="700">S / M</text>
+<text x="58" y="334" font-size="21" fill="#516579" font-weight="400">Slit / Mill</text>
+<text x="415" y="315" font-size="24" fill="#17324d" font-weight="400">M + 수축3 + 마진5</text>
+<text x="880" y="317" font-size="33" fill="#007f86" font-weight="700">1,016</text>
+<rect x="35" y="379" width="1030" height="103" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="418" font-size="25" fill="#17324d" font-weight="700">C</text>
+<text x="58" y="457" font-size="21" fill="#516579" font-weight="400">Coil Edge</text>
+<text x="415" y="438" font-size="24" fill="#17324d" font-weight="400">M 그대로 반올림</text>
+<text x="880" y="440" font-size="33" fill="#007f86" font-weight="700">1,008</text>
+<rect x="35" y="502" width="1030" height="103" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="541" font-size="25" fill="#17324d" font-weight="700">N · 도금계 품명</text>
+<text x="58" y="580" font-size="21" fill="#516579" font-weight="400">No Slit · GI/EGI 등</text>
+<text x="415" y="561" font-size="24" fill="#17324d" font-weight="400">M 그대로 반올림</text>
+<text x="880" y="563" font-size="33" fill="#007f86" font-weight="700">1,008</text>
+<rect x="35" y="625" width="1030" height="103" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="58" y="664" font-size="25" fill="#17324d" font-weight="700">N · 그 외 품명</text>
+<text x="58" y="703" font-size="21" fill="#516579" font-weight="400">No Slit · CR 등</text>
+<text x="415" y="684" font-size="24" fill="#17324d" font-weight="400">제품목표 P 반올림</text>
+<text x="880" y="686" font-size="33" fill="#007f86" font-weight="700">1,002</text>
+<rect x="35" y="790" width="1030" height="136" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="827" font-size="26" fill="#17324d" font-weight="700">C/N에서 등장하는 +20은 “두께 기준을 찾는 조회폭”</text><text x="55" y="865" font-size="22" fill="#17324d" font-weight="400">조회폭 1,008 + 20 = 1,028  →  두께기준 검색에 사용</text><text x="55" y="896" font-size="22" fill="#17324d" font-weight="400">최종 원자재폭 칸에 1,028을 넣는 산식이 아닙니다.</text></g></svg>

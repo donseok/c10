@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="710" viewBox="0 0 1100 710" role="img" aria-labelledby="title desc"><title id="title">수축량과 마진의 차이</title><desc id="desc">수축보완3과 원자재마진5는 별개 기준값. 압연폭1008에 각각 한 번 더해1016. 좌우 각각 가산하는 해석은 하지 않는다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="710" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="31" fill="#17324d" font-weight="700">수축량과 마진은 둘 다 더하지만 뜻이 다릅니다</text>
+<text x="35" y="88" font-size="21" fill="#516579" font-weight="400">그림은 개념 설명용입니다. 철판 단면·절단 위치·좌우 분배를 뜻하지 않습니다.</text>
+<rect x="35" y="130" width="495" height="250" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="55" y="167" font-size="26" fill="#17324d" font-weight="700">수축량 = 줄어들 폭을 보완</text><text x="55" y="205" font-size="22" fill="#17324d" font-weight="400">압연 뒤에 폭 1,008이 필요하고</text><text x="55" y="236" font-size="22" fill="#17324d" font-weight="400">폭수축 기준이 3이라면,</text><text x="55" y="267" font-size="22" fill="#17324d" font-weight="400">앞쪽에는 1,008 + 3을 준비합니다.</text>
+<rect x="570" y="130" width="495" height="250" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="590" y="167" font-size="26" fill="#17324d" font-weight="700">마진 = 기준이 요구하는 추가 폭</text><text x="590" y="205" font-size="22" fill="#17324d" font-weight="400">같은 원자재에 마진 기준이 5이면,</text><text x="590" y="236" font-size="22" fill="#17324d" font-weight="400">수축을 보완한 폭에 5를 더합니다.</text><text x="590" y="267" font-size="22" fill="#17324d" font-weight="400">마진의 크기는 기준 조회 결과입니다.</text>
+<rect x="35" y="432" width="1030" height="131" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="59" y="479" font-size="24" fill="#17324d" font-weight="400">필요한 압연폭</text>
+<text x="353" y="479" font-size="24" fill="#16828b" font-weight="700">수축 보완</text>
+<text x="628" y="479" font-size="24" fill="#bd741d" font-weight="700">원자재 마진</text>
+<text x="882" y="479" font-size="24" fill="#17324d" font-weight="700">원자재폭</text>
+<text x="59" y="529" font-size="33" fill="#17324d" font-weight="400">1,008</text>
+<text x="283" y="529" font-size="30" fill="#17324d" font-weight="400">+</text>
+<text x="410" y="529" font-size="33" fill="#16828b" font-weight="700">3</text>
+<text x="550" y="529" font-size="30" fill="#17324d" font-weight="400">+</text>
+<text x="690" y="529" font-size="33" fill="#bd741d" font-weight="700">5</text>
+<text x="819" y="529" font-size="30" fill="#17324d" font-weight="400">=</text>
+<text x="883" y="529" font-size="33" fill="#007f86" font-weight="700">1,016</text>
+<text x="35" y="621" font-size="23" fill="#17324d" font-weight="700">기준값 3과 5는 각 산식에 한 번씩 더합니다. 임의로 ×2를 하지 않습니다.</text>
+<text x="35" y="669" font-size="22" fill="#17324d" font-weight="400">실제 코드가 두 배를 하는 경우는 재단선 Y·Slit 2조 같은 명시된 별도 분기입니다.</text></g></svg>

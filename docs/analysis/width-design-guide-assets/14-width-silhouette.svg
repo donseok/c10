@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="825" viewBox="0 0 1100 825" role="img" aria-labelledby="title desc"><title id="title">제품폭 기준 누적 추가폭 비교</title><desc id="desc">공통제품폭1002를축약하고 추가폭만동일축척으로보인다. 도금4 압연6 원자재14만큼추가하여1006 1008 1016.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="825" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="48" font-size="30" fill="#17324d" font-weight="700">제품폭의 끝을 기준으로 추가 폭이 쌓이는 모습을 봅니다</text>
+<text x="35" y="88" font-size="22" fill="#516579" font-weight="400">공통 제품폭 1,002는 축약 표시 / 오른쪽 추가 폭만 같은 축척 / 단위 mm</text>
+<text x="35" y="138" font-size="25" fill="#17324d" font-weight="700">제품목표</text>
+<rect x="35" y="153" width="305" height="68" fill="#e5ecf1"/>
+<text x="75" y="195" font-size="22" fill="#17324d" font-weight="400">공통 제품폭 1,002</text>
+<text x="946" y="196" font-size="30" fill="#007f86" font-weight="700">1,002</text>
+<text x="35" y="264" font-size="25" fill="#17324d" font-weight="700">도금 목표</text>
+<rect x="35" y="279" width="305" height="68" fill="#e5ecf1"/>
+<text x="75" y="321" font-size="22" fill="#17324d" font-weight="400">공통 제품폭 1,002</text>
+<rect x="340" y="279" width="40" height="68" fill="#16828b"/>
+<text x="346" y="322" font-size="22" fill="#fff" font-weight="700">+1</text>
+<rect x="380" y="279" width="120" height="68" fill="#bd741d"/>
+<text x="426" y="322" font-size="22" fill="#fff" font-weight="700">+3</text>
+<text x="946" y="322" font-size="30" fill="#007f86" font-weight="700">1,006</text>
+<text x="35" y="390" font-size="25" fill="#17324d" font-weight="700">압연 목표</text>
+<rect x="35" y="405" width="305" height="68" fill="#e5ecf1"/>
+<text x="75" y="447" font-size="22" fill="#17324d" font-weight="400">공통 제품폭 1,002</text>
+<rect x="340" y="405" width="40" height="68" fill="#16828b"/>
+<text x="346" y="448" font-size="22" fill="#fff" font-weight="700">+1</text>
+<rect x="380" y="405" width="120" height="68" fill="#bd741d"/>
+<text x="426" y="448" font-size="22" fill="#fff" font-weight="700">+3</text>
+<rect x="500" y="405" width="80" height="68" fill="#16828b"/>
+<text x="526" y="448" font-size="22" fill="#fff" font-weight="700">+2</text>
+<text x="946" y="448" font-size="30" fill="#007f86" font-weight="700">1,008</text>
+<text x="35" y="516" font-size="25" fill="#17324d" font-weight="700">원자재 목표</text>
+<rect x="35" y="531" width="305" height="68" fill="#e5ecf1"/>
+<text x="75" y="573" font-size="22" fill="#17324d" font-weight="400">공통 제품폭 1,002</text>
+<rect x="340" y="531" width="40" height="68" fill="#16828b"/>
+<text x="346" y="574" font-size="22" fill="#fff" font-weight="700">+1</text>
+<rect x="380" y="531" width="120" height="68" fill="#bd741d"/>
+<text x="426" y="574" font-size="22" fill="#fff" font-weight="700">+3</text>
+<rect x="500" y="531" width="80" height="68" fill="#16828b"/>
+<text x="526" y="574" font-size="22" fill="#fff" font-weight="700">+2</text>
+<rect x="580" y="531" width="120" height="68" fill="#16828b"/>
+<text x="626" y="574" font-size="22" fill="#fff" font-weight="700">+3</text>
+<rect x="700" y="531" width="200" height="68" fill="#bd741d"/>
+<text x="786" y="574" font-size="22" fill="#fff" font-weight="700">+5</text>
+<text x="946" y="574" font-size="30" fill="#007f86" font-weight="700">1,016</text>
+<path d="M340 126L340 626" stroke="#516579" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="35" y="679" font-size="21" fill="#516579" font-weight="400">축약한 공통폭</text>
+<path d="M340 644L340 654" stroke="#b7c8d5" stroke-width="2" />
+<text x="330" y="684" font-size="21" fill="#516579" font-weight="400">0</text>
+<path d="M500 644L500 654" stroke="#b7c8d5" stroke-width="2" />
+<text x="490" y="684" font-size="21" fill="#516579" font-weight="400">4</text>
+<path d="M580 644L580 654" stroke="#b7c8d5" stroke-width="2" />
+<text x="570" y="684" font-size="21" fill="#516579" font-weight="400">6</text>
+<path d="M900 644L900 654" stroke="#b7c8d5" stroke-width="2" />
+<text x="890" y="684" font-size="21" fill="#516579" font-weight="400">14</text>
+<text x="35" y="738" font-size="26" fill="#17324d" font-weight="700">제품폭에 더해진 폭: 도금 +4 / 압연 +6 / 원자재 +14</text>
+<text x="35" y="781" font-size="22" fill="#516579" font-weight="400">폭을 비교하는 도식입니다. 좌우 여유 배분이나 실제 절단 위치를 나타내지 않습니다.</text></g></svg>
