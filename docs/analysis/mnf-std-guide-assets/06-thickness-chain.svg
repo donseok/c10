@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc"><title id="title">두께 사슬</title><desc id="desc">주문두께 0.500에서 압연 0.485, PLTCM 출측 0.489, X-Ray SET 0.490, 두께범위 0.480~0.500이 만들어진다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="560" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="27" fill="#17324d" font-weight="700">두께는 주문두께에서 출발해 압연 → PLTCM 출측 → X-Ray SET → 두께범위 순서로 만들어집니다</text>
+<text x="35" y="84" font-size="20" fill="#516579" font-weight="400">설명용 GI · 주문두께 0.500 TCT · 도금두께 목표 20 μm · 보정단위 CRN +0.005 · SP보정률 1% · PLTCM 공차 ±0.010</text>
+<rect x="35" y="120" width="195" height="175" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="49" y="152" font-size="19" fill="#17324d" font-weight="700">주문두께</text>
+<text x="49" y="208" font-size="32" fill="#007f86" font-weight="700">0.500</text>
+<text x="49" y="246" font-size="15" fill="#516579" font-weight="400">TCT: 도금 포함 두께</text>
+<path d="M232 208H243" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="245" y="120" width="195" height="175" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="259" y="152" font-size="19" fill="#17324d" font-weight="700">압연목표두께</text>
+<text x="259" y="208" font-size="32" fill="#007f86" font-weight="700">0.485</text>
+<text x="259" y="246" font-size="15" fill="#516579" font-weight="400">0.500 − 0.020 + 0</text>
+<text x="259" y="268" font-size="15" fill="#516579" font-weight="400">.005</text>
+<path d="M442 208H453" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="455" y="120" width="195" height="175" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="469" y="152" font-size="19" fill="#17324d" font-weight="700">PLTCM 출측두께</text>
+<text x="469" y="208" font-size="32" fill="#007f86" font-weight="700">0.489</text>
+<text x="469" y="246" font-size="15" fill="#516579" font-weight="400">0.485 × 1.01 = 0.</text>
+<text x="469" y="268" font-size="15" fill="#516579" font-weight="400">48985 → 3자리 절삭</text>
+<path d="M652 208H663" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="665" y="120" width="195" height="175" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="679" y="152" font-size="19" fill="#17324d" font-weight="700">X-Ray SET</text>
+<text x="679" y="208" font-size="32" fill="#007f86" font-weight="700">0.490</text>
+<text x="679" y="246" font-size="15" fill="#516579" font-weight="400">셋째 자리 9 → 0.48 + </text>
+<text x="679" y="268" font-size="15" fill="#516579" font-weight="400">0.01</text>
+<path d="M862 208H873" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="875" y="120" width="195" height="175" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="889" y="152" font-size="19" fill="#17324d" font-weight="700">PLTCM 두께범위</text>
+<text x="889" y="208" font-size="24" fill="#007f86" font-weight="700">0.480 ~ 0.500</text>
+<text x="889" y="246" font-size="15" fill="#516579" font-weight="400">SET ± 공차 0.010</text>
+<rect x="35" y="330" width="505" height="150" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="53" y="364" font-size="23" fill="#17324d" font-weight="700">제품 쪽 두께 (도금을 더한다)</text><text x="53" y="396" font-size="18" fill="#17324d" font-weight="400">제품목표두께 COR_THK_TRV = 0.485 + 0.020 = 0.505</text><text x="53" y="424" font-size="18" fill="#17324d" font-weight="400">CGL 목표두께 CGL_THK_TRV = 0.505 (GI는 정전목표두께 그대로)</text><text x="53" y="452" font-size="18" fill="#17324d" font-weight="400">제품두께범위 = 주문 0.500 + 인수도공차 (TCT는 도금 미가산)</text>
+<rect x="560" y="330" width="505" height="150" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="578" y="364" font-size="23" fill="#17324d" font-weight="700">압연 쪽 두께 (도금을 뺀다)</text><text x="578" y="396" font-size="18" fill="#17324d" font-weight="400">PLTCM 두께목표 PLTCM_THK_TRV = 0.489</text><text x="578" y="424" font-size="18" fill="#17324d" font-weight="400">PLTCM_SET_THK_TRV = 0.490 이 X-Ray Set 값</text><text x="578" y="452" font-size="18" fill="#17324d" font-weight="400">PLTCM_THK_LLV/ULV = 0.480 / 0.500</text>
+<text x="35" y="525" font-size="20" fill="#17324d" font-weight="700">SET 값 0.490은 소둔조건(C10B1051)·PLTCM 공차·5Stand WR·내경링 기준의 조회 입력이기도 합니다.</text></g></svg>

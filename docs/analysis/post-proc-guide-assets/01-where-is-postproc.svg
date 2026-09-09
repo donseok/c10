@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="715" viewBox="0 0 1100 715" role="img" aria-labelledby="title desc"><title id="title">후공정 탭의 자리</title><desc id="desc">제조표준 세 탭 중 후공정은 정전 Slit, SKID, 보호필름, 포장을 다루며 주문 단위로 움직인다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="715" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">후공정 제조표준은 “제품을 어떻게 잘라 포장해 내보낼지”를 다룹니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">제조표준 3개 탭 중 마지막 · 앞의 두 탭이 설비 작업조건이라면 여기는 제품 마무리 조건</text>
+<rect x="35" y="120" width="330" height="190" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="53" y="158" font-size="23" fill="#17324d" font-weight="700">용융도금-제조표준</text>
+<text x="53" y="188" font-size="18" fill="#516579" font-weight="400">TAB05</text>
+<text x="53" y="228" font-size="19" fill="#17324d" font-weight="400">PLTCM · CGL 소둔</text>
+<text x="53" y="258" font-size="19" fill="#17324d" font-weight="400">도금량 · 수지 · 목표 Size</text>
+<text x="53" y="292" font-size="17" fill="#516579" font-weight="700">제조구분별 3행</text>
+<rect x="380" y="120" width="330" height="190" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="398" y="158" font-size="23" fill="#17324d" font-weight="700">전기도금-제조표준</text>
+<text x="398" y="188" font-size="18" fill="#516579" font-weight="400">TAB06</text>
+<text x="398" y="228" font-size="19" fill="#17324d" font-weight="400">PLTCM · ECL · TM · ANN</text>
+<text x="398" y="258" font-size="19" fill="#17324d" font-weight="400">EGL 도금량 · 목표 Size</text>
+<text x="398" y="292" font-size="17" fill="#516579" font-weight="700">제조구분별 3행</text>
+<rect x="725" y="120" width="330" height="190" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="743" y="158" font-size="23" fill="#17324d" font-weight="700">후공정-제조표준</text>
+<text x="743" y="188" font-size="18" fill="#516579" font-weight="400">TAB09</text>
+<text x="743" y="228" font-size="19" fill="#17324d" font-weight="400">정전 Slit · 1T2C · S/T</text>
+<text x="743" y="258" font-size="19" fill="#17324d" font-weight="400">SKID · 보호필름 · 포장</text>
+<text x="743" y="292" font-size="17" fill="#007f86" font-weight="700">주문 단위 · 제조구분 1만 조회</text>
+<path d="M550 315V355" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="365" width="1030" height="120" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="397" font-size="22" fill="#17324d" font-weight="700">세 탭 모두 같은 행을 씁니다</text><text x="51" y="427" font-size="19" fill="#17324d" font-weight="400">TB_C10_QLT_DSN_MNF · 주문번호 + 주문행 + 제조구분</text><text x="51" y="453" font-size="19" fill="#17324d" font-weight="400">다만 후공정이 다루는 컬럼은 적정·차선이 같은 값이어야 하는 항목이라, 조회도 저장도 주문 단위로 움직입니다.</text>
+<rect x="35" y="505" width="335" height="175" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="537" font-size="22" fill="#17324d" font-weight="700">다루는 것</text><text x="51" y="567" font-size="18" fill="#17324d" font-weight="400">정전 Slit 조수와 조합폭 1~10</text><text x="51" y="593" font-size="18" fill="#17324d" font-weight="400">1T2C 유무 · S/T 유무</text><text x="51" y="619" font-size="18" fill="#17324d" font-weight="400">제품폭범위 상·하한</text><text x="51" y="645" font-size="18" fill="#17324d" font-weight="400">SKID 치수 · 보호필름 · 포장</text>
+<rect x="385" y="505" width="335" height="175" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="401" y="537" font-size="22" fill="#17324d" font-weight="700">보여만 주는 것</text><text x="401" y="567" font-size="18" fill="#17324d" font-weight="400">엠보스무늬 · SHEET 적치방법</text><text x="401" y="593" font-size="18" fill="#17324d" font-weight="400">방청유(도유코드)</text><text x="401" y="619" font-size="18" fill="#17324d" font-weight="400">SHL 작업 SIZE(조분할)</text><text x="401" y="645" font-size="18" fill="#17324d" font-weight="400">보호필름 7개 항목 전부</text>
+<rect x="735" y="505" width="330" height="175" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="751" y="537" font-size="22" fill="#17324d" font-weight="700">다루지 않는 것</text><text x="751" y="567" font-size="18" fill="#17324d" font-weight="400">두께 · 소둔 · 도금량</text><text x="751" y="593" font-size="18" fill="#17324d" font-weight="400">PLTCM 설정 · 원자재</text><text x="751" y="619" font-size="18" fill="#17324d" font-weight="400">→ TAB05 · TAB06 참조</text></g></svg>

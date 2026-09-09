@@ -1,0 +1,28 @@
+<section id="mnf-explorer" aria-label="품명별 제조표준 항목 비교">
+  <div class="explorer-top">
+    <label for="mnf-scenario">비교할 주문 유형
+      <select id="mnf-scenario">
+        <option value="gi">GI · 주문두께 0.500 TCT · Spangle 4</option>
+        <option value="ccgi">CCGI(GI 칼라) · 주문두께 0.500 TCT · 도막 25㎛</option>
+        <option value="egi">EGI · 주문두께 0.800 BMT · 조도 R1</option>
+        <option value="ccei">CCEI(EG 칼라) · 주문두께 0.800 BMT · 도막 25㎛</option>
+        <option value="cr">CR · 주문두께 0.800 BMT · 도금 없음</option>
+        <option value="fh">F/H · 주문두께 1.200 BMT · 조건 편성 대상 밖</option>
+      </select>
+    </label>
+    <p>두께 예제는 <strong>보정단위 CRN</strong>, SP보정률 1%를 가정합니다.<br><small>모든 숫자는 설명용 고정값입니다.</small></p>
+  </div>
+  <ol class="explorer-steps" id="mnf-steps">
+    <li><span>주문두께</span><strong>0.500</strong><small>TCT</small></li>
+    <li><span>압연목표두께</span><strong>0.485</strong><small>− 도금 0.020 + 보정 0.005</small></li>
+    <li><span>PLTCM 출측</span><strong>0.489</strong><small>× 1.01 후 3자리 절삭</small></li>
+    <li><span>X-Ray SET</span><strong>0.490</strong><small>셋째 자리 0/5 규칙</small></li>
+  </ol>
+  <p class="explorer-result" id="mnf-result" aria-live="polite">용융도금 탭 · 소둔은 2·3·4·5 CGL 20개 항목</p>
+  <table class="explorer-table"><caption id="mnf-caption">이 주문에서 채워지는 조건 항목</caption>
+    <thead><tr><th scope="col">항목</th><th scope="col">이 주문</th></tr></thead>
+    <tbody id="mnf-rows"></tbody>
+  </table>
+  <p id="mnf-explanation">GI는 CGL Leveler·Spangle·수지부착량·CGL 소둔조건을 편성하고 ECL·ANN 항목은 비어 있습니다.</p>
+  <p class="explorer-note">설명용 고정값 · 운영 업무기준 조회 없음 · 화면 수동수정 결과가 아닙니다.</p>
+</section>

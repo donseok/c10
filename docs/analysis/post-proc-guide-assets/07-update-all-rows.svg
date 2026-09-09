@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="760" viewBox="0 0 1100 760" role="img" aria-labelledby="title desc"><title id="title">제조구분 없는 저장</title><desc id="desc">조회는 적정 한 행만 하지만 저장은 제조구분 조건 없이 적정과 차선 세 행을 모두 갱신한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="760" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">후공정 저장은 적정·차선 세 행을 한꺼번에 바꿉니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">조회는 제조구분 1(적정) 한 행만 하지만, UPDATE 문에는 제조구분 조건이 없습니다</text>
+<rect x="35" y="120" width="470" height="150" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="152" font-size="22" fill="#17324d" font-weight="700">조회 SQL</text><text x="51" y="182" font-size="19" fill="#17324d" font-weight="400">WHERE 주문번호 = ?</text><text x="51" y="208" font-size="19" fill="#17324d" font-weight="400">  AND 주문행 = ?</text><text x="51" y="234" font-size="19" fill="#17324d" font-weight="400">  AND 제조구분 = '1'   ← 적정만</text>
+<rect x="595" y="120" width="470" height="150" rx="12" fill="#fdecea" stroke="#b7c8d5"/><text x="611" y="152" font-size="22" fill="#17324d" font-weight="700">저장 SQL (MNFupdate)</text><text x="611" y="182" font-size="19" fill="#17324d" font-weight="400">WHERE 주문번호 = ?</text><text x="611" y="208" font-size="19" fill="#17324d" font-weight="400">  AND 주문행 = ?</text><text x="611" y="234" font-size="19" fill="#17324d" font-weight="400">  (제조구분 조건 없음)   ← 전체</text>
+<path d="M270 275V320" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M830 275V320" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="35" y="355" font-size="20" fill="#17324d" font-weight="700">화면이 보여주는 행</text>
+<text x="595" y="355" font-size="20" fill="#b3261e" font-weight="700">저장이 바꾸는 행</text>
+<rect x="35" y="375" width="470" height="58" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="55" y="412" font-size="19" fill="#17324d" font-weight="700">적정  제조구분 1   ← 조회·표시</text>
+<rect x="595" y="375" width="470" height="58" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="615" y="412" font-size="19" fill="#b3261e" font-weight="700">적정  제조구분 1   ← 함께 갱신</text>
+<rect x="35" y="445" width="470" height="58" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="55" y="482" font-size="19" fill="#516579" font-weight="400">차선1  제조구분 2   (화면에 없음)</text>
+<rect x="595" y="445" width="470" height="58" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="615" y="482" font-size="19" fill="#b3261e" font-weight="700">차선1  제조구분 2   ← 함께 갱신</text>
+<rect x="35" y="515" width="470" height="58" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="55" y="552" font-size="19" fill="#516579" font-weight="400">차선2  제조구분 3   (화면에 없음)</text>
+<rect x="595" y="515" width="470" height="58" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="615" y="552" font-size="19" fill="#b3261e" font-weight="700">차선2  제조구분 3   ← 함께 갱신</text>
+<rect x="35" y="600" width="1030" height="130" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="632" font-size="22" fill="#17324d" font-weight="700">이 동작이 문제가 아닌 이유와, 그래도 알아야 하는 이유</text><text x="51" y="662" font-size="19" fill="#17324d" font-weight="400">후공정이 저장하는 일곱 항목은 자동설계에서도 적정·차선이 같은 값을 갖도록 만들어집니다. 그래서 함께 갱신하는 편이 일관됩니다.</text><text x="51" y="688" font-size="19" fill="#17324d" font-weight="400">다만 화면은 적정 값만 보여주므로, 차선 행에 다른 값이 남아 있었다면 그 값은 확인 없이 사라집니다.</text><text x="51" y="714" font-size="19" fill="#17324d" font-weight="400">차선 행의 후공정 값을 조사할 때는 화면이 아니라 DB 를 직접 봐야 합니다.</text></g></svg>

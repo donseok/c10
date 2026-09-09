@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680" role="img" aria-labelledby="title desc"><title id="title">관리점착력 이중 소스</title><desc id="desc">칼라 제조사양에 관리점착력이 있으면 그 값을, 없으면 상세코드에서 쪼갠 제품점착력을 쓴다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="680" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">관리점착력만 다른 표에서 먼저 찾아옵니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">칼라 제조사양(CCL BOM)에 값이 있으면 그 값을, 없으면 상세코드에서 쪼갠 제품점착력을 씁니다</text>
+<rect x="35" y="125" width="420" height="140" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/><text x="51" y="157" font-size="21" fill="#17324d" font-weight="700">① 먼저 본다</text><text x="51" y="187" font-size="18" fill="#17324d" font-weight="400">칼라 제조사양 TB_C10_QLT_DSN_CCL_BOM</text><text x="51" y="213" font-size="18" fill="#17324d" font-weight="400">같은 주문번호·주문행의</text><text x="51" y="239" font-size="18" fill="#17324d" font-weight="400">보호필름 관리점착력 문구</text>
+<polygon points="660,150 810,195 660,240 510,195" fill="#e2f1f0" stroke="#b7c8d5"/><text x="660" y="201" font-size="20" fill="#17324d" font-weight="700" text-anchor="middle">값이 있는가?</text>
+<path d="M460 195H505" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M810 195H900" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="822" y="185" font-size="18" fill="#007f86" font-weight="700">예</text>
+<rect x="905" y="163" width="160" height="64" rx="12" fill="#e4f4ef" stroke="#007f86"/>
+<text x="985" y="202" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">그 값 사용</text>
+<path d="M660 242V290" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="676" y="278" font-size="18" fill="#516579" font-weight="700">아니오</text>
+<rect x="440" y="290" width="440" height="120" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="456" y="322" font-size="21" fill="#17324d" font-weight="700">② 대신 쓴다</text><text x="456" y="352" font-size="18" fill="#17324d" font-weight="400">상세코드 5번째 자리 = 제품점착력</text><text x="456" y="378" font-size="18" fill="#17324d" font-weight="400">공통코드로 의미를 붙여 표시</text>
+<rect x="35" y="450" width="1030" height="150" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="488" font-size="22" fill="#17324d" font-weight="700">그래서 이런 일이 생깁니다</text>
+<text x="55" y="524" font-size="19" fill="#17324d" font-weight="400">같은 화면의 “관리점착력”과 “제품점착력”이 서로 다른 값을 보일 수 있습니다. 칼라 주문이면 정상입니다.</text>
+<text x="55" y="554" font-size="19" fill="#17324d" font-weight="400">반대로 두 칸이 똑같다면 칼라 BOM 에 관리점착력이 비어 있다는 뜻일 수 있습니다.</text>
+<text x="55" y="584" font-size="19" fill="#516579" font-weight="400">칼라가 아닌 주문은 CCL BOM 행 자체가 없어 항상 제품점착력이 그대로 보입니다.</text>
+<text x="35" y="645" font-size="20" fill="#17324d" font-weight="700">두 칸이 다르다고 오류로 단정하지 말고, 먼저 그 주문에 칼라 제조사양이 있는지 확인합니다.</text></g></svg>

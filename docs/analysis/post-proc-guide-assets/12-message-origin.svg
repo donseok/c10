@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680" role="img" aria-labelledby="title desc"><title id="title">정전 메세지 생성 경로</title><desc id="desc">설계 Key 기준 한 행에서 제조구분별 메세지와 정전 메세지가 함께 나오고 각각 다른 표에 저장된다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="680" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">정전 메세지는 설계 Key 기준 한 행에서 함께 나옵니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">같은 기준 행이 제조구분별 메세지와 정전 메세지를 동시에 내려줍니다</text>
+<rect x="35" y="120" width="330" height="150" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="152" font-size="21" fill="#17324d" font-weight="700">설계 Key 기준 C10B1040</text><text x="51" y="182" font-size="18" fill="#17324d" font-weight="400">품명 · 재질 · 규격 등으로 조회</text><text x="51" y="208" font-size="18" fill="#17324d" font-weight="400">결과 열에 메세지 문구가 들어 있음</text>
+<path d="M370 175H430" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M370 215H430" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="435" y="120" width="300" height="70" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="451" y="150" font-size="20" fill="#17324d" font-weight="700">메세지 열 1</text>
+<text x="451" y="176" font-size="17" fill="#516579" font-weight="400">제조구분별 문구</text>
+<rect x="435" y="200" width="300" height="70" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="451" y="230" font-size="20" fill="#17324d" font-weight="700">정전 메세지 열</text>
+<text x="451" y="256" font-size="17" fill="#516579" font-weight="400">정전 공정 문구</text>
+<path d="M740 155H800" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M740 235H800" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="805" y="110" width="260" height="90" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="821" y="142" font-size="19" fill="#17324d" font-weight="700">MSG 표</text><text x="821" y="172" font-size="16" fill="#17324d" font-weight="400">원자재 후보 수만큼</text><text x="821" y="198" font-size="16" fill="#17324d" font-weight="400">1~3건 INSERT</text>
+<rect x="805" y="215" width="260" height="90" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="821" y="247" font-size="19" fill="#17324d" font-weight="700">MSG1 표</text><text x="821" y="277" font-size="16" fill="#17324d" font-weight="400">주문당 1건 INSERT</text><text x="821" y="303" font-size="16" fill="#17324d" font-weight="400">← 후공정 탭이 편집</text>
+<rect x="35" y="335" width="1030" height="150" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="373" font-size="22" fill="#17324d" font-weight="700">후공정 탭에서 메세지를 고치면</text>
+<text x="55" y="409" font-size="19" fill="#17324d" font-weight="400">정전 메세지(MSG1) 한 건만 바뀝니다. 앞의 두 탭이 보여주는 제조구분별 메세지(MSG)는 그대로입니다.</text>
+<text x="55" y="439" font-size="19" fill="#17324d" font-weight="400">1,000바이트를 넘는 글자는 잘려서 저장됩니다.</text>
+<text x="55" y="469" font-size="19" fill="#8a6100" font-weight="700">재설계하면 메인 서비스가 두 표를 모두 지우고 기준에서 다시 만듭니다. 손으로 고친 문구는 사라집니다.</text>
+<rect x="35" y="505" width="1030" height="140" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="537" font-size="22" fill="#17324d" font-weight="700">값이 비어 보일 때</text><text x="51" y="567" font-size="19" fill="#17324d" font-weight="400">정전 메세지 경로에는 빈 값 치환이 없습니다. 기준 열이 비어 있으면 NULL 이나 빈 값 그대로 INSERT 됩니다.</text><text x="51" y="593" font-size="19" fill="#17324d" font-weight="400">제조구분별 메세지 경로에만 빈 문자열 치환이 있습니다. 두 경로의 처리가 다릅니다.</text><text x="51" y="619" font-size="19" fill="#17324d" font-weight="400">행 자체가 없으면 화면 메세지 칸이 아예 뜨지 않습니다. 이때는 설계 Key 단계가 성공했는지 확인합니다.</text></g></svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680" role="img" aria-labelledby="title desc"><title id="title">보호필름 상세코드 파싱</title><desc id="desc">상세코드의 2·4·5번째 자리를 각각 두께코드, SUS점착력, 제품점착력으로 쪼개 표시한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="680" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="28" fill="#17324d" font-weight="700">보호필름 상세코드 한 줄을 자리별로 쪼개 다섯 칸에 나눠 보여줍니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">설명용 코드 A2B31 · 실제 자리 의미와 코드값은 운영 공통코드를 확인해야 합니다</text>
+<rect x="190" y="125" width="120" height="92" rx="12" fill="#f4f4f4" stroke="#b7c8d5"/>
+<text x="250" y="198" font-size="52" fill="#9aa5ad" font-weight="700" text-anchor="middle">A</text>
+<text x="250" y="143" font-size="15" fill="#516579" font-weight="400" text-anchor="middle">1자리</text>
+<rect x="335" y="125" width="120" height="92" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="395" y="198" font-size="52" fill="#007f86" font-weight="700" text-anchor="middle">2</text>
+<text x="395" y="143" font-size="15" fill="#516579" font-weight="400" text-anchor="middle">2자리</text>
+<rect x="480" y="125" width="120" height="92" rx="12" fill="#f4f4f4" stroke="#b7c8d5"/>
+<text x="540" y="198" font-size="52" fill="#9aa5ad" font-weight="700" text-anchor="middle">B</text>
+<text x="540" y="143" font-size="15" fill="#516579" font-weight="400" text-anchor="middle">3자리</text>
+<rect x="625" y="125" width="120" height="92" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="685" y="198" font-size="52" fill="#007f86" font-weight="700" text-anchor="middle">3</text>
+<text x="685" y="143" font-size="15" fill="#516579" font-weight="400" text-anchor="middle">4자리</text>
+<rect x="770" y="125" width="120" height="92" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="830" y="198" font-size="52" fill="#007f86" font-weight="700" text-anchor="middle">1</text>
+<text x="830" y="143" font-size="15" fill="#516579" font-weight="400" text-anchor="middle">5자리</text>
+<text x="35" y="180" font-size="22" fill="#17324d" font-weight="700">상세코드</text>
+<rect x="190" y="262" width="120" height="90" rx="12" fill="#fafafa" stroke="#b7c8d5"/>
+<text x="250" y="296" font-size="15" fill="#9aa5ad" font-weight="400" text-anchor="middle">화면에 따로</text>
+<text x="250" y="322" font-size="15" fill="#9aa5ad" font-weight="400" text-anchor="middle">쓰지 않음</text>
+<path d="M395 222V258" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="335" y="262" width="120" height="90" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="395" y="296" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">보호필름</text>
+<text x="395" y="322" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">두께코드</text>
+<rect x="480" y="262" width="120" height="90" rx="12" fill="#fafafa" stroke="#b7c8d5"/>
+<text x="540" y="296" font-size="15" fill="#9aa5ad" font-weight="400" text-anchor="middle">화면에 따로</text>
+<text x="540" y="322" font-size="15" fill="#9aa5ad" font-weight="400" text-anchor="middle">쓰지 않음</text>
+<path d="M685 222V258" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="625" y="262" width="120" height="90" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="685" y="296" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">SUS</text>
+<text x="685" y="322" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">점착력</text>
+<path d="M830 222V258" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="770" y="262" width="120" height="90" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="830" y="296" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">제품</text>
+<text x="830" y="322" font-size="15" fill="#17324d" font-weight="700" text-anchor="middle">점착력</text>
+<rect x="35" y="385" width="1030" height="120" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="422" font-size="22" fill="#17324d" font-weight="700">화면 다섯 칸에 함께 놓이는 값</text>
+<text x="55" y="456" font-size="19" fill="#17324d" font-weight="400">상세코드 원본 · 부착위치코드 · 보호필름 폭 — 이 셋은 주문 값을 그대로 씁니다.</text>
+<text x="55" y="486" font-size="19" fill="#17324d" font-weight="400">쪼갠 세 값은 각각 공통코드를 조회해 “코드 : 의미” 형태로 붙여 보여줍니다.</text>
+<rect x="35" y="525" width="1030" height="120" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="557" font-size="22" fill="#17324d" font-weight="700">주의</text><text x="51" y="587" font-size="19" fill="#17324d" font-weight="400">상세코드가 짧거나 비어 있으면 그 칸은 코드와 의미가 함께 사라져 빈 값이 됩니다.</text><text x="51" y="613" font-size="19" fill="#17324d" font-weight="400">화면의 두께·SUS점착력·제품점착력은 별도 컬럼이 아니라 이 코드에서 파생된 값입니다. DB 에서 그 이름의 컬럼을 찾지 마세요.</text></g></svg>

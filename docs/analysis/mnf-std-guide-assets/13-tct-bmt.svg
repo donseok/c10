@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="675" viewBox="0 0 1100 675" role="img" aria-labelledby="title desc"><title id="title">TCT와 BMT</title><desc id="desc">TCT는 주문두께에서 도금두께를 빼 압연목표를 만들고, BMT는 주문두께에 보정만 더한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="675" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="27" fill="#17324d" font-weight="700">주문두께구분이 TCT 인지 BMT 인지에 따라 압연목표두께에서 도금두께를 빼는지가 갈립니다</text>
+<text x="35" y="84" font-size="20" fill="#516579" font-weight="400">설명용 · CRN 보정 +0.005 (GI) · PCN 보정 +1% (EGI) · 도금두께는 μm 를 1,000 으로 나눠 mm 로 씁니다</text>
+<text x="35" y="140" font-size="22" fill="#17324d" font-weight="700">TCT (ORD_THK_TP = 2) · GI 주문두께 0.500 = 도금 포함</text>
+<rect x="35" y="155" width="760" height="60" rx="12" fill="#d8e6ee" stroke="#b7c8d5"/>
+<rect x="795" y="155" width="40" height="60" rx="12" fill="#a4dbd4" stroke="#b7c8d5"/>
+<text x="55" y="193" font-size="20" fill="#17324d" font-weight="400">소지 0.480</text>
+<text x="640" y="193" font-size="20" fill="#17324d" font-weight="700">주문두께 0.500</text>
+<text x="845" y="193" font-size="18" fill="#516579" font-weight="400">도금 0.020</text>
+<text x="35" y="250" font-size="20" fill="#007f86" font-weight="700">압연목표 = 0.500 − 0.020 + 0.005 = 0.485   → 제품목표두께 = 0.485 + 0.020 = 0.505</text>
+<text x="35" y="320" font-size="22" fill="#17324d" font-weight="700">BMT (ORD_THK_TP = 1) · EGI 주문두께 0.800 = 소지 두께</text>
+<rect x="35" y="335" width="900" height="60" rx="12" fill="#d8e6ee" stroke="#b7c8d5"/>
+<rect x="935" y="335" width="30" height="60" rx="12" fill="#a4dbd4" stroke="#b7c8d5"/>
+<text x="55" y="373" font-size="20" fill="#17324d" font-weight="700">주문두께 0.800 = 소지</text>
+<text x="970" y="373" font-size="18" fill="#516579" font-weight="400">+ 도금 0.003</text>
+<text x="35" y="430" font-size="20" fill="#007f86" font-weight="700">압연목표 = 0.800 + 0.800 × 1% = 0.808   → 제품목표두께 = 0.808 + 0.003 = 0.811   → TM 목표두께 = 0.811 − 0.003 = 0.808</text>
+<rect x="35" y="470" width="1030" height="175" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="53" y="504" font-size="23" fill="#17324d" font-weight="700">같은 흐름에서 갈리는 예외</text><text x="53" y="536" font-size="18" fill="#17324d" font-weight="400">CRN: 관리코드 5 (TCT→BMT) 면 압연목표 = 주문두께, 관리코드 6 (BMT→TCT) 면 주문두께 − 도금두께</text><text x="53" y="564" font-size="18" fill="#17324d" font-weight="400">PCN·TRK: 두께구분 2 + 관리코드 6, 두께구분 1 + 관리코드 5 는 KK94 로 설계가 멈춥니다.</text><text x="53" y="592" font-size="18" fill="#17324d" font-weight="400">PCN·TRK: 두께구분 2 + 관리코드 5, 두께구분 1 + 관리코드 6 은 계산식이 주석 처리되어 0 으로 남습니다.</text><text x="53" y="620" font-size="18" fill="#17324d" font-weight="400">위 표는 고객요청압연두께가 0 이고 두께구분이 3(칼라 TCT)이 아닐 때만 적용됩니다.</text></g></svg>

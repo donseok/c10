@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="665" viewBox="0 0 1100 665" role="img" aria-labelledby="title desc"><title id="title">폭 값의 계보</title><desc id="desc">제품폭범위는 주문폭에 인수도 공차를, 정전폭목표는 폭여유를 더한 값이며 조합폭은 별개 축이다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="665" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">후공정 화면의 폭 값 네 가지는 계보가 다릅니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">설명용 · 주문폭 1,000 · 폭여유 2 · 인수도 폭공차 −3 / +3 · Slit 없음</text>
+<rect x="35" y="120" width="240" height="90" rx="12" fill="#e8eef8" stroke="#b7c8d5"/>
+<text x="55" y="158" font-size="20" fill="#17324d" font-weight="700">주문폭</text>
+<text x="55" y="190" font-size="28" fill="#17324d" font-weight="700">1,000</text>
+<path d="M280 145H345" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M280 185H345" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="350" y="110" width="330" height="80" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="370" y="142" font-size="19" fill="#17324d" font-weight="700">제품폭범위 하한·상한</text>
+<text x="370" y="172" font-size="18" fill="#17324d" font-weight="400">997 ~ 1,003   = 주문폭 + 인수도공차</text>
+<rect x="350" y="200" width="330" height="80" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="370" y="232" font-size="19" fill="#17324d" font-weight="700">정전폭목표값</text>
+<text x="370" y="262" font-size="18" fill="#17324d" font-weight="400">1,002   = 주문폭 + 폭여유</text>
+<path d="M685 150H745" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M685 240H745" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="750" y="110" width="315" height="80" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="770" y="142" font-size="18" fill="#17324d" font-weight="700">후공정 화면 “제품폭범위”</text>
+<text x="770" y="172" font-size="17" fill="#516579" font-weight="400">편집 가능 · MNF 에 저장</text>
+<rect x="750" y="200" width="315" height="80" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="770" y="232" font-size="18" fill="#17324d" font-weight="700">조합폭1 이 0 일 때 대체값</text>
+<text x="770" y="262" font-size="17" fill="#516579" font-weight="400">화면에만 쓰이고 저장 안 됨</text>
+<rect x="35" y="310" width="1030" height="110" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="348" font-size="22" fill="#17324d" font-weight="700">조합폭 1~10 은 또 다른 축입니다</text>
+<text x="55" y="382" font-size="19" fill="#17324d" font-weight="400">Slit 주문에서 한 코일을 몇 갈래로 자를지와 각 갈래의 폭입니다. 제품폭범위·정전폭목표와 계산 관계가 없습니다.</text>
+<rect x="35" y="440" width="1030" height="190" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="478" font-size="22" fill="#17324d" font-weight="700">헷갈리기 쉬운 세 가지</text>
+<rect x="55" y="496" width="990" height="40" fill="#e3eef2"/><text x="65" y="526" font-size="18" fill="#17324d" font-weight="700">이름</text><text x="365" y="526" font-size="18" fill="#17324d" font-weight="700">뜻</text><text x="765" y="526" font-size="18" fill="#17324d" font-weight="700">후공정에서</text><rect x="55" y="536" width="990" height="40" fill="#fff" stroke="#b7c8d5"/><text x="65" y="563" font-size="18" fill="#17324d" font-weight="400">제품폭범위</text><text x="365" y="563" font-size="18" fill="#17324d" font-weight="400">납품 허용 폭 구간</text><text x="765" y="563" font-size="18" fill="#17324d" font-weight="400">편집·저장 대상</text><rect x="55" y="576" width="990" height="40" fill="#fafcfd" stroke="#b7c8d5"/><text x="65" y="603" font-size="18" fill="#17324d" font-weight="400">정전폭목표값</text><text x="365" y="603" font-size="18" fill="#17324d" font-weight="400">정전 공정에서 만들 폭</text><text x="765" y="603" font-size="18" fill="#17324d" font-weight="400">조회만 · 조합폭1 대체용</text><rect x="55" y="616" width="990" height="40" fill="#fff" stroke="#b7c8d5"/><text x="65" y="643" font-size="18" fill="#17324d" font-weight="400">조합폭 1~10</text><text x="365" y="643" font-size="18" fill="#17324d" font-weight="400">Slit 갈래별 폭</text><text x="765" y="643" font-size="18" fill="#17324d" font-weight="400">편집·저장 대상</text></g></svg>

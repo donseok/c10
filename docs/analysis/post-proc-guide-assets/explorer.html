@@ -1,0 +1,28 @@
+<section id="pp-explorer" aria-label="주문 조건별 후공정 화면 비교">
+  <div class="explorer-top">
+    <label for="pp-scenario">비교할 주문 조건
+      <select id="pp-scenario">
+        <option value="coil-st">코일 · S/T 유무 Y · Slit 3조</option>
+        <option value="coil-nost">코일 · S/T 유무 N · 조합폭은 남아 있음</option>
+        <option value="sheet">Sheet · 조분할 N · 주문폭 1,000 · 길이 2,000</option>
+        <option value="sheet-narrow">Sheet · 조분할 N · 주문폭 1,200 · 길이 900</option>
+        <option value="sheet-sub">Sheet · 조분할 Y · 조분할폭 500 · 길이 1,800</option>
+        <option value="term">종료 처리된 주문</option>
+      </select>
+    </label>
+    <p>표시 규칙만 적용한 <strong>설명용 고정값</strong>입니다.<br><small>운영 업무기준이나 주문을 조회하지 않습니다.</small></p>
+  </div>
+  <ol class="explorer-steps" id="pp-steps">
+    <li><span>Slit 조수</span><strong>3</strong><small>S/T 가 Y 라서 표시</small></li>
+    <li><span>조합폭1</span><strong>400.0</strong><small>저장값 그대로</small></li>
+    <li><span>SKID 폭</span><strong>—</strong><small>코일은 빈칸</small></li>
+    <li><span>SKID 길이</span><strong>—</strong><small>코일은 빈칸</small></li>
+  </ol>
+  <p class="explorer-result" id="pp-result" aria-live="polite">정상 조회 · 편집 가능</p>
+  <table class="explorer-table"><caption id="pp-caption">이 조건에서 화면이 보여주는 것</caption>
+    <thead><tr><th scope="col">칸</th><th scope="col">화면 표시</th></tr></thead>
+    <tbody id="pp-rows"></tbody>
+  </table>
+  <p id="pp-explanation">S/T 유무가 Y이므로 조수와 조합폭1이 그대로 보입니다. 코일이라 SKID 칸은 비어 있습니다.</p>
+  <p class="explorer-note">설명용 고정값 · 표시 규칙만 재현 · 저장 동작이나 DB 값은 별도로 확인해야 합니다.</p>
+</section>

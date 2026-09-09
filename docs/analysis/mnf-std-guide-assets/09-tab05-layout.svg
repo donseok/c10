@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="745" viewBox="0 0 1100 745" role="img" aria-labelledby="title desc"><title id="title">TAB05 화면 구성</title><desc id="desc">원자재, PLTCM, CGL 2·4와 3·5, 도금, Back마킹, 품질메세지 그리드로 구성된다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="745" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="29" fill="#17324d" font-weight="700">용융도금-제조표준 탭(TAB05)의 화면 구성</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">노란 셀은 편집 가능 · 회색 글씨는 조회 전용 · 모두 같은 제조표준 행의 컬럼</text>
+<rect x="35" y="115" width="1030" height="95" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="145" font-size="21" fill="#17324d" font-weight="700">Grid_1 원자재 (적정·차선1·차선2 3행)</text>
+<text x="55" y="180" font-size="18" fill="#17324d" font-weight="400">원자재코드 · 등급 · 목표두께 · 하한 · 상한 · 목표폭  → TB_C10_QLT_DSN_RMT</text>
+<rect x="35" y="225" width="1030" height="130" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="255" font-size="21" fill="#17324d" font-weight="700">Form_1 PLTCM  [압연Set지정 □] [폭수축] [저장]      Grid_2 PLTCM</text>
+<text x="55" y="290" font-size="18" fill="#17324d" font-weight="400">5Stand WRType · 내경링 · S/T유무 · X-Ray SET(조회) · Side Trimming Set값 주/대체1/대체2</text>
+<text x="55" y="318" font-size="18" fill="#17324d" font-weight="400">폭수축값(PL−PLTCM) · BigData 분석값(FC_NECKING_CAL) · 두께 목표/하한/상한 · 폭 목표/대체1/대체2</text>
+<text x="55" y="344" font-size="17" fill="#516579" font-weight="400">숨김열 100여 개(변경 전 _BF 포함): CGL 소둔·도금·수지 값이 모여 MNF_CGLupdate 로 저장됩니다</text>
+<rect x="35" y="370" width="505" height="130" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="400" font-size="21" fill="#17324d" font-weight="700">Grid_3 CGL: 2 CGL · 4 CGL 행</text>
+<text x="55" y="435" font-size="18" fill="#17324d" font-weight="400">소둔Cycle(콤보) · HT · CT · ST · Line Speed</text>
+<text x="55" y="463" font-size="17" fill="#516579" font-weight="400">Cycle 콤보 변경 → Grid_2 즉시 반영</text>
+<rect x="560" y="370" width="505" height="130" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="580" y="400" font-size="21" fill="#17324d" font-weight="700">Grid_4 CGL: 3 CGL · 5 CGL 행</text>
+<text x="580" y="435" font-size="18" fill="#17324d" font-weight="400">같은 5개 항목</text>
+<text x="580" y="463" font-size="17" fill="#516579" font-weight="400">LOV: HEAT_CYL_CD (SC0000)</text>
+<rect x="35" y="515" width="1030" height="110" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="545" font-size="21" fill="#17324d" font-weight="700">Grid_5 도금</text>
+<text x="55" y="580" font-size="18" fill="#17324d" font-weight="400">도금부착량 하한/상한(전체) · 도금목표 도금량/두께 · Spangle(조회) · L/V(콤보) · Skin Pass(조회) · 표면처리(조회)</text>
+<text x="55" y="608" font-size="18" fill="#17324d" font-weight="400">수지부착량 목표/하한/상한 · 목표 Size 두께/폭(=CGL_THK_TRV·CGL_WTH_TRV)</text>
+<rect x="35" y="640" width="505" height="80" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="670" font-size="20" fill="#17324d" font-weight="700">Grid_6 Back마킹 (조회, TB_C10_QLT_DSN_CMN)</text>
+<text x="55" y="700" font-size="17" fill="#516579" font-weight="400">품명 1~9 칼라가 아니고 BACK로 시작할 때만 표시</text>
+<rect x="560" y="640" width="505" height="80" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="580" y="670" font-size="20" fill="#17324d" font-weight="700">Grid_7 품질메세지 (편집)</text>
+<text x="580" y="700" font-size="17" fill="#516579" font-weight="400">TB_C10_QLT_DSN_MSG · 제조구분별 1건 · 1,000바이트 절단</text></g></svg>

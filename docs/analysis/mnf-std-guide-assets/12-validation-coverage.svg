@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="title desc"><title id="title">정합성검사 범위</title><desc id="desc">제품두께범위, PLTCM SET, 도금량, CGL EGL 두께 폭은 검사하지만 소둔조건 검사는 조건식 오류로 실행되지 않는다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="660" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="29" fill="#17324d" font-weight="700">정합성검사가 제조표준에서 실제로 확인하는 것과 확인하지 못하는 것</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">DbSearchDsnValidData.CheckMnf · 제조구분 정렬 첫 행(보통 적정 1)만 검사 · 5·7은 제조사양 블록에서만 제외</text>
+<rect x="35" y="115" width="505" height="470" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="148" font-size="24" fill="#17324d" font-weight="700">검사한다</text>
+<text x="55" y="190" font-size="19" fill="#17324d" font-weight="400">제품두께범위 누락·역전  CF07 / CF08</text>
+<text x="55" y="228" font-size="19" fill="#17324d" font-weight="400">PLTCM X-Ray SET 누락  CF25</text>
+<text x="55" y="266" font-size="19" fill="#17324d" font-weight="400">PLTCM 두께목표 누락  CF26</text>
+<text x="55" y="304" font-size="19" fill="#17324d" font-weight="400">PLTCM 폭목표 누락  CF72</text>
+<text x="55" y="342" font-size="19" fill="#17324d" font-weight="400">도금제품(도금량코드 있음)일 때:</text>
+<text x="55" y="380" font-size="19" fill="#17324d" font-weight="400">  도금두께 목표·상하한  CF18 / CF19 / CF20</text>
+<text x="55" y="418" font-size="19" fill="#17324d" font-weight="400">  CGL·EGL 두께·폭 누락  CF21 ~ CF24</text>
+<text x="55" y="456" font-size="19" fill="#17324d" font-weight="400">  작업도금량 목표  CF11</text>
+<text x="55" y="494" font-size="19" fill="#17324d" font-weight="400">  EG계 전면·후면 상하한  CF12 ~ CF15</text>
+<text x="55" y="532" font-size="19" fill="#17324d" font-weight="400">  GI계 전체 상하한  CF16 / CF17</text>
+<rect x="560" y="115" width="505" height="470" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="580" y="148" font-size="24" fill="#b3261e" font-weight="700">실행되지 않거나 없다</text>
+<text x="580" y="190" font-size="19" fill="#b3261e" font-weight="700">ANN 소둔조건 누락  CF36 ~ CF43</text>
+<text x="580" y="234" font-size="19" fill="#b3261e" font-weight="700">2·3·4·5 CGL 소둔조건 누락  CF44 ~ CF63</text>
+<text x="580" y="278" font-size="19" fill="#b3261e" font-weight="700">→ 품명 조건이 &amp;&amp; 로 묶여 항상 거짓 (1949·1994행)</text>
+<text x="580" y="322" font-size="19" fill="#17324d" font-weight="400">PLTCM 두께 상하한  CF27 / CF28 → 주석 처리</text>
+<text x="580" y="366" font-size="19" fill="#17324d" font-weight="400">ECL 약품·장력, 수지부착량, 조도 Ra</text>
+<text x="580" y="410" font-size="19" fill="#17324d" font-weight="400">TM Pass수, Leveler, Spangle, 표면처리, 도유코드</text>
+<text x="580" y="454" font-size="19" fill="#17324d" font-weight="400">차선 행(제조구분 2·3)의 제조표준 전체</text>
+<text x="580" y="498" font-size="19" fill="#17324d" font-weight="400">CGL·EGL 목표두께가 0 인 경우 (NULL 이 아니므로 통과)</text>
+<text x="35" y="625" font-size="20" fill="#17324d" font-weight="700">따라서 소둔조건이 비어 있어도 설계 오류로 잡히지 않습니다. 화면과 통과공정을 함께 확인해야 합니다.</text></g></svg>

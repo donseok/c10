@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="765" viewBox="0 0 1100 765" role="img" aria-labelledby="title desc"><title id="title">화면 다섯 블록</title><desc id="desc">정전, 후처리, 보호필름, 품질메세지, 포장 다섯 블록 중 정전과 메세지, 포장메세지만 편집할 수 있다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="765" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">화면은 다섯 블록입니다. 편집할 수 있는 곳은 세 곳뿐입니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">노란 테두리 = 편집 가능 · 회색 = 조회 전용 · 각 블록은 세로형 그리드(한 줄에 한 주문)</text>
+<rect x="35" y="120" width="1030" height="96" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="55" y="156" font-size="23" fill="#17324d" font-weight="700">① 정전  Grid_1</text>
+<text x="55" y="190" font-size="19" fill="#17324d" font-weight="400">조수 · 조합폭 1~10 · 1T2C유무 · S/T유무 · 제품폭범위 하한·상한</text>
+<rect x="925" y="142" width="120" height="34" rx="17" fill="#007f86"/><text x="985" y="165" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">편집</text>
+<rect x="35" y="232" width="1030" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="268" font-size="23" fill="#17324d" font-weight="700">② 후처리  Grid_2</text>
+<text x="55" y="302" font-size="19" fill="#17324d" font-weight="400">엠보스무늬 · SHEET적치방법 · 방청유 · SHL 작업 SIZE(두께·폭·길이) · SKID(폭·길이)</text>
+<rect x="925" y="254" width="120" height="34" rx="17" fill="#516579"/><text x="985" y="277" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">조회</text>
+<rect x="35" y="344" width="1030" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="380" font-size="23" fill="#17324d" font-weight="700">③ 보호필름  Grid_3</text>
+<text x="55" y="414" font-size="19" fill="#17324d" font-weight="400">관리점착력 · 상세코드 · 부착위치 · 두께 · 폭 · SUS점착력 · 제품점착력</text>
+<rect x="925" y="366" width="120" height="34" rx="17" fill="#516579"/><text x="985" y="389" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">조회</text>
+<rect x="35" y="456" width="1030" height="96" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="55" y="492" font-size="23" fill="#17324d" font-weight="700">④ 품질메세지  Grid_4</text>
+<text x="55" y="526" font-size="19" fill="#17324d" font-weight="400">정전 공정 메세지 한 줄 (TB_C10_QLT_DSN_MSG1)</text>
+<rect x="925" y="478" width="120" height="34" rx="17" fill="#007f86"/><text x="985" y="501" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">편집</text>
+<rect x="35" y="568" width="1030" height="96" rx="12" fill="#fff4e7" stroke="#e0a343"/>
+<text x="55" y="604" font-size="23" fill="#17324d" font-weight="700">⑤ 포장  Grid_5</text>
+<text x="55" y="638" font-size="19" fill="#17324d" font-weight="400">포장방법(조회) · 포장메세지(편집, 콤보)</text>
+<rect x="925" y="590" width="120" height="34" rx="17" fill="#007f86"/><text x="985" y="613" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">일부 편집</text>
+<text x="35" y="700" font-size="20" fill="#17324d" font-weight="700">②③은 앞 단계 설계 결과와 주문 정보를 그대로 보여줍니다. 이 화면에서 고칠 수 없습니다.</text>
+<text x="35" y="733" font-size="19" fill="#516579" font-weight="400">저장 버튼은 ①의 헤더(Form_1)에 하나뿐이며, ①④⑤ 세 블록의 변경을 한 번에 처리합니다.</text></g></svg>

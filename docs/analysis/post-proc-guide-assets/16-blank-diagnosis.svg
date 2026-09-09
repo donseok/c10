@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="845" viewBox="0 0 1100 845" role="img" aria-labelledby="title desc"><title id="title">빈칸 진단 순서도</title><desc id="desc">화면 전체, 조수와 조합폭, SKID, 보호필름, 메세지 순서로 빈칸의 원인을 좁힌다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="845" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">값이 비어 보일 때 이 순서로 좁힙니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">후공정 탭의 빈칸은 원인이 다섯 가지입니다. 위에서부터 확인하면 대부분 첫 두 단계에서 끝납니다.</text>
+<rect x="35" y="120" width="470" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="160" font-size="21" fill="#17324d" font-weight="700">① 화면 전체가 비었나?</text>
+<text x="55" y="192" font-size="17" fill="#516579" font-weight="400">아니오 → 다음으로</text>
+<path d="M510 166H570" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="120" width="490" height="92" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="595" y="160" font-size="19" fill="#17324d" font-weight="700">종료 처리된 주문 · 조회 SQL이 제외</text>
+<path d="M270 214V238" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="232" width="470" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="272" font-size="21" fill="#17324d" font-weight="700">② 조수·조합폭1 만 비었나?</text>
+<text x="55" y="304" font-size="17" fill="#516579" font-weight="400">아니오 → 다음으로</text>
+<path d="M510 278H570" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="232" width="490" height="92" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="595" y="272" font-size="19" fill="#17324d" font-weight="700">S/T 유무가 Y 가 아님 · 표시 규칙</text>
+<path d="M270 326V350" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="344" width="470" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="384" font-size="21" fill="#17324d" font-weight="700">③ SKID 칸이 비었나?</text>
+<text x="55" y="416" font-size="17" fill="#516579" font-weight="400">아니오 → 다음으로</text>
+<path d="M510 390H570" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="344" width="490" height="92" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="595" y="384" font-size="19" fill="#17324d" font-weight="700">제품형태가 Sheet 가 아님</text>
+<path d="M270 438V462" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="456" width="470" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="496" font-size="21" fill="#17324d" font-weight="700">④ 보호필름 칸이 비었나?</text>
+<text x="55" y="528" font-size="17" fill="#516579" font-weight="400">아니오 → 다음으로</text>
+<path d="M510 502H570" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="456" width="490" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="595" y="496" font-size="19" fill="#17324d" font-weight="700">주문에 상세코드가 없거나 5자리 미만</text>
+<path d="M270 550V574" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="568" width="470" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="608" font-size="21" fill="#17324d" font-weight="700">⑤ 메세지 칸이 비었나?</text>
+<text x="55" y="640" font-size="17" fill="#516579" font-weight="400">아니오 → 다음으로</text>
+<path d="M510 614H570" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="575" y="568" width="490" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="595" y="608" font-size="19" fill="#17324d" font-weight="700">설계 Key 의 정전 메세지 열이 비었거나 행 없음</text>
+<rect x="35" y="690" width="1030" height="120" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="728" font-size="22" fill="#17324d" font-weight="700">다섯 가지 모두 아니라면</text>
+<text x="55" y="764" font-size="19" fill="#17324d" font-weight="400">앞 단계 자동설계가 그 컬럼까지 도달하지 못했을 수 있습니다. 폭 단계(C103100080) 오류부터 확인합니다.</text>
+<text x="55" y="794" font-size="19" fill="#17324d" font-weight="400">제품폭범위가 비었다면 폭여유 기준 조회 실패(KT03)로 그 앞에서 멈췄을 가능성이 큽니다.</text></g></svg>

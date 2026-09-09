@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640" role="img" aria-labelledby="title desc"><title id="title">품명별 탭 구분</title><desc id="desc">용융도금 탭은 G K J L V W 3 4 6 9와 5 7, 전기도금 탭은 E N 2 8 C 1 A B D와 4 9를 보여준다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="640" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="29" fill="#17324d" font-weight="700">어느 탭에 보이는지는 품명코드가 정합니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">조회 SQL의 품명 필터 기준 · 4(CCLI)·9(CCLX)는 두 탭 모두에서 조회됩니다</text>
+<rect x="35" y="115" width="505" height="420" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="150" font-size="24" fill="#17324d" font-weight="700">용융도금-제조표준 TAB05</text>
+<text x="55" y="180" font-size="18" fill="#516579" font-weight="400">PRD_NM_CD NOT IN (A,B,C,D,E,1,2,N,8)</text>
+<rect x="55" y="205" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="70" y="232" font-size="20" fill="#17324d" font-weight="400">G  GI</text>
+<rect x="295" y="205" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="310" y="232" font-size="20" fill="#17324d" font-weight="400">K  Hot GI</text>
+<rect x="55" y="255" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="70" y="282" font-size="20" fill="#17324d" font-weight="400">J  G/A</text>
+<rect x="295" y="255" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="310" y="282" font-size="20" fill="#17324d" font-weight="400">L  G/L</text>
+<rect x="55" y="305" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="70" y="332" font-size="20" fill="#17324d" font-weight="400">V  GIX</text>
+<rect x="295" y="305" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="310" y="332" font-size="20" fill="#17324d" font-weight="400">W  GLX</text>
+<rect x="55" y="355" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="70" y="382" font-size="20" fill="#17324d" font-weight="400">3  CCGI</text>
+<rect x="295" y="355" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="310" y="382" font-size="20" fill="#17324d" font-weight="400">4  CCLI</text>
+<rect x="55" y="405" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="70" y="432" font-size="20" fill="#17324d" font-weight="400">6  CCGX</text>
+<rect x="295" y="405" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="310" y="432" font-size="20" fill="#17324d" font-weight="400">9  CCLX</text>
+<rect x="55" y="455" width="225" height="40" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="70" y="482" font-size="20" fill="#17324d" font-weight="400">5  CCAI</text>
+<rect x="295" y="455" width="225" height="40" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="310" y="482" font-size="20" fill="#17324d" font-weight="400">7  CCUS</text>
+<text x="55" y="522" font-size="17" fill="#516579" font-weight="400">5·7은 조회되지만 소둔·도금 기준은 대부분 건너뜁니다</text>
+<rect x="560" y="115" width="505" height="420" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="580" y="150" font-size="24" fill="#17324d" font-weight="700">전기도금-제조표준 TAB06</text>
+<text x="580" y="180" font-size="18" fill="#516579" font-weight="400">PRD_NM_CD IN (A,B,C,D,E,1,2,4,N,8,9)</text>
+<rect x="580" y="205" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="595" y="232" font-size="20" fill="#17324d" font-weight="400">E  EGI</text>
+<rect x="820" y="205" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="835" y="232" font-size="20" fill="#17324d" font-weight="400">N  ZnNi</text>
+<rect x="580" y="255" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="595" y="282" font-size="20" fill="#17324d" font-weight="400">2  CCEI</text>
+<rect x="820" y="255" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="835" y="282" font-size="20" fill="#17324d" font-weight="400">8  CCNI</text>
+<rect x="580" y="305" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="595" y="332" font-size="20" fill="#17324d" font-weight="400">C  CR</text>
+<rect x="820" y="305" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="835" y="332" font-size="20" fill="#17324d" font-weight="400">1  CCI</text>
+<rect x="580" y="355" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="595" y="382" font-size="20" fill="#17324d" font-weight="400">A  P/O SkinPass</text>
+<rect x="820" y="355" width="225" height="40" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="835" y="382" font-size="20" fill="#17324d" font-weight="400">B  P/O No SP</text>
+<rect x="580" y="405" width="225" height="40" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="595" y="432" font-size="20" fill="#17324d" font-weight="400">D  F/H</text>
+<rect x="820" y="405" width="225" height="40" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="835" y="432" font-size="20" fill="#17324d" font-weight="400">4·9  GL 칼라</text>
+<text x="580" y="472" font-size="17" fill="#516579" font-weight="400">CR·P/O·F/H는 도금이 없어도 PLTCM·TM·ANN 항목 때문에 이 탭입니다</text>
+<text x="35" y="578" font-size="20" fill="#17324d" font-weight="700">설계 로직도 같은 축으로 갈립니다. 용융계는 CGL Leveler·Spangle·수지·CGL 소둔을,</text>
+<text x="35" y="608" font-size="20" fill="#17324d" font-weight="700">전기·냉연계는 ECL·TM 조도·ANN 소둔을 편성합니다.</text></g></svg>

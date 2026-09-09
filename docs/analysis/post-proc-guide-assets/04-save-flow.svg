@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="970" viewBox="0 0 1100 970" role="img" aria-labelledby="title desc"><title id="title">저장 순서도</title><desc id="desc">저장 버튼은 정전, 메세지, 포장 순서로 변경 여부를 확인해 각각의 저장 체인을 실행한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="970" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">저장 버튼을 누르면 세 갈래를 순서대로 확인합니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">변경된 블록만 저장하고, 앞 저장이 끝나면 콜백이 다음 블록을 이어서 보냅니다</text>
+<rect x="430" y="115" width="240" height="44" rx="22" fill="#007f86"/><text x="550" y="143" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">저장 버튼 클릭</text>
+<path d="M550 162V196" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="550,196 760,236 550,276 340,236" fill="#e2f1f0" stroke="#b7c8d5"/><text x="550" y="231" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">① 정전 · ④ 메세지 · ⑤ 포장 중</text><text x="550" y="253" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">하나라도 updated 인가?</text>
+<path d="M340 236H210" fill="none" stroke="#b3261e" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="215" y="228" font-size="18" fill="#b3261e" font-weight="700">아니오</text>
+<rect x="35" y="210" width="170" height="52" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="120" y="242" font-size="19" fill="#b3261e" font-weight="700" text-anchor="middle">변경 없음 알림</text>
+<path d="M550 278V312" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="566" y="300" font-size="18" fill="#007f86" font-weight="700">예</text>
+<polygon points="550,319 700,352 550,385 400,352" fill="#eef7f8" stroke="#b7c8d5"/><text x="550" y="358" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">저장 확인 창</text>
+<path d="M550 386V420" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="550,426 715,466 550,506 385,466" fill="#e2f1f0" stroke="#b7c8d5"/><text x="550" y="461" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">① 정전이</text><text x="550" y="483" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">updated 인가?</text>
+<path d="M385 466H255" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="268" y="458" font-size="18" fill="#007f86" font-weight="700">예</text>
+<rect x="35" y="420" width="215" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="452" font-size="20" fill="#17324d" font-weight="700">COR_save</text><text x="51" y="482" font-size="15" fill="#17324d" font-weight="400">이력기록(후공정)</text><text x="51" y="508" font-size="15" fill="#17324d" font-weight="400">→ 후공정 save</text><text x="51" y="534" font-size="15" fill="#17324d" font-weight="400">→ 이력기록(1T2C)</text><text x="51" y="560" font-size="15" fill="#17324d" font-weight="400">→ 1T2C save</text>
+<path d="M142 516V554" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="142,561 249.5,594 142,627 34.5,594" fill="#e2f1f0" stroke="#b7c8d5"/><text x="142" y="600" font-size="18" fill="#17324d" font-weight="700" text-anchor="middle">콜백이 ④ 확인</text>
+<path d="M550 508V548" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="566" y="536" font-size="18" fill="#b3261e" font-weight="700">아니오</text>
+<polygon points="550,552 700,588 550,624 400,588" fill="#e2f1f0" stroke="#b7c8d5"/><text x="550" y="583" font-size="18" fill="#17324d" font-weight="700" text-anchor="middle">④ 메세지가</text><text x="550" y="605" font-size="18" fill="#17324d" font-weight="700" text-anchor="middle">updated 인가?</text>
+<path d="M400 588H255V686" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="300" y="578" font-size="17" fill="#007f86" font-weight="700">예</text>
+<rect x="35" y="690" width="300" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="722" font-size="20" fill="#17324d" font-weight="700">MSG_save</text><text x="51" y="752" font-size="16" fill="#17324d" font-weight="400">이력기록(메세지)</text><text x="51" y="778" font-size="16" fill="#17324d" font-weight="400">→ 메세지 save (MSG1)</text>
+<path d="M142 628V686" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M550 626V676" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="566" y="662" font-size="17" fill="#b3261e" font-weight="700">아니오</text>
+<polygon points="550,680 700,716 550,752 400,716" fill="#e2f1f0" stroke="#b7c8d5"/><text x="550" y="711" font-size="18" fill="#17324d" font-weight="700" text-anchor="middle">⑤ 포장메세지가</text><text x="550" y="733" font-size="18" fill="#17324d" font-weight="700" text-anchor="middle">updated 인가?</text>
+<path d="M700 716H788" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="716" y="706" font-size="17" fill="#007f86" font-weight="700">예</text>
+<rect x="795" y="672" width="270" height="92" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="811" y="704" font-size="20" fill="#17324d" font-weight="700">PKG_save</text><text x="811" y="734" font-size="16" fill="#17324d" font-weight="400">이력기록(포장메세지)</text><text x="811" y="760" font-size="16" fill="#17324d" font-weight="400">→ 포장메세지수정 (CMN)</text>
+<path d="M185 786V812H393" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M930 770V812H707" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M550 754V820" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="566" y="790" font-size="17" fill="#b3261e" font-weight="700">아니오</text>
+<rect x="400" y="822" width="300" height="46" rx="23" fill="#005f67"/><text x="550" y="851" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">화면 재조회</text>
+<text x="35" y="905" font-size="20" fill="#17324d" font-weight="700">①이 저장되면 그 콜백이 ④를, ④가 저장되면 그 콜백이 ⑤를 이어서 보냅니다. 세 블록을 동시에 고쳐도 한 번에 처리됩니다.</text>
+<text x="35" y="938" font-size="19" fill="#516579" font-weight="400">저장 실패는 각 단계에서 end 로 빠집니다. 앞 단계가 실패하면 뒤 단계는 아예 시도하지 않습니다.</text></g></svg>

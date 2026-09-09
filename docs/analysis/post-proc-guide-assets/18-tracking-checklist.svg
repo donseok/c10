@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="885" viewBox="0 0 1100 885" role="img" aria-labelledby="title desc"><title id="title">추적 체크리스트</title><desc id="desc">주문 고정, 종료 확인, 주문 값, 설계 결과, 화면 대조, 이력, 차선 행, 재설계 순서로 추적한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="885" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">실제 주문의 후공정 값을 추적하는 순서</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">왼쪽을 채운 뒤 오른쪽을 확인하면 어디서 값이 갈라졌는지 드러납니다</text>
+<rect x="35" y="120" width="1030" height="64" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<rect x="50" y="135" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="158" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">1</text>
+<text x="102" y="160" font-size="20" fill="#17324d" font-weight="700">주문을 고정한다</text>
+<text x="390" y="160" font-size="18" fill="#17324d" font-weight="400">주문번호 · 주문행 · 제품형태 · 주문 Edge</text>
+<rect x="35" y="196" width="1030" height="64" rx="12" fill="#fafcfd" stroke="#b7c8d5"/>
+<rect x="50" y="211" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="234" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">2</text>
+<text x="102" y="236" font-size="20" fill="#17324d" font-weight="700">종료 여부를 본다</text>
+<text x="390" y="236" font-size="18" fill="#17324d" font-weight="400">종료 통제 목록에 있으면 화면이 통째로 빔</text>
+<rect x="35" y="272" width="1030" height="64" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<rect x="50" y="287" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="310" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">3</text>
+<text x="102" y="312" font-size="20" fill="#17324d" font-weight="700">주문 값을 적는다</text>
+<text x="390" y="312" font-size="18" fill="#17324d" font-weight="400">엠보스 · 적치방법 · 보호필름 상세코드 · 포장방법 · 조분할 세 값</text>
+<rect x="35" y="348" width="1030" height="64" rx="12" fill="#fafcfd" stroke="#b7c8d5"/>
+<rect x="50" y="363" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="386" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">4</text>
+<text x="102" y="388" font-size="20" fill="#17324d" font-weight="700">자동설계 결과를 적는다</text>
+<text x="390" y="388" font-size="18" fill="#17324d" font-weight="400">S/T 유무 · 조수 · 조합폭 1~10 · 제품폭범위 · 방청유</text>
+<rect x="35" y="424" width="1030" height="64" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<rect x="50" y="439" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="462" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">5</text>
+<text x="102" y="464" font-size="20" fill="#17324d" font-weight="700">화면 표시를 대조한다</text>
+<text x="390" y="464" font-size="18" fill="#17324d" font-weight="400">조수·조합폭1 이 숨겨졌는지, SKID 가 어느 갈래로 계산됐는지</text>
+<rect x="35" y="500" width="1030" height="64" rx="12" fill="#fafcfd" stroke="#b7c8d5"/>
+<rect x="50" y="515" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="538" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">6</text>
+<text x="102" y="540" font-size="20" fill="#17324d" font-weight="700">저장 이력을 본다</text>
+<text x="390" y="540" font-size="18" fill="#17324d" font-weight="400">변경 이력 표에 이 화면 이름이 있는지, 시각이 확정 이후인지</text>
+<rect x="35" y="576" width="1030" height="64" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<rect x="50" y="591" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="614" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">7</text>
+<text x="102" y="616" font-size="20" fill="#17324d" font-weight="700">차선 행을 직접 본다</text>
+<text x="390" y="616" font-size="18" fill="#17324d" font-weight="400">화면에 없는 제조구분 2·3 의 같은 컬럼 값</text>
+<rect x="35" y="652" width="1030" height="64" rx="12" fill="#fafcfd" stroke="#b7c8d5"/>
+<rect x="50" y="667" width="36" height="34" rx="17" fill="#007f86"/><text x="68" y="690" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">8</text>
+<text x="102" y="692" font-size="20" fill="#17324d" font-weight="700">재설계 여부를 확인한다</text>
+<text x="390" y="692" font-size="18" fill="#17324d" font-weight="400">재설계했다면 손으로 고친 값과 메세지가 사라졌을 수 있음</text>
+<rect x="35" y="740" width="1030" height="110" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="772" font-size="22" fill="#17324d" font-weight="700">기록해 둘 것</text><text x="51" y="802" font-size="19" fill="#17324d" font-weight="400">각 항목의 값과 함께 “어디서 봤는지”(화면 / DB / 로그)를 같이 적습니다.</text><text x="51" y="828" font-size="19" fill="#17324d" font-weight="400">이 화면은 표시 규칙이 값을 감추기 때문에, 화면만 보고 적은 값은 DB 값과 다를 수 있습니다.</text></g></svg>

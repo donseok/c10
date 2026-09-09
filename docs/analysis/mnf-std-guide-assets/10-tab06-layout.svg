@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="790" viewBox="0 0 1100 790" role="img" aria-labelledby="title desc"><title id="title">TAB06 화면 구성</title><desc id="desc">적차선, 원자재, PLTCM 마스터, ECL, TM, ANN, EGL, 품질메세지 그리드로 구성된다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker></defs><rect width="1100" height="790" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="29" fill="#17324d" font-weight="700">전기도금-제조표준 탭(TAB06)의 화면 구성</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">Grid_3 이 마스터 · ECL·TM·ANN·EGL 편집값은 Grid_3 숨김열로 모여 EGL_MNFupdate 로 저장</text>
+<rect x="35" y="115" width="200" height="95" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="145" font-size="21" fill="#17324d" font-weight="700">Grid_1 적차선</text>
+<text x="55" y="180" font-size="18" fill="#17324d" font-weight="400">선택 표시용</text>
+<rect x="250" y="115" width="815" height="95" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="270" y="145" font-size="21" fill="#17324d" font-weight="700">Grid_2 원자재 (적정·차선1·차선2)</text>
+<text x="270" y="180" font-size="18" fill="#17324d" font-weight="400">원자재코드(콤보) · 등급 · 목표두께 · 하한 · 상한 · 목표폭 → RMTupdate</text>
+<rect x="35" y="225" width="1030" height="110" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="255" font-size="21" fill="#17324d" font-weight="700">Form_1 PLTCM  [압연Set지정 □] [폭수축] [저장]      Grid_3 PLTCM (마스터)</text>
+<text x="55" y="290" font-size="18" fill="#17324d" font-weight="400">TAB05 Grid_2 와 같은 15개 표시열 + ECL·TM·ANN·EGL 숨김열 (X-Ray SET 은 조회 전용)</text>
+<text x="55" y="318" font-size="17" fill="#516579" font-weight="400">두께목표값을 고치면 X-Ray SET 을 0/5 규칙으로 다시 계산해 넣습니다</text>
+<rect x="35" y="350" width="330" height="100" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="380" font-size="21" fill="#17324d" font-weight="700">Grid_4 ECL</text>
+<text x="55" y="412" font-size="17" fill="#17324d" font-weight="400">C-D방지 약품(콤보) · 권취장력(콤보)</text>
+<rect x="380" y="350" width="685" height="100" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="400" y="380" font-size="21" fill="#17324d" font-weight="700">Grid_5 TM</text>
+<text x="400" y="412" font-size="17" fill="#17324d" font-weight="400">Pass수 · RA 하한/상한 · PPI 하한/상한 · RMAX(조회) · 엠보스무늬(조회) · 폭목표 주/대체1/대체2</text>
+<rect x="35" y="465" width="1030" height="100" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="495" font-size="21" fill="#17324d" font-weight="700">Grid_6 ANN  [소둔 저장: 품명 첫 글자 4일 때만 표시]</text>
+<text x="55" y="527" font-size="17" fill="#17324d" font-weight="400">일반 ANN: Cycle(콤보 SG0000) · 보정시간 · 코일온도 · 냉각온도   H-C ANN: Cycle(콤보 SH0000) · 보정시간 · 코일온도 · 냉각온도</text>
+<rect x="35" y="580" width="1030" height="100" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="610" font-size="21" fill="#17324d" font-weight="700">Grid_7 EGL</text>
+<text x="55" y="642" font-size="17" fill="#17324d" font-weight="400">작업도금량 전면하한/상한 · 후면하한/상한 · 도금목표 도금량/두께 · EGL표면처리코드(조회) · 목표 Size 두께/폭</text>
+<rect x="35" y="695" width="1030" height="70" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="725" font-size="20" fill="#17324d" font-weight="700">Grid_8 품질메세지 (편집) · TB_C10_QLT_DSN_MSG 의 제조구분 1 행만 조회·저장</text></g></svg>

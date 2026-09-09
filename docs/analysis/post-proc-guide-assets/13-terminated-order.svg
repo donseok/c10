@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="695" viewBox="0 0 1100 695" role="img" aria-labelledby="title desc"><title id="title">종료주문 필터</title><desc id="desc">후공정 탭의 조회 SQL은 종료 통제 목록에 있는 주문을 제외해 화면이 통째로 비게 된다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="695" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">주문이 종료되면 이 화면은 아무것도 보여주지 않습니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">조회 SQL 두 개 모두 종료 통제 목록에 있는 주문을 제외합니다</text>
+<rect x="400" y="118" width="300" height="44" rx="22" fill="#007f86"/><text x="550" y="146" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">후공정 탭 조회</text>
+<path d="M550 165V200" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="550,205 780,248 550,291 320,248" fill="#e2f1f0" stroke="#b7c8d5"/><text x="550" y="243" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">이 주문번호가 종료 통제 목록</text><text x="550" y="265" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">(구분 O)에 있는가?</text>
+<path d="M780 248H870" fill="none" stroke="#b3261e" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="792" y="238" font-size="18" fill="#b3261e" font-weight="700">예</text>
+<rect x="875" y="212" width="190" height="72" rx="12" fill="#fdecea" stroke="#e5b4b0"/>
+<text x="970" y="246" font-size="19" fill="#b3261e" font-weight="700" text-anchor="middle">조회 결과 0건</text>
+<text x="970" y="272" font-size="17" fill="#b3261e" font-weight="400" text-anchor="middle">화면 전체 공백</text>
+<path d="M550 291V330" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="566" y="318" font-size="18" fill="#007f86" font-weight="700">아니오</text>
+<rect x="300" y="330" width="500" height="80" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="316" y="362" font-size="21" fill="#17324d" font-weight="700">정상 조회</text><text x="316" y="392" font-size="18" fill="#17324d" font-weight="400">제조표준 · 설계공통 · 포장메세지를 조인</text>
+<rect x="35" y="440" width="1030" height="175" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="478" font-size="22" fill="#17324d" font-weight="700">앞의 두 탭과 다른 점</text>
+<text x="55" y="514" font-size="19" fill="#17324d" font-weight="400">제조표준 세 탭 중 후공정 탭에만 있습니다. 용융도금·전기도금 탭의 조회 SQL 에는 없습니다.</text>
+<text x="55" y="544" font-size="19" fill="#8a6100" font-weight="700">그래서 같은 주문에서 TAB05·TAB06 은 값이 보이는데 TAB09 만 비어 보이는 상황이 생길 수 있습니다.</text>
+<text x="55" y="574" font-size="19" fill="#17324d" font-weight="400">품질메세지 조회 SQL 에도 같은 필터가 걸려 있어 메세지 칸도 함께 사라집니다.</text>
+<text x="35" y="660" font-size="20" fill="#17324d" font-weight="700">화면이 통째로 비면 설계 오류부터 찾지 말고, 그 주문이 종료 처리되었는지 먼저 확인합니다.</text></g></svg>

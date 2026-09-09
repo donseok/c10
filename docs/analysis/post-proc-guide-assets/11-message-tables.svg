@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="750" viewBox="0 0 1100 750" role="img" aria-labelledby="title desc"><title id="title">메세지 세 테이블</title><desc id="desc">공정공통, 정전공정, 포장 세 개의 메세지 표가 있고 후공정 탭은 정전공정 표만 편집한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="750" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">“품질메세지”라는 이름의 표가 세 개 있습니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">후공정 탭이 다루는 것은 가운데 하나뿐입니다. 앞의 두 탭이 쓰는 표와 다릅니다.</text>
+<rect x="35" y="120" width="1030" height="130" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="158" font-size="22" fill="#17324d" font-weight="700">TB_C10_QLT_DSN_MSG</text>
+<text x="55" y="190" font-size="19" fill="#516579" font-weight="400">품질Message (공정공통)</text>
+<text x="430" y="158" font-size="18" fill="#17324d" font-weight="400">키: 주문 + 주문행 + 제조구분</text>
+<text x="430" y="190" font-size="18" fill="#17324d" font-weight="400">적정·차선마다 1건</text>
+<text x="790" y="158" font-size="19" fill="#17324d" font-weight="700">TAB05 · TAB06 이 편집</text>
+<rect x="35" y="270" width="1030" height="130" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="55" y="308" font-size="22" fill="#17324d" font-weight="700">TB_C10_QLT_DSN_MSG1</text>
+<text x="55" y="340" font-size="19" fill="#516579" font-weight="400">품질Message (정전공정)</text>
+<text x="430" y="308" font-size="18" fill="#17324d" font-weight="400">키: 주문 + 주문행</text>
+<text x="430" y="340" font-size="18" fill="#17324d" font-weight="400">주문당 1건</text>
+<text x="790" y="308" font-size="19" fill="#007f86" font-weight="700">TAB09 가 편집</text>
+<text x="790" y="340" font-size="17" fill="#007f86" font-weight="400">← 이 문서가 다루는 표</text>
+<rect x="35" y="420" width="1030" height="130" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="458" font-size="22" fill="#17324d" font-weight="700">TB_C10_QLT_DSN_MSG_PKG</text>
+<text x="55" y="490" font-size="19" fill="#516579" font-weight="400">품질설계메세지_포장</text>
+<text x="430" y="458" font-size="18" fill="#17324d" font-weight="400">키: 주문 + 주문행</text>
+<text x="430" y="490" font-size="18" fill="#17324d" font-weight="400">주문당 1건</text>
+<text x="790" y="458" font-size="19" fill="#17324d" font-weight="700">TAB09 는 읽기만</text>
+<text x="790" y="490" font-size="17" fill="#8a6100" font-weight="700">이 저장소에 INSERT 없음</text>
+<rect x="35" y="580" width="1030" height="140" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="612" font-size="22" fill="#17324d" font-weight="700">포장 블록의 두 값은 저장 위치가 다릅니다</text><text x="51" y="642" font-size="19" fill="#17324d" font-weight="400">화면의 “포장메세지” 칸은 포장메세지코드(PAK_MSG_CD)이며 설계공통 표에 저장됩니다.</text><text x="51" y="668" font-size="19" fill="#17324d" font-weight="400">그 옆에 붙어 보이는 메세지 문구는 포장 메세지 표에서 외부조인으로 읽어 온 것이고, 이 화면은 그 표를 쓰지 않습니다.</text><text x="51" y="694" font-size="19" fill="#17324d" font-weight="400">즉 한 칸에 보이는 글자가 두 표에서 합쳐진 값입니다.</text></g></svg>
