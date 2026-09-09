@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1088" viewBox="0 0 1100 1088" role="img" aria-labelledby="title desc"><title id="title">메세지 빈칸 진단 순서</title><desc id="desc">메세지가 비었을 때 탭·종료주문·제조구분·행 유무·차선2 여부를 차례로 좁힌 뒤 마지막에 기준을 확인한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="1088" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">메세지 칸이 비었을 때 — 순서대로 좁힙니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">화면 → 조회 → 행 → 값 순으로 내려갑니다. 기준부터 열어 보는 것은 대개 마지막입니다</text>
+<rect x="420" y="120" width="260" height="48" rx="24" fill="#007f86"/><text x="550" y="150" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">메세지 칸이 비었다</text>
+<path d="M550 168V200" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="300,204 510,244 300,284 90,244" fill="#e2f1f0" stroke="#b7c8d5"/><text x="300" y="250" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">어느 탭에서 보고 있는가</text>
+<path d="M510 244H760" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="760" y="204" width="305" height="80" rx="12" fill="#eef0fa" stroke="#b7c8d5"/>
+<text x="778" y="238" font-size="19" fill="#17324d" font-weight="700">칼라 TAB07 이면</text>
+<text x="778" y="266" font-size="18" fill="#516579" font-weight="400">다른 표입니다 (그림 17)</text>
+<path d="M300 284V320" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="300,324 510,364 300,404 90,364" fill="#e2f1f0" stroke="#b7c8d5"/><text x="300" y="370" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">후공정 탭인가</text>
+<path d="M510 364H760" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="760" y="324" width="305" height="80" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="778" y="358" font-size="19" fill="#17324d" font-weight="700">종료주문인지 먼저 확인</text>
+<text x="778" y="386" font-size="18" fill="#516579" font-weight="400">맞으면 조회가 0건입니다</text>
+<path d="M300 404V440" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="316" y="430" font-size="18" fill="#516579" font-weight="400">아니오 (도금 탭)</text>
+<polygon points="300,444 510,484 300,524 90,484" fill="#e2f1f0" stroke="#b7c8d5"/><text x="300" y="490" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">전기도금 탭인가</text>
+<path d="M510 484H760" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="760" y="444" width="305" height="80" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="778" y="478" font-size="19" fill="#17324d" font-weight="700">적정 행이 있는지 확인</text>
+<text x="778" y="506" font-size="18" fill="#516579" font-weight="400">이 탭은 적정만 읽습니다</text>
+<path d="M300 524V560" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<polygon points="300,560 510,604 300,648 90,604" fill="#e2f1f0" stroke="#b7c8d5"/><text x="300" y="599" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">메세지 표에 그 행이</text><text x="300" y="621" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">있는가</text>
+<path d="M510 604H760" fill="none" stroke="#b3261e" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="760" y="564" width="305" height="80" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="778" y="598" font-size="19" fill="#17324d" font-weight="700">행이 없다 → 그 제조구분의</text>
+<text x="778" y="626" font-size="18" fill="#516579" font-weight="400">제조표준이 설계되지 않았습니다</text>
+<path d="M300 648V690" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="316" y="680" font-size="18" fill="#516579" font-weight="400">행은 있음</text>
+<polygon points="300,690 510,734 300,778 90,734" fill="#fbe3e0" stroke="#b7c8d5"/><text x="300" y="729" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">제조구분 3(차선2)</text><text x="300" y="751" font-size="19" fill="#17324d" font-weight="700" text-anchor="middle">인가</text>
+<path d="M510 734H760" fill="none" stroke="#b3261e" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="760" y="694" width="305" height="80" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="778" y="728" font-size="19" fill="#b3261e" font-weight="700">값을 옮기는 이름이 어긋나</text>
+<text x="778" y="756" font-size="18" fill="#516579" font-weight="400">늘 비어 있습니다 (그림 6)</text>
+<path d="M300 778V820" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="820" width="730" height="86" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="55" y="856" font-size="22" fill="#17324d" font-weight="700">여기까지 왔으면 기준을 봅니다</text>
+<text x="55" y="888" font-size="18" fill="#516579" font-weight="400">설계Key 기준에서 맞은 줄의 메세지 칸이 실제로 비어 있는지 확인합니다</text>
+<rect x="35" y="926" width="1030" height="132" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="958" font-size="22" fill="#17324d" font-weight="700">기준을 확인할 때 주의할 것</text><text x="51" y="988" font-size="19" fill="#17324d" font-weight="400">조건을 넓혀 가며 찾기 때문에, 주문의 값과 정확히 같은 줄이 아니라 별표가 섞인 넓은 줄이 맞았을 수 있습니다.</text><text x="51" y="1014" font-size="19" fill="#17324d" font-weight="400">조합폭을 고치면 Key 의 주문폭이 달라져 맞는 줄이 바뀝니다. 폭을 고친 뒤 메세지가 달라졌다면 이 때문입니다.</text><text x="51" y="1040" font-size="19" fill="#17324d" font-weight="400">반복주문이면 기준을 아예 보지 않습니다. 대표주문의 값이 그대로 복사된 것입니다 (그림 14).</text></g></svg>

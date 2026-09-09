@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="865" viewBox="0 0 1100 865" role="img" aria-labelledby="title desc"><title id="title">주문용도코드 세 단계 확장</title><desc id="desc">주문용도코드는 원래 값에서 ABC***, A*****, ****** 순으로 넓혀 가며 기준을 다시 찾는다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="865" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">주문용도코드는 세 단계로 넓힙니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">여섯 자리를 뒤에서부터 별표로 덮어 갑니다. 앞자리가 남아 있을수록 더 좁은 기준입니다</text>
+<rect x="35" y="125" width="1030" height="108" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="167" font-size="22" fill="#17324d" font-weight="700">원래 값</text>
+<text x="190" y="171" font-size="34" fill="#007f86" font-weight="700">ABCDEF</text>
+<text x="430" y="167" font-size="20" fill="#17324d" font-weight="400">주문에 적힌 그대로 · 가장 좁음</text>
+<text x="430" y="203" font-size="18" fill="#516579" font-weight="400">여기서 못 찾으면 ↓</text>
+<path d="M550 233V253" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="253" width="1030" height="108" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="295" font-size="22" fill="#17324d" font-weight="700">1단계</text>
+<text x="190" y="299" font-size="34" fill="#007f86" font-weight="700">ABC***</text>
+<text x="430" y="295" font-size="20" fill="#17324d" font-weight="400">앞 세 자리만 남김</text>
+<text x="430" y="331" font-size="18" fill="#516579" font-weight="400">여기서 못 찾으면 ↓</text>
+<path d="M550 361V381" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="381" width="1030" height="108" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="423" font-size="22" fill="#17324d" font-weight="700">2단계</text>
+<text x="190" y="427" font-size="34" fill="#007f86" font-weight="700">A*****</text>
+<text x="430" y="423" font-size="20" fill="#17324d" font-weight="400">앞 한 자리만 남김</text>
+<text x="430" y="459" font-size="18" fill="#516579" font-weight="400">여기서 못 찾으면 ↓</text>
+<path d="M550 489V509" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="509" width="1030" height="108" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="55" y="551" font-size="22" fill="#17324d" font-weight="700">3단계</text>
+<text x="190" y="555" font-size="34" fill="#007f86" font-weight="700">******</text>
+<text x="430" y="551" font-size="20" fill="#17324d" font-weight="400">용도를 아예 보지 않음 · 가장 넓음</text>
+<text x="430" y="587" font-size="18" fill="#516579" font-weight="400">여기서도 못 찾으면 고객사코드를 넓힙니다</text>
+<rect x="35" y="645" width="505" height="190" rx="12" fill="#eef7f8" stroke="#b7c8d5"/><text x="51" y="677" font-size="22" fill="#17324d" font-weight="700">코드가 한 번에 안 바뀝니다</text><text x="51" y="707" font-size="18" fill="#17324d" font-weight="400">현재 값의 모양을 보고 다음 단계를 정합니다.</text><text x="51" y="733" font-size="18" fill="#17324d" font-weight="400">“ABC***” 모양이면 → “A*****”</text><text x="51" y="759" font-size="18" fill="#17324d" font-weight="400">“A*****” 모양이면 → “******”</text><text x="51" y="785" font-size="18" fill="#17324d" font-weight="400">그 외(별표 없음)면 → 원본 앞 세 자리 + “***”</text>
+<rect x="560" y="645" width="505" height="190" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="576" y="677" font-size="22" fill="#17324d" font-weight="700">주의: 원본에서 다시 자릅니다</text><text x="576" y="707" font-size="18" fill="#17324d" font-weight="400">1단계로 갈 때는 현재 값이 아니라 ctx 의</text><text x="576" y="733" font-size="18" fill="#17324d" font-weight="400">원래 주문용도코드에서 앞 세 자리를 뜁니다.</text><text x="576" y="759" font-size="18" fill="#17324d" font-weight="400">주문용도코드가 비어 있으면 공백 세 칸에</text><text x="576" y="785" font-size="18" fill="#17324d" font-weight="400">별표 세 개를 붙인 값을 씁니다.</text></g></svg>

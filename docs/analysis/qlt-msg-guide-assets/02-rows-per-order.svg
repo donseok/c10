@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="815" viewBox="0 0 1100 815" role="img" aria-labelledby="title desc"><title id="title">한 주문이 만드는 메세지 행</title><desc id="desc">설계Key 기준 한 줄에서 제조구분별 최대 3행과 정전 1행이 갈라져 나온다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="815" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">자동설계 한 번이 만드는 메세지 행</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">설계Key 기준을 한 번 맞히면, 그 결과 한 줄에서 최대 네 행이 갈라져 나옵니다</text>
+<rect x="360" y="120" width="380" height="86" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="380" y="152" font-size="22" fill="#17324d" font-weight="700">설계Key기준 C10B1040</text>
+<text x="380" y="184" font-size="19" fill="#516579" font-weight="400">맞은 기준 한 줄</text>
+<path d="M550 210V250" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="200" y="250" width="700" height="80" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="220" y="282" font-size="21" fill="#17324d" font-weight="700">그 한 줄이 품고 있는 메세지 칸 네 개</text>
+<text x="220" y="312" font-size="19" fill="#007f86" font-weight="400">QLT_MSG_NM1 · QLT_MSG_NM2 · QLT_MSG_NM3 · QLT_MSG_NM_COR</text>
+<path d="M550 334V368H145V400" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="400" width="246" height="130" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="51" y="434" font-size="19" fill="#007f86" font-weight="700">QLT_MSG_NM1</text>
+<text x="51" y="466" font-size="21" fill="#17324d" font-weight="700">제조구분 1</text>
+<text x="51" y="498" font-size="18" fill="#516579" font-weight="400">적정</text>
+<path d="M550 334V368H407V400" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="297" y="400" width="246" height="130" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="313" y="434" font-size="19" fill="#007f86" font-weight="700">QLT_MSG_NM2</text>
+<text x="313" y="466" font-size="21" fill="#17324d" font-weight="700">제조구분 2</text>
+<text x="313" y="498" font-size="18" fill="#516579" font-weight="400">차선1</text>
+<path d="M550 334V368H669V400" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="559" y="400" width="246" height="130" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="575" y="434" font-size="19" fill="#007f86" font-weight="700">QLT_MSG_NM3</text>
+<text x="575" y="466" font-size="21" fill="#17324d" font-weight="700">제조구분 3</text>
+<text x="575" y="498" font-size="18" fill="#516579" font-weight="400">차선2</text>
+<path d="M550 334V368H931V400" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="821" y="400" width="246" height="130" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="837" y="434" font-size="19" fill="#007f86" font-weight="700">QLT_MSG_NM_COR</text>
+<text x="837" y="466" font-size="21" fill="#17324d" font-weight="700">정전</text>
+<text x="837" y="498" font-size="18" fill="#516579" font-weight="400">주문당 1행</text>
+<rect x="35" y="560" width="772" height="86" rx="12" fill="#eef7f8" stroke="#007f86"/>
+<text x="55" y="594" font-size="22" fill="#17324d" font-weight="700">TB_C10_QLT_DSN_MSG · 최대 3행</text>
+<text x="55" y="624" font-size="18" fill="#516579" font-weight="400">키: 주문번호 + 주문행 + 제조구분 · 원자재코드도 함께 들어감</text>
+<rect x="823" y="560" width="242" height="86" rx="12" fill="#e4f4ef" stroke="#007f86"/>
+<text x="843" y="594" font-size="22" fill="#17324d" font-weight="700">MSG1 · 항상 1행</text>
+<text x="843" y="624" font-size="18" fill="#516579" font-weight="400">키: 주문번호 + 주문행</text>
+<path d="M158 530V560" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M420 530V560" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M682 530V560" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M944 530V560" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="676" width="1030" height="110" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="708" font-size="22" fill="#17324d" font-weight="700">3행이 항상 다 생기지는 않습니다</text><text x="51" y="738" font-size="19" fill="#17324d" font-weight="400">제조구분 2·3 행은 그 구분의 제조표준번호(CRM_MNF_STD_NO1·2)가 있을 때만 만들어집니다.</text><text x="51" y="764" font-size="19" fill="#17324d" font-weight="400">차선이 없는 주문이면 적정 1행만 남습니다. 반대로 정전 메세지 행은 조건 없이 항상 1행 넣습니다.</text></g></svg>

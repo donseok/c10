@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="692" viewBox="0 0 1100 692" role="img" aria-labelledby="title desc"><title id="title">화면별 메세지 칸</title><desc id="desc">용융도금·전기도금·후공정 세 탭이 각각 다른 표와 범위로 메세지를 보여준다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="692" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">세 화면이 각각 다른 메세지를 보여줍니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">같은 품질설계결과 화면(C104000020)의 탭이지만, 읽는 표와 범위가 다릅니다</text>
+<rect x="35" y="120" width="330" height="250" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="53" y="158" font-size="23" fill="#17324d" font-weight="700">용융도금 TAB05</text>
+<text x="53" y="190" font-size="18" fill="#516579" font-weight="400">Grid_7</text>
+<text x="53" y="232" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG</text>
+<text x="53" y="272" font-size="17" fill="#516579" font-weight="400">범위</text>
+<text x="53" y="300" font-size="18" fill="#17324d" font-weight="400">화면에서 고른 적정·차선을 따라감</text>
+<text x="53" y="336" font-size="18" fill="#516579" font-weight="400">입력칸: 한 줄 입력칸</text>
+<rect x="380" y="120" width="330" height="250" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="398" y="158" font-size="23" fill="#17324d" font-weight="700">전기도금 TAB06</text>
+<text x="398" y="190" font-size="18" fill="#516579" font-weight="400">Grid_8</text>
+<text x="398" y="232" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG</text>
+<text x="398" y="272" font-size="17" fill="#516579" font-weight="400">범위</text>
+<text x="398" y="300" font-size="18" fill="#17324d" font-weight="400">적정(제조구분 1)에 고정</text>
+<text x="398" y="336" font-size="18" fill="#516579" font-weight="400">입력칸: 한 줄 입력칸</text>
+<rect x="725" y="120" width="330" height="250" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="743" y="158" font-size="23" fill="#17324d" font-weight="700">후공정 TAB09</text>
+<text x="743" y="190" font-size="18" fill="#516579" font-weight="400">Grid_4</text>
+<text x="743" y="232" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG1</text>
+<text x="743" y="272" font-size="17" fill="#516579" font-weight="400">범위</text>
+<text x="743" y="300" font-size="18" fill="#17324d" font-weight="400">제조구분 개념 없음</text>
+<text x="743" y="336" font-size="18" fill="#516579" font-weight="400">입력칸: 여러 줄 입력칸</text>
+<rect x="35" y="392" width="1030" height="140" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="51" y="424" font-size="22" fill="#17324d" font-weight="700">세 화면 모두 “메세지” 라벨 한 칸짜리 세로 그리드입니다</text><text x="51" y="454" font-size="19" fill="#17324d" font-weight="400">열 정의는 네댓 개지만 헤더를 쓰지 않고, 첫 칸은 “메세지”라는 글자를 박아 둔 라벨입니다.</text><text x="51" y="480" font-size="19" fill="#17324d" font-weight="400">실제 데이터가 들어가는 칸은 품질Message 하나뿐입니다. 나머지는 주문번호·주문행 같은 숨김 열입니다.</text><text x="51" y="506" font-size="19" fill="#17324d" font-weight="400">후공정 탭만 입력칸 종류가 여러 줄짜리라 긴 문구를 줄바꿈해 넣을 수 있습니다.</text>
+<rect x="35" y="552" width="1030" height="110" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="55" y="588" font-size="23" fill="#17324d" font-weight="700">그리드 정의의 표 이름이 실제와 다릅니다</text>
+<text x="55" y="622" font-size="18" fill="#17324d" font-weight="400">TAB05·TAB06 의 숨김 열은 표 이름이 원자재 표로 적혀 있고, TAB09 는 MSG 로 적혀 있지만 실제로 읽는 것은 MSG1 입니다.</text>
+<text x="55" y="650" font-size="18" fill="#516579" font-weight="400">화면 정의 파일의 표 이름은 참고만 하고, 실제 표는 조회 SQL 로 확인하세요.</text></g></svg>

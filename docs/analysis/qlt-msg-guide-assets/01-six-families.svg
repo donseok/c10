@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="986" viewBox="0 0 1100 986" role="img" aria-labelledby="title desc"><title id="title">품질메세지 여섯 갈래</title><desc id="desc">품질메세지는 제조구분별·정전·포장·CCL·지관발주·PE-FOAM 여섯 갈래로 나뉘며 표와 원천과 화면이 각각 다르다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="986" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">“품질메세지”라고 부르는 값은 여섯 갈래입니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">서로 다른 표에 살고, 만드는 기준도 고치는 화면도 다릅니다. 먼저 어느 갈래인지부터 가려야 합니다</text>
+<rect x="35" y="122" width="1030" height="96" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="154" font-size="22" fill="#17324d" font-weight="700">가. 제조구분별 품질메세지</text>
+<text x="55" y="186" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG . QLT_MSG_NM</text>
+<text x="55" y="210" font-size="17" fill="#516579" font-weight="400">원천: 설계Key기준 C10B1040</text>
+<text x="610" y="186" font-size="18" fill="#17324d" font-weight="400">적정·차선1·차선2 최대 3행</text>
+<text x="610" y="210" font-size="17" fill="#516579" font-weight="400">용융도금 TAB05 · 전기도금 TAB06</text>
+<rect x="35" y="234" width="1030" height="96" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="55" y="266" font-size="22" fill="#17324d" font-weight="700">나. 정전 품질메세지</text>
+<text x="55" y="298" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG1 . QLT_MSG_NM</text>
+<text x="55" y="322" font-size="17" fill="#516579" font-weight="400">원천: 설계Key기준 C10B1040</text>
+<text x="610" y="298" font-size="18" fill="#17324d" font-weight="400">주문당 항상 1행</text>
+<text x="610" y="322" font-size="17" fill="#516579" font-weight="400">후공정 TAB09</text>
+<rect x="35" y="346" width="1030" height="96" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="55" y="378" font-size="22" fill="#17324d" font-weight="700">다. 포장메세지</text>
+<text x="55" y="410" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG_PKG . QLT_MSG_NM</text>
+<text x="55" y="434" font-size="17" fill="#516579" font-weight="400">원천: 이 저장소에 만드는 코드 없음</text>
+<text x="610" y="410" font-size="18" fill="#17324d" font-weight="400">주문당 0 또는 1행</text>
+<text x="610" y="434" font-size="17" fill="#516579" font-weight="400">후공정 TAB09 (읽기 전용)</text>
+<rect x="35" y="458" width="1030" height="96" rx="12" fill="#eef0fa" stroke="#b7c8d5"/>
+<text x="55" y="490" font-size="22" fill="#17324d" font-weight="700">라. CCL 공정품질메시지</text>
+<text x="55" y="522" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_CCL_BOM . CCL_QLT_MSG_TXT</text>
+<text x="55" y="546" font-size="17" fill="#516579" font-weight="400">원천: 칼라물성기준 TB_C10_CLR_MPR</text>
+<text x="610" y="522" font-size="18" fill="#17324d" font-weight="400">칼라 BOM 행마다</text>
+<text x="610" y="546" font-size="17" fill="#516579" font-weight="400">칼라 TAB07</text>
+<rect x="35" y="570" width="1030" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="602" font-size="22" fill="#17324d" font-weight="700">마. 지관발주메시지</text>
+<text x="55" y="634" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_CMN . PPR_RNG_PORD_TXT</text>
+<text x="55" y="658" font-size="17" fill="#516579" font-weight="400">원천: 지관발주메시지기준 C10B2290</text>
+<text x="610" y="634" font-size="18" fill="#17324d" font-weight="400">주문당 1칸</text>
+<text x="610" y="658" font-size="17" fill="#516579" font-weight="400">주문정보 TAB01 (편집 가능)</text>
+<rect x="35" y="682" width="1030" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="714" font-size="22" fill="#17324d" font-weight="700">바. PE-FOAM 적용메시지</text>
+<text x="55" y="746" font-size="18" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_CMN . PE_FOAM_TXT</text>
+<text x="55" y="770" font-size="17" fill="#516579" font-weight="400">원천: PE-FOAM적용메세지기준 C10B2300</text>
+<text x="610" y="746" font-size="18" fill="#17324d" font-weight="400">주문당 1칸</text>
+<text x="610" y="770" font-size="17" fill="#516579" font-weight="400">주문정보 TAB01 (읽기 전용)</text>
+<rect x="35" y="806" width="505" height="150" rx="12" fill="#fdecea" stroke="#b7c8d5"/><text x="51" y="838" font-size="22" fill="#17324d" font-weight="700">컬럼 이름이 갈래를 가리지 못합니다</text><text x="51" y="868" font-size="18" fill="#17324d" font-weight="400">가·나·다 는 컬럼 이름이 모두 QLT_MSG_NM 입니다.</text><text x="51" y="894" font-size="18" fill="#17324d" font-weight="400">SQL 로 그 이름을 찾으면 세 표가 함께 걸립니다.</text><text x="51" y="920" font-size="18" fill="#17324d" font-weight="400">표 이름을 반드시 함께 보세요.</text>
+<rect x="560" y="806" width="505" height="150" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="576" y="838" font-size="22" fill="#17324d" font-weight="700">이름은 메세지인데 아닌 것들</text><text x="576" y="868" font-size="18" fill="#17324d" font-weight="400">QLT_DSN_ERR_CD · QLT_DSN_ERR_MSG → 오류용</text><text x="576" y="894" font-size="18" fill="#17324d" font-weight="400">EAI 표의 QLT_DSN_MSG → 송신 플래그(A→B)</text><text x="576" y="920" font-size="18" fill="#17324d" font-weight="400">자세한 것은 본문 12.5 절에.</text></g></svg>

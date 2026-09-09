@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="789" viewBox="0 0 1100 789" role="img" aria-labelledby="title desc"><title id="title">포장메세지의 두 조각</title><desc id="desc">포장메세지 칸은 설계공통의 코드와 포장메세지 표의 문구를 이어 붙인 것이며 저장되는 것은 코드뿐이다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="789" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">포장메세지 한 칸은 두 표에서 옵니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">후공정 탭이 코드와 문구를 이어 붙여 한 칸에 보여 줍니다. 저장되는 것은 코드뿐입니다</text>
+<rect x="35" y="120" width="480" height="180" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="158" font-size="23" fill="#17324d" font-weight="700">앞 조각 — 코드</text>
+<text x="55" y="196" font-size="19" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_CMN.PAK_MSG_CD</text>
+<text x="55" y="232" font-size="18" fill="#516579" font-weight="400">화면 콤보에서 고르는 값</text>
+<text x="55" y="268" font-size="19" fill="#1b6b54" font-weight="700">저장 대상입니다</text>
+<rect x="585" y="120" width="480" height="180" rx="12" fill="#fff4e7" stroke="#b7c8d5"/>
+<text x="605" y="158" font-size="23" fill="#17324d" font-weight="700">뒤 조각 — 문구</text>
+<text x="605" y="196" font-size="19" fill="#007f86" font-weight="700">TB_C10_QLT_DSN_MSG_PKG.QLT_MSG_NM</text>
+<text x="605" y="232" font-size="18" fill="#516579" font-weight="400">바깥 조인으로 붙습니다</text>
+<text x="605" y="268" font-size="19" fill="#b3261e" font-weight="700">저장 대상이 아닙니다</text>
+<path d="M275 300V345H520" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M825 300V345H580" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="370" y="345" width="360" height="80" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="390" y="393" font-size="22" fill="#17324d" font-weight="700">화면의 포장메세지 한 칸</text>
+<rect x="35" y="455" width="1030" height="164" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/><text x="51" y="487" font-size="22" fill="#17324d" font-weight="700">세 가지를 구분해야 합니다</text><text x="51" y="517" font-size="19" fill="#17324d" font-weight="400">코드는 있는데 문구가 없다 = 포장메세지 표에 그 주문 행이 없습니다. 바깥 조인이라 조회는 정상입니다.</text><text x="51" y="543" font-size="19" fill="#17324d" font-weight="400">코드도 문구도 없다 = 설계공통 표의 포장메세지코드가 비어 있습니다.</text><text x="51" y="569" font-size="19" fill="#17324d" font-weight="400">문구를 고치고 싶다 = 이 화면으로는 안 됩니다. 저장 SQL 이 코드만 씁니다.</text>
+<rect x="35" y="639" width="1030" height="120" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="55" y="675" font-size="23" fill="#17324d" font-weight="700">포장메세지 표에 행을 넣는 코드가 이 저장소에 없습니다</text>
+<text x="55" y="711" font-size="19" fill="#17324d" font-weight="400">조회 한 곳에서만 참조합니다. 자동설계도 이 표를 만들지 않고, 반복주문 복사 대상에도 없습니다.</text>
+<text x="55" y="739" font-size="19" fill="#516579" font-weight="400">문구가 비어 있다면 이 저장소 밖에서 채워지는 값인지 먼저 확인해야 합니다.</text></g></svg>

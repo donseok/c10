@@ -1,0 +1,28 @@
+<section id="qm-explorer" aria-label="주문 조건별 품질메세지 비교">
+  <div class="explorer-top">
+    <label for="qm-scenario">비교할 설계 조건
+      <select id="qm-scenario">
+        <option value="full">적정·차선1·차선2 모두 설계 · 기준에 문구 세 개 다 있음</option>
+        <option value="tier1">적정만 설계 · 차선 없음</option>
+        <option value="nomsg">세 구분 다 설계 · 기준에 문구가 하나도 없음</option>
+        <option value="coronly">기준에 정전 문구만 있음</option>
+        <option value="notier1">차선1·차선2만 설계 · 적정 없음</option>
+        <option value="term">종료 처리된 주문</option>
+      </select>
+    </label>
+    <p>자동설계 규칙만 적용한 <strong>설명용 고정값</strong>입니다.<br><small>운영 업무기준이나 주문을 조회하지 않습니다.</small></p>
+  </div>
+  <ol class="explorer-steps" id="qm-steps">
+    <li><span>적정 (제조구분 1)</span><strong>—</strong><small></small></li>
+    <li><span>차선1 (제조구분 2)</span><strong>—</strong><small></small></li>
+    <li><span>차선2 (제조구분 3)</span><strong>—</strong><small></small></li>
+    <li><span>정전 (MSG1)</span><strong>—</strong><small></small></li>
+  </ol>
+  <p class="explorer-result" id="qm-result" aria-live="polite">정상</p>
+  <table class="explorer-table"><caption id="qm-caption">이 조건에서 각 화면이 보여주는 것</caption>
+    <thead><tr><th scope="col">보는 곳</th><th scope="col">화면 표시</th></tr></thead>
+    <tbody id="qm-rows"></tbody>
+  </table>
+  <p id="qm-explanation"></p>
+  <p class="explorer-note">설명용 고정값 · 자동설계 규칙만 재현 · 실제 값은 운영 DB에서 확인해야 합니다.</p>
+</section>

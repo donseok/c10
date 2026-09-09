@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="685" viewBox="0 0 1100 685" role="img" aria-labelledby="title desc"><title id="title">반복주문 설계복사</title><desc id="desc">반복주문은 대표주문의 메세지 행을 그대로 베끼며 설계Key 기준을 다시 맞히지 않는다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="685" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">반복주문은 기준을 다시 맞히지 않고 그대로 베낍니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">대표주문의 메세지 행을 골라 새 주문번호만 갈아 끼워 넣습니다</text>
+<rect x="35" y="120" width="440" height="230" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="158" font-size="24" fill="#17324d" font-weight="700">대표주문</text>
+<text x="55" y="196" font-size="19" fill="#17324d" font-weight="400">MSG · 제조구분별 행 그대로</text>
+<text x="55" y="228" font-size="19" fill="#17324d" font-weight="400">MSG1 · 정전 행 그대로</text>
+<text x="55" y="268" font-size="18" fill="#516579" font-weight="400">사람이 화면에서 고친 문구도</text>
+<text x="55" y="296" font-size="18" fill="#516579" font-weight="400">그대로 따라옵니다</text>
+<text x="55" y="332" font-size="18" fill="#516579" font-weight="400">원자재코드·제조구분도 복사</text>
+<path d="M475 235H620" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="547" y="215" font-size="18" fill="#007f86" font-weight="700" text-anchor="middle">복사</text>
+<rect x="620" y="120" width="445" height="230" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="640" y="158" font-size="24" fill="#17324d" font-weight="700">새 주문</text>
+<text x="640" y="196" font-size="19" fill="#17324d" font-weight="400">같은 문구가 그대로 들어감</text>
+<text x="640" y="228" font-size="19" fill="#17324d" font-weight="400">주문번호·주문행만 갈아 끼웁니다</text>
+<text x="640" y="268" font-size="18" fill="#516579" font-weight="400">설계Key 기준을 다시 맞히지 않습니다</text>
+<text x="640" y="296" font-size="18" fill="#516579" font-weight="400">생성자 표시는 배치 이름으로 남습니다</text>
+<rect x="35" y="375" width="1030" height="150" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="407" font-size="22" fill="#17324d" font-weight="700">좋은 점과 조심할 점이 같은 뿌리입니다</text><text x="51" y="437" font-size="19" fill="#17324d" font-weight="400">좋은 점: 대표주문에서 손으로 다듬은 문구가 반복주문마다 그대로 재현됩니다.</text><text x="51" y="463" font-size="19" fill="#17324d" font-weight="400">조심할 점: 대표주문의 메세지가 비어 있으면 새 주문도 빕니다. 기준을 고쳐도 복사본에는 오지 않습니다.</text><text x="51" y="489" font-size="19" fill="#17324d" font-weight="400">차선2 메세지가 비는 문제도 복사로 그대로 번집니다. 원인은 새 주문이 아니라 대표주문에 있습니다.</text>
+<rect x="35" y="545" width="1030" height="110" rx="12" fill="#fdecea" stroke="#b7c8d5"/>
+<text x="55" y="581" font-size="23" fill="#17324d" font-weight="700">포장메세지와 CCL 메세지는 이 복사 경로에 없습니다</text>
+<text x="55" y="617" font-size="19" fill="#17324d" font-weight="400">복사되는 것은 MSG 와 MSG1 두 표뿐입니다. 포장메세지 표는 복사 대상 목록에 아예 없습니다.</text></g></svg>

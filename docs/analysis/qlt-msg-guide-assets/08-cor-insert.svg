@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="900" viewBox="0 0 1100 900" role="img" aria-labelledby="title desc"><title id="title">정전 메세지 저장 경로</title><desc id="desc">정전 메세지는 조건 없이 항상 한 행을 넣고, 제조구분별 메세지는 설계된 구분만 행을 만든다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="900" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">정전 메세지는 조건 없이 항상 한 행을 넣습니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">제조구분별 메세지와 달리 “있으면 넣는다”가 아니라 “무조건 넣는다”입니다</text>
+<rect x="35" y="120" width="500" height="290" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="158" font-size="24" fill="#17324d" font-weight="700">제조구분별 메세지 (MSG)</text>
+<text x="55" y="196" font-size="19" fill="#17324d" font-weight="400">① 제조표준번호가 있는 구분만 목록에 담고</text>
+<text x="55" y="228" font-size="19" fill="#17324d" font-weight="400">② 목록을 돌면서 한 행씩 INSERT</text>
+<text x="55" y="266" font-size="21" fill="#007f86" font-weight="700">행 수: 0 ~ 3</text>
+<text x="55" y="304" font-size="19" fill="#516579" font-weight="400">값이 없으면 빈 문자열</text>
+<text x="55" y="342" font-size="19" fill="#516579" font-weight="400">원자재코드도 함께 저장</text>
+<text x="55" y="380" font-size="19" fill="#516579" font-weight="400">제조구분 컬럼 있음</text>
+<rect x="565" y="120" width="500" height="290" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="585" y="158" font-size="24" fill="#17324d" font-weight="700">정전 메세지 (MSG1)</text>
+<text x="585" y="196" font-size="19" fill="#17324d" font-weight="400">① 조건 검사 없음</text>
+<text x="585" y="228" font-size="19" fill="#17324d" font-weight="400">② 곧바로 한 행 INSERT</text>
+<text x="585" y="266" font-size="21" fill="#1b6b54" font-weight="700">행 수: 언제나 1</text>
+<text x="585" y="304" font-size="19" fill="#516579" font-weight="400">값을 그대로 넘김 (빈 문자열로 안 바꿈)</text>
+<text x="585" y="342" font-size="19" fill="#516579" font-weight="400">원자재코드 없음</text>
+<text x="585" y="380" font-size="19" fill="#516579" font-weight="400">제조구분 컬럼 없음</text>
+<path d="M285 410V450" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M815 410V450" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="35" y="450" width="500" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="486" font-size="20" fill="#17324d" font-weight="700">적정·차선1·차선2 중 설계된 것만</text>
+<text x="55" y="518" font-size="18" fill="#516579" font-weight="400">차선이 없으면 1행뿐입니다</text>
+<rect x="565" y="450" width="500" height="96" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="585" y="486" font-size="20" fill="#17324d" font-weight="700">기준에 정전 문구가 없어도 행은 생깁니다</text>
+<text x="585" y="518" font-size="18" fill="#516579" font-weight="400">그때 저장되는 값은 NULL 입니다</text>
+<rect x="35" y="576" width="1030" height="164" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="608" font-size="22" fill="#17324d" font-weight="700">“코드 경로는 다른데 결과는 같다”</text><text x="51" y="638" font-size="19" fill="#17324d" font-weight="400">제조구분별 경로는 값이 없으면 빈 문자열을 만들어 넣고, 정전 경로는 없는 값을 그대로 넘깁니다.</text><text x="51" y="664" font-size="19" fill="#17324d" font-weight="400">자바 코드만 보면 두 경로가 달라 보이지만, Oracle 은 빈 문자열을 NULL 로 저장합니다.</text><text x="51" y="690" font-size="19" fill="#17324d" font-weight="400">그래서 표에 남는 결과는 둘 다 NULL 로 같습니다. 이 차이로 원인을 가릴 수는 없습니다.</text>
+<rect x="35" y="760" width="1030" height="110" rx="12" fill="#fdecea" stroke="#b7c8d5"/><text x="51" y="792" font-size="22" fill="#17324d" font-weight="700">한 곳이라도 INSERT 가 실패하면</text><text x="51" y="822" font-size="19" fill="#17324d" font-weight="400">에러코드 TB09 를 남기고 그 주문의 설계를 실패로 끝냅니다. 메세지만 빠진 채 나머지가 저장되지는 않습니다.</text><text x="51" y="848" font-size="19" fill="#17324d" font-weight="400">다만 앞서 지운 행은 이미 지워진 뒤입니다. 다음 그림의 수명주기를 함께 보세요.</text></g></svg>

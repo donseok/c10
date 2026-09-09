@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="903" viewBox="0 0 1100 903" role="img" aria-labelledby="title desc"><title id="title">탭별 메세지 저장 범위</title><desc id="desc">용융도금은 선택한 제조구분을, 전기도금은 적정만, 후공정은 정전 표의 한 행을 저장한다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#007f86"/></marker><marker id="arrowg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#516579"/></marker><marker id="arrowr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b3261e"/></marker></defs><rect width="1100" height="903" fill="#fff"/><g font-family="Apple SD Gothic Neo, Noto Sans CJK KR, sans-serif"><text x="35" y="46" font-size="30" fill="#17324d" font-weight="700">같은 칸을 고쳐도 저장되는 행이 다릅니다</text>
+<text x="35" y="84" font-size="21" fill="#516579" font-weight="400">세 탭의 저장 SQL 이 WHERE 절에서 제조구분을 다루는 방식이 제각각입니다</text>
+<rect x="35" y="125" width="1030" height="170" rx="12" fill="#eef7f8" stroke="#b7c8d5"/>
+<text x="55" y="165" font-size="24" fill="#17324d" font-weight="700">용융도금 TAB05</text>
+<text x="55" y="205" font-size="19" fill="#516579" font-weight="400">WHERE 주문번호 + 주문행</text>
+<text x="55" y="237" font-size="20" fill="#007f86" font-weight="700">AND QLT_DSN_MNF_TP = :QLT_DSN_MNF_TP</text>
+<path d="M600 225H680" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="700" y="191" width="345" height="72" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="718" y="235" font-size="19" fill="#17324d" font-weight="700">화면에서 고른 그 구분 한 행</text>
+<text x="718" y="275" font-size="18" fill="#516579" font-weight="400">선택을 따라감</text>
+<rect x="35" y="321" width="1030" height="170" rx="12" fill="#f2f5f8" stroke="#b7c8d5"/>
+<text x="55" y="361" font-size="24" fill="#17324d" font-weight="700">전기도금 TAB06</text>
+<text x="55" y="401" font-size="19" fill="#516579" font-weight="400">WHERE 주문번호 + 주문행</text>
+<text x="55" y="433" font-size="20" fill="#b3261e" font-weight="700">AND QLT_DSN_MNF_TP = '1'</text>
+<path d="M600 421H680" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="700" y="387" width="345" height="72" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="718" y="431" font-size="19" fill="#17324d" font-weight="700">적정 한 행 (값이 박혀 있음)</text>
+<text x="718" y="471" font-size="18" fill="#b3261e" font-weight="400">차선을 골라도 적정이 바뀜</text>
+<rect x="35" y="517" width="1030" height="170" rx="12" fill="#e4f4ef" stroke="#b7c8d5"/>
+<text x="55" y="557" font-size="24" fill="#17324d" font-weight="700">후공정 TAB09</text>
+<text x="55" y="597" font-size="19" fill="#516579" font-weight="400">WHERE 주문번호 + 주문행</text>
+<text x="55" y="629" font-size="20" fill="#007f86" font-weight="700">(제조구분 조건 없음)</text>
+<path d="M600 617H680" fill="none" stroke="#007f86" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="700" y="583" width="345" height="72" rx="12" fill="#fff" stroke="#b7c8d5"/>
+<text x="718" y="627" font-size="19" fill="#17324d" font-weight="700">그 주문의 MSG1 한 행</text>
+<text x="718" y="667" font-size="18" fill="#516579" font-weight="400">MSG1 에 제조구분이 없어 자연스러움</text>
+<rect x="35" y="715" width="1030" height="158" rx="12" fill="#fff4e7" stroke="#b7c8d5"/><text x="51" y="747" font-size="22" fill="#17324d" font-weight="700">전기도금 탭은 조회도 적정에 고정돼 있습니다</text><text x="51" y="777" font-size="19" fill="#17324d" font-weight="400">조회 SQL 도 제조구분 1 로 박혀 있고, 변경이력을 남길 때 쓰는 조건도 제조구분 1 로 박혀 있습니다.</text><text x="51" y="803" font-size="19" fill="#17324d" font-weight="400">세 군데가 모두 같은 방향이라 적정만 다루도록 만든 화면으로 읽힙니다. 다만 화면 스크립트는 고른 제조구분을 넘기고 있습니다.</text><text x="51" y="829" font-size="19" fill="#17324d" font-weight="400">반면 용융도금 탭은 화면에서 고른 적정·차선을 그대로 따라가므로, 차선의 메세지를 따로 고칠 수 있습니다.</text></g></svg>
